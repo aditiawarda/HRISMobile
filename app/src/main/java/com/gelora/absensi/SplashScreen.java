@@ -82,6 +82,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import static com.gelora.absensi.R.layout.activity_splash_screen;
 import static android.service.controls.ControlsProviderService.TAG;
 import static android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
@@ -149,7 +150,6 @@ public class SplashScreen extends AppCompatActivity {
                 }
             }, 50);
         } else {
-
             new KAlertDialog(SplashScreen.this, KAlertDialog.WARNING_TYPE)
                     .setTitleText("Perhatian!")
                     .setContentText("Versi android Anda tidak mendukung, silakan gunakan Absensi Online versi Web untuk melakukan absensi")
@@ -490,7 +490,7 @@ public class SplashScreen extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 refreshLayout.setRefreshing(false);
-                Banner.make(rootview, SplashScreen.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
+                Banner.make(rootview, SplashScreen.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 10000).show();
             }
         });
 

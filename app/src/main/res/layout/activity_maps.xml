@@ -23,6 +23,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="-10dp"
             android:layout_weight=".50">
 
             <LinearLayout
@@ -33,7 +34,7 @@
                 android:background="@drawable/shape_limit_main"/>
 
             <RelativeLayout
-                android:layout_marginTop="-20dp"
+                android:layout_marginTop="-22dp"
                 android:background="@drawable/shape_body_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -53,8 +54,8 @@
                             android:orientation="vertical">
 
                             <RelativeLayout
-                                android:layout_marginTop="15dp"
-                                android:layout_marginBottom="13dp"
+                                android:layout_marginTop="17dp"
+                                android:layout_marginBottom="10dp"
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginRight="20dp"
                                 android:layout_width="match_parent"
@@ -166,7 +167,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginRight="20dp"
                                 android:layout_height="1dp"
-                                android:background="#33939393"/>
+                                android:background="#33ACACAC"/>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -241,7 +242,7 @@
 
                                     <LinearLayout
                                         android:id="@+id/status_absen_btn"
-                                        android:layout_marginTop="15dp"
+                                        android:layout_marginTop="10dp"
                                         android:layout_marginBottom="20dp"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
@@ -452,7 +453,7 @@
                                         android:layout_marginTop="5dp"
                                         android:textColor="#C68D46"
                                         android:textSize="11dp"
-                                        android:text="Pastikan penanda lokasi (warna merah) dan posisi anda berada dalam jangkauan area check point Absensi Online. Kecuali untuk status absensi WFH, Pjd, KLL dan DL."/>
+                                        android:text="Pastikan penanda posisi berada dalam jangkauan area check point Absensi Online. Kecuali untuk status absensi WFH, Pjd, KLL dan DL."/>
 
                                     <LinearLayout
                                         android:visibility="gone"
@@ -855,12 +856,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:background="@color/white"
-            android:paddingTop="15dp"
+            android:paddingTop="12dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:paddingBottom="15dp">
+            android:paddingBottom="12dp">
 
             <LinearLayout
                 android:id="@+id/action_btn"
@@ -891,10 +892,10 @@
         <LinearLayout
             android:orientation="horizontal"
             android:background="@drawable/shape_header"
-            android:paddingTop="12dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="12dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:paddingBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="43dp"
@@ -953,8 +954,8 @@
 
             <com.mahfa.dnswitch.DayNightSwitch
                 android:id="@+id/day_night_switch"
-                android:layout_width="50dp"
-                android:layout_height="25dp"
+                android:layout_width="45dp"
+                android:layout_height="23dp"
                 android:layout_gravity="center"/>
 
         </LinearLayout>

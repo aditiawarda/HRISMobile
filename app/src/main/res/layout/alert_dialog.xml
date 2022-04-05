@@ -11,7 +11,7 @@
     android:background="?attr/alertDialogDark"
     android:paddingTop="15dp"
     android:paddingRight="20dp"
-    android:paddingBottom="20dp"
+    android:paddingBottom="15dp"
     android:paddingLeft="20dp">
 
     <ImageView
@@ -150,7 +150,7 @@
     </FrameLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
