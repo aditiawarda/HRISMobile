@@ -60,7 +60,7 @@
                             android:id="@+id/image_user_bs"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/icon_app"
+                            android:background="@drawable/default_profile"
                             android:scaleType="centerCrop" />
 
                     </androidx.cardview.widget.CardView>
@@ -141,7 +141,7 @@
                 <LinearLayout
                     android:id="@+id/view_avatar_btn"
                     android:layout_width="0dp"
-                    android:layout_weight=".50"
+                    android:layout_weight=".30"
                     android:layout_height="40dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/shape_btn"
@@ -159,9 +159,10 @@
                 <LinearLayout
                     android:id="@+id/update_avatar_btn"
                     android:layout_width="0dp"
-                    android:layout_weight=".50"
+                    android:layout_weight=".30"
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/shape_second_btn"
                     android:gravity="center">
 
@@ -171,6 +172,24 @@
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:text="UBAH"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/hapus_avatar_btn"
+                    android:layout_width="0dp"
+                    android:layout_weight=".30"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/shape_logout"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/red"
+                        android:text="HAPUS"/>
 
                 </LinearLayout>
 

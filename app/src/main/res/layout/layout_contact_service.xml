@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="30dp"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -65,6 +66,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
+                        android:textColor="@color/text_color"
                         android:text="Untuk layanan pengaduan anda akan terhubung dengan tim IT PT. Gelora Aksara Pratama"/>
 
                 </LinearLayout>

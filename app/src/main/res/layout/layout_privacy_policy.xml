@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="30dp"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -62,12 +63,14 @@
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
                         android:layout_marginBottom="5dp"
+                        android:textColor="@color/text_color"
                         android:text="Absensi App juga dapat diakses melalui geloraaksara.co.id/absen-online, salah satu prioritas utama kami adalah privasi pengguna."/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="File Log"
+                        android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
                         android:textStyle="bold"/>
 
@@ -77,12 +80,14 @@
                         android:textSize="13dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="10dp"
+                        android:textColor="@color/text_color"
                         android:text="Absensi App mengikuti prosedur standar menggunakan file log. File-file ini mencatat pengguna saat mereka masuk. Informasi yang dikumpulkan oleh file log termasuk data lokasi, tanggal dan waktu. Tujuan dari informasi ini adalah untuk merekam data dan mengumpulkan informasi pengguna."/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Hanya Kebijakan Privasi Online"
+                        android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
                         android:textStyle="bold"/>
 
@@ -92,6 +97,7 @@
                         android:textSize="13dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="10dp"
+                        android:textColor="@color/text_color"
                         android:text="Kebijakan Privasi ini hanya berlaku untuk aktivitas online dan berlaku untuk pengguna aplikasi sehubungan dengan informasi yang dimasukkan dan/atau kumpulkan di Absensi App."/>
 
                     <TextView
@@ -99,6 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:text="Consent"
+                        android:textColor="@color/text_color"
                         android:textStyle="bold" />
 
                     <TextView
@@ -107,6 +114,7 @@
                         android:textSize="13dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="5dp"
+                        android:textColor="@color/text_color"
                         android:text="Dengan menggunakan Absensi App, Anda dengan ini menyetujui Kebijakan Privasi dan menyetujui Syarat dan Ketentuannya."/>
 
                 </LinearLayout>

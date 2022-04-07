@@ -78,9 +78,23 @@
                                         android:id="@+id/avatar_user"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:backgroundTint="#DF9D49"
-                                        android:background="@drawable/ic_baseline_person"
+                                        android:background="@drawable/default_profile"
                                         android:scaleType="centerCrop" />
+
+                                    <TextView
+                                        android:id="@+id/upload_file"
+                                        android:layout_gravity="bottom"
+                                        android:paddingTop="3dp"
+                                        android:paddingLeft="10dp"
+                                        android:paddingRight="10dp"
+                                        android:paddingBottom="3dp"
+                                        android:background="@drawable/shape_upload"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Add photo"
+                                        android:textSize="9dp"
+                                        android:drawablePadding="5dp"
+                                        android:drawableLeft="@drawable/ic_baseline_camera" />
 
                                 </androidx.cardview.widget.CardView>
 

@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="30dp"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -58,6 +59,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:textSize="20dp"
+                        android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
                         android:text="Opps !"/>
 
@@ -65,6 +67,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="16dp"
+                        android:textColor="@color/text_color"
                         android:text="Koneksi anda terputus!"/>
 
                 </LinearLayout>

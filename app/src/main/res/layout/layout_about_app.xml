@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="30dp"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -60,6 +61,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
+                        android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
                         android:text="Absensi App merupakan aplikasi android dari Sistem Absensi Online PT Gelora Aksara Pratama, Absensi App diharapkan dapat memfasilitasi karyawan PT. Gelora Aksara Pratama dalam melakukan absensi kerja."/>
 
@@ -67,6 +69,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
+                        android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
                         android:text="Absensi App dikembangkan oleh Tim IT PT. Gelora Aksara Pratama. untuk kemudahan dan kelancaran penggunaan Absensi App didukung oleh Google Maps sebagai penanda posisi."/>
 
@@ -74,6 +77,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
+                        android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
                         android:text="Versi yang saat ini anda gunakan adalah versi 1.1.20"/>
 

@@ -77,7 +77,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 public class UserActivity extends AppCompatActivity {
 
     LinearLayout closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
-    TextView descAvailable, descEmtpy, statusUserTV, prevBTN, nextBTN, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    TextView uploadImg, descAvailable, descEmtpy, statusUserTV, prevBTN, nextBTN, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
@@ -124,6 +124,7 @@ public class UserActivity extends AppCompatActivity {
         avatarUser = findViewById(R.id.avatar_user);
         emptyAvatarPart = findViewById(R.id.empty_avatar_part);
         availableAvatarPart = findViewById(R.id.available_avatar_part);
+        uploadImg = findViewById(R.id.upload_file);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -306,11 +307,14 @@ public class UserActivity extends AppCompatActivity {
                                 jabatanTV.setText(jabatan);
 
                                 if(!avatar.equals("null")){
-                                    avatarStatus = "1";
-                                    avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
-                                    Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
-                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                            .into(avatarUser);
+                                    if(!avatar.equals("default_profile.jpg")){
+                                        uploadImg.setVisibility(View.GONE);
+                                        avatarStatus = "1";
+                                        avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
+                                        Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                .into(avatarUser);
+                                    }
                                 }
 
                                 if(info_covid.equals("1")){
@@ -573,7 +577,6 @@ public class UserActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.e("PaRSE JSON", response + "");
                         try {
-
                             JSONArray data = response.getJSONArray("data");
 
                             for (int i = 0; i < data.length(); i++) {
@@ -695,11 +698,9 @@ public class UserActivity extends AppCompatActivity {
     public void uploadMultipart() {
         String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/update_profilepic";
         String path1 = FilePathimage.getPath(this, uri);
-
         if (path1 == null) {
             Toast.makeText(this, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
         } else {
-            //Uploading code
             try {
                 String uploadId = UUID.randomUUID().toString();
                 new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
@@ -708,7 +709,7 @@ public class UserActivity extends AppCompatActivity {
                         .setMaxRetries(1)
                         .startUpload();
             } catch (Exception exc) {
-                //Toast.makeText(this, "oke", Toast.LENGTH_SHORT).show();
+                Log.e("PaRSE JSON", "Oke");
             }
         }
 
@@ -719,7 +720,7 @@ public class UserActivity extends AppCompatActivity {
                         .setTitleText("Loading");
                 pDialog.show();
                 pDialog.setCancelable(false);
-                new CountDownTimer(3000, 1000) {
+                new CountDownTimer(2000, 1000) {
                     public void onTick(long millisUntilFinished) {
                         i++;
                         switch (i) {
@@ -752,7 +753,7 @@ public class UserActivity extends AppCompatActivity {
                     }
                     public void onFinish() {
                         i = -1;
-                        pDialog.setTitleText("Gambar Berhasil Diupload")
+                        pDialog.setTitleText("Upload Berhasil")
                                 .setConfirmText("OK")
                                 .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                         bottomSheet.dismissSheet();

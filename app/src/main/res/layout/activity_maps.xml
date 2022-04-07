@@ -643,14 +643,14 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="35dp"
                                         android:layout_marginTop="5dp"
-                                        android:background="@drawable/shape_ucapan"
+                                        android:background="@drawable/shape_detail"
                                         android:gravity="center">
 
                                         <TextView
                                             android:id="@+id/ucapan_tv"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textColor="#48AAFF"
+                                            android:textColor="#D39400"
                                             android:textStyle="italic"
                                             android:textSize="12dp"
                                             android:text="Selamat dan Semangat Berkerja!"/>
