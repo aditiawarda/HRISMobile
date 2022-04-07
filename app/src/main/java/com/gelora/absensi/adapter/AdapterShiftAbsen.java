@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,8 +48,10 @@ public class AdapterShiftAbsen extends RecyclerView.Adapter<AdapterShiftAbsen.My
 
         if (sharedPrefAbsen.getSpIdShift().equals(shiftAbsen.getId_shift())) {
             myViewHolder.markStatusAbsen.setVisibility(View.VISIBLE);
+            myViewHolder.statusParent.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_option_choice));
         } else {
             myViewHolder.markStatusAbsen.setVisibility(View.GONE);
+            myViewHolder.statusParent.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_option));
         }
 
         myViewHolder.statusParent.setOnClickListener(new View.OnClickListener() {

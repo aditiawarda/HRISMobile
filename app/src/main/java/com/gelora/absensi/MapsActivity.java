@@ -215,7 +215,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         requestQueue = Volley.newRequestQueue(getBaseContext());
 
         Glide.with(MapsActivity.this)
-                .load(R.drawable.loading)
+                .load(R.drawable.load_progress)
                 .into(loadingGif);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(statusAbsenBroad, new IntentFilter("status_absen_broad"));

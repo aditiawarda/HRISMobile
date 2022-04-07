@@ -1001,9 +1001,9 @@
 
             <ImageView
                 android:id="@+id/loading"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                app:srcCompat="@drawable/loading" />
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                app:srcCompat="@drawable/load_progress" />
 
         </LinearLayout>
 
