@@ -63,5 +63,6 @@ dependencies {
     implementation 'net.gotev:uploadservice:2.1'
     implementation 'com.github.yalantis:ucrop:2.2.2'
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 }

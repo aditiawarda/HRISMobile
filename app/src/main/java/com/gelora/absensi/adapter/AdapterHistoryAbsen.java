@@ -68,8 +68,25 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            DateFormat format2=new SimpleDateFormat("EEEE");
+            DateFormat format2=new SimpleDateFormat("EEE");
             String finalDay = format2.format(dt1);
+            String hariName = "";
+
+            if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                hariName = "Senin";
+            } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                hariName = "Selasa";
+            } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                hariName = "Rabu";
+            } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                hariName = "Kamis";
+            } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                hariName = "Jumat";
+            } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                hariName = "Sabtu";
+            } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                hariName = "Minggu";
+            }
 
             String dayDate = input_date.substring(8,10);
             String yearDate = input_date.substring(0,4);;
@@ -91,7 +108,7 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
                     break;
                 case "05":
                     bulanName = "Mei";
-                break;
+                    break;
                 case "06":
                     bulanName = "Juni";
                     break;
@@ -114,11 +131,12 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
                     bulanName = "Desember";
                     break;
                 default:
-                    bulanName = "Not found!";
+                    bulanName = "Not found";
                     break;
             }
 
-            myViewHolder.dateAbsen.setText(finalDay+", "+dayDate+" "+bulanName+" "+yearDate);
+            myViewHolder.dateAbsen.setText(hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+
         }
 
         myViewHolder.checkinTime.setText(historyAbsen.getJam_masuk());

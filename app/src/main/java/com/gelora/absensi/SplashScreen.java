@@ -360,7 +360,7 @@ public class SplashScreen extends AppCompatActivity {
                             String version = response.getString("version");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.1.19";
+                                String currentVersion = "1.1.21";
                                 if (!currentVersion.equals(version)){
                                     statusUpdateLayout = "1";
 

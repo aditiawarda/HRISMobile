@@ -52,6 +52,9 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.shasin.notificationbanner.Banner;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 
@@ -157,9 +160,7 @@ public class UserActivity extends AppCompatActivity {
         avatarUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 avatarFuction();
-
             }
         });
 
@@ -307,7 +308,9 @@ public class UserActivity extends AppCompatActivity {
                                 if(!avatar.equals("null")){
                                     avatarStatus = "1";
                                     avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
-                                    Glide.with(UserActivity.this).load(avatarPath).into(avatarUser);
+                                    Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
+                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                            .into(avatarUser);
                                 }
 
                                 if(info_covid.equals("1")){
@@ -783,7 +786,9 @@ public class UserActivity extends AppCompatActivity {
             emptyAvatarBTN.setVisibility(View.GONE);
             availableAvatarPart.setVisibility(View.VISIBLE);
             availableAvatarBTN.setVisibility(View.VISIBLE);
-            Glide.with(UserActivity.this).load(avatarPath).into(imageUserBS);
+            Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .into(imageUserBS);
         } else {
             emptyAvatarPart.setVisibility(View.VISIBLE);
             emptyAvatarBTN.setVisibility(View.VISIBLE);
@@ -802,6 +807,7 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dexterCall();
+                bottomSheet.dismissSheet();
             }
         });
 
@@ -809,17 +815,21 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dexterCall();
+                bottomSheet.dismissSheet();
             }
         });
 
         viewAvatarBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bottomSheet.dismissSheet();
                 AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
                 LayoutInflater inflater = getLayoutInflater();
                 View imageLayoutView = inflater.inflate(R.layout.show_avatar, null);
                 ImageView image = (ImageView) imageLayoutView.findViewById(R.id.dialog_imageview);
-                Glide.with(UserActivity.this).load(avatarPath).into(image);
+                Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
+                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        .into(image);
 
                 builder.setView(imageLayoutView)
                         .setPositiveButton("Tutup", new DialogInterface.OnClickListener() {
