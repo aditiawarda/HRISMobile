@@ -1,27 +1,35 @@
 package com.gelora.absensi;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,17 +38,28 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.support.FilePathimage;
+import com.gelora.absensi.support.ImagePickerActivity;
 import com.gelora.absensi.support.Preferences;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.shasin.notificationbanner.Banner;
+
+import net.gotev.uploadservice.MultipartUploadRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -48,22 +67,28 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
-    TextView prevBTN, nextBTN, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    LinearLayout closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
+    TextView descAvailable, descEmtpy, statusUserTV, prevBTN, nextBTN, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
     SwipeRefreshLayout refreshLayout;
     NestedScrollView scrollView;
+    ImageView avatarUser, imageUserBS;
     View rootview;
+    String avatarStatus = "0", avatarPath = "";
 
     AlarmManager alarmManager;
     CompactCalendarView compactCalendarView;
+    int REQUEST_IMAGE = 100;
+    private Uri uri;
+    private int i = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +96,6 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
 
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
         scrollView = findViewById(R.id.scrollView);
@@ -93,6 +117,10 @@ public class UserActivity extends AppCompatActivity {
         rootview = findViewById(android.R.id.content);
         companyBTN = findViewById(R.id.about_company_btn);
         covidBTN = findViewById(R.id.covid_btn);
+        statusUserTV = findViewById(R.id.status_user_tv);
+        avatarUser = findViewById(R.id.avatar_user);
+        emptyAvatarPart = findViewById(R.id.empty_avatar_part);
+        availableAvatarPart = findViewById(R.id.available_avatar_part);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -102,7 +130,6 @@ public class UserActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-                        //refreshData();
                         getDataUser();
                     }
                 }, 1000);
@@ -127,6 +154,15 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
+        avatarUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                avatarFuction();
+
+            }
+        });
+
         companyBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,7 +175,7 @@ public class UserActivity extends AppCompatActivity {
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               onBackPressed();
+                onBackPressed();
             }
         });
 
@@ -214,9 +250,16 @@ public class UserActivity extends AppCompatActivity {
     private void getDataUser(){
         String nama = sharedPrefManager.getSpNama();
         String nik = sharedPrefManager.getSpNik();
+        String status = sharedPrefManager.getSpStatusUser();
         getDataKaryawan();
-        nameUserTV.setText(nama);
+        nameUserTV.setText(nama.toUpperCase());
         nikTV.setText(nik);
+
+        if(status.equals("1")){
+            statusUserTV.setText("Aktif");
+        } else {
+            statusUserTV.setText("Non-Aktif");
+        }
     }
 
     private void logoutFunction(){
@@ -255,10 +298,17 @@ public class UserActivity extends AppCompatActivity {
                                 String department = data.getString("departemen");
                                 String bagian = data.getString("bagian");
                                 String jabatan = data.getString("jabatan");
+                                String avatar = data.getString("avatar");
                                 String info_covid = data.getString("info_covid");
                                 departemenTV.setText(department);
                                 bagianTV.setText(bagian);
                                 jabatanTV.setText(jabatan);
+
+                                if(!avatar.equals("null")){
+                                    avatarStatus = "1";
+                                    avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
+                                    Glide.with(UserActivity.this).load(avatarPath).into(avatarUser);
+                                }
 
                                 if(info_covid.equals("1")){
                                     covidBTN.setVisibility(View.VISIBLE);
@@ -292,6 +342,7 @@ public class UserActivity extends AppCompatActivity {
                 params.put("id_department", sharedPrefManager.getSpIdHeadDept());
                 params.put("id_bagian", sharedPrefManager.getSpIdDept());
                 params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
+                params.put("NIK", sharedPrefManager.getSpNik());
                 return params;
             }
         };
@@ -549,6 +600,259 @@ public class UserActivity extends AppCompatActivity {
 
         requestQueue.add(request);
 
+    }
+
+    private void showImagePickerOptions() {
+        ImagePickerActivity.showImagePickerOptions(this, new ImagePickerActivity.PickerOptionListener() {
+            @Override
+            public void onTakeCameraSelected() {
+                launchCameraIntent();
+            }
+            @Override
+            public void onChooseGallerySelected() {
+                launchGalleryIntent();
+            }
+        });
+    }
+
+    private void launchGalleryIntent() {
+        Intent intent = new Intent(UserActivity.this, ImagePickerActivity.class);
+        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_GALLERY_IMAGE);
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
+        startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+    private void launchCameraIntent() {
+        Intent intent = new Intent(UserActivity.this, ImagePickerActivity.class);
+        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_IMAGE_CAPTURE);
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1);
+        // setting maximum bitmap width and height
+        intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 500);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 500);
+        startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+    private void showSettingsDialog() {
+        androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
+        builder.setTitle(getString(R.string.dialog_permission_title));
+        builder.setMessage(getString(R.string.dialog_permission_message));
+        builder.setPositiveButton(getString(R.string.go_to_settings), (dialog, which) -> {
+            dialog.cancel();
+            openSettings();
+        });
+        builder.setNegativeButton(getString(android.R.string.cancel), (dialog, which) -> dialog.cancel());
+        builder.show();
+    }
+
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        String file_directori = getRealPathFromURIPath(uri, UserActivity.this);
+        startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+    private String getRealPathFromURIPath(Uri contentURI, Activity activity) {
+        Cursor cursor = activity.getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) {
+            return contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            return cursor.getString(idx);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE) {
+            if (resultCode == Activity.RESULT_OK) {
+                uri = data.getParcelableExtra("path");
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                    String file_directori = getRealPathFromURIPath(uri, UserActivity.this);
+                    String a= "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
+                    Log.e("PaRSE JSON", a);
+                    uploadMultipart();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void uploadMultipart() {
+        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/update_profilepic";
+        String path1 = FilePathimage.getPath(this, uri);
+
+        if (path1 == null) {
+            Toast.makeText(this, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
+        } else {
+            //Uploading code
+            try {
+                String uploadId = UUID.randomUUID().toString();
+                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                        .addFileToUpload(path1, "file") //Adding file
+                        .addParameter("NIK", sharedPrefManager.getSpNik()) //Adding text parameter to the request
+                        .setMaxRetries(1)
+                        .startUpload();
+            } catch (Exception exc) {
+                //Toast.makeText(this, "oke", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                final KAlertDialog pDialog = new KAlertDialog(UserActivity.this, KAlertDialog.PROGRESS_TYPE)
+                        .setTitleText("Loading");
+                pDialog.show();
+                pDialog.setCancelable(false);
+                new CountDownTimer(3000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        i++;
+                        switch (i) {
+                            case 0:
+                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                        (UserActivity.this,R.color.blue_btn_bg_color));
+                                break;
+                            case 1:
+                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                        (UserActivity.this,R.color.material_deep_teal_50));
+                                break;
+                            case 2:
+                            case 6:
+                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                        (UserActivity.this,R.color.success_stroke_color));
+                                break;
+                            case 3:
+                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                        (UserActivity.this,R.color.material_deep_teal_20));
+                                break;
+                            case 4:
+                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                        (UserActivity.this,R.color.material_blue_grey_80));
+                                break;
+                            case 5:
+                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                        (UserActivity.this,R.color.warning_stroke_color));
+                                break;
+                        }
+                    }
+                    public void onFinish() {
+                        i = -1;
+                        pDialog.setTitleText("Gambar Berhasil Diupload")
+                                .setConfirmText("OK")
+                                .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                        bottomSheet.dismissSheet();
+                        getDataKaryawan();
+                    }
+                }.start();
+
+            }
+        }, 1);
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void avatarFuction(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_change_avatar, bottomSheet, false));
+        emptyAvatarPart = findViewById(R.id.empty_avatar_part);
+        availableAvatarPart = findViewById(R.id.available_avatar_part);
+        descAvailable = findViewById(R.id.desc_available);
+        descEmtpy = findViewById(R.id.desc_empty);
+        emptyAvatarBTN = findViewById(R.id.empty_avatar_btn);
+        availableAvatarBTN = findViewById(R.id.available_avatar_btn);
+        updateAvatarBTN = findViewById(R.id.update_avatar_btn);
+        viewAvatarBTN = findViewById(R.id.view_avatar_btn);
+        imageUserBS = findViewById(R.id.image_user_bs);
+        closeBSBTN = findViewById(R.id.close_bs_btn);
+
+        descAvailable.setText("Halo "+sharedPrefManager.getSpNama()+", Anda bisa atur foto profil sesuai keinginan anda.");
+        descEmtpy.setText("Halo "+sharedPrefManager.getSpNama()+", Anda bisa tambahkan foto profil sesuai keinginan anda.");
+
+        if (avatarStatus.equals("1")){
+            emptyAvatarPart.setVisibility(View.GONE);
+            emptyAvatarBTN.setVisibility(View.GONE);
+            availableAvatarPart.setVisibility(View.VISIBLE);
+            availableAvatarBTN.setVisibility(View.VISIBLE);
+            Glide.with(UserActivity.this).load(avatarPath).into(imageUserBS);
+        } else {
+            emptyAvatarPart.setVisibility(View.VISIBLE);
+            emptyAvatarBTN.setVisibility(View.VISIBLE);
+            availableAvatarPart.setVisibility(View.GONE);
+            availableAvatarBTN.setVisibility(View.GONE);
+        }
+
+        closeBSBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheet.dismissSheet();
+            }
+        });
+
+        emptyAvatarBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dexterCall();
+            }
+        });
+
+        updateAvatarBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dexterCall();
+            }
+        });
+
+        viewAvatarBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View imageLayoutView = inflater.inflate(R.layout.show_avatar, null);
+                ImageView image = (ImageView) imageLayoutView.findViewById(R.id.dialog_imageview);
+                Glide.with(UserActivity.this).load(avatarPath).into(image);
+
+                builder.setView(imageLayoutView)
+                        .setPositiveButton("Tutup", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                builder.create();
+                builder.show();
+            }
+        });
+
+    }
+
+    private void dexterCall(){
+        Dexter.withActivity(UserActivity.this)
+                .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        if (report.areAllPermissionsGranted()) {
+                            showImagePickerOptions();
+                        }
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            showSettingsDialog();
+                        }
+                    }
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
     }
 
 }

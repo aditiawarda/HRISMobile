@@ -43,6 +43,7 @@ import com.takisoft.datetimepicker.DatePickerDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.CookieHandler;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -53,7 +54,7 @@ import java.util.Map;
 public class HistoryActivity extends AppCompatActivity {
 
     LinearLayout noConnectPart, loadingPart, noDataPart, attantionPart, actionBar, filterDateBTN, backBTN, homeBTN, filterDateChoiceBTN, changeFilterDateBTN, filterDateChoice;
-    TextView nameOfUserTV, filterDateChoiceTV, dateLastAbsenTV, timeCheckinLastAbsenTV, timeCheckoutLastAbsenTV, checkinPointLastAbsenTV, checkoutPointLastAbsenTV;
+    TextView filterDateChoiceTV, dateLastAbsenTV, timeCheckinLastAbsenTV, timeCheckoutLastAbsenTV, checkinPointLastAbsenTV, checkoutPointLastAbsenTV;
     SharedPrefManager sharedPrefManager;
     BottomSheetLayout bottomSheet;
     String dateChoiceForHistory;
@@ -87,7 +88,6 @@ public class HistoryActivity extends AppCompatActivity {
         checkinPointLastAbsenTV = findViewById(R.id.checkin_point_tv);
         timeCheckoutLastAbsenTV = findViewById(R.id.time_checkout_tv);
         checkoutPointLastAbsenTV = findViewById(R.id.checkout_point_tv);
-        nameOfUserTV = findViewById(R.id.name_of_user_tv);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         attantionPart = findViewById(R.id.attantion_part);
         noDataPart = findViewById(R.id.no_data_part);
@@ -105,8 +105,6 @@ public class HistoryActivity extends AppCompatActivity {
         historyAbsenRV.setLayoutManager(new LinearLayoutManager(this));
         historyAbsenRV.setHasFixedSize(true);
         historyAbsenRV.setItemAnimator(new DefaultItemAnimator());
-
-        nameOfUserTV.setText(sharedPrefManager.getSpNama());
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -143,7 +141,7 @@ public class HistoryActivity extends AppCompatActivity {
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               onBackPressed();
+                onBackPressed();
             }
         });
 
@@ -181,14 +179,9 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private void datePicker(){
-        Calendar cal = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            cal = Calendar.getInstance();
-        }
-
-        DatePickerDialog dpd = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            dpd = new DatePickerDialog(HistoryActivity.this, (view1, year, month, dayOfMonth) -> {
+            Calendar cal = Calendar.getInstance();
+            DatePickerDialog dpd = new DatePickerDialog(HistoryActivity.this, (view1, year, month, dayOfMonth) -> {
                 filterDateBTN.setVisibility(View.GONE);
                 filterDateChoice.setVisibility(View.VISIBLE);
 
@@ -267,9 +260,129 @@ public class HistoryActivity extends AppCompatActivity {
                 }, 1000);
 
             }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
-        }
-        dpd.show();
+            dpd.show();
+        } else {
+            int y = Integer.parseInt(getDateY());
+            int m = Integer.parseInt(getDateM());
+            int d = Integer.parseInt(getDateD());
+            DatePickerDialog dpd = new DatePickerDialog(HistoryActivity.this, (view1, year, month, dayOfMonth) -> {
+                filterDateBTN.setVisibility(View.GONE);
+                filterDateChoice.setVisibility(View.VISIBLE);
 
+                dateChoiceForHistory = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+                String input_date = dateChoiceForHistory;
+                SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                Date dt1= null;
+                try {
+                    dt1 = format1.parse(input_date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                DateFormat format2=new SimpleDateFormat("EEE");
+                String finalDay = format2.format(dt1);
+                String hariName = "";
+
+                if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                    hariName = "Senin";
+                } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                    hariName = "Selasa";
+                } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                    hariName = "Rabu";
+                } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                    hariName = "Kamis";
+                } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                    hariName = "Jumat";
+                } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                    hariName = "Sabtu";
+                } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                    hariName = "Minggu";
+                }
+
+                String dayDate = input_date.substring(8,10);
+                String yearDate = input_date.substring(0,4);;
+                String bulanValue = input_date.substring(5,7);
+                String bulanName;
+
+                switch (bulanValue) {
+                    case "01":
+                        bulanName = "Januari";
+                        break;
+                    case "02":
+                        bulanName = "Februari";
+                        break;
+                    case "03":
+                        bulanName = "Maret";
+                        break;
+                    case "04":
+                        bulanName = "April";
+                        break;
+                    case "05":
+                        bulanName = "Mei";
+                        break;
+                    case "06":
+                        bulanName = "Juni";
+                        break;
+                    case "07":
+                        bulanName = "Juli";
+                        break;
+                    case "08":
+                        bulanName = "Agustus";
+                        break;
+                    case "09":
+                        bulanName = "September";
+                        break;
+                    case "10":
+                        bulanName = "Oktober";
+                        break;
+                    case "11":
+                        bulanName = "November";
+                        break;
+                    case "12":
+                        bulanName = "Desember";
+                        break;
+                    default:
+                        bulanName = "Not found";
+                        break;
+                }
+
+                filterDateChoiceTV.setText(hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+
+                loadingPart.setVisibility(View.VISIBLE);
+                historyAbsenRV.setVisibility(View.GONE);
+                attantionPart.setVisibility(View.GONE);
+                noDataPart.setVisibility(View.GONE);
+                noConnectPart.setVisibility(View.GONE);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getHistoryAbsensi();
+                    }
+                }, 1000);
+
+            }, y,m,d);
+            dpd.show();
+        }
+
+
+    }
+
+    private String getDateD() {
+        DateFormat dateFormat = new SimpleDateFormat("dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateM() {
+        DateFormat dateFormat = new SimpleDateFormat("MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateY() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     private void lastAbsenHistory(){

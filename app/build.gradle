@@ -11,7 +11,9 @@ android {
         minSdkVersion 19 //24 Recommendation //Requered 19
         targetSdkVersion 31
         versionCode 20
-        versionName "1.1.20"
+        versionName "1.1.20"\
+
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -57,5 +59,9 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation "androidx.core:core-ktx:1.5.0-alpha05"
     implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
+    implementation "com.karumi:dexter:5.0.0"
+    implementation 'net.gotev:uploadservice:2.1'
+    implementation 'com.github.yalantis:ucrop:2.2.2'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
 }

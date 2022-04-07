@@ -107,77 +107,47 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash_screen);
+        refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
+        rootview = findViewById(android.R.id.content);
+        updateLayout = findViewById(R.id.update_layout);
+        updateDialog = findViewById(R.id.update_dialog);
+        updateBTN = findViewById(R.id.update_btn);
+        closeBTN = findViewById(R.id.close_btn);
+        descTV = findViewById(R.id.desc_tv);
+        mStatusBarColorManager = new StatusBarColorManager(this);
+        mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            setContentView(R.layout.activity_splash_screen);
-
-            refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
-            rootview = findViewById(android.R.id.content);
-            updateLayout = findViewById(R.id.update_layout);
-            updateDialog = findViewById(R.id.update_dialog);
-            updateBTN = findViewById(R.id.update_btn);
-            closeBTN = findViewById(R.id.close_btn);
-            descTV = findViewById(R.id.desc_tv);
-            mStatusBarColorManager = new StatusBarColorManager(this);
-            mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
-
-            refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
-            refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
-                            }
-                            //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                            //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-
-                            versionCheck();
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
                         }
-                    }, 50);
-                }
-            });
+                        //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                        //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
 
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
+                        versionCheck();
+                    }
+                }, 50);
+            }
+        });
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
-                    //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                    //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-                    versionCheck();
                 }
-            }, 50);
-        } else {
-            new KAlertDialog(SplashScreen.this, KAlertDialog.WARNING_TYPE)
-                    .setTitleText("Perhatian!")
-                    .setContentText("Versi android Anda tidak mendukung, silakan gunakan Absensi Online versi Web untuk melakukan absensi")
-                    .setCancelText("NO")
-                    .setConfirmText("YES")
-                    .showCancelButton(true)
-                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                            finish();
-                        }
-                    })
-                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                            Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://geloraaksara.co.id/absen-online/"));
-                            startActivity(webIntent);
-                            finish();
-                        }
-                    })
-                    .show();
-
-
-        }
-
-
+                //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+                versionCheck();
+            }
+        }, 50);
     }
 
     private void gpsEnableAction() {
