@@ -76,7 +76,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
     TextView uploadImg, descAvailable, descEmtpy, statusUserTV, prevBTN, nextBTN, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -778,6 +778,7 @@ public class UserActivity extends AppCompatActivity {
         viewAvatarBTN = findViewById(R.id.view_avatar_btn);
         imageUserBS = findViewById(R.id.image_user_bs);
         closeBSBTN = findViewById(R.id.close_bs_btn);
+        removeAvatarBTN = findViewById(R.id.hapus_avatar_btn);
 
         descAvailable.setText("Halo "+sharedPrefManager.getSpNama()+", Anda bisa atur foto profil sesuai keinginan anda.");
         descEmtpy.setText("Halo "+sharedPrefManager.getSpNama()+", Anda bisa tambahkan foto profil sesuai keinginan anda.");
@@ -844,6 +845,33 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
+        removeAvatarBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(UserActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Apakah anda yakin hapus foto profil?")
+                        .setCancelText("NO")
+                        .setConfirmText("YES")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                removePic();
+                            }
+                        })
+                        .show();
+                bottomSheet.dismissSheet();
+            }
+        });
+
     }
 
     private void dexterCall(){
@@ -864,6 +892,96 @@ public class UserActivity extends AppCompatActivity {
                         token.continuePermissionRequest();
                     }
                 }).check();
+    }
+
+    private void removePic() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/remove_pic";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                final KAlertDialog pDialog = new KAlertDialog(UserActivity.this, KAlertDialog.PROGRESS_TYPE)
+                                        .setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1300, 800) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (UserActivity.this, R.color.blue_btn_bg_color));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (UserActivity.this, R.color.material_deep_teal_50));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (UserActivity.this, R.color.success_stroke_color));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (UserActivity.this, R.color.material_deep_teal_20));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (UserActivity.this, R.color.material_blue_grey_80));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (UserActivity.this, R.color.warning_stroke_color));
+                                                break;
+                                        }
+                                    }
+                                    public void onFinish() {
+                                        i = -1;
+                                        pDialog.setTitleText("Foto Berhasil Dihapus")
+                                                .setConfirmText("OK")
+                                                .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                        getDataKaryawan();
+                                    }
+                                }.start();
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
     }
 
 }

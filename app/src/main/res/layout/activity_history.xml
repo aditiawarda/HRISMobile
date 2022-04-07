@@ -567,7 +567,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="16dp"
-                android:text="NAMA KARYAWAN"/>
+                android:text="RIWAYAT ABSENSI"/>
 
         </LinearLayout>
 

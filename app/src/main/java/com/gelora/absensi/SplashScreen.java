@@ -35,6 +35,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.StatusBarColorManager;
@@ -93,10 +95,11 @@ public class SplashScreen extends AppCompatActivity {
     private static final int INITIAL_REQUEST = 1337;
     private static final int LOCATION_REQUEST = INITIAL_REQUEST + 3;
     View rootview;
-    LinearLayout updateBTN, closeBTN, updateLayout, updateDialog;
-    TextView descTV;
+    LinearLayout refreshPart, refreshBTN, updateBTN, closeBTN, updateLayout, updateDialog;
+    TextView refreshLabel, descTV;
     String statusUpdateLayout = "0";
     SwipeRefreshLayout refreshLayout;
+    ImageView loadingProgress;
 
     private StatusBarColorManager mStatusBarColorManager;
     private LocationRequest mLocationRequest;
@@ -115,6 +118,10 @@ public class SplashScreen extends AppCompatActivity {
         updateBTN = findViewById(R.id.update_btn);
         closeBTN = findViewById(R.id.close_btn);
         descTV = findViewById(R.id.desc_tv);
+        refreshBTN = findViewById(R.id.refresh_ss_btn);
+        refreshPart = findViewById(R.id.refresh_part);
+        loadingProgress = findViewById(R.id.loading_progress);
+        refreshLabel = findViewById(R.id.refresh_label);
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
 
@@ -148,6 +155,28 @@ public class SplashScreen extends AppCompatActivity {
                 versionCheck();
             }
         }, 50);
+
+       refreshBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refreshLabel.setText("LOADING...");
+                Glide.with(SplashScreen.this)
+                        .load(R.drawable.load_progress)
+                        .into(loadingProgress);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshPart.setVisibility(View.GONE);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
+                        }
+                        versionCheck();
+                    }
+                }, 2000);
+            }
+        });
+
     }
 
     private void gpsEnableAction() {
@@ -355,11 +384,11 @@ public class SplashScreen extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.e("PaRSE JSON", response + "");
                         try {
-
                             String status = response.getString("status");
                             String version = response.getString("version");
 
                             if (status.equals("Success")){
+                                refreshPart.setVisibility(View.GONE);
                                 String currentVersion = "1.1.21";
                                 if (!currentVersion.equals(version)){
                                     statusUpdateLayout = "1";
@@ -448,6 +477,11 @@ public class SplashScreen extends AppCompatActivity {
                                     permissionLoc();
                                 }
                             } else {
+                                refreshPart.setVisibility(View.VISIBLE);
+                                refreshLabel.setText("REFRESH");
+                                Glide.with(SplashScreen.this)
+                                        .load(R.drawable.loading_prog)
+                                        .into(loadingProgress);
                                 Banner.make(rootview, SplashScreen.this, Banner.ERROR, "Not found!", Banner.BOTTOM, 4000).show();
                             }
 
@@ -460,6 +494,11 @@ public class SplashScreen extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 refreshLayout.setRefreshing(false);
+                refreshPart.setVisibility(View.VISIBLE);
+                refreshLabel.setText("REFRESH");
+                Glide.with(SplashScreen.this)
+                        .load(R.drawable.loading_prog)
+                        .into(loadingProgress);
                 Banner.make(rootview, SplashScreen.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 10000).show();
             }
         });
