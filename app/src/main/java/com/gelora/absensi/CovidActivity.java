@@ -151,8 +151,25 @@ public class CovidActivity extends AppCompatActivity {
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
-                            DateFormat format2=new SimpleDateFormat("EEEE");
+                            DateFormat format2=new SimpleDateFormat("EEE");
                             String finalDay = format2.format(dt1);
+                            String hariName = "";
+
+                            if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                                hariName = "Senin";
+                            } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                                hariName = "Selasa";
+                            } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                                hariName = "Rabu";
+                            } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                                hariName = "Kamis";
+                            } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                                hariName = "Jumat";
+                            } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                                hariName = "Sabtu";
+                            } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                                hariName = "Minggu";
+                            }
 
                             String dayDate = input_date.substring(8,10);
                             String yearDate = input_date.substring(0,4);;
@@ -201,7 +218,7 @@ public class CovidActivity extends AppCompatActivity {
                                     break;
                             }
 
-                            dateData.setText("Update : "+finalDay+", "+dayDate+" "+bulanName+" "+yearDate);
+                            dateData.setText("Update : "+hariName+", "+dayDate+" "+bulanName+" "+yearDate);
 
                             penambahanConfirm.setText(numberFormat.format(Double.parseDouble(confirmAdd)));
                             penambahanHealt.setText(numberFormat.format(Double.parseDouble(healtAdd)));
@@ -258,8 +275,25 @@ public class CovidActivity extends AppCompatActivity {
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
-                            DateFormat format2=new SimpleDateFormat("EEEE");
+                            DateFormat format2=new SimpleDateFormat("EEE");
                             String finalDay = format2.format(dt1);
+                            String hariName = "";
+
+                            if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                                hariName = "Senin";
+                            } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                                hariName = "Selasa";
+                            } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                                hariName = "Rabu";
+                            } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                                hariName = "Kamis";
+                            } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                                hariName = "Jumat";
+                            } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                                hariName = "Sabtu";
+                            } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                                hariName = "Minggu";
+                            }
 
                             String dayDate = input_date.substring(8,10);
                             String yearDate = input_date.substring(0,4);;
@@ -308,7 +342,7 @@ public class CovidActivity extends AppCompatActivity {
                                     break;
                             }
 
-                            dateVaksin.setText("Update : "+finalDay+", "+dayDate+" "+bulanName+" "+yearDate);
+                            dateVaksin.setText("Update : "+hariName+", "+dayDate+" "+bulanName+" "+yearDate);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

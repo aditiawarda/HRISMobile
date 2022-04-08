@@ -292,7 +292,7 @@
                         <LinearLayout
                             android:id="@+id/history_btn"
                             android:layout_width="0dp"
-                            android:layout_weight=".85"
+                            android:layout_weight=".55"
                             android:layout_height="40dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="10dp"
@@ -305,6 +305,24 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/white"
                                 android:text="RIWAYAT ABSENSI"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/chat_btn"
+                            android:layout_width="0dp"
+                            android:layout_weight=".30"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/shape_btn"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:text="CHAT"
+                                android:textColor="@color/white" />
 
                         </LinearLayout>
 
