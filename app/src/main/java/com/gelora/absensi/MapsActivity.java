@@ -1495,7 +1495,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @SuppressLint("SetTextI18n")
     private void actionButton(){
-
         if (radiusZone.equals("inside")){
             if(statusAction.equals("checkin")){
                 if(idShiftAbsen.equals("")){

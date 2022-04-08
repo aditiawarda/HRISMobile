@@ -167,7 +167,6 @@ public class SplashScreen extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        refreshPart.setVisibility(View.GONE);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
                         }
@@ -388,8 +387,7 @@ public class SplashScreen extends AppCompatActivity {
                             String version = response.getString("version");
 
                             if (status.equals("Success")){
-                                refreshPart.setVisibility(View.GONE);
-                                String currentVersion = "1.1.21";
+                                String currentVersion = "1.1.22";
                                 if (!currentVersion.equals(version)){
                                     statusUpdateLayout = "1";
 
@@ -405,7 +403,7 @@ public class SplashScreen extends AppCompatActivity {
                                     updateLayout.setVisibility(View.VISIBLE);
                                     updateDialog.setVisibility(View.VISIBLE);
 
-                                    descTV.setText("Absensi App v"+version+" telah tersedia di Google Play Store");
+                                    descTV.setText("Absensi App v "+version+" telah tersedia di Google Play Store");
 
                                     updateBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -433,6 +431,7 @@ public class SplashScreen extends AppCompatActivity {
                                                     });
                                             Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.gelora.absensi"));
                                             startActivity(webIntent);
+                                            refreshPart.setVisibility(View.GONE);
                                             finish();
                                         }
                                     });
@@ -482,7 +481,7 @@ public class SplashScreen extends AppCompatActivity {
                                 Glide.with(SplashScreen.this)
                                         .load(R.drawable.loading_prog)
                                         .into(loadingProgress);
-                                Banner.make(rootview, SplashScreen.this, Banner.ERROR, "Not found!", Banner.BOTTOM, 4000).show();
+                                Banner.make(rootview, SplashScreen.this, Banner.ERROR, "Not found!", Banner.BOTTOM, 5000).show();
                             }
 
                         } catch (JSONException e) {
@@ -499,7 +498,7 @@ public class SplashScreen extends AppCompatActivity {
                 Glide.with(SplashScreen.this)
                         .load(R.drawable.loading_prog)
                         .into(loadingProgress);
-                Banner.make(rootview, SplashScreen.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 10000).show();
+                Banner.make(rootview, SplashScreen.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 5000).show();
             }
         });
 
