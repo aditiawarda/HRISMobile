@@ -135,9 +135,6 @@ public class SplashScreen extends AppCompatActivity {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
                         }
-                        //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                        //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-
                         versionCheck();
                     }
                 }, 50);
@@ -150,8 +147,6 @@ public class SplashScreen extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
                 }
-                //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
                 versionCheck();
             }
         }, 50);
@@ -251,8 +246,6 @@ public class SplashScreen extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
             }
-            //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -260,8 +253,6 @@ public class SplashScreen extends AppCompatActivity {
                 }
             }, 200);
         } else {
-            //startLocationUpdates();
-
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -515,8 +506,6 @@ public class SplashScreen extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
                 }
-                //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                //ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
                 versionCheck();
             }
         }, 400);
