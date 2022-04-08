@@ -249,7 +249,6 @@ public class CovidActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.e("PaRSE JSON", response + "");
                         try {
-
                             NumberFormat numberFormat = NumberFormat.getNumberInstance(new Locale("in", "ID"));
 
                             JSONObject vaksinasi = response.getJSONObject("vaksinasi");
