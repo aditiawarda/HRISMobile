@@ -478,7 +478,7 @@ public class SplashScreen extends AppCompatActivity {
                             } else {
                                 refreshPart.setVisibility(View.VISIBLE);
                                 refreshLabel.setText("REFRESH");
-                                Glide.with(SplashScreen.this)
+                                Glide.with(getApplicationContext())
                                         .load(R.drawable.loading_prog)
                                         .into(loadingProgress);
                                 Banner.make(rootview, SplashScreen.this, Banner.ERROR, "Not found!", Banner.BOTTOM, 5000).show();
@@ -495,7 +495,7 @@ public class SplashScreen extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
                 refreshPart.setVisibility(View.VISIBLE);
                 refreshLabel.setText("REFRESH");
-                Glide.with(SplashScreen.this)
+                Glide.with(getApplicationContext())
                         .load(R.drawable.loading_prog)
                         .into(loadingProgress);
                 Banner.make(rootview, SplashScreen.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 5000).show();

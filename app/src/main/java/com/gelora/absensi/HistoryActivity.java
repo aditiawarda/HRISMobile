@@ -96,7 +96,7 @@ public class HistoryActivity extends AppCompatActivity {
         rootview = findViewById(android.R.id.content);
         noConnectPart = findViewById(R.id.no_connect_part);
 
-        Glide.with(HistoryActivity.this)
+        Glide.with(getApplicationContext())
                 .load(R.drawable.loading)
                 .into(loadingData);
 

@@ -214,7 +214,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ucapanTV = findViewById(R.id.ucapan_tv);
         requestQueue = Volley.newRequestQueue(getBaseContext());
 
-        Glide.with(MapsActivity.this)
+        Glide.with(getApplicationContext())
                 .load(R.drawable.load_progress)
                 .into(loadingGif);
 
@@ -523,7 +523,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     }
                                 });
                                 radiusZone = "outside";
-
                             }
 
                             if(!idShiftAbsen.equals("")||!idCheckin.equals("")){
@@ -2360,7 +2359,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         connectionSuccess.setVisibility(View.GONE);
         Banner.make(rootview, MapsActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
 
-        Glide.with(MapsActivity.this)
+        Glide.with(getApplicationContext())
                 .load(R.drawable.icon_none)
                 .into(onlineGif);
 
