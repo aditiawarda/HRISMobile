@@ -182,6 +182,7 @@ public class HistoryActivity extends AppCompatActivity {
     private void datePicker(){
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             Calendar cal = Calendar.getInstance();
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
             DatePickerDialog dpd = new DatePickerDialog(HistoryActivity.this, (view1, year, month, dayOfMonth) -> {
                 filterDateBTN.setVisibility(View.GONE);
                 filterDateChoice.setVisibility(View.VISIBLE);
@@ -285,6 +286,7 @@ public class HistoryActivity extends AppCompatActivity {
             int y = Integer.parseInt(getDateY());
             int m = Integer.parseInt(getDateM());
             int d = Integer.parseInt(getDateD());
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
             DatePickerDialog dpd = new DatePickerDialog(HistoryActivity.this, (view1, year, month, dayOfMonth) -> {
                 filterDateBTN.setVisibility(View.GONE);
                 filterDateChoice.setVisibility(View.VISIBLE);
@@ -390,18 +392,21 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private String getDateD() {
+        @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("dd");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
     private String getDateM() {
+        @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("MM");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
     private String getDateY() {
+        @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("yyyy");
         Date date = new Date();
         return dateFormat.format(date);

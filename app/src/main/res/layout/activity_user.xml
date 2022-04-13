@@ -81,6 +81,23 @@
                                         android:background="@drawable/default_profile"
                                         android:scaleType="centerCrop" />
 
+                                    <LinearLayout
+                                        android:id="@+id/edit_file"
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:gravity="center"
+                                        android:layout_marginRight="2dp"
+                                        android:layout_marginBottom="2dp"
+                                        android:layout_gravity="bottom|right"
+                                        android:background="@drawable/shape_ring_edit">
+
+                                        <TextView
+                                            android:background="@drawable/ic_baseline_edit"
+                                            android:layout_width="10dp"
+                                            android:layout_height="10dp" />
+
+                                    </LinearLayout>
+
                                     <TextView
                                         android:id="@+id/upload_file"
                                         android:layout_gravity="bottom"

@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (passwordED.getText().toString().equals("")) {
                     new KAlertDialog(LoginActivity.this, KAlertDialog.WARNING_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Masukkan Password !")
+                            .setContentText("Masukkan Password!")
                             .setConfirmText("OK")
                             .show();
                 } else {

@@ -152,6 +152,7 @@ public class SplashScreen extends AppCompatActivity {
         }, 50);
 
        refreshBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 refreshLabel.setText("LOADING...");
@@ -219,6 +220,7 @@ public class SplashScreen extends AppCompatActivity {
 
     }
 
+    @SuppressLint("InlinedApi")
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

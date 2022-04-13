@@ -1,5 +1,6 @@
 package com.gelora.absensi;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -21,6 +22,7 @@ public class SharedPrefManager {
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
 
+    @SuppressLint("CommitPrefEdits")
     public SharedPrefManager(Context context){
         sp = context.getSharedPreferences(SP_ABSENSI_APP, Context.MODE_PRIVATE);
         spEditor = sp.edit();

@@ -258,6 +258,7 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void getDataUser(){
         String nama = sharedPrefManager.getSpNama();
         String nik = sharedPrefManager.getSpNik();
@@ -319,6 +320,12 @@ public class UserActivity extends AppCompatActivity {
                                     if(!avatar.equals("default_profile.jpg")){
                                         uploadImg.setVisibility(View.GONE);
                                         avatarStatus = "1";
+                                        avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
+                                        Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                .into(avatarUser);
+                                    } else {
+                                        uploadImg.setVisibility(View.VISIBLE);
                                         avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
                                         Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -479,6 +486,7 @@ public class UserActivity extends AppCompatActivity {
 
         // define a listener to receive callbacks when certain events happen.
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
+            @SuppressLint("InlinedApi")
             @Override
             public void onDayClick(Date dateClicked) {
                 List<Event> events = compactCalendarView.getEvents(dateClicked);
@@ -490,6 +498,7 @@ public class UserActivity extends AppCompatActivity {
                 }
             }
 
+            @SuppressLint("InlinedApi")
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
@@ -593,6 +602,7 @@ public class UserActivity extends AppCompatActivity {
                                 String nama = event.getString("nama");
                                 String tanggal = event.getString("tanggal");
 
+                                @SuppressLint("SimpleDateFormat")
                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                                 Date date = sdf.parse(tanggal);
                                 long millis = date.getTime();
@@ -675,6 +685,7 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private String getRealPathFromURIPath(Uri contentURI, Activity activity) {
+        @SuppressLint("Recycle")
         Cursor cursor = activity.getContentResolver().query(contentURI, null, null, null, null);
         if (cursor == null) {
             return contentURI.getPath();

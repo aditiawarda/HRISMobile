@@ -118,6 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void afterTextChanged(Editable s) {
                 if (!passwordED.getText().toString().equals("")||!repasswordED.getText().toString().equals("")) {
@@ -147,6 +148,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void afterTextChanged(Editable s) {
                 if (!passwordED.getText().toString().equals("")||!repasswordED.getText().toString().equals("")){

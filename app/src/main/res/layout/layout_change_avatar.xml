@@ -45,13 +45,12 @@
                     android:id="@+id/available_avatar_part"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingRight="15dp"
-                    android:paddingLeft="15dp"
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
+                        android:layout_marginLeft="2dp"
                         app:cardCornerRadius="10dp"
                         app:cardBackgroundColor="#FFF"
                         android:outlineSpotShadowColor="#BDBDBD">

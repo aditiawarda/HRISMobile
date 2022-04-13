@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -118,6 +119,7 @@ public class CovidActivity extends AppCompatActivity {
         final String url = "https://data.covid19.go.id/public/api/update.json";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.e("PaRSE JSON", response + "");
@@ -144,14 +146,16 @@ public class CovidActivity extends AppCompatActivity {
                             activeCase.setText(numberFormat.format(Double.parseDouble(active)));
 
                             String input_date = date;
-                            SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                            @SuppressLint("SimpleDateFormat")
+                            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                             Date dt1= null;
                             try {
                                 dt1 = format1.parse(input_date);
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
-                            DateFormat format2=new SimpleDateFormat("EEE");
+                            @SuppressLint("SimpleDateFormat")
+                            DateFormat format2 = new SimpleDateFormat("EEE");
                             String finalDay = format2.format(dt1);
                             String hariName = "";
 
@@ -245,6 +249,7 @@ public class CovidActivity extends AppCompatActivity {
         final String url = "https://data.covid19.go.id/public/api/pemeriksaan-vaksinasi.json";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.e("PaRSE JSON", response + "");
@@ -267,14 +272,16 @@ public class CovidActivity extends AppCompatActivity {
                             vaksin2Add.setText(numberFormat.format(Double.parseDouble(jumlah_vaksinasi_2_add)));
 
                             String input_date = date_vaksin;
-                            SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                            @SuppressLint("SimpleDateFormat")
+                            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                             Date dt1= null;
                             try {
                                 dt1 = format1.parse(input_date);
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
-                            DateFormat format2=new SimpleDateFormat("EEE");
+                            @SuppressLint("SimpleDateFormat")
+                            DateFormat format2 = new SimpleDateFormat("EEE");
                             String finalDay = format2.format(dt1);
                             String hariName = "";
 

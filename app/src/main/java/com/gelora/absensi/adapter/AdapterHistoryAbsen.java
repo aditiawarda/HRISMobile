@@ -61,6 +61,7 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
             myViewHolder.dateAbsen.setText("Hari ini");
         } else {
             String input_date = historyAbsen.getTanggal();
+            @SuppressLint("SimpleDateFormat")
             SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
             Date dt1= null;
             try {
@@ -68,6 +69,7 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            @SuppressLint("SimpleDateFormat")
             DateFormat format2=new SimpleDateFormat("EEE");
             String finalDay = format2.format(dt1);
             String hariName = "";

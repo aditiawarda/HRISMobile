@@ -2,6 +2,7 @@ package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -25,6 +26,7 @@ public class NotifyActivity extends AppCompatActivity {
     String namaKarywan, nikKaryawan;
     LinearLayout toLoginBTN;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

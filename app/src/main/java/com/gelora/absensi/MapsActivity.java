@@ -215,6 +215,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         requestQueue = Volley.newRequestQueue(getBaseContext());
 
         Glide.with(getApplicationContext())
+                .load(R.drawable.icon_none)
+                .into(onlineGif);
+
+        Glide.with(getApplicationContext())
                 .load(R.drawable.load_progress)
                 .into(loadingGif);
 
@@ -475,6 +479,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final String url = "https://geloraaksara.co.id/absen-online/api/aksi_absen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
                         // response
