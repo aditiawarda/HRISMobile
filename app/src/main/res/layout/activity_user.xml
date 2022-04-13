@@ -615,7 +615,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="16dp"
-                android:text="PROFIL KARYAWAN"/>
+                android:text="PROFIL"/>
 
         </LinearLayout>
 

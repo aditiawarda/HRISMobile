@@ -2156,10 +2156,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 if (time_checkout.equals("00:00:00")){
                                     timeCheckoutTV.setText("-- : -- : --");
                                     statusAction = "checkout";
-                                    ucapanTV.setText("Selamat dan Semangat Bekerja!");
+                                    ucapanTV.setText("Selamat dan SUMAngat Bekerja!");
                                 } else {
                                     timeCheckoutTV.setText(time_checkout+" "+getTimeZone());
-                                    ucapanTV.setText("Terima kasih sudah masuk kerja hari ini.");
+                                    ucapanTV.setText("Terima kasih telah masuk kerja hari ini.");
 
                                     if (tgl_checkin.equals(getDate())){
                                         statusAction = "history";
