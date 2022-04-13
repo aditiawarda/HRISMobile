@@ -274,6 +274,7 @@ public class UserActivity extends AppCompatActivity {
         }
     }
 
+
     private void logoutFunction(){
         Preferences.setLoggedInStatus(this,false);
         sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
