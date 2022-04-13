@@ -242,7 +242,6 @@ public class UserActivity extends AppCompatActivity {
                             }
                         })
                         .show();
-
             }
         });
 
@@ -273,7 +272,6 @@ public class UserActivity extends AppCompatActivity {
             statusUserTV.setText("Non-Aktif");
         }
     }
-
 
     private void logoutFunction(){
         Preferences.setLoggedInStatus(this,false);
@@ -553,6 +551,7 @@ public class UserActivity extends AppCompatActivity {
                 monthTV.setText(bulanName);
                 yearTV.setText(year);
                 eventCalender.setText("");
+
             }
         });
 
