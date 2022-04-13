@@ -325,6 +325,7 @@ public class UserActivity extends AppCompatActivity {
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                 .into(avatarUser);
                                     } else {
+                                        avatarStatus = "0";
                                         uploadImg.setVisibility(View.VISIBLE);
                                         avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
                                         Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
