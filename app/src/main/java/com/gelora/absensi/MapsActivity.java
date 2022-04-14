@@ -347,7 +347,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // GPS location can be null if GPS is switched off
                 if (location != null) {
                     Log.e("TAG", "GPS is on" + String.valueOf(location));
-                    //onLocationChanged(location);
                     mMap.setMyLocationEnabled(true);
                     mMap.getUiSettings().setMyLocationButtonEnabled(false);
                     startLocationUpdates();
@@ -381,33 +380,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         userPoint = new LatLng(userLat, userLong);
-        //mMap.addMarker(new MarkerOptions().position(userPoint).title(sharedPrefManager.getSpNama()));
-
-        // int height = 80;
-        // int width = 80;
-        // BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.ic_marker_person);
-        // Bitmap b = bitmapdraw.getBitmap();
-        // Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
-
-        // mMap.addMarker(new MarkerOptions()
-        //        .position(userPoint)
-        //        .title(sharedPrefManager.getSpNama())
-        //        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker)));
 
          // User position camera
          float zoomLevel = 18.0f; //This goes up to 21
          mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
          mMap.getUiSettings().setCompassEnabled(false);
-
-        // Maps style
-        // int hoursNow = Integer.parseInt(getTimeH());
-        // if (hoursNow >= 18) {
-        //    dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
-        //    //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(0, APPEARANCE_LIGHT_STATUS_BARS);
-        // } else if (hoursNow >= 0 && hoursNow <= 5){
-        //    dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
-        //    //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(0, APPEARANCE_LIGHT_STATUS_BARS);
-        //}
 
         getAction();
 
@@ -440,18 +417,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //            Log.e("TAG", "GPS is on" + String.valueOf(location));
         //            mMap.setMyLocationEnabled(true);
         //            mMap.getUiSettings().setMyLocationButtonEnabled(false);
-
         //            float zoomLevel = 18.0f; //This goes up to 21
         //            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         //            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
         //            mMap.getUiSettings().setCompassEnabled(false);
-
         //            onLocationChanged(location);
-
         //        }  else {
         //            gpsEnableAction();
         //        }
-
         //    }
         //}).addOnFailureListener(new OnFailureListener() {
         //    @Override
@@ -495,7 +468,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             String status = data.getString("status");
 
                             if (status.equals("didalam radius")){
-                                //onlineGif.setBackgroundResource(R.drawable.icon_online);
                                 insideRadius();
                                 indicatorAbsen.setText("DI DALAM JANGKAUAN");
                                 indicatorAbsen.setTextColor(Color.parseColor("#309A35"));
@@ -507,7 +479,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 radiusZone = "inside";
 
                             } else {
-                                //onlineGif.setBackgroundResource(R.drawable.icon_offline);
                                 outsideRadius();
                                 indicatorAbsen.setText("DI LUAR JANGKAUAN");
                                 indicatorAbsen.setTextColor(Color.parseColor("#B83633"));

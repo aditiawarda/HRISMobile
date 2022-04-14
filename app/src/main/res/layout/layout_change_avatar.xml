@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="?android:colorBackground"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="30dp"
-        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -85,7 +84,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="13dp"
                             android:textColor="@color/text_color"
-                            android:text="Halo User, Anda bisa atur foto profil sesuai keinginan anda."/>
+                            android:text="Halo User, anda bisa atur foto profil sesuai keinginan anda."/>
 
                     </LinearLayout>
 
@@ -95,6 +94,7 @@
                     android:id="@+id/empty_avatar_part"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -109,12 +109,12 @@
                         android:text="Foto Profil"/>
 
                     <TextView
-                        android:layout_width="50dp"
+                        android:layout_width="40dp"
                         android:layout_height="2dp"
                         android:layout_marginLeft="7dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="15dp"
-                        android:background="#CC866C"/>
+                        android:background="#ECD2C8"/>
 
                     <TextView
                         android:id="@+id/desc_empty"
