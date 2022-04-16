@@ -516,7 +516,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        // connectionFailed();
                     }
                 }
         )
