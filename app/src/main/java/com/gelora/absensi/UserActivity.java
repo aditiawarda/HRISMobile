@@ -11,6 +11,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,6 +23,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -76,7 +79,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
     TextView uploadImg, descAvailable, descEmtpy, statusUserTV, prevBTN, nextBTN, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -126,6 +129,7 @@ public class UserActivity extends AppCompatActivity {
         availableAvatarPart = findViewById(R.id.available_avatar_part);
         uploadImg = findViewById(R.id.upload_file);
         chatBTN = findViewById(R.id.chat_btn);
+        logoutPart = findViewById(R.id.logout_part);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -311,6 +315,8 @@ public class UserActivity extends AppCompatActivity {
                                 String jabatan = data.getString("jabatan");
                                 String avatar = data.getString("avatar");
                                 String info_covid = data.getString("info_covid");
+                                String logout_part = data.getString("logout_part");
+                                String chat_room = data.getString("chat_room");
                                 departemenTV.setText(department);
                                 bagianTV.setText(bagian);
                                 jabatanTV.setText(jabatan);
@@ -337,6 +343,18 @@ public class UserActivity extends AppCompatActivity {
                                     covidBTN.setVisibility(View.VISIBLE);
                                 } else {
                                     covidBTN.setVisibility(View.GONE);
+                                }
+
+                                if(logout_part.equals("1")){
+                                    logoutPart.setVisibility(View.VISIBLE);
+                                } else {
+                                    logoutPart.setVisibility(View.GONE);
+                                }
+
+                                if(chat_room.equals("1")){
+                                    chatBTN.setVisibility(View.VISIBLE);
+                                } else {
+                                    chatBTN.setVisibility(View.GONE);
                                 }
 
                             }
@@ -625,6 +643,10 @@ public class UserActivity extends AppCompatActivity {
         });
 
         requestQueue.add(request);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
     }
 

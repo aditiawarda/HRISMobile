@@ -34,6 +34,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -105,7 +106,6 @@ public class SplashScreen extends AppCompatActivity {
     private LocationRequest mLocationRequest;
     private long UPDATE_INTERVAL = 10 * 1000;  /* 10 secs */
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -376,27 +376,30 @@ public class SplashScreen extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.e("PaRSE JSON", response + "");
                         try {
+                            refreshLayout.setRefreshing(false);
                             String status = response.getString("status");
                             String version = response.getString("version");
+                            String close_btn = response.getString("close_btn");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.1.22";
+                                String currentVersion = "1.1.23";
                                 if (!currentVersion.equals(version)){
                                     statusUpdateLayout = "1";
 
-                                    TranslateAnimation animate = new TranslateAnimation(
-                                            0,              // fromXDelta
-                                            0,                // toXDelta
-                                            updateDialog.getHeight(),  // fromYDelta
-                                            0);               // toYDelta
-                                    animate.setDuration(500);
-                                    animate.setFillAfter(true);
-                                    updateDialog.startAnimation(animate);
-
-                                    updateLayout.setVisibility(View.VISIBLE);
+                                    Animation animation = new TranslateAnimation(0, 0,500, 0);
+                                    animation.setDuration(600);
+                                    animation.setFillAfter(true);
+                                    updateDialog.startAnimation(animation);
                                     updateDialog.setVisibility(View.VISIBLE);
+                                    updateLayout.setVisibility(View.VISIBLE);
 
                                     descTV.setText("Absensi App v "+version+" telah tersedia di Google Play Store");
+
+                                    updateLayout.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                        }
+                                    });
 
                                     updateBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -428,6 +431,12 @@ public class SplashScreen extends AppCompatActivity {
                                             finish();
                                         }
                                     });
+
+                                    if (close_btn.equals("1")){
+                                        closeBTN.setVisibility(View.VISIBLE);
+                                    } else {
+                                        closeBTN.setVisibility(View.GONE);
+                                    }
 
                                     closeBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override

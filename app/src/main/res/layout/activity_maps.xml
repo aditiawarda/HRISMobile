@@ -23,6 +23,34 @@
                 android:layout_height="match_parent"
                 tools:ignore="FragmentTagUsage" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="bottom|right">
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/warning_part"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/shape_ring_bold"
+                    android:gravity="center"
+                    android:paddingBottom="2dp"
+                    android:layout_width="40dp">
+
+                    <ImageView
+                        android:id="@+id/warning_gif"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        app:srcCompat="@drawable/warning_gif" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
         </RelativeLayout>
 
         <LinearLayout
@@ -86,7 +114,7 @@
                                         android:layout_height="wrap_content"
                                         android:textSize="12dp"
                                         android:textStyle="bold"
-                                        android:text="" />
+                                        android:text="Memuat data..." />
 
                                 </LinearLayout>
 
@@ -458,7 +486,7 @@
                                         android:layout_marginTop="5dp"
                                         android:textColor="#C68D46"
                                         android:textSize="11dp"
-                                        android:text="Pastikan penanda posisi (warna biru) berada dalam jangkauan area check point Absensi Online. Kecuali untuk status absensi Pjd, KLL dan DL."/>
+                                        android:text="Pastikan penanda posisi (warna biru) berada dalam jangkauan area check point Absensi Online."/>
 
                                     <LinearLayout
                                         android:visibility="gone"
@@ -483,13 +511,13 @@
                                             android:textSize="10dp"
                                             android:text="Penanda lokasi untuk absensi"/>
 
-
                                     </LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
+                                        android:layout_marginTop="2dp"
                                         android:gravity="left|center"
                                         android:orientation="horizontal">
 
@@ -506,7 +534,6 @@
                                             android:textColor="#C68D46"
                                             android:textSize="10dp"
                                             android:text="Penanda posisi realtime"/>
-
 
                                     </LinearLayout>
 

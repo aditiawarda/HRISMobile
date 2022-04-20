@@ -117,9 +117,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng userPoint;
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
-    ImageView onlineGif, loadingGif;
+    ImageView onlineGif, loadingGif, warningGif;
     TextView prevBTN, nextBTN, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    LinearLayout warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -208,10 +208,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         userBTNPart = findViewById(R.id.user_btn_part);
         loadingLayout = findViewById(R.id.layout_loding);
         loadingGif = findViewById(R.id.loading);
+        warningGif = findViewById(R.id.warning_gif);
         connectionSuccess = findViewById(R.id.connection_success);
         connectionFailed = findViewById(R.id.connection_failed);
         dayNightSwitch = findViewById(R.id.day_night_switch);
         ucapanTV = findViewById(R.id.ucapan_tv);
+        warningPart = findViewById(R.id.warning_part);
         requestQueue = Volley.newRequestQueue(getBaseContext());
 
         Glide.with(getApplicationContext())
@@ -249,6 +251,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     dayNightSwitch.setIsNight(true, mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
                     //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(0, APPEARANCE_LIGHT_STATUS_BARS);
                 }
+            }
+        });
+
+        loadingLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
             }
         });
 
@@ -593,7 +601,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("01:00:00");
+        //return ("09:00:00");
     }
 
     private String getTimeH() {
@@ -618,7 +626,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-04-05");
+        //return ("2022-04-21");
     }
 
     private String getDateD() {
@@ -1002,6 +1010,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+
     private void lateTime() {
         String timeAbsen = getTime();
         String timeMasuk = datangShiftAbsen;
@@ -1154,7 +1163,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         };
 
-        postRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
@@ -1417,9 +1426,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     checkinPointTV.setText(checkin_point);
                                 }
 
-                                inputAbsenPart.setVisibility(View.GONE);
-                                recordAbsenPart.setVisibility(View.VISIBLE);
-                                attantionPart.setVisibility(View.GONE);
+                                //inputAbsenPart.setVisibility(View.GONE);
+                                //recordAbsenPart.setVisibility(View.VISIBLE);
+                                //attantionPart.setVisibility(View.GONE);
 
                                 detailAbsen(id_status, id_shift);
                                 String id_checkout = data.getString("id_checkout");
@@ -2059,7 +2068,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         };
 
-        postRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
@@ -2124,32 +2133,180 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             String status = data.getString("status");
 
                             if(status.equals("Success")){
+                                String tgl_checkin = data.getString("tgl_checkin");
+                                String tipe_shift = data.getString("tipe_shift");
+                                String timestamp_checkin = data.getString("timestamp_checkin");
                                 JSONObject data_checkin = data.getJSONObject("data");
                                 String time_checkout = data_checkin.getString("jam_pulang");
                                 String checkout_point = data_checkin.getString("checkout_point");
-                                String tgl_checkin = data.getString("tgl_checkin");
 
                                 if (time_checkout.equals("00:00:00")){
-                                    timeCheckoutTV.setText("-- : -- : --");
-                                    statusAction = "checkout";
-                                    ucapanTV.setText("Selamat dan SUMAngat Bekerja!");
+                                    if(!tgl_checkin.equals(getDate())){
+                                        if(tipe_shift.equals("Normal")){
+                                            attantionPart.setVisibility(View.VISIBLE);
+                                            statusAbsenBTN.setVisibility(View.VISIBLE);
+                                            changeStatusAbsen.setVisibility(View.GONE);
+                                            statusAbsenChoice.setVisibility(View.GONE);
+                                            shiftBTN.setVisibility(View.GONE);
+                                            changeShiftAbsen.setVisibility(View.GONE);
+                                            shiftAbsenChoice.setVisibility(View.GONE);
+                                            actionBTN.setBackground(ContextCompat.getDrawable(MapsActivity.this, R.drawable.shape_disable_btn));
+                                            actionTV.setText("CHECK IN");
+                                            inputAbsenPart.setVisibility(View.VISIBLE);
+                                            recordAbsenPart.setVisibility(View.GONE);
+
+                                            warningPart.setVisibility(View.VISIBLE);
+                                            Glide.with(getApplicationContext())
+                                                    .load(R.drawable.warning_gif)
+                                                    .into(warningGif);
+
+                                            statusAction = "checkin";
+                                            idShiftAbsen = "";
+
+                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                    .setTitleText("Perhatian!")
+                                                    .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                    .setConfirmText("OK")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                            warningPart.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                            .setTitleText("Perhatian!")
+                                                            .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                            .setConfirmText("OK")
+                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                @Override
+                                                                public void onClick(KAlertDialog sDialog) {
+                                                                    sDialog.dismiss();
+                                                                }
+                                                            })
+                                                            .show();
+                                                }
+                                            });
+
+                                            actionButton();
+
+                                        } else {
+                                            String masuk  = timestamp_checkin;
+                                            String batas = getDate()+" "+getTime();
+
+                                            @SuppressLint("SimpleDateFormat")
+                                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                            Date date1 = null;
+                                            Date date2 = null;
+                                            try {
+                                                date1 = format.parse(masuk);
+                                                date2 = format.parse(batas);
+                                            } catch (ParseException e) {
+                                                e.printStackTrace();
+                                            }
+                                            long waktu = date1.getTime() + 45000000; //43200000;
+                                            long waktu2 = date2.getTime();
+
+                                            if (waktu<waktu2){
+                                                attantionPart.setVisibility(View.VISIBLE);
+                                                statusAbsenBTN.setVisibility(View.VISIBLE);
+                                                changeStatusAbsen.setVisibility(View.GONE);
+                                                statusAbsenChoice.setVisibility(View.GONE);
+                                                shiftBTN.setVisibility(View.GONE);
+                                                changeShiftAbsen.setVisibility(View.GONE);
+                                                shiftAbsenChoice.setVisibility(View.GONE);
+                                                actionBTN.setBackground(ContextCompat.getDrawable(MapsActivity.this, R.drawable.shape_disable_btn));
+                                                actionTV.setText("CHECK IN");
+                                                inputAbsenPart.setVisibility(View.VISIBLE);
+                                                recordAbsenPart.setVisibility(View.GONE);
+
+                                                warningPart.setVisibility(View.VISIBLE);
+                                                Glide.with(getApplicationContext())
+                                                        .load(R.drawable.warning_gif)
+                                                        .into(warningGif);
+
+                                                statusAction = "checkin";
+                                                idShiftAbsen = "";
+
+                                                new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                        .setTitleText("Perhatian")
+                                                        .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                        .setConfirmText("OK")
+                                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                            @Override
+                                                            public void onClick(KAlertDialog sDialog) {
+                                                                sDialog.dismiss();
+                                                            }
+                                                        })
+                                                        .show();
+
+                                                warningPart.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                                .setConfirmText("OK")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
+                                                });
+
+                                                actionButton();
+
+                                            } else {
+                                                warningPart.setVisibility(View.GONE);
+                                                inputAbsenPart.setVisibility(View.GONE);
+                                                recordAbsenPart.setVisibility(View.VISIBLE);
+                                                attantionPart.setVisibility(View.GONE);
+                                                statusAction = "checkout";
+                                                actionButton();
+                                            }
+                                        }
+                                    } else {
+                                        warningPart.setVisibility(View.GONE);
+                                        timeCheckoutTV.setText("-- : -- : --");
+                                        statusAction = "checkout";
+                                        ucapanTV.setText("Selamat dan SUMAngat Bekerja!");
+                                        inputAbsenPart.setVisibility(View.GONE);
+                                        recordAbsenPart.setVisibility(View.VISIBLE);
+                                        attantionPart.setVisibility(View.GONE);
+                                        actionButton();
+                                    }
+
                                 } else {
+                                    warningPart.setVisibility(View.GONE);
+                                    inputAbsenPart.setVisibility(View.GONE);
+                                    recordAbsenPart.setVisibility(View.VISIBLE);
+                                    attantionPart.setVisibility(View.GONE);
                                     timeCheckoutTV.setText(time_checkout+" "+getTimeZone());
                                     ucapanTV.setText("Terima kasih telah masuk kerja hari ini.");
 
-                                    if (tgl_checkin.equals(getDate())){
+                                    //if (tgl_checkin.equals(getDate())){
                                         statusAction = "history";
-                                    } else {
-                                        statusAction = "history";
-                                        new Handler().postDelayed(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                statusAction = "checkin";
-                                                idShiftAbsen = "";
-                                                checkIzin();
-                                            }
-                                        }, 6000);
-                                    }
+                                    //} else {
+                                    //      statusAction = "history";
+                                    //      new Handler().postDelayed(new Runnable() {
+                                    //        @Override
+                                    //         public void run() {
+                                    //             statusAction = "checkin";
+                                    //             idShiftAbsen = "";
+                                    //           checkIzin();
+                                    //         }
+                                    //     }, 6000);
+                                    // }
+
+                                    actionButton();
+
                                 }
 
                                 if (checkout_point.equals("")||checkout_point.equals("null")){
@@ -2165,11 +2322,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 } else {
                                     checkoutPointTV.setText(checkout_point);
                                 }
-
-                                inputAbsenPart.setVisibility(View.GONE);
-                                recordAbsenPart.setVisibility(View.VISIBLE);
-
-                                actionButton();
 
                             }
 
@@ -2197,6 +2349,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 return params;
             }
         };
+
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         requestQueue.add(postRequest);
 
@@ -2567,6 +2723,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         requestQueue.add(request);
+
+        request.setRetryPolicy(new DefaultRetryPolicy(0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
     }
 

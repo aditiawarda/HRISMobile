@@ -99,6 +99,50 @@
 
     <LinearLayout
         android:visibility="gone"
+        android:id="@+id/refresh_part"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="115dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/refresh_ss_btn"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:background="@drawable/shape_refresh_ss">
+
+                <ImageView
+                    android:id="@+id/loading_progress"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="0.5dp"
+                    android:src="@drawable/loading_prog"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/refresh_label"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="REFRESH"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
         android:id="@+id/update_layout"
         android:orientation="vertical"
         android:animateLayoutChanges="true"
@@ -128,10 +172,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="16dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
                 android:paddingTop="13dp"
                 android:orientation="vertical">
 
@@ -139,30 +181,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="20dp"
-                    android:paddingRight="10dp"
-                    android:paddingLeft="15dp"
                     android:paddingBottom="20dp"
                     android:orientation="horizontal">
 
-                    <androidx.cardview.widget.CardView
+                    <ImageView
+                        android:id="@+id/image_produk"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        app:cardCornerRadius="6dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginBottom="1dp"
-                        android:layout_marginRight="1dp"
-                        app:cardBackgroundColor="#FFF"
-                        android:outlineSpotShadowColor="#919191">
-
-                        <ImageView
-                            android:id="@+id/image_produk"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:background="@drawable/icon_app"
-                            android:scaleType="centerCrop" />
-
-                    </androidx.cardview.widget.CardView>
+                        android:background="@drawable/icon_app_update"
+                        android:scaleType="centerCrop" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -200,7 +227,6 @@
                         android:layout_width="0dp"
                         android:layout_weight=".70"
                         android:layout_height="40dp"
-                        android:layout_marginRight="10dp"
                         android:background="@drawable/shape_btn"
                         android:gravity="center">
 
@@ -218,6 +244,7 @@
                         android:layout_width="0dp"
                         android:layout_weight=".30"
                         android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
                         android:background="@drawable/shape_second_btn"
                         android:gravity="center">
 
@@ -238,49 +265,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/refresh_part"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom|center"
-        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginBottom="115dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/refresh_ss_btn"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:gravity="center"
-                android:background="@drawable/shape_refresh_ss">
-
-                <ImageView
-                    android:id="@+id/loading_progress"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="0.5dp"
-                    android:src="@drawable/loading_prog"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/refresh_label"
-                android:layout_marginTop="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="REFRESH"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
 
 </RelativeLayout>
 
