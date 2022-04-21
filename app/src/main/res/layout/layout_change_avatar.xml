@@ -124,7 +124,7 @@
                         android:paddingLeft="15dp"
                         android:textSize="13dp"
                         android:textColor="@color/text_color"
-                        android:text="Halo User, Anda bisa tambahkan foto profil sesuai keinginan anda."/>
+                        android:text="Halo User, anda bisa tambahkan foto profil sesuai keinginan anda."/>
 
                 </LinearLayout>
 
