@@ -107,6 +107,7 @@
                                     android:text="Terkonfirmasi"/>
 
                                 <TextView
+                                    android:visibility="gone"
                                     android:id="@+id/confirm_covid"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -114,6 +115,12 @@
                                     android:textSize="22dp"
                                     android:textStyle="bold"
                                     android:text=""/>
+
+                                <ImageView
+                                    android:id="@+id/confirm_covid_loading"
+                                    android:layout_width="80dp"
+                                    android:layout_height="30dp"
+                                    app:srcCompat="@drawable/loading_dots" />
 
                             </LinearLayout>
 
@@ -140,6 +147,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:visibility="gone"
                                     android:id="@+id/penambahan_positif"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -147,6 +155,12 @@
                                     android:textSize="17dp"
                                     android:textStyle="bold"
                                     android:text=""/>
+
+                                <ImageView
+                                    android:id="@+id/penambahan_positif_loading"
+                                    android:layout_width="80dp"
+                                    android:layout_height="30dp"
+                                    app:srcCompat="@drawable/loading_dots" />
 
                             </LinearLayout>
 
@@ -176,6 +190,7 @@
                                     android:text="Sembuh"/>
 
                                 <TextView
+                                    android:visibility="gone"
                                     android:id="@+id/healt_covid"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -183,6 +198,12 @@
                                     android:textSize="22dp"
                                     android:textStyle="bold"
                                     android:text=""/>
+
+                                <ImageView
+                                    android:id="@+id/healt_covid_loading"
+                                    android:layout_width="80dp"
+                                    android:layout_height="30dp"
+                                    app:srcCompat="@drawable/loading_dots" />
 
                             </LinearLayout>
 
@@ -209,6 +230,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:visibility="gone"
                                     android:id="@+id/penambahan_sembuh"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -216,6 +238,12 @@
                                     android:textSize="17dp"
                                     android:textStyle="bold"
                                     android:text=""/>
+
+                                <ImageView
+                                    android:id="@+id/penambahan_sembuh_loading"
+                                    android:layout_width="80dp"
+                                    android:layout_height="30dp"
+                                    app:srcCompat="@drawable/loading_dots" />
 
                             </LinearLayout>
 
@@ -245,6 +273,7 @@
                                     android:text="Meninggal"/>
 
                                 <TextView
+                                    android:visibility="gone"
                                     android:id="@+id/dead_covid"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -252,6 +281,12 @@
                                     android:textSize="22dp"
                                     android:textStyle="bold"
                                     android:text=""/>
+
+                                <ImageView
+                                    android:id="@+id/dead_covid_loading"
+                                    android:layout_width="80dp"
+                                    android:layout_height="30dp"
+                                    app:srcCompat="@drawable/loading_dots" />
 
                             </LinearLayout>
 
@@ -278,6 +313,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:visibility="gone"
                                     android:id="@+id/penambahan_meninggal"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -285,6 +321,12 @@
                                     android:textSize="17dp"
                                     android:textStyle="bold"
                                     android:text=""/>
+
+                                <ImageView
+                                    android:id="@+id/penambahan_meninggal_loading"
+                                    android:layout_width="80dp"
+                                    android:layout_height="30dp"
+                                    app:srcCompat="@drawable/loading_dots" />
 
                             </LinearLayout>
 
@@ -338,17 +380,24 @@
                                             android:layout_height="wrap_content"
                                             android:textStyle="bold"
                                             android:textSize="12dp"
-                                            android:textColor="@color/colorPrimaryDark"
+                                            android:textColor="@color/white"
                                             android:text="Kasus aktif"/>
 
                                         <TextView
+                                            android:visibility="gone"
                                             android:id="@+id/active_case"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text=""
-                                            android:textColor="@color/colorPrimaryDark"
+                                            android:textColor="@color/white"
                                             android:textSize="20dp"
                                             android:textStyle="bold" />
+
+                                        <ImageView
+                                            android:id="@+id/active_case_loading"
+                                            android:layout_width="63dp"
+                                            android:layout_height="27dp"
+                                            app:srcCompat="@drawable/loading_dots" />
 
                                     </LinearLayout>
 
@@ -429,6 +478,7 @@
                                 android:text="Dosis 1"/>
 
                             <TextView
+                                android:visibility="gone"
                                 android:id="@+id/vaksin_1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -436,6 +486,12 @@
                                 android:textSize="20dp"
                                 android:textStyle="bold"
                                 android:text=""/>
+
+                            <ImageView
+                                android:id="@+id/vaksin_1_loading"
+                                android:layout_width="80dp"
+                                android:layout_height="27dp"
+                                app:srcCompat="@drawable/loading_dots" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -454,6 +510,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:visibility="gone"
                                     android:id="@+id/vaksin_1_add"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -461,6 +518,12 @@
                                     android:textSize="14dp"
                                     android:textStyle="bold"
                                     android:text=""/>
+
+                                <ImageView
+                                    android:id="@+id/vaksin_1_add_loading"
+                                    android:layout_width="40dp"
+                                    android:layout_height="20dp"
+                                    app:srcCompat="@drawable/loading_dots" />
 
                             </LinearLayout>
 
@@ -486,6 +549,7 @@
                                 android:text="Dosis 2"/>
 
                             <TextView
+                                android:visibility="gone"
                                 android:id="@+id/vaksin_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -493,6 +557,12 @@
                                 android:textSize="20dp"
                                 android:textStyle="bold"
                                 android:text=""/>
+
+                            <ImageView
+                                android:id="@+id/vaksin_2_loading"
+                                android:layout_width="80dp"
+                                android:layout_height="27dp"
+                                app:srcCompat="@drawable/loading_dots" />
 
                             <LinearLayout
                                 android:layout_marginTop="10dp"
@@ -511,6 +581,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:visibility="gone"
                                     android:id="@+id/vaksin_2_add"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -518,6 +589,12 @@
                                     android:textSize="14dp"
                                     android:textStyle="bold"
                                     android:text=""/>
+
+                                <ImageView
+                                    android:id="@+id/vaksin_2_add_loading"
+                                    android:layout_width="40dp"
+                                    android:layout_height="20dp"
+                                    app:srcCompat="@drawable/loading_dots" />
 
                             </LinearLayout>
 

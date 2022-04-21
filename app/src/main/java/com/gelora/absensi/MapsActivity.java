@@ -129,6 +129,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
     CompactCalendarView compactCalendarView;
+    KAlertDialog pDialog;
 
     private RecyclerView statusAbsenRV;
     private StatusAbsen[] statusAbsens;
@@ -1112,48 +1113,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             idCheckin = data.getString("id_checkin");
                             checkAbsen();
 
-                            final KAlertDialog pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE)
-                                    .setTitleText("Loading");
-                            pDialog.show();
-                            pDialog.setCancelable(false);
-                            new CountDownTimer(1300, 800) {
-                                public void onTick(long millisUntilFinished) {
-                                    i++;
-                                    switch (i) {
-                                        case 0:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (MapsActivity.this, R.color.blue_btn_bg_color));
-                                            break;
-                                        case 1:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (MapsActivity.this, R.color.material_deep_teal_50));
-                                            break;
-                                        case 2:
-                                        case 6:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (MapsActivity.this, R.color.success_stroke_color));
-                                            break;
-                                        case 3:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (MapsActivity.this, R.color.material_deep_teal_20));
-                                            break;
-                                        case 4:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (MapsActivity.this, R.color.material_blue_grey_80));
-                                            break;
-                                        case 5:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (MapsActivity.this, R.color.warning_stroke_color));
-                                            break;
-                                    }
-                                }
-                                public void onFinish() {
-                                    i = -1;
-                                    pDialog.setTitleText("Check In Berhasil!")
-                                            .setConfirmText("OK")
-                                            .changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                                }
-                            }.start();
+                            pDialog.setTitleText("Check In Berhasil!")
+                                    .setConfirmText("OK")
+                                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -1347,48 +1309,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             if(status.equals("Success")){
                                 refreshData();
 
-                                final KAlertDialog pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE)
-                                        .setTitleText("Loading");
-                                pDialog.show();
-                                pDialog.setCancelable(false);
-                                new CountDownTimer(1300, 800) {
-                                    public void onTick(long millisUntilFinished) {
-                                        i++;
-                                        switch (i) {
-                                            case 0:
-                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (MapsActivity.this, R.color.blue_btn_bg_color));
-                                                break;
-                                            case 1:
-                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (MapsActivity.this, R.color.material_deep_teal_50));
-                                                break;
-                                            case 2:
-                                            case 6:
-                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (MapsActivity.this, R.color.success_stroke_color));
-                                                break;
-                                            case 3:
-                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (MapsActivity.this, R.color.material_deep_teal_20));
-                                                break;
-                                            case 4:
-                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (MapsActivity.this, R.color.material_blue_grey_80));
-                                                break;
-                                            case 5:
-                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (MapsActivity.this, R.color.warning_stroke_color));
-                                                break;
-                                        }
-                                    }
-                                    public void onFinish() {
-                                        i = -1;
-                                        pDialog.setTitleText("Anda Diliburkan!")
-                                                .setConfirmText("OK")
-                                                .changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                                    }
-                                }.start();
+                                pDialog.setTitleText("Anda Diliburkan!")
+                                        .setConfirmText("OK")
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
 
                             }
 
@@ -1545,7 +1468,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
-                                                actionCheckin();
+
+                                                pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                                pDialog.show();
+                                                pDialog.setCancelable(false);
+                                                new CountDownTimer(1300, 800) {
+                                                    public void onTick(long millisUntilFinished) {
+                                                        i++;
+                                                        switch (i) {
+                                                            case 0:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                break;
+                                                            case 1:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                break;
+                                                            case 2:
+                                                            case 6:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.success_stroke_color));
+                                                                break;
+                                                            case 3:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                break;
+                                                            case 4:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                break;
+                                                            case 5:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.warning_stroke_color));
+                                                                break;
+                                                        }
+                                                    }
+                                                    public void onFinish() {
+                                                        i = -1;
+                                                        actionCheckin();
+                                                    }
+                                                }.start();
+
                                             }
                                         })
                                         .show();
@@ -1566,7 +1529,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
-                                                actionCheckin();
+
+                                                pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                                pDialog.show();
+                                                pDialog.setCancelable(false);
+                                                new CountDownTimer(1300, 800) {
+                                                    public void onTick(long millisUntilFinished) {
+                                                        i++;
+                                                        switch (i) {
+                                                            case 0:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                break;
+                                                            case 1:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                break;
+                                                            case 2:
+                                                            case 6:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.success_stroke_color));
+                                                                break;
+                                                            case 3:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                break;
+                                                            case 4:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                break;
+                                                            case 5:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.warning_stroke_color));
+                                                                break;
+                                                        }
+                                                    }
+                                                    public void onFinish() {
+                                                        i = -1;
+                                                        actionCheckin();
+                                                    }
+                                                }.start();
+
                                             }
                                         })
                                         .show();
@@ -1608,7 +1611,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         @Override
                                         public void onClick(KAlertDialog sDialog) {
                                             sDialog.dismiss();
-                                            actionCheckout();
+
+                                            pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                            pDialog.show();
+                                            pDialog.setCancelable(false);
+                                            new CountDownTimer(1300, 800) {
+                                                public void onTick(long millisUntilFinished) {
+                                                    i++;
+                                                    switch (i) {
+                                                        case 0:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                            break;
+                                                        case 1:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.material_deep_teal_50));
+                                                            break;
+                                                        case 2:
+                                                        case 6:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.success_stroke_color));
+                                                            break;
+                                                        case 3:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.material_deep_teal_20));
+                                                            break;
+                                                        case 4:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.material_blue_grey_80));
+                                                            break;
+                                                        case 5:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.warning_stroke_color));
+                                                            break;
+                                                    }
+                                                }
+                                                public void onFinish() {
+                                                    i = -1;
+                                                    actionCheckout();
+                                                }
+                                            }.start();
+
                                         }
                                     })
                                     .show();
@@ -1629,7 +1672,48 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         @Override
                                         public void onClick(KAlertDialog sDialog) {
                                             sDialog.dismiss();
-                                            actionCheckout();
+
+                                            pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                            pDialog.show();
+                                            pDialog.setCancelable(false);
+                                            new CountDownTimer(1300, 800) {
+                                                public void onTick(long millisUntilFinished) {
+                                                    i++;
+                                                    switch (i) {
+                                                        case 0:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                            break;
+                                                        case 1:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.material_deep_teal_50));
+                                                            break;
+                                                        case 2:
+                                                        case 6:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.success_stroke_color));
+                                                            break;
+                                                        case 3:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.material_deep_teal_20));
+                                                            break;
+                                                        case 4:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.material_blue_grey_80));
+                                                            break;
+                                                        case 5:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.warning_stroke_color));
+                                                            break;
+                                                    }
+                                                }
+                                                public void onFinish() {
+                                                    i = -1;
+                                                    actionCheckout();
+                                                }
+                                            }.start();
+
+
                                         }
                                     })
                                     .show();
@@ -1659,7 +1743,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     @Override
                                     public void onClick(KAlertDialog sDialog) {
                                         sDialog.dismiss();
-                                        actionLayoff();
+
+                                        pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                        pDialog.show();
+                                        pDialog.setCancelable(false);
+                                        new CountDownTimer(1300, 800) {
+                                            public void onTick(long millisUntilFinished) {
+                                                i++;
+                                                switch (i) {
+                                                    case 0:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                        break;
+                                                    case 1:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (MapsActivity.this, R.color.material_deep_teal_50));
+                                                        break;
+                                                    case 2:
+                                                    case 6:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (MapsActivity.this, R.color.success_stroke_color));
+                                                        break;
+                                                    case 3:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (MapsActivity.this, R.color.material_deep_teal_20));
+                                                        break;
+                                                    case 4:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (MapsActivity.this, R.color.material_blue_grey_80));
+                                                        break;
+                                                    case 5:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (MapsActivity.this, R.color.warning_stroke_color));
+                                                        break;
+                                                }
+                                            }
+                                            public void onFinish() {
+                                                i = -1;
+                                                actionLayoff();
+                                            }
+                                        }.start();
+
                                     }
                                 })
                                 .show();
@@ -1700,7 +1824,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         @Override
                                         public void onClick(KAlertDialog sDialog) {
                                             sDialog.dismiss();
-                                            actionLayoff();
+
+                                            pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                            pDialog.show();
+                                            pDialog.setCancelable(false);
+                                            new CountDownTimer(1300, 800) {
+                                                public void onTick(long millisUntilFinished) {
+                                                    i++;
+                                                    switch (i) {
+                                                        case 0:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                            break;
+                                                        case 1:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.material_deep_teal_50));
+                                                            break;
+                                                        case 2:
+                                                        case 6:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.success_stroke_color));
+                                                            break;
+                                                        case 3:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.material_deep_teal_20));
+                                                            break;
+                                                        case 4:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.material_blue_grey_80));
+                                                            break;
+                                                        case 5:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.warning_stroke_color));
+                                                            break;
+                                                    }
+                                                }
+                                                public void onFinish() {
+                                                    i = -1;
+                                                    actionLayoff();
+                                                }
+                                            }.start();
+
                                         }
                                     })
                                     .show();
@@ -1739,7 +1903,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
-                                                actionCheckout();
+
+                                                pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                                pDialog.show();
+                                                pDialog.setCancelable(false);
+                                                new CountDownTimer(1300, 800) {
+                                                    public void onTick(long millisUntilFinished) {
+                                                        i++;
+                                                        switch (i) {
+                                                            case 0:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                break;
+                                                            case 1:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                break;
+                                                            case 2:
+                                                            case 6:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.success_stroke_color));
+                                                                break;
+                                                            case 3:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                break;
+                                                            case 4:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                break;
+                                                            case 5:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.warning_stroke_color));
+                                                                break;
+                                                        }
+                                                    }
+                                                    public void onFinish() {
+                                                        i = -1;
+                                                        actionCheckout();
+                                                    }
+                                                }.start();
+
                                             }
                                         })
                                         .show();
@@ -1760,7 +1964,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
-                                                actionCheckout();
+
+                                                pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                                pDialog.show();
+                                                pDialog.setCancelable(false);
+                                                new CountDownTimer(1300, 800) {
+                                                    public void onTick(long millisUntilFinished) {
+                                                        i++;
+                                                        switch (i) {
+                                                            case 0:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                break;
+                                                            case 1:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                break;
+                                                            case 2:
+                                                            case 6:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.success_stroke_color));
+                                                                break;
+                                                            case 3:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                break;
+                                                            case 4:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                break;
+                                                            case 5:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.warning_stroke_color));
+                                                                break;
+                                                        }
+                                                    }
+                                                    public void onFinish() {
+                                                        i = -1;
+                                                        actionCheckout();
+                                                    }
+                                                }.start();
+
                                             }
                                         })
                                         .show();
@@ -1790,7 +2034,48 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
-                                                actionCheckin();
+
+                                                pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE)
+                                                        .setTitleText("Loading");
+                                                pDialog.show();
+                                                pDialog.setCancelable(false);
+                                                new CountDownTimer(1300, 800) {
+                                                    public void onTick(long millisUntilFinished) {
+                                                        i++;
+                                                        switch (i) {
+                                                            case 0:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                break;
+                                                            case 1:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                break;
+                                                            case 2:
+                                                            case 6:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.success_stroke_color));
+                                                                break;
+                                                            case 3:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                break;
+                                                            case 4:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                break;
+                                                            case 5:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.warning_stroke_color));
+                                                                break;
+                                                        }
+                                                    }
+                                                    public void onFinish() {
+                                                        i = -1;
+                                                        actionCheckin();
+                                                    }
+                                                }.start();
+
                                             }
                                         })
                                         .show();
@@ -1811,7 +2096,48 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
-                                                actionCheckin();
+
+                                                pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE)
+                                                        .setTitleText("Loading");
+                                                pDialog.show();
+                                                pDialog.setCancelable(false);
+                                                new CountDownTimer(1300, 800) {
+                                                    public void onTick(long millisUntilFinished) {
+                                                        i++;
+                                                        switch (i) {
+                                                            case 0:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                break;
+                                                            case 1:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                break;
+                                                            case 2:
+                                                            case 6:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.success_stroke_color));
+                                                                break;
+                                                            case 3:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                break;
+                                                            case 4:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                break;
+                                                            case 5:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (MapsActivity.this, R.color.warning_stroke_color));
+                                                                break;
+                                                        }
+                                                    }
+                                                    public void onFinish() {
+                                                        i = -1;
+                                                        actionCheckin();
+                                                    }
+                                                }.start();
+
                                             }
                                         })
                                         .show();
@@ -1853,7 +2179,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         @Override
                                         public void onClick(KAlertDialog sDialog) {
                                             sDialog.dismiss();
-                                            actionLayoff();
+
+                                            pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                            pDialog.show();
+                                            pDialog.setCancelable(false);
+                                            new CountDownTimer(1300, 800) {
+                                                public void onTick(long millisUntilFinished) {
+                                                    i++;
+                                                    switch (i) {
+                                                        case 0:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                            break;
+                                                        case 1:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.material_deep_teal_50));
+                                                            break;
+                                                        case 2:
+                                                        case 6:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.success_stroke_color));
+                                                            break;
+                                                        case 3:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.material_deep_teal_20));
+                                                            break;
+                                                        case 4:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.material_blue_grey_80));
+                                                            break;
+                                                        case 5:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (MapsActivity.this, R.color.warning_stroke_color));
+                                                            break;
+                                                    }
+                                                }
+                                                public void onFinish() {
+                                                    i = -1;
+                                                    actionLayoff();
+                                                }
+                                            }.start();
+
                                         }
                                     })
                                     .show();
@@ -1894,6 +2260,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
         idShiftAbsen = "";
+        statusAction = "";
     }
 
     private void refreshMaps(){
@@ -2027,48 +2394,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             String id_checkout = data.getString("id_checkout");
                             checkoutRecord(id_checkout);
 
-                            final KAlertDialog pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE)
-                                    .setTitleText("Loading");
-                            pDialog.show();
-                            pDialog.setCancelable(false);
-                            new CountDownTimer(1300, 800) {
-                                public void onTick(long millisUntilFinished) {
-                                    i++;
-                                    switch (i) {
-                                        case 0:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (MapsActivity.this, R.color.blue_btn_bg_color));
-                                            break;
-                                        case 1:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (MapsActivity.this, R.color.material_deep_teal_50));
-                                            break;
-                                        case 2:
-                                        case 6:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (MapsActivity.this, R.color.success_stroke_color));
-                                            break;
-                                        case 3:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (MapsActivity.this, R.color.material_deep_teal_20));
-                                            break;
-                                        case 4:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (MapsActivity.this, R.color.material_blue_grey_80));
-                                            break;
-                                        case 5:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (MapsActivity.this, R.color.warning_stroke_color));
-                                            break;
-                                    }
-                                }
-                                public void onFinish() {
-                                    i = -1;
-                                    pDialog.setTitleText("Check Out Berhasil!")
-                                            .setConfirmText("OK")
-                                            .changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                                }
-                            }.start();
+                            pDialog.setTitleText("Check Out Berhasil!")
+                                    .setConfirmText("OK")
+                                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

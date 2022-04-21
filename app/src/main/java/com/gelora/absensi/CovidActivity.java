@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.gelora.absensi.R;
 import com.shasin.notificationbanner.Banner;
 
@@ -42,6 +44,7 @@ public class CovidActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     LinearLayout actionBar, backBTN, homeBTN;
     View rootview;
+    ImageView vaksin1AddLoading, vaksin2AddLoading, vaksin1Loading, vaksin2Loading, confirmCovidLoading, healtCovidLoading, deadCovidLoading, addConfirmLoading, addHealtLoading, addDeadLoading, activeCaseLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,61 @@ public class CovidActivity extends AppCompatActivity {
         dateVaksin = findViewById(R.id.date_vaksin);
         vaksin1Add = findViewById(R.id.vaksin_1_add);
         vaksin2Add = findViewById(R.id.vaksin_2_add);
+        confirmCovidLoading = findViewById(R.id.confirm_covid_loading);
+        healtCovidLoading = findViewById(R.id.healt_covid_loading);
+        deadCovidLoading = findViewById(R.id.dead_covid_loading);
+        addConfirmLoading = findViewById(R.id.penambahan_positif_loading);
+        addHealtLoading = findViewById(R.id.penambahan_sembuh_loading);
+        addDeadLoading = findViewById(R.id.penambahan_meninggal_loading);
+        activeCaseLoading = findViewById(R.id.active_case_loading);
+        vaksin1Loading = findViewById(R.id.vaksin_1_loading);
+        vaksin1AddLoading = findViewById(R.id.vaksin_1_add_loading);
+        vaksin2Loading = findViewById(R.id.vaksin_2_loading);
+        vaksin2AddLoading = findViewById(R.id.vaksin_2_add_loading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(confirmCovidLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(healtCovidLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(deadCovidLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(addConfirmLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(addHealtLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(addDeadLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(activeCaseLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(vaksin1Loading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(vaksin2Loading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(vaksin1AddLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(vaksin2AddLoading);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -228,6 +286,33 @@ public class CovidActivity extends AppCompatActivity {
                             penambahanHealt.setText(numberFormat.format(Double.parseDouble(healtAdd)));
                             penambahanDead.setText(numberFormat.format(Double.parseDouble(deadAdd)));
 
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    confirmTV.setVisibility(View.VISIBLE);
+                                    confirmCovidLoading.setVisibility(View.GONE);
+
+                                    healtTV.setVisibility(View.VISIBLE);
+                                    healtCovidLoading.setVisibility(View.GONE);
+
+                                    deadTV.setVisibility(View.VISIBLE);
+                                    deadCovidLoading.setVisibility(View.GONE);
+
+                                    activeCase.setVisibility(View.VISIBLE);
+                                    activeCaseLoading.setVisibility(View.GONE);
+
+                                    penambahanConfirm.setVisibility(View.VISIBLE);
+                                    addConfirmLoading.setVisibility(View.GONE);
+
+                                    penambahanHealt.setVisibility(View.VISIBLE);
+                                    addHealtLoading.setVisibility(View.GONE);
+
+                                    penambahanDead.setVisibility(View.VISIBLE);
+                                    addDeadLoading.setVisibility(View.GONE);
+                                }
+                            }, 2000);
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -349,6 +434,21 @@ public class CovidActivity extends AppCompatActivity {
                             }
 
                             dateVaksin.setText("Update : "+hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    vaksin1.setVisibility(View.VISIBLE);
+                                    vaksin1Loading.setVisibility(View.GONE);
+                                    vaksin1Add.setVisibility(View.VISIBLE);
+                                    vaksin1AddLoading.setVisibility(View.GONE);
+
+                                    vaksin2.setVisibility(View.VISIBLE);
+                                    vaksin2Loading.setVisibility(View.GONE);
+                                    vaksin2Add.setVisibility(View.VISIBLE);
+                                    vaksin2AddLoading.setVisibility(View.GONE);
+                                }
+                            }, 2000);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
