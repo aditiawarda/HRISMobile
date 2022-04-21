@@ -63,6 +63,7 @@ import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderApi;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -118,12 +119,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
     ImageView onlineGif, loadingGif, warningGif;
-    TextView prevBTN, nextBTN, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
+    TextView dateCheckinTV, dateCheckoutTV, prevBTN, nextBTN, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
     LinearLayout warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen, datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen, datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -214,6 +215,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         dayNightSwitch = findViewById(R.id.day_night_switch);
         ucapanTV = findViewById(R.id.ucapan_tv);
         warningPart = findViewById(R.id.warning_part);
+        dateCheckinTV = findViewById(R.id.date_checkin_tv);
+        dateCheckoutTV = findViewById(R.id.date_checkout_tv);
         requestQueue = Volley.newRequestQueue(getBaseContext());
 
         Glide.with(getApplicationContext())
@@ -373,11 +376,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    public boolean isDeveloperModeEnabled(){
+        if (Integer.valueOf(android.os.Build.VERSION.SDK) >= 17) {
+            return android.provider.Settings.Secure.getInt(MapsActivity.this.getApplicationContext().getContentResolver(),
+                    android.provider.Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) != 0;
+        }
+        return false;
+    }
+
     public void onLocationChanged(Location location) {
         // New location has now been determined
         String msg = "Updated Location: " + Double.toString(location.getLatitude()) + "," + Double.toString(location.getLongitude());
         // You can now create a LatLng Object for use with maps
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+        Bundle extras = location.getExtras();
+        boolean isMockLocation = extras != null && extras.getBoolean(FusedLocationProviderApi.KEY_MOCK_LOCATION, false);
+
+//        if (isDeveloperModeEnabled()){
+//            Toast.makeText(this, "Jangan macem macem bgsd!!!", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(this, "Anak baik", Toast.LENGTH_SHORT).show();
+//        }
 
         if (location != null) {
             Log.e("TAG", "GPS is on" + String.valueOf(location));
@@ -598,56 +618,65 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private String getTime() {
+        @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("09:00:00");
+        //return ("08:00:00");
     }
 
     private String getTimeH() {
+        @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("HH");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
     private String getTimeM() {
+        @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("mm");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
     private String getTimeS() {
+        @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("ss");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
     private String getDate() {
+        @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-04-21");
+        //return ("2022-04-22");
     }
 
     private String getDateD() {
+        @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("dd");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
     private String getDateM() {
+        @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("MM");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
     private String getDateY() {
+        @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("yyyy");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
     private String getTimeZone() {
+        @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("z");
         Date date = new Date();
         return dateFormat.format(date);
@@ -1163,9 +1192,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         };
 
-        postRequest.setRetryPolicy(new DefaultRetryPolicy(0,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                0,
+                -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
+
+        // postRequest.setRetryPolicy(new DefaultRetryPolicy(0,
+        //        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+        //        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         requestQueue.add(postRequest);
 
@@ -1412,11 +1447,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             if(status.equals("Success")){
                                 JSONObject data_checkin = data.getJSONObject("data");
+                                String date_checkin = data_checkin.getString("tanggal");
                                 String time_checkin = data_checkin.getString("jam_masuk");
                                 String checkin_point = data_checkin.getString("checkin_point");
                                 String id_status = data_checkin.getString("status_absen");
                                 String id_shift = data_checkin.getString("id_shift");
                                 idCheckin = data_checkin.getString("id");
+                                dateCheckinTV.setText(date_checkin);
                                 timeCheckinTV.setText(time_checkin+" "+getTimeZone());
                                 idStatusAbsen = id_status;
 
@@ -2077,11 +2114,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void overTime() {
-        String timeCheckout = getTime();
-        String timePulang = pulangShiftAbsen;
+        String timePulang;
+        if (shiftType.equals("Normal")){
+            timePulang = getDateY()+"-"+getDateM()+"-"+getDateD()+" "+pulangShiftAbsen;
+        } else {
+            int tgl_besok = Integer.parseInt(getDateD())+1;
+            timePulang = getDateY()+"-"+getDateM()+"-"+String.valueOf(tgl_besok)+" "+pulangShiftAbsen;
+        }
+        String timeCheckout = getDate()+" "+getTime();
 
         @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date1 = null;
         Date date2 = null;
         try {
@@ -2138,7 +2181,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String timestamp_checkin = data.getString("timestamp_checkin");
                                 JSONObject data_checkin = data.getJSONObject("data");
                                 String time_checkout = data_checkin.getString("jam_pulang");
+                                String date_checkout = data_checkin.getString("tanggal");
                                 String checkout_point = data_checkin.getString("checkout_point");
+                                shiftType = tipe_shift;
 
                                 if (time_checkout.equals("00:00:00")){
                                     if(!tgl_checkin.equals(getDate())){
@@ -2274,6 +2319,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         }
                                     } else {
                                         warningPart.setVisibility(View.GONE);
+                                        dateCheckoutTV.setText("---- - -- - --");
                                         timeCheckoutTV.setText("-- : -- : --");
                                         statusAction = "checkout";
                                         ucapanTV.setText("Selamat dan SUMAngat Bekerja!");
@@ -2288,6 +2334,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     inputAbsenPart.setVisibility(View.GONE);
                                     recordAbsenPart.setVisibility(View.VISIBLE);
                                     attantionPart.setVisibility(View.GONE);
+                                    dateCheckoutTV.setText(date_checkout);
                                     timeCheckoutTV.setText(time_checkout+" "+getTimeZone());
                                     ucapanTV.setText("Terima kasih telah masuk kerja hari ini.");
 
@@ -2367,11 +2414,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void checkPulang(){
-        String batasAbsenPulang = batasPulang;
-        String pulangAbsen = getTime();
+        String batasAbsenPulang;
+        if (shiftType.equals("Normal")){
+            batasAbsenPulang = getDateY()+"-"+getDateM()+"-"+getDateD()+" "+batasPulang;
+        } else {
+            int tgl_besok = Integer.parseInt(getDateD())+1;
+            batasAbsenPulang = getDateY()+"-"+getDateM()+"-"+String.valueOf(tgl_besok)+" "+batasPulang;
+        }
+        String pulangAbsen = getDate()+" "+getTime();
 
         @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date1 = null;
         Date date2 = null;
         try {

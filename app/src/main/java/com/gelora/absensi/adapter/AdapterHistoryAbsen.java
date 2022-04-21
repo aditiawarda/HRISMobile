@@ -56,6 +56,8 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
         final HistoryAbsen historyAbsen = data[i];
 
         myViewHolder.dateAbsen.setText(historyAbsen.getTanggal());
+        myViewHolder.dateCheckin.setText(historyAbsen.getTanggal_masuk());
+        myViewHolder.dateCheckout.setText(historyAbsen.getTanggal_pulang());
 
         if (myViewHolder.dateAbsen.getText().toString().equals("")){
             myViewHolder.dateAbsen.setText("Hari ini");
@@ -178,10 +180,12 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView dateAbsen, checkinTime, checkinPoint, checkoutTime, checkoutPoint;
+        TextView dateAbsen, dateCheckin, dateCheckout, checkinTime, checkinPoint, checkoutTime, checkoutPoint;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             dateAbsen = itemView.findViewById(R.id.date_absen_tv);
+            dateCheckin = itemView.findViewById(R.id.date_checkin_tv);
+            dateCheckout = itemView.findViewById(R.id.date_checkout_tv);
             checkinTime = itemView.findViewById(R.id.time_checkin_tv);
             checkinPoint = itemView.findViewById(R.id.checkin_point_tv);
             checkoutTime = itemView.findViewById(R.id.time_checkout_tv);

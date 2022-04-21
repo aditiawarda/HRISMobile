@@ -54,7 +54,7 @@ import java.util.Map;
 public class HistoryActivity extends AppCompatActivity {
 
     LinearLayout noConnectPart, loadingPart, noDataPart, attantionPart, actionBar, filterDateBTN, backBTN, homeBTN, filterDateChoiceBTN, changeFilterDateBTN, filterDateChoice;
-    TextView filterDateChoiceTV, dateLastAbsenTV, timeCheckinLastAbsenTV, timeCheckoutLastAbsenTV, checkinPointLastAbsenTV, checkoutPointLastAbsenTV;
+    TextView nameOfUser, dateCheckinTV, dateCheckoutTV, filterDateChoiceTV, dateLastAbsenTV, timeCheckinLastAbsenTV, timeCheckoutLastAbsenTV, checkinPointLastAbsenTV, checkoutPointLastAbsenTV;
     SharedPrefManager sharedPrefManager;
     BottomSheetLayout bottomSheet;
     String dateChoiceForHistory;
@@ -95,6 +95,10 @@ public class HistoryActivity extends AppCompatActivity {
         loadingData = findViewById(R.id.loading_data);
         rootview = findViewById(android.R.id.content);
         noConnectPart = findViewById(R.id.no_connect_part);
+        dateCheckinTV = findViewById(R.id.date_checkin_tv);
+        dateCheckoutTV = findViewById(R.id.date_checkout_tv);
+        nameOfUser = findViewById(R.id.name_of_user_tv);
+        nameOfUser.setText(sharedPrefManager.getSpNama());
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading)
@@ -427,6 +431,8 @@ public class HistoryActivity extends AppCompatActivity {
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
                             String tanggal = data.getString("tanggal");
+                            String tanggal_checkin = data.getString("tanggal_checkin");
+                            String tanggal_checkout = data.getString("tanggal_checkout");
                             String jam_checkin = data.getString("jam_checkin");
                             String checkin_point = data.getString("checkin_point");
                             String jam_checkout = data.getString("jam_checkout");
@@ -434,6 +440,7 @@ public class HistoryActivity extends AppCompatActivity {
 
                             if(status.equals("Success")){
                                 dateLastAbsenTV.setText(tanggal);
+                                dateCheckinTV.setText(tanggal_checkin);
                                 timeCheckinLastAbsenTV.setText(jam_checkin);
 
                                 if (checkin_point.equals("")){
@@ -443,8 +450,10 @@ public class HistoryActivity extends AppCompatActivity {
                                 }
 
                                 if (jam_checkout.equals("00:00:00")){
+                                    dateCheckoutTV.setText("---- - -- - --");
                                     timeCheckoutLastAbsenTV.setText("-- : -- : --");
                                 } else {
+                                    dateCheckoutTV.setText(tanggal_checkout);
                                     timeCheckoutLastAbsenTV.setText(jam_checkout);
                                 }
 

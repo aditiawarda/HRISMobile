@@ -552,7 +552,7 @@
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="35dp"
+                                        android:layout_height="33dp"
                                         android:layout_marginBottom="5dp"
                                         android:background="@drawable/shape_detail"
                                         android:gravity="center">
@@ -585,15 +585,27 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:textStyle="bold"
-                                                android:paddingTop="7dp"
-                                                android:paddingBottom="7dp"
+                                                android:paddingTop="5dp"
+                                                android:paddingBottom="5dp"
                                                 android:paddingLeft="15dp"
                                                 android:paddingRight="15dp"
-                                                android:layout_marginBottom="10dp"
+                                                android:layout_marginBottom="8dp"
                                                 android:textSize="11dp"
                                                 android:background="@drawable/shape_tabel_head"
                                                 android:textColor="@color/white"
                                                 android:text="Check In"/>
+
+                                            <TextView
+                                                android:layout_marginLeft="15dp"
+                                                android:layout_marginRight="15dp"
+                                                android:id="@+id/date_checkin_tv"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:drawableLeft="@drawable/ic_baseline_date_range"
+                                                android:drawablePadding="7dp"
+                                                android:layout_marginBottom="4dp"
+                                                android:textSize="11dp"
+                                                android:text="---- - -- - --"/>
 
                                             <TextView
                                                 android:layout_marginLeft="15dp"
@@ -603,14 +615,14 @@
                                                 android:layout_height="wrap_content"
                                                 android:drawableLeft="@drawable/ic_baseline_time"
                                                 android:drawablePadding="7dp"
-                                                android:layout_marginBottom="5dp"
+                                                android:layout_marginBottom="4dp"
                                                 android:textSize="11dp"
                                                 android:text="-- : -- : --"/>
 
                                             <TextView
                                                 android:layout_marginLeft="15dp"
                                                 android:layout_marginRight="15dp"
-                                                android:layout_marginBottom="10dp"
+                                                android:layout_marginBottom="8dp"
                                                 android:id="@+id/checkin_point_tv"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
@@ -633,15 +645,27 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:textStyle="bold"
-                                                android:paddingTop="7dp"
-                                                android:paddingBottom="7dp"
+                                                android:paddingTop="5dp"
+                                                android:paddingBottom="5dp"
                                                 android:paddingLeft="15dp"
                                                 android:paddingRight="15dp"
-                                                android:layout_marginBottom="10dp"
+                                                android:layout_marginBottom="8dp"
                                                 android:textSize="11dp"
                                                 android:background="@drawable/shape_tabel_head_2"
                                                 android:textColor="@color/white"
                                                 android:text="Check Out"/>
+
+                                            <TextView
+                                                android:layout_marginLeft="15dp"
+                                                android:layout_marginRight="15dp"
+                                                android:id="@+id/date_checkout_tv"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:drawableLeft="@drawable/ic_baseline_date_range"
+                                                android:drawablePadding="7dp"
+                                                android:layout_marginBottom="4dp"
+                                                android:textSize="11dp"
+                                                android:text="---- - -- - --"/>
 
                                             <TextView
                                                 android:layout_marginLeft="15dp"
@@ -651,14 +675,14 @@
                                                 android:layout_height="wrap_content"
                                                 android:drawableLeft="@drawable/ic_baseline_time"
                                                 android:drawablePadding="7dp"
-                                                android:layout_marginBottom="5dp"
+                                                android:layout_marginBottom="4dp"
                                                 android:textSize="11dp"
                                                 android:text="-- : -- : --"/>
 
                                             <TextView
                                                 android:layout_marginLeft="15dp"
                                                 android:layout_marginRight="15dp"
-                                                android:layout_marginBottom="10dp"
+                                                android:layout_marginBottom="8dp"
                                                 android:id="@+id/checkout_point_tv"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
@@ -673,7 +697,7 @@
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="35dp"
+                                        android:layout_height="33dp"
                                         android:layout_marginTop="5dp"
                                         android:background="@drawable/shape_detail"
                                         android:gravity="center">

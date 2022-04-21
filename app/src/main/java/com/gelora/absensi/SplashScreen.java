@@ -444,23 +444,16 @@ public class SplashScreen extends AppCompatActivity {
                                             statusUpdateLayout = "0";
                                             updateDialog.animate()
                                                     .translationY(updateDialog.getHeight())
-                                                    .alpha(0.0f)
                                                     .setDuration(300)
                                                     .setListener(new AnimatorListenerAdapter() {
                                                         @Override
                                                         public void onAnimationEnd(Animator animation) {
                                                             super.onAnimationEnd(animation);
                                                             updateDialog.setVisibility(View.GONE);
-                                                            new Handler().postDelayed(new Runnable() {
-                                                                @Override
-                                                                public void run() {
-                                                                    updateLayout.setVisibility(View.GONE);
-                                                                }
-                                                            }, 200);
+                                                            updateLayout.setVisibility(View.GONE);
                                                         }
                                                     });
                                             updateLayout.animate()
-                                                    .alpha(0.0f)
                                                     .setListener(new AnimatorListenerAdapter() {
                                                         @Override
                                                         public void onAnimationEnd(Animator animation) {
