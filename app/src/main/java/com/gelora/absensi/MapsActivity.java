@@ -394,11 +394,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Bundle extras = location.getExtras();
         boolean isMockLocation = extras != null && extras.getBoolean(FusedLocationProviderApi.KEY_MOCK_LOCATION, false);
 
-//        if (isDeveloperModeEnabled()){
-//            Toast.makeText(this, "Jangan macem macem bgsd!!!", Toast.LENGTH_SHORT).show();
-//        } else {
-//            Toast.makeText(this, "Anak baik", Toast.LENGTH_SHORT).show();
-//        }
+        // if (isDeveloperModeEnabled()){
+        //    Toast.makeText(this, "On", Toast.LENGTH_SHORT).show();
+        // } else {
+        //    Toast.makeText(this, "Off", Toast.LENGTH_SHORT).show();
+        // }
 
         if (location != null) {
             Log.e("TAG", "GPS is on" + String.valueOf(location));
@@ -410,10 +410,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         userPoint = new LatLng(userLat, userLong);
 
-         // User position camera
-         float zoomLevel = 18.0f; //This goes up to 21
-         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
-         mMap.getUiSettings().setCompassEnabled(false);
+        // User position camera
+        float zoomLevel = 18.0f; //This goes up to 21
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
+        mMap.getUiSettings().setCompassEnabled(false);
 
         getAction();
 
@@ -464,9 +464,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //    }
         //});
 
-         // Realtime location
-         // new Google API SDK v11 uses getFusedLocationProviderClient(this)
-         getFusedLocationProviderClient(this).requestLocationUpdates(mLocationRequest, new LocationCallback() {
+        // Realtime location
+        // new Google API SDK v11 uses getFusedLocationProviderClient(this)
+        getFusedLocationProviderClient(this).requestLocationUpdates(mLocationRequest, new LocationCallback() {
                     @Override
                     public void onLocationResult(LocationResult locationResult) {
                         // do work here
