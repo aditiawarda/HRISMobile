@@ -823,8 +823,8 @@ public class UserActivity extends AppCompatActivity {
         closeBSBTN = findViewById(R.id.close_bs_btn);
         removeAvatarBTN = findViewById(R.id.hapus_avatar_btn);
 
-        descAvailable.setText("Halo "+sharedPrefManager.getSpNama()+", Anda bisa atur foto profil sesuai keinginan anda.");
-        descEmtpy.setText("Halo "+sharedPrefManager.getSpNama()+", Anda bisa tambahkan foto profil sesuai keinginan anda.");
+        descAvailable.setText("Halo "+sharedPrefManager.getSpNama()+", anda bisa atur foto profil sesuai keinginan anda.");
+        descEmtpy.setText("Halo "+sharedPrefManager.getSpNama()+", anda bisa tambahkan foto profil sesuai keinginan anda.");
 
         if (avatarStatus.equals("1")){
             emptyAvatarPart.setVisibility(View.GONE);
