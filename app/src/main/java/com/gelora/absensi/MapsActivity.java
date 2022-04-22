@@ -1060,8 +1060,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         long min = (selisih_waktu / 60000) % 60;
         long sec = (selisih_waktu / 1000) % 60;
 
-        Toast.makeText(this, String.valueOf(shiftType), Toast.LENGTH_SHORT).show();
-
         if (waktu1<=waktu2){
             lateStatus = "1";
             lateTime = "00:00:00";
