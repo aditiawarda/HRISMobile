@@ -130,6 +130,30 @@ public class CovidActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                confirmTV.setVisibility(View.GONE);
+                confirmCovidLoading.setVisibility(View.VISIBLE);
+                healtTV.setVisibility(View.GONE);
+                healtCovidLoading.setVisibility(View.VISIBLE);
+                deadTV.setVisibility(View.GONE);
+                deadCovidLoading.setVisibility(View.VISIBLE);
+                activeCase.setVisibility(View.GONE);
+                activeCaseLoading.setVisibility(View.VISIBLE);
+                penambahanConfirm.setVisibility(View.GONE);
+                addConfirmLoading.setVisibility(View.VISIBLE);
+                penambahanHealt.setVisibility(View.GONE);
+                addHealtLoading.setVisibility(View.VISIBLE);
+                penambahanDead.setVisibility(View.GONE);
+                addDeadLoading.setVisibility(View.VISIBLE);
+
+                vaksin1.setVisibility(View.GONE);
+                vaksin1Loading.setVisibility(View.VISIBLE);
+                vaksin1Add.setVisibility(View.GONE);
+                vaksin1AddLoading.setVisibility(View.VISIBLE);
+                vaksin2.setVisibility(View.GONE);
+                vaksin2Loading.setVisibility(View.VISIBLE);
+                vaksin2Add.setVisibility(View.GONE);
+                vaksin2AddLoading.setVisibility(View.VISIBLE);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

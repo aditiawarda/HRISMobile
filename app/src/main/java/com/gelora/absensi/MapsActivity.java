@@ -391,9 +391,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // You can now create a LatLng Object for use with maps
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-        Bundle extras = location.getExtras();
-        boolean isMockLocation = extras != null && extras.getBoolean(FusedLocationProviderApi.KEY_MOCK_LOCATION, false);
-
         // if (isDeveloperModeEnabled()){
         //    Toast.makeText(this, "On", Toast.LENGTH_SHORT).show();
         // } else {
@@ -623,7 +620,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("08:00:00");
+        //return ("01:00:00");
     }
 
     private String getTimeH() {
@@ -652,7 +649,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-04-22");
+        //return ("2022-04-23");
     }
 
     private String getDateD() {
@@ -1062,6 +1059,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         long hour = (selisih_waktu / 3600000) % 24;
         long min = (selisih_waktu / 60000) % 60;
         long sec = (selisih_waktu / 1000) % 60;
+
+        Toast.makeText(this, String.valueOf(shiftType), Toast.LENGTH_SHORT).show();
 
         if (waktu1<=waktu2){
             lateStatus = "1";
@@ -2260,7 +2259,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
         idShiftAbsen = "";
-        statusAction = "";
     }
 
     private void refreshMaps(){
@@ -2506,6 +2504,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             if(status.equals("Success")){
                                 String tgl_checkin = data.getString("tgl_checkin");
                                 String tipe_shift = data.getString("tipe_shift");
+                                String interval = data.getString("interval");
                                 String timestamp_checkin = data.getString("timestamp_checkin");
                                 JSONObject data_checkin = data.getJSONObject("data");
                                 String time_checkout = data_checkin.getString("jam_pulang");
@@ -2581,7 +2580,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             } catch (ParseException e) {
                                                 e.printStackTrace();
                                             }
-                                            long waktu = date1.getTime() + 45000000; //43200000;
+                                            long waktu = date1.getTime() + Long.parseLong(interval);
                                             long waktu2 = date2.getTime();
 
                                             if (waktu<waktu2){
@@ -3040,6 +3039,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 monthTV.setText(bulanName);
                 yearTV.setText(year);
                 eventCalender.setText("");
+
             }
         });
 

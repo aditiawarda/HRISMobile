@@ -98,7 +98,7 @@ public class HistoryActivity extends AppCompatActivity {
         dateCheckinTV = findViewById(R.id.date_checkin_tv);
         dateCheckoutTV = findViewById(R.id.date_checkout_tv);
         nameOfUser = findViewById(R.id.name_of_user_tv);
-        nameOfUser.setText(sharedPrefManager.getSpNama());
+        nameOfUser.setText(sharedPrefManager.getSpNama().toUpperCase());
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading)
