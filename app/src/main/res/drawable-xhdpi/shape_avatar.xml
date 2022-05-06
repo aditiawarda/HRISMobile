@@ -8,7 +8,7 @@
                 android:color="#FFD095">
             </stroke>
             <corners
-                android:radius="10dp"/>
+                android:radius="90dp"/>
         </shape>
     </item>
     <item>
@@ -19,7 +19,7 @@
                 android:color="#FFD095">
             </stroke>
             <corners
-                android:radius="10dp"/>
+                android:radius="90dp"/>
         </shape>
     </item>
 </selector>

@@ -51,6 +51,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.application.isradeleon.notify.Notify;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterShiftAbsen;
@@ -119,12 +120,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
     ImageView onlineGif, loadingGif, warningGif;
-    TextView dateCheckinTV, dateCheckoutTV, prevBTN, nextBTN, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    TextView dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
+    LinearLayout  prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen, datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -346,6 +347,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         permissionLoc();
+
     }
 
     @SuppressLint("MissingPermission")
@@ -385,17 +387,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return false;
     }
 
+
     public void onLocationChanged(Location location) {
         // New location has now been determined
         String msg = "Updated Location: " + Double.toString(location.getLatitude()) + "," + Double.toString(location.getLongitude());
         // You can now create a LatLng Object for use with maps
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-
-        // if (isDeveloperModeEnabled()){
-        //    Toast.makeText(this, "On", Toast.LENGTH_SHORT).show();
-        // } else {
-        //    Toast.makeText(this, "Off", Toast.LENGTH_SHORT).show();
-        // }
 
         if (location != null) {
             Log.e("TAG", "GPS is on" + String.valueOf(location));
@@ -620,7 +617,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("01:00:00");
+        //return ("08:01:00");
     }
 
     private String getTimeH() {
@@ -649,7 +646,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-04-23");
+        //return ("2022-05-02");
     }
 
     private String getDateD() {
@@ -1060,12 +1057,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         long min = (selisih_waktu / 60000) % 60;
         long sec = (selisih_waktu / 1000) % 60;
 
-        if (waktu1<=waktu2){
-            lateStatus = "1";
+        if (waktu1<waktu2+60000){
+            // lateStatus = "1";
             lateTime = "00:00:00";
         } else {
-            lateStatus = "2";
+            // lateStatus = "2";
             lateTime = String.valueOf((f.format(hour)) + ":" + (f.format(min)) + ":" + f.format(sec));
+            Notify.build(getApplicationContext())
+                    .setTitle("Absensi App")
+                    .setContent("Anda terlambat "+lateTime+", segera gunakan prosedur fingerscan dan serahkan ke bagian HRD")
+                    .setSmallIcon(R.drawable.ic_skylight_notification)
+                    .setColor(R.color.colorPrimary)
+                    .largeCircularIcon()
+                    .enableVibration(true)
+                    .show();
         }
 
     }
@@ -1078,7 +1083,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String tanggal = getDate();
         String timestamp_masuk = getDate()+" "+getTime();
         String jam_masuk = getTime();
-        String status_terlambat = lateStatus;
+        // String status_terlambat = lateStatus;
         String waktu_terlambat = lateTime;
         String latitude = String.valueOf(userLat);
         String longitude = String.valueOf(userLong);
@@ -1140,7 +1145,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 params.put("tanggal", tanggal);
                 params.put("jam_masuk", jam_masuk);
                 params.put("timestamp_masuk", timestamp_masuk);
-                params.put("status_terlambat", status_terlambat);
+                // params.put("status_terlambat", status_terlambat);
                 params.put("waktu_terlambat", waktu_terlambat);
                 params.put("latitude", latitude);
                 params.put("longitude", longitude);
@@ -1364,6 +1369,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
+                            String libur = data.getString("libur");
+
+                            if (!libur.equals("Tidak Libur")){
+                                statusTglLibur = "1";
+                            } else {
+                                statusTglLibur = "0";
+                            }
 
                             if(status.equals("Success")){
                                 JSONObject data_checkin = data.getJSONObject("data");
@@ -1475,34 +1487,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         switch (i) {
                                                             case 0:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                        (MapsActivity.this, R.color.colorGradien));
                                                                 break;
                                                             case 1:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                        (MapsActivity.this, R.color.colorGradien2));
                                                                 break;
                                                             case 2:
                                                             case 6:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.success_stroke_color));
+                                                                        (MapsActivity.this, R.color.colorGradien3));
                                                                 break;
                                                             case 3:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                        (MapsActivity.this, R.color.colorGradien4));
                                                                 break;
                                                             case 4:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                        (MapsActivity.this, R.color.colorGradien5));
                                                                 break;
                                                             case 5:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.warning_stroke_color));
+                                                                        (MapsActivity.this, R.color.colorGradien6));
                                                                 break;
                                                         }
                                                     }
                                                     public void onFinish() {
                                                         i = -1;
-                                                        actionCheckin();
+
+                                                        if (isDeveloperModeEnabled()){
+                                                            pDialog.dismiss();
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                    .setTitleText("Perhatian!")
+                                                                    .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
+                                                                    .setCancelText(" TUTUP ")
+                                                                    .setConfirmText("SETTING")
+                                                                    .showCancelButton(true)
+                                                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                        }
+                                                                    })
+                                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                            startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+                                                                        }
+                                                                    })
+                                                                    .show();
+                                                        } else {
+                                                            actionCheckin();
+                                                        }
+
                                                     }
                                                 }.start();
 
@@ -1536,34 +1574,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         switch (i) {
                                                             case 0:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                        (MapsActivity.this, R.color.colorGradien));
                                                                 break;
                                                             case 1:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                        (MapsActivity.this, R.color.colorGradien2));
                                                                 break;
                                                             case 2:
                                                             case 6:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.success_stroke_color));
+                                                                        (MapsActivity.this, R.color.colorGradien3));
                                                                 break;
                                                             case 3:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                        (MapsActivity.this, R.color.colorGradien4));
                                                                 break;
                                                             case 4:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                        (MapsActivity.this, R.color.colorGradien5));
                                                                 break;
                                                             case 5:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.warning_stroke_color));
+                                                                        (MapsActivity.this, R.color.colorGradien6));
                                                                 break;
                                                         }
                                                     }
                                                     public void onFinish() {
                                                         i = -1;
-                                                        actionCheckin();
+
+                                                        if (isDeveloperModeEnabled()){
+                                                            pDialog.dismiss();
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                    .setTitleText("Perhatian!")
+                                                                    .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
+                                                                    .setCancelText(" TUTUP ")
+                                                                    .setConfirmText("SETTING")
+                                                                    .showCancelButton(true)
+                                                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                        }
+                                                                    })
+                                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                            startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+                                                                        }
+                                                                    })
+                                                                    .show();
+                                                        } else {
+                                                            actionCheckin();
+                                                        }
+
                                                     }
                                                 }.start();
 
@@ -1618,34 +1682,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     switch (i) {
                                                         case 0:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                    (MapsActivity.this, R.color.colorGradien));
                                                             break;
                                                         case 1:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                    (MapsActivity.this, R.color.colorGradien2));
                                                             break;
                                                         case 2:
                                                         case 6:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.success_stroke_color));
+                                                                    (MapsActivity.this, R.color.colorGradien3));
                                                             break;
                                                         case 3:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                    (MapsActivity.this, R.color.colorGradien4));
                                                             break;
                                                         case 4:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                    (MapsActivity.this, R.color.colorGradien5));
                                                             break;
                                                         case 5:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.warning_stroke_color));
+                                                                    (MapsActivity.this, R.color.colorGradien6));
                                                             break;
                                                     }
                                                 }
                                                 public void onFinish() {
                                                     i = -1;
-                                                    actionCheckout();
+
+                                                    if (isDeveloperModeEnabled()){
+                                                        pDialog.dismiss();
+                                                        new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                .setTitleText("Perhatian!")
+                                                                .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
+                                                                .setCancelText(" TUTUP ")
+                                                                .setConfirmText("SETTING")
+                                                                .showCancelButton(true)
+                                                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                        startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        actionCheckout();
+                                                    }
+
                                                 }
                                             }.start();
 
@@ -1679,34 +1769,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     switch (i) {
                                                         case 0:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                    (MapsActivity.this, R.color.colorGradien));
                                                             break;
                                                         case 1:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                    (MapsActivity.this, R.color.colorGradien2));
                                                             break;
                                                         case 2:
                                                         case 6:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.success_stroke_color));
+                                                                    (MapsActivity.this, R.color.colorGradien3));
                                                             break;
                                                         case 3:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                    (MapsActivity.this, R.color.colorGradien4));
                                                             break;
                                                         case 4:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                    (MapsActivity.this, R.color.colorGradien5));
                                                             break;
                                                         case 5:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.warning_stroke_color));
+                                                                    (MapsActivity.this, R.color.colorGradien6));
                                                             break;
                                                     }
                                                 }
                                                 public void onFinish() {
                                                     i = -1;
-                                                    actionCheckout();
+
+                                                    if (isDeveloperModeEnabled()){
+                                                        pDialog.dismiss();
+                                                        new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                .setTitleText("Perhatian!")
+                                                                .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
+                                                                .setCancelText(" TUTUP ")
+                                                                .setConfirmText("SETTING")
+                                                                .showCancelButton(true)
+                                                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                        startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        actionCheckout();
+                                                    }
+
                                                 }
                                             }.start();
 
@@ -1750,28 +1866,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 switch (i) {
                                                     case 0:
                                                         pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                (MapsActivity.this, R.color.colorGradien));
                                                         break;
                                                     case 1:
                                                         pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                (MapsActivity.this, R.color.colorGradien2));
                                                         break;
                                                     case 2:
                                                     case 6:
                                                         pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (MapsActivity.this, R.color.success_stroke_color));
+                                                                (MapsActivity.this, R.color.colorGradien3));
                                                         break;
                                                     case 3:
                                                         pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                (MapsActivity.this, R.color.colorGradien4));
                                                         break;
                                                     case 4:
                                                         pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                (MapsActivity.this, R.color.colorGradien5));
                                                         break;
                                                     case 5:
                                                         pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (MapsActivity.this, R.color.warning_stroke_color));
+                                                                (MapsActivity.this, R.color.colorGradien6));
                                                         break;
                                                 }
                                             }
@@ -1797,7 +1913,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                 });
             }
-        } else {
+        }
+        else {
             if (namaStatusAbsen.equals("WFH") || namaStatusAbsen.equals("Pjd") || namaStatusAbsen.equals("KLL") || namaStatusAbsen.equals("DL")) {
                 if (statusAction.equals("absen")){
                     actionTV.setText("ABSEN");
@@ -1831,28 +1948,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     switch (i) {
                                                         case 0:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                    (MapsActivity.this, R.color.colorGradien));
                                                             break;
                                                         case 1:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                    (MapsActivity.this, R.color.colorGradien2));
                                                             break;
                                                         case 2:
                                                         case 6:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.success_stroke_color));
+                                                                    (MapsActivity.this, R.color.colorGradien3));
                                                             break;
                                                         case 3:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                    (MapsActivity.this, R.color.colorGradien4));
                                                             break;
                                                         case 4:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                    (MapsActivity.this, R.color.colorGradien5));
                                                             break;
                                                         case 5:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.warning_stroke_color));
+                                                                    (MapsActivity.this, R.color.colorGradien6));
                                                             break;
                                                     }
                                                 }
@@ -1910,34 +2027,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         switch (i) {
                                                             case 0:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                        (MapsActivity.this, R.color.colorGradien));
                                                                 break;
                                                             case 1:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                        (MapsActivity.this, R.color.colorGradien2));
                                                                 break;
                                                             case 2:
                                                             case 6:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.success_stroke_color));
+                                                                        (MapsActivity.this, R.color.colorGradien3));
                                                                 break;
                                                             case 3:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                        (MapsActivity.this, R.color.colorGradien4));
                                                                 break;
                                                             case 4:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                        (MapsActivity.this, R.color.colorGradien5));
                                                                 break;
                                                             case 5:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.warning_stroke_color));
+                                                                        (MapsActivity.this, R.color.colorGradien6));
                                                                 break;
                                                         }
                                                     }
                                                     public void onFinish() {
                                                         i = -1;
-                                                        actionCheckout();
+
+                                                        if (isDeveloperModeEnabled()){
+                                                            pDialog.dismiss();
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                    .setTitleText("Perhatian!")
+                                                                    .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
+                                                                    .setCancelText(" TUTUP ")
+                                                                    .setConfirmText("SETTING")
+                                                                    .showCancelButton(true)
+                                                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                        }
+                                                                    })
+                                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                            startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+                                                                        }
+                                                                    })
+                                                                    .show();
+                                                        } else {
+                                                            actionCheckout();
+                                                        }
+
                                                     }
                                                 }.start();
 
@@ -1971,34 +2114,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         switch (i) {
                                                             case 0:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                        (MapsActivity.this, R.color.colorGradien));
                                                                 break;
                                                             case 1:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                        (MapsActivity.this, R.color.colorGradien2));
                                                                 break;
                                                             case 2:
                                                             case 6:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.success_stroke_color));
+                                                                        (MapsActivity.this, R.color.colorGradien3));
                                                                 break;
                                                             case 3:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                        (MapsActivity.this, R.color.colorGradien4));
                                                                 break;
                                                             case 4:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                        (MapsActivity.this, R.color.colorGradien5));
                                                                 break;
                                                             case 5:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.warning_stroke_color));
+                                                                        (MapsActivity.this, R.color.colorGradien6));
                                                                 break;
                                                         }
                                                     }
                                                     public void onFinish() {
                                                         i = -1;
-                                                        actionCheckout();
+
+                                                        if (isDeveloperModeEnabled()){
+                                                            pDialog.dismiss();
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                    .setTitleText("Perhatian!")
+                                                                    .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
+                                                                    .setCancelText(" TUTUP ")
+                                                                    .setConfirmText("SETTING")
+                                                                    .showCancelButton(true)
+                                                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                        }
+                                                                    })
+                                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                            startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+                                                                        }
+                                                                    })
+                                                                    .show();
+                                                        } else {
+                                                            actionCheckout();
+                                                        }
+
                                                     }
                                                 }.start();
 
@@ -2042,34 +2211,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         switch (i) {
                                                             case 0:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                        (MapsActivity.this, R.color.colorGradien));
                                                                 break;
                                                             case 1:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                        (MapsActivity.this, R.color.colorGradien2));
                                                                 break;
                                                             case 2:
                                                             case 6:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.success_stroke_color));
+                                                                        (MapsActivity.this, R.color.colorGradien3));
                                                                 break;
                                                             case 3:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                        (MapsActivity.this, R.color.colorGradien4));
                                                                 break;
                                                             case 4:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                        (MapsActivity.this, R.color.colorGradien5));
                                                                 break;
                                                             case 5:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.warning_stroke_color));
+                                                                        (MapsActivity.this, R.color.colorGradien6));
                                                                 break;
                                                         }
                                                     }
                                                     public void onFinish() {
                                                         i = -1;
-                                                        actionCheckin();
+
+                                                        if (isDeveloperModeEnabled()){
+                                                            pDialog.dismiss();
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                    .setTitleText("Perhatian!")
+                                                                    .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
+                                                                    .setCancelText(" TUTUP ")
+                                                                    .setConfirmText("SETTING")
+                                                                    .showCancelButton(true)
+                                                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                        }
+                                                                    })
+                                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                            startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+                                                                        }
+                                                                    })
+                                                                    .show();
+                                                        } else {
+                                                            actionCheckin();
+                                                        }
+
                                                     }
                                                 }.start();
 
@@ -2104,34 +2299,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         switch (i) {
                                                             case 0:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                        (MapsActivity.this, R.color.colorGradien));
                                                                 break;
                                                             case 1:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                        (MapsActivity.this, R.color.colorGradien2));
                                                                 break;
                                                             case 2:
                                                             case 6:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.success_stroke_color));
+                                                                        (MapsActivity.this, R.color.colorGradien3));
                                                                 break;
                                                             case 3:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                        (MapsActivity.this, R.color.colorGradien4));
                                                                 break;
                                                             case 4:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                        (MapsActivity.this, R.color.colorGradien5));
                                                                 break;
                                                             case 5:
                                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                        (MapsActivity.this, R.color.warning_stroke_color));
+                                                                        (MapsActivity.this, R.color.colorGradien6));
                                                                 break;
                                                         }
                                                     }
                                                     public void onFinish() {
                                                         i = -1;
-                                                        actionCheckin();
+
+                                                        if (isDeveloperModeEnabled()){
+                                                            pDialog.dismiss();
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                    .setTitleText("Perhatian!")
+                                                                    .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
+                                                                    .setCancelText(" TUTUP ")
+                                                                    .setConfirmText("SETTING")
+                                                                    .showCancelButton(true)
+                                                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                        }
+                                                                    })
+                                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                            startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
+                                                                        }
+                                                                    })
+                                                                    .show();
+                                                        } else {
+                                                            actionCheckin();
+                                                        }
+
                                                     }
                                                 }.start();
 
@@ -2186,28 +2407,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     switch (i) {
                                                         case 0:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.blue_btn_bg_color));
+                                                                    (MapsActivity.this, R.color.colorGradien));
                                                             break;
                                                         case 1:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.material_deep_teal_50));
+                                                                    (MapsActivity.this, R.color.colorGradien2));
                                                             break;
                                                         case 2:
                                                         case 6:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.success_stroke_color));
+                                                                    (MapsActivity.this, R.color.colorGradien3));
                                                             break;
                                                         case 3:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.material_deep_teal_20));
+                                                                    (MapsActivity.this, R.color.colorGradien4));
                                                             break;
                                                         case 4:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.material_blue_grey_80));
+                                                                    (MapsActivity.this, R.color.colorGradien5));
                                                             break;
                                                         case 5:
                                                             pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (MapsActivity.this, R.color.warning_stroke_color));
+                                                                    (MapsActivity.this, R.color.colorGradien6));
                                                             break;
                                                     }
                                                 }
@@ -2244,6 +2465,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         }
+
     }
 
     private void refreshData(){
@@ -2545,6 +2767,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     })
                                                     .show();
 
+                                                Notify.build(getApplicationContext())
+                                                        .setTitle("Absensi App")
+                                                        .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
+                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                        .setColor(R.color.colorPrimary)
+                                                        .largeCircularIcon()
+                                                        .enableVibration(true)
+                                                        .show();
+
                                             warningPart.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
@@ -2612,6 +2843,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                 sDialog.dismiss();
                                                             }
                                                         })
+                                                        .show();
+
+                                                Notify.build(getApplicationContext())
+                                                        .setTitle("Absensi App")
+                                                        .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
+                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                        .setColor(R.color.colorPrimary)
+                                                        .largeCircularIcon()
+                                                        .enableVibration(true)
                                                         .show();
 
                                                 warningPart.setOnClickListener(new View.OnClickListener() {

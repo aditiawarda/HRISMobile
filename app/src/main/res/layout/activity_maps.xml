@@ -772,7 +772,7 @@
                                             android:textColor="#C68D46"
                                             android:textSize="11dp"
                                             android:layout_marginTop="7dp"
-                                            android:text="Status absensi anda hari ini Layoff/Diliburkan. jika terjadi kesalahan atau kekeliruan data harap hubungi bagian HRD/IT."/>
+                                            android:text="Status absensi anda hari ini Layoff/Diliburkan. jika terjadi kesalahan atau kekeliruan data harap hubungi bagian HRD."/>
 
                                     </LinearLayout>
 
@@ -834,7 +834,7 @@
                                             android:textColor="#C68D46"
                                             android:textSize="11dp"
                                             android:layout_marginTop="7dp"
-                                            android:text="Status absensi anda hari ini Izin. jika terjadi kesalahan atau kekeliruan data harap hubungi bagian HRD/IT."/>
+                                            android:text="Status absensi anda hari ini Izin. jika terjadi kesalahan atau kekeliruan data harap hubungi bagian HRD."/>
 
                                     </LinearLayout>
 

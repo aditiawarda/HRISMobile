@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#C74A1A</color>
+    <color name="colorPrimary">#A6441F</color>
     <color name="colorPrimaryDark">#A6441F</color>
     <color name="colorAccent">#A6441F</color>
     <color name="colorAccent2">#FFBB65</color>
@@ -9,6 +9,12 @@
     <color name="white">#FFFFFF</color>
     <color name="green">#309A35</color>
     <color name="red">#B83633</color>
+    <color name="colorGradien">#E1693C</color>
+    <color name="colorGradien2">#E1693C</color>
+    <color name="colorGradien3">#E1693C</color>
+    <color name="colorGradien4">#E1693C</color>
+    <color name="colorGradien5">#E1693C</color>
+    <color name="colorGradien6">#E1693C</color>
 
     <color name="float_transparent">#00000000</color>
     <color name="kalert_dialog_bg_color">#FFFFFF</color>

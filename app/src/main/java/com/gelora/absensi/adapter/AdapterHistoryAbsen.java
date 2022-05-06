@@ -59,6 +59,12 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
         myViewHolder.dateCheckin.setText(historyAbsen.getTanggal_masuk());
         myViewHolder.dateCheckout.setText(historyAbsen.getTanggal_pulang());
 
+        if (myViewHolder.dateCheckout.getText().toString().equals("")){
+            myViewHolder.dateCheckout.setText("---- - -- - --");
+        } else {
+            myViewHolder.dateCheckout.setText(historyAbsen.getTanggal_pulang());
+        }
+
         if (myViewHolder.dateAbsen.getText().toString().equals("")){
             myViewHolder.dateAbsen.setText("Hari ini");
         } else {

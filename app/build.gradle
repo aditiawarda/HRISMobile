@@ -10,8 +10,8 @@ android {
         applicationId "com.gelora.absensi"
         minSdkVersion 19 //24 Recommendation //Requered 19
         targetSdkVersion 31
-        versionCode 23
-        versionName "1.1.23"
+        versionCode 24
+        versionName "1.1.24"
 
         multiDexEnabled true
 
@@ -65,5 +65,6 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.github.isradeleon:Notify-Android:1.0.4'
 
 }

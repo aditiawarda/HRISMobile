@@ -8,6 +8,8 @@ import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -28,6 +30,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -66,6 +70,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -79,14 +84,14 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
-    TextView uploadImg, descAvailable, descEmtpy, statusUserTV, prevBTN, nextBTN, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    LinearLayout  prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
+    TextView batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
     SwipeRefreshLayout refreshLayout;
     NestedScrollView scrollView;
-    ImageView avatarUser, imageUserBS;
+    ImageView bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
     String avatarStatus = "0", avatarPath = "";
 
@@ -125,16 +130,49 @@ public class UserActivity extends AppCompatActivity {
         covidBTN = findViewById(R.id.covid_btn);
         statusUserTV = findViewById(R.id.status_user_tv);
         avatarUser = findViewById(R.id.avatar_user);
+        avatarUser = findViewById(R.id.avatar_user);
         emptyAvatarPart = findViewById(R.id.empty_avatar_part);
         availableAvatarPart = findViewById(R.id.available_avatar_part);
         uploadImg = findViewById(R.id.upload_file);
+        editImg = findViewById(R.id.edit_file);
         chatBTN = findViewById(R.id.chat_btn);
         logoutPart = findViewById(R.id.logout_part);
+        statusIndicator = findViewById(R.id.status_indikator);
+        bulanData = findViewById(R.id.bulan_data);
+        tahunData = findViewById(R.id.tahun_data);
+        hadirData = findViewById(R.id.data_hadir);
+        tidakHadirData = findViewById(R.id.data_tidak_hadir);
+        bulanLoading = findViewById(R.id.bulan_loading);
+        hadirLoading = findViewById(R.id.hadir_loading);
+        tidakHadirLoading = findViewById(R.id.tidak_hadir_loading);
+        batasBagDept = findViewById(R.id.batas_bag_dept);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(bulanLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(hadirLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(tidakHadirLoading);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                bottomSheet.dismissSheet();
+                bulanLoading.setVisibility(View.VISIBLE);
+                bulanData.setVisibility(View.GONE);
+                tahunData.setVisibility(View.GONE);
+
+                hadirLoading.setVisibility(View.VISIBLE);
+                hadirData.setVisibility(View.GONE);
+
+                tidakHadirLoading.setVisibility(View.VISIBLE);
+                tidakHadirData.setVisibility(View.GONE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -142,17 +180,6 @@ public class UserActivity extends AppCompatActivity {
                         getDataUser();
                     }
                 }, 1000);
-            }
-        });
-
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-                if(scrollView.getScrollY()>=15){
-                    actionBar.setBackground(ContextCompat.getDrawable(UserActivity.this, R.drawable.shape_action_bar));
-                } else {
-                    actionBar.setBackgroundColor(Color.TRANSPARENT);
-                }
             }
         });
 
@@ -185,7 +212,6 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -267,13 +293,16 @@ public class UserActivity extends AppCompatActivity {
         String nik = sharedPrefManager.getSpNik();
         String status = sharedPrefManager.getSpStatusUser();
         getDataKaryawan();
+        getDataHadir();
         nameUserTV.setText(nama.toUpperCase());
         nikTV.setText(nik);
 
         if(status.equals("1")){
             statusUserTV.setText("Aktif");
+            statusIndicator.setBackground(ContextCompat.getDrawable(UserActivity.this, R.drawable.shape_ring_aktif));
         } else {
             statusUserTV.setText("Non-Aktif");
+            statusIndicator.setBackground(ContextCompat.getDrawable(UserActivity.this, R.drawable.shape_ring_nonaktif));
         }
     }
 
@@ -317,6 +346,7 @@ public class UserActivity extends AppCompatActivity {
                                 String info_covid = data.getString("info_covid");
                                 String logout_part = data.getString("logout_part");
                                 String chat_room = data.getString("chat_room");
+                                batasBagDept.setVisibility(View.VISIBLE);
                                 departemenTV.setText(department);
                                 bagianTV.setText(bagian);
                                 jabatanTV.setText(jabatan);
@@ -324,6 +354,7 @@ public class UserActivity extends AppCompatActivity {
                                 if(!avatar.equals("null")){
                                     if(!avatar.equals("default_profile.jpg")){
                                         uploadImg.setVisibility(View.GONE);
+                                        editImg.setVisibility(View.VISIBLE);
                                         avatarStatus = "1";
                                         avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
                                         Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
@@ -332,11 +363,16 @@ public class UserActivity extends AppCompatActivity {
                                     } else {
                                         avatarStatus = "0";
                                         uploadImg.setVisibility(View.VISIBLE);
+                                        editImg.setVisibility(View.GONE);
                                         avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
                                         Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                 .into(avatarUser);
                                     }
+                                } else {
+                                    avatarStatus = "0";
+                                    uploadImg.setVisibility(View.VISIBLE);
+                                    editImg.setVisibility(View.GONE);
                                 }
 
                                 if(info_covid.equals("1")){
@@ -392,6 +428,85 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
+    private void getDataHadir() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/total_hadir";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                String bulan = data.getString("bulan");
+                                String tahun = data.getString("tahun");
+                                String hadir = data.getString("jumlah_hadir");
+                                String tidak_hadir = data.getString("jumlah_tidak_hadir");
+
+                                bulanData.setText(bulan.toUpperCase());
+                                tahunData.setText(tahun);
+                                hadirData.setText(hadir);
+                                tidakHadirData.setText(tidak_hadir);
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        bulanLoading.setVisibility(View.GONE);
+                                        bulanData.setVisibility(View.VISIBLE);
+                                        tahunData.setVisibility(View.VISIBLE);
+
+                                        hadirLoading.setVisibility(View.GONE);
+                                        hadirData.setVisibility(View.VISIBLE);
+
+                                        tidakHadirLoading.setVisibility(View.GONE);
+                                        tidakHadirData.setVisibility(View.VISIBLE);
+                                    }
+                                }, 2000);
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("bulan", getBulanTahun());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private String getBulanTahun() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
     private void connectionFailed(){
         Banner.make(rootview, UserActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
     }
@@ -422,19 +537,51 @@ public class UserActivity extends AppCompatActivity {
         bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_contact_service, bottomSheet, false));
         closeBTN = findViewById(R.id.close_btn);
         connectBTN = findViewById(R.id.connect_btn);
-        closeBTN.setOnClickListener(new View.OnClickListener() {
+        getContact();
+
+    }
+
+    private void getContact() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_contact";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String bagian = response.getString("bagian");
+                            String nama = response.getString("nama");
+                            String whatsapp = response.getString("whatsapp");
+
+                            closeBTN.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    bottomSheet.dismissSheet();
+                                }
+                            });
+                            connectBTN.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+"+whatsapp+"&text="));
+                                    startActivity(webIntent);
+                                }
+                            });
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
             @Override
-            public void onClick(View v) {
-                bottomSheet.dismissSheet();
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
             }
         });
-        connectBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+6281281898552&text="));
-                startActivity(webIntent);
-            }
-        });
+
+        requestQueue.add(request);
+
     }
 
     private void reminderBar(){
@@ -769,28 +916,28 @@ public class UserActivity extends AppCompatActivity {
                         switch (i) {
                             case 0:
                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                        (UserActivity.this,R.color.blue_btn_bg_color));
+                                        (UserActivity.this, R.color.colorGradien));
                                 break;
                             case 1:
                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                        (UserActivity.this,R.color.material_deep_teal_50));
+                                        (UserActivity.this, R.color.colorGradien2));
                                 break;
                             case 2:
                             case 6:
                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                        (UserActivity.this,R.color.success_stroke_color));
+                                        (UserActivity.this, R.color.colorGradien3));
                                 break;
                             case 3:
                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                        (UserActivity.this,R.color.material_deep_teal_20));
+                                        (UserActivity.this, R.color.colorGradien4));
                                 break;
                             case 4:
                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                        (UserActivity.this,R.color.material_blue_grey_80));
+                                        (UserActivity.this, R.color.colorGradien5));
                                 break;
                             case 5:
                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                        (UserActivity.this,R.color.warning_stroke_color));
+                                        (UserActivity.this, R.color.colorGradien6));
                                 break;
                         }
                     }
@@ -961,28 +1108,28 @@ public class UserActivity extends AppCompatActivity {
                                         switch (i) {
                                             case 0:
                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (UserActivity.this, R.color.blue_btn_bg_color));
+                                                        (UserActivity.this, R.color.colorGradien));
                                                 break;
                                             case 1:
                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (UserActivity.this, R.color.material_deep_teal_50));
+                                                        (UserActivity.this, R.color.colorGradien2));
                                                 break;
                                             case 2:
                                             case 6:
                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (UserActivity.this, R.color.success_stroke_color));
+                                                        (UserActivity.this, R.color.colorGradien3));
                                                 break;
                                             case 3:
                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (UserActivity.this, R.color.material_deep_teal_20));
+                                                        (UserActivity.this, R.color.colorGradien4));
                                                 break;
                                             case 4:
                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (UserActivity.this, R.color.material_blue_grey_80));
+                                                        (UserActivity.this, R.color.colorGradien5));
                                                 break;
                                             case 5:
                                                 pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (UserActivity.this, R.color.warning_stroke_color));
+                                                        (UserActivity.this, R.color.colorGradien6));
                                                 break;
                                         }
                                     }

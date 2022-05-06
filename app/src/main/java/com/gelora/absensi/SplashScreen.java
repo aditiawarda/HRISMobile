@@ -407,7 +407,6 @@ public class SplashScreen extends AppCompatActivity {
                                             statusUpdateLayout = "0";
                                             updateDialog.animate()
                                                     .translationY(updateDialog.getHeight())
-                                                    .alpha(0.0f)
                                                     .setDuration(300)
                                                     .setListener(new AnimatorListenerAdapter() {
                                                         @Override
@@ -417,7 +416,6 @@ public class SplashScreen extends AppCompatActivity {
                                                         }
                                                     });
                                             updateLayout.animate()
-                                                    .alpha(0.0f)
                                                     .setListener(new AnimatorListenerAdapter() {
                                                         @Override
                                                         public void onAnimationEnd(Animator animation) {
