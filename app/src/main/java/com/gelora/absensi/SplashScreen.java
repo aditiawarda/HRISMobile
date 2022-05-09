@@ -98,7 +98,7 @@ public class SplashScreen extends AppCompatActivity {
     View rootview;
     LinearLayout refreshPart, refreshBTN, updateBTN, closeBTN, updateLayout, updateDialog;
     TextView refreshLabel, descTV;
-    String statusUpdateLayout = "0";
+    String closeBottomSheet, statusUpdateLayout = "0";
     SwipeRefreshLayout refreshLayout;
     ImageView loadingProgress;
 
@@ -382,7 +382,7 @@ public class SplashScreen extends AppCompatActivity {
                             String close_btn = response.getString("close_btn");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.1.24";
+                                String currentVersion = "1.1.25";
                                 if (!currentVersion.equals(version)){
                                     statusUpdateLayout = "1";
 
@@ -430,6 +430,7 @@ public class SplashScreen extends AppCompatActivity {
                                         }
                                     });
 
+                                    closeBottomSheet = close_btn;
                                     if (close_btn.equals("1")){
                                         closeBTN.setVisibility(View.VISIBLE);
                                     } else {
@@ -516,31 +517,67 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (statusUpdateLayout.equals("1")){
-            statusUpdateLayout = "0";
-            updateDialog.animate()
-                    .translationY(updateDialog.getHeight())
-                    .alpha(0.0f)
-                    .setDuration(300)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            super.onAnimationEnd(animation);
-                            updateDialog.setVisibility(View.GONE);
-                        }
-                    });
-            updateLayout.animate()
-                    .alpha(0.0f)
-                    .setListener(new AnimatorListenerAdapter() {
+            if (closeBottomSheet.equals("1")){
+                statusUpdateLayout = "0";
+                updateDialog.animate()
+                        .translationY(updateDialog.getHeight())
+                        .alpha(0.0f)
+                        .setDuration(300)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                updateDialog.setVisibility(View.GONE);
+                            }
+                        });
+                updateLayout.animate()
+                        .alpha(0.0f)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                updateLayout.setVisibility(View.GONE);
+                            }
+                        });
+                permissionLoc();
+            } else {
+                statusUpdateLayout = "0";
+                updateDialog.animate()
+                        .translationY(updateDialog.getHeight())
+                        .alpha(0.0f)
+                        .setDuration(300)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                updateDialog.setVisibility(View.GONE);
+                            }
+                        });
+                updateLayout.animate()
+                        .alpha(0.0f)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                updateLayout.setVisibility(View.GONE);
+                            }
+                        });
+
+                new Handler().postDelayed(new Runnable() {
                     @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        updateLayout.setVisibility(View.GONE);
+                    public void run() {
+                        closeApp();
                     }
-                });
-            permissionLoc();
+                }, 300);
+
+            }
         } else {
             super.onBackPressed();
         }
+    }
+
+    private void closeApp(){
+        super.onBackPressed();
     }
 
 }
