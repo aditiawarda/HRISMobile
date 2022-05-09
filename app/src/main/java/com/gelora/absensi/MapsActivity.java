@@ -125,7 +125,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -617,7 +617,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("08:01:00");
+        //return ("08:05:00");
     }
 
     private String getTimeH() {
@@ -646,7 +646,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-05-02");
+        //return ("2022-05-10");
     }
 
     private String getDateD() {
@@ -1388,6 +1388,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 dateCheckinTV.setText(date_checkin);
                                 timeCheckinTV.setText(time_checkin+" "+getTimeZone());
                                 idStatusAbsen = id_status;
+                                dateCheckin = date_checkin;
 
                                 if (checkin_point.equals("")){
                                     checkinPointTV.setText(sharedPrefManager.getSpNama());
@@ -2664,8 +2665,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (shiftType.equals("Normal")){
             timePulang = getDateY()+"-"+getDateM()+"-"+getDateD()+" "+pulangShiftAbsen;
         } else {
-            int tgl_besok = Integer.parseInt(getDateD())+1;
-            timePulang = getDateY()+"-"+getDateM()+"-"+String.valueOf(tgl_besok)+" "+pulangShiftAbsen;
+            String dayCheckout = dateCheckin.substring(8,10);
+            String dateCheckout = dateCheckin.substring(0,8);
+            int tgl_besok = Integer.parseInt(dayCheckout)+1;
+            timePulang = dateCheckout+String.valueOf(tgl_besok)+" "+pulangShiftAbsen;
         }
         String timeCheckout = getDate()+" "+getTime();
 
@@ -2983,8 +2986,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (shiftType.equals("Normal")){
             batasAbsenPulang = getDateY()+"-"+getDateM()+"-"+getDateD()+" "+batasPulang;
         } else {
-            int tgl_besok = Integer.parseInt(getDateD())+1;
-            batasAbsenPulang = getDateY()+"-"+getDateM()+"-"+String.valueOf(tgl_besok)+" "+batasPulang;
+            String dayCheckout = dateCheckin.substring(8,10);
+            String dateCheckout = dateCheckin.substring(0,8);
+            int tgl_besok = Integer.parseInt(dayCheckout)+1;
+            batasAbsenPulang = dateCheckout+String.valueOf(tgl_besok)+" "+batasPulang;
         }
         String pulangAbsen = getDate()+" "+getTime();
 
