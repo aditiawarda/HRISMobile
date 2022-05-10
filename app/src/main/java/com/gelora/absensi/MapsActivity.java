@@ -125,7 +125,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -617,7 +617,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("08:05:00");
+        //return ("01:00:00");
     }
 
     private String getTimeH() {
@@ -625,6 +625,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("HH");
         Date date = new Date();
         return dateFormat.format(date);
+        //return ("01");
     }
 
     private String getTimeM() {
@@ -632,6 +633,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("mm");
         Date date = new Date();
         return dateFormat.format(date);
+        //return ("00");
     }
 
     private String getTimeS() {
@@ -639,6 +641,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("ss");
         Date date = new Date();
         return dateFormat.format(date);
+        //return ("00");
     }
 
     private String getDate() {
@@ -646,7 +649,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-05-10");
+        //return ("2022-05-11");
     }
 
     private String getDateD() {
@@ -654,6 +657,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("dd");
         Date date = new Date();
         return dateFormat.format(date);
+        //return ("11");
     }
 
     private String getDateM() {
@@ -1646,9 +1650,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     pesanCheckout = "Apakah anda yakin check out lebih cepat?";
                 } else {
                     if (namaStatusAbsen.equals("WFH") || namaStatusAbsen.equals("Pjd") || namaStatusAbsen.equals("KLL")) {
-                        pesanCheckout = namaStatusAbsen+" ("+datangShiftAbsen.substring(0,5)+" - "+pulangShiftAbsen.substring(0,5)+")";
+                        if (!datangShiftAbsen.equals("") && !pulangShiftAbsen.equals("")){
+                            pesanCheckout
+                                    = namaStatusAbsen+" ("+
+                                    datangShiftAbsen.substring(0,5)+" - "+
+                                    pulangShiftAbsen.substring(0,5)+")";
+                        } else {
+                            pesanCheckout
+                                    = namaStatusAbsen+" - "+
+                                    namaShiftAbsen+" ("+
+                                    datangShiftAbsen+" - "+
+                                    pulangShiftAbsen+")";
+                        }
                     } else {
-                        pesanCheckout = namaStatusAbsen+" - "+namaShiftAbsen+" ("+datangShiftAbsen.substring(0,5)+" - "+pulangShiftAbsen.substring(0,5)+")";
+                        if (!datangShiftAbsen.equals("") && !pulangShiftAbsen.equals("")){
+                            pesanCheckout
+                                    = namaStatusAbsen+" - "+
+                                    namaShiftAbsen+" ("+
+                                    datangShiftAbsen.substring(0,5)+" - "+
+                                    pulangShiftAbsen.substring(0,5)+")";
+                        } else {
+                            pesanCheckout
+                                    = namaStatusAbsen+" - "+
+                                    namaShiftAbsen+" ("+
+                                    datangShiftAbsen+" - "+
+                                    pulangShiftAbsen+")";
+                        }
                     }
                 }
                 actionTV.setText("CHECK OUT");
@@ -1991,9 +2018,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         pesanCheckout = "Apakah anda yakin check out lebih cepat?";
                     } else {
                         if (namaStatusAbsen.equals("WFH") || namaStatusAbsen.equals("Pjd") || namaStatusAbsen.equals("KLL")) {
-                            pesanCheckout = namaStatusAbsen+" ("+datangShiftAbsen.substring(0,5)+" - "+pulangShiftAbsen.substring(0,5)+")";
+                            if (!datangShiftAbsen.equals("") && !pulangShiftAbsen.equals("")){
+                                pesanCheckout
+                                        = namaStatusAbsen+" ("+
+                                        datangShiftAbsen.substring(0,5)+" - "+
+                                        pulangShiftAbsen.substring(0,5)+")";
+                            } else {
+                                pesanCheckout
+                                        = namaStatusAbsen+" - "+
+                                        namaShiftAbsen+" ("+
+                                        datangShiftAbsen+" - "+
+                                        pulangShiftAbsen+")";
+                            }
                         } else {
-                            pesanCheckout = namaStatusAbsen+" - "+namaShiftAbsen+" ("+datangShiftAbsen.substring(0,5)+" - "+pulangShiftAbsen.substring(0,5)+")";
+                            if (!datangShiftAbsen.equals("") && !pulangShiftAbsen.equals("")){
+                                pesanCheckout
+                                        = namaStatusAbsen+" ("+
+                                        datangShiftAbsen.substring(0,5)+" - "+
+                                        pulangShiftAbsen.substring(0,5)+")";
+                            } else {
+                                pesanCheckout
+                                        = namaStatusAbsen+" - "+
+                                        namaShiftAbsen+" ("+
+                                        datangShiftAbsen+" - "+
+                                        pulangShiftAbsen+")";
+                            }
                         }
                     }
                     actionTV.setText("CHECK OUT");
@@ -2662,8 +2711,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void overTime() {
         String timePulang;
-        if (shiftType.equals("Normal")){
-            timePulang = getDateY()+"-"+getDateM()+"-"+getDateD()+" "+pulangShiftAbsen;
+        if (shiftType.equals("Normal")||shiftType.equals("Tanggung")){
+            timePulang = dateCheckin+" "+pulangShiftAbsen;
         } else {
             String dayCheckout = dateCheckin.substring(8,10);
             String dateCheckout = dateCheckin.substring(0,8);
@@ -2734,6 +2783,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String date_checkout = data_checkin.getString("tanggal");
                                 String checkout_point = data_checkin.getString("checkout_point");
                                 shiftType = tipe_shift;
+                                intervalTime = interval;
 
                                 if (time_checkout.equals("00:00:00")){
                                     if(!tgl_checkin.equals(getDate())){
@@ -2797,6 +2847,93 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             });
 
                                             actionButton();
+
+                                        } else if (tipe_shift.equals("Tanggung")){
+                                            String pulang  = tgl_checkin+" "+time_checkout;
+                                            String batas = getDate()+" "+getTime();
+
+                                            @SuppressLint("SimpleDateFormat")
+                                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                            Date date1 = null;
+                                            Date date2 = null;
+                                            try {
+                                                date1 = format.parse(pulang);
+                                                date2 = format.parse(batas);
+                                            } catch (ParseException e) {
+                                                e.printStackTrace();
+                                            }
+                                            long waktu = date1.getTime() + Long.parseLong(interval);
+                                            long waktu2 = date2.getTime();
+
+                                            if (waktu>waktu2){
+                                                attantionPart.setVisibility(View.VISIBLE);
+                                                statusAbsenBTN.setVisibility(View.VISIBLE);
+                                                changeStatusAbsen.setVisibility(View.GONE);
+                                                statusAbsenChoice.setVisibility(View.GONE);
+                                                shiftBTN.setVisibility(View.GONE);
+                                                changeShiftAbsen.setVisibility(View.GONE);
+                                                shiftAbsenChoice.setVisibility(View.GONE);
+                                                actionBTN.setBackground(ContextCompat.getDrawable(MapsActivity.this, R.drawable.shape_disable_btn));
+                                                actionTV.setText("CHECK IN");
+                                                inputAbsenPart.setVisibility(View.VISIBLE);
+                                                recordAbsenPart.setVisibility(View.GONE);
+
+                                                warningPart.setVisibility(View.VISIBLE);
+                                                Glide.with(getApplicationContext())
+                                                        .load(R.drawable.warning_gif)
+                                                        .into(warningGif);
+
+                                                statusAction = "checkin";
+                                                idShiftAbsen = "";
+
+                                                new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                        .setTitleText("Perhatian")
+                                                        .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                        .setConfirmText("OK")
+                                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                            @Override
+                                                            public void onClick(KAlertDialog sDialog) {
+                                                                sDialog.dismiss();
+                                                            }
+                                                        })
+                                                        .show();
+
+                                                Notify.build(getApplicationContext())
+                                                        .setTitle("Absensi App")
+                                                        .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
+                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                        .setColor(R.color.colorPrimary)
+                                                        .largeCircularIcon()
+                                                        .enableVibration(true)
+                                                        .show();
+
+                                                warningPart.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                                .setConfirmText("OK")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
+                                                });
+
+                                                actionButton();
+
+                                            } else {
+                                                warningPart.setVisibility(View.GONE);
+                                                inputAbsenPart.setVisibility(View.GONE);
+                                                recordAbsenPart.setVisibility(View.VISIBLE);
+                                                attantionPart.setVisibility(View.GONE);
+                                                statusAction = "checkout";
+                                                actionButton();
+                                            }
 
                                         } else {
                                             String masuk  = timestamp_checkin;
@@ -2983,8 +3120,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void checkPulang(){
         String batasAbsenPulang;
-        if (shiftType.equals("Normal")){
-            batasAbsenPulang = getDateY()+"-"+getDateM()+"-"+getDateD()+" "+batasPulang;
+        if (shiftType.equals("Normal")||shiftType.equals("Tanggung")){
+            batasAbsenPulang = dateCheckin+" "+batasPulang;
         } else {
             String dayCheckout = dateCheckin.substring(8,10);
             String dateCheckout = dateCheckin.substring(0,8);
