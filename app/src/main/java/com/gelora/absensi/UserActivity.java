@@ -3,6 +3,7 @@ package com.gelora.absensi;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -16,13 +17,17 @@ import android.app.AlarmManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.ResultReceiver;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
@@ -53,6 +58,10 @@ import com.gelora.absensi.support.ImagePickerActivity;
 import com.gelora.absensi.support.Preferences;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -85,7 +94,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 public class UserActivity extends AppCompatActivity {
 
     LinearLayout  prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
-    TextView batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    TextView currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
@@ -100,11 +109,15 @@ public class UserActivity extends AppCompatActivity {
     int REQUEST_IMAGE = 100;
     private Uri uri;
     private int i = -1;
+    ResultReceiver resultReceiver;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+        resultReceiver = new AddressResultReceiver(new Handler());
 
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         sharedPrefManager = new SharedPrefManager(this);
@@ -146,6 +159,7 @@ public class UserActivity extends AppCompatActivity {
         hadirLoading = findViewById(R.id.hadir_loading);
         tidakHadirLoading = findViewById(R.id.tidak_hadir_loading);
         batasBagDept = findViewById(R.id.batas_bag_dept);
+        currentAddress = findViewById(R.id.current_address);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
@@ -178,6 +192,7 @@ public class UserActivity extends AppCompatActivity {
                     public void run() {
                         refreshLayout.setRefreshing(false);
                         getDataUser();
+                        getCurrentLocation();
                     }
                 }, 1000);
             }
@@ -284,6 +299,7 @@ public class UserActivity extends AppCompatActivity {
         });
 
         getDataUser();
+        getCurrentLocation();
 
     }
 
@@ -1172,6 +1188,74 @@ public class UserActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    private void getCurrentLocation() {
+        //progressBar.setVisibility(View.VISIBLE);
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(3000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        LocationServices.getFusedLocationProviderClient(UserActivity.this)
+                .requestLocationUpdates(locationRequest, new LocationCallback() {
+
+                    @Override
+                    public void onLocationResult(LocationResult locationResult) {
+                        super.onLocationResult(locationResult);
+                        LocationServices.getFusedLocationProviderClient(getApplicationContext())
+                                .removeLocationUpdates(this);
+                        if (locationResult != null && locationResult.getLocations().size() > 0) {
+                            int latestlocIndex = locationResult.getLocations().size() - 1;
+                            double lati = locationResult.getLocations().get(latestlocIndex).getLatitude();
+                            double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
+                            //Toast.makeText(UserActivity.this, String.format("Latitude : %s\n Longitude: %s", lati, longi), Toast.LENGTH_SHORT).show();
+
+                            Location location = new Location("providerNA");
+                            location.setLongitude(longi);
+                            location.setLatitude(lati);
+                            fetchaddressfromlocation(location);
+
+                        }
+                    }
+                }, Looper.getMainLooper());
+
+    }
+
+    private class AddressResultReceiver extends ResultReceiver {
+        public AddressResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            if (resultCode == Constants.SUCCESS_RESULT) {
+                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
+            } else {
+                Toast.makeText(UserActivity.this, resultData.getString(Constants.RESULT_DATA_KEY), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
+    }
+
+    private void fetchaddressfromlocation(Location location) {
+        Intent intent = new Intent(this, FetchAddressIntentServices.class);
+        intent.putExtra(Constants.RECEVIER, resultReceiver);
+        intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);
+        startService(intent);
     }
 
 }

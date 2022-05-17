@@ -460,149 +460,168 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:paddingBottom="50dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight=".50"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:paddingRight="15dp"
-                            android:paddingLeft="15dp"
-                            android:background="@drawable/shape_vaksin_1"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textStyle="bold"
-                                android:text="Dosis 1"/>
-
-                            <TextView
-                                android:visibility="gone"
-                                android:id="@+id/vaksin_1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="20dp"
-                                android:textStyle="bold"
-                                android:text=""/>
-
-                            <ImageView
-                                android:id="@+id/vaksin_1_loading"
-                                android:layout_width="80dp"
-                                android:layout_height="27dp"
-                                app:srcCompat="@drawable/loading_dots" />
+                            android:orientation="horizontal">
 
                             <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="10dp"
-                                android:gravity="center|left"
-                                android:orientation="horizontal">
+                                android:layout_width="0dp"
+                                android:layout_weight=".50"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:paddingRight="15dp"
+                                android:paddingLeft="15dp"
+                                android:background="@drawable/shape_vaksin_1"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:orientation="vertical">
 
                                 <TextView
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_marginRight="7dp"
-                                    android:background="@drawable/ic_baseline_add"
-                                    android:textColor="@color/white"
-                                    android:textSize="20dp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:visibility="gone"
-                                    android:id="@+id/vaksin_1_add"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/white"
-                                    android:textSize="14dp"
+                                    android:textStyle="bold"
+                                    android:text="Dosis 1"/>
+
+                                <TextView
+                                    android:visibility="gone"
+                                    android:id="@+id/vaksin_1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="20dp"
                                     android:textStyle="bold"
                                     android:text=""/>
 
                                 <ImageView
-                                    android:id="@+id/vaksin_1_add_loading"
-                                    android:layout_width="40dp"
-                                    android:layout_height="20dp"
+                                    android:id="@+id/vaksin_1_loading"
+                                    android:layout_width="80dp"
+                                    android:layout_height="27dp"
                                     app:srcCompat="@drawable/loading_dots" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="10dp"
+                                    android:gravity="center|left"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginRight="7dp"
+                                        android:background="@drawable/ic_baseline_add"
+                                        android:textColor="@color/white"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:visibility="gone"
+                                        android:id="@+id/vaksin_1_add"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        android:text=""/>
+
+                                    <ImageView
+                                        android:id="@+id/vaksin_1_add_loading"
+                                        android:layout_width="40dp"
+                                        android:layout_height="20dp"
+                                        app:srcCompat="@drawable/loading_dots" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight=".50"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:paddingRight="15dp"
+                                android:paddingLeft="15dp"
+                                android:background="@drawable/shape_vaksin_2"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:text="Dosis 2"/>
+
+                                <TextView
+                                    android:visibility="gone"
+                                    android:id="@+id/vaksin_2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="20dp"
+                                    android:textStyle="bold"
+                                    android:text=""/>
+
+                                <ImageView
+                                    android:id="@+id/vaksin_2_loading"
+                                    android:layout_width="80dp"
+                                    android:layout_height="27dp"
+                                    app:srcCompat="@drawable/loading_dots" />
+
+                                <LinearLayout
+                                    android:layout_marginTop="10dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center|left"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginRight="7dp"
+                                        android:background="@drawable/ic_baseline_add"
+                                        android:textColor="@color/white"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:visibility="gone"
+                                        android:id="@+id/vaksin_2_add"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        android:text=""/>
+
+                                    <ImageView
+                                        android:id="@+id/vaksin_2_add_loading"
+                                        android:layout_width="40dp"
+                                        android:layout_height="20dp"
+                                        app:srcCompat="@drawable/loading_dots" />
+
+                                </LinearLayout>
 
                             </LinearLayout>
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight=".50"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:paddingRight="15dp"
-                            android:paddingLeft="15dp"
-                            android:background="@drawable/shape_vaksin_2"
+                        <TextView
+                            android:gravity="center"
+                            android:drawablePadding="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+                            android:drawableLeft="@drawable/ic_baseline_source"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textStyle="bold"
-                                android:text="Dosis 2"/>
-
-                            <TextView
-                                android:visibility="gone"
-                                android:id="@+id/vaksin_2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="20dp"
-                                android:textStyle="bold"
-                                android:text=""/>
-
-                            <ImageView
-                                android:id="@+id/vaksin_2_loading"
-                                android:layout_width="80dp"
-                                android:layout_height="27dp"
-                                app:srcCompat="@drawable/loading_dots" />
-
-                            <LinearLayout
-                                android:layout_marginTop="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center|left"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_marginRight="7dp"
-                                    android:background="@drawable/ic_baseline_add"
-                                    android:textColor="@color/white"
-                                    android:textSize="20dp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:visibility="gone"
-                                    android:id="@+id/vaksin_2_add"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:textSize="14dp"
-                                    android:textStyle="bold"
-                                    android:text=""/>
-
-                                <ImageView
-                                    android:id="@+id/vaksin_2_add_loading"
-                                    android:layout_width="40dp"
-                                    android:layout_height="20dp"
-                                    app:srcCompat="@drawable/loading_dots" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
+                            android:textStyle="italic"
+                            android:text="Sumber : covid19.go.id"
+                            android:textSize="12dp" />
 
                     </LinearLayout>
 

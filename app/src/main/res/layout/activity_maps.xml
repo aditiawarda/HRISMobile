@@ -26,6 +26,44 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="bottom|left"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="#F0DDDDDD"
+                    android:gravity="center|left"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_marginTop="1dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:background="@drawable/ic_on_this_date" />
+
+                    <TextView
+                        android:textSize="12dp"
+                        android:gravity="center|left"
+                        android:paddingLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/text_color"
+                        android:text="Peringatan Hari Besar/Tanggal Merah" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="bottom|right">
 
@@ -47,7 +85,6 @@
                         app:srcCompat="@drawable/warning_gif" />
 
                 </LinearLayout>
-
 
             </LinearLayout>
 
@@ -1007,13 +1044,21 @@
             android:paddingTop="15dp"
             android:paddingRight="15dp"
             android:paddingLeft="15dp"
-            android:gravity="right">
+            android:orientation="horizontal">
 
-            <com.mahfa.dnswitch.DayNightSwitch
-                android:id="@+id/day_night_switch"
-                android:layout_width="45dp"
-                android:layout_height="23dp"
-                android:layout_gravity="center"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <com.mahfa.dnswitch.DayNightSwitch
+                    android:id="@+id/day_night_switch"
+                    android:layout_width="45dp"
+                    android:layout_height="23dp"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
