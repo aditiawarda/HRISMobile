@@ -46,8 +46,11 @@ public class FetchAddressIntentServices extends IntentService {
             }
 
             if (addresses == null || addresses.size() == 0) {
-                errormessgae = "No address found for the location";
-                Toast.makeText(this, "" + errormessgae, Toast.LENGTH_SHORT).show();
+                errormessgae = "Lokasi tidak ditemukan";
+                //Toast.makeText(this, "" + errormessgae, Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString(Constants.NO_ADDRESS, errormessgae);
+                resultReceiver.send(Constants.FAILURE_RESULT, bundle);
             } else {
                 Address address = addresses.get(0);
                 String str_postcode = address.getPostalCode();

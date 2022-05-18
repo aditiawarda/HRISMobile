@@ -6,6 +6,7 @@ class Constants {
     static final String RECEVIER = PACKAGE_NAME + ".RECEVIER";
     static final String LOCATION_DATA_EXTRA = PACKAGE_NAME + ".LOCATION_DATA_EXTRA";
 
+    static final String NO_ADDRESS = PACKAGE_NAME + ".NO_ADDRESS";
     static final String ADDRESS = PACKAGE_NAME + ".ADDRESS";
     static final String LOCAITY = PACKAGE_NAME + ".LOCAITY";
     static final String COUNTRY = PACKAGE_NAME + ".COUNTRY";
