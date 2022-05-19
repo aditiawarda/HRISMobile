@@ -221,7 +221,7 @@ public class UserActivity extends AppCompatActivity {
         hadirBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserActivity.this, DetailTidakHadirActivity.class);
+                Intent intent = new Intent(UserActivity.this, DetailHadirActivity.class);
                 startActivity(intent);
             }
         });

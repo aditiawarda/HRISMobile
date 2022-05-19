@@ -15,14 +15,13 @@ import android.widget.LinearLayout;
 
 public class CompanyActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, homeBTN, actionBar;
+    LinearLayout backBTN, homeBTN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company);
 
-        actionBar = findViewById(R.id.action_bar);
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
 
