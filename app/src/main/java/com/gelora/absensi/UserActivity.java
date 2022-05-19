@@ -96,8 +96,8 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout  prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
-    TextView mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    LinearLayout hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
+    TextView currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
@@ -106,7 +106,7 @@ public class UserActivity extends AppCompatActivity {
     RelativeLayout dataCuaca;
     ImageView weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
-    String avatarStatus = "0", avatarPath = "";
+    String currentDay = "", avatarStatus = "0", avatarPath = "";
 
     AlarmManager alarmManager;
     CompactCalendarView compactCalendarView;
@@ -170,6 +170,9 @@ public class UserActivity extends AppCompatActivity {
         weatherIcon = findViewById(R.id.weather_icon);
         mainWeather = findViewById(R.id.main_weather);
         dataCuaca = findViewById(R.id.data_cuaca);
+        tidakHadirBTN = findViewById(R.id.btn_tidak_hadir);
+        hadirBTN = findViewById(R.id.btn_hadir);
+        currentDate = findViewById(R.id.current_date);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
@@ -204,6 +207,22 @@ public class UserActivity extends AppCompatActivity {
                         getDataUser();
                     }
                 }, 1000);
+            }
+        });
+
+        tidakHadirBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, DetailTidakHadirActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        hadirBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, DetailTidakHadirActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -316,6 +335,7 @@ public class UserActivity extends AppCompatActivity {
         String nama = sharedPrefManager.getSpNama();
         String nik = sharedPrefManager.getSpNik();
         String status = sharedPrefManager.getSpStatusUser();
+        getCurrentDay();
         getDataKaryawan();
         getDataHadir();
         nameUserTV.setText(nama.toUpperCase());
@@ -1232,6 +1252,7 @@ public class UserActivity extends AppCompatActivity {
                             double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
                             //Toast.makeText(UserActivity.this, String.format("Latitude : %s\n Longitude: %s", lati, longi), Toast.LENGTH_SHORT).show();
 
+                            dateLive();
                             getCurrentWeather(weather_key, String.valueOf(lati), String.valueOf(longi));
                             Location location = new Location("providerNA");
                             location.setLongitude(longi);
@@ -1307,59 +1328,59 @@ public class UserActivity extends AppCompatActivity {
                                 } else if (description.equals("thunderstorm with heavy rain")){
                                     desc_idn = "Badai petir dengan hujan lebat";
                                 } else if (description.equals("light thunderstorm")){
-                                    desc_idn = "Badai petir ringan";
+                                    desc_idn = "Badai petir";
                                 } else if (description.equals("heavy thunderstorm")){
-                                    desc_idn = "Badai petir yang hebat";
+                                    desc_idn = "Badai petir";
                                 } else if (description.equals("ragged thunderstorm")){
-                                    desc_idn = "Badai guntur";
+                                    desc_idn = "Badai petir";
                                 } else if (description.equals("thunderstorm with light drizzle")){
-                                    desc_idn = "Badai petir dengan gerimis ringan";
+                                    desc_idn = "Badai petir dengan gerimis";
                                 } else if (description.equals("thunderstorm with drizzle")){
                                     desc_idn = "Badai petir dengan gerimis";
                                 } else if (description.equals("thunderstorm with heavy drizzle")){
-                                    desc_idn = "Badai petir dengan gerimis lebat";
+                                    desc_idn = "Badai petir dengan hujan";
                                 }
 
                                 //Drizzle
                                 else if (description.equals("light intensity drizzle")){
-                                    desc_idn = "Gerimis intensitas ringan";
+                                    desc_idn = "Gerimis";
                                 } else if (description.equals("drizzle")){
                                     desc_idn = "Gerimis";
                                 } else if (description.equals("heavy intensity drizzle")){
-                                    desc_idn = "Gerimis dengan intensitas tinggi";
+                                    desc_idn = "Gerimis";
                                 } else if (description.equals("light intensity drizzle rain")){
-                                    desc_idn = "Hujan gerimis intensitas ringan";
+                                    desc_idn = "Gerimis";
                                 } else if (description.equals("drizzle rain")){
-                                    desc_idn = "Hujan gerimis";
+                                    desc_idn = "Gerimis";
                                 } else if (description.equals("heavy intensity drizzle rain")){
-                                    desc_idn = "Hujan gerimis dengan intensitas tinggi";
+                                    desc_idn = "Hujan";
                                 } else if (description.equals("shower rain and drizzle")){
-                                    desc_idn = "Hujan dan gerimis";
+                                    desc_idn = "Hujan";
                                 } else if (description.equals("heavy shower rain and drizzle")){
-                                    desc_idn = "Hujan deras dan gerimis";
+                                    desc_idn = "Hujan";
                                 } else if (description.equals("shower drizzle")){
-                                    desc_idn = "Hujan gerimis";
+                                    desc_idn = "Gerimis";
                                 }
 
                                 //Rain
                                 else if (description.equals("light rain")){
                                     desc_idn = "Gerimis";
                                 } else if (description.equals("moderate rain")){
-                                    desc_idn = "Hujan sedang";
+                                    desc_idn = "Hujan";
                                 } else if (description.equals("heavy intensity rain")){
-                                    desc_idn = "Hujan dengan intensitas tinggi";
+                                    desc_idn = "Hujan deras";
                                 } else if (description.equals("very heavy rain")){
-                                    desc_idn = "Hujan sangat deras";
+                                    desc_idn = "Hujan deras";
                                 } else if (description.equals("extreme rain")){
                                     desc_idn = "Hujan ekstrim";
                                 } else if (description.equals("freezing rain")){
-                                    desc_idn = "Hujan beku";
+                                    desc_idn = "Hujan";
                                 } else if (description.equals("light intensity shower rain")){
-                                    desc_idn = "Hujan intensitas ringan";
+                                    desc_idn = "Hujan ringan";
                                 } else if (description.equals("shower rain")){
                                     desc_idn = "Hujan";
                                 } else if (description.equals("heavy intensity shower rain")){
-                                    desc_idn = "hujan deras dengan intensitas tinggi";
+                                    desc_idn = "Hujan deras";
                                 } else if (description.equals("ragged shower rain")){
                                     desc_idn = "Hujan deras";
                                 }
@@ -1380,7 +1401,7 @@ public class UserActivity extends AppCompatActivity {
                                 } else if (description.equals("Light rain and snow")){
                                     desc_idn = "Hujan ringan dan salju";
                                 } else if (description.equals("Rain and snow")){
-                                    desc_idn = "Hujan dan salju";
+                                    desc_idn = "Hujan salju";
                                 } else if (description.equals("Light shower snow")){
                                     desc_idn = "Hujan salju ringan";
                                 } else if (description.equals("Shower snow")){
@@ -1423,7 +1444,7 @@ public class UserActivity extends AppCompatActivity {
                                 } else if (description.equals("scattered clouds")){
                                     desc_idn = "Berawan";
                                 } else if (description.equals("broken clouds")){
-                                    desc_idn = "Awan pecah";
+                                    desc_idn = "Berawan";
                                 } else if (description.equals("overcast clouds")){
                                     desc_idn = "Awan mendung";
                                 }
@@ -1456,6 +1477,103 @@ public class UserActivity extends AppCompatActivity {
 
     private static float convertFromKelvinToCelsius(float value) {
         return value - 273.15f;
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void dateLive(){
+        switch (getDateM()) {
+            case "01":
+                currentDate.setText(currentDay+", "+getDateD() + " Januari " + getDateY());
+                break;
+            case "02":
+                currentDate.setText(currentDay+", "+getDateD() + " Februari " + getDateY());
+                break;
+            case "03":
+                currentDate.setText(currentDay+", "+getDateD() + " Maret " + getDateY());
+                break;
+            case "04":
+                currentDate.setText(currentDay+", "+getDateD() + " April " + getDateY());
+                break;
+            case "05":
+                currentDate.setText(currentDay+", "+getDateD() + " Mei " + getDateY());
+                break;
+            case "06":
+                currentDate.setText(currentDay+", "+getDateD() + " Juni " + getDateY());
+                break;
+            case "07":
+                currentDate.setText(currentDay+", "+getDateD() + " Juli " + getDateY());
+                break;
+            case "08":
+                currentDate.setText(currentDay+", "+getDateD() + " Agustus " + getDateY());
+                break;
+            case "09":
+                currentDate.setText(currentDay+", "+getDateD() + " September " + getDateY());
+                break;
+            case "10":
+                currentDate.setText(currentDay+", "+getDateD() + " Oktober " + getDateY());
+                break;
+            case "11":
+                currentDate.setText(currentDay+", "+getDateD() + " November " + getDateY());
+                break;
+            case "12":
+                currentDate.setText(currentDay+", "+getDateD() + " Desember " + getDateY());
+                break;
+            default:
+                currentDate.setText("Not found!");
+                break;
+        }
+
+    }
+
+    private String getDateD() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+        //return ("11");
+    }
+
+    private String getDateM() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateY() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private void getCurrentDay() {
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+        switch (day) {
+            case Calendar.SUNDAY:
+                currentDay = "Minggu";
+                break;
+            case Calendar.MONDAY:
+                currentDay = "Senin";
+                break;
+            case Calendar.TUESDAY:
+                currentDay = "Selasa";
+                break;
+            case Calendar.WEDNESDAY:
+                currentDay = "Rabu";
+                break;
+            case Calendar.THURSDAY:
+                currentDay = "Kamis";
+                break;
+            case Calendar.FRIDAY:
+                currentDay = "Jumat";
+                break;
+            case Calendar.SATURDAY:
+                currentDay = "Sabtu";
+                break;
+        }
     }
 
 }

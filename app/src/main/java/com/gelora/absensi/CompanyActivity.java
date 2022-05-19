@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 
 public class CompanyActivity extends AppCompatActivity {
 
-    NestedScrollView scrollView;
     LinearLayout backBTN, homeBTN, actionBar;
 
     @Override
@@ -23,21 +22,9 @@ public class CompanyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company);
 
-        scrollView = findViewById(R.id.scrollView);
         actionBar = findViewById(R.id.action_bar);
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
-
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-                if(scrollView.getScrollY()>=15){
-                    actionBar.setBackground(ContextCompat.getDrawable(CompanyActivity.this, R.drawable.shape_action_bar));
-                } else {
-                    actionBar.setBackgroundColor(Color.TRANSPARENT);
-                }
-            }
-        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override

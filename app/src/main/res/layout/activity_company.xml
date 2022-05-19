@@ -6,14 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".CompanyActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:background="@color/colorPrimaryDark"
-        tools:ignore="MissingConstraints" />
-
     <RelativeLayout
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_marginRight="-3dp"
         android:layout_marginLeft="-3dp"
@@ -190,61 +183,68 @@
             android:id="@+id/action_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="-2dp"
-            android:layout_marginRight="-2dp"
-            android:paddingBottom="15dp"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/back_btn"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:gravity="center"
-                android:background="@drawable/shape_back">
+                android:layout_marginTop="-2dp"
+                android:layout_marginRight="-2dp"
+                android:layout_marginLeft="-2dp"
+                android:background="@drawable/shape_bar_profile"
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
 
-                <TextView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="2dp"
-                    android:background="@drawable/ic_baseline_chevron_back"/>
+                <LinearLayout
+                    android:id="@+id/back_btn"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:gravity="center"
+                    android:background="@drawable/shape_back_2">
+
+                    <TextView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginRight="1.5dp"
+                        android:background="@drawable/ic_baseline_chevron_back"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/home_btn"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginLeft="11dp"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:gravity="center"
+                    android:background="@drawable/shape_back">
+
+                    <TextView
+                        android:layout_width="21dp"
+                        android:layout_height="21dp"
+                        android:background="@drawable/ic_baseline_home"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:gravity="right|center"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="PROFIL PERUSAHAAN"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/home_btn"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:gravity="center"
-                android:background="@drawable/shape_back">
-
-                <TextView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:background="@drawable/ic_baseline_home"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingRight="20dp"
-            android:gravity="center|right">
-
-            <TextView
-                android:id="@+id/name_of_user_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16dp"
-                android:text="PROFIL PERUSAHAAN"/>
 
         </LinearLayout>
 

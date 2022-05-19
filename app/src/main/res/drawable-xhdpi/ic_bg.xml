@@ -6,7 +6,7 @@
     android:viewportHeight="150.0"
     tools:ignore="VectorRaster">
     <path
-        android:pathData="M425.33,70.78S352.76,155.62 225.1,96.65 67.19,123.13 0,91.84L0,166.44L425.33,166.44Z"
+        android:pathData="M425.33,70.78S352.76,155.62 225.1,96.65 67.19,123.13 0,91.84L2,166.44L425.33,166.44Z"
         android:fillAlpha="0.1"
         android:fillColor="#0024FF"
         android:strokeAlpha="0.1"/>

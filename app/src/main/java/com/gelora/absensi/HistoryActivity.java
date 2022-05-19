@@ -58,7 +58,6 @@ public class HistoryActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     BottomSheetLayout bottomSheet;
     String dateChoiceForHistory;
-    NestedScrollView scrollView;
     SwipeRefreshLayout refreshLayout;
     ImageView loadingData;
     View rootview;
@@ -73,7 +72,6 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
 
         sharedPrefManager = new SharedPrefManager(this);
-        scrollView = findViewById(R.id.scrollView);
         actionBar = findViewById(R.id.action_bar);
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
@@ -128,17 +126,6 @@ public class HistoryActivity extends AppCompatActivity {
                         noConnectPart.setVisibility(View.GONE);
                     }
                 }, 1000);
-            }
-        });
-
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-                if(scrollView.getScrollY()>=15){
-                    actionBar.setBackground(ContextCompat.getDrawable(HistoryActivity.this, R.drawable.shape_action_bar));
-                } else {
-                    actionBar.setBackgroundColor(Color.TRANSPARENT);
-                }
             }
         });
 

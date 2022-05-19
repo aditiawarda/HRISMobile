@@ -114,14 +114,14 @@ import static com.google.android.gms.location.LocationServices.getFusedLocationP
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private StatusBarColorManager mStatusBarColorManager;
+    //private StatusBarColorManager mStatusBarColorManager;
     private GoogleMap mMap;
     private LatLng userPoint;
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
     ImageView onlineGif, loadingGif, warningGif;
-    TextView dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout  prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    TextView celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
+    LinearLayout celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -162,14 +162,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
         }
+
         //ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         //ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
-        mStatusBarColorManager = new StatusBarColorManager(this);
-        mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
+        //mStatusBarColorManager = new StatusBarColorManager(this);
+        //mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
         //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(APPEARANCE_LIGHT_STATUS_BARS, APPEARANCE_LIGHT_STATUS_BARS);
 
         rootview = findViewById(android.R.id.content);
@@ -219,6 +220,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         warningPart = findViewById(R.id.warning_part);
         dateCheckinTV = findViewById(R.id.date_checkin_tv);
         dateCheckoutTV = findViewById(R.id.date_checkout_tv);
+        celebratePart = findViewById(R.id.celebrate_part);
+        celebrateName = findViewById(R.id.celebrate_name);
         requestQueue = Volley.newRequestQueue(getBaseContext());
 
         Glide.with(getApplicationContext())
@@ -328,6 +331,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         timeLive();
         dateLive();
         checkIzin();
+        checkLibur();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
 
@@ -346,6 +350,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setPadding(0,0,0,12);
         permissionLoc();
 
     }
@@ -495,7 +500,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 indicatorAbsen.setTextColor(Color.parseColor("#309A35"));
 
                                 absenPoint.setText(point);
-                                absenPoint.setTextColor(Color.parseColor("#A8C74A1A"));
+                                absenPoint.setTextColor(Color.parseColor("#B15735"));
                                 pointPart.setBackground(ContextCompat.getDrawable(MapsActivity.this, R.drawable.shape_point_2));
                                 pointPart.setOnClickListener(null);
                                 radiusZone = "inside";
@@ -648,7 +653,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-05-11");
+        //return ("2022-05-02");
     }
 
     private String getDateD() {
@@ -889,7 +894,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 shiftAbsenChoice.setVisibility(View.VISIBLE);
                 changeShiftAbsen.setVisibility(View.GONE);
                 shiftAbsenChoiceTV.setText(datangShiftAbsen+" - "+pulangShiftAbsen);
-                shiftAbsenChoiceTV.setTextColor(Color.parseColor("#838383"));
+                shiftAbsenChoiceTV.setTextColor(Color.parseColor("#B15735"));
                 shiftAbsenChoiceBTN.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_point));
                 statusAction = "checkin";
                 actionButton();
@@ -911,7 +916,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 actionBTN.setOnClickListener(null);
                 actionBTN.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_disable_btn));
 
-                shiftAbsenChoiceTV.setTextColor(Color.parseColor("#A8C74A1A"));
+                shiftAbsenChoiceTV.setTextColor(Color.parseColor("#B15735"));
                 shiftAbsenChoiceBTN.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_feel));
                 changeShiftAbsen.setVisibility(View.VISIBLE);
                 shiftAbsenChoice.setVisibility(View.GONE);
@@ -2520,6 +2525,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         timeLive();
         dateLive();
         checkIzin();
+        checkLibur();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
         idShiftAbsen = "";
@@ -3494,6 +3500,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     public void onResponse(String response) {
                         // response
                         Log.d("Success.Response", response.toString());
+                        try {
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+                            String libur = data.getString("data");
+
+                            if (status.equals("Success") && !libur.equals("Libur Minggu")){
+                                celebratePart.setVisibility(View.VISIBLE);
+                                celebrateName.setText(libur);
+                            } else {
+                                celebratePart.setVisibility(View.GONE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 },

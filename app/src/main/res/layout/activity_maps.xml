@@ -31,31 +31,34 @@
 
                 <LinearLayout
                     android:visibility="gone"
+                    android:id="@+id/celebrate_part"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:paddingTop="3dp"
-                    android:paddingBottom="4dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:background="#F0DDDDDD"
-                    android:gravity="center|left"
+                    android:layout_height="38dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="19dp"
+                    android:paddingRight="19dp"
+                    android:layout_marginLeft="-3dp"
+                    android:layout_marginRight="-3dp"
+                    android:background="@drawable/shape_bg_celebrate"
+                    android:paddingTop="7dp"
+                    android:gravity="left"
                     android:orientation="horizontal">
 
                     <TextView
                         android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_marginTop="1dp"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
                         android:background="@drawable/ic_on_this_date" />
 
                     <TextView
-                        android:textSize="12dp"
-                        android:gravity="center|left"
-                        android:paddingLeft="5dp"
+                        android:id="@+id/celebrate_name"
+                        android:textSize="11dp"
+                        android:paddingLeft="6dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@color/text_color"
-                        android:text="Peringatan Hari Besar/Tanggal Merah" />
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="" />
 
                 </LinearLayout>
 
@@ -70,18 +73,18 @@
                 <LinearLayout
                     android:visibility="gone"
                     android:id="@+id/warning_part"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_height="38dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_marginRight="15dp"
                     android:background="@drawable/shape_ring_bold"
                     android:gravity="center"
                     android:paddingBottom="2dp"
-                    android:layout_width="40dp">
+                    android:layout_width="38dp">
 
                     <ImageView
                         android:id="@+id/warning_gif"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
                         app:srcCompat="@drawable/warning_gif" />
 
                 </LinearLayout>
@@ -94,13 +97,14 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="-10dp"
             android:layout_weight=".53">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
-                android:layout_marginRight="-2dp"
-                android:layout_marginLeft="-2dp"
+                android:layout_marginRight="-3dp"
+                android:layout_marginLeft="-3dp"
                 android:background="@drawable/shape_limit_main"/>
 
             <RelativeLayout
@@ -373,7 +377,7 @@
                                                         android:id="@+id/status_absen_choice_tv"
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"
-                                                        android:textColor="#A8C74A1A"
+                                                        android:textColor="#B15735"
                                                         android:textStyle="bold"
                                                         android:text=""/>
 
@@ -464,7 +468,7 @@
                                                         android:id="@+id/shift_absen_choice_tv"
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"
-                                                        android:textColor="#A8C74A1A"
+                                                        android:textColor="#B15735"
                                                         android:textStyle="bold"
                                                         android:text=""/>
 
@@ -952,10 +956,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:paddingTop="12dp"
+            android:paddingTop="10dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:paddingBottom="12dp">
+            android:paddingBottom="10dp">
 
             <LinearLayout
                 android:id="@+id/action_btn"
@@ -986,13 +990,13 @@
         <LinearLayout
             android:orientation="horizontal"
             android:background="@drawable/shape_header"
-            android:paddingTop="10dp"
+            android:layout_marginTop="-2dp"
+            android:layout_marginRight="-2dp"
+            android:layout_marginLeft="-2dp"
+            android:paddingTop="3dp"
             android:paddingLeft="14dp"
             android:paddingRight="14dp"
-            android:paddingBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="43dp"
+            android:paddingBottom="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -1011,6 +1015,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
+                        android:textSize="12dp"
                         android:text="Nama User"
                         android:drawableLeft="@drawable/ic_baseline_account"
                         android:drawablePadding="5dp" />
@@ -1029,6 +1034,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:drawablePadding="5dp"
+                        android:textSize="12dp"
                         android:drawableRight="@drawable/ic_baseline_date"
                         android:text="00/00/0000"/>
 

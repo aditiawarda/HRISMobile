@@ -55,6 +55,34 @@
                             android:orientation="vertical"
                             android:gravity="center">
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingLeft="15dp"
+                                android:paddingRight="15dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginTop="2dp"
+                                    android:backgroundTint="@color/white"
+                                    android:background="@drawable/ic_baseline_date"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/current_date"
+                                    android:textSize="12dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:text="00/00/0000"/>
+
+                            </LinearLayout>
+
                             <RelativeLayout
                                 android:id="@+id/data_cuaca"
                                 android:visibility="visible"
@@ -65,7 +93,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="20dp"
-                                    android:paddingBottom="20dp"
+                                    android:paddingBottom="15dp"
                                     android:orientation="vertical">
 
                                     <ImageView
@@ -90,25 +118,55 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:paddingRight="20dp"
-                                    android:paddingBottom="20dp"
+                                    android:paddingBottom="15dp"
                                     android:orientation="vertical"
                                     android:gravity="center|right">
 
-                                    <TextView
-                                        android:id="@+id/weather_temp"
+                                    <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="45dp"
-                                        android:textColor="@color/white"
-                                        android:text="--°"/>
+                                        android:orientation="horizontal">
 
-                                    <TextView
-                                        android:id="@+id/feels_like_temp"
+                                        <TextView
+                                            android:id="@+id/weather_temp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="35dp"
+                                            android:textStyle="bold"
+                                            android:textColor="@color/white"
+                                            android:text="--°"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="25dp"
+                                            android:textStyle="bold"
+                                            android:textColor="@color/white"
+                                            android:text="C"/>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
-                                        android:textColor="@color/white"
-                                        android:text="Terasa seperti --°"/>
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/feels_like_temp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="12dp"
+                                            android:textColor="@color/white"
+                                            android:text="Terasa seperti --°"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="8dp"
+                                            android:textColor="@color/white"
+                                            android:text="C"/>
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
 
@@ -206,13 +264,14 @@
                                 android:layout_height="wrap_content">
 
                                 <LinearLayout
+                                    android:id="@+id/btn_hadir"
                                     android:layout_width="0dp"
                                     android:layout_weight=".50"
                                     android:paddingTop="10dp"
                                     android:paddingBottom="10dp"
                                     android:paddingRight="15dp"
                                     android:paddingLeft="15dp"
-                                    android:background="@drawable/shape_covid_healt"
+                                    android:background="@drawable/shape_hadir"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
                                     android:orientation="vertical">
@@ -244,13 +303,14 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/btn_tidak_hadir"
                                     android:layout_width="0dp"
                                     android:layout_weight=".50"
                                     android:paddingTop="10dp"
                                     android:paddingBottom="10dp"
                                     android:paddingRight="15dp"
                                     android:paddingLeft="15dp"
-                                    android:background="@drawable/shape_covid_confirm"
+                                    android:background="@drawable/shape_tidak_hadir"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
                                     android:orientation="vertical">
@@ -420,7 +480,6 @@
                             android:layout_height="80dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
-                            android:padding="1dp"
                             android:background="@drawable/shape_covid"
                             android:gravity="center">
 
@@ -434,8 +493,9 @@
                                     android:gravity="right">
 
                                     <TextView
-                                        android:layout_marginTop="-35dp"
+                                        android:layout_marginTop="-37dp"
                                         android:layout_width="80dp"
+                                        android:layout_marginRight="10dp"
                                         android:layout_height="80dp"
                                         android:textStyle="bold"
                                         android:background="@drawable/covid_icon"
@@ -449,10 +509,10 @@
                                     android:gravity="left|bottom">
 
                                     <TextView
-                                        android:layout_marginBottom="-12dp"
-                                        android:layout_width="50dp"
-                                        android:layout_height="50dp"
-                                        android:layout_marginLeft="-3dp"
+                                        android:layout_marginBottom="-10dp"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginLeft="10dp"
                                         android:textStyle="bold"
                                         android:background="@drawable/covid_icon_second"
                                         android:text=""/>
@@ -831,16 +891,16 @@
                         <LinearLayout
                             android:id="@+id/back_btn"
                             android:layout_marginTop="15dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="33dp"
+                            android:layout_height="33dp"
                             android:gravity="center"
                             android:background="@drawable/shape_back_2">
 
                             <TextView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_marginRight="2dp"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_marginRight="1.5dp"
                                 android:background="@drawable/ic_baseline_chevron_back"/>
 
                         </LinearLayout>

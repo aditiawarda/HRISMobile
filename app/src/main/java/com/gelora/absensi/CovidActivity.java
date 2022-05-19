@@ -40,7 +40,6 @@ import java.util.Locale;
 public class CovidActivity extends AppCompatActivity {
 
     TextView vaksin1Add, vaksin2Add, dateVaksin, vaksin1, vaksin2, dateData, confirmTV, healtTV, deadTV, penambahanConfirm, penambahanHealt, penambahanDead, activeCase;
-    NestedScrollView scrollView;
     SwipeRefreshLayout refreshLayout;
     LinearLayout actionBar, backBTN, homeBTN;
     View rootview;
@@ -63,7 +62,6 @@ public class CovidActivity extends AppCompatActivity {
         activeCase = findViewById(R.id.active_case);
         dateData = findViewById(R.id.date_data);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
-        scrollView = findViewById(R.id.scrollView);
         actionBar = findViewById(R.id.action_bar);
         vaksin1 = findViewById(R.id.vaksin_1);
         vaksin2 = findViewById(R.id.vaksin_2);
@@ -177,17 +175,6 @@ public class CovidActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CovidActivity.this, MapsActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-                if(scrollView.getScrollY()>=15){
-                    actionBar.setBackground(ContextCompat.getDrawable(CovidActivity.this, R.drawable.shape_action_bar));
-                } else {
-                    actionBar.setBackgroundColor(Color.TRANSPARENT);
-                }
             }
         });
 
