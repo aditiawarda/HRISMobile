@@ -10,6 +10,10 @@ public class HistoryAbsen {
     private String jam_pulang;
     private String checkin_point;
     private String checkout_point;
+    private String datang;
+    private String pulang;
+    private String status_absen;
+    private String nama_shift;
 
     public String getTanggal() {
         return tanggal;
@@ -67,4 +71,35 @@ public class HistoryAbsen {
         this.checkout_point = checkout_point;
     }
 
+    public String getDatang() {
+        return datang;
+    }
+
+    public void setDatang(String datang) {
+        this.datang = datang;
+    }
+
+    public String getPulang() {
+        return pulang;
+    }
+
+    public void setPulang(String pulang) {
+        this.pulang = pulang;
+    }
+
+    public String getStatus_absen() {
+        return status_absen;
+    }
+
+    public void setStatus_absen(String status_absen) {
+        this.status_absen = status_absen;
+    }
+
+    public String getNama_shift() {
+        return nama_shift;
+    }
+
+    public void setNama_shift(String nama_shift) {
+        this.nama_shift = nama_shift;
+    }
 }

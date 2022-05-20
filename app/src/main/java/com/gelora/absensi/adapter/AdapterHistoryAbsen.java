@@ -54,10 +54,26 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final HistoryAbsen historyAbsen = data[i];
+        String namaStatus = "";
 
         myViewHolder.dateAbsen.setText(historyAbsen.getTanggal());
+        myViewHolder.jamShift.setText(historyAbsen.getDatang()+" - "+historyAbsen.getPulang());
         myViewHolder.dateCheckin.setText(historyAbsen.getTanggal_masuk());
         myViewHolder.dateCheckout.setText(historyAbsen.getTanggal_pulang());
+
+        String statusAbsen = historyAbsen.getStatus_absen();
+        if (statusAbsen.equals("1")){
+            namaStatus = "WFH";
+        } else if (statusAbsen.equals("2")){
+            namaStatus = "WFO";
+        } else if (statusAbsen.equals("3")){
+            namaStatus = "Pjd";
+        } else if (statusAbsen.equals("4")){
+            namaStatus = "KLL";
+        } else if (statusAbsen.equals("5")){
+            namaStatus = "DL";
+        }
+        myViewHolder.namaShift.setText(namaStatus+" - "+historyAbsen.getNama_shift());
 
         if (myViewHolder.dateCheckout.getText().toString().equals("")){
             myViewHolder.dateCheckout.setText("---- - -- - --");
@@ -186,7 +202,7 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView dateAbsen, dateCheckin, dateCheckout, checkinTime, checkinPoint, checkoutTime, checkoutPoint;
+        TextView namaShift, jamShift, dateAbsen, dateCheckin, dateCheckout, checkinTime, checkinPoint, checkoutTime, checkoutPoint;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             dateAbsen = itemView.findViewById(R.id.date_absen_tv);
@@ -196,6 +212,8 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
             checkinPoint = itemView.findViewById(R.id.checkin_point_tv);
             checkoutTime = itemView.findViewById(R.id.time_checkout_tv);
             checkoutPoint = itemView.findViewById(R.id.checkout_point_tv);
+            jamShift = itemView.findViewById(R.id.jam_shift);
+            namaShift = itemView.findViewById(R.id.nama_shift);
         }
     }
 

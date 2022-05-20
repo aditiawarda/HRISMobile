@@ -54,7 +54,7 @@ import java.util.Map;
 public class HistoryActivity extends AppCompatActivity {
 
     LinearLayout noConnectPart, loadingPart, noDataPart, attantionPart, actionBar, filterDateBTN, backBTN, homeBTN, filterDateChoiceBTN, changeFilterDateBTN, filterDateChoice;
-    TextView nameOfUser, dateCheckinTV, dateCheckoutTV, filterDateChoiceTV, dateLastAbsenTV, timeCheckinLastAbsenTV, timeCheckoutLastAbsenTV, checkinPointLastAbsenTV, checkoutPointLastAbsenTV;
+    TextView shiftName, shiftTime, nameOfUser, dateCheckinTV, dateCheckoutTV, filterDateChoiceTV, dateLastAbsenTV, timeCheckinLastAbsenTV, timeCheckoutLastAbsenTV, checkinPointLastAbsenTV, checkoutPointLastAbsenTV;
     SharedPrefManager sharedPrefManager;
     BottomSheetLayout bottomSheet;
     String dateChoiceForHistory;
@@ -96,6 +96,8 @@ public class HistoryActivity extends AppCompatActivity {
         dateCheckinTV = findViewById(R.id.date_checkin_tv);
         dateCheckoutTV = findViewById(R.id.date_checkout_tv);
         nameOfUser = findViewById(R.id.name_of_user_tv);
+        shiftName = findViewById(R.id.shift_name);
+        shiftTime = findViewById(R.id.shift_time);
         nameOfUser.setText(sharedPrefManager.getSpNama().toUpperCase());
 
         Glide.with(getApplicationContext())
@@ -424,6 +426,9 @@ public class HistoryActivity extends AppCompatActivity {
                             String checkin_point = data.getString("checkin_point");
                             String jam_checkout = data.getString("jam_checkout");
                             String checkout_point = data.getString("checkout_point");
+                            String status_absen = data.getString("status_absen");
+                            String nama_shift = data.getString("nama_shift");
+                            String jam_shift = data.getString("jam_shift");
 
                             if(status.equals("Success")){
                                 dateLastAbsenTV.setText(tanggal);
@@ -451,6 +456,9 @@ public class HistoryActivity extends AppCompatActivity {
                                 } else {
                                     checkoutPointLastAbsenTV.setText(checkout_point);
                                 }
+
+                                shiftName.setText(status_absen+" - "+nama_shift);
+                                shiftTime.setText(jam_shift);
 
                             }
 
