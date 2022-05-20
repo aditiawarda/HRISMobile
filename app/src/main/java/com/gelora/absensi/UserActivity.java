@@ -224,7 +224,7 @@ public class UserActivity extends AppCompatActivity {
                         refreshLayout.setRefreshing(false);
                         getDataUser();
                     }
-                }, 1000);
+                }, 800);
             }
         });
 
@@ -540,7 +540,7 @@ public class UserActivity extends AppCompatActivity {
                                         noCheckoutLoading.setVisibility(View.GONE);
                                         noCheckoutData.setVisibility(View.VISIBLE);
                                     }
-                                }, 1000);
+                                }, 500);
 
                             }
 
@@ -613,7 +613,6 @@ public class UserActivity extends AppCompatActivity {
         closeBTN = findViewById(R.id.close_btn);
         connectBTN = findViewById(R.id.connect_btn);
         getContact();
-
     }
 
     private void getContact() {

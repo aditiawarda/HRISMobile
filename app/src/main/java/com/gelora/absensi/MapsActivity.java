@@ -34,6 +34,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.ResultReceiver;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -91,6 +92,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mahfa.dnswitch.DayNightSwitch;
 import com.shasin.notificationbanner.Banner;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -119,9 +123,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng userPoint;
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
-    ImageView onlineGif, loadingGif, warningGif;
-    TextView celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    ImageView weatherIconPart, onlineGif, loadingGif, warningGif;
+    TextView currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
+    LinearLayout closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -131,6 +135,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LocationManager locationManager;
     CompactCalendarView compactCalendarView;
     KAlertDialog pDialog;
+    ResultReceiver resultReceiver;
 
     private RecyclerView statusAbsenRV;
     private StatusAbsen[] statusAbsens;
@@ -166,6 +171,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         //ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
 
+        resultReceiver = new MapsActivity.AddressResultReceiver(new Handler());
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
@@ -222,6 +228,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         dateCheckoutTV = findViewById(R.id.date_checkout_tv);
         celebratePart = findViewById(R.id.celebrate_part);
         celebrateName = findViewById(R.id.celebrate_name);
+        cuacaBTN = findViewById(R.id.info_cuaca_btn);
         requestQueue = Volley.newRequestQueue(getBaseContext());
 
         Glide.with(getApplicationContext())
@@ -265,6 +272,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         loadingLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            }
+        });
+
+        cuacaBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                infoCuaca();
             }
         });
 
@@ -3545,6 +3559,355 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void infoCuaca(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_info_cuaca, bottomSheet, false));
+        currentAddress = findViewById(R.id.current_address);
+        dataCuacaPart = findViewById(R.id.data_cuaca_part);
+        weatherIconPart = findViewById(R.id.weather_icon_part);
+        mainWeatherPart = findViewById(R.id.main_weather_part);
+        tempWeatherPart = findViewById(R.id.weather_temp_part);
+        feelLikeTempPart = findViewById(R.id.feels_like_temp_part);
+        currentDatePart = findViewById(R.id.current_date_part);
+        closeBTNPart = findViewById(R.id.close_btn_part);
+
+        switch (getDateM()) {
+            case "01":
+                currentDatePart.setText(currentDay+", "+getDateD() + " Januari " + getDateY());
+                break;
+            case "02":
+                currentDatePart.setText(currentDay+", "+getDateD() + " Februari " + getDateY());
+                break;
+            case "03":
+                currentDatePart.setText(currentDay+", "+getDateD() + " Maret " + getDateY());
+                break;
+            case "04":
+                currentDatePart.setText(currentDay+", "+getDateD() + " April " + getDateY());
+                break;
+            case "05":
+                currentDatePart.setText(currentDay+", "+getDateD() + " Mei " + getDateY());
+                break;
+            case "06":
+                currentDatePart.setText(currentDay+", "+getDateD() + " Juni " + getDateY());
+                break;
+            case "07":
+                currentDatePart.setText(currentDay+", "+getDateD() + " Juli " + getDateY());
+                break;
+            case "08":
+                currentDatePart.setText(currentDay+", "+getDateD() + " Agustus " + getDateY());
+                break;
+            case "09":
+                currentDatePart.setText(currentDay+", "+getDateD() + " September " + getDateY());
+                break;
+            case "10":
+                currentDatePart.setText(currentDay+", "+getDateD() + " Oktober " + getDateY());
+                break;
+            case "11":
+                currentDatePart.setText(currentDay+", "+getDateD() + " November " + getDateY());
+                break;
+            case "12":
+                currentDatePart.setText(currentDay+", "+getDateD() + " Desember " + getDateY());
+                break;
+            default:
+                currentDatePart.setText("Not found!");
+                break;
+        }
+
+        closeBTNPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheet.dismissSheet();
+            }
+        });
+
+        getApiKeyWeather();
+
+    }
+
+    private void getApiKeyWeather() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_api_key_weather";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String api_key = response.getString("api_key");
+                            getCurrentLocation(api_key);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
+    private void getCurrentLocation(String weather_key) {
+        //progressBar.setVisibility(View.VISIBLE);
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(3000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        LocationServices.getFusedLocationProviderClient(MapsActivity.this)
+                .requestLocationUpdates(locationRequest, new LocationCallback() {
+
+                    @Override
+                    public void onLocationResult(LocationResult locationResult) {
+                        super.onLocationResult(locationResult);
+                        LocationServices.getFusedLocationProviderClient(getApplicationContext())
+                                .removeLocationUpdates(this);
+                        if (locationResult != null && locationResult.getLocations().size() > 0) {
+                            int latestlocIndex = locationResult.getLocations().size() - 1;
+                            double lati = locationResult.getLocations().get(latestlocIndex).getLatitude();
+                            double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
+                            //Toast.makeText(UserActivity.this, String.format("Latitude : %s\n Longitude: %s", lati, longi), Toast.LENGTH_SHORT).show();
+
+                            getCurrentWeather(weather_key, String.valueOf(lati), String.valueOf(longi));
+                            Location location = new Location("providerNA");
+                            location.setLongitude(longi);
+                            location.setLatitude(lati);
+                            fetchaddressfromlocation(location);
+
+                        }
+                    }
+                }, Looper.getMainLooper());
+
+    }
+
+    private class AddressResultReceiver extends ResultReceiver {
+        public AddressResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            if (resultCode == Constants.SUCCESS_RESULT) {
+                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
+            } else {
+                currentAddress.setText(resultData.getString(Constants.NO_ADDRESS));
+            }
+        }
+
+    }
+
+    private void fetchaddressfromlocation(Location location) {
+        Intent intent = new Intent(this, FetchAddressIntentServices.class);
+        intent.putExtra(Constants.RECEVIER, resultReceiver);
+        intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);
+        startService(intent);
+    }
+
+    private void getCurrentWeather(String api_key, String lat, String lon) {
+        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        final String url = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid="+api_key;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        dataCuacaPart.setVisibility(View.VISIBLE);
+                        JSONArray data = null;
+                        try {
+                            data = response.getJSONArray("weather");
+                            JSONObject suhu = response.getJSONObject("main");
+                            String name = response.getString("name");
+                            //Toast.makeText(UserActivity.this, name, Toast.LENGTH_SHORT).show();
+                            String temp = suhu.getString("temp");
+                            String feels_like = suhu.getString("feels_like");
+                            float f = Float.parseFloat(temp);
+                            float f2 = Float.parseFloat(feels_like);
+                            tempWeatherPart.setText(String.valueOf(Math.round(convertFromKelvinToCelsius(f)))+"°");
+                            feelLikeTempPart.setText("Terasa seperti "+String.valueOf(Math.round(convertFromKelvinToCelsius(f2)))+"°");
+                            for (int i = 0; i < data.length(); i++) {
+                                JSONObject weather = data.getJSONObject(i);
+                                String main = weather.getString("main");
+                                String description = weather.getString("description");
+                                String icon = weather.getString("icon");
+                                String desc_idn = "";
+
+                                //Thunderstorm
+                                if (description.equals("thunderstorm with light rain")){
+                                    desc_idn = "Badai petir disertai hujan ringan";
+                                } else if (description.equals("thunderstorm with rain")){
+                                    desc_idn = "Badai petir dengan hujan";
+                                } else if (description.equals("thunderstorm with heavy rain")){
+                                    desc_idn = "Badai petir dengan hujan lebat";
+                                } else if (description.equals("light thunderstorm")){
+                                    desc_idn = "Badai petir";
+                                } else if (description.equals("heavy thunderstorm")){
+                                    desc_idn = "Badai petir";
+                                } else if (description.equals("ragged thunderstorm")){
+                                    desc_idn = "Badai petir";
+                                } else if (description.equals("thunderstorm with light drizzle")){
+                                    desc_idn = "Badai petir dengan gerimis";
+                                } else if (description.equals("thunderstorm with drizzle")){
+                                    desc_idn = "Badai petir dengan gerimis";
+                                } else if (description.equals("thunderstorm with heavy drizzle")){
+                                    desc_idn = "Badai petir dengan hujan";
+                                }
+
+                                //Drizzle
+                                else if (description.equals("light intensity drizzle")){
+                                    desc_idn = "Gerimis";
+                                } else if (description.equals("drizzle")){
+                                    desc_idn = "Gerimis";
+                                } else if (description.equals("heavy intensity drizzle")){
+                                    desc_idn = "Gerimis";
+                                } else if (description.equals("light intensity drizzle rain")){
+                                    desc_idn = "Gerimis";
+                                } else if (description.equals("drizzle rain")){
+                                    desc_idn = "Gerimis";
+                                } else if (description.equals("heavy intensity drizzle rain")){
+                                    desc_idn = "Hujan";
+                                } else if (description.equals("shower rain and drizzle")){
+                                    desc_idn = "Hujan";
+                                } else if (description.equals("heavy shower rain and drizzle")){
+                                    desc_idn = "Hujan";
+                                } else if (description.equals("shower drizzle")){
+                                    desc_idn = "Gerimis";
+                                }
+
+                                //Rain
+                                else if (description.equals("light rain")){
+                                    desc_idn = "Gerimis";
+                                } else if (description.equals("moderate rain")){
+                                    desc_idn = "Hujan";
+                                } else if (description.equals("heavy intensity rain")){
+                                    desc_idn = "Hujan deras";
+                                } else if (description.equals("very heavy rain")){
+                                    desc_idn = "Hujan deras";
+                                } else if (description.equals("extreme rain")){
+                                    desc_idn = "Hujan ekstrim";
+                                } else if (description.equals("freezing rain")){
+                                    desc_idn = "Hujan";
+                                } else if (description.equals("light intensity shower rain")){
+                                    desc_idn = "Hujan ringan";
+                                } else if (description.equals("shower rain")){
+                                    desc_idn = "Hujan";
+                                } else if (description.equals("heavy intensity shower rain")){
+                                    desc_idn = "Hujan deras";
+                                } else if (description.equals("ragged shower rain")){
+                                    desc_idn = "Hujan deras";
+                                }
+
+                                //Snow
+                                else if (description.equals("light snow")){
+                                    desc_idn = "Salju ringan";
+                                } else if (description.equals("snow")){
+                                    desc_idn = "Salju";
+                                } else if (description.equals("heavy snow")){
+                                    desc_idn = "Salju tebal";
+                                } else if (description.equals("sleet")){
+                                    desc_idn = "Hujan es";
+                                } else if (description.equals("light shower sleet")){
+                                    desc_idn = "Hujan es ringan";
+                                } else if (description.equals("shower sleet")){
+                                    desc_idn = "Hujan es";
+                                } else if (description.equals("light rain and snow")){
+                                    desc_idn = "Hujan ringan dan salju";
+                                } else if (description.equals("rain and snow")){
+                                    desc_idn = "Hujan salju";
+                                } else if (description.equals("light shower snow")){
+                                    desc_idn = "Hujan salju ringan";
+                                } else if (description.equals("shower snow")){
+                                    desc_idn = "Hujan salju";
+                                } else if (description.equals("heavy shower snow")){
+                                    desc_idn = "Hujan salju lebat";
+                                }
+
+                                //Atmosphere
+                                else if (description.equals("mist")){
+                                    desc_idn = "Berkabut";
+                                } else if (description.equals("smoke")){
+                                    desc_idn = "Kabut asap";
+                                } else if (description.equals("haze")){
+                                    desc_idn = "Berkabut";
+                                } else if (description.equals("sand/ dust whirls")){
+                                    desc_idn = "Badai pasir/debu";
+                                } else if (description.equals("fog")){
+                                    desc_idn = "Berkabut";
+                                } else if (description.equals("sand")){
+                                    desc_idn = "Berpasir";
+                                } else if (description.equals("dust")){
+                                    desc_idn = "Berdebu";
+                                } else if (description.equals("volcanic ash")){
+                                    desc_idn = "Abu vulkanik";
+                                } else if (description.equals("squalls")){
+                                    desc_idn = "Badai";
+                                } else if (description.equals("tornado")) {
+                                    desc_idn = "Angin topan";
+                                }
+
+                                //Clear
+                                else if (description.equals("clear sky")){
+                                    desc_idn = "Langit cerah";
+                                }
+
+                                //Clouds
+                                else if (description.equals("few clouds")){
+                                    desc_idn = "Sebagian berawan";
+                                } else if (description.equals("scattered clouds")){
+                                    desc_idn = "Berawan";
+                                } else if (description.equals("broken clouds")){
+                                    desc_idn = "Berawan";
+                                } else if (description.equals("overcast clouds")){
+                                    desc_idn = "Awan mendung";
+                                }
+
+                                mainWeatherPart.setText(desc_idn);
+                                String url = "https://geloraaksara.co.id/absen-online/upload/weather_icon/"+icon+".png";
+
+                                Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                        .into(weatherIconPart);
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                dataCuacaPart.setVisibility(View.GONE);
+                connectionFailed();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
+    private static float convertFromKelvinToCelsius(float value) {
+        return value - 273.15f;
     }
 
     @Override
