@@ -964,7 +964,7 @@
             <LinearLayout
                 android:id="@+id/action_btn"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="38dp"
                 android:background="@drawable/shape_disable_btn"
                 android:gravity="center">
 
@@ -993,10 +993,10 @@
             android:layout_marginTop="-2dp"
             android:layout_marginRight="-2dp"
             android:layout_marginLeft="-2dp"
-            android:paddingTop="3dp"
-            android:paddingLeft="14dp"
-            android:paddingRight="14dp"
-            android:paddingBottom="8dp"
+            android:paddingTop="1dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="7dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

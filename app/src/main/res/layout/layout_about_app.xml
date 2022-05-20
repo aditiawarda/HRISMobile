@@ -70,7 +70,15 @@
                         android:textSize="13dp"
                         android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
-                        android:text="Absensi App dikembangkan oleh Tim IT PT. Gelora Aksara Pratama. untuk kemudahan dan kelancaran penggunaan Absensi App didukung oleh Google Maps sebagai penanda posisi."/>
+                        android:text="Absensi App dikembangkan oleh Tim IT PT. Gelora Aksara Pratama."/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13dp"
+                        android:textColor="@color/text_color"
+                        android:layout_marginBottom="5dp"
+                        android:text="Untuk kemudahan dan kelancaran penggunaan, Absensi App didukung oleh API Google Maps sebagai penanda posisi."/>
 
                     <TextView
                         android:layout_width="match_parent"

@@ -208,7 +208,7 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
-                            android:paddingBottom="10dp"
+                            android:paddingBottom="5dp"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -348,13 +348,104 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".50"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:paddingRight="15dp"
+                                    android:paddingLeft="15dp"
+                                    android:background="@drawable/shape_terlambat"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
+                                        android:textSize="10dp"
+                                        android:text="Terlambat"/>
+
+                                    <TextView
+                                        android:visibility="gone"
+                                        android:id="@+id/data_terlambat"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="30dp"
+                                        android:textStyle="bold"
+                                        android:text="0"/>
+
+                                    <ImageView
+                                        android:id="@+id/terlambat_loading"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40.5dp"
+                                        app:srcCompat="@drawable/loading_dots" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".50"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:paddingRight="15dp"
+                                    android:paddingLeft="15dp"
+                                    android:background="@drawable/shape_no_checkout"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
+                                        android:textSize="10dp"
+                                        android:text="Tidak Checkout"/>
+
+                                    <TextView
+                                        android:visibility="gone"
+                                        android:id="@+id/data_no_checkout"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="30dp"
+                                        android:textStyle="bold"
+                                        android:text="0"/>
+
+                                    <ImageView
+                                        android:id="@+id/no_checkout_loading"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40.5dp"
+                                        app:srcCompat="@drawable/loading_dots" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <LinearLayout
                                 android:id="@+id/history_btn"
                                 android:layout_width="0dp"
                                 android:layout_weight=".55"
-                                android:layout_height="40dp"
+                                android:layout_height="38dp"
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginRight="10dp"
                                 android:background="@drawable/shape_third_btn"
@@ -392,7 +483,7 @@
                                 android:id="@+id/reminder_btn"
                                 android:layout_width="0dp"
                                 android:layout_weight=".15"
-                                android:layout_height="40dp"
+                                android:layout_height="38dp"
                                 android:layout_marginRight="20dp"
                                 android:background="@drawable/shape_third_btn"
                                 android:gravity="center">
@@ -551,7 +642,7 @@
                             android:id="@+id/about_company_btn"
                             android:layout_marginBottom="10dp"
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
+                            android:layout_height="38dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:background="@drawable/shape_third_btn"
@@ -570,7 +661,7 @@
                             android:id="@+id/about_app_btn"
                             android:layout_marginBottom="10dp"
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
+                            android:layout_height="38dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:background="@drawable/shape_third_btn"
@@ -589,7 +680,7 @@
                             android:id="@+id/privacy_policy_btn"
                             android:layout_marginBottom="10dp"
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
+                            android:layout_height="38dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:background="@drawable/shape_third_btn"
@@ -608,7 +699,7 @@
                             android:id="@+id/contact_service_btn"
                             android:layout_marginBottom="20dp"
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
+                            android:layout_height="38dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:background="@drawable/shape_third_btn"

@@ -97,14 +97,14 @@ import static android.service.controls.ControlsProviderService.TAG;
 public class UserActivity extends AppCompatActivity {
 
     LinearLayout hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
-    TextView currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    TextView noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
     SwipeRefreshLayout refreshLayout;
     NestedScrollView scrollView;
     RelativeLayout dataCuaca;
-    ImageView weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
+    ImageView noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
     String currentDay = "", avatarStatus = "0", avatarPath = "";
 
@@ -162,6 +162,8 @@ public class UserActivity extends AppCompatActivity {
         bulanLoading = findViewById(R.id.bulan_loading);
         hadirLoading = findViewById(R.id.hadir_loading);
         tidakHadirLoading = findViewById(R.id.tidak_hadir_loading);
+        terlambatLoading = findViewById(R.id.terlambat_loading);
+        noCheckoutLoading = findViewById(R.id.no_checkout_loading);
         batasBagDept = findViewById(R.id.batas_bag_dept);
         currentAddress = findViewById(R.id.current_address);
         currentAddress2 = findViewById(R.id.current_address_2);
@@ -173,6 +175,8 @@ public class UserActivity extends AppCompatActivity {
         tidakHadirBTN = findViewById(R.id.btn_tidak_hadir);
         hadirBTN = findViewById(R.id.btn_hadir);
         currentDate = findViewById(R.id.current_date);
+        terlambatData = findViewById(R.id.data_terlambat);
+        noCheckoutData = findViewById(R.id.data_no_checkout);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
@@ -185,6 +189,14 @@ public class UserActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(tidakHadirLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(noCheckoutLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(terlambatLoading);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -200,6 +212,12 @@ public class UserActivity extends AppCompatActivity {
 
                 tidakHadirLoading.setVisibility(View.VISIBLE);
                 tidakHadirData.setVisibility(View.GONE);
+
+                terlambatLoading.setVisibility(View.VISIBLE);
+                terlambatData.setVisibility(View.GONE);
+
+                noCheckoutLoading.setVisibility(View.VISIBLE);
+                noCheckoutData.setVisibility(View.GONE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -493,11 +511,15 @@ public class UserActivity extends AppCompatActivity {
                                 String tahun = data.getString("tahun");
                                 String hadir = data.getString("jumlah_hadir");
                                 String tidak_hadir = data.getString("jumlah_tidak_hadir");
+                                String terlambat = data.getString("terlambat");
+                                String tidak_checkout = data.getString("tidak_checkout");
 
                                 bulanData.setText(bulan.toUpperCase());
                                 tahunData.setText(tahun);
                                 hadirData.setText(hadir);
                                 tidakHadirData.setText(tidak_hadir);
+                                terlambatData.setText(terlambat);
+                                noCheckoutData.setText(tidak_checkout);
 
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
@@ -511,8 +533,14 @@ public class UserActivity extends AppCompatActivity {
 
                                         tidakHadirLoading.setVisibility(View.GONE);
                                         tidakHadirData.setVisibility(View.VISIBLE);
+
+                                        terlambatLoading.setVisibility(View.GONE);
+                                        terlambatData.setVisibility(View.VISIBLE);
+
+                                        noCheckoutLoading.setVisibility(View.GONE);
+                                        noCheckoutData.setVisibility(View.VISIBLE);
                                     }
-                                }, 2000);
+                                }, 1000);
 
                             }
 
@@ -1388,34 +1416,34 @@ public class UserActivity extends AppCompatActivity {
                                 //Snow
                                 else if (description.equals("light snow")){
                                     desc_idn = "Salju ringan";
-                                } else if (description.equals("Snow")){
+                                } else if (description.equals("snow")){
                                     desc_idn = "Salju";
-                                } else if (description.equals("Heavy snow")){
+                                } else if (description.equals("heavy snow")){
                                     desc_idn = "Salju tebal";
-                                } else if (description.equals("Sleet")){
+                                } else if (description.equals("sleet")){
                                     desc_idn = "Hujan es";
-                                } else if (description.equals("Light shower sleet")){
+                                } else if (description.equals("light shower sleet")){
                                     desc_idn = "Hujan es ringan";
-                                } else if (description.equals("Shower sleet")){
+                                } else if (description.equals("shower sleet")){
                                     desc_idn = "Hujan es";
-                                } else if (description.equals("Light rain and snow")){
+                                } else if (description.equals("light rain and snow")){
                                     desc_idn = "Hujan ringan dan salju";
-                                } else if (description.equals("Rain and snow")){
+                                } else if (description.equals("rain and snow")){
                                     desc_idn = "Hujan salju";
-                                } else if (description.equals("Light shower snow")){
+                                } else if (description.equals("light shower snow")){
                                     desc_idn = "Hujan salju ringan";
-                                } else if (description.equals("Shower snow")){
+                                } else if (description.equals("shower snow")){
                                     desc_idn = "Hujan salju";
-                                } else if (description.equals("Heavy shower snow")){
+                                } else if (description.equals("heavy shower snow")){
                                     desc_idn = "Hujan salju lebat";
                                 }
 
                                 //Atmosphere
                                 else if (description.equals("mist")){
                                     desc_idn = "Berkabut";
-                                } else if (description.equals("Smoke")){
+                                } else if (description.equals("smoke")){
                                     desc_idn = "Kabut asap";
-                                } else if (description.equals("Haze")){
+                                } else if (description.equals("haze")){
                                     desc_idn = "Berkabut";
                                 } else if (description.equals("sand/ dust whirls")){
                                     desc_idn = "Badai pasir/debu";
