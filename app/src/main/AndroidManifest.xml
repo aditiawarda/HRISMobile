@@ -31,8 +31,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailHadirActivity"></activity>
-        <activity android:name=".DetailTidakHadirActivity" />
+        <activity
+            android:name=".DetailHadirActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".DetailTidakHadirActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".PersonalChatActivity"
             android:screenOrientation="portrait" />

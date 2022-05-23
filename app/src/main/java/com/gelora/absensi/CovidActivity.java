@@ -159,7 +159,7 @@ public class CovidActivity extends AppCompatActivity {
                         getCovidData();
                         getVaksinData();
                     }
-                }, 1000);
+                }, 500);
             }
         });
 
@@ -321,7 +321,7 @@ public class CovidActivity extends AppCompatActivity {
                                     penambahanDead.setVisibility(View.VISIBLE);
                                     addDeadLoading.setVisibility(View.GONE);
                                 }
-                            }, 2000);
+                            }, 500);
 
 
                         } catch (JSONException e) {
@@ -459,7 +459,7 @@ public class CovidActivity extends AppCompatActivity {
                                     vaksin2Add.setVisibility(View.VISIBLE);
                                     vaksin2AddLoading.setVisibility(View.GONE);
                                 }
-                            }, 2000);
+                            }, 500);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
