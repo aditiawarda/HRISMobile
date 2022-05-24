@@ -358,6 +358,7 @@
                                 android:layout_height="wrap_content">
 
                                 <LinearLayout
+                                    android:id="@+id/terlambat_btn"
                                     android:layout_width="0dp"
                                     android:layout_weight=".50"
                                     android:paddingTop="10dp"
@@ -395,6 +396,7 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/tidak_checkout_btn"
                                     android:layout_width="0dp"
                                     android:layout_weight=".50"
                                     android:paddingTop="10dp"

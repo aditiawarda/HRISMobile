@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailTidakHadirActivity">
+    tools:context=".DetailTidakCheckoutActivity">
 
     <RelativeLayout
         android:layout_marginRight="-3dp"
@@ -142,11 +142,11 @@
                                             android:textColor="@color/white"
                                             android:textStyle="bold"
                                             android:textSize="10dp"
-                                            android:text="Total Tidak Hadir"/>
+                                            android:text="Total Tidak Checkout"/>
 
                                         <TextView
                                             android:visibility="gone"
-                                            android:id="@+id/data_tidak_hadir"
+                                            android:id="@+id/data_nocheckout"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textColor="@color/white"
@@ -155,7 +155,7 @@
                                             android:text="0"/>
 
                                         <ImageView
-                                            android:id="@+id/tidak_hadir_loading"
+                                            android:id="@+id/nocheckout_loading"
                                             android:layout_width="match_parent"
                                             android:layout_height="40.5dp"
                                             app:srcCompat="@drawable/loading_dots" />
@@ -207,152 +207,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="10dp"
                             android:background="#3CCFCFCF"/>
-                        
-                        <LinearLayout
-                            android:paddingRight="20dp"
-                            android:paddingLeft="20dp"
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginBottom="10dp">
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center|left">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="IZIN"
-                                            android:textColor="@color/colorPrimaryDark"
-                                            android:textStyle="bold" />
-
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_alignParentRight="true"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:paddingLeft="15dp"
-                                        android:paddingRight="15dp"
-                                        android:background="@drawable/shape_second_btn"
-                                        android:gravity="center">
-
-                                        <TextView
-                                            android:id="@+id/total_data_izin"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:textStyle="bold"
-                                            android:textColor="@color/white"
-                                            android:text=""/>
-
-                                    </LinearLayout>
-
-                                </RelativeLayout>
-
-                            </LinearLayout>
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:visibility="gone"
-                                android:id="@+id/data_izin_rv"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-                            </androidx.recyclerview.widget.RecyclerView>
-
-                            <LinearLayout
-                                android:visibility="gone"
-                                android:id="@+id/no_data_part_izin"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:paddingBottom="20dp"
-                                android:paddingLeft="20dp"
-                                android:paddingRight="20dp"
-                                android:paddingTop="20dp"
-                                android:orientation="vertical"
-                                android:gravity="center">
-
-                                <TextView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:layout_marginTop="20dp"
-                                    android:textAlignment="center"
-                                    android:layout_marginBottom="10dp"
-                                    android:textSize="12dp"
-                                    android:textStyle="bold"
-                                    android:background="@drawable/ic_baseline_no_data"/>
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textAlignment="center"
-                                    android:textSize="15dp"
-                                    android:textStyle="bold"
-                                    android:text="Data tidak tersedia!"/>
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textAlignment="center"
-                                    android:textSize="11dp"
-                                    android:layout_marginTop="7dp"
-                                    android:text="Data izin tidak tersedia."/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/loading_data_part_izin"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:paddingBottom="20dp"
-                                android:paddingLeft="20dp"
-                                android:paddingRight="20dp"
-                                android:paddingTop="20dp"
-                                android:orientation="vertical"
-                                android:gravity="center">
-
-                                <ImageView
-                                    android:id="@+id/loading_data_izin"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    android:layout_marginBottom="5dp"
-                                    app:srcCompat="@drawable/loading" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textAlignment="center"
-                                    android:textSize="15dp"
-                                    android:textStyle="bold"
-                                    android:text="Memuat data"/>
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textAlignment="center"
-                                    android:textSize="11dp"
-                                    android:layout_marginTop="5dp"
-                                    android:text="Tunggu beberapa saat"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_marginTop="20dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="10dp"
-                            android:background="#3CCFCFCF"/>
 
                         <LinearLayout
                             android:paddingRight="20dp"
@@ -362,56 +216,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <LinearLayout
-                                android:layout_marginTop="20dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginBottom="10dp">
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <LinearLayout
-                                        android:gravity="center|left"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:textColor="@color/colorPrimaryDark"
-                                            android:textStyle="bold"
-                                            android:text="TANPA KETERANGAN"/>
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_alignParentRight="true"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:paddingLeft="15dp"
-                                        android:paddingRight="15dp"
-                                        android:background="@drawable/shape_second_btn"
-                                        android:gravity="center">
-
-                                        <TextView
-                                            android:id="@+id/total_data_alpa"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:textStyle="bold"
-                                            android:textColor="@color/white"
-                                            android:text=""/>
-
-                                    </LinearLayout>
-
-                                </RelativeLayout>
-
-                            </LinearLayout>
-
                             <androidx.recyclerview.widget.RecyclerView
                                 android:visibility="gone"
-                                android:id="@+id/data_alpa_rv"
+                                android:id="@+id/data_nocheckout_rv"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
@@ -419,7 +226,7 @@
 
                             <LinearLayout
                                 android:visibility="gone"
-                                android:id="@+id/no_data_part_alpa"
+                                android:id="@+id/no_data_part_nocheckout"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:paddingBottom="20dp"
@@ -458,7 +265,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/loading_data_part_alpa"
+                                android:id="@+id/loading_data_part_nocheckout"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:paddingBottom="20dp"
@@ -469,7 +276,7 @@
                                 android:gravity="center">
 
                                 <ImageView
-                                    android:id="@+id/loading_data_alpa"
+                                    android:id="@+id/loading_data_nocheckout"
                                     android:layout_width="70dp"
                                     android:layout_height="70dp"
                                     android:layout_marginBottom="5dp"
@@ -492,7 +299,7 @@
                                     android:text="Tunggu beberapa saat"/>
 
                             </LinearLayout>
-                            
+
                         </LinearLayout>
 
                     </LinearLayout>
@@ -558,7 +365,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textStyle="bold"
-                                android:text="DETAIL KETIDAKHADIRAN"
+                                android:text="DETAIL TIDAK CHECKOUT"
                                 android:textColor="@color/white"
                                 android:textSize="15dp" />
 
