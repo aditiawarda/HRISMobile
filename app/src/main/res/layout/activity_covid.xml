@@ -52,14 +52,13 @@
                                 android:paddingTop="10dp"
                                 android:paddingRight="20dp"
                                 android:paddingLeft="20dp"
-                                android:paddingBottom="13dp"
+                                android:paddingBottom="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:background="@drawable/shape_attantion">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
                                     android:textSize="13dp"
                                     android:textColor="#B1670B"
                                     android:textStyle="bold"
@@ -422,7 +421,7 @@
                             android:paddingTop="10dp"
                             android:paddingRight="20dp"
                             android:paddingLeft="20dp"
-                            android:paddingBottom="13dp"
+                            android:paddingBottom="10dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:layout_marginBottom="10dp"
@@ -431,7 +430,6 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
                                 android:textSize="13dp"
                                 android:textColor="#B1670B"
                                 android:textStyle="bold"
