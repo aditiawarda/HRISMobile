@@ -1,5 +1,6 @@
 package com.gelora.absensi;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +32,9 @@ import com.gelora.absensi.model.DataIzin;
 import com.gelora.absensi.model.HistoryAbsen;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.kal.rackmonthpicker.RackMonthPicker;
+import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
+import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,15 +43,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class DetailTidakHadirActivity extends AppCompatActivity {
 
-    LinearLayout emptyDataIzin, emptyDataAlpa, loadingIzinPart, loadingAlpaPart, backBTN, homeBTN;
+    LinearLayout monthBTN, emptyDataIzin, emptyDataAlpa, loadingIzinPart, loadingAlpaPart, backBTN, homeBTN;
     ImageView bulanLoading, tidakHadirLoading, loadingDataIzin, loadingDataAlpa;
     TextView dataTotalIzin, dataTotalAlpa, dataBulan, dataTahun, dataTidakHadir, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
+    String bulanPilih;
 
     private RecyclerView dataIzinRV;
     private DataIzin[] dataIzins;
@@ -80,6 +86,9 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
         loadingAlpaPart = findViewById(R.id.loading_data_part_alpa);
         emptyDataAlpa = findViewById(R.id.no_data_part_alpa);
         emptyDataIzin = findViewById(R.id.no_data_part_izin);
+        monthBTN = findViewById(R.id.month_btn);
+
+        bulanPilih = getIntent().getExtras().getString("bulan");
 
         dataIzinRV = findViewById(R.id.data_izin_rv);
         dataAlpaRV = findViewById(R.id.data_alpa_rv);
@@ -135,6 +144,72 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                         getDetailTidakHadir();
                     }
                 }, 800);
+            }
+        });
+
+        monthBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new RackMonthPicker(DetailTidakHadirActivity.this)
+                        .setLocale(Locale.ENGLISH)
+                        .setPositiveButton(new DateMonthDialogListener() {
+                            @Override
+                            public void onDateMonth(int month, int startDate, int endDate, int year, String monthLabel) {
+                                String bulan = "";
+                                if(month==1){
+                                    bulan = "01";
+                                } else if (month==2){
+                                    bulan = "02";
+                                } else if (month==3){
+                                    bulan = "03";
+                                } else if (month==4){
+                                    bulan = "04";
+                                } else if (month==5){
+                                    bulan = "05";
+                                } else if (month==6){
+                                    bulan = "06";
+                                } else if (month==7){
+                                    bulan = "07";
+                                } else if (month==8){
+                                    bulan = "08";
+                                } else if (month==9){
+                                    bulan = "09";
+                                } else{
+                                    bulan = String.valueOf(month);
+                                }
+                                bulanPilih = String.valueOf(year)+"-"+bulan;
+
+                                bulanLoading.setVisibility(View.VISIBLE);
+                                dataBulan.setVisibility(View.GONE);
+                                dataTahun.setVisibility(View.GONE);
+
+                                tidakHadirLoading.setVisibility(View.VISIBLE);
+                                dataTidakHadir.setVisibility(View.GONE);
+
+                                dataIzinRV.setVisibility(View.GONE);
+                                loadingIzinPart.setVisibility(View.VISIBLE);
+                                emptyDataIzin.setVisibility(View.GONE);
+
+                                dataAlpaRV.setVisibility(View.GONE);
+                                loadingAlpaPart.setVisibility(View.VISIBLE);
+                                emptyDataAlpa.setVisibility(View.GONE);
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getDataTidakHadir();
+                                        getDetailTidakHadir();
+                                    }
+                                }, 500);
+
+                            }
+                        })
+                        .setNegativeButton(new OnCancelMonthDialogListener() {
+                            @Override
+                            public void onCancel(AlertDialog dialog) {
+                                dialog.dismiss();
+                            }
+                        }).show();
             }
         });
 
@@ -216,7 +291,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", sharedPrefManager.getSpNik());
-                params.put("bulan", getBulanTahun());
+                params.put("bulan", bulanPilih);
                 return params;
             }
         };
@@ -249,12 +324,6 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
 
                                 GsonBuilder builder =new GsonBuilder();
                                 Gson gson = builder.create();
-                                dataIzins = gson.fromJson(izin, DataIzin[].class);
-                                adapterDataIzin = new AdapterDataIzin(dataIzins,DetailTidakHadirActivity.this);
-                                dataIzinRV.setAdapter(adapterDataIzin);
-                                dataAlpas = gson.fromJson(alpa, DataAlpa[].class);
-                                adapterDataAlpa = new AdapterDataAlpa(dataAlpas,DetailTidakHadirActivity.this);
-                                dataAlpaRV.setAdapter(adapterDataAlpa);
 
                                 if (total_izin.equals("0")){
                                     emptyDataIzin.setVisibility(View.VISIBLE);
@@ -263,6 +332,9 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                                 } else {
                                     dataIzinRV.setVisibility(View.VISIBLE);
                                     loadingIzinPart.setVisibility(View.GONE);
+                                    dataIzins = gson.fromJson(izin, DataIzin[].class);
+                                    adapterDataIzin = new AdapterDataIzin(dataIzins,DetailTidakHadirActivity.this);
+                                    dataIzinRV.setAdapter(adapterDataIzin);
                                 }
 
                                 if (total_alpa.equals("0")){
@@ -272,6 +344,9 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                                 } else {
                                     dataAlpaRV.setVisibility(View.VISIBLE);
                                     loadingAlpaPart.setVisibility(View.GONE);
+                                    dataAlpas = gson.fromJson(alpa, DataAlpa[].class);
+                                    adapterDataAlpa = new AdapterDataAlpa(dataAlpas,DetailTidakHadirActivity.this);
+                                    dataAlpaRV.setAdapter(adapterDataAlpa);
                                 }
 
                             }
@@ -297,7 +372,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", sharedPrefManager.getSpNik());
-                params.put("bulan", getBulanTahun());
+                params.put("bulan", bulanPilih);
                 return params;
             }
         };

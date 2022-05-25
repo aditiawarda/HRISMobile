@@ -1,5 +1,6 @@
 package com.gelora.absensi;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,6 +30,9 @@ import com.gelora.absensi.model.DataNoCheckout;
 import com.gelora.absensi.model.DataTerlambat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.kal.rackmonthpicker.RackMonthPicker;
+import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
+import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,15 +41,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class DetailTidakCheckoutActivity extends AppCompatActivity {
 
-    LinearLayout emptyDataNoCheckout, loadingNoCheckoutPart, backBTN, homeBTN;
+    LinearLayout monthBTN, emptyDataNoCheckout, loadingNoCheckoutPart, backBTN, homeBTN;
     ImageView bulanLoading, noCheckoutLoading, loadingDataNoCheckout;
     TextView dataBulan, dataTahun, dataNoCheckout, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
+    String bulanPilih;
 
     private RecyclerView dataNoCheckoutRV;
     private DataNoCheckout[] dataNoCheckouts;
@@ -69,6 +75,9 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
         loadingDataNoCheckout = findViewById(R.id.loading_data_nocheckout);
         loadingNoCheckoutPart = findViewById(R.id.loading_data_part_nocheckout);
         emptyDataNoCheckout = findViewById(R.id.no_data_part_nocheckout);
+        monthBTN = findViewById(R.id.month_btn);
+
+        bulanPilih = getIntent().getExtras().getString("bulan");
 
         dataNoCheckoutRV = findViewById(R.id.data_nocheckout_rv);
 
@@ -110,6 +119,71 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
                         getDetailNoCheckout();
                     }
                 }, 800);
+            }
+        });
+
+        monthBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new RackMonthPicker(DetailTidakCheckoutActivity.this)
+                        .setLocale(Locale.ENGLISH)
+                        .setPositiveButton(new DateMonthDialogListener() {
+                            @Override
+                            public void onDateMonth(int month, int startDate, int endDate, int year, String monthLabel) {
+                                String bulan = "";
+                                if(month==1){
+                                    bulan = "01";
+                                } else if (month==2){
+                                    bulan = "02";
+                                } else if (month==3){
+                                    bulan = "03";
+                                } else if (month==4){
+                                    bulan = "04";
+                                } else if (month==5){
+                                    bulan = "05";
+                                } else if (month==6){
+                                    bulan = "06";
+                                } else if (month==7){
+                                    bulan = "07";
+                                } else if (month==8){
+                                    bulan = "08";
+                                } else if (month==9){
+                                    bulan = "09";
+                                } else{
+                                    bulan = String.valueOf(month);
+                                }
+                                bulanPilih = String.valueOf(year)+"-"+bulan;
+
+                                bulanLoading.setVisibility(View.VISIBLE);
+                                dataBulan.setVisibility(View.GONE);
+                                dataTahun.setVisibility(View.GONE);
+
+                                bulanLoading.setVisibility(View.VISIBLE);
+                                dataBulan.setVisibility(View.GONE);
+                                dataTahun.setVisibility(View.GONE);
+
+                                noCheckoutLoading.setVisibility(View.VISIBLE);
+                                dataNoCheckout.setVisibility(View.GONE);
+
+                                dataNoCheckoutRV.setVisibility(View.GONE);
+                                loadingNoCheckoutPart.setVisibility(View.VISIBLE);
+                                emptyDataNoCheckout.setVisibility(View.GONE);
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getDetailNoCheckout();
+                                    }
+                                }, 500);
+
+                            }
+                        })
+                        .setNegativeButton(new OnCancelMonthDialogListener() {
+                            @Override
+                            public void onCancel(AlertDialog dialog) {
+                                dialog.dismiss();
+                            }
+                        }).show();
             }
         });
 
@@ -203,7 +277,7 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", sharedPrefManager.getSpNik());
-                params.put("bulan", getBulanTahun());
+                params.put("bulan", bulanPilih);
                 return params;
             }
         };

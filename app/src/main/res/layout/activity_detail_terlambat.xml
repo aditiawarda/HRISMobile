@@ -73,6 +73,7 @@
                                 android:orientation="horizontal">
 
                                 <LinearLayout
+                                    android:id="@+id/month_btn"
                                     android:layout_width="0dp"
                                     android:layout_weight=".40"
                                     android:paddingTop="10dp"
@@ -131,7 +132,7 @@
                                         android:paddingBottom="10dp"
                                         android:paddingRight="15dp"
                                         android:paddingLeft="15dp"
-                                        android:background="@drawable/shape_tidak_hadir"
+                                        android:background="@drawable/shape_terlambat"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="5dp"
                                         android:orientation="vertical">

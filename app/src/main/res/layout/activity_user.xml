@@ -212,6 +212,7 @@
                             android:orientation="horizontal">
 
                             <LinearLayout
+                                android:id="@+id/select_month_btn"
                                 android:layout_width="0dp"
                                 android:layout_weight=".40"
                                 android:paddingTop="10dp"

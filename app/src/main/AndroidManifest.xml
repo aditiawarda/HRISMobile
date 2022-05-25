@@ -31,8 +31,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailTidakCheckoutActivity"></activity>
-        <activity android:name=".DetailTerlambatActivity" />
+        <activity
+            android:name=".DetailTidakCheckoutActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".DetailTerlambatActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DetailHadirActivity"
             android:screenOrientation="portrait" />

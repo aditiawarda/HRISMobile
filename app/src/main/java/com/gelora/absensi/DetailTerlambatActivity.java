@@ -1,5 +1,6 @@
 package com.gelora.absensi;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +32,9 @@ import com.gelora.absensi.model.DataIzin;
 import com.gelora.absensi.model.DataTerlambat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.kal.rackmonthpicker.RackMonthPicker;
+import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
+import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,15 +43,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class DetailTerlambatActivity extends AppCompatActivity {
 
-    LinearLayout emptyDataLate, loadingLatePart, backBTN, homeBTN;
+    LinearLayout monthBTN, emptyDataLate, loadingLatePart, backBTN, homeBTN;
     ImageView bulanLoading, lateLoading, loadingDataLate;
     TextView dataBulan, dataTahun, dataLate, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
+    String bulanPilih;
 
     private RecyclerView dataLateRV;
     private DataTerlambat[] dataLates;
@@ -71,6 +77,9 @@ public class DetailTerlambatActivity extends AppCompatActivity {
         loadingDataLate = findViewById(R.id.loading_data_late);
         loadingLatePart = findViewById(R.id.loading_data_part_telat);
         emptyDataLate = findViewById(R.id.no_data_part_late);
+        monthBTN = findViewById(R.id.month_btn);
+
+        bulanPilih = getIntent().getExtras().getString("bulan");
 
         dataLateRV = findViewById(R.id.data_late_rv);
 
@@ -112,6 +121,67 @@ public class DetailTerlambatActivity extends AppCompatActivity {
                         getDetailTerlambat();
                     }
                 }, 800);
+            }
+        });
+
+        monthBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new RackMonthPicker(DetailTerlambatActivity.this)
+                        .setLocale(Locale.ENGLISH)
+                        .setPositiveButton(new DateMonthDialogListener() {
+                            @Override
+                            public void onDateMonth(int month, int startDate, int endDate, int year, String monthLabel) {
+                                String bulan = "";
+                                if(month==1){
+                                    bulan = "01";
+                                } else if (month==2){
+                                    bulan = "02";
+                                } else if (month==3){
+                                    bulan = "03";
+                                } else if (month==4){
+                                    bulan = "04";
+                                } else if (month==5){
+                                    bulan = "05";
+                                } else if (month==6){
+                                    bulan = "06";
+                                } else if (month==7){
+                                    bulan = "07";
+                                } else if (month==8){
+                                    bulan = "08";
+                                } else if (month==9){
+                                    bulan = "09";
+                                } else{
+                                    bulan = String.valueOf(month);
+                                }
+                                bulanPilih = String.valueOf(year)+"-"+bulan;
+
+                                bulanLoading.setVisibility(View.VISIBLE);
+                                dataBulan.setVisibility(View.GONE);
+                                dataTahun.setVisibility(View.GONE);
+
+                                lateLoading.setVisibility(View.VISIBLE);
+                                dataLate.setVisibility(View.GONE);
+
+                                dataLateRV.setVisibility(View.GONE);
+                                loadingLatePart.setVisibility(View.VISIBLE);
+                                emptyDataLate.setVisibility(View.GONE);
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getDetailTerlambat();
+                                    }
+                                }, 500);
+
+                            }
+                        })
+                        .setNegativeButton(new OnCancelMonthDialogListener() {
+                            @Override
+                            public void onCancel(AlertDialog dialog) {
+                                dialog.dismiss();
+                            }
+                        }).show();
             }
         });
 
@@ -205,7 +275,7 @@ public class DetailTerlambatActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", sharedPrefManager.getSpNik());
-                params.put("bulan", getBulanTahun());
+                params.put("bulan", bulanPilih);
                 return params;
             }
         };

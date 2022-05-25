@@ -63,6 +63,9 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.kal.rackmonthpicker.RackMonthPicker;
+import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
+import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -96,7 +99,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout selectMonthBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
     TextView noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -106,7 +109,7 @@ public class UserActivity extends AppCompatActivity {
     RelativeLayout dataCuaca;
     ImageView noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
-    String currentDay = "", avatarStatus = "0", avatarPath = "";
+    String selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
 
     AlarmManager alarmManager;
     CompactCalendarView compactCalendarView;
@@ -179,6 +182,9 @@ public class UserActivity extends AppCompatActivity {
         noCheckoutData = findViewById(R.id.data_no_checkout);
         terlambatBTN = findViewById(R.id.terlambat_btn);
         tidakCheckoutBTN = findViewById(R.id.tidak_checkout_btn);
+        selectMonthBTN = findViewById(R.id.select_month_btn);
+
+        selectMonth = getBulanTahun();
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
@@ -205,6 +211,9 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 bottomSheet.dismissSheet();
+
+                selectMonth = getBulanTahun();
+
                 bulanLoading.setVisibility(View.VISIBLE);
                 bulanData.setVisibility(View.GONE);
                 tahunData.setVisibility(View.GONE);
@@ -230,10 +239,77 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
+        selectMonthBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new RackMonthPicker(UserActivity.this)
+                        .setLocale(Locale.ENGLISH)
+                        .setPositiveButton(new DateMonthDialogListener() {
+                            @Override
+                            public void onDateMonth(int month, int startDate, int endDate, int year, String monthLabel) {
+                                String bulan = "";
+                                if(month==1){
+                                    bulan = "01";
+                                } else if (month==2){
+                                    bulan = "02";
+                                } else if (month==3){
+                                    bulan = "03";
+                                } else if (month==4){
+                                    bulan = "04";
+                                } else if (month==5){
+                                    bulan = "05";
+                                } else if (month==6){
+                                    bulan = "06";
+                                } else if (month==7){
+                                    bulan = "07";
+                                } else if (month==8){
+                                    bulan = "08";
+                                } else if (month==9){
+                                    bulan = "09";
+                                } else{
+                                    bulan = String.valueOf(month);
+                                }
+                                selectMonth = String.valueOf(year)+"-"+bulan;
+
+                                bulanLoading.setVisibility(View.VISIBLE);
+                                bulanData.setVisibility(View.GONE);
+                                tahunData.setVisibility(View.GONE);
+
+                                hadirLoading.setVisibility(View.VISIBLE);
+                                hadirData.setVisibility(View.GONE);
+
+                                tidakHadirLoading.setVisibility(View.VISIBLE);
+                                tidakHadirData.setVisibility(View.GONE);
+
+                                terlambatLoading.setVisibility(View.VISIBLE);
+                                terlambatData.setVisibility(View.GONE);
+
+                                noCheckoutLoading.setVisibility(View.VISIBLE);
+                                noCheckoutData.setVisibility(View.GONE);
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getDataHadir();
+                                    }
+                                }, 500);
+
+                            }
+                        })
+                        .setNegativeButton(new OnCancelMonthDialogListener() {
+                            @Override
+                            public void onCancel(AlertDialog dialog) {
+                                dialog.dismiss();
+                            }
+                        }).show();
+            }
+        });
+
         tidakCheckoutBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, DetailTidakCheckoutActivity.class);
+                intent.putExtra("bulan", selectMonth);
                 startActivity(intent);
             }
         });
@@ -242,6 +318,7 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, DetailTerlambatActivity.class);
+                intent.putExtra("bulan", selectMonth);
                 startActivity(intent);
             }
         });
@@ -250,6 +327,7 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, DetailTidakHadirActivity.class);
+                intent.putExtra("bulan", selectMonth);
                 startActivity(intent);
             }
         });
@@ -258,6 +336,7 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, DetailHadirActivity.class);
+                intent.putExtra("bulan", selectMonth);
                 startActivity(intent);
             }
         });
@@ -560,6 +639,22 @@ public class UserActivity extends AppCompatActivity {
                                     }
                                 }, 500);
 
+                            } else {
+                                bulanLoading.setVisibility(View.GONE);
+                                bulanData.setVisibility(View.VISIBLE);
+                                tahunData.setVisibility(View.VISIBLE);
+
+                                hadirLoading.setVisibility(View.GONE);
+                                hadirData.setVisibility(View.VISIBLE);
+
+                                tidakHadirLoading.setVisibility(View.GONE);
+                                tidakHadirData.setVisibility(View.VISIBLE);
+
+                                terlambatLoading.setVisibility(View.GONE);
+                                terlambatData.setVisibility(View.VISIBLE);
+
+                                noCheckoutLoading.setVisibility(View.GONE);
+                                noCheckoutData.setVisibility(View.VISIBLE);
                             }
 
                         } catch (JSONException e) {
@@ -584,7 +679,7 @@ public class UserActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", sharedPrefManager.getSpNik());
-                params.put("bulan", getBulanTahun());
+                params.put("bulan", selectMonth);
                 return params;
             }
         };
