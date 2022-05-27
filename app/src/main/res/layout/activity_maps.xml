@@ -78,14 +78,13 @@
                     android:layout_marginRight="15dp"
                     android:background="@drawable/shape_ring_bold"
                     android:gravity="center"
-                    android:paddingBottom="2dp"
                     android:layout_width="38dp">
 
                     <ImageView
                         android:id="@+id/warning_gif"
                         android:layout_width="22dp"
                         android:layout_height="22dp"
-                        app:srcCompat="@drawable/warning_gif" />
+                        app:srcCompat="@drawable/warning_circle_gif" />
 
                 </LinearLayout>
 

@@ -668,7 +668,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-05-02");
+        //return ("2022-05-21");
     }
 
     private String getDateD() {
@@ -2823,7 +2823,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                             warningPart.setVisibility(View.VISIBLE);
                                             Glide.with(getApplicationContext())
-                                                    .load(R.drawable.warning_gif)
+                                                    .load(R.drawable.warning_circle_gif)
                                                     .into(warningGif);
 
                                             statusAction = "checkin";
@@ -2902,7 +2902,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                 warningPart.setVisibility(View.VISIBLE);
                                                 Glide.with(getApplicationContext())
-                                                        .load(R.drawable.warning_gif)
+                                                        .load(R.drawable.warning_circle_gif)
                                                         .into(warningGif);
 
                                                 statusAction = "checkin";
@@ -2991,7 +2991,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                 warningPart.setVisibility(View.VISIBLE);
                                                 Glide.with(getApplicationContext())
-                                                        .load(R.drawable.warning_gif)
+                                                        .load(R.drawable.warning_circle_gif)
                                                         .into(warningGif);
 
                                                 statusAction = "checkin";
