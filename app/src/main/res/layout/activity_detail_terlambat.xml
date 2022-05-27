@@ -261,7 +261,7 @@
                                     android:textAlignment="center"
                                     android:textSize="11dp"
                                     android:layout_marginTop="7dp"
-                                    android:text="Data izin tidak tersedia."/>
+                                    android:text="Data terlambat tidak tersedia."/>
 
                             </LinearLayout>
 

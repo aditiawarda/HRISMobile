@@ -303,6 +303,18 @@
                                 android:background="#3CCFCFCF"/>
 
                             <LinearLayout
+                                android:id="@+id/skeleton_layout"
+                                android:paddingTop="10dp"
+                                android:paddingRight="20dp"
+                                android:paddingLeft="20dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <include layout="@layout/skeleton_layout"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:id="@+id/connection_success"
                                 android:orientation="vertical"
                                 android:layout_width="match_parent"

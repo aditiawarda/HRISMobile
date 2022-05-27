@@ -125,11 +125,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     SwipeRefreshLayout refreshLayout;
     ImageView weatherIconPart, onlineGif, loadingGif, warningGif;
     TextView currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    LinearLayout skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -229,6 +229,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         celebratePart = findViewById(R.id.celebrate_part);
         celebrateName = findViewById(R.id.celebrate_name);
         cuacaBTN = findViewById(R.id.info_cuaca_btn);
+        skeletonLayout = findViewById(R.id.skeleton_layout);
         requestQueue = Volley.newRequestQueue(getBaseContext());
 
         Glide.with(getApplicationContext())
@@ -1132,9 +1133,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             idCheckin = data.getString("id_checkin");
                             checkAbsen();
 
-                            pDialog.setTitleText("Check In Berhasil!")
-                                    .setConfirmText("OK")
-                                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            dialogAktif = "1";
+
+                           // pDialog.setTitleText("Check In Berhasil!")
+                           //       .setConfirmText("OK")
+                           //       .changeAlertType(KAlertDialog.SUCCESS_TYPE);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -1210,6 +1213,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 inputAbsenPart.setVisibility(View.GONE);
                                 recordAbsenPart.setVisibility(View.GONE);
                                 attantionPart.setVisibility(View.GONE);
+                                skeletonLayout.setVisibility(View.GONE);
                                 statusAction = "history";
                                 actionButton();
                             } else {
@@ -1270,6 +1274,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 inputAbsenPart.setVisibility(View.GONE);
                                 recordAbsenPart.setVisibility(View.GONE);
                                 attantionPart.setVisibility(View.GONE);
+                                skeletonLayout.setVisibility(View.GONE);
                                 statusAction = "history";
                                 actionButton();
                             } else {
@@ -1432,6 +1437,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 actionTV.setText("CHECK IN");
                                 inputAbsenPart.setVisibility(View.VISIBLE);
                                 recordAbsenPart.setVisibility(View.GONE);
+                                skeletonLayout.setVisibility(View.GONE);
                             }
 
                         } catch (JSONException e) {
@@ -1499,7 +1505,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
                                                 pDialog.show();
                                                 pDialog.setCancelable(false);
-                                                new CountDownTimer(1300, 800) {
+                                                new CountDownTimer(1000, 500) {
                                                     public void onTick(long millisUntilFinished) {
                                                         i++;
                                                         switch (i) {
@@ -1586,7 +1592,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
                                                 pDialog.show();
                                                 pDialog.setCancelable(false);
-                                                new CountDownTimer(1300, 800) {
+                                                new CountDownTimer(1000, 500) {
                                                     public void onTick(long millisUntilFinished) {
                                                         i++;
                                                         switch (i) {
@@ -2268,7 +2274,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         .setTitleText("Loading");
                                                 pDialog.show();
                                                 pDialog.setCancelable(false);
-                                                new CountDownTimer(1300, 800) {
+                                                new CountDownTimer(1000, 500) {
                                                     public void onTick(long millisUntilFinished) {
                                                         i++;
                                                         switch (i) {
@@ -2356,7 +2362,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         .setTitleText("Loading");
                                                 pDialog.show();
                                                 pDialog.setCancelable(false);
-                                                new CountDownTimer(1300, 800) {
+                                                new CountDownTimer(1000, 500) {
                                                     public void onTick(long millisUntilFinished) {
                                                         i++;
                                                         switch (i) {
@@ -2813,6 +2819,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             actionTV.setText("CHECK IN");
                                             inputAbsenPart.setVisibility(View.VISIBLE);
                                             recordAbsenPart.setVisibility(View.GONE);
+                                            skeletonLayout.setVisibility(View.GONE);
 
                                             warningPart.setVisibility(View.VISIBLE);
                                             Glide.with(getApplicationContext())
@@ -2891,6 +2898,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 actionTV.setText("CHECK IN");
                                                 inputAbsenPart.setVisibility(View.VISIBLE);
                                                 recordAbsenPart.setVisibility(View.GONE);
+                                                skeletonLayout.setVisibility(View.GONE);
 
                                                 warningPart.setVisibility(View.VISIBLE);
                                                 Glide.with(getApplicationContext())
@@ -2945,6 +2953,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 inputAbsenPart.setVisibility(View.GONE);
                                                 recordAbsenPart.setVisibility(View.VISIBLE);
                                                 attantionPart.setVisibility(View.GONE);
+                                                skeletonLayout.setVisibility(View.GONE);
                                                 statusAction = "checkout";
                                                 actionButton();
                                             }
@@ -2978,6 +2987,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 actionTV.setText("CHECK IN");
                                                 inputAbsenPart.setVisibility(View.VISIBLE);
                                                 recordAbsenPart.setVisibility(View.GONE);
+                                                skeletonLayout.setVisibility(View.GONE);
 
                                                 warningPart.setVisibility(View.VISIBLE);
                                                 Glide.with(getApplicationContext())
@@ -3032,11 +3042,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 inputAbsenPart.setVisibility(View.GONE);
                                                 recordAbsenPart.setVisibility(View.VISIBLE);
                                                 attantionPart.setVisibility(View.GONE);
+                                                skeletonLayout.setVisibility(View.GONE);
                                                 statusAction = "checkout";
                                                 actionButton();
                                             }
                                         }
                                     } else {
+
+                                        if (dialogAktif.equals("1")){
+                                            pDialog.setTitleText("Check In Berhasil!")
+                                                    .setConfirmText("OK")
+                                                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                            dialogAktif = "0";
+                                        }
+
                                         warningPart.setVisibility(View.GONE);
                                         dateCheckoutTV.setText("---- - -- - --");
                                         timeCheckoutTV.setText("-- : -- : --");
@@ -3045,6 +3064,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         inputAbsenPart.setVisibility(View.GONE);
                                         recordAbsenPart.setVisibility(View.VISIBLE);
                                         attantionPart.setVisibility(View.GONE);
+                                        skeletonLayout.setVisibility(View.GONE);
                                         actionButton();
                                     }
 
@@ -3053,6 +3073,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     inputAbsenPart.setVisibility(View.GONE);
                                     recordAbsenPart.setVisibility(View.VISIBLE);
                                     attantionPart.setVisibility(View.GONE);
+                                    skeletonLayout.setVisibility(View.GONE);
                                     dateCheckoutTV.setText(date_checkout);
                                     timeCheckoutTV.setText(time_checkout+" "+getTimeZone());
                                     ucapanTV.setText("Terima kasih telah masuk kerja hari ini.");
@@ -3263,6 +3284,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void connectionFailed(){
         connectionFailed.setVisibility(View.VISIBLE);
         connectionSuccess.setVisibility(View.GONE);
+        skeletonLayout.setVisibility(View.GONE);
         Banner.make(rootview, MapsActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
 
         Glide.with(getApplicationContext())
