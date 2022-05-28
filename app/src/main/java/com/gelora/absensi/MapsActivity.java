@@ -1649,7 +1649,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                     })
                                                                     .show();
                                                         } else {
-                                                            actionCheckin();
+                                                            if(radiusZone.equals("inside")){
+                                                                actionCheckin();
+                                                            } else {
+                                                                pDialog.dismiss();
+                                                                new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                        .setTitleText("Perhatian!")
+                                                                        .setContentText("Posisi anda di luar jangkauan!")
+                                                                        .setConfirmText("TUTUP")
+                                                                        .showCancelButton(true)
+                                                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                            @Override
+                                                                            public void onClick(KAlertDialog sDialog) {
+                                                                                sDialog.dismiss();
+                                                                            }
+                                                                        })
+                                                                        .show();
+                                                            }
                                                         }
 
                                                     }
@@ -1867,7 +1883,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                 })
                                                                 .show();
                                                     } else {
-                                                        actionCheckout();
+                                                        if(radiusZone.equals("inside")){
+                                                            actionCheckout();
+                                                        } else {
+                                                            pDialog.dismiss();
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                    .setTitleText("Perhatian!")
+                                                                    .setContentText("Posisi anda di luar jangkauan!")
+                                                                    .setConfirmText("TUTUP")
+                                                                    .showCancelButton(true)
+                                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                        @Override
+                                                                        public void onClick(KAlertDialog sDialog) {
+                                                                            sDialog.dismiss();
+                                                                        }
+                                                                    })
+                                                                    .show();
+                                                        }
+
                                                     }
 
                                                 }
