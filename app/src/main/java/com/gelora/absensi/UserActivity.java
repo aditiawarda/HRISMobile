@@ -99,7 +99,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout selectMonthBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout webBTN, selectMonthBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
     TextView noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -183,6 +183,7 @@ public class UserActivity extends AppCompatActivity {
         terlambatBTN = findViewById(R.id.terlambat_btn);
         tidakCheckoutBTN = findViewById(R.id.tidak_checkout_btn);
         selectMonthBTN = findViewById(R.id.select_month_btn);
+        webBTN = findViewById(R.id.go_web_btn);
 
         selectMonth = getBulanTahun();
 
@@ -406,6 +407,14 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 contactService();
+            }
+        });
+
+        webBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://geloraaksara.co.id/absen-online"));
+                startActivity(webIntent);
             }
         });
 
