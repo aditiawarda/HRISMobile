@@ -294,7 +294,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         dateTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               openCalender();
+                openCalender();
             }
         });
 
@@ -389,13 +389,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("TAG", "Error trying to get last GPS location");
-                        e.printStackTrace();
-                        gpsEnableAction();
-                    }
-               });
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("TAG", "Error trying to get last GPS location");
+                e.printStackTrace();
+                gpsEnableAction();
+            }
+        });
 
     }
 
@@ -1081,9 +1081,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } else {
             // lateStatus = "2";
             lateTime = String.valueOf((f.format(hour)) + ":" + (f.format(min)) + ":" + f.format(sec));
+            String lateDesc = "";
+
+            if(!String.valueOf((f.format(hour))).equals("00")){ // 01:01:01
+                if (!String.valueOf((f.format(min))).equals("00")){ // 01:01:01
+                    lateDesc = String.valueOf((f.format(hour)) + " jam " + (f.format(min)) + " menit " + f.format(sec) + " detik");
+                } else { // 01:00:01
+                    lateDesc = String.valueOf((f.format(hour)) + " jam " + f.format(sec) + " detik");
+                }
+            } else { // 00:01:01
+                if (!String.valueOf((f.format(min))).equals("00")){ // 00:01:01
+                    lateDesc = String.valueOf((f.format(min)) + " menit " + f.format(sec) + " detik");
+                } else { // 00:00:01
+                    lateDesc = String.valueOf(f.format(sec) + " detik");
+                }
+            }
+
             Notify.build(getApplicationContext())
                     .setTitle("Absensi App")
-                    .setContent("Anda terlambat "+lateTime+", segera gunakan prosedur fingerscan dan serahkan ke bagian HRD")
+                    .setContent("Anda terlambat "+lateDesc+", segera gunakan prosedur fingerscan dan serahkan ke bagian HRD")
                     .setSmallIcon(R.drawable.ic_skylight_notification)
                     .setColor(R.color.colorPrimary)
                     .largeCircularIcon()
@@ -1135,9 +1151,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             dialogAktif = "1";
 
-                           // pDialog.setTitleText("Check In Berhasil!")
-                           //       .setConfirmText("OK")
-                           //       .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            // pDialog.setTitleText("Check In Berhasil!")
+                            //       .setConfirmText("OK")
+                            //       .changeAlertType(KAlertDialog.SUCCESS_TYPE);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -1653,7 +1669,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                 actionCheckin();
                                                             } else {
                                                                 pDialog.dismiss();
-                                                                new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                         .setTitleText("Perhatian!")
                                                                         .setContentText("Posisi anda di luar jangkauan!")
                                                                         .setConfirmText("TUTUP")
@@ -1887,7 +1903,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                             actionCheckout();
                                                         } else {
                                                             pDialog.dismiss();
-                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian!")
                                                                     .setContentText("Posisi anda di luar jangkauan!")
                                                                     .setConfirmText("TUTUP")
@@ -2874,14 +2890,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     })
                                                     .show();
 
-                                                Notify.build(getApplicationContext())
-                                                        .setTitle("Absensi App")
-                                                        .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
-                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                        .setColor(R.color.colorPrimary)
-                                                        .largeCircularIcon()
-                                                        .enableVibration(true)
-                                                        .show();
+                                            Notify.build(getApplicationContext())
+                                                    .setTitle("Absensi App")
+                                                    .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
+                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                    .setColor(R.color.colorPrimary)
+                                                    .largeCircularIcon()
+                                                    .enableVibration(true)
+                                                    .show();
 
                                             warningPart.setOnClickListener(new View.OnClickListener() {
                                                 @Override
@@ -3112,7 +3128,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     ucapanTV.setText("Terima kasih telah masuk kerja hari ini.");
 
                                     //if (tgl_checkin.equals(getDate())){
-                                        statusAction = "history";
+                                    statusAction = "history";
                                     //} else {
                                     //      statusAction = "history";
                                     //      new Handler().postDelayed(new Runnable() {
