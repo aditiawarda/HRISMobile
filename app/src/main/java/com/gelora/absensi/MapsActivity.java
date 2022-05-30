@@ -129,7 +129,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -346,7 +346,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         timeLive();
         dateLive();
         checkIzin();
-        checkLibur();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
 
@@ -668,7 +667,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-05-21");
+        //return ("2022-05-26");
     }
 
     private String getDateD() {
@@ -676,7 +675,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("11");
+        //return ("26");
     }
 
     private String getDateM() {
@@ -1075,36 +1074,50 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         long min = (selisih_waktu / 60000) % 60;
         long sec = (selisih_waktu / 1000) % 60;
 
-        if (waktu1<waktu2+60000){
-            // lateStatus = "1";
+        if (statusLibur.equals("aktif")){
             lateTime = "00:00:00";
-        } else {
-            // lateStatus = "2";
-            lateTime = String.valueOf((f.format(hour)) + ":" + (f.format(min)) + ":" + f.format(sec));
-            String lateDesc = "";
-
-            if(!String.valueOf((f.format(hour))).equals("00")){ // 01:01:01
-                if (!String.valueOf((f.format(min))).equals("00")){ // 01:01:01
-                    lateDesc = String.valueOf((f.format(hour)) + " jam " + (f.format(min)) + " menit " + f.format(sec) + " detik");
-                } else { // 01:00:01
-                    lateDesc = String.valueOf((f.format(hour)) + " jam " + f.format(sec) + " detik");
-                }
-            } else { // 00:01:01
-                if (!String.valueOf((f.format(min))).equals("00")){ // 00:01:01
-                    lateDesc = String.valueOf((f.format(min)) + " menit " + f.format(sec) + " detik");
-                } else { // 00:00:01
-                    lateDesc = String.valueOf(f.format(sec) + " detik");
-                }
-            }
 
             Notify.build(getApplicationContext())
                     .setTitle("Absensi App")
-                    .setContent("Anda terlambat "+lateDesc+", segera gunakan prosedur fingerscan dan serahkan ke bagian HRD")
+                    .setContent("Anda lembur di hari libur. Selamat bekerja dan utamakan keselamatan")
                     .setSmallIcon(R.drawable.ic_skylight_notification)
                     .setColor(R.color.colorPrimary)
                     .largeCircularIcon()
                     .enableVibration(true)
                     .show();
+
+        } else {
+            if (waktu1<waktu2+60000){
+                // lateStatus = "1";
+                lateTime = "00:00:00";
+            } else {
+                // lateStatus = "2";
+                lateTime = String.valueOf((f.format(hour)) + ":" + (f.format(min)) + ":" + f.format(sec));
+                String lateDesc = "";
+
+                if(!String.valueOf((f.format(hour))).equals("00")){ // 01:01:01
+                    if (!String.valueOf((f.format(min))).equals("00")){ // 01:01:01
+                        lateDesc = String.valueOf((f.format(hour)) + " jam " + (f.format(min)) + " menit " + f.format(sec) + " detik");
+                    } else { // 01:00:01
+                        lateDesc = String.valueOf((f.format(hour)) + " jam " + f.format(sec) + " detik");
+                    }
+                } else { // 00:01:01
+                    if (!String.valueOf((f.format(min))).equals("00")){ // 00:01:01
+                        lateDesc = String.valueOf((f.format(min)) + " menit " + f.format(sec) + " detik");
+                    } else { // 00:00:01
+                        lateDesc = String.valueOf(f.format(sec) + " detik");
+                    }
+                }
+
+                Notify.build(getApplicationContext())
+                        .setTitle("Absensi App")
+                        .setContent("Anda terlambat "+lateDesc+", segera gunakan prosedur fingerscan dan serahkan ke bagian HRD")
+                        .setSmallIcon(R.drawable.ic_skylight_notification)
+                        .setColor(R.color.colorPrimary)
+                        .largeCircularIcon()
+                        .enableVibration(true)
+                        .show();
+            }
         }
 
     }
@@ -1438,6 +1451,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 //recordAbsenPart.setVisibility(View.VISIBLE);
                                 //attantionPart.setVisibility(View.GONE);
 
+                                checkLibur(dateCheckin);
                                 detailAbsen(id_status, id_shift);
                                 String id_checkout = data.getString("id_checkout");
                                 checkoutRecord(id_checkout);
@@ -1454,6 +1468,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 inputAbsenPart.setVisibility(View.VISIBLE);
                                 recordAbsenPart.setVisibility(View.GONE);
                                 skeletonLayout.setVisibility(View.GONE);
+                                checkLibur(getDate());
                             }
 
                         } catch (JSONException e) {
@@ -2594,7 +2609,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         timeLive();
         dateLive();
         checkIzin();
-        checkLibur();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
         idShiftAbsen = "";
@@ -2808,10 +2822,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         long min = (selisih_waktu / 60000) % 60;
         long sec = (selisih_waktu / 1000) % 60;
 
+
         if (waktu1<waktu2){
-            //Pulang Cepat
-            checkoutStatus = "2";
-            overTime = "00:00:00";
+            if (statusLibur.equals("aktif")){
+                //Pulang
+                checkoutStatus = "1";
+                overTime = "00:00:00";
+            } else {
+                //Pulang Cepat
+                checkoutStatus = "2";
+                overTime = "00:00:00";
+            }
         } else if (waktu1>waktu2+3600000) {
             //Pulang Lembur
             checkoutStatus = "3";
@@ -2821,6 +2842,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             checkoutStatus = "1";
             overTime = "00:00:00";
         }
+
 
     }
 
@@ -3228,8 +3250,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         long waktu2 = date2.getTime();
 
         if (waktu1>waktu2){
-            //Pulang Cepat
-            statusPulangCepat = "aktif";
+            if (statusLibur.equals("aktif")){
+                statusPulangCepat = "nonaktif";
+            } else {
+                //Pulang Cepat
+                statusPulangCepat = "aktif";
+            }
         } else {
             //Normal/Lembur
             statusPulangCepat = "nonaktif";
@@ -3576,7 +3602,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    private void checkLibur() {
+    private void checkLibur(String date) {
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/checking_libur";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -3588,12 +3614,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         try {
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
+                            String tanggal = data.getString("tanggal");
                             String libur = data.getString("data");
 
-                            if (status.equals("Success") && !libur.equals("Libur Minggu")){
-                                celebratePart.setVisibility(View.VISIBLE);
-                                celebrateName.setText(libur);
+                            if (status.equals("Success")){
+                                statusLibur = "aktif";
+                                if(libur.equals("Libur Minggu")){
+                                    celebratePart.setVisibility(View.GONE);
+                                } else {
+                                    if (tanggal.equals(getDate())){
+                                        celebratePart.setVisibility(View.VISIBLE);
+                                        celebrateName.setText(libur);
+                                    } else {
+                                        celebratePart.setVisibility(View.GONE);
+                                    }
+                                }
                             } else {
+                                statusLibur = "nonaktif";
                                 celebratePart.setVisibility(View.GONE);
                             }
 
@@ -3619,7 +3656,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("tanggal", getDate());
+                params.put("tanggal", date);
                 return params;
             }
         };
