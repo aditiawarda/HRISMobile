@@ -790,7 +790,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textColor="#A8C74A1A"
-                                            android:textSize="14dp"
+                                            android:textSize="13dp"
                                             android:textStyle="bold"
                                             android:text="Anda Layoff / Diliburkan"/>
 
@@ -849,12 +849,13 @@
                                         android:gravity="center">
 
                                         <TextView
+                                            android:id="@+id/izin_desc"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textColor="#A8C74A1A"
-                                            android:textSize="14dp"
+                                            android:textSize="13dp"
                                             android:textStyle="bold"
-                                            android:text="Anda Sedang Izin"/>
+                                            android:text=""/>
 
                                     </LinearLayout>
 
@@ -886,7 +887,7 @@
                                             android:textColor="#C68D46"
                                             android:textSize="11dp"
                                             android:layout_marginTop="7dp"
-                                            android:text="Status absensi anda hari ini Izin. jika terjadi kesalahan atau kekeliruan data harap hubungi bagian HRD."/>
+                                            android:text="Yang tertera diatas merupakan status abensi anda hari ini. Jika terjadi kesalahan atau kekeliruan data harap hubungi bagian HRD."/>
 
                                     </LinearLayout>
 
@@ -967,15 +968,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:paddingTop="10dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:paddingBottom="10dp">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/action_btn"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight=".80"
                 android:layout_height="38dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/shape_disable_btn"
                 android:gravity="center">
 
@@ -986,6 +989,28 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:text="Memuat data..."/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/open_session_btn"
+                android:visibility="gone"
+                android:layout_width="0dp"
+                android:layout_weight=".20"
+                android:layout_height="38dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/shape_btn"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="33dp"
+                    android:layout_height="28dp"
+                    android:textColor="#A8C74A1A"
+                    android:backgroundTint="@color/white"
+                    android:background="@drawable/ic_baseline_open"
+                    android:text=""/>
 
             </LinearLayout>
 

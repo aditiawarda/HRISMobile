@@ -124,12 +124,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
     ImageView weatherIconPart, onlineGif, loadingGif, warningGif;
-    TextView currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    TextView izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
+    LinearLayout openSessionBTN, skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -230,6 +230,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         celebrateName = findViewById(R.id.celebrate_name);
         cuacaBTN = findViewById(R.id.info_cuaca_btn);
         skeletonLayout = findViewById(R.id.skeleton_layout);
+        izinDesc = findViewById(R.id.izin_desc);
+        openSessionBTN = findViewById(R.id.open_session_btn);
         requestQueue = Volley.newRequestQueue(getBaseContext());
 
         Glide.with(getApplicationContext())
@@ -267,6 +269,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     dayNightSwitch.setIsNight(true, mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
                     //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(0, APPEARANCE_LIGHT_STATUS_BARS);
                 }
+            }
+        });
+
+        openSessionBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Apakah anda yakin untuk membuka sesi absensi dan menghapus status yang tertera hari ini?")
+                        .setCancelText("NO")
+                        .setConfirmText("YES")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                editIzin();
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -667,7 +695,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-05-26");
+        //return ("2022-05-07");
     }
 
     private String getDateD() {
@@ -1237,6 +1265,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             String status = data.getString("izin");
 
                             if(status.equals("aktif")){
+                                String tipe_izin = data.getString("tipe_izin");
+                                String id_izin = data.getString("id_izin");
+                                idIzin = id_izin;
+                                izinDesc.setText(tipe_izin.toUpperCase());
                                 izinPart.setVisibility(View.VISIBLE);
                                 layoffPart.setVisibility(View.GONE);
                                 inputAbsenPart.setVisibility(View.GONE);
@@ -1244,9 +1276,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 attantionPart.setVisibility(View.GONE);
                                 skeletonLayout.setVisibility(View.GONE);
                                 statusAction = "history";
+                                openSessionBTN.setVisibility(View.VISIBLE);
                                 actionButton();
                             } else {
                                 izinPart.setVisibility(View.GONE);
+                                openSessionBTN.setVisibility(View.GONE);
                                 checkLayoff();
                             }
 
@@ -1272,6 +1306,98 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", sharedPrefManager.getSpNik());
                 params.put("tanggal_sekarang", getDate());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void editIzin() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/edit_izin";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                final KAlertDialog pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE)
+                                        .setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1300, 800) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (MapsActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (MapsActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (MapsActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (MapsActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (MapsActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (MapsActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+                                    public void onFinish() {
+                                        i = -1;
+                                        pDialog.setTitleText("Sesi Absensi Dibuka")
+                                                .setContentText("Anda bisa melakukan absensi hari ini.")
+                                                .setConfirmText("OK")
+                                                .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                        checkIzin();
+                                    }
+                                }.start();
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_izin", idIzin);
+                params.put("tanggal", getDate());
                 return params;
             }
         };
