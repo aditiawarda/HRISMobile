@@ -140,10 +140,10 @@
                                     android:layout_height="wrap_content">
 
                                     <ImageView
-                                        android:layout_marginTop="1dp"
+                                        android:layout_marginTop="0.5dp"
                                         android:id="@+id/img_online"
-                                        android:layout_width="15dp"
-                                        android:layout_height="15dp"
+                                        android:layout_width="14dp"
+                                        android:layout_height="14dp"
                                         android:layout_marginRight="10dp"
                                         app:srcCompat="@drawable/icon_none" />
 
@@ -152,7 +152,7 @@
                                         android:id="@+id/indicator_absen_tv"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
+                                        android:textSize="11dp"
                                         android:textColor="#AAAAAA"
                                         android:textStyle="bold"
                                         android:text="Memuat data..." />
@@ -172,7 +172,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="1dp"
                                         android:textStyle="bold"
-                                        android:textSize="11dp"
+                                        android:textSize="10dp"
                                         android:paddingLeft="3dp"
                                         android:paddingRight="3dp"
                                         android:paddingTop="0dp"
@@ -198,7 +198,7 @@
                                         android:layout_marginLeft="1dp"
                                         android:layout_marginRight="1dp"
                                         android:textStyle="bold"
-                                        android:textSize="11dp"
+                                        android:textSize="10dp"
                                         android:paddingLeft="3dp"
                                         android:paddingRight="3dp"
                                         android:paddingTop="0dp"
@@ -227,7 +227,7 @@
                                         android:paddingTop="0dp"
                                         android:paddingBottom="1dp"
                                         android:textStyle="bold"
-                                        android:textSize="11dp"
+                                        android:textSize="10dp"
                                         android:text="00"
                                         android:background="@drawable/shape_time"
                                         android:textColor="@color/white" />
@@ -1032,7 +1032,7 @@
             android:paddingTop="1dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingBottom="7dp"
+            android:paddingBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

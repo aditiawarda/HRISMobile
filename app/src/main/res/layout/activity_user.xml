@@ -718,6 +718,25 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/id_card_digital_btn"
+                            android:layout_marginBottom="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/shape_third_btn"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="#CF811F"
+                                android:text="ID Card Digital"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:id="@+id/go_web_btn"
                             android:layout_marginBottom="20dp"
                             android:layout_width="match_parent"

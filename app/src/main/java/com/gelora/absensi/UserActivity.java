@@ -99,7 +99,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout webBTN, selectMonthBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout idCardDigitalBTN, webBTN, selectMonthBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
     TextView noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -184,6 +184,7 @@ public class UserActivity extends AppCompatActivity {
         tidakCheckoutBTN = findViewById(R.id.tidak_checkout_btn);
         selectMonthBTN = findViewById(R.id.select_month_btn);
         webBTN = findViewById(R.id.go_web_btn);
+        idCardDigitalBTN = findViewById(R.id.id_card_digital_btn);
 
         selectMonth = getBulanTahun();
 
@@ -303,6 +304,16 @@ public class UserActivity extends AppCompatActivity {
                                 dialog.dismiss();
                             }
                         }).show();
+            }
+        });
+
+        idCardDigitalBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, DigitalCardActivity.class);
+                intent.putExtra("nama", sharedPrefManager.getSpNama());
+                intent.putExtra("nik", sharedPrefManager.getSpNik());
+                startActivity(intent);
             }
         });
 

@@ -67,4 +67,5 @@ dependencies {
     implementation 'com.github.isradeleon:Notify-Android:1.0.4'
     implementation 'com.github.kal72:RackMonthPicker:1.6.1'
     implementation 'com.faltenreich:skeletonlayout:4.0.0'
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
 }
