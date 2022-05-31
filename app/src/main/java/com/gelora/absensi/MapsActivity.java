@@ -695,7 +695,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-05-07");
+        //return ("2022-06-01");
     }
 
     private String getDateD() {
