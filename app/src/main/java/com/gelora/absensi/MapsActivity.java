@@ -2786,11 +2786,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // Maps style
             int hoursNow = Integer.parseInt(getTimeH());
             if (hoursNow >= 18) {
-                dayNightSwitch.isNight();
-                mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json)));
+                dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
             } else if (hoursNow >= 0 && hoursNow <= 5){
-                dayNightSwitch.isNight();
-                mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json)));
+                dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
+            } else {
+                dayNightSwitch.setIsNight(false,  mMap.setMapStyle(null));
             }
         }
     }
@@ -3436,13 +3436,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // Maps style
             int hoursNow = Integer.parseInt(getTimeH());
             if (hoursNow >= 18) {
-                dayNightSwitch.isNight();
                 dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
-                //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(0, APPEARANCE_LIGHT_STATUS_BARS);
             } else if (hoursNow >= 0 && hoursNow <= 5){
-                dayNightSwitch.isNight();
                 dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
-                //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(0, APPEARANCE_LIGHT_STATUS_BARS);
+            } else {
+                dayNightSwitch.setIsNight(false,  mMap.setMapStyle(null));
             }
 
         }
