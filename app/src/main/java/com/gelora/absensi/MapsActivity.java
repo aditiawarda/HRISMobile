@@ -2979,7 +2979,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         long min = (selisih_waktu / 60000) % 60;
         long sec = (selisih_waktu / 1000) % 60;
 
-
         if (waktu1<waktu2){
             if (statusLibur.equals("aktif")){
                 //Pulang
@@ -2999,7 +2998,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             checkoutStatus = "1";
             overTime = "00:00:00";
         }
-
 
     }
 
