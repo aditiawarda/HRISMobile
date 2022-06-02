@@ -233,7 +233,7 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="IZIN"
+                                            android:text="DENGAN KETERANGAN"
                                             android:textColor="@color/colorPrimaryDark"
                                             android:textStyle="bold" />
 
@@ -306,7 +306,7 @@
                                     android:textAlignment="center"
                                     android:textSize="11dp"
                                     android:layout_marginTop="7dp"
-                                    android:text="Data izin tidak tersedia."/>
+                                    android:text="Data dengan keterangan tidak tersedia."/>
 
                             </LinearLayout>
 

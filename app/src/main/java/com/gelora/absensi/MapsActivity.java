@@ -91,10 +91,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mahfa.dnswitch.DayNightSwitch;
+import com.mahfa.dnswitch.DayNightSwitchListener;
 import com.shasin.notificationbanner.Banner;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.suke.widget.SwitchButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -129,13 +131,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
     CompactCalendarView compactCalendarView;
     KAlertDialog pDialog;
     ResultReceiver resultReceiver;
+    SwitchButton switchZoom;
 
     private RecyclerView statusAbsenRV;
     private StatusAbsen[] statusAbsens;
@@ -232,6 +235,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         skeletonLayout = findViewById(R.id.skeleton_layout);
         izinDesc = findViewById(R.id.izin_desc);
         openSessionBTN = findViewById(R.id.open_session_btn);
+        switchZoom = findViewById(R.id.switch_zoom);
         requestQueue = Volley.newRequestQueue(getBaseContext());
 
         Glide.with(getApplicationContext())
@@ -259,18 +263,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        dayNightSwitch.setOnClickListener(new View.OnClickListener() {
+        dayNightSwitch.setListener(new DayNightSwitchListener() {
             @Override
-            public void onClick(View v) {
-                if (dayNightSwitch.isNight()) {
-                    dayNightSwitch.setIsNight(false, mMap.setMapStyle(null));
-                    //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(APPEARANCE_LIGHT_STATUS_BARS, APPEARANCE_LIGHT_STATUS_BARS);
+            public void onSwitch(boolean is_night) {
+                Log.d(TAG, "onSwitch() called with: is_night = [" + is_night + "]");
+                if (is_night) {
+                    mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json)));
                 } else {
-                    dayNightSwitch.setIsNight(true, mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
-                    //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(0, APPEARANCE_LIGHT_STATUS_BARS);
+                    mMap.setMapStyle(null);
                 }
             }
         });
+
+        switchZoom.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
+                if (isChecked){
+                    zoomAction = "1";
+                } else {
+                    zoomAction = "0";
+                }
+            }
+        });
+
+//        dayNightSwitch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (dayNightSwitch.isNight()) {
+//                    dayNightSwitch.setIsNight(false, mMap.setMapStyle(null));
+//                    //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(APPEARANCE_LIGHT_STATUS_BARS, APPEARANCE_LIGHT_STATUS_BARS);
+//                } else {
+//                    dayNightSwitch.setIsNight(true, mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
+//                    //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(0, APPEARANCE_LIGHT_STATUS_BARS);
+//                }
+//            }
+//        });
 
         openSessionBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -450,10 +477,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         userPoint = new LatLng(userLat, userLong);
 
-        // User position camera
-        float zoomLevel = 18.0f; //This goes up to 21
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
-        mMap.getUiSettings().setCompassEnabled(false);
+        if (zoomAction.equals("0")){
+            // User position camera
+            float zoomLevel = 18.0f; //This goes up to 21
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
+            mMap.getUiSettings().setCompassEnabled(false);
+        }
 
         getAction();
 
@@ -2757,8 +2786,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // Maps style
             int hoursNow = Integer.parseInt(getTimeH());
             if (hoursNow >= 18) {
+                dayNightSwitch.isNight();
                 mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json)));
             } else if (hoursNow >= 0 && hoursNow <= 5){
+                dayNightSwitch.isNight();
                 mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json)));
             }
         }
@@ -3403,9 +3434,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // Maps style
             int hoursNow = Integer.parseInt(getTimeH());
             if (hoursNow >= 18) {
+                dayNightSwitch.isNight();
                 dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
                 //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(0, APPEARANCE_LIGHT_STATUS_BARS);
             } else if (hoursNow >= 0 && hoursNow <= 5){
+                dayNightSwitch.isNight();
                 dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
                 //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(0, APPEARANCE_LIGHT_STATUS_BARS);
             }

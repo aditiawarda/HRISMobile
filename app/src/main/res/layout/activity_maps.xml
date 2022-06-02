@@ -1083,7 +1083,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="10dp"
+            android:paddingTop="7dp"
             android:paddingRight="15dp"
             android:paddingLeft="15dp"
             android:orientation="horizontal">
@@ -1097,10 +1097,12 @@
                 <LinearLayout
                     android:id="@+id/info_cuaca_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="23dp"
+                    android:layout_height="21dp"
+                    android:layout_marginTop="3dp"
                     android:background="@drawable/shape_button_cuaca"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:paddingBottom="1dp"
                     android:gravity="center|left">
 
                     <TextView
@@ -1122,10 +1124,17 @@
                 android:gravity="right"
                 android:orientation="horizontal">
 
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/switch_zoom"
+                    android:layout_width="52dp"
+                    android:layout_height="26dp"
+                    app:sb_checked_color="#FFA330"
+                    android:layout_marginRight="5dp"/>
+
                 <com.mahfa.dnswitch.DayNightSwitch
                     android:id="@+id/day_night_switch"
-                    android:layout_width="45dp"
-                    android:layout_height="23dp"
+                    android:layout_width="44dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center"/>
 
             </LinearLayout>
