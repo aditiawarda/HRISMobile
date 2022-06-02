@@ -692,7 +692,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("01:00:00");
+        //return ("07:00:00");
     }
 
     private String getTimeH() {
@@ -724,7 +724,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-06-01");
+        //return ("2022-06-03");
     }
 
     private String getDateD() {
@@ -3188,6 +3188,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                         } else {
 
+                                            Toast.makeText(MapsActivity.this, interval, Toast.LENGTH_SHORT).show();
                                             String masuk  = timestamp_checkin;
                                             String batas = getDate()+" "+getTime();
 
