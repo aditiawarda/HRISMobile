@@ -3098,6 +3098,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             actionButton();
 
                                         } else if (tipe_shift.equals("Tanggung")){
+
                                             String pulang  = tgl_checkin+" "+time_checkout;
                                             String batas = getDate()+" "+getTime();
 
@@ -3187,6 +3188,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             }
 
                                         } else {
+
                                             String masuk  = timestamp_checkin;
                                             String batas = getDate()+" "+getTime();
 
@@ -3276,14 +3278,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             }
                                         }
                                     } else {
-
-                                        if (dialogAktif.equals("1")){
-                                            pDialog.setTitleText("Check In Berhasil!")
-                                                    .setConfirmText("OK")
-                                                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                                            dialogAktif = "0";
-                                        }
-
                                         warningPart.setVisibility(View.GONE);
                                         dateCheckoutTV.setText("---- - -- - --");
                                         timeCheckoutTV.setText("-- : -- : --");
@@ -3297,6 +3291,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     }
 
                                 } else {
+
                                     warningPart.setVisibility(View.GONE);
                                     inputAbsenPart.setVisibility(View.GONE);
                                     recordAbsenPart.setVisibility(View.VISIBLE);
@@ -3336,6 +3331,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     }
                                 } else {
                                     checkoutPointTV.setText(checkout_point);
+                                }
+
+                                if (dialogAktif.equals("1")){
+                                    pDialog.setTitleText("Check In Berhasil!")
+                                            .setConfirmText("OK")
+                                            .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                    dialogAktif = "0";
                                 }
 
                             }
