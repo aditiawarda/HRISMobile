@@ -3282,7 +3282,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         dateCheckoutTV.setText("---- - -- - --");
                                         timeCheckoutTV.setText("-- : -- : --");
                                         statusAction = "checkout";
-                                        ucapanTV.setText("Selamat dan SUMAngat Bekerja!");
+                                        ucapanTV.setText("\"Selamat dan SUMAngat Bekerja!\"");
                                         inputAbsenPart.setVisibility(View.GONE);
                                         recordAbsenPart.setVisibility(View.VISIBLE);
                                         attantionPart.setVisibility(View.GONE);
@@ -3299,7 +3299,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     skeletonLayout.setVisibility(View.GONE);
                                     dateCheckoutTV.setText(date_checkout);
                                     timeCheckoutTV.setText(time_checkout+" "+getTimeZone());
-                                    ucapanTV.setText("Terima kasih telah masuk kerja hari ini.");
+                                    ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini.\"");
 
                                     //if (tgl_checkin.equals(getDate())){
                                     statusAction = "history";
