@@ -234,6 +234,11 @@ public class UserActivity extends AppCompatActivity {
 
                 noCheckoutLoading.setVisibility(View.VISIBLE);
                 noCheckoutData.setVisibility(View.GONE);
+
+                markerWarningAlpha.setVisibility(View.GONE);
+                markerWarningLate.setVisibility(View.GONE);
+                markerWarningNoCheckout.setVisibility(View.GONE);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
