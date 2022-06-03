@@ -138,6 +138,10 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                 emptyDataAlpa.setVisibility(View.GONE);
 
                 markerWarningAlpha.setVisibility(View.GONE);
+
+                dataTotalIzin.setText("");
+                dataTotalAlpa.setText("");
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
