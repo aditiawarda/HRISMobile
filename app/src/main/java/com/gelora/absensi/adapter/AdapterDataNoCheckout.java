@@ -134,6 +134,12 @@ public class AdapterDataNoCheckout extends RecyclerView.Adapter<AdapterDataNoChe
         myViewHolder.checkinPoint.setText(dataNoCheckout.getCheckin_point());
         myViewHolder.ket.setText(dataNoCheckout.getKet());
 
+        if (myViewHolder.checkinPoint.getText().toString().equals("")){
+            myViewHolder.checkinPoint.setText(sharedPrefManager.getSpNama());
+        } else {
+            myViewHolder.checkinPoint.setText(dataNoCheckout.getCheckin_point());
+        }
+
     }
 
     @Override

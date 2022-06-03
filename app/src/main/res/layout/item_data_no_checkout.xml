@@ -165,6 +165,7 @@
                     android:layout_marginBottom="15dp"
                     android:id="@+id/ket_tv"
                     android:layout_width="match_parent"
+                    android:textStyle="bold"
                     android:textColor="#FF1A1A"
                     android:drawableTint="#FF1A1A"
                     android:layout_height="wrap_content"

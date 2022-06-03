@@ -133,6 +133,12 @@ public class AdapterDataTerlambat extends RecyclerView.Adapter<AdapterDataTerlam
         myViewHolder.jamMasuk.setText(dataTerlambat.getJam_masuk());
         myViewHolder.checkinPoint.setText(dataTerlambat.getCheckin_point());
 
+        if (myViewHolder.checkinPoint.getText().toString().equals("")){
+            myViewHolder.checkinPoint.setText(sharedPrefManager.getSpNama());
+        } else {
+            myViewHolder.checkinPoint.setText(dataTerlambat.getCheckin_point());
+        }
+
         if(!dataTerlambat.getWaktu_terlambat().substring(0, 2).equals("00")){ // 01:01:01
             if (!dataTerlambat.getWaktu_terlambat().substring(3, 5).equals("00")){ // 01:01:01
                 myViewHolder.keterlambatanJam.setText(dataTerlambat.getWaktu_terlambat().substring(0,2)+" jam "+dataTerlambat.getWaktu_terlambat().substring(3,5)+" menit "+dataTerlambat.getWaktu_terlambat().substring(6,8)+" detik");
