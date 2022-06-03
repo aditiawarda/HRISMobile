@@ -166,6 +166,7 @@
                     android:id="@+id/keterlambatan_tv"
                     android:layout_width="match_parent"
                     android:drawableTint="#FF1A1A"
+                    android:textColor="#FF1A1A"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_baseline_late"
                     android:drawablePadding="7dp"
