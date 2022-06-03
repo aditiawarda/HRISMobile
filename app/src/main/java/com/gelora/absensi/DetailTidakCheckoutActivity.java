@@ -46,7 +46,7 @@ import java.util.Map;
 
 public class DetailTidakCheckoutActivity extends AppCompatActivity {
 
-    LinearLayout monthBTN, emptyDataNoCheckout, loadingNoCheckoutPart, backBTN, homeBTN;
+    LinearLayout markerWarningNocheckout, monthBTN, emptyDataNoCheckout, loadingNoCheckoutPart, backBTN, homeBTN;
     ImageView bulanLoading, noCheckoutLoading, loadingDataNoCheckout;
     TextView dataBulan, dataTahun, dataNoCheckout, nameUserTV;
     SharedPrefManager sharedPrefManager;
@@ -76,6 +76,7 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
         loadingNoCheckoutPart = findViewById(R.id.loading_data_part_nocheckout);
         emptyDataNoCheckout = findViewById(R.id.no_data_part_nocheckout);
         monthBTN = findViewById(R.id.month_btn);
+        markerWarningNocheckout = findViewById(R.id.marker_warning_nocheckout_detail);
 
         bulanPilih = getIntent().getExtras().getString("bulan");
 
@@ -239,10 +240,12 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
                                 dataNoCheckout.setVisibility(View.VISIBLE);
 
                                 if (tidak_checkout.equals("0")){
+                                    markerWarningNocheckout.setVisibility(View.GONE);
                                     emptyDataNoCheckout.setVisibility(View.VISIBLE);
                                     dataNoCheckoutRV.setVisibility(View.GONE);
                                     loadingNoCheckoutPart.setVisibility(View.GONE);
                                 } else {
+                                    markerWarningNocheckout.setVisibility(View.VISIBLE);
                                     dataNoCheckoutRV.setVisibility(View.VISIBLE);
                                     loadingNoCheckoutPart.setVisibility(View.GONE);
                                     String data_no_checkout = data.getString("data");

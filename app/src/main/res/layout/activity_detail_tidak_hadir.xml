@@ -241,10 +241,8 @@
 
                                     <LinearLayout
                                         android:layout_alignParentRight="true"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="45dp"
                                         android:layout_height="match_parent"
-                                        android:paddingLeft="15dp"
-                                        android:paddingRight="15dp"
                                         android:background="@drawable/shape_second_btn"
                                         android:gravity="center">
 
@@ -323,8 +321,8 @@
 
                                 <ImageView
                                     android:id="@+id/loading_data_izin"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
+                                    android:layout_width="68dp"
+                                    android:layout_height="68dp"
                                     android:layout_marginBottom="5dp"
                                     app:srcCompat="@drawable/loading" />
 
@@ -355,63 +353,92 @@
                             android:background="#3CCFCFCF"/>
 
                         <LinearLayout
-                            android:paddingRight="20dp"
-                            android:paddingLeft="20dp"
                             android:layout_marginBottom="30dp"
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <LinearLayout
-                                android:layout_marginTop="20dp"
+                                android:layout_marginTop="10dp"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
+                                android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp">
 
-                                <RelativeLayout
+                                <LinearLayout
                                     android:layout_width="match_parent"
+                                    android:orientation="vertical"
                                     android:layout_height="wrap_content">
 
-                                    <LinearLayout
-                                        android:gravity="center|left"
+                                    <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="wrap_content">
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:textColor="@color/colorPrimaryDark"
-                                            android:textStyle="bold"
-                                            android:text="TANPA KETERANGAN"/>
+                                        <LinearLayout
+                                            android:layout_height="38dp"
+                                            android:layout_marginTop="10dp"
+                                            android:gravity="center|left"
+                                            android:layout_marginRight="20dp"
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_width="match_parent">
 
-                                    </LinearLayout>
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/colorPrimaryDark"
+                                                android:textStyle="bold"
+                                                android:text="TANPA KETERANGAN"/>
 
-                                    <LinearLayout
-                                        android:layout_alignParentRight="true"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:paddingLeft="15dp"
-                                        android:paddingRight="15dp"
-                                        android:background="@drawable/shape_second_btn"
-                                        android:gravity="center">
+                                        </LinearLayout>
 
-                                        <TextView
-                                            android:id="@+id/total_data_alpa"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:textStyle="bold"
-                                            android:textColor="@color/white"
-                                            android:text=""/>
+                                        <LinearLayout
+                                            android:layout_marginTop="10dp"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_width="45dp"
+                                            android:layout_height="38dp"
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:background="@drawable/shape_second_btn"
+                                            android:gravity="center">
 
-                                    </LinearLayout>
+                                            <TextView
+                                                android:id="@+id/total_data_alpa"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textStyle="bold"
+                                                android:textColor="@color/white"
+                                                android:text=""/>
 
-                                </RelativeLayout>
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_marginTop="5dp"
+                                            android:gravity="right"
+                                            android:layout_marginLeft="13dp"
+                                            android:layout_marginRight="13dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <LinearLayout
+                                                android:visibility="gone"
+                                                android:id="@+id/marker_warning_alpha_detail"
+                                                android:layout_width="15dp"
+                                                android:layout_height="15dp"
+                                                android:background="@drawable/ic_warning_img"
+                                                android:orientation="horizontal"/>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
 
                             </LinearLayout>
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:visibility="gone"
                                 android:id="@+id/data_alpa_rv"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="20dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
@@ -426,6 +453,8 @@
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
                                 android:paddingTop="20dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center">
 
@@ -465,13 +494,15 @@
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
                                 android:paddingTop="20dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="20dp"
                                 android:orientation="vertical"
                                 android:gravity="center">
 
                                 <ImageView
                                     android:id="@+id/loading_data_alpa"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
+                                    android:layout_width="68dp"
+                                    android:layout_height="68dp"
                                     android:layout_marginBottom="5dp"
                                     app:srcCompat="@drawable/loading" />
 

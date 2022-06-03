@@ -99,7 +99,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout idCardDigitalBTN, webBTN, selectMonthBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, webBTN, selectMonthBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
     TextView noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -185,6 +185,9 @@ public class UserActivity extends AppCompatActivity {
         selectMonthBTN = findViewById(R.id.select_month_btn);
         webBTN = findViewById(R.id.go_web_btn);
         idCardDigitalBTN = findViewById(R.id.id_card_digital_btn);
+        markerWarningAlpha = findViewById(R.id.marker_warning_alpha);
+        markerWarningLate = findViewById(R.id.marker_warning_late);
+        markerWarningNoCheckout = findViewById(R.id.marker_warning_nocheckout);
 
         selectMonth = getBulanTahun();
 
@@ -293,6 +296,7 @@ public class UserActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         getDataHadir();
+                                        checkWarning();
                                     }
                                 }, 500);
 
@@ -475,6 +479,7 @@ public class UserActivity extends AppCompatActivity {
         getCurrentDay();
         getDataKaryawan();
         getDataHadir();
+        checkWarning();
         nameUserTV.setText(nama.toUpperCase());
         nikTV.setText(nik);
 
@@ -1639,6 +1644,78 @@ public class UserActivity extends AppCompatActivity {
 
     private static float convertFromKelvinToCelsius(float value) {
         return value - 273.15f;
+    }
+
+    private void checkWarning() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/warning_absen";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                String alpa = data.getString("alpa");
+                                String terlambat = data.getString("terlambat");
+                                String tidak_checkout = data.getString("tidak_checkout");
+
+                                int alpaNumb = Integer.parseInt(alpa);
+                                int lateNumb = Integer.parseInt(terlambat);
+                                int noCheckoutNumb = Integer.parseInt(tidak_checkout);
+
+                                if(noCheckoutNumb > 0) {
+                                    markerWarningNoCheckout.setVisibility(View.VISIBLE);
+                                } else {
+                                    markerWarningNoCheckout.setVisibility(View.GONE);
+                                }
+
+                                if (alpaNumb > 0){
+                                    markerWarningAlpha.setVisibility(View.VISIBLE);
+                                } else {
+                                    markerWarningAlpha.setVisibility(View.GONE);
+                                }
+
+                                if(lateNumb > 0){
+                                    markerWarningLate.setVisibility(View.VISIBLE);
+                                } else {
+                                    markerWarningLate.setVisibility(View.GONE);
+                                }
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("bulan", selectMonth);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
     }
 
     @SuppressLint("SetTextI18n")

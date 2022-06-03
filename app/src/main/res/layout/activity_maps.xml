@@ -248,51 +248,82 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
 
-                                <LinearLayout
-                                    android:id="@+id/point_part"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_width="0dp"
-                                    android:layout_weight=".85"
-                                    android:layout_height="35dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:layout_marginLeft="20dp"
-                                    android:layout_marginRight="10dp"
-                                    android:background="@drawable/shape_point"
-                                    android:gravity="center">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                                    <TextView
-                                        android:id="@+id/abesen_point_tv"
-                                        android:layout_width="wrap_content"
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:textColor="#AAAAAA"
-                                        android:textSize="12dp"
-                                        android:textStyle="bold"
-                                        android:text="Memuat data..."/>
+                                        android:orientation="horizontal">
 
-                                </LinearLayout>
+                                        <LinearLayout
+                                            android:id="@+id/point_part"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".85"
+                                            android:layout_height="35dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="10dp"
+                                            android:background="@drawable/shape_point"
+                                            android:gravity="center">
 
-                                <LinearLayout
-                                    android:id="@+id/user_btn_part"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_width="0dp"
-                                    android:layout_weight=".15"
-                                    android:layout_height="35dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:layout_marginRight="20dp"
-                                    android:background="@drawable/shape_account"
-                                    android:gravity="center">
+                                            <TextView
+                                                android:id="@+id/abesen_point_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="#AAAAAA"
+                                                android:textSize="12dp"
+                                                android:textStyle="bold"
+                                                android:text="Memuat data..."/>
 
-                                    <TextView
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:textColor="#A8C74A1A"
-                                        android:textSize="12dp"
-                                        android:backgroundTint="@color/white"
-                                        android:background="@drawable/ic_baseline_account"
-                                        android:textStyle="bold"
-                                        android:text=""/>
+                                        </LinearLayout>
 
-                                </LinearLayout>
+                                        <LinearLayout
+                                            android:id="@+id/user_btn_part"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".15"
+                                            android:layout_height="35dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:layout_marginRight="20dp"
+                                            android:background="@drawable/shape_account"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:textColor="#A8C74A1A"
+                                                android:textSize="12dp"
+                                                android:backgroundTint="@color/white"
+                                                android:background="@drawable/ic_baseline_account"
+                                                android:textStyle="bold"
+                                                android:text=""/>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:gravity="right"
+                                        android:paddingRight="13dp"
+                                        android:paddingLeft="13dp"
+                                        android:paddingTop="5dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <LinearLayout
+                                            android:visibility="gone"
+                                            android:id="@+id/marker_warning"
+                                            android:layout_width="15dp"
+                                            android:layout_height="15dp"
+                                            android:background="@drawable/ic_warning_img"
+                                            android:orientation="horizontal"/>
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
 
                             </LinearLayout>
 

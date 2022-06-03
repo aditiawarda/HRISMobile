@@ -48,7 +48,7 @@ import java.util.Map;
 
 public class DetailTerlambatActivity extends AppCompatActivity {
 
-    LinearLayout monthBTN, emptyDataLate, loadingLatePart, backBTN, homeBTN;
+    LinearLayout markerWarningLate, monthBTN, emptyDataLate, loadingLatePart, backBTN, homeBTN;
     ImageView bulanLoading, lateLoading, loadingDataLate;
     TextView dataBulan, dataTahun, dataLate, nameUserTV;
     SharedPrefManager sharedPrefManager;
@@ -78,6 +78,7 @@ public class DetailTerlambatActivity extends AppCompatActivity {
         loadingLatePart = findViewById(R.id.loading_data_part_telat);
         emptyDataLate = findViewById(R.id.no_data_part_late);
         monthBTN = findViewById(R.id.month_btn);
+        markerWarningLate = findViewById(R.id.marker_warning_late_detail);
 
         bulanPilih = getIntent().getExtras().getString("bulan");
 
@@ -237,10 +238,12 @@ public class DetailTerlambatActivity extends AppCompatActivity {
                                 dataLate.setVisibility(View.VISIBLE);
 
                                 if (terlambat.equals("0")){
+                                    markerWarningLate.setVisibility(View.GONE);
                                     emptyDataLate.setVisibility(View.VISIBLE);
                                     dataLateRV.setVisibility(View.GONE);
                                     loadingLatePart.setVisibility(View.GONE);
                                 } else {
+                                    markerWarningLate.setVisibility(View.VISIBLE);
                                     dataLateRV.setVisibility(View.VISIBLE);
                                     loadingLatePart.setVisibility(View.GONE);
                                     String data_telat = data.getString("data");

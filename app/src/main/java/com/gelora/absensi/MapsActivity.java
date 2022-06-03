@@ -127,7 +127,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     SwipeRefreshLayout refreshLayout;
     ImageView weatherIconPart, onlineGif, loadingGif, warningGif;
     TextView izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout openSessionBTN, skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    LinearLayout markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -236,6 +236,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         izinDesc = findViewById(R.id.izin_desc);
         openSessionBTN = findViewById(R.id.open_session_btn);
         switchZoom = findViewById(R.id.switch_zoom);
+        markerWarningAbsensi = findViewById(R.id.marker_warning);
         requestQueue = Volley.newRequestQueue(getBaseContext());
 
         Glide.with(getApplicationContext())
@@ -285,19 +286,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
-
-//        dayNightSwitch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (dayNightSwitch.isNight()) {
-//                    dayNightSwitch.setIsNight(false, mMap.setMapStyle(null));
-//                    //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(APPEARANCE_LIGHT_STATUS_BARS, APPEARANCE_LIGHT_STATUS_BARS);
-//                } else {
-//                    dayNightSwitch.setIsNight(true, mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
-//                    //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(0, APPEARANCE_LIGHT_STATUS_BARS);
-//                }
-//            }
-//        });
 
         openSessionBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -401,6 +389,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         timeLive();
         dateLive();
         checkIzin();
+        checkWarning();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
 
@@ -749,6 +738,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return dateFormat.format(date);
     }
 
+    private String getBulanTahun() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
     private String getTimeZone() {
         @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("z");
@@ -877,7 +873,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         requestQueue.add(postRequest);
 
     }
-
 
     private void getShiftAbsenBagian() {
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -2765,6 +2760,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         timeLive();
         dateLive();
         checkIzin();
+        checkWarning();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
         idShiftAbsen = "";
@@ -3299,7 +3295,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     skeletonLayout.setVisibility(View.GONE);
                                     dateCheckoutTV.setText(date_checkout);
                                     timeCheckoutTV.setText(time_checkout+" "+getTimeZone());
-                                    ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini.\"");
+                                    ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini\"");
 
                                     //if (tgl_checkin.equals(getDate())){
                                     statusAction = "history";
@@ -4170,6 +4166,64 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         requestQueue.add(request);
+
+    }
+
+    private void checkWarning() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/warning_absen";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                String alpa = data.getString("alpa");
+                                String terlambat = data.getString("terlambat");
+                                String tidak_checkout = data.getString("tidak_checkout");
+
+                                int alpaNumb = Integer.parseInt(alpa);
+                                int lateNumb = Integer.parseInt(terlambat);
+                                int noCheckoutNumb = Integer.parseInt(tidak_checkout);
+                                if (alpaNumb > 0 || lateNumb > 0 || noCheckoutNumb > 0){
+                                    markerWarningAbsensi.setVisibility(View.VISIBLE);
+                                } else {
+                                    markerWarningAbsensi.setVisibility(View.GONE);
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("bulan", getBulanTahun());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
 
     }
 

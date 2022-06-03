@@ -307,38 +307,68 @@
                                     android:id="@+id/btn_tidak_hadir"
                                     android:layout_width="0dp"
                                     android:layout_weight=".50"
-                                    android:paddingTop="10dp"
-                                    android:paddingBottom="10dp"
-                                    android:paddingRight="15dp"
-                                    android:paddingLeft="15dp"
                                     android:background="@drawable/shape_tidak_hadir"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
                                     android:orientation="vertical">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textColor="@color/white"
-                                        android:textStyle="bold"
-                                        android:textSize="10dp"
-                                        android:text="Tidak Hadir"/>
-
-                                    <TextView
-                                        android:visibility="gone"
-                                        android:id="@+id/data_tidak_hadir"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textColor="@color/white"
-                                        android:textSize="30dp"
-                                        android:textStyle="bold"
-                                        android:text="0"/>
-
-                                    <ImageView
-                                        android:id="@+id/tidak_hadir_loading"
+                                    <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="40.5dp"
-                                        app:srcCompat="@drawable/loading_dots" />
+                                        android:layout_height="wrap_content">
+
+                                        <LinearLayout
+                                            android:orientation="vertical"
+                                            android:paddingTop="10dp"
+                                            android:paddingBottom="10dp"
+                                            android:paddingRight="15dp"
+                                            android:paddingLeft="15dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textStyle="bold"
+                                                android:textSize="10dp"
+                                                android:text="Tidak Hadir"/>
+
+                                            <TextView
+                                                android:visibility="gone"
+                                                android:id="@+id/data_tidak_hadir"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textSize="30dp"
+                                                android:textStyle="bold"
+                                                android:text="0"/>
+
+                                            <ImageView
+                                                android:id="@+id/tidak_hadir_loading"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="40.5dp"
+                                                app:srcCompat="@drawable/loading_dots" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:gravity="right"
+                                            android:paddingTop="7dp"
+                                            android:paddingRight="7dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <LinearLayout
+                                                android:visibility="gone"
+                                                android:id="@+id/marker_warning_alpha"
+                                                android:layout_width="15dp"
+                                                android:layout_height="15dp"
+                                                android:background="@drawable/ic_warning_img"
+                                                android:orientation="horizontal"/>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
 
                                 </LinearLayout>
 
@@ -362,37 +392,67 @@
                                     android:id="@+id/terlambat_btn"
                                     android:layout_width="0dp"
                                     android:layout_weight=".50"
-                                    android:paddingTop="10dp"
-                                    android:paddingBottom="10dp"
-                                    android:paddingRight="15dp"
-                                    android:paddingLeft="15dp"
                                     android:background="@drawable/shape_terlambat"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textColor="@color/white"
-                                        android:textStyle="bold"
-                                        android:textSize="10dp"
-                                        android:text="Terlambat"/>
-
-                                    <TextView
-                                        android:visibility="gone"
-                                        android:id="@+id/data_terlambat"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textColor="@color/white"
-                                        android:textSize="30dp"
-                                        android:textStyle="bold"
-                                        android:text="0"/>
-
-                                    <ImageView
-                                        android:id="@+id/terlambat_loading"
+                                    <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="40.5dp"
-                                        app:srcCompat="@drawable/loading_dots" />
+                                        android:layout_height="wrap_content">
+
+                                        <LinearLayout
+                                            android:orientation="vertical"
+                                            android:paddingTop="10dp"
+                                            android:paddingBottom="10dp"
+                                            android:paddingRight="15dp"
+                                            android:paddingLeft="15dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textStyle="bold"
+                                                android:textSize="10dp"
+                                                android:text="Terlambat"/>
+
+                                            <TextView
+                                                android:visibility="gone"
+                                                android:id="@+id/data_terlambat"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textSize="30dp"
+                                                android:textStyle="bold"
+                                                android:text="0"/>
+
+                                            <ImageView
+                                                android:id="@+id/terlambat_loading"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="40.5dp"
+                                                app:srcCompat="@drawable/loading_dots" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:gravity="right"
+                                            android:paddingTop="7dp"
+                                            android:paddingRight="7dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <LinearLayout
+                                                android:visibility="gone"
+                                                android:id="@+id/marker_warning_late"
+                                                android:layout_width="15dp"
+                                                android:layout_height="15dp"
+                                                android:background="@drawable/ic_warning_img"
+                                                android:orientation="horizontal"/>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
 
                                 </LinearLayout>
 
@@ -400,38 +460,68 @@
                                     android:id="@+id/tidak_checkout_btn"
                                     android:layout_width="0dp"
                                     android:layout_weight=".50"
-                                    android:paddingTop="10dp"
-                                    android:paddingBottom="10dp"
-                                    android:paddingRight="15dp"
-                                    android:paddingLeft="15dp"
                                     android:background="@drawable/shape_no_checkout"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
                                     android:orientation="vertical">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textColor="@color/white"
-                                        android:textStyle="bold"
-                                        android:textSize="10dp"
-                                        android:text="Tidak Checkout"/>
-
-                                    <TextView
-                                        android:visibility="gone"
-                                        android:id="@+id/data_no_checkout"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textColor="@color/white"
-                                        android:textSize="30dp"
-                                        android:textStyle="bold"
-                                        android:text="0"/>
-
-                                    <ImageView
-                                        android:id="@+id/no_checkout_loading"
+                                    <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="40.5dp"
-                                        app:srcCompat="@drawable/loading_dots" />
+                                        android:layout_height="wrap_content">
+
+                                        <LinearLayout
+                                            android:orientation="vertical"
+                                            android:paddingTop="10dp"
+                                            android:paddingBottom="10dp"
+                                            android:paddingRight="15dp"
+                                            android:paddingLeft="15dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textStyle="bold"
+                                                android:textSize="10dp"
+                                                android:text="Tidak Checkout"/>
+
+                                            <TextView
+                                                android:visibility="gone"
+                                                android:id="@+id/data_no_checkout"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textSize="30dp"
+                                                android:textStyle="bold"
+                                                android:text="0"/>
+
+                                            <ImageView
+                                                android:id="@+id/no_checkout_loading"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="40.5dp"
+                                                app:srcCompat="@drawable/loading_dots" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:gravity="right"
+                                            android:paddingTop="7dp"
+                                            android:paddingRight="7dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <LinearLayout
+                                                android:visibility="gone"
+                                                android:id="@+id/marker_warning_nocheckout"
+                                                android:layout_width="15dp"
+                                                android:layout_height="15dp"
+                                                android:background="@drawable/ic_warning_img"
+                                                android:orientation="horizontal"/>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
 
                                 </LinearLayout>
 

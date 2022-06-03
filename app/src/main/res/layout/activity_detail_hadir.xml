@@ -278,8 +278,8 @@
 
                                 <ImageView
                                     android:id="@+id/loading_data_hadir"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
+                                    android:layout_width="68dp"
+                                    android:layout_height="68dp"
                                     android:layout_marginBottom="5dp"
                                     app:srcCompat="@drawable/loading" />
 

@@ -48,7 +48,7 @@ import java.util.Map;
 
 public class DetailTidakHadirActivity extends AppCompatActivity {
 
-    LinearLayout monthBTN, emptyDataIzin, emptyDataAlpa, loadingIzinPart, loadingAlpaPart, backBTN, homeBTN;
+    LinearLayout markerWarningAlpha, monthBTN, emptyDataIzin, emptyDataAlpa, loadingIzinPart, loadingAlpaPart, backBTN, homeBTN;
     ImageView bulanLoading, tidakHadirLoading, loadingDataIzin, loadingDataAlpa;
     TextView dataTotalIzin, dataTotalAlpa, dataBulan, dataTahun, dataTidakHadir, nameUserTV;
     SharedPrefManager sharedPrefManager;
@@ -87,6 +87,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
         emptyDataAlpa = findViewById(R.id.no_data_part_alpa);
         emptyDataIzin = findViewById(R.id.no_data_part_izin);
         monthBTN = findViewById(R.id.month_btn);
+        markerWarningAlpha = findViewById(R.id.marker_warning_alpha_detail);
 
         bulanPilih = getIntent().getExtras().getString("bulan");
 
@@ -338,10 +339,12 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                                 }
 
                                 if (total_alpa.equals("0")){
+                                    markerWarningAlpha.setVisibility(View.GONE);
                                     emptyDataAlpa.setVisibility(View.VISIBLE);
                                     dataAlpaRV.setVisibility(View.GONE);
                                     loadingAlpaPart.setVisibility(View.GONE);
                                 } else {
+                                    markerWarningAlpha.setVisibility(View.VISIBLE);
                                     dataAlpaRV.setVisibility(View.VISIBLE);
                                     loadingAlpaPart.setVisibility(View.GONE);
                                     dataAlpas = gson.fromJson(alpa, DataAlpa[].class);
