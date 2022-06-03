@@ -113,6 +113,8 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
                 loadingNoCheckoutPart.setVisibility(View.VISIBLE);
                 emptyDataNoCheckout.setVisibility(View.GONE);
 
+                markerWarningNocheckout.setVisibility(View.GONE);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
