@@ -1126,6 +1126,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/info_cuaca_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="21dp"

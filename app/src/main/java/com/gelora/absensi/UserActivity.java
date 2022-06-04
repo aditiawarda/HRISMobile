@@ -1476,13 +1476,11 @@ public class UserActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.e("PaRSE JSON", response + "");
-                        dataCuaca.setVisibility(View.VISIBLE);
                         JSONArray data = null;
                         try {
                             data = response.getJSONArray("weather");
                             JSONObject suhu = response.getJSONObject("main");
                             String name = response.getString("name");
-                            //Toast.makeText(UserActivity.this, name, Toast.LENGTH_SHORT).show();
                             String temp = suhu.getString("temp");
                             String feels_like = suhu.getString("feels_like");
                             float f = Float.parseFloat(temp);
@@ -1672,6 +1670,13 @@ public class UserActivity extends AppCompatActivity {
                                 String alpa = data.getString("alpa");
                                 String terlambat = data.getString("terlambat");
                                 String tidak_checkout = data.getString("tidak_checkout");
+                                String cuaca_button = data.getString("cuaca_button");
+
+                                if (cuaca_button.equals("1")){
+                                    dataCuaca.setVisibility(View.VISIBLE);
+                                } else {
+                                    dataCuaca.setVisibility(View.GONE);
+                                }
 
                                 int alpaNumb = Integer.parseInt(alpa);
                                 int lateNumb = Integer.parseInt(terlambat);

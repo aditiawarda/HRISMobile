@@ -4186,6 +4186,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String alpa = data.getString("alpa");
                                 String terlambat = data.getString("terlambat");
                                 String tidak_checkout = data.getString("tidak_checkout");
+                                String cuaca_button = data.getString("cuaca_button");
+
+                                if (cuaca_button.equals("1")){
+                                    cuacaBTN.setVisibility(View.VISIBLE);
+                                } else {
+                                    cuacaBTN.setVisibility(View.GONE);
+                                }
 
                                 int alpaNumb = Integer.parseInt(alpa);
                                 int lateNumb = Integer.parseInt(terlambat);
