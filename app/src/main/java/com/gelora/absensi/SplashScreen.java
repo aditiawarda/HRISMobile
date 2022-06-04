@@ -379,11 +379,12 @@ public class SplashScreen extends AppCompatActivity {
                             refreshLayout.setRefreshing(false);
                             String status = response.getString("status");
                             String version = response.getString("version");
+                            String popup = response.getString("pop_up");
                             String close_btn = response.getString("close_btn");
 
                             if (status.equals("Success")){
                                 String currentVersion = "1.1.27";
-                                if (!currentVersion.equals(version)){
+                                if (!currentVersion.equals(version) && popup.equals("1")){
                                     statusUpdateLayout = "1";
 
                                     Animation animation = new TranslateAnimation(0, 0,500, 0);
