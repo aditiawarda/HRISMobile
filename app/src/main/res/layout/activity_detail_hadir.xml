@@ -170,7 +170,8 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/attantion_part"
+                            android:visibility="gone"
+                            android:id="@+id/attantion_part_hadir"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="20dp"
@@ -192,13 +193,14 @@
                                 android:text="Perhatian :"/>
 
                             <TextView
+                                android:id="@+id/message_hadir"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:textColor="#C68D46"
                                 android:textSize="11dp"
                                 android:layout_marginTop="7dp"
-                                android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur Fingerscan."/>
+                                android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur fingerscan."/>
 
                         </LinearLayout>
 

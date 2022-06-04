@@ -46,9 +46,9 @@ import java.util.Map;
 
 public class DetailTidakCheckoutActivity extends AppCompatActivity {
 
-    LinearLayout markerWarningNocheckout, monthBTN, emptyDataNoCheckout, loadingNoCheckoutPart, backBTN, homeBTN;
+    LinearLayout attantionPart, markerWarningNocheckout, monthBTN, emptyDataNoCheckout, loadingNoCheckoutPart, backBTN, homeBTN;
     ImageView bulanLoading, noCheckoutLoading, loadingDataNoCheckout;
-    TextView dataBulan, dataTahun, dataNoCheckout, nameUserTV;
+    TextView messageNoCheckout, dataBulan, dataTahun, dataNoCheckout, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     String bulanPilih;
@@ -77,6 +77,8 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
         emptyDataNoCheckout = findViewById(R.id.no_data_part_nocheckout);
         monthBTN = findViewById(R.id.month_btn);
         markerWarningNocheckout = findViewById(R.id.marker_warning_nocheckout_detail);
+        attantionPart = findViewById(R.id.attantion_part_nocheckout);
+        messageNoCheckout = findViewById(R.id.message_nocheckout);
 
         bulanPilih = getIntent().getExtras().getString("bulan");
 
@@ -114,6 +116,7 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
                 emptyDataNoCheckout.setVisibility(View.GONE);
 
                 markerWarningNocheckout.setVisibility(View.GONE);
+                attantionPart.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -242,11 +245,14 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
                                 dataNoCheckout.setVisibility(View.VISIBLE);
 
                                 if (tidak_checkout.equals("0")){
+                                    attantionPart.setVisibility(View.GONE);
                                     markerWarningNocheckout.setVisibility(View.GONE);
                                     emptyDataNoCheckout.setVisibility(View.VISIBLE);
                                     dataNoCheckoutRV.setVisibility(View.GONE);
                                     loadingNoCheckoutPart.setVisibility(View.GONE);
                                 } else {
+                                    attantionPart.setVisibility(View.VISIBLE);
+                                    messageNoCheckout.setText("Terdapat "+tidak_checkout+" data tidak checkout, harap segera lakukan prosedur fingerscan dan serahkan ke bagian HRD.");
                                     markerWarningNocheckout.setVisibility(View.VISIBLE);
                                     dataNoCheckoutRV.setVisibility(View.VISIBLE);
                                     loadingNoCheckoutPart.setVisibility(View.GONE);

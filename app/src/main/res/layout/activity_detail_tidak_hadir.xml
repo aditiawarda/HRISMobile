@@ -170,39 +170,6 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/attantion_part"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="5dp"
-                            android:paddingBottom="20dp"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
-                            android:paddingTop="15dp"
-                            android:orientation="vertical"
-                            android:background="@drawable/shape_attantion">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textColor="#C68D46"
-                                android:textSize="12dp"
-                                android:textStyle="bold"
-                                android:text="Perhatian :"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:textColor="#C68D46"
-                                android:textSize="11dp"
-                                android:layout_marginTop="7dp"
-                                android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur Fingerscan."/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
                             android:layout_marginTop="20dp"
                             android:layout_marginBottom="20dp"
                             android:layout_width="match_parent"
@@ -257,6 +224,40 @@
                                     </LinearLayout>
 
                                 </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/attantion_part_izin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:paddingBottom="20dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:orientation="vertical"
+                                android:background="@drawable/shape_attantion">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="#C68D46"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold"
+                                    android:text="Perhatian :"/>
+
+                                <TextView
+                                    android:id="@+id/message_izin"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:textColor="#C68D46"
+                                    android:textSize="11dp"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur Fingerscan."/>
 
                             </LinearLayout>
 
@@ -431,6 +432,42 @@
                                     </RelativeLayout>
 
                                 </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/attantion_part_alpha"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="5dp"
+                                android:paddingBottom="20dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:orientation="vertical"
+                                android:background="@drawable/shape_attantion_red">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="#CD4E4B"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold"
+                                    android:text="Perhatian :"/>
+
+                                <TextView
+                                    android:id="@+id/message_alpha"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:textColor="#CD4E4B"
+                                    android:textSize="11dp"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur Fingerscan."/>
 
                             </LinearLayout>
 

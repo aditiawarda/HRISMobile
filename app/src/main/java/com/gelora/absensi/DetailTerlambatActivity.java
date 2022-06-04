@@ -48,9 +48,9 @@ import java.util.Map;
 
 public class DetailTerlambatActivity extends AppCompatActivity {
 
-    LinearLayout markerWarningLate, monthBTN, emptyDataLate, loadingLatePart, backBTN, homeBTN;
+    LinearLayout attantionPart, markerWarningLate, monthBTN, emptyDataLate, loadingLatePart, backBTN, homeBTN;
     ImageView bulanLoading, lateLoading, loadingDataLate;
-    TextView dataBulan, dataTahun, dataLate, nameUserTV;
+    TextView messageLate, dataBulan, dataTahun, dataLate, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     String bulanPilih;
@@ -79,6 +79,8 @@ public class DetailTerlambatActivity extends AppCompatActivity {
         emptyDataLate = findViewById(R.id.no_data_part_late);
         monthBTN = findViewById(R.id.month_btn);
         markerWarningLate = findViewById(R.id.marker_warning_late_detail);
+        attantionPart = findViewById(R.id.attantion_part_late);
+        messageLate = findViewById(R.id.message_late);
 
         bulanPilih = getIntent().getExtras().getString("bulan");
 
@@ -116,6 +118,7 @@ public class DetailTerlambatActivity extends AppCompatActivity {
                 emptyDataLate.setVisibility(View.GONE);
 
                 markerWarningLate.setVisibility(View.GONE);
+                attantionPart.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -240,11 +243,14 @@ public class DetailTerlambatActivity extends AppCompatActivity {
                                 dataLate.setVisibility(View.VISIBLE);
 
                                 if (terlambat.equals("0")){
+                                    attantionPart.setVisibility(View.GONE);
                                     markerWarningLate.setVisibility(View.GONE);
                                     emptyDataLate.setVisibility(View.VISIBLE);
                                     dataLateRV.setVisibility(View.GONE);
                                     loadingLatePart.setVisibility(View.GONE);
                                 } else {
+                                    attantionPart.setVisibility(View.VISIBLE);
+                                    messageLate.setText("Terdapat "+terlambat+" data keterlambatan, harap segera lakukan prosedur fingerscan dan serahkan ke bagian HRD.");
                                     markerWarningLate.setVisibility(View.VISIBLE);
                                     dataLateRV.setVisibility(View.VISIBLE);
                                     loadingLatePart.setVisibility(View.GONE);

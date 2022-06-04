@@ -46,9 +46,9 @@ import java.util.Map;
 
 public class DetailHadirActivity extends AppCompatActivity {
 
-    LinearLayout monthBTN, emptyDataHadir, loadingHadirPart, backBTN, homeBTN;
+    LinearLayout attantionPart, monthBTN, emptyDataHadir, loadingHadirPart, backBTN, homeBTN;
     ImageView bulanLoading, hadirLoading, loadingDataHadir;
-    TextView dataBulan, dataTahun, dataHadir, nameUserTV;
+    TextView messageHadir, dataBulan, dataTahun, dataHadir, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     String bulanPilih;
@@ -76,6 +76,8 @@ public class DetailHadirActivity extends AppCompatActivity {
         loadingHadirPart = findViewById(R.id.loading_data_part_hadir);
         emptyDataHadir = findViewById(R.id.no_data_part_hadir);
         monthBTN = findViewById(R.id.month_btn);
+        attantionPart = findViewById(R.id.attantion_part_hadir);
+        messageHadir = findViewById(R.id.message_hadir);
 
         bulanPilih = getIntent().getExtras().getString("bulan");
 
@@ -111,6 +113,8 @@ public class DetailHadirActivity extends AppCompatActivity {
                 dataHadirRV.setVisibility(View.GONE);
                 loadingHadirPart.setVisibility(View.VISIBLE);
                 emptyDataHadir.setVisibility(View.GONE);
+
+                attantionPart.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -235,10 +239,13 @@ public class DetailHadirActivity extends AppCompatActivity {
                                 dataHadir.setVisibility(View.VISIBLE);
 
                                 if (hadir.equals("0")) {
+                                    attantionPart.setVisibility(View.GONE);
                                     emptyDataHadir.setVisibility(View.VISIBLE);
                                     dataHadirRV.setVisibility(View.GONE);
                                     loadingHadirPart.setVisibility(View.GONE);
                                 } else {
+                                    attantionPart.setVisibility(View.VISIBLE);
+                                    messageHadir.setText("Di bulan "+bulan+" "+tahun+" terdapat "+hadir+" data kehadiran, jika terdapat kekeliruan data harap segera hubungi bagian HRD atau gunakan prosedur fingerscan.");
                                     dataHadirRV.setVisibility(View.VISIBLE);
                                     loadingHadirPart.setVisibility(View.GONE);
                                     String data_hadir = data.getString("data");

@@ -48,9 +48,9 @@ import java.util.Map;
 
 public class DetailTidakHadirActivity extends AppCompatActivity {
 
-    LinearLayout markerWarningAlpha, monthBTN, emptyDataIzin, emptyDataAlpa, loadingIzinPart, loadingAlpaPart, backBTN, homeBTN;
+    LinearLayout attantionPart,attantionPartIzin, markerWarningAlpha, monthBTN, emptyDataIzin, emptyDataAlpa, loadingIzinPart, loadingAlpaPart, backBTN, homeBTN;
     ImageView bulanLoading, tidakHadirLoading, loadingDataIzin, loadingDataAlpa;
-    TextView dataTotalIzin, dataTotalAlpa, dataBulan, dataTahun, dataTidakHadir, nameUserTV;
+    TextView messageAlpha, messageIzin, dataTotalIzin, dataTotalAlpa, dataBulan, dataTahun, dataTidakHadir, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     String bulanPilih;
@@ -88,6 +88,10 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
         emptyDataIzin = findViewById(R.id.no_data_part_izin);
         monthBTN = findViewById(R.id.month_btn);
         markerWarningAlpha = findViewById(R.id.marker_warning_alpha_detail);
+        attantionPart = findViewById(R.id.attantion_part_alpha);
+        attantionPartIzin = findViewById(R.id.attantion_part_izin);
+        messageAlpha = findViewById(R.id.message_alpha);
+        messageIzin = findViewById(R.id.message_izin);
 
         bulanPilih = getIntent().getExtras().getString("bulan");
 
@@ -138,6 +142,8 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                 emptyDataAlpa.setVisibility(View.GONE);
 
                 markerWarningAlpha.setVisibility(View.GONE);
+                attantionPart.setVisibility(View.GONE);
+                attantionPartIzin.setVisibility(View.GONE);
 
                 dataTotalIzin.setText("");
                 dataTotalAlpa.setText("");
@@ -332,10 +338,13 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                                 Gson gson = builder.create();
 
                                 if (total_izin.equals("0")){
+                                    attantionPartIzin.setVisibility(View.GONE);
                                     emptyDataIzin.setVisibility(View.VISIBLE);
                                     dataIzinRV.setVisibility(View.GONE);
                                     loadingIzinPart.setVisibility(View.GONE);
                                 } else {
+                                    attantionPartIzin.setVisibility(View.VISIBLE);
+                                    messageIzin.setText("Terdapat "+total_izin+" data dengan keterangan, jika terdapat kekeliruan data harap segera hubungi bagian HRD.");
                                     dataIzinRV.setVisibility(View.VISIBLE);
                                     loadingIzinPart.setVisibility(View.GONE);
                                     dataIzins = gson.fromJson(izin, DataIzin[].class);
@@ -344,11 +353,14 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                                 }
 
                                 if (total_alpa.equals("0")){
+                                    attantionPart.setVisibility(View.GONE);
                                     markerWarningAlpha.setVisibility(View.GONE);
                                     emptyDataAlpa.setVisibility(View.VISIBLE);
                                     dataAlpaRV.setVisibility(View.GONE);
                                     loadingAlpaPart.setVisibility(View.GONE);
                                 } else {
+                                    attantionPart.setVisibility(View.VISIBLE);
+                                    messageAlpha.setText("Terdapat "+total_alpa+" data tanpa keterangan (A), harap segera lakukan prosedur fingerscan jika pada tanggal tersebut anda hadir atau isi form izin jika pada tanggal tersebut anda tidak hadir dan serahkan ke bagian HRD.");
                                     markerWarningAlpha.setVisibility(View.VISIBLE);
                                     dataAlpaRV.setVisibility(View.VISIBLE);
                                     loadingAlpaPart.setVisibility(View.GONE);
