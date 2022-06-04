@@ -169,6 +169,8 @@ public class DetailHadirActivity extends AppCompatActivity {
                                 loadingHadirPart.setVisibility(View.VISIBLE);
                                 emptyDataHadir.setVisibility(View.GONE);
 
+                                attantionPart.setVisibility(View.GONE);
+
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {

@@ -173,6 +173,9 @@ public class DetailTerlambatActivity extends AppCompatActivity {
                                 loadingLatePart.setVisibility(View.VISIBLE);
                                 emptyDataLate.setVisibility(View.GONE);
 
+                                markerWarningLate.setVisibility(View.GONE);
+                                attantionPart.setVisibility(View.GONE);
+
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
