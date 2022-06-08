@@ -141,15 +141,23 @@ public class AdapterDataTerlambat extends RecyclerView.Adapter<AdapterDataTerlam
 
         if(!dataTerlambat.getWaktu_terlambat().substring(0, 2).equals("00")){ // 01:01:01
             if (!dataTerlambat.getWaktu_terlambat().substring(3, 5).equals("00")){ // 01:01:01
-                myViewHolder.keterlambatanJam.setText(dataTerlambat.getWaktu_terlambat().substring(0,2)+" jam "+dataTerlambat.getWaktu_terlambat().substring(3,5)+" menit "+dataTerlambat.getWaktu_terlambat().substring(6,8)+" detik");
+                if(!dataTerlambat.getWaktu_terlambat().substring(6,8).equals("00")){
+                    myViewHolder.keterlambatanJam.setText(String.valueOf(Integer.parseInt(dataTerlambat.getWaktu_terlambat().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataTerlambat.getWaktu_terlambat().substring(3,5)))+" menit "+String.valueOf(Integer.parseInt(dataTerlambat.getWaktu_terlambat().substring(6,8)))+" detik");
+                } else {
+                    myViewHolder.keterlambatanJam.setText(String.valueOf(Integer.parseInt(dataTerlambat.getWaktu_terlambat().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataTerlambat.getWaktu_terlambat().substring(3,5)))+" menit");
+                }
             } else { // 01:00:01
-                myViewHolder.keterlambatanJam.setText(dataTerlambat.getWaktu_terlambat().substring(0,2)+" jam "+dataTerlambat.getWaktu_terlambat().substring(6,8)+" detik");
+                myViewHolder.keterlambatanJam.setText(String.valueOf(Integer.parseInt(dataTerlambat.getWaktu_terlambat().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataTerlambat.getWaktu_terlambat().substring(6,8)))+" detik");
             }
         } else { // 00:01:01
             if (!dataTerlambat.getWaktu_terlambat().substring(3, 5).equals("00")){ // 00:01:01
-                myViewHolder.keterlambatanJam.setText(dataTerlambat.getWaktu_terlambat().substring(3,5)+" menit "+dataTerlambat.getWaktu_terlambat().substring(6,8)+" detik");
+                if(!dataTerlambat.getWaktu_terlambat().substring(6,8).equals("00")){
+                    myViewHolder.keterlambatanJam.setText(String.valueOf(Integer.parseInt(dataTerlambat.getWaktu_terlambat().substring(3,5)))+" menit "+String.valueOf(Integer.parseInt(dataTerlambat.getWaktu_terlambat().substring(6,8)))+" detik");
+                } else {
+                    myViewHolder.keterlambatanJam.setText(String.valueOf(Integer.parseInt(dataTerlambat.getWaktu_terlambat().substring(3,5)))+" menit");
+                }
             } else { // 00:00:01
-                myViewHolder.keterlambatanJam.setText(dataTerlambat.getWaktu_terlambat().substring(6,8)+" detik");
+                myViewHolder.keterlambatanJam.setText(String.valueOf(Integer.parseInt(dataTerlambat.getWaktu_terlambat().substring(6,8)))+" detik");
             }
         }
 

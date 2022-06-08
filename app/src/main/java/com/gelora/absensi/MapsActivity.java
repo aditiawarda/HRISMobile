@@ -1149,15 +1149,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 if(!String.valueOf((f.format(hour))).equals("00")){ // 01:01:01
                     if (!String.valueOf((f.format(min))).equals("00")){ // 01:01:01
-                        lateDesc = String.valueOf((f.format(hour)) + " jam " + (f.format(min)) + " menit " + f.format(sec) + " detik");
+                        if(!String.valueOf((f.format(sec))).equals("00")){
+                            lateDesc = String.valueOf(Integer.parseInt(String.valueOf((f.format(hour))))) + " jam " + String.valueOf(Integer.parseInt(String.valueOf((f.format(min))))) + " menit " + String.valueOf(Integer.parseInt(String.valueOf((f.format(sec))))) + " detik";
+                        } else {
+                            lateDesc = String.valueOf(Integer.parseInt(String.valueOf((f.format(hour))))) + " jam " + String.valueOf(Integer.parseInt(String.valueOf((f.format(min))))) + " menit";
+                        }
                     } else { // 01:00:01
-                        lateDesc = String.valueOf((f.format(hour)) + " jam " + f.format(sec) + " detik");
+                        lateDesc = String.valueOf(Integer.parseInt(String.valueOf((f.format(hour))))) + " jam " + String.valueOf(Integer.parseInt(String.valueOf((f.format(sec))))) + " detik";
                     }
                 } else { // 00:01:01
                     if (!String.valueOf((f.format(min))).equals("00")){ // 00:01:01
-                        lateDesc = String.valueOf((f.format(min)) + " menit " + f.format(sec) + " detik");
+                        if(!String.valueOf((f.format(sec))).equals("00")){
+                            lateDesc = String.valueOf(Integer.parseInt(String.valueOf((f.format(min))))) + " menit " + String.valueOf(Integer.parseInt(String.valueOf((f.format(sec))))) + " detik";
+                        } else {
+                            lateDesc = String.valueOf(Integer.parseInt(String.valueOf((f.format(min))))) + " menit";
+                        }
                     } else { // 00:00:01
-                        lateDesc = String.valueOf(f.format(sec) + " detik");
+                        lateDesc = String.valueOf(Integer.parseInt(String.valueOf((f.format(sec))))) + " detik";
                     }
                 }
 
