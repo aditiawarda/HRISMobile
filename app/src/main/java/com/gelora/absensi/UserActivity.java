@@ -99,7 +99,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, webBTN, selectMonthBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
     TextView pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -194,6 +194,7 @@ public class UserActivity extends AppCompatActivity {
         markerWarningAlpha = findViewById(R.id.marker_warning_alpha);
         markerWarningLate = findViewById(R.id.marker_warning_late);
         markerWarningNoCheckout = findViewById(R.id.marker_warning_nocheckout);
+        updateBTN = findViewById(R.id.update_app_btn);
 
         selectMonth = getBulanTahun();
 
@@ -533,6 +534,7 @@ public class UserActivity extends AppCompatActivity {
         getDataKaryawan();
         getDataHadir();
         checkWarning();
+        checkVersion();
         nameUserTV.setText(nama.toUpperCase());
         nikTV.setText(nik);
 
@@ -1888,6 +1890,53 @@ public class UserActivity extends AppCompatActivity {
                 currentDay = "Sabtu";
                 break;
         }
+    }
+
+    private void checkVersion() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        final String url = "https://geloraaksara.co.id/absen-online/api/version_app";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            String version = response.getString("version");
+                            String popup = response.getString("pop_up");
+
+                            if (status.equals("Success")){
+                                String currentVersion = "1.1.27"; //harus disesuaikan
+                                if (!currentVersion.equals(version) && popup.equals("1")){
+                                    updateBTN.setVisibility(View.VISIBLE);
+                                    updateBTN.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.gelora.absensi"));
+                                            startActivity(webIntent);
+                                        }
+                                    });
+                                } else {
+                                    updateBTN.setVisibility(View.GONE);
+                                }
+                            } else {
+                                updateBTN.setVisibility(View.GONE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                connectionFailed();
+            }
+        });
+
+        requestQueue.add(request);
+
     }
 
 }

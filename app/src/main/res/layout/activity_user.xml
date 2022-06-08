@@ -947,7 +947,7 @@
 
                         <LinearLayout
                             android:id="@+id/go_web_btn"
-                            android:layout_marginBottom="20dp"
+                            android:layout_marginBottom="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="38dp"
                             android:layout_marginLeft="20dp"
@@ -965,6 +965,33 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/update_app_btn"
+                            android:layout_marginBottom="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/shape_third_btn"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:textStyle="bold"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/new_label" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="#CF811F"
+                                android:text="Update Aplikasi Sekarang!"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:id="@+id/logout_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -972,6 +999,7 @@
 
                             <LinearLayout
                                 android:layout_marginBottom="25dp"
+                                android:layout_marginTop="10dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="10dp"
                                 android:background="#3CCFCFCF"/>
