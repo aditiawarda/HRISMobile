@@ -6,6 +6,7 @@ public class DataIzin {
     private String deskripsi;
     private String tanggal;
     private String ket;
+    private String kode;
 
     public String getDeskripsi() {
         return deskripsi;
@@ -29,5 +30,13 @@ public class DataIzin {
 
     public void setKet(String ket) {
         this.ket = ket;
+    }
+
+    public String getKode() {
+        return kode;
+    }
+
+    public void setKode(String kode) {
+        this.kode = kode;
     }
 }

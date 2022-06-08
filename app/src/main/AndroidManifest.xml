@@ -31,6 +31,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DetailPulangCepatActivity"></activity>
+        <activity android:name=".DetailLayoffActivity" />
         <activity
             android:name=".DigitalCardActivity"
             android:screenOrientation="portrait" />

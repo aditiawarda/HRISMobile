@@ -99,15 +99,15 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, webBTN, selectMonthBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
-    TextView noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    LinearLayout markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, webBTN, selectMonthBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
+    TextView pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
     SwipeRefreshLayout refreshLayout;
     NestedScrollView scrollView;
     RelativeLayout dataCuaca;
-    ImageView noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
+    ImageView pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
     String selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
 
@@ -167,6 +167,8 @@ public class UserActivity extends AppCompatActivity {
         tidakHadirLoading = findViewById(R.id.tidak_hadir_loading);
         terlambatLoading = findViewById(R.id.terlambat_loading);
         noCheckoutLoading = findViewById(R.id.no_checkout_loading);
+        pulangCepatLoading = findViewById(R.id.pulang_cepat_loading);
+        layoffLoading = findViewById(R.id.layoff_loading);
         batasBagDept = findViewById(R.id.batas_bag_dept);
         currentAddress = findViewById(R.id.current_address);
         currentAddress2 = findViewById(R.id.current_address_2);
@@ -180,8 +182,12 @@ public class UserActivity extends AppCompatActivity {
         currentDate = findViewById(R.id.current_date);
         terlambatData = findViewById(R.id.data_terlambat);
         noCheckoutData = findViewById(R.id.data_no_checkout);
+        pulangCepatData = findViewById(R.id.data_pulang_cepat);
+        layoffData = findViewById(R.id.data_layoff);
         terlambatBTN = findViewById(R.id.terlambat_btn);
         tidakCheckoutBTN = findViewById(R.id.tidak_checkout_btn);
+        pulangCepatBTN = findViewById(R.id.pulang_cepat_btn);
+        layoffBTN = findViewById(R.id.layoff_btn);
         selectMonthBTN = findViewById(R.id.select_month_btn);
         webBTN = findViewById(R.id.go_web_btn);
         idCardDigitalBTN = findViewById(R.id.id_card_digital_btn);
@@ -211,6 +217,14 @@ public class UserActivity extends AppCompatActivity {
                 .load(R.drawable.loading_dots)
                 .into(terlambatLoading);
 
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(pulangCepatLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(layoffLoading);
+
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -234,6 +248,12 @@ public class UserActivity extends AppCompatActivity {
 
                 noCheckoutLoading.setVisibility(View.VISIBLE);
                 noCheckoutData.setVisibility(View.GONE);
+
+                pulangCepatLoading.setVisibility(View.VISIBLE);
+                pulangCepatData.setVisibility(View.GONE);
+
+                layoffLoading.setVisibility(View.VISIBLE);
+                layoffData.setVisibility(View.GONE);
 
                 markerWarningAlpha.setVisibility(View.GONE);
                 markerWarningLate.setVisibility(View.GONE);
@@ -297,6 +317,12 @@ public class UserActivity extends AppCompatActivity {
                                 noCheckoutLoading.setVisibility(View.VISIBLE);
                                 noCheckoutData.setVisibility(View.GONE);
 
+                                pulangCepatLoading.setVisibility(View.VISIBLE);
+                                pulangCepatData.setVisibility(View.GONE);
+
+                                layoffLoading.setVisibility(View.VISIBLE);
+                                layoffData.setVisibility(View.GONE);
+
                                 markerWarningAlpha.setVisibility(View.GONE);
                                 markerWarningLate.setVisibility(View.GONE);
                                 markerWarningNoCheckout.setVisibility(View.GONE);
@@ -326,6 +352,24 @@ public class UserActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserActivity.this, DigitalCardActivity.class);
                 intent.putExtra("nama", sharedPrefManager.getSpNama());
                 intent.putExtra("nik", sharedPrefManager.getSpNik());
+                startActivity(intent);
+            }
+        });
+
+        layoffBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, DetailLayoffActivity.class);
+                intent.putExtra("bulan", selectMonth);
+                startActivity(intent);
+            }
+        });
+
+        pulangCepatBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, DetailPulangCepatActivity.class);
+                intent.putExtra("bulan", selectMonth);
                 startActivity(intent);
             }
         });
@@ -646,6 +690,8 @@ public class UserActivity extends AppCompatActivity {
                                 String tidak_hadir = data.getString("jumlah_tidak_hadir");
                                 String terlambat = data.getString("terlambat");
                                 String tidak_checkout = data.getString("tidak_checkout");
+                                String layoff = data.getString("layoff");
+                                String pulang_cepat = data.getString("pulang_cepat");
 
                                 bulanData.setText(bulan.toUpperCase());
                                 tahunData.setText(tahun);
@@ -653,6 +699,8 @@ public class UserActivity extends AppCompatActivity {
                                 tidakHadirData.setText(tidak_hadir);
                                 terlambatData.setText(terlambat);
                                 noCheckoutData.setText(tidak_checkout);
+                                pulangCepatData.setText(pulang_cepat);
+                                layoffData.setText(layoff);
 
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
@@ -672,6 +720,13 @@ public class UserActivity extends AppCompatActivity {
 
                                         noCheckoutLoading.setVisibility(View.GONE);
                                         noCheckoutData.setVisibility(View.VISIBLE);
+
+                                        pulangCepatLoading.setVisibility(View.GONE);
+                                        pulangCepatData.setVisibility(View.VISIBLE);
+
+                                        layoffLoading.setVisibility(View.GONE);
+                                        layoffData.setVisibility(View.VISIBLE);
+
                                     }
                                 }, 500);
 
@@ -691,6 +746,12 @@ public class UserActivity extends AppCompatActivity {
 
                                 noCheckoutLoading.setVisibility(View.GONE);
                                 noCheckoutData.setVisibility(View.VISIBLE);
+
+                                pulangCepatLoading.setVisibility(View.GONE);
+                                pulangCepatData.setVisibility(View.VISIBLE);
+
+                                layoffLoading.setVisibility(View.GONE);
+                                layoffData.setVisibility(View.VISIBLE);
                             }
 
                         } catch (JSONException e) {

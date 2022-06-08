@@ -128,11 +128,7 @@ public class AdapterDataIzin extends RecyclerView.Adapter<AdapterDataIzin.MyView
         }
 
         myViewHolder.dateIzin.setText(hariName+", "+dayDate+" "+bulanName+" "+yearDate);
-        if (dataIzin.getKet().equals("") || dataIzin.getKet().equals("-") || dataIzin.getKet().equals("null") || dataIzin.getKet().equals(".")) {
-            myViewHolder.ketIzinTV.setText(dataIzin.getDeskripsi());
-        } else {
-            myViewHolder.ketIzinTV.setText(dataIzin.getDeskripsi()+" ("+dataIzin.getKet()+")");
-        }
+        myViewHolder.ketIzinTV.setText(dataIzin.getDeskripsi()+" ("+dataIzin.getKode()+")");
 
     }
 

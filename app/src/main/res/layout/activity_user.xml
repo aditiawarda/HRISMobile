@@ -381,7 +381,7 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
-                            android:paddingBottom="10dp"
+                            android:paddingBottom="5dp"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -518,6 +518,125 @@
                                                 android:layout_height="15dp"
                                                 android:background="@drawable/ic_warning_img"
                                                 android:orientation="horizontal"/>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:id="@+id/pulang_cepat_btn"
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".50"
+                                    android:background="@drawable/shape_pulang_cepat"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <LinearLayout
+                                            android:orientation="vertical"
+                                            android:paddingTop="10dp"
+                                            android:paddingBottom="10dp"
+                                            android:paddingRight="15dp"
+                                            android:paddingLeft="15dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textStyle="bold"
+                                                android:textSize="10dp"
+                                                android:text="Pulang Cepat"/>
+
+                                            <TextView
+                                                android:visibility="gone"
+                                                android:id="@+id/data_pulang_cepat"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textSize="30dp"
+                                                android:textStyle="bold"
+                                                android:text="0"/>
+
+                                            <ImageView
+                                                android:id="@+id/pulang_cepat_loading"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="40.5dp"
+                                                app:srcCompat="@drawable/loading_dots" />
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/layoff_btn"
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".50"
+                                    android:background="@drawable/shape_layoff"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:orientation="vertical">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <LinearLayout
+                                            android:orientation="vertical"
+                                            android:paddingTop="10dp"
+                                            android:paddingBottom="10dp"
+                                            android:paddingRight="15dp"
+                                            android:paddingLeft="15dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textStyle="bold"
+                                                android:textSize="10dp"
+                                                android:text="Diliburkan"/>
+
+                                            <TextView
+                                                android:visibility="gone"
+                                                android:id="@+id/data_layoff"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textSize="30dp"
+                                                android:textStyle="bold"
+                                                android:text="0"/>
+
+                                            <ImageView
+                                                android:id="@+id/layoff_loading"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="40.5dp"
+                                                app:srcCompat="@drawable/loading_dots" />
 
                                         </LinearLayout>
 
