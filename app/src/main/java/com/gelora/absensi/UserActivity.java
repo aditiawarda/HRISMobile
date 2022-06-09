@@ -100,7 +100,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 public class UserActivity extends AppCompatActivity {
 
     LinearLayout markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
-    TextView pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    TextView hTime, mTime, sTime, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
@@ -195,6 +195,9 @@ public class UserActivity extends AppCompatActivity {
         markerWarningLate = findViewById(R.id.marker_warning_late);
         markerWarningNoCheckout = findViewById(R.id.marker_warning_nocheckout);
         updateBTN = findViewById(R.id.update_app_btn);
+        hTime = findViewById(R.id.h_time);
+        mTime = findViewById(R.id.m_time);
+        sTime = findViewById(R.id.s_time);
 
         selectMonth = getBulanTahun();
 
@@ -1492,6 +1495,8 @@ public class UserActivity extends AppCompatActivity {
                             //Toast.makeText(UserActivity.this, String.format("Latitude : %s\n Longitude: %s", lati, longi), Toast.LENGTH_SHORT).show();
 
                             dateLive();
+                            timeLive();
+
                             getCurrentWeather(weather_key, String.valueOf(lati), String.valueOf(longi));
                             Location location = new Location("providerNA");
                             location.setLongitude(longi);
@@ -1502,6 +1507,42 @@ public class UserActivity extends AppCompatActivity {
                     }
                 }, Looper.getMainLooper());
 
+    }
+
+    private void timeLive() {
+        hTime.setText(getTimeH());
+        mTime.setText(getTimeM());
+        sTime.setText(getTimeS());
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                timeLive();
+            }
+        }, 1000);
+    }
+
+    private String getTimeH() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("HH");
+        Date date = new Date();
+        return dateFormat.format(date);
+        //return ("01");
+    }
+
+    private String getTimeM() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("mm");
+        Date date = new Date();
+        return dateFormat.format(date);
+        //return ("00");
+    }
+
+    private String getTimeS() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+        //return ("00");
     }
 
     private class AddressResultReceiver extends ResultReceiver {
