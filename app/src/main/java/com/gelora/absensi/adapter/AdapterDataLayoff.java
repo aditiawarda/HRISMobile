@@ -126,7 +126,7 @@ public class AdapterDataLayoff extends RecyclerView.Adapter<AdapterDataLayoff.My
                 break;
         }
 
-        myViewHolder.dateLayoff.setText(hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+        myViewHolder.dateLayoff.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
         myViewHolder.ketLayoffTV.setText(dataLayoff.getDeskripsi()+" ("+dataLayoff.getKet()+")");
 
     }

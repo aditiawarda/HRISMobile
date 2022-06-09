@@ -1033,40 +1033,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void dateLive(){
         switch (getDateM()) {
             case "01":
-                dateTV.setText(getDateD() + " Januari " + getDateY());
+                dateTV.setText(String.valueOf(Integer.parseInt(getDateD())) + " Januari " + getDateY());
                 break;
             case "02":
-                dateTV.setText(getDateD() + " Februari " + getDateY());
+                dateTV.setText(String.valueOf(Integer.parseInt(getDateD())) + " Februari " + getDateY());
                 break;
             case "03":
-                dateTV.setText(getDateD() + " Maret " + getDateY());
+                dateTV.setText(String.valueOf(Integer.parseInt(getDateD())) + " Maret " + getDateY());
                 break;
             case "04":
-                dateTV.setText(getDateD() + " April " + getDateY());
+                dateTV.setText(String.valueOf(Integer.parseInt(getDateD())) + " April " + getDateY());
                 break;
             case "05":
-                dateTV.setText(getDateD() + " Mei " + getDateY());
+                dateTV.setText(String.valueOf(Integer.parseInt(getDateD())) + " Mei " + getDateY());
                 break;
             case "06":
-                dateTV.setText(getDateD() + " Juni " + getDateY());
+                dateTV.setText(String.valueOf(Integer.parseInt(getDateD())) + " Juni " + getDateY());
                 break;
             case "07":
-                dateTV.setText(getDateD() + " Juli " + getDateY());
+                dateTV.setText(String.valueOf(Integer.parseInt(getDateD())) + " Juli " + getDateY());
                 break;
             case "08":
-                dateTV.setText(getDateD() + " Agustus " + getDateY());
+                dateTV.setText(String.valueOf(Integer.parseInt(getDateD())) + " Agustus " + getDateY());
                 break;
             case "09":
-                dateTV.setText(getDateD() + " September " + getDateY());
+                dateTV.setText(String.valueOf(Integer.parseInt(getDateD())) + " September " + getDateY());
                 break;
             case "10":
-                dateTV.setText(getDateD() + " Oktober " + getDateY());
+                dateTV.setText(String.valueOf(Integer.parseInt(getDateD())) + " Oktober " + getDateY());
                 break;
             case "11":
-                dateTV.setText(getDateD() + " November " + getDateY());
+                dateTV.setText(String.valueOf(Integer.parseInt(getDateD())) + " November " + getDateY());
                 break;
             case "12":
-                dateTV.setText(getDateD() + " Desember " + getDateY());
+                dateTV.setText(String.valueOf(Integer.parseInt(getDateD())) + " Desember " + getDateY());
                 break;
             default:
                 dateTV.setText("Not found!");
@@ -3846,40 +3846,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         switch (getDateM()) {
             case "01":
-                currentDatePart.setText(currentDay+", "+getDateD() + " Januari " + getDateY());
+                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Januari " + getDateY());
                 break;
             case "02":
-                currentDatePart.setText(currentDay+", "+getDateD() + " Februari " + getDateY());
+                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Februari " + getDateY());
                 break;
             case "03":
-                currentDatePart.setText(currentDay+", "+getDateD() + " Maret " + getDateY());
+                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Maret " + getDateY());
                 break;
             case "04":
-                currentDatePart.setText(currentDay+", "+getDateD() + " April " + getDateY());
+                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " April " + getDateY());
                 break;
             case "05":
-                currentDatePart.setText(currentDay+", "+getDateD() + " Mei " + getDateY());
+                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Mei " + getDateY());
                 break;
             case "06":
-                currentDatePart.setText(currentDay+", "+getDateD() + " Juni " + getDateY());
+                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Juni " + getDateY());
                 break;
             case "07":
-                currentDatePart.setText(currentDay+", "+getDateD() + " Juli " + getDateY());
+                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Juli " + getDateY());
                 break;
             case "08":
-                currentDatePart.setText(currentDay+", "+getDateD() + " Agustus " + getDateY());
+                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Agustus " + getDateY());
                 break;
             case "09":
-                currentDatePart.setText(currentDay+", "+getDateD() + " September " + getDateY());
+                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " September " + getDateY());
                 break;
             case "10":
-                currentDatePart.setText(currentDay+", "+getDateD() + " Oktober " + getDateY());
+                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Oktober " + getDateY());
                 break;
             case "11":
-                currentDatePart.setText(currentDay+", "+getDateD() + " November " + getDateY());
+                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " November " + getDateY());
                 break;
             case "12":
-                currentDatePart.setText(currentDay+", "+getDateD() + " Desember " + getDateY());
+                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Desember " + getDateY());
                 break;
             default:
                 currentDatePart.setText("Not found!");

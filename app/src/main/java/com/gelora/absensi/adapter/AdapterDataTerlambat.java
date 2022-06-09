@@ -126,7 +126,7 @@ public class AdapterDataTerlambat extends RecyclerView.Adapter<AdapterDataTerlam
                 break;
         }
 
-        myViewHolder.dateAbsen.setText(hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+        myViewHolder.dateAbsen.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
         myViewHolder.shiftAbsen.setText(dataTerlambat.getShift());
         myViewHolder.jamShift.setText(dataTerlambat.getJam_shift());
         myViewHolder.dateAbsenCheckin.setText(dataTerlambat.getTanggal_masuk());

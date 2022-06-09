@@ -127,7 +127,7 @@ public class AdapterDataIzin extends RecyclerView.Adapter<AdapterDataIzin.MyView
                 break;
         }
 
-        myViewHolder.dateIzin.setText(hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+        myViewHolder.dateIzin.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
         myViewHolder.ketIzinTV.setText(dataIzin.getDeskripsi()+" ("+dataIzin.getKode()+")");
 
     }

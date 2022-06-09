@@ -126,7 +126,7 @@ public class AdapterDataNoCheckout extends RecyclerView.Adapter<AdapterDataNoChe
                 break;
         }
 
-        myViewHolder.dateAbsen.setText(hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+        myViewHolder.dateAbsen.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
         myViewHolder.shiftAbsen.setText(dataNoCheckout.getShift());
         myViewHolder.jamShift.setText(dataNoCheckout.getJam_shift());
         myViewHolder.dateAbsenCheckin.setText(dataNoCheckout.getTanggal_masuk());

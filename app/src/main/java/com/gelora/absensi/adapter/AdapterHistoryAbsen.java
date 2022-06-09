@@ -161,7 +161,7 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
                     break;
             }
 
-            myViewHolder.dateAbsen.setText(hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+            myViewHolder.dateAbsen.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
         }
 

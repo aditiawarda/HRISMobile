@@ -143,7 +143,7 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
                     break;
             }
 
-            myViewHolder.dateAbsen.setText(hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+            myViewHolder.dateAbsen.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
         }
 

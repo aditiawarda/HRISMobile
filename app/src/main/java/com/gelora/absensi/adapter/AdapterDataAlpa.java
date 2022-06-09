@@ -125,7 +125,7 @@ public class AdapterDataAlpa extends RecyclerView.Adapter<AdapterDataAlpa.MyView
                 break;
         }
 
-        myViewHolder.dateAlpa.setText(hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+        myViewHolder.dateAlpa.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
         myViewHolder.ketAlpaTV.setText(dataAlpa.getDeskripsi()+" ("+dataAlpa.getKode()+")");
 
     }

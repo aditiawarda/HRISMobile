@@ -143,7 +143,7 @@ public class AdapterDataHadir extends RecyclerView.Adapter<AdapterDataHadir.MyVi
                     break;
             }
 
-            myViewHolder.dateAbsen.setText(hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+            myViewHolder.dateAbsen.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
         }
 

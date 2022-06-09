@@ -258,7 +258,7 @@ public class HistoryActivity extends AppCompatActivity {
                         break;
                 }
 
-                filterDateChoiceTV.setText(hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+                filterDateChoiceTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
                 loadingPart.setVisibility(View.VISIBLE);
                 historyAbsenRV.setVisibility(View.GONE);
@@ -362,7 +362,7 @@ public class HistoryActivity extends AppCompatActivity {
                         break;
                 }
 
-                filterDateChoiceTV.setText(hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+                filterDateChoiceTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
                 loadingPart.setVisibility(View.VISIBLE);
                 historyAbsenRV.setVisibility(View.GONE);

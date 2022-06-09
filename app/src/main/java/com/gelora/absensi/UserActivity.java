@@ -1799,40 +1799,40 @@ public class UserActivity extends AppCompatActivity {
     private void dateLive(){
         switch (getDateM()) {
             case "01":
-                currentDate.setText(currentDay+", "+getDateD() + " Januari " + getDateY());
+                currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Januari " + getDateY());
                 break;
             case "02":
-                currentDate.setText(currentDay+", "+getDateD() + " Februari " + getDateY());
+                currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Februari " + getDateY());
                 break;
             case "03":
-                currentDate.setText(currentDay+", "+getDateD() + " Maret " + getDateY());
+                currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Maret " + getDateY());
                 break;
             case "04":
-                currentDate.setText(currentDay+", "+getDateD() + " April " + getDateY());
+                currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " April " + getDateY());
                 break;
             case "05":
-                currentDate.setText(currentDay+", "+getDateD() + " Mei " + getDateY());
+                currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Mei " + getDateY());
                 break;
             case "06":
-                currentDate.setText(currentDay+", "+getDateD() + " Juni " + getDateY());
+                currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Juni " + getDateY());
                 break;
             case "07":
-                currentDate.setText(currentDay+", "+getDateD() + " Juli " + getDateY());
+                currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Juli " + getDateY());
                 break;
             case "08":
-                currentDate.setText(currentDay+", "+getDateD() + " Agustus " + getDateY());
+                currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Agustus " + getDateY());
                 break;
             case "09":
-                currentDate.setText(currentDay+", "+getDateD() + " September " + getDateY());
+                currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " September " + getDateY());
                 break;
             case "10":
-                currentDate.setText(currentDay+", "+getDateD() + " Oktober " + getDateY());
+                currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Oktober " + getDateY());
                 break;
             case "11":
-                currentDate.setText(currentDay+", "+getDateD() + " November " + getDateY());
+                currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " November " + getDateY());
                 break;
             case "12":
-                currentDate.setText(currentDay+", "+getDateD() + " Desember " + getDateY());
+                currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Desember " + getDateY());
                 break;
             default:
                 currentDate.setText("Not found!");
