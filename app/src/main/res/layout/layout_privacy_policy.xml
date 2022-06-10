@@ -63,7 +63,7 @@
                         android:textSize="13dp"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/text_color"
-                        android:text="Absensi App juga dapat diakses melalui geloraaksara.co.id/absen-online, salah satu prioritas utama kami adalah privasi pengguna."/>
+                        android:text="Absensi App juga dapat diakses melalui geloraaksara.co.id/absen-online, salah satu prioritas utama Absensi App adalah privasi pengguna."/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="10dp"
                         android:textColor="@color/text_color"
-                        android:text="Kebijakan Privasi ini hanya berlaku untuk aktivitas online dan berlaku untuk pengguna aplikasi sehubungan dengan informasi yang dimasukkan dan/atau kumpulkan di Absensi App."/>
+                        android:text="Kebijakan privasi ini hanya berlaku untuk aktivitas online dan berlaku untuk pengguna aplikasi sehubungan dengan informasi yang dimasukkan dan/atau dikumpulkan di Absensi App."/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -114,7 +114,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/text_color"
-                        android:text="Dengan menggunakan Absensi App, Anda dengan ini menyetujui Kebijakan Privasi dan menyetujui Syarat dan Ketentuannya."/>
+                        android:text="Dengan menggunakan Absensi App, pengguna dengan ini menyetujui kebijakan privasi beserta syarat dan ketentuannya."/>
 
                 </LinearLayout>
 
