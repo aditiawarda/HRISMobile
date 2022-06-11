@@ -432,7 +432,56 @@ public class HistoryActivity extends AppCompatActivity {
 
                             if(status.equals("Success")){
                                 dateLastAbsenTV.setText(tanggal);
-                                dateCheckinTV.setText(tanggal_checkin);
+
+                                String input_date_checkin = tanggal_checkin;
+                                String dayDateCheckin = input_date_checkin.substring(8,10);
+                                String yearDateCheckin = input_date_checkin.substring(0,4);
+                                String bulanValueCheckin = input_date_checkin.substring(5,7);
+                                String bulanNameCheckin;
+
+                                switch (bulanValueCheckin) {
+                                    case "01":
+                                        bulanNameCheckin = "Januari";
+                                        break;
+                                    case "02":
+                                        bulanNameCheckin = "Februari";
+                                        break;
+                                    case "03":
+                                        bulanNameCheckin = "Maret";
+                                        break;
+                                    case "04":
+                                        bulanNameCheckin = "April";
+                                        break;
+                                    case "05":
+                                        bulanNameCheckin = "Mei";
+                                        break;
+                                    case "06":
+                                        bulanNameCheckin = "Juni";
+                                        break;
+                                    case "07":
+                                        bulanNameCheckin = "Juli";
+                                        break;
+                                    case "08":
+                                        bulanNameCheckin = "Agustus";
+                                        break;
+                                    case "09":
+                                        bulanNameCheckin = "September";
+                                        break;
+                                    case "10":
+                                        bulanNameCheckin = "Oktober";
+                                        break;
+                                    case "11":
+                                        bulanNameCheckin = "November";
+                                        break;
+                                    case "12":
+                                        bulanNameCheckin = "Desember";
+                                        break;
+                                    default:
+                                        bulanNameCheckin = "Not found";
+                                        break;
+                                }
+
+                                dateCheckinTV.setText(String.valueOf(Integer.parseInt(dayDateCheckin))+" "+bulanNameCheckin+" "+yearDateCheckin);
                                 timeCheckinLastAbsenTV.setText(jam_checkin);
 
                                 if (checkin_point.equals("")){
@@ -445,7 +494,54 @@ public class HistoryActivity extends AppCompatActivity {
                                     dateCheckoutTV.setText("---- - -- - --");
                                     timeCheckoutLastAbsenTV.setText("-- : -- : --");
                                 } else {
-                                    dateCheckoutTV.setText(tanggal_checkout);
+                                    String input_date_checkout = tanggal_checkout;
+                                    String dayDateCheckout = input_date_checkout.substring(8,10);
+                                    String yearDateCheckout = input_date_checkout.substring(0,4);
+                                    String bulanValueCheckout = input_date_checkout.substring(5,7);
+                                    String bulanNameCheckout;
+
+                                    switch (bulanValueCheckout) {
+                                        case "01":
+                                            bulanNameCheckout = "Januari";
+                                            break;
+                                        case "02":
+                                            bulanNameCheckout = "Februari";
+                                            break;
+                                        case "03":
+                                            bulanNameCheckout = "Maret";
+                                            break;
+                                        case "04":
+                                            bulanNameCheckout = "April";
+                                            break;
+                                        case "05":
+                                            bulanNameCheckout = "Mei";
+                                            break;
+                                        case "06":
+                                            bulanNameCheckout = "Juni";
+                                            break;
+                                        case "07":
+                                            bulanNameCheckout = "Juli";
+                                            break;
+                                        case "08":
+                                            bulanNameCheckout = "Agustus";
+                                            break;
+                                        case "09":
+                                            bulanNameCheckout = "September";
+                                            break;
+                                        case "10":
+                                            bulanNameCheckout = "Oktober";
+                                            break;
+                                        case "11":
+                                            bulanNameCheckout = "November";
+                                            break;
+                                        case "12":
+                                            bulanNameCheckout = "Desember";
+                                            break;
+                                        default:
+                                            bulanNameCheckout = "Not found";
+                                            break;
+                                    }
+                                    dateCheckoutTV.setText(String.valueOf(Integer.parseInt(dayDateCheckout))+" "+bulanNameCheckout+" "+yearDateCheckout);
                                     timeCheckoutLastAbsenTV.setText(jam_checkout);
                                 }
 

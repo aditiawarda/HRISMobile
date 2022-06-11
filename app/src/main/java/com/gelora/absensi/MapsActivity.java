@@ -160,6 +160,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
+    String appVersion = "1.1.28";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,7 +175,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         deviceID = String.valueOf(Secure.getString(MapsActivity.this.getContentResolver(), Secure.ANDROID_ID)).toUpperCase();
-        Toast.makeText(this, deviceID, Toast.LENGTH_SHORT).show();
 
         //ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         //ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -1265,6 +1265,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 params.put("longitude", longitude);
                 params.put("status_absen", status_absen);
                 params.put("checkin_point", checkin_point);
+                params.put("app_version", appVersion);
 
                 return params;
             }
@@ -1599,7 +1600,56 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String id_status = data_checkin.getString("status_absen");
                                 String id_shift = data_checkin.getString("id_shift");
                                 idCheckin = data_checkin.getString("id");
-                                dateCheckinTV.setText(date_checkin);
+
+                                String input_date = date_checkin;
+                                String dayDate = input_date.substring(8,10);
+                                String yearDate = input_date.substring(0,4);
+                                String bulanValue = input_date.substring(5,7);
+                                String bulanName;
+
+                                switch (bulanValue) {
+                                    case "01":
+                                        bulanName = "Januari";
+                                        break;
+                                    case "02":
+                                        bulanName = "Februari";
+                                        break;
+                                    case "03":
+                                        bulanName = "Maret";
+                                        break;
+                                    case "04":
+                                        bulanName = "April";
+                                        break;
+                                    case "05":
+                                        bulanName = "Mei";
+                                        break;
+                                    case "06":
+                                        bulanName = "Juni";
+                                        break;
+                                    case "07":
+                                        bulanName = "Juli";
+                                        break;
+                                    case "08":
+                                        bulanName = "Agustus";
+                                        break;
+                                    case "09":
+                                        bulanName = "September";
+                                        break;
+                                    case "10":
+                                        bulanName = "Oktober";
+                                        break;
+                                    case "11":
+                                        bulanName = "November";
+                                        break;
+                                    case "12":
+                                        bulanName = "Desember";
+                                        break;
+                                    default:
+                                        bulanName = "Not found";
+                                        break;
+                                }
+
+                                dateCheckinTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
                                 timeCheckinTV.setText(time_checkin+" "+getTimeZone());
                                 idStatusAbsen = id_status;
                                 dateCheckin = date_checkin;
@@ -1735,7 +1785,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                         if (isDeveloperModeEnabled()){
                                                             pDialog.dismiss();
-                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian!")
                                                                     .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
@@ -1822,7 +1872,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                         if (isDeveloperModeEnabled()){
                                                             pDialog.dismiss();
-                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian!")
                                                                     .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
@@ -1969,7 +2019,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                     if (isDeveloperModeEnabled()){
                                                         pDialog.dismiss();
-                                                        new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                        new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian!")
                                                                 .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
                                                                 .setCancelText(" TUTUP ")
@@ -2056,7 +2106,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                     if (isDeveloperModeEnabled()){
                                                         pDialog.dismiss();
-                                                        new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                        new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian!")
                                                                 .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
                                                                 .setCancelText(" TUTUP ")
@@ -2353,7 +2403,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                         if (isDeveloperModeEnabled()){
                                                             pDialog.dismiss();
-                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian!")
                                                                     .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
@@ -2440,7 +2490,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                         if (isDeveloperModeEnabled()){
                                                             pDialog.dismiss();
-                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian!")
                                                                     .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
@@ -2537,7 +2587,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                         if (isDeveloperModeEnabled()){
                                                             pDialog.dismiss();
-                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian!")
                                                                     .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
@@ -2625,7 +2675,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                         if (isDeveloperModeEnabled()){
                                                             pDialog.dismiss();
-                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                            new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian!")
                                                                     .setContentText("Mode Pengembang/Developer pada Smartphone Anda aktif, harap non-aktifkan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
@@ -2946,6 +2996,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 params.put("latitude", latitude);
                 params.put("longitude", longitude);
                 params.put("checkout_point", checkout_point);
+                params.put("app_version", appVersion);
 
                 return params;
             }
@@ -3306,7 +3357,56 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     recordAbsenPart.setVisibility(View.VISIBLE);
                                     attantionPart.setVisibility(View.GONE);
                                     skeletonLayout.setVisibility(View.GONE);
-                                    dateCheckoutTV.setText(date_checkout);
+
+                                    String input_date = date_checkout;
+                                    String dayDate = input_date.substring(8,10);
+                                    String yearDate = input_date.substring(0,4);
+                                    String bulanValue = input_date.substring(5,7);
+                                    String bulanName;
+
+                                    switch (bulanValue) {
+                                        case "01":
+                                            bulanName = "Januari";
+                                            break;
+                                        case "02":
+                                            bulanName = "Februari";
+                                            break;
+                                        case "03":
+                                            bulanName = "Maret";
+                                            break;
+                                        case "04":
+                                            bulanName = "April";
+                                            break;
+                                        case "05":
+                                            bulanName = "Mei";
+                                            break;
+                                        case "06":
+                                            bulanName = "Juni";
+                                            break;
+                                        case "07":
+                                            bulanName = "Juli";
+                                            break;
+                                        case "08":
+                                            bulanName = "Agustus";
+                                            break;
+                                        case "09":
+                                            bulanName = "September";
+                                            break;
+                                        case "10":
+                                            bulanName = "Oktober";
+                                            break;
+                                        case "11":
+                                            bulanName = "November";
+                                            break;
+                                        case "12":
+                                            bulanName = "Desember";
+                                            break;
+                                        default:
+                                            bulanName = "Not found";
+                                            break;
+                                    }
+
+                                    dateCheckoutTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
                                     timeCheckoutTV.setText(time_checkout+" "+getTimeZone());
                                     ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini\"");
 
@@ -4265,8 +4365,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
                             String message = data.getString("message");
-                            Toast.makeText(MapsActivity.this, message, Toast.LENGTH_SHORT).show();
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -4279,7 +4377,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        Toast.makeText(MapsActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
                         //connectionFailed();
                     }
                 }

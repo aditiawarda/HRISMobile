@@ -129,7 +129,56 @@ public class AdapterDataNoCheckout extends RecyclerView.Adapter<AdapterDataNoChe
         myViewHolder.dateAbsen.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
         myViewHolder.shiftAbsen.setText(dataNoCheckout.getShift());
         myViewHolder.jamShift.setText(dataNoCheckout.getJam_shift());
-        myViewHolder.dateAbsenCheckin.setText(dataNoCheckout.getTanggal_masuk());
+
+        String input_date_checkin = dataNoCheckout.getTanggal_masuk();
+        String dayDateCheckin = input_date_checkin.substring(8,10);
+        String yearDateCheckin = input_date_checkin.substring(0,4);
+        String bulanValueCheckin = input_date_checkin.substring(5,7);
+        String bulanNameCheckin;
+
+        switch (bulanValueCheckin) {
+            case "01":
+                bulanNameCheckin = "Januari";
+                break;
+            case "02":
+                bulanNameCheckin = "Februari";
+                break;
+            case "03":
+                bulanNameCheckin = "Maret";
+                break;
+            case "04":
+                bulanNameCheckin = "April";
+                break;
+            case "05":
+                bulanNameCheckin = "Mei";
+                break;
+            case "06":
+                bulanNameCheckin = "Juni";
+                break;
+            case "07":
+                bulanNameCheckin = "Juli";
+                break;
+            case "08":
+                bulanNameCheckin = "Agustus";
+                break;
+            case "09":
+                bulanNameCheckin = "September";
+                break;
+            case "10":
+                bulanNameCheckin = "Oktober";
+                break;
+            case "11":
+                bulanNameCheckin = "November";
+                break;
+            case "12":
+                bulanNameCheckin = "Desember";
+                break;
+            default:
+                bulanNameCheckin = "Not found";
+                break;
+        }
+        myViewHolder.dateAbsenCheckin.setText(String.valueOf(Integer.parseInt(dayDateCheckin))+" "+bulanNameCheckin+" "+yearDateCheckin);
+
         myViewHolder.jamMasuk.setText(dataNoCheckout.getJam_masuk());
         myViewHolder.checkinPoint.setText(dataNoCheckout.getCheckin_point());
         myViewHolder.ket.setText(dataNoCheckout.getKet());

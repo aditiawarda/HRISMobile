@@ -52,7 +52,56 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
 
         myViewHolder.dateAbsen.setText(dataPulangCepat.getTanggal_masuk());
         myViewHolder.jamShift.setText(dataPulangCepat.getJam_shift());
-        myViewHolder.dateCheckin.setText(dataPulangCepat.getTanggal_masuk());
+
+        String input_date_checkin = dataPulangCepat.getTanggal_masuk();
+        String dayDateCheckin = input_date_checkin.substring(8,10);
+        String yearDateCheckin = input_date_checkin.substring(0,4);
+        String bulanValueCheckin = input_date_checkin.substring(5,7);
+        String bulanNameCheckin;
+
+        switch (bulanValueCheckin) {
+            case "01":
+                bulanNameCheckin = "Januari";
+                break;
+            case "02":
+                bulanNameCheckin = "Februari";
+                break;
+            case "03":
+                bulanNameCheckin = "Maret";
+                break;
+            case "04":
+                bulanNameCheckin = "April";
+                break;
+            case "05":
+                bulanNameCheckin = "Mei";
+                break;
+            case "06":
+                bulanNameCheckin = "Juni";
+                break;
+            case "07":
+                bulanNameCheckin = "Juli";
+                break;
+            case "08":
+                bulanNameCheckin = "Agustus";
+                break;
+            case "09":
+                bulanNameCheckin = "September";
+                break;
+            case "10":
+                bulanNameCheckin = "Oktober";
+                break;
+            case "11":
+                bulanNameCheckin = "November";
+                break;
+            case "12":
+                bulanNameCheckin = "Desember";
+                break;
+            default:
+                bulanNameCheckin = "Not found";
+                break;
+        }
+
+        myViewHolder.dateCheckin.setText(String.valueOf(Integer.parseInt(dayDateCheckin))+" "+bulanNameCheckin+" "+yearDateCheckin);
         myViewHolder.dateCheckout.setText(dataPulangCepat.getTanggal_pulang());
 
         myViewHolder.namaShift.setText(dataPulangCepat.getShift());
@@ -60,7 +109,54 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
         if (myViewHolder.dateCheckout.getText().toString().equals("")){
             myViewHolder.dateCheckout.setText("---- - -- - --");
         } else {
-            myViewHolder.dateCheckout.setText(dataPulangCepat.getTanggal_pulang());
+            String input_date_checkout = dataPulangCepat.getTanggal_pulang();
+            String dayDateCheckout = input_date_checkout.substring(8,10);
+            String yearDateCheckout = input_date_checkout.substring(0,4);
+            String bulanValueCheckout = input_date_checkout.substring(5,7);
+            String bulanNameCheckout;
+
+            switch (bulanValueCheckout) {
+                case "01":
+                    bulanNameCheckout = "Januari";
+                    break;
+                case "02":
+                    bulanNameCheckout = "Februari";
+                    break;
+                case "03":
+                    bulanNameCheckout = "Maret";
+                    break;
+                case "04":
+                    bulanNameCheckout = "April";
+                    break;
+                case "05":
+                    bulanNameCheckout = "Mei";
+                    break;
+                case "06":
+                    bulanNameCheckout = "Juni";
+                    break;
+                case "07":
+                    bulanNameCheckout = "Juli";
+                    break;
+                case "08":
+                    bulanNameCheckout = "Agustus";
+                    break;
+                case "09":
+                    bulanNameCheckout = "September";
+                    break;
+                case "10":
+                    bulanNameCheckout = "Oktober";
+                    break;
+                case "11":
+                    bulanNameCheckout = "November";
+                    break;
+                case "12":
+                    bulanNameCheckout = "Desember";
+                    break;
+                default:
+                    bulanNameCheckout = "Not found";
+                    break;
+            }
+            myViewHolder.dateCheckout.setText(String.valueOf(Integer.parseInt(dayDateCheckout))+" "+bulanNameCheckout+" "+yearDateCheckout);
         }
 
         if (myViewHolder.dateAbsen.getText().toString().equals("")){
