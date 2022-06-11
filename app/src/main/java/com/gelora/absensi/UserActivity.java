@@ -107,7 +107,7 @@ public class UserActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     NestedScrollView scrollView;
     RelativeLayout dataCuaca;
-    ImageView pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
+    ImageView notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
     String selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
 
@@ -195,6 +195,9 @@ public class UserActivity extends AppCompatActivity {
         markerWarningLate = findViewById(R.id.marker_warning_late);
         markerWarningNoCheckout = findViewById(R.id.marker_warning_nocheckout);
         updateBTN = findViewById(R.id.update_app_btn);
+        notificationWarningLate = findViewById(R.id.warning_gif_absen_late);
+        notificationWarningNocheckout = findViewById(R.id.warning_gif_absen_nocheckout);
+        notificationWarningAlpha = findViewById(R.id.warning_gif_absen_alpha);
         hTime = findViewById(R.id.h_time);
         mTime = findViewById(R.id.m_time);
         sTime = findViewById(R.id.s_time);
@@ -228,6 +231,18 @@ public class UserActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(layoffLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.ic_warning_notification_gif)
+                .into(notificationWarningLate);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.ic_warning_notification_gif)
+                .into(notificationWarningNocheckout);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.ic_warning_notification_gif)
+                .into(notificationWarningAlpha);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

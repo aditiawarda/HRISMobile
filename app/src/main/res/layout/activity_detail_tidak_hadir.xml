@@ -424,8 +424,15 @@
                                                 android:id="@+id/marker_warning_alpha_detail"
                                                 android:layout_width="15dp"
                                                 android:layout_height="15dp"
-                                                android:background="@drawable/ic_warning_img"
-                                                android:orientation="horizontal"/>
+                                                android:gravity="center">
+
+                                                <ImageView
+                                                    android:id="@+id/warning_gif_absen_nocheckout_detail"
+                                                    android:layout_width="15dp"
+                                                    android:layout_height="15dp"
+                                                    app:srcCompat="@drawable/ic_warning_notification_gif_main" />
+
+                                            </LinearLayout>
 
                                         </LinearLayout>
 

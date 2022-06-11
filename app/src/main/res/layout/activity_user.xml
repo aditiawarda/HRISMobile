@@ -442,8 +442,15 @@
                                                 android:id="@+id/marker_warning_alpha"
                                                 android:layout_width="15dp"
                                                 android:layout_height="15dp"
-                                                android:background="@drawable/ic_warning_img"
-                                                android:orientation="horizontal"/>
+                                                android:gravity="center">
+
+                                                <ImageView
+                                                    android:id="@+id/warning_gif_absen_alpha"
+                                                    android:layout_width="15dp"
+                                                    android:layout_height="15dp"
+                                                    app:srcCompat="@drawable/ic_warning_notification_gif" />
+
+                                            </LinearLayout>
 
                                         </LinearLayout>
 
@@ -526,8 +533,15 @@
                                                 android:id="@+id/marker_warning_late"
                                                 android:layout_width="15dp"
                                                 android:layout_height="15dp"
-                                                android:background="@drawable/ic_warning_img"
-                                                android:orientation="horizontal"/>
+                                                android:gravity="center">
+
+                                                <ImageView
+                                                    android:id="@+id/warning_gif_absen_late"
+                                                    android:layout_width="15dp"
+                                                    android:layout_height="15dp"
+                                                    app:srcCompat="@drawable/ic_warning_notification_gif" />
+
+                                            </LinearLayout>
 
                                         </LinearLayout>
 
@@ -595,8 +609,15 @@
                                                 android:id="@+id/marker_warning_nocheckout"
                                                 android:layout_width="15dp"
                                                 android:layout_height="15dp"
-                                                android:background="@drawable/ic_warning_img"
-                                                android:orientation="horizontal"/>
+                                                android:gravity="center">
+
+                                                <ImageView
+                                                    android:id="@+id/warning_gif_absen_nocheckout"
+                                                    android:layout_width="15dp"
+                                                    android:layout_height="15dp"
+                                                    app:srcCompat="@drawable/ic_warning_notification_gif" />
+
+                                            </LinearLayout>
 
                                         </LinearLayout>
 

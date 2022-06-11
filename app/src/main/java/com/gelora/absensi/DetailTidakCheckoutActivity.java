@@ -47,7 +47,7 @@ import java.util.Map;
 public class DetailTidakCheckoutActivity extends AppCompatActivity {
 
     LinearLayout attantionPart, markerWarningNocheckout, monthBTN, emptyDataNoCheckout, loadingNoCheckoutPart, backBTN, homeBTN;
-    ImageView bulanLoading, noCheckoutLoading, loadingDataNoCheckout;
+    ImageView notificationWarningNoCheckoutDetail, bulanLoading, noCheckoutLoading, loadingDataNoCheckout;
     TextView messageNoCheckout, dataBulan, dataTahun, dataNoCheckout, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -79,6 +79,7 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
         markerWarningNocheckout = findViewById(R.id.marker_warning_nocheckout_detail);
         attantionPart = findViewById(R.id.attantion_part_nocheckout);
         messageNoCheckout = findViewById(R.id.message_nocheckout);
+        notificationWarningNoCheckoutDetail = findViewById(R.id.warning_gif_absen_nocheckout_detail);
 
         bulanPilih = getIntent().getExtras().getString("bulan");
 
@@ -99,6 +100,10 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading)
                 .into(loadingDataNoCheckout);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.ic_warning_notification_gif)
+                .into(notificationWarningNoCheckoutDetail);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

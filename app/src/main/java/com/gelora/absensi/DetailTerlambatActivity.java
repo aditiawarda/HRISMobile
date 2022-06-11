@@ -49,7 +49,7 @@ import java.util.Map;
 public class DetailTerlambatActivity extends AppCompatActivity {
 
     LinearLayout attantionPart, markerWarningLate, monthBTN, emptyDataLate, loadingLatePart, backBTN, homeBTN;
-    ImageView bulanLoading, lateLoading, loadingDataLate;
+    ImageView notificationWarningLateDetail, bulanLoading, lateLoading, loadingDataLate;
     TextView messageLate, dataBulan, dataTahun, dataLate, nameUserTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -81,6 +81,7 @@ public class DetailTerlambatActivity extends AppCompatActivity {
         markerWarningLate = findViewById(R.id.marker_warning_late_detail);
         attantionPart = findViewById(R.id.attantion_part_late);
         messageLate = findViewById(R.id.message_late);
+        notificationWarningLateDetail = findViewById(R.id.warning_gif_absen_late_detail);
 
         bulanPilih = getIntent().getExtras().getString("bulan");
 
@@ -101,6 +102,10 @@ public class DetailTerlambatActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading)
                 .into(loadingDataLate);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.ic_warning_notification_gif)
+                .into(notificationWarningLateDetail);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
