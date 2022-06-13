@@ -50,11 +50,11 @@ import static android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS;
 public class LoginActivity extends AppCompatActivity {
 
     private StatusBarColorManager mStatusBarColorManager;
-    LinearLayout connectBTN, closeBTN, contactServiceBTN, loginBTN, showPasswordBTN;
+    LinearLayout registerBTN, connectBTN, closeBTN, contactServiceBTN, loginBTN, showPasswordBTN;
     EditText nikED, passwordED;
     SharedPrefManager sharedPrefManager;
-    TextView showPassword, registerBTN, testBTN;
-    String deviceID, visibilityPassword = "hide";
+    TextView showPassword, testBTN;
+    String statusCheck = "", deviceID, visibilityPassword = "hide";
     BottomSheetLayout bottomSheet, bottomSheetCS;
     View rootview;
 
@@ -62,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        getStatusCheckDivice();
 
         sharedPrefManager = new SharedPrefManager(this);
         rootview = findViewById(android.R.id.content);
@@ -123,8 +125,11 @@ public class LoginActivity extends AppCompatActivity {
                     if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL) {
                         String nik = nikED.getText().toString();
                         String password = passwordED.getText().toString();
-                        checkDevice(nik, password, deviceID);
-                        //loginFunction(nik,password);
+                        if (statusCheck.equals("1")){
+                            checkDevice(nik, password, deviceID);
+                        } else {
+                            loginFunction(nik,password);
+                        }
                     }
                 }
                 return false;
@@ -203,8 +208,11 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
-                    checkDevice(nik, password, deviceID);
-                    //loginFunction(nik,password);
+                    if (statusCheck.equals("1")){
+                        checkDevice(nik, password, deviceID);
+                    } else {
+                        loginFunction(nik,password);
+                    }
                 }
             }
         });
@@ -458,6 +466,38 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(webIntent);
                                 }
                             });
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
+    private void getStatusCheckDivice() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        final String url = "https://geloraaksara.co.id/absen-online/api/check_perangkat";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            if (status.equals("aktif")){
+                                statusCheck = "1";
+                            } else {
+                                statusCheck = "0";
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();

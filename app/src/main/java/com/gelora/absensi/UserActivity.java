@@ -606,6 +606,7 @@ public class UserActivity extends AppCompatActivity {
                                 String info_covid = data.getString("info_covid");
                                 String logout_part = data.getString("logout_part");
                                 String chat_room = data.getString("chat_room");
+                                String web_btn = data.getString("web_btn");
                                 batasBagDept.setVisibility(View.VISIBLE);
                                 departemenTV.setText(department);
                                 bagianTV.setText(bagian);
@@ -651,6 +652,12 @@ public class UserActivity extends AppCompatActivity {
                                     chatBTN.setVisibility(View.VISIBLE);
                                 } else {
                                     chatBTN.setVisibility(View.GONE);
+                                }
+
+                                if(web_btn.equals("1")){
+                                    webBTN.setVisibility(View.VISIBLE);
+                                } else {
+                                    webBTN.setVisibility(View.GONE);
                                 }
 
                                 getCurrentLocation(weather_key);

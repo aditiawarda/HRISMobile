@@ -23,9 +23,9 @@ import org.json.JSONObject;
 
 public class DeviceWarningActivity extends AppCompatActivity {
 
-    TextView loginBTN, messageWarningDevice;
+    TextView messageWarningDevice;
     String userNIK, userName;
-    LinearLayout contactIT;
+    LinearLayout loginBTN, contactIT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

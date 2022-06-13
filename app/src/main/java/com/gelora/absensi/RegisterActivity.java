@@ -49,9 +49,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     private StatusBarColorManager mStatusBarColorManager;
     EditText nikED, passwordED, repasswordED;
-    TextView namaTV, showPassword, matchPassword, indicatorMatchPass, toLoginBTN;
+    TextView namaTV, showPassword, matchPassword, indicatorMatchPass;
     String statusPass = "hide";
-    LinearLayout registerBTN, contactServiceBTN, connectBTN, closeBTN;
+    LinearLayout toLoginBTN, registerBTN, contactServiceBTN, connectBTN, closeBTN;
     BottomSheetLayout bottomSheetCS;
     View rootview;
 
