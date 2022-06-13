@@ -1655,7 +1655,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 }
 
                                 dateCheckinTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
-                                timeCheckinTV.setText(time_checkin+" "+getTimeZone());
+
+                                String timeZone = "";
+                                if (getTimeZone().equals("GMT+07:00")){
+                                    timeZone = "WIB";
+                                } else if (getTimeZone().equals("GMT+08:00")){
+                                    timeZone = "WITA";
+                                } else if (getTimeZone().equals("GMT+09:00")){
+                                    timeZone = "WIT";
+                                } else {
+                                    timeZone = getTimeZone();
+                                }
+
+                                timeCheckinTV.setText(time_checkin+" "+timeZone);
                                 idStatusAbsen = id_status;
                                 dateCheckin = date_checkin;
 
@@ -3412,7 +3424,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     }
 
                                     dateCheckoutTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
-                                    timeCheckoutTV.setText(time_checkout+" "+getTimeZone());
+
+                                    String timeZone = "";
+                                    if (getTimeZone().equals("GMT+07:00")){
+                                        timeZone = "WIB";
+                                    } else if (getTimeZone().equals("GMT+08:00")){
+                                        timeZone = "WITA";
+                                    } else if (getTimeZone().equals("GMT+09:00")){
+                                        timeZone = "WIT";
+                                    } else {
+                                        timeZone = getTimeZone();
+                                    }
+
+                                    timeCheckoutTV.setText(time_checkout+" "+timeZone);
                                     ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini\"");
 
                                     //if (tgl_checkin.equals(getDate())){
@@ -4396,10 +4420,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         };
 
-        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
-                0,
-                -1,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         postRequest.setRetryPolicy(retryPolicy);
 
         requestQueue.add(postRequest);

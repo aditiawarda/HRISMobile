@@ -1067,7 +1067,7 @@
             android:layout_marginTop="-2dp"
             android:layout_marginRight="-2dp"
             android:layout_marginLeft="-2dp"
-            android:paddingTop="1dp"
+            android:paddingTop="4dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="5dp"
