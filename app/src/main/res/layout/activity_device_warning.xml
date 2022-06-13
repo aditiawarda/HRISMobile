@@ -37,13 +37,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:textColor="@color/white"
-                android:text="PERHATIAN"/>
+                android:gravity="center|left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
+                    android:background="@drawable/ic_warning_img"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="7dp"
+                    android:textSize="17dp"
+                    android:textColor="@color/white"
+                    android:text="PERHATIAN"/>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_marginTop="20dp"
@@ -51,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="@color/white"
-                android:text="Anda terdeteksi login bukan pada perangkat anda pribadi, harap gunakan Absensi App di perangkat pribadi anda."/>
+                android:text="Anda terdeteksi login bukan pada perangkat pribadi anda, harap gunakan Absensi App di perangkat pribadi anda."/>
 
             <TextView
                 android:visibility="gone"
@@ -69,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="@color/white"
-                android:text="Jika perangkat yang anda gunakan saat ini adalah milik anda pribadi, harap segera hubungi bagian IT/EDP."/>
+                android:text="Jika perangkat yang anda gunakan saat ini adalah milik anda, harap segera hubungi bagian IT/EDP."/>
 
             <LinearLayout
                 android:id="@+id/contact_to_it"
