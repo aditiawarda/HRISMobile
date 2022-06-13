@@ -4369,7 +4369,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
-                            String message = data.getString("message");
 
                         } catch (JSONException e) {
                             e.printStackTrace();
