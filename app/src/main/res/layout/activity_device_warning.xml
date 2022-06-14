@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="@color/white"
-                android:text="Perangkat ini terdaftar atas nama (Nama User)"/>
+                android:text="Perangkat ini terdaftar atas nama (Nama User)."/>
 
             <TextView
                 android:layout_marginTop="10dp"

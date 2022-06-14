@@ -96,7 +96,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="8dp"
                         android:textColor="@color/text_color"
-                        android:text="Dalam penggunaan Absensi App pada satu perangkat hanya dapat login untuk satu NIK/id karyawan"/>
+                        android:text="Dalam penggunaan Absensi App pada satu perangkat hanya dapat login untuk satu NIK/id karyawan."/>
 
                     <TextView
                         android:layout_width="wrap_content"
