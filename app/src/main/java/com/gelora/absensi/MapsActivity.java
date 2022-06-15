@@ -128,8 +128,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
     ImageView weatherIconPart, onlineGif, loadingGif, warningGif, notificationWarning;
-    TextView izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    TextView reminderDecs, reminderCelebrateTV, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
+    LinearLayout reminderCongrat, markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -243,6 +243,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         switchZoom = findViewById(R.id.switch_zoom);
         markerWarningAbsensi = findViewById(R.id.marker_warning);
         notificationWarning = findViewById(R.id.warning_gif_absen);
+        reminderCongrat = findViewById(R.id.reminder_congrat);
+        reminderDecs = findViewById(R.id.reminder_desc);
+        reminderCelebrateTV = findViewById(R.id.reminder_celebrate);
         requestQueue = Volley.newRequestQueue(getBaseContext());
 
         Glide.with(getApplicationContext())
@@ -750,6 +753,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //return ("2022-06-03");
     }
 
+    private String getDayMonth() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+        //return ("2022-06-03");
+    }
+
     private String getDateD() {
         @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("dd");
@@ -1224,11 +1235,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String tanggal = getDate();
         String timestamp_masuk = getDate()+" "+getTime();
         String jam_masuk = getTime();
-        // String status_terlambat = lateStatus;
         String waktu_terlambat = lateTime;
         String latitude = String.valueOf(userLat);
         String longitude = String.valueOf(userLong);
         String status_absen = idStatusAbsen;
+
+        String zonaWaktu;
+        if (getTimeZone().equals("GMT+07:00")){
+            zonaWaktu = "WIB";
+        } else if (getTimeZone().equals("GMT+08:00")){
+            zonaWaktu = "WITA";
+        } else if (getTimeZone().equals("GMT+09:00")){
+            zonaWaktu = "WIT";
+        } else {
+            zonaWaktu = getTimeZone();
+        }
 
         String checkin_point;
         if (!idStatusAbsen.equals("2")) {
@@ -1288,7 +1309,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 params.put("tanggal", tanggal);
                 params.put("jam_masuk", jam_masuk);
                 params.put("timestamp_masuk", timestamp_masuk);
-                // params.put("status_terlambat", status_terlambat);
+                params.put("timezone_masuk", zonaWaktu);
                 params.put("waktu_terlambat", waktu_terlambat);
                 params.put("latitude", latitude);
                 params.put("longitude", longitude);
@@ -3308,6 +3329,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String latitude = String.valueOf(userLat);
         String longitude = String.valueOf(userLong);
 
+        String zonaWaktu;
+        if (getTimeZone().equals("GMT+07:00")){
+            zonaWaktu = "WIB";
+        } else if (getTimeZone().equals("GMT+08:00")){
+            zonaWaktu = "WITA";
+        } else if (getTimeZone().equals("GMT+09:00")){
+            zonaWaktu = "WIT";
+        } else {
+            zonaWaktu = getTimeZone();
+        }
+
         String checkout_point;
         if (!idStatusAbsen.equals("2")) {
             checkout_point = "";
@@ -3363,6 +3395,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 params.put("tanggal", tanggal);
                 params.put("timestamp_pulang", timestamp_pulang);
                 params.put("jam_pulang", jam_pulang);
+                params.put("timezone_pulang", zonaWaktu);
                 params.put("kelebihan_jam", kelebihan_jam);
                 params.put("status", status);
                 params.put("latitude", latitude);
@@ -4686,6 +4719,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String cuaca_button = data.getString("cuaca_button");
                                 String fake_time = data.getString("faketime_check");
                                 String devmod_check = data.getString("devmod_check");
+                                String join_reminder = data.getString("join_reminder");
+
+                                if (sharedPrefManager.getSpNik().length()==10 || sharedPrefManager.getSpNik().equals("0000011")){
+                                    String tgl_masuk = data.getString("tgl_masuk");
+                                    String tglBulanMasuk = tgl_masuk.substring(5,10);
+                                    String tahunMasuk = tgl_masuk.substring(0,4);
+
+                                    if(tglBulanMasuk.equals(getDayMonth())) {
+                                        int masaKerja = Integer.parseInt(getDateY()) - Integer.parseInt(tahunMasuk);
+                                        reminderDecs.setText("Hari ini tepat "+String.valueOf(masaKerja)+" tahun anda bekerja di PT. Gelora Aksara Pratama");
+                                        reminderCelebrateTV.setText("Selamat Merayakan "+String.valueOf(masaKerja)+" Tahun Masa Kerja.");
+                                        if (join_reminder.equals("1")){
+                                            reminderCongrat.setVisibility(View.VISIBLE);
+                                        } else {
+                                            reminderCongrat.setVisibility(View.GONE);
+                                        }
+                                    } else {
+                                        reminderCongrat.setVisibility(View.GONE);
+                                    }
+                                }
 
                                 fakeTimeCheck = fake_time;
                                 devModCheck = devmod_check;
