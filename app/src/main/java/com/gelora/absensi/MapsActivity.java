@@ -489,6 +489,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 timeDetection = "different";
             }
 
+            dateLive();
+
         } else {
             gpsEnableAction();
         }
@@ -1274,14 +1276,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
                             String message = data.getString("message");
-                            idCheckin = data.getString("id_checkin");
-                            checkAbsen();
 
-                            dialogAktif = "1";
-
-                            // pDialog.setTitleText("Check In Berhasil!")
-                            //       .setConfirmText("OK")
-                            //       .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            if (status.equals("Success")){
+                                dialogAktif = "1";
+                                idCheckin = data.getString("id_checkin");
+                                checkAbsen();
+                            } else if (status.equals("Available")){
+                                pDialog.dismiss();
+                                new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Hari ini anda sudah melakukan Check In!")
+                                        .setConfirmText("OK")
+                                        .showCancelButton(true)
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                checkAbsen();
+                                            }
+                                        })
+                                        .show();
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -1576,7 +1591,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             if(status.equals("Success")){
                                 refreshData();
 
-                                pDialog.setTitleText("Anda Diliburkan!")
+                                pDialog.setTitleText("Anda Diliburkan")
                                         .setConfirmText("OK")
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
 
@@ -1848,7 +1863,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                             pDialog.dismiss();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                    .setTitleText("Perhatian!")
+                                                                    .setTitleText("Perhatian")
                                                                     .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
                                                                     .setConfirmText("SETTING")
@@ -1875,7 +1890,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                 if (fakeTimeCheck.equals("1")){
                                                                     pDialog.dismiss();
                                                                     new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                            .setTitleText("Perhatian!")
+                                                                            .setTitleText("Perhatian")
                                                                             .setContentText("Pengaturan waktu pada perangkat anda terdeteksi berbeda dengan sistem, harap sesuaikan terlebih dahulu!")
                                                                             .setCancelText(" TUTUP ")
                                                                             .setConfirmText("SETTING")
@@ -1966,7 +1981,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                             pDialog.dismiss();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                    .setTitleText("Perhatian!")
+                                                                    .setTitleText("Perhatian")
                                                                     .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
                                                                     .setConfirmText("SETTING")
@@ -1993,7 +2008,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                     if (fakeTimeCheck.equals("1")){
                                                                         pDialog.dismiss();
                                                                         new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                                .setTitleText("Perhatian!")
+                                                                                .setTitleText("Perhatian")
                                                                                 .setContentText("Pengaturan waktu pada perangkat anda terdeteksi berbeda dengan sistem, harap sesuaikan terlebih dahulu!")
                                                                                 .setCancelText(" TUTUP ")
                                                                                 .setConfirmText("SETTING")
@@ -2020,7 +2035,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                             } else {
                                                                 pDialog.dismiss();
                                                                 new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                        .setTitleText("Perhatian!")
+                                                                        .setTitleText("Perhatian")
                                                                         .setContentText("Posisi anda di luar jangkauan!")
                                                                         .setConfirmText("TUTUP")
                                                                         .showCancelButton(true)
@@ -2142,7 +2157,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                         pDialog.dismiss();
                                                         new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                .setTitleText("Perhatian!")
+                                                                .setTitleText("Perhatian")
                                                                 .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
                                                                 .setCancelText(" TUTUP ")
                                                                 .setConfirmText("SETTING")
@@ -2169,7 +2184,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                             if(fakeTimeCheck.equals("1")){
                                                                 pDialog.dismiss();
                                                                 new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                        .setTitleText("Perhatian!")
+                                                                        .setTitleText("Perhatian")
                                                                         .setContentText("Pengaturan waktu pada perangkat anda terdeteksi berbeda dengan sistem, harap sesuaikan terlebih dahulu!")
                                                                         .setCancelText(" TUTUP ")
                                                                         .setConfirmText("SETTING")
@@ -2260,7 +2275,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                         pDialog.dismiss();
                                                         new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                .setTitleText("Perhatian!")
+                                                                .setTitleText("Perhatian")
                                                                 .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
                                                                 .setCancelText(" TUTUP ")
                                                                 .setConfirmText("SETTING")
@@ -2288,7 +2303,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                 if(fakeTimeCheck.equals("1")){
                                                                     pDialog.dismiss();
                                                                     new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                            .setTitleText("Perhatian!")
+                                                                            .setTitleText("Perhatian")
                                                                             .setContentText("Pengaturan waktu pada perangkat anda terdeteksi berbeda dengan sistem, harap sesuaikan terlebih dahulu!")
                                                                             .setCancelText(" TUTUP ")
                                                                             .setConfirmText("SETTING")
@@ -2316,7 +2331,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         } else {
                                                             pDialog.dismiss();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                    .setTitleText("Perhatian!")
+                                                                    .setTitleText("Perhatian")
                                                                     .setContentText("Posisi anda di luar jangkauan!")
                                                                     .setConfirmText("TUTUP")
                                                                     .showCancelButton(true)
@@ -2407,7 +2422,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     if(fakeTimeCheck.equals("1")){
                                                         pDialog.dismiss();
                                                         new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                .setTitleText("Perhatian!")
+                                                                .setTitleText("Perhatian")
                                                                 .setContentText("Pengaturan waktu pada perangkat anda terdeteksi berbeda dengan sistem, harap sesuaikan terlebih dahulu!")
                                                                 .setCancelText(" TUTUP ")
                                                                 .setConfirmText("SETTING")
@@ -2518,7 +2533,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         if(fakeTimeCheck.equals("1")){
                                                             pDialog.dismiss();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                    .setTitleText("Perhatian!")
+                                                                    .setTitleText("Perhatian")
                                                                     .setContentText("Pengaturan waktu pada perangkat anda terdeteksi berbeda dengan sistem, harap sesuaikan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
                                                                     .setConfirmText("SETTING")
@@ -2645,7 +2660,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                             pDialog.dismiss();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                    .setTitleText("Perhatian!")
+                                                                    .setTitleText("Perhatian")
                                                                     .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
                                                                     .setConfirmText("SETTING")
@@ -2672,7 +2687,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                 if(fakeTimeCheck.equals("1")){
                                                                     pDialog.dismiss();
                                                                     new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                            .setTitleText("Perhatian!")
+                                                                            .setTitleText("Perhatian")
                                                                             .setContentText("Pengaturan waktu pada perangkat anda terdeteksi berbeda dengan sistem, harap sesuaikan terlebih dahulu!")
                                                                             .setCancelText(" TUTUP ")
                                                                             .setConfirmText("SETTING")
@@ -2763,7 +2778,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                             pDialog.dismiss();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                    .setTitleText("Perhatian!")
+                                                                    .setTitleText("Perhatian")
                                                                     .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
                                                                     .setConfirmText("SETTING")
@@ -2790,7 +2805,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                 if(fakeTimeCheck.equals("1")){
                                                                     pDialog.dismiss();
                                                                     new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                            .setTitleText("Perhatian!")
+                                                                            .setTitleText("Perhatian")
                                                                             .setContentText("Pengaturan waktu pada perangkat anda terdeteksi berbeda dengan sistem, harap sesuaikan terlebih dahulu!")
                                                                             .setCancelText(" TUTUP ")
                                                                             .setConfirmText("SETTING")
@@ -2891,7 +2906,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                             pDialog.dismiss();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                    .setTitleText("Perhatian!")
+                                                                    .setTitleText("Perhatian")
                                                                     .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
                                                                     .setConfirmText("SETTING")
@@ -2918,7 +2933,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                 if (fakeTimeCheck.equals("1")){
                                                                     pDialog.dismiss();
                                                                     new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                            .setTitleText("Perhatian!")
+                                                                            .setTitleText("Perhatian")
                                                                             .setContentText("Pengaturan waktu pada perangkat anda terdeteksi berbeda dengan sistem, harap sesuaikan terlebih dahulu!")
                                                                             .setCancelText(" TUTUP ")
                                                                             .setConfirmText("SETTING")
@@ -3010,7 +3025,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                             pDialog.dismiss();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                    .setTitleText("Perhatian!")
+                                                                    .setTitleText("Perhatian")
                                                                     .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
                                                                     .setConfirmText("SETTING")
@@ -3037,7 +3052,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                 if (fakeTimeCheck.equals("1")){
                                                                     pDialog.dismiss();
                                                                     new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                            .setTitleText("Perhatian!")
+                                                                            .setTitleText("Perhatian")
                                                                             .setContentText("Pengaturan waktu pada perangkat anda terdeteksi berbeda dengan sistem, harap sesuaikan terlebih dahulu!")
                                                                             .setCancelText(" TUTUP ")
                                                                             .setConfirmText("SETTING")
@@ -3151,7 +3166,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         if(fakeTimeCheck.equals("1")){
                                                             pDialog.dismiss();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
-                                                                    .setTitleText("Perhatian!")
+                                                                    .setTitleText("Perhatian")
                                                                     .setContentText("Pengaturan waktu pada perangkat anda terdeteksi berbeda dengan sistem, harap sesuaikan terlebih dahulu!")
                                                                     .setCancelText(" TUTUP ")
                                                                     .setConfirmText("SETTING")
@@ -3366,7 +3381,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             String id_checkout = data.getString("id_checkout");
                             checkoutRecord(id_checkout);
 
-                            pDialog.setTitleText("Check Out Berhasil!")
+                            pDialog.setTitleText("Check Out Berhasil")
                                     .setConfirmText("OK")
                                     .changeAlertType(KAlertDialog.SUCCESS_TYPE);
 
@@ -3494,10 +3509,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String time_checkout = data_checkin.getString("jam_pulang");
                                 String date_checkout = data_checkin.getString("tanggal");
                                 String checkout_point = data_checkin.getString("checkout_point");
+                                String status_pulang = data_checkin.getString("status");
                                 shiftType = tipe_shift;
                                 intervalTime = interval;
 
-                                if (time_checkout.equals("00:00:00")){
+                                if (status_pulang.equals("0")){
                                     if(!tgl_checkin.equals(getDate())){
                                         if(tipe_shift.equals("Normal")){
                                             attantionPart.setVisibility(View.VISIBLE);
@@ -3522,7 +3538,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             idShiftAbsen = "";
 
                                             new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
-                                                    .setTitleText("Perhatian!")
+                                                    .setTitleText("Perhatian")
                                                     .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
                                                     .setConfirmText("OK")
                                                     .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
@@ -3546,7 +3562,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 @Override
                                                 public void onClick(View v) {
                                                     new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
-                                                            .setTitleText("Perhatian!")
+                                                            .setTitleText("Perhatian")
                                                             .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
                                                             .setConfirmText("OK")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
@@ -3745,7 +3761,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     } else {
                                         warningPart.setVisibility(View.GONE);
                                         dateCheckoutTV.setText("---- - -- - --");
-                                        timeCheckoutTV.setText("-- : -- : --");
+                                        timeCheckoutTV.setText("-- : -- : -- ---");
                                         statusAction = "checkout";
                                         ucapanTV.setText("\"Selamat dan SUMAngat Bekerja!\"");
                                         inputAbsenPart.setVisibility(View.GONE);
@@ -3860,7 +3876,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 }
 
                                 if (dialogAktif.equals("1")){
-                                    pDialog.setTitleText("Check In Berhasil!")
+                                    pDialog.setTitleText("Check In Berhasil")
                                             .setConfirmText("OK")
                                             .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                                     dialogAktif = "0";
