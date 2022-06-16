@@ -133,7 +133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -175,6 +175,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         deviceID = String.valueOf(Secure.getString(MapsActivity.this.getContentResolver(), Secure.ANDROID_ID)).toUpperCase();
+
+        if (getTimeZone().equals("GMT+07:00")){
+            checkinTimeZone = "WIB";
+        } else if (getTimeZone().equals("GMT+08:00")){
+            checkinTimeZone = "WITA";
+        } else if (getTimeZone().equals("GMT+09:00")){
+            checkinTimeZone = "WIT";
+        } else {
+            checkinTimeZone = getTimeZone();
+        }
 
         //ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         //ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -481,7 +491,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             if(String.valueOf(dateNetworkFormat.format(network)).equals(getDate())){
                 if(String.valueOf(timeNetworkFormat.format(network)).equals(getTimeCheck())){
-                    timeDetection = "matching";
+
+                    String zonaWaktu;
+                    if (getTimeZone().equals("GMT+07:00")){
+                        zonaWaktu = "WIB";
+                    } else if (getTimeZone().equals("GMT+08:00")){
+                        zonaWaktu = "WITA";
+                    } else if (getTimeZone().equals("GMT+09:00")){
+                        zonaWaktu = "WIT";
+                    } else {
+                        zonaWaktu = getTimeZone();
+                    }
+
+                    if(checkinTimeZone.equals(zonaWaktu)){
+                        timeDetection = "matching";
+                    } else {
+                        timeDetection = "different";
+                    }
                 } else {
                     timeDetection = "different";
                 }
@@ -1661,10 +1687,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 JSONObject data_checkin = data.getJSONObject("data");
                                 String date_checkin = data_checkin.getString("tanggal");
                                 String time_checkin = data_checkin.getString("jam_masuk");
+                                String timezone_masuk = data_checkin.getString("timezone_masuk");
                                 String checkin_point = data_checkin.getString("checkin_point");
                                 String id_status = data_checkin.getString("status_absen");
                                 String id_shift = data_checkin.getString("id_shift");
                                 idCheckin = data_checkin.getString("id");
+                                checkinTimeZone = timezone_masuk;
 
                                 String input_date = date_checkin;
                                 String dayDate = input_date.substring(8,10);
@@ -1716,18 +1744,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                 dateCheckinTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
-                                String timeZone = "";
-                                if (getTimeZone().equals("GMT+07:00")){
-                                    timeZone = "WIB";
-                                } else if (getTimeZone().equals("GMT+08:00")){
-                                    timeZone = "WITA";
-                                } else if (getTimeZone().equals("GMT+09:00")){
-                                    timeZone = "WIT";
-                                } else {
-                                    timeZone = getTimeZone();
-                                }
-
-                                timeCheckinTV.setText(time_checkin+" "+timeZone);
+                                timeCheckinTV.setText(time_checkin+" "+timezone_masuk);
                                 idStatusAbsen = id_status;
                                 dateCheckin = date_checkin;
 
@@ -3507,6 +3524,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String timestamp_checkin = data.getString("timestamp_checkin");
                                 JSONObject data_checkin = data.getJSONObject("data");
                                 String time_checkout = data_checkin.getString("jam_pulang");
+                                String timezone_pulang = data_checkin.getString("timezone_pulang");
                                 String date_checkout = data_checkin.getString("tanggal");
                                 String checkout_point = data_checkin.getString("checkout_point");
                                 String status_pulang = data_checkin.getString("status");
@@ -3829,18 +3847,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                     dateCheckoutTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
-                                    String timeZone = "";
-                                    if (getTimeZone().equals("GMT+07:00")){
-                                        timeZone = "WIB";
-                                    } else if (getTimeZone().equals("GMT+08:00")){
-                                        timeZone = "WITA";
-                                    } else if (getTimeZone().equals("GMT+09:00")){
-                                        timeZone = "WIT";
-                                    } else {
-                                        timeZone = getTimeZone();
-                                    }
-
-                                    timeCheckoutTV.setText(time_checkout+" "+timeZone);
+                                    timeCheckoutTV.setText(time_checkout+" "+timezone_pulang);
                                     ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini\"");
 
                                     //if (tgl_checkin.equals(getDate())){
