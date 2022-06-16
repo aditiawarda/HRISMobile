@@ -1067,9 +1067,9 @@
             android:layout_marginTop="-2dp"
             android:layout_marginRight="-2dp"
             android:layout_marginLeft="-2dp"
-            android:paddingTop="4dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:paddingBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -1089,10 +1089,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
-                        android:textSize="12dp"
+                        android:textSize="11dp"
                         android:text="Nama User"
-                        android:drawableLeft="@drawable/ic_baseline_account"
-                        android:drawablePadding="5dp" />
+                        android:drawableLeft="@drawable/ic_baseline_account_home"
+                        android:drawablePadding="3dp" />
 
                 </LinearLayout>
 
@@ -1107,9 +1107,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
-                        android:drawablePadding="5dp"
-                        android:textSize="12dp"
-                        android:drawableRight="@drawable/ic_baseline_date"
+                        android:drawablePadding="3dp"
+                        android:textSize="11dp"
+                        android:drawableRight="@drawable/ic_baseline_date_home"
                         android:text="00/00/0000"/>
 
                 </LinearLayout>
@@ -1121,7 +1121,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="7dp"
+            android:paddingTop="5dp"
             android:paddingRight="15dp"
             android:paddingLeft="15dp"
             android:orientation="horizontal">
@@ -1183,7 +1183,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="7dp"
+            android:paddingTop="5dp"
             android:paddingRight="15dp"
             android:paddingLeft="15dp"
             android:orientation="horizontal">
