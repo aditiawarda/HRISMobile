@@ -8,6 +8,7 @@ public class DataNoCheckout {
     private String jam_shift;
     private String tanggal_masuk;
     private String jam_masuk;
+    private String timezone_masuk;
     private String checkin_point;
     private String ket;
 
@@ -65,5 +66,13 @@ public class DataNoCheckout {
 
     public void setKet(String ket) {
         this.ket = ket;
+    }
+
+    public String getTimezone_masuk() {
+        return timezone_masuk;
+    }
+
+    public void setTimezone_masuk(String timezone_masuk) {
+        this.timezone_masuk = timezone_masuk;
     }
 }

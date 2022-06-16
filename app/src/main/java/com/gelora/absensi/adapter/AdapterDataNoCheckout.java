@@ -179,7 +179,12 @@ public class AdapterDataNoCheckout extends RecyclerView.Adapter<AdapterDataNoChe
         }
         myViewHolder.dateAbsenCheckin.setText(String.valueOf(Integer.parseInt(dayDateCheckin))+" "+bulanNameCheckin+" "+yearDateCheckin);
 
-        myViewHolder.jamMasuk.setText(dataNoCheckout.getJam_masuk());
+        if (String.valueOf(dataNoCheckout.getTimezone_masuk()).equals("null")){
+            myViewHolder.jamMasuk.setText(dataNoCheckout.getJam_masuk());
+        } else {
+            myViewHolder.jamMasuk.setText(dataNoCheckout.getJam_masuk()+" "+dataNoCheckout.getTimezone_masuk());
+        }
+
         myViewHolder.checkinPoint.setText(dataNoCheckout.getCheckin_point());
         myViewHolder.ket.setText(dataNoCheckout.getKet());
 

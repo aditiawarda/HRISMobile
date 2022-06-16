@@ -264,7 +264,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
 
                         new KAlertDialog(LoginActivity.this, KAlertDialog.ERROR_TYPE)
-                                .setTitleText("Opps")
+                                .setTitleText("Perhatian")
                                 .setContentText(status+"!")
                                 .setConfirmText("OK")
                                 .show();
@@ -353,7 +353,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
 
                         new KAlertDialog(LoginActivity.this, KAlertDialog.ERROR_TYPE)
-                                .setTitleText("Opps")
+                                .setTitleText("Perhatian")
                                 .setContentText(status+"!")
                                 .setConfirmText("OK")
                                 .show();

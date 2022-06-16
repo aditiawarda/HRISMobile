@@ -243,13 +243,20 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
 
         }
 
-        myViewHolder.checkinTime.setText(dataPulangCepat.getJam_masuk());
-        myViewHolder.checkoutTime.setText(dataPulangCepat.getJam_pulang());
+        if (String.valueOf(dataPulangCepat.getTimezone_masuk()).equals("null")){
+            myViewHolder.checkinTime.setText(dataPulangCepat.getJam_masuk());
+        } else {
+            myViewHolder.checkinTime.setText(dataPulangCepat.getJam_masuk()+" "+dataPulangCepat.getTimezone_masuk());
+        }
 
-        if (myViewHolder.checkoutTime.getText().toString().equals("00:00:00")){
+        if (dataPulangCepat.getStatus_pulang().equals("0")){
             myViewHolder.checkoutTime.setText("-- : -- : --");
         } else {
-            myViewHolder.checkoutTime.setText(dataPulangCepat.getJam_pulang());
+            if (String.valueOf(dataPulangCepat.getTimezone_pulang()).equals("null")){
+                myViewHolder.checkoutTime.setText(dataPulangCepat.getJam_pulang());
+            } else {
+                myViewHolder.checkoutTime.setText(dataPulangCepat.getJam_pulang()+" "+dataPulangCepat.getTimezone_pulang());
+            }
         }
 
         myViewHolder.checkinPoint.setText(dataPulangCepat.getCheckin_point());
@@ -260,14 +267,8 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
             myViewHolder.checkinPoint.setText(dataPulangCepat.getCheckin_point());
         }
 
-        myViewHolder.checkoutPoint.setText(dataPulangCepat.getCheckout_point());
-
-        if (myViewHolder.checkoutPoint.getText().toString().equals("")){
-            if (myViewHolder.checkoutTime.getText().toString().equals("-- : -- : --")){
-                myViewHolder.checkoutPoint.setText("-");
-            } else {
-                myViewHolder.checkoutPoint.setText(sharedPrefManager.getSpNama());
-            }
+        if (dataPulangCepat.getStatus_pulang().equals("0")){
+            myViewHolder.checkoutPoint.setText("-");
         } else {
             myViewHolder.checkoutPoint.setText(dataPulangCepat.getCheckout_point());
         }

@@ -8,7 +8,10 @@ public class DataPulangCepat {
     private String tanggal_masuk;
     private String tanggal_pulang;
     private String jam_masuk;
+    private String timezone_masuk;
     private String jam_pulang;
+    private String timezone_pulang;
+    private String status_pulang;
     private String checkin_point;
     private String checkout_point;
 
@@ -74,5 +77,29 @@ public class DataPulangCepat {
 
     public void setCheckout_point(String checkout_point) {
         this.checkout_point = checkout_point;
+    }
+
+    public String getTimezone_masuk() {
+        return timezone_masuk;
+    }
+
+    public void setTimezone_masuk(String timezone_masuk) {
+        this.timezone_masuk = timezone_masuk;
+    }
+
+    public String getTimezone_pulang() {
+        return timezone_pulang;
+    }
+
+    public void setTimezone_pulang(String timezone_pulang) {
+        this.timezone_pulang = timezone_pulang;
+    }
+
+    public String getStatus_pulang() {
+        return status_pulang;
+    }
+
+    public void setStatus_pulang(String status_pulang) {
+        this.status_pulang = status_pulang;
     }
 }

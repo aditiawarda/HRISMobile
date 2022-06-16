@@ -179,7 +179,12 @@ public class AdapterDataTerlambat extends RecyclerView.Adapter<AdapterDataTerlam
         }
         myViewHolder.dateAbsenCheckin.setText(String.valueOf(Integer.parseInt(dayDateCheckin))+" "+bulanNameCheckin+" "+yearDateCheckin);
 
-        myViewHolder.jamMasuk.setText(dataTerlambat.getJam_masuk());
+        if (String.valueOf(dataTerlambat.getTimezone_masuk()).equals("null")){
+            myViewHolder.jamMasuk.setText(dataTerlambat.getJam_masuk());
+        } else {
+            myViewHolder.jamMasuk.setText(dataTerlambat.getJam_masuk()+" "+dataTerlambat.getTimezone_masuk());
+        }
+
         myViewHolder.checkinPoint.setText(dataTerlambat.getCheckin_point());
 
         if (myViewHolder.checkinPoint.getText().toString().equals("")){

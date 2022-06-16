@@ -229,7 +229,7 @@
                                                     android:drawablePadding="7dp"
                                                     android:layout_marginBottom="5dp"
                                                     android:textSize="11dp"
-                                                    android:text="-- : -- : --"/>
+                                                    android:text="-- : -- : -- ---"/>
 
                                                 <TextView
                                                     android:layout_marginLeft="15dp"
@@ -298,7 +298,7 @@
                                                     android:drawablePadding="7dp"
                                                     android:layout_marginBottom="5dp"
                                                     android:textSize="11dp"
-                                                    android:text="-- : -- : --"/>
+                                                    android:text="-- : -- : -- ---"/>
 
                                                 <TextView
                                                     android:layout_marginLeft="15dp"

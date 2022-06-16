@@ -102,11 +102,9 @@ public class AdapterDataHadir extends RecyclerView.Adapter<AdapterDataHadir.MyVi
         }
 
         myViewHolder.dateCheckin.setText(String.valueOf(Integer.parseInt(dayDateCheckin))+" "+bulanNameCheckin+" "+yearDateCheckin);
-        myViewHolder.dateCheckout.setText(dataHadir.getTanggal_pulang());
-
         myViewHolder.namaShift.setText(dataHadir.getShift());
 
-        if (myViewHolder.dateCheckout.getText().toString().equals("")){
+        if (dataHadir.getStatus_pulang().equals("0")){
             myViewHolder.dateCheckout.setText("---- - -- - --");
         } else {
             String input_date_checkout = dataHadir.getTanggal_pulang();
@@ -243,13 +241,20 @@ public class AdapterDataHadir extends RecyclerView.Adapter<AdapterDataHadir.MyVi
 
         }
 
-        myViewHolder.checkinTime.setText(dataHadir.getJam_masuk());
-        myViewHolder.checkoutTime.setText(dataHadir.getJam_pulang());
+        if (String.valueOf(dataHadir.getTimezone_masuk()).equals("null")){
+            myViewHolder.checkinTime.setText(dataHadir.getJam_masuk());
+        } else {
+            myViewHolder.checkinTime.setText(dataHadir.getJam_masuk()+" "+dataHadir.getTimezone_masuk());
+        }
 
-        if (myViewHolder.checkoutTime.getText().toString().equals("00:00:00")){
+        if (dataHadir.getStatus_pulang().equals("0")){
             myViewHolder.checkoutTime.setText("-- : -- : --");
         } else {
-            myViewHolder.checkoutTime.setText(dataHadir.getJam_pulang());
+            if (String.valueOf(dataHadir.getTimezone_pulang()).equals("null")){
+                myViewHolder.checkoutTime.setText(dataHadir.getJam_pulang());
+            } else {
+                myViewHolder.checkoutTime.setText(dataHadir.getJam_pulang()+" "+dataHadir.getTimezone_pulang());
+            }
         }
 
         myViewHolder.checkinPoint.setText(dataHadir.getCheckin_point());
@@ -260,14 +265,8 @@ public class AdapterDataHadir extends RecyclerView.Adapter<AdapterDataHadir.MyVi
             myViewHolder.checkinPoint.setText(dataHadir.getCheckin_point());
         }
 
-        myViewHolder.checkoutPoint.setText(dataHadir.getCheckout_point());
-
-        if (myViewHolder.checkoutPoint.getText().toString().equals("")){
-            if (myViewHolder.checkoutTime.getText().toString().equals("-- : -- : --")){
-                myViewHolder.checkoutPoint.setText("-");
-            } else {
-                myViewHolder.checkoutPoint.setText(sharedPrefManager.getSpNama());
-            }
+        if (dataHadir.getStatus_pulang().equals("0")){
+            myViewHolder.checkoutPoint.setText("-");
         } else {
             myViewHolder.checkoutPoint.setText(dataHadir.getCheckout_point());
         }

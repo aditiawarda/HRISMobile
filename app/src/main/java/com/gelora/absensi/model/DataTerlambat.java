@@ -8,6 +8,7 @@ public class DataTerlambat {
     private String jam_shift;
     private String tanggal_masuk;
     private String jam_masuk;
+    private String timezone_masuk;
     private String waktu_terlambat;
     private String checkin_point;
 
@@ -65,5 +66,13 @@ public class DataTerlambat {
 
     public void setCheckin_point(String checkin_point) {
         this.checkin_point = checkin_point;
+    }
+
+    public String getTimezone_masuk() {
+        return timezone_masuk;
+    }
+
+    public void setTimezone_masuk(String timezone_masuk) {
+        this.timezone_masuk = timezone_masuk;
     }
 }

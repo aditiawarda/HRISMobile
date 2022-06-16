@@ -108,7 +108,6 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
         }
 
         myViewHolder.dateCheckin.setText(String.valueOf(Integer.parseInt(dayDateCheckin))+" "+bulanNameCheckin+" "+yearDateCheckin);
-        myViewHolder.dateCheckout.setText(historyAbsen.getTanggal_pulang());
 
         String statusAbsen = historyAbsen.getStatus_absen();
         if (statusAbsen.equals("1")){
@@ -124,7 +123,7 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
         }
         myViewHolder.namaShift.setText(namaStatus+" - "+historyAbsen.getNama_shift());
 
-        if (myViewHolder.dateCheckout.getText().toString().equals("")){
+        if (historyAbsen.getStatus_pulang().equals("0")){
             myViewHolder.dateCheckout.setText("---- - -- - --");
         } else {
             String input_date_checkout = historyAbsen.getTanggal_pulang();
@@ -261,13 +260,20 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
 
         }
 
-        myViewHolder.checkinTime.setText(historyAbsen.getJam_masuk());
-        myViewHolder.checkoutTime.setText(historyAbsen.getJam_pulang());
-
-        if (myViewHolder.checkoutTime.getText().toString().equals("00:00:00")){
-            myViewHolder.checkoutTime.setText("-- : -- : --");
+        if (String.valueOf(historyAbsen.getTimezone_masuk()).equals("null")){
+            myViewHolder.checkinTime.setText(historyAbsen.getJam_masuk());
         } else {
-            myViewHolder.checkoutTime.setText(historyAbsen.getJam_pulang());
+            myViewHolder.checkinTime.setText(historyAbsen.getJam_masuk()+" "+historyAbsen.getTimezone_masuk());
+        }
+
+        if (historyAbsen.getStatus_pulang().equals("0")){
+            myViewHolder.checkoutTime.setText("-- : -- : -- ---");
+        } else {
+            if (String.valueOf(historyAbsen.getTimezone_pulang()).equals("null")){
+                myViewHolder.checkoutTime.setText(historyAbsen.getJam_pulang());
+            } else {
+                myViewHolder.checkoutTime.setText(historyAbsen.getJam_pulang()+" "+historyAbsen.getTimezone_pulang());
+            }
         }
 
         myViewHolder.checkinPoint.setText(historyAbsen.getCheckin_point());
@@ -278,14 +284,8 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
             myViewHolder.checkinPoint.setText(historyAbsen.getCheckin_point());
         }
 
-        myViewHolder.checkoutPoint.setText(historyAbsen.getCheckout_point());
-
-        if (myViewHolder.checkoutPoint.getText().toString().equals("")){
-            if (myViewHolder.checkoutTime.getText().toString().equals("-- : -- : --")){
-                myViewHolder.checkoutPoint.setText("-");
-            } else {
-                myViewHolder.checkoutPoint.setText(sharedPrefManager.getSpNama());
-            }
+        if (historyAbsen.getStatus_pulang().equals("0")){
+            myViewHolder.checkoutPoint.setText("-");
         } else {
             myViewHolder.checkoutPoint.setText(historyAbsen.getCheckout_point());
         }

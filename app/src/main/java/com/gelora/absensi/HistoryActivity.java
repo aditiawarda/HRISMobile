@@ -423,9 +423,12 @@ public class HistoryActivity extends AppCompatActivity {
                             String tanggal_checkin = data.getString("tanggal_checkin");
                             String tanggal_checkout = data.getString("tanggal_checkout");
                             String jam_checkin = data.getString("jam_checkin");
+                            String timezone_checkin = data.getString("timezone_checkin");
                             String checkin_point = data.getString("checkin_point");
                             String jam_checkout = data.getString("jam_checkout");
+                            String timezone_checkout = data.getString("timezone_checkout");
                             String checkout_point = data.getString("checkout_point");
+                            String status_pulang = data.getString("status_pulang");
                             String status_absen = data.getString("status_absen");
                             String nama_shift = data.getString("nama_shift");
                             String jam_shift = data.getString("jam_shift");
@@ -482,7 +485,7 @@ public class HistoryActivity extends AppCompatActivity {
                                 }
 
                                 dateCheckinTV.setText(String.valueOf(Integer.parseInt(dayDateCheckin))+" "+bulanNameCheckin+" "+yearDateCheckin);
-                                timeCheckinLastAbsenTV.setText(jam_checkin);
+                                timeCheckinLastAbsenTV.setText(jam_checkin+" "+timezone_checkin);
 
                                 if (checkin_point.equals("")){
                                     checkinPointLastAbsenTV.setText(sharedPrefManager.getSpNama());
@@ -490,9 +493,9 @@ public class HistoryActivity extends AppCompatActivity {
                                     checkinPointLastAbsenTV.setText(checkin_point);
                                 }
 
-                                if (jam_checkout.equals("00:00:00")){
+                                if (status_pulang.equals("0")){
                                     dateCheckoutTV.setText("---- - -- - --");
-                                    timeCheckoutLastAbsenTV.setText("-- : -- : --");
+                                    timeCheckoutLastAbsenTV.setText("-- : -- : -- ---");
                                 } else {
                                     String input_date_checkout = tanggal_checkout;
                                     String dayDateCheckout = input_date_checkout.substring(8,10);
@@ -542,7 +545,7 @@ public class HistoryActivity extends AppCompatActivity {
                                             break;
                                     }
                                     dateCheckoutTV.setText(String.valueOf(Integer.parseInt(dayDateCheckout))+" "+bulanNameCheckout+" "+yearDateCheckout);
-                                    timeCheckoutLastAbsenTV.setText(jam_checkout);
+                                    timeCheckoutLastAbsenTV.setText(jam_checkout+" "+timezone_checkout);
                                 }
 
                                 if (checkout_point.equals("")){

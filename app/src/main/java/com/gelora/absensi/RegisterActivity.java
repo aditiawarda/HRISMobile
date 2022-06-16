@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
     private StatusBarColorManager mStatusBarColorManager;
     EditText nikED, passwordED, repasswordED;
     TextView namaTV, showPassword, matchPassword, indicatorMatchPass;
-    String statusPass = "hide";
+    String regisStatus = "", statusPass = "hide";
     LinearLayout toLoginBTN, registerBTN, contactServiceBTN, connectBTN, closeBTN;
     BottomSheetLayout bottomSheetCS;
     View rootview;
@@ -208,7 +208,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = passwordED.getText().toString();
                 String repassword = repasswordED.getText().toString();
 
-                if (nama.equals("Data tidak ditemukan")||nama.equals("Nama Karyawan")){
+                if (regisStatus.equals("registered") || regisStatus.equals("notfound")){
                     if (TextUtils.isEmpty(nik)){
                         if (TextUtils.isEmpty(password)){
                             if (TextUtils.isEmpty(repassword)){
@@ -285,11 +285,19 @@ public class RegisterActivity extends AppCompatActivity {
                                     fokus = repasswordED;
                                     cancel = true;
                                 } else {
-                                    new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
-                                            .setTitleText("Perhatian")
-                                            .setContentText("NIK tidak terdaftar!")
-                                            .setConfirmText("OK")
-                                            .show();
+                                    if (regisStatus.equals("registered")){
+                                        new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Akun sudah teregistrasi, silakan Login!")
+                                                .setConfirmText("OK")
+                                                .show();
+                                    } else {
+                                        new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("NIK tidak terdaftar!")
+                                                .setConfirmText("OK")
+                                                .show();
+                                    }
                                     fokus = namaTV;
                                     cancel = true;
                                 }
@@ -368,7 +376,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = passwordED.getText().toString();
                 String repassword = repasswordED.getText().toString();
 
-                if (nama.equals("Data tidak ditemukan")||nama.equals("Nama Karyawan")){
+                if (regisStatus.equals("registered") || regisStatus.equals("notfound")){
                     if (TextUtils.isEmpty(nik)){
                         if (TextUtils.isEmpty(password)){
                             if (TextUtils.isEmpty(repassword)){
@@ -445,11 +453,19 @@ public class RegisterActivity extends AppCompatActivity {
                                     fokus = repasswordED;
                                     cancel = true;
                                 } else {
-                                    new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
-                                            .setTitleText("Perhatian")
-                                            .setContentText("NIK tidak terdaftar!")
-                                            .setConfirmText("OK")
-                                            .show();
+                                    if (regisStatus.equals("registered")){
+                                        new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Akun sudah teregistrasi, silakan Login!")
+                                                .setConfirmText("OK")
+                                                .show();
+                                    } else {
+                                        new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("NIK tidak terdaftar!")
+                                                .setConfirmText("OK")
+                                                .show();
+                                    }
                                     fokus = namaTV;
                                     cancel = true;
                                 }
@@ -529,8 +545,11 @@ public class RegisterActivity extends AppCompatActivity {
                             String nama_karyawan = data.getString("nama_karyawan");
 
                             if(status.equals("Success")){
+                                regisStatus = "ready";
                                 namaTV.setText(nama_karyawan);
                             } else if (status.equals("Warning")){
+                                regisStatus = "registered";
+                                namaTV.setText(nama_karyawan);
                                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
@@ -539,6 +558,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         .setConfirmText("OK")
                                         .show();
                             } else {
+                                regisStatus = "notfound";
                                 namaTV.setText("Data tidak ditemukan");
                             }
 
