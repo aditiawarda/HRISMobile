@@ -11,8 +11,8 @@
                 android:endColor="#E8BE75"
                 android:type="linear" />
             <stroke
-                android:width="0.5dp"
-                android:color="#C47E7E7E"/>
+                android:width="0.3dp"
+                android:color="#80676767"/>
         </shape>
     </item>
     <item>
@@ -27,7 +27,7 @@
                 android:type="linear" />
             <stroke
                 android:width="0.3dp"
-                android:color="#99676767"/>
+                android:color="#80676767"/>
         </shape>
     </item>
 </selector>
