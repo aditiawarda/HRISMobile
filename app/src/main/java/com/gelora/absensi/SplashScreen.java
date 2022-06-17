@@ -383,7 +383,7 @@ public class SplashScreen extends AppCompatActivity {
                             String close_btn = response.getString("close_btn");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.1.27";
+                                String currentVersion = "1.1.28";
                                 if (!currentVersion.equals(version) && popup.equals("1")){
                                     statusUpdateLayout = "1";
 

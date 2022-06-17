@@ -248,7 +248,7 @@ public class AdapterDataHadir extends RecyclerView.Adapter<AdapterDataHadir.MyVi
         }
 
         if (dataHadir.getStatus_pulang().equals("0")){
-            myViewHolder.checkoutTime.setText("-- : -- : --");
+            myViewHolder.checkoutTime.setText("-- : -- : -- ---");
         } else {
             if (String.valueOf(dataHadir.getTimezone_pulang()).equals("null")){
                 myViewHolder.checkoutTime.setText(dataHadir.getJam_pulang());
