@@ -133,7 +133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String sesiBaru = "nonaktif", actionSession = "", checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -186,16 +186,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             checkinTimeZone = getTimeZone();
         }
 
-        //ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        //ActivityCompat.requestPermissions(MapsActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-
         resultReceiver = new AddressResultReceiver(new Handler());
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
-        //mStatusBarColorManager = new StatusBarColorManager(this);
-        //mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
-        //MapsActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(APPEARANCE_LIGHT_STATUS_BARS, APPEARANCE_LIGHT_STATUS_BARS);
 
         rootview = findViewById(android.R.id.content);
         onlineGif = findViewById(R.id.img_online);
@@ -313,26 +307,97 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         openSessionBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Apakah anda yakin untuk membuka sesi absensi dan menghapus status yang tertera hari ini?")
-                        .setCancelText("NO")
-                        .setConfirmText("YES")
-                        .showCancelButton(true)
-                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
-                            }
-                        })
-                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
-                                editIzin();
-                            }
-                        })
-                        .show();
+                if (actionSession.equals("close_nextday")){
+                    new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Apakah anda yakin untuk membuka sesi absensi?")
+                            .setCancelText("NO")
+                            .setConfirmText("YES")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+
+                                    final KAlertDialog pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.PROGRESS_TYPE)
+                                            .setTitleText("Loading");
+                                    pDialog.show();
+                                    pDialog.setCancelable(false);
+                                    new CountDownTimer(1300, 800) {
+                                        public void onTick(long millisUntilFinished) {
+                                            i++;
+                                            switch (i) {
+                                                case 0:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (MapsActivity.this, R.color.colorGradien));
+                                                    break;
+                                                case 1:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (MapsActivity.this, R.color.colorGradien2));
+                                                    break;
+                                                case 2:
+                                                case 6:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (MapsActivity.this, R.color.colorGradien3));
+                                                    break;
+                                                case 3:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (MapsActivity.this, R.color.colorGradien4));
+                                                    break;
+                                                case 4:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (MapsActivity.this, R.color.colorGradien5));
+                                                    break;
+                                                case 5:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (MapsActivity.this, R.color.colorGradien6));
+                                                    break;
+                                            }
+                                        }
+                                        public void onFinish() {
+                                            i = -1;
+                                            pDialog.setTitleText("Sesi Absensi Dibuka")
+                                                    .setContentText("Anda bisa melakukan absensi hari ini.")
+                                                    .setConfirmText("OK")
+                                                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+
+                                            bukaSesi();
+
+                                        }
+                                    }.start();
+
+                                }
+                            })
+                            .show();
+                } else {
+                    new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Apakah anda yakin untuk membuka sesi absensi dan menghapus status yang tertera hari ini?")
+                            .setCancelText("NO")
+                            .setConfirmText("YES")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                    editIzin();
+                                }
+                            })
+                            .show();
+                }
+
             }
         });
 
@@ -1405,6 +1470,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 attantionPart.setVisibility(View.GONE);
                                 skeletonLayout.setVisibility(View.GONE);
                                 statusAction = "history";
+                                actionSession = "close_izin";
                                 openSessionBTN.setVisibility(View.VISIBLE);
                                 actionButton();
                             } else {
@@ -1753,10 +1819,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 } else {
                                     checkinPointTV.setText(checkin_point);
                                 }
-
-                                //inputAbsenPart.setVisibility(View.GONE);
-                                //recordAbsenPart.setVisibility(View.VISIBLE);
-                                //attantionPart.setVisibility(View.GONE);
 
                                 checkLibur(dateCheckin);
                                 detailAbsen(id_status, id_shift);
@@ -3686,8 +3748,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             }
 
                                         } else {
-
-                                            Toast.makeText(MapsActivity.this, interval, Toast.LENGTH_SHORT).show();
                                             String masuk  = timestamp_checkin;
                                             String batas = getDate()+" "+getTime();
 
@@ -3791,80 +3851,135 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                 } else {
 
-                                    warningPart.setVisibility(View.GONE);
-                                    inputAbsenPart.setVisibility(View.GONE);
-                                    recordAbsenPart.setVisibility(View.VISIBLE);
-                                    attantionPart.setVisibility(View.GONE);
-                                    skeletonLayout.setVisibility(View.GONE);
+                                    if (tipe_shift.equals("Next day")){
+                                        actionSession = "close_nextday";
+                                        openSessionBTN.setVisibility(View.VISIBLE);
+                                        if (sesiBaru.equals("aktif")){
+                                            bukaSesi();
+                                        } else {
+                                            warningPart.setVisibility(View.GONE);
+                                            inputAbsenPart.setVisibility(View.GONE);
+                                            recordAbsenPart.setVisibility(View.VISIBLE);
+                                            attantionPart.setVisibility(View.GONE);
+                                            skeletonLayout.setVisibility(View.GONE);
 
-                                    String input_date = date_checkout;
-                                    String dayDate = input_date.substring(8,10);
-                                    String yearDate = input_date.substring(0,4);
-                                    String bulanValue = input_date.substring(5,7);
-                                    String bulanName;
+                                            String input_date = date_checkout;
+                                            String dayDate = input_date.substring(8,10);
+                                            String yearDate = input_date.substring(0,4);
+                                            String bulanValue = input_date.substring(5,7);
+                                            String bulanName;
 
-                                    switch (bulanValue) {
-                                        case "01":
-                                            bulanName = "Januari";
-                                            break;
-                                        case "02":
-                                            bulanName = "Februari";
-                                            break;
-                                        case "03":
-                                            bulanName = "Maret";
-                                            break;
-                                        case "04":
-                                            bulanName = "April";
-                                            break;
-                                        case "05":
-                                            bulanName = "Mei";
-                                            break;
-                                        case "06":
-                                            bulanName = "Juni";
-                                            break;
-                                        case "07":
-                                            bulanName = "Juli";
-                                            break;
-                                        case "08":
-                                            bulanName = "Agustus";
-                                            break;
-                                        case "09":
-                                            bulanName = "September";
-                                            break;
-                                        case "10":
-                                            bulanName = "Oktober";
-                                            break;
-                                        case "11":
-                                            bulanName = "November";
-                                            break;
-                                        case "12":
-                                            bulanName = "Desember";
-                                            break;
-                                        default:
-                                            bulanName = "Not found";
-                                            break;
+                                            switch (bulanValue) {
+                                                case "01":
+                                                    bulanName = "Januari";
+                                                    break;
+                                                case "02":
+                                                    bulanName = "Februari";
+                                                    break;
+                                                case "03":
+                                                    bulanName = "Maret";
+                                                    break;
+                                                case "04":
+                                                    bulanName = "April";
+                                                    break;
+                                                case "05":
+                                                    bulanName = "Mei";
+                                                    break;
+                                                case "06":
+                                                    bulanName = "Juni";
+                                                    break;
+                                                case "07":
+                                                    bulanName = "Juli";
+                                                    break;
+                                                case "08":
+                                                    bulanName = "Agustus";
+                                                    break;
+                                                case "09":
+                                                    bulanName = "September";
+                                                    break;
+                                                case "10":
+                                                    bulanName = "Oktober";
+                                                    break;
+                                                case "11":
+                                                    bulanName = "November";
+                                                    break;
+                                                case "12":
+                                                    bulanName = "Desember";
+                                                    break;
+                                                default:
+                                                    bulanName = "Not found";
+                                                    break;
+                                            }
+
+                                            dateCheckoutTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                                            timeCheckoutTV.setText(time_checkout+" "+timezone_pulang);
+                                            ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini\"");
+                                            statusAction = "history";
+                                            actionButton();
+                                        }
+
+                                    } else {
+                                        openSessionBTN.setVisibility(View.GONE);
+                                        warningPart.setVisibility(View.GONE);
+                                        inputAbsenPart.setVisibility(View.GONE);
+                                        recordAbsenPart.setVisibility(View.VISIBLE);
+                                        attantionPart.setVisibility(View.GONE);
+                                        skeletonLayout.setVisibility(View.GONE);
+
+                                        String input_date = date_checkout;
+                                        String dayDate = input_date.substring(8,10);
+                                        String yearDate = input_date.substring(0,4);
+                                        String bulanValue = input_date.substring(5,7);
+                                        String bulanName;
+
+                                        switch (bulanValue) {
+                                            case "01":
+                                                bulanName = "Januari";
+                                                break;
+                                            case "02":
+                                                bulanName = "Februari";
+                                                break;
+                                            case "03":
+                                                bulanName = "Maret";
+                                                break;
+                                            case "04":
+                                                bulanName = "April";
+                                                break;
+                                            case "05":
+                                                bulanName = "Mei";
+                                                break;
+                                            case "06":
+                                                bulanName = "Juni";
+                                                break;
+                                            case "07":
+                                                bulanName = "Juli";
+                                                break;
+                                            case "08":
+                                                bulanName = "Agustus";
+                                                break;
+                                            case "09":
+                                                bulanName = "September";
+                                                break;
+                                            case "10":
+                                                bulanName = "Oktober";
+                                                break;
+                                            case "11":
+                                                bulanName = "November";
+                                                break;
+                                            case "12":
+                                                bulanName = "Desember";
+                                                break;
+                                            default:
+                                                bulanName = "Not found";
+                                                break;
+                                        }
+
+                                        dateCheckoutTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                                        timeCheckoutTV.setText(time_checkout+" "+timezone_pulang);
+                                        ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini\"");
+                                        statusAction = "history";
+                                        actionButton();
                                     }
-
-                                    dateCheckoutTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
-
-                                    timeCheckoutTV.setText(time_checkout+" "+timezone_pulang);
-                                    ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini\"");
-
-                                    //if (tgl_checkin.equals(getDate())){
-                                    statusAction = "history";
-                                    //} else {
-                                    //      statusAction = "history";
-                                    //      new Handler().postDelayed(new Runnable() {
-                                    //        @Override
-                                    //         public void run() {
-                                    //             statusAction = "checkin";
-                                    //             idShiftAbsen = "";
-                                    //           checkIzin();
-                                    //         }
-                                    //     }, 6000);
-                                    // }
-
-                                    actionButton();
 
                                 }
 
@@ -4499,7 +4614,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             int latestlocIndex = locationResult.getLocations().size() - 1;
                             double lati = locationResult.getLocations().get(latestlocIndex).getLatitude();
                             double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
-                            //Toast.makeText(UserActivity.this, String.format("Latitude : %s\n Longitude: %s", lati, longi), Toast.LENGTH_SHORT).show();
 
                             getCurrentWeather(weather_key, String.valueOf(lati), String.valueOf(longi));
                             Location location = new Location("providerNA");
@@ -4553,7 +4667,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             data = response.getJSONArray("weather");
                             JSONObject suhu = response.getJSONObject("main");
                             String name = response.getString("name");
-                            //Toast.makeText(UserActivity.this, name, Toast.LENGTH_SHORT).show();
                             String temp = suhu.getString("temp");
                             String feels_like = suhu.getString("feels_like");
                             float f = Float.parseFloat(temp);
@@ -4861,6 +4974,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         requestQueue.add(postRequest);
 
+    }
+
+    private void bukaSesi() {
+        openSessionBTN.setVisibility(View.GONE);
+        attantionPart.setVisibility(View.VISIBLE);
+        statusAbsenBTN.setVisibility(View.VISIBLE);
+        changeStatusAbsen.setVisibility(View.GONE);
+        statusAbsenChoice.setVisibility(View.GONE);
+        shiftBTN.setVisibility(View.GONE);
+        changeShiftAbsen.setVisibility(View.GONE);
+        shiftAbsenChoice.setVisibility(View.GONE);
+        actionBTN.setBackground(ContextCompat.getDrawable(MapsActivity.this, R.drawable.shape_disable_btn));
+        actionTV.setText("CHECK IN");
+        inputAbsenPart.setVisibility(View.VISIBLE);
+        recordAbsenPart.setVisibility(View.GONE);
+        skeletonLayout.setVisibility(View.GONE);
+        statusAction = "checkin";
+        idShiftAbsen = "";
+        sesiBaru = "aktif";
+        actionButton();
     }
 
     @Override
