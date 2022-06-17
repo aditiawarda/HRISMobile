@@ -654,7 +654,7 @@ public class UserActivity extends AppCompatActivity {
                                     chatBTN.setVisibility(View.GONE);
                                 }
 
-                                if(web_btn.equals("1")){
+                                if(web_btn.equals("0")){
                                     webBTN.setVisibility(View.VISIBLE);
                                 } else {
                                     webBTN.setVisibility(View.GONE);
