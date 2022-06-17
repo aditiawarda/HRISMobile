@@ -580,6 +580,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 timeDetection = "different";
             }
 
+            getCurrentDay();
             dateLive();
 
         } else {
@@ -1383,6 +1384,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
+                                                sesiBaru = "nonaktif";
                                                 checkAbsen();
                                             }
                                         })
