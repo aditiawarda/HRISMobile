@@ -311,12 +311,13 @@
                                     android:text="Data Absensi"/>
 
                                 <TextView
+                                    android:layout_marginTop="1.5dp"
                                     android:visibility="gone"
                                     android:id="@+id/bulan_data"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/white"
-                                    android:textSize="16dp"
+                                    android:textSize="14dp"
                                     android:textStyle="bold"
                                     android:text=""/>
 
@@ -326,7 +327,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/white"
-                                    android:textSize="13dp"
+                                    android:textSize="14dp"
                                     android:textStyle="bold"
                                     android:text=""/>
 
@@ -346,7 +347,7 @@
                                 <LinearLayout
                                     android:id="@+id/btn_hadir"
                                     android:layout_width="0dp"
-                                    android:layout_weight=".50"
+                                    android:layout_weight=".48"
                                     android:paddingTop="10dp"
                                     android:paddingBottom="10dp"
                                     android:paddingRight="15dp"
@@ -385,7 +386,7 @@
                                 <LinearLayout
                                     android:id="@+id/btn_tidak_hadir"
                                     android:layout_width="0dp"
-                                    android:layout_weight=".50"
+                                    android:layout_weight=".53"
                                     android:background="@drawable/shape_tidak_hadir"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
@@ -644,7 +645,7 @@
                                 <LinearLayout
                                     android:id="@+id/pulang_cepat_btn"
                                     android:layout_width="0dp"
-                                    android:layout_weight=".50"
+                                    android:layout_weight=".32"
                                     android:background="@drawable/shape_pulang_cepat"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical">
@@ -693,9 +694,61 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/kelebihan_jam_btn"
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".33"
+                                    android:layout_marginLeft="5dp"
+                                    android:background="@drawable/shape_kelebihan_jam"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <LinearLayout
+                                            android:orientation="vertical"
+                                            android:paddingTop="10dp"
+                                            android:paddingBottom="10dp"
+                                            android:paddingRight="15dp"
+                                            android:paddingLeft="15dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textStyle="bold"
+                                                android:textSize="10dp"
+                                                android:text="Kelebihan Jam"/>
+
+                                            <TextView
+                                                android:visibility="gone"
+                                                android:id="@+id/data_Kelebihan_jam"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textSize="30dp"
+                                                android:textStyle="bold"
+                                                android:text="0"/>
+
+                                            <ImageView
+                                                android:id="@+id/kelebihan_jam_loading"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="40.5dp"
+                                                app:srcCompat="@drawable/loading_dots" />
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:id="@+id/layoff_btn"
                                     android:layout_width="0dp"
-                                    android:layout_weight=".50"
+                                    android:layout_weight=".27"
                                     android:background="@drawable/shape_layoff"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"

@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailKelebihanJamActivity">
+
+    <RelativeLayout
+        android:layout_marginRight="-3dp"
+        android:layout_marginLeft="-3dp"
+        android:layout_marginBottom="-3dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_to_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@id/scrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:ignore="MissingConstraints">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingRight="3dp"
+                        android:paddingLeft="3dp"
+                        android:paddingBottom="3dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="20dp"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="90dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="10dp"
+                                android:paddingRight="20dp"
+                                android:paddingLeft="20dp"
+                                android:paddingBottom="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/shape_attantion">
+
+                                <TextView
+                                    android:id="@+id/name_of_user_tv_detail_kelebihan_jam"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="13dp"
+                                    android:textColor="#B1670B"
+                                    android:textStyle="bold"
+                                    android:text=""/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/data_absensi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/month_btn"
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".40"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:paddingRight="15dp"
+                                    android:paddingLeft="15dp"
+                                    android:background="@drawable/shape_data_absen"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
+                                        android:textSize="10dp"
+                                        android:text="Data Periode"/>
+
+                                    <TextView
+                                        android:visibility="gone"
+                                        android:id="@+id/bulan_data"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="16dp"
+                                        android:textStyle="bold"
+                                        android:text=""/>
+
+                                    <TextView
+                                        android:visibility="gone"
+                                        android:id="@+id/tahun_data"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="13dp"
+                                        android:textStyle="bold"
+                                        android:text=""/>
+
+                                    <ImageView
+                                        android:id="@+id/bulan_loading"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40.5dp"
+                                        app:srcCompat="@drawable/loading_dots" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".60"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".50"
+                                        android:background="@drawable/shape_kelebihan_jam"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="5dp"
+                                        android:orientation="vertical">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <LinearLayout
+                                                android:orientation="vertical"
+                                                android:paddingTop="10dp"
+                                                android:paddingBottom="10dp"
+                                                android:paddingRight="15dp"
+                                                android:paddingLeft="15dp"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="@color/white"
+                                                    android:textStyle="bold"
+                                                    android:textSize="10dp"
+                                                    android:text="Total Kelebihan Jam"/>
+
+                                                <TextView
+                                                    android:visibility="gone"
+                                                    android:id="@+id/data_kelebihan_jam_detail"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="30dp"
+                                                    android:textStyle="bold"
+                                                    android:text="0"/>
+
+                                                <ImageView
+                                                    android:id="@+id/data_kelebihan_jam_loading"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="40.5dp"
+                                                    app:srcCompat="@drawable/loading_dots" />
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/attantion_part_kelebihan_jam"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:paddingBottom="20dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="15dp"
+                            android:orientation="vertical"
+                            android:background="@drawable/shape_attantion">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="#C68D46"
+                                android:textSize="12dp"
+                                android:textStyle="bold"
+                                android:text="Perhatian :"/>
+
+                            <TextView
+                                android:id="@+id/message_kelebihan_jam"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:textColor="#C68D46"
+                                android:textSize="11dp"
+                                android:layout_marginTop="7dp"
+                                android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur fingerscan."/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="#3CCFCFCF"/>
+
+                        <LinearLayout
+                            android:paddingRight="20dp"
+                            android:paddingLeft="20dp"
+                            android:layout_marginBottom="30dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:visibility="gone"
+                                android:id="@+id/data_kelebihan_jam_rv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                            </androidx.recyclerview.widget.RecyclerView>
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/no_data_part_kelebihan_jam"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="20dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingTop="20dp"
+                                android:orientation="vertical"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="20dp"
+                                    android:textAlignment="center"
+                                    android:layout_marginBottom="10dp"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold"
+                                    android:background="@drawable/ic_baseline_no_data"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="center"
+                                    android:textSize="15dp"
+                                    android:textStyle="bold"
+                                    android:text="Data tidak tersedia!"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="center"
+                                    android:textSize="11dp"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Data kelebihan jam tidak tersedia."/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/loading_data_part_kelebihan_jam"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:paddingBottom="20dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingTop="20dp"
+                                android:orientation="vertical"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/loading_data_kelebihan_jam"
+                                    android:layout_width="68dp"
+                                    android:layout_height="68dp"
+                                    android:layout_marginBottom="5dp"
+                                    app:srcCompat="@drawable/loading" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="center"
+                                    android:textSize="15dp"
+                                    android:textStyle="bold"
+                                    android:text="Memuat data"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="center"
+                                    android:textSize="11dp"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Tunggu beberapa saat"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+                <LinearLayout
+                    android:id="@+id/action_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_marginTop="-2dp"
+                        android:layout_marginRight="-2dp"
+                        android:layout_marginLeft="-2dp"
+                        android:background="@drawable/shape_bar_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp">
+
+                        <LinearLayout
+                            android:id="@+id/back_btn"
+                            android:layout_marginTop="17dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="33dp"
+                            android:layout_height="33dp"
+                            android:gravity="center"
+                            android:background="@drawable/shape_back_2">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_marginRight="1.5dp"
+                                android:background="@drawable/ic_baseline_chevron_back"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/home_btn"
+                            android:layout_marginTop="17dp"
+                            android:layout_marginLeft="11dp"
+                            android:layout_width="33dp"
+                            android:layout_height="33dp"
+                            android:gravity="center"
+                            android:background="@drawable/shape_back">
+
+                            <TextView
+                                android:layout_width="21dp"
+                                android:layout_height="21dp"
+                                android:background="@drawable/ic_baseline_home"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:gravity="right|center"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:text="DETAIL KELEBIHAN JAM"
+                                android:textColor="@color/white"
+                                android:textSize="15dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

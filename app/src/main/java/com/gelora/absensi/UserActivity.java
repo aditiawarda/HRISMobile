@@ -99,15 +99,15 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
-    TextView hTime, mTime, sTime, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    LinearLayout markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
+    TextView hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
     SwipeRefreshLayout refreshLayout;
     NestedScrollView scrollView;
     RelativeLayout dataCuaca;
-    ImageView notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
+    ImageView notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
     String selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
 
@@ -168,6 +168,7 @@ public class UserActivity extends AppCompatActivity {
         terlambatLoading = findViewById(R.id.terlambat_loading);
         noCheckoutLoading = findViewById(R.id.no_checkout_loading);
         pulangCepatLoading = findViewById(R.id.pulang_cepat_loading);
+        kelebihanJamLoading = findViewById(R.id.kelebihan_jam_loading);
         layoffLoading = findViewById(R.id.layoff_loading);
         batasBagDept = findViewById(R.id.batas_bag_dept);
         currentAddress = findViewById(R.id.current_address);
@@ -183,11 +184,13 @@ public class UserActivity extends AppCompatActivity {
         terlambatData = findViewById(R.id.data_terlambat);
         noCheckoutData = findViewById(R.id.data_no_checkout);
         pulangCepatData = findViewById(R.id.data_pulang_cepat);
+        kelebihanJamData = findViewById(R.id.data_Kelebihan_jam);
         layoffData = findViewById(R.id.data_layoff);
         terlambatBTN = findViewById(R.id.terlambat_btn);
         tidakCheckoutBTN = findViewById(R.id.tidak_checkout_btn);
         pulangCepatBTN = findViewById(R.id.pulang_cepat_btn);
         layoffBTN = findViewById(R.id.layoff_btn);
+        kelebihanJamBTN = findViewById(R.id.kelebihan_jam_btn);
         selectMonthBTN = findViewById(R.id.select_month_btn);
         webBTN = findViewById(R.id.go_web_btn);
         idCardDigitalBTN = findViewById(R.id.id_card_digital_btn);
@@ -227,6 +230,10 @@ public class UserActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(pulangCepatLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(kelebihanJamLoading);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
@@ -270,6 +277,9 @@ public class UserActivity extends AppCompatActivity {
 
                 pulangCepatLoading.setVisibility(View.VISIBLE);
                 pulangCepatData.setVisibility(View.GONE);
+
+                kelebihanJamLoading.setVisibility(View.VISIBLE);
+                kelebihanJamData.setVisibility(View.GONE);
 
                 layoffLoading.setVisibility(View.VISIBLE);
                 layoffData.setVisibility(View.GONE);
@@ -339,6 +349,9 @@ public class UserActivity extends AppCompatActivity {
                                 pulangCepatLoading.setVisibility(View.VISIBLE);
                                 pulangCepatData.setVisibility(View.GONE);
 
+                                kelebihanJamLoading.setVisibility(View.VISIBLE);
+                                kelebihanJamData.setVisibility(View.GONE);
+
                                 layoffLoading.setVisibility(View.VISIBLE);
                                 layoffData.setVisibility(View.GONE);
 
@@ -379,6 +392,15 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, DetailLayoffActivity.class);
+                intent.putExtra("bulan", selectMonth);
+                startActivity(intent);
+            }
+        });
+
+        kelebihanJamBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, DetailKelebihanJamActivity.class);
                 intent.putExtra("bulan", selectMonth);
                 startActivity(intent);
             }
@@ -719,6 +741,7 @@ public class UserActivity extends AppCompatActivity {
                                 String tidak_checkout = data.getString("tidak_checkout");
                                 String layoff = data.getString("layoff");
                                 String pulang_cepat = data.getString("pulang_cepat");
+                                String kelebihan_jam = data.getString("kelebihan_jam");
 
                                 bulanData.setText(bulan.toUpperCase());
                                 tahunData.setText(tahun);
@@ -727,6 +750,7 @@ public class UserActivity extends AppCompatActivity {
                                 terlambatData.setText(terlambat);
                                 noCheckoutData.setText(tidak_checkout);
                                 pulangCepatData.setText(pulang_cepat);
+                                kelebihanJamData.setText(kelebihan_jam);
                                 layoffData.setText(layoff);
 
                                 new Handler().postDelayed(new Runnable() {
@@ -750,6 +774,9 @@ public class UserActivity extends AppCompatActivity {
 
                                         pulangCepatLoading.setVisibility(View.GONE);
                                         pulangCepatData.setVisibility(View.VISIBLE);
+
+                                        kelebihanJamLoading.setVisibility(View.GONE);
+                                        kelebihanJamData.setVisibility(View.VISIBLE);
 
                                         layoffLoading.setVisibility(View.GONE);
                                         layoffData.setVisibility(View.VISIBLE);
@@ -776,6 +803,9 @@ public class UserActivity extends AppCompatActivity {
 
                                 pulangCepatLoading.setVisibility(View.GONE);
                                 pulangCepatData.setVisibility(View.VISIBLE);
+
+                                kelebihanJamLoading.setVisibility(View.GONE);
+                                kelebihanJamData.setVisibility(View.VISIBLE);
 
                                 layoffLoading.setVisibility(View.GONE);
                                 layoffData.setVisibility(View.VISIBLE);

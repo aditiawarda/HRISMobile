@@ -10,12 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.DetailHadirActivity;
+import com.gelora.absensi.DetailKelebihanJamActivity;
 import com.gelora.absensi.DetailPulangCepatActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
-import com.gelora.absensi.model.DataHadir;
+import com.gelora.absensi.model.DataKelebihanJam;
 import com.gelora.absensi.model.DataPulangCepat;
 
 import java.text.DateFormat;
@@ -23,14 +23,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.MyViewHolder> {
+public class AdapterKelebihanJam extends RecyclerView.Adapter<AdapterKelebihanJam.MyViewHolder> {
 
-    private DataPulangCepat[] data;
+    private DataKelebihanJam[] data;
     private Context mContext;
     SharedPrefAbsen sharedPrefAbsen;
     SharedPrefManager sharedPrefManager;
 
-    public AdapterPulangCepat(DataPulangCepat[] data, DetailPulangCepatActivity context) {
+    public AdapterKelebihanJam(DataKelebihanJam[] data, DetailKelebihanJamActivity context) {
         this.data = data;
         this.mContext = context;
     }
@@ -40,20 +40,20 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         sharedPrefAbsen = new SharedPrefAbsen(mContext);
         sharedPrefManager= new SharedPrefManager(mContext);
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_data_pulang_cepat,viewGroup,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_data_kelebihan_jam,viewGroup,false);
         return new MyViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
-        final DataPulangCepat dataPulangCepat = data[i];
+        final DataKelebihanJam dataKelebihanJam = data[i];
         String namaStatus = "";
 
-        myViewHolder.dateAbsen.setText(dataPulangCepat.getTanggal_masuk());
-        myViewHolder.jamShift.setText(dataPulangCepat.getJam_shift());
+        myViewHolder.dateAbsen.setText(dataKelebihanJam.getTanggal_masuk());
+        myViewHolder.jamShift.setText(dataKelebihanJam.getJam_shift());
 
-        String input_date_checkin = dataPulangCepat.getTanggal_masuk();
+        String input_date_checkin = dataKelebihanJam.getTanggal_masuk();
         String dayDateCheckin = input_date_checkin.substring(8,10);
         String yearDateCheckin = input_date_checkin.substring(0,4);
         String bulanValueCheckin = input_date_checkin.substring(5,7);
@@ -102,14 +102,14 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
         }
 
         myViewHolder.dateCheckin.setText(String.valueOf(Integer.parseInt(dayDateCheckin))+" "+bulanNameCheckin+" "+yearDateCheckin);
-        myViewHolder.dateCheckout.setText(dataPulangCepat.getTanggal_pulang());
+        myViewHolder.dateCheckout.setText(dataKelebihanJam.getTanggal_pulang());
 
-        myViewHolder.namaShift.setText(dataPulangCepat.getShift());
+        myViewHolder.namaShift.setText(dataKelebihanJam.getShift());
 
         if (myViewHolder.dateCheckout.getText().toString().equals("")){
             myViewHolder.dateCheckout.setText("---- - -- - --");
         } else {
-            String input_date_checkout = dataPulangCepat.getTanggal_pulang();
+            String input_date_checkout = dataKelebihanJam.getTanggal_pulang();
             String dayDateCheckout = input_date_checkout.substring(8,10);
             String yearDateCheckout = input_date_checkout.substring(0,4);
             String bulanValueCheckout = input_date_checkout.substring(5,7);
@@ -162,7 +162,7 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
         if (myViewHolder.dateAbsen.getText().toString().equals("")){
             myViewHolder.dateAbsen.setText("Hari ini");
         } else {
-            String input_date = dataPulangCepat.getTanggal_masuk();
+            String input_date = dataKelebihanJam.getTanggal_masuk();
             @SuppressLint("SimpleDateFormat")
             SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
             Date dt1= null;
@@ -243,34 +243,56 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
 
         }
 
-        if (String.valueOf(dataPulangCepat.getTimezone_masuk()).equals("null")){
-            myViewHolder.checkinTime.setText(dataPulangCepat.getJam_masuk());
+        if (String.valueOf(dataKelebihanJam.getTimezone_masuk()).equals("null")){
+            myViewHolder.checkinTime.setText(dataKelebihanJam.getJam_masuk());
         } else {
-            myViewHolder.checkinTime.setText(dataPulangCepat.getJam_masuk()+" "+dataPulangCepat.getTimezone_masuk());
+            myViewHolder.checkinTime.setText(dataKelebihanJam.getJam_masuk()+" "+dataKelebihanJam.getTimezone_masuk());
         }
 
-        if (dataPulangCepat.getStatus_pulang().equals("0")){
+        if (dataKelebihanJam.getStatus_pulang().equals("0")){
             myViewHolder.checkoutTime.setText("-- : -- : -- ---");
         } else {
-            if (String.valueOf(dataPulangCepat.getTimezone_pulang()).equals("null")){
-                myViewHolder.checkoutTime.setText(dataPulangCepat.getJam_pulang());
+            if (String.valueOf(dataKelebihanJam.getTimezone_pulang()).equals("null")){
+                myViewHolder.checkoutTime.setText(dataKelebihanJam.getJam_pulang());
             } else {
-                myViewHolder.checkoutTime.setText(dataPulangCepat.getJam_pulang()+" "+dataPulangCepat.getTimezone_pulang());
+                myViewHolder.checkoutTime.setText(dataKelebihanJam.getJam_pulang()+" "+dataKelebihanJam.getTimezone_pulang());
             }
         }
 
-        myViewHolder.checkinPoint.setText(dataPulangCepat.getCheckin_point());
+        myViewHolder.checkinPoint.setText(dataKelebihanJam.getCheckin_point());
 
         if (myViewHolder.checkinPoint.getText().toString().equals("")){
             myViewHolder.checkinPoint.setText(sharedPrefManager.getSpNama());
         } else {
-            myViewHolder.checkinPoint.setText(dataPulangCepat.getCheckin_point());
+            myViewHolder.checkinPoint.setText(dataKelebihanJam.getCheckin_point());
         }
 
-        if (dataPulangCepat.getStatus_pulang().equals("0")){
+        if (dataKelebihanJam.getStatus_pulang().equals("0")){
             myViewHolder.checkoutPoint.setText("-");
         } else {
-            myViewHolder.checkoutPoint.setText(dataPulangCepat.getCheckout_point());
+            myViewHolder.checkoutPoint.setText(dataKelebihanJam.getCheckout_point());
+        }
+
+        if(!dataKelebihanJam.getOvertime().substring(0, 2).equals("00")){ // 01:01:01
+            if (!dataKelebihanJam.getOvertime().substring(3, 5).equals("00")){ // 01:01:01
+                if(!dataKelebihanJam.getOvertime().substring(6,8).equals("00")){
+                    myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(3,5)))+" menit "+String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(6,8)))+" detik");
+                } else {
+                    myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(3,5)))+" menit");
+                }
+            } else { // 01:00:01
+                myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(6,8)))+" detik");
+            }
+        } else { // 00:01:01
+            if (!dataKelebihanJam.getOvertime().substring(3, 5).equals("00")){ // 00:01:01
+                if(!dataKelebihanJam.getOvertime().substring(6,8).equals("00")){
+                    myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(3,5)))+" menit "+String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(6,8)))+" detik");
+                } else {
+                    myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(3,5)))+" menit");
+                }
+            } else { // 00:00:01
+                myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(6,8)))+" detik");
+            }
         }
 
     }
@@ -281,7 +303,7 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView namaShift, jamShift, dateAbsen, dateCheckin, dateCheckout, checkinTime, checkinPoint, checkoutTime, checkoutPoint;
+        TextView overTimeTV, namaShift, jamShift, dateAbsen, dateCheckin, dateCheckout, checkinTime, checkinPoint, checkoutTime, checkoutPoint;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             dateAbsen = itemView.findViewById(R.id.date_absen_tv);
@@ -293,6 +315,7 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
             checkoutPoint = itemView.findViewById(R.id.checkout_point_tv);
             jamShift = itemView.findViewById(R.id.jam_shift);
             namaShift = itemView.findViewById(R.id.nama_shift);
+            overTimeTV = itemView.findViewById(R.id.overtime_tv);
         }
     }
 
