@@ -101,14 +101,6 @@ public class NewsUpdateActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        //if (status.equals("Success")){
-
-//                            GsonBuilder builder = new GsonBuilder();
-//                            Gson gson = builder.create();
-//                            dataNews = gson.fromJson(articles, DataNews[].class);
-//                            adapterNewsUpdate = new AdapterNewsUpdate(dataNews,NewsUpdateActivity.this);
-//                            newsRV.setAdapter(adapterNewsUpdate);
-
 
                     }
                 }, new Response.ErrorListener() {
