@@ -400,6 +400,12 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (status.equals("Success")){
                                 loginFunction(nik,password);
+                            } else if (status.equals("Warning")){
+                                new KAlertDialog(LoginActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("NIK tidak terdaftar!")
+                                        .setConfirmText("OK")
+                                        .show();
                             } else {
                                 String atas_nama = data.getString("atas_nama");
                                 String nik = data.getString("NIK");

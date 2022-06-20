@@ -3661,7 +3661,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                         } else if (tipe_shift.equals("Tanggung")){
 
-                                            String pulang  = tgl_checkin+" "+time_checkout;
+                                            String pulang  = tgl_checkin+" "+pulangShiftAbsen;
                                             String batas = getDate()+" "+getTime();
 
                                             @SuppressLint("SimpleDateFormat")
@@ -3675,9 +3675,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 e.printStackTrace();
                                             }
                                             long waktu = date1.getTime() + Long.parseLong(interval);
-                                            long waktu2 = date2.getTime();
+                                            long waktu2 = date2.getTime(); //current
 
-                                            if (waktu>waktu2){
+                                            if (waktu<waktu2){
                                                 attantionPart.setVisibility(View.VISIBLE);
                                                 statusAbsenBTN.setVisibility(View.VISIBLE);
                                                 changeStatusAbsen.setVisibility(View.GONE);
@@ -3740,6 +3740,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 actionButton();
 
                                             } else {
+
                                                 warningPart.setVisibility(View.GONE);
                                                 inputAbsenPart.setVisibility(View.GONE);
                                                 recordAbsenPart.setVisibility(View.VISIBLE);
