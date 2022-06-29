@@ -294,7 +294,6 @@ public class AdapterKelebihanJam extends RecyclerView.Adapter<AdapterKelebihanJa
                 myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(6,8)))+" detik");
             }
         }
-
     }
 
     @Override

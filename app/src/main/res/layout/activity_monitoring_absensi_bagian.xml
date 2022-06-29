@@ -76,7 +76,7 @@
                                         android:layout_height="wrap_content"
                                         android:textSize="20dp"
                                         android:textColor="@color/white"
-                                        android:text="Inventory Cost Control"/>
+                                        android:text="-"/>
 
                                     <TextView
                                         android:layout_marginTop="7dp"
@@ -92,7 +92,7 @@
                                         android:layout_height="wrap_content"
                                         android:textSize="13dp"
                                         android:textColor="@color/white"
-                                        android:text="EXP"/>
+                                        android:text="-"/>
 
                                 </LinearLayout>
 
@@ -185,13 +185,15 @@
                                 <LinearLayout
                                     android:layout_width="0dp"
                                     android:layout_weight=".50"
+                                    android:orientation="vertical"
                                     android:layout_height="wrap_content">
 
                                     <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_weight=".50"
+                                        android:id="@+id/hadir_button"
+                                        android:layout_width="match_parent"
                                         android:background="@drawable/shape_hadir"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginRight="2.5dp"
                                         android:orientation="vertical">
 
                                         <RelativeLayout
@@ -237,19 +239,30 @@
 
                                     </LinearLayout>
 
+                                    <LinearLayout
+                                        android:id="@+id/indicator_hadir"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="4dp"
+                                        android:layout_marginTop="7dp"
+                                        android:orientation="horizontal"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:background="@drawable/shape_indicator"/>
+
                                 </LinearLayout>
 
                                 <LinearLayout
                                     android:layout_width="0dp"
                                     android:layout_weight=".50"
+                                    android:orientation="vertical"
                                     android:layout_height="wrap_content">
 
                                     <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_weight=".50"
+                                        android:id="@+id/tidak_hadir_button"
+                                        android:layout_width="match_parent"
                                         android:background="@drawable/shape_tidak_hadir"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginLeft="2.5dp"
                                         android:orientation="vertical">
 
                                         <RelativeLayout
@@ -295,6 +308,17 @@
 
                                     </LinearLayout>
 
+                                    <LinearLayout
+                                        android:visibility="gone"
+                                        android:id="@+id/indicator_tidak_hadir"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="4dp"
+                                        android:layout_marginTop="7dp"
+                                        android:layout_marginRight="15dp"
+                                        android:orientation="horizontal"
+                                        android:layout_marginLeft="15dp"
+                                        android:background="@drawable/shape_indicator"/>
+
                                 </LinearLayout>
 
                             </LinearLayout>
@@ -309,94 +333,283 @@
                             android:background="#3CCFCFCF"/>
 
                         <LinearLayout
-                            android:paddingRight="20dp"
-                            android:paddingLeft="20dp"
-                            android:layout_marginBottom="30dp"
-                            android:orientation="vertical"
+                            android:id="@+id/kehadiran_part"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:visibility="gone"
-                                android:id="@+id/data_kehadiran_bagian_rv"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-                            </androidx.recyclerview.widget.RecyclerView>
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
                             <LinearLayout
-                                android:visibility="gone"
-                                android:id="@+id/no_data_hadir_bagian"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:paddingBottom="20dp"
-                                android:paddingLeft="20dp"
-                                android:paddingRight="20dp"
-                                android:paddingTop="20dp"
                                 android:orientation="vertical"
-                                android:gravity="center">
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
-                                <TextView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:layout_marginTop="20dp"
-                                    android:textAlignment="center"
-                                    android:layout_marginBottom="10dp"
-                                    android:textSize="12dp"
-                                    android:textStyle="bold"
-                                    android:background="@drawable/ic_baseline_no_data"/>
-
-                                <TextView
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textAlignment="center"
-                                    android:textSize="15dp"
-                                    android:textStyle="bold"
-                                    android:text="Data tidak tersedia!"/>
+                                    android:layout_height="wrap_content">
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textAlignment="center"
-                                    android:textSize="11dp"
-                                    android:layout_marginTop="7dp"
-                                    android:text="Data kehadiran tidak tersedia."/>
+                                    <TextView
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="20dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="13dp"
+                                        android:paddingLeft="1dp"
+                                        android:textStyle="italic|bold"
+                                        android:textColor="@color/colorPrimaryDark"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginTop="5dp"
+                                        android:text="Data Kehadiran Bagian"/>
+
+                                    <TextView
+                                        android:visibility="gone"
+                                        android:id="@+id/ind_hadir"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="20dp"
+                                        android:layout_width="17dp"
+                                        android:layout_height="17dp"
+                                        android:backgroundTint="@color/green"
+                                        android:layout_marginTop="6dp"
+                                        android:background="@drawable/ic_baseline_hadir"
+                                        android:layout_marginBottom="10dp" />
+
+                                </RelativeLayout>
 
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/loading_data_kehadiran_bagian_part"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:paddingBottom="20dp"
-                                android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
-                                android:paddingTop="20dp"
+                                android:paddingLeft="20dp"
+                                android:layout_marginBottom="30dp"
                                 android:orientation="vertical"
-                                android:gravity="center">
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
-                                <ImageView
-                                    android:id="@+id/loading_data_kehadiran_bagian"
-                                    android:layout_width="68dp"
-                                    android:layout_height="68dp"
-                                    android:layout_marginBottom="5dp"
-                                    app:srcCompat="@drawable/loading" />
-
-                                <TextView
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:visibility="gone"
+                                    android:id="@+id/data_kehadiran_bagian_rv"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textAlignment="center"
-                                    android:textSize="15dp"
-                                    android:textStyle="bold"
-                                    android:text="Memuat data"/>
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+                                </androidx.recyclerview.widget.RecyclerView>
 
-                                <TextView
+                                <LinearLayout
+                                    android:visibility="gone"
+                                    android:id="@+id/no_data_hadir_bagian"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textAlignment="center"
-                                    android:textSize="11dp"
-                                    android:layout_marginTop="5dp"
-                                    android:text="Tunggu beberapa saat"/>
+                                    android:layout_height="match_parent"
+                                    android:paddingBottom="20dp"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="20dp"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginTop="20dp"
+                                        android:textAlignment="center"
+                                        android:layout_marginBottom="10dp"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold"
+                                        android:background="@drawable/ic_baseline_no_data"/>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textAlignment="center"
+                                        android:textSize="15dp"
+                                        android:textStyle="bold"
+                                        android:text="Data tidak tersedia!"/>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textAlignment="center"
+                                        android:textSize="11dp"
+                                        android:layout_marginTop="7dp"
+                                        android:text="Data kehadiran tidak tersedia."/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/loading_data_kehadiran_bagian_part"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:paddingBottom="20dp"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="20dp"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+
+                                    <ImageView
+                                        android:id="@+id/loading_data_kehadiran_bagian"
+                                        android:layout_width="68dp"
+                                        android:layout_height="68dp"
+                                        android:layout_marginBottom="5dp"
+                                        app:srcCompat="@drawable/loading" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textAlignment="center"
+                                        android:textSize="15dp"
+                                        android:textStyle="bold"
+                                        android:text="Memuat data"/>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textAlignment="center"
+                                        android:textSize="11dp"
+                                        android:layout_marginTop="5dp"
+                                        android:text="Tunggu beberapa saat"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/ketidakhadiran_part"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="20dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="13dp"
+                                        android:paddingLeft="1dp"
+                                        android:textStyle="italic|bold"
+                                        android:textColor="@color/colorPrimaryDark"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginTop="5dp"
+                                        android:text="Data Ketidakhadiran Bagian"/>
+
+                                    <TextView
+                                        android:visibility="gone"
+                                        android:id="@+id/ind_tidak_hadir"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="20dp"
+                                        android:layout_width="17dp"
+                                        android:layout_height="17dp"
+                                        android:backgroundTint="@color/red"
+                                        android:layout_marginTop="6dp"
+                                        android:background="@drawable/ic_baseline_tidak_hadir"
+                                        android:layout_marginBottom="10dp" />
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:paddingRight="20dp"
+                                android:paddingLeft="20dp"
+                                android:layout_marginBottom="30dp"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:visibility="gone"
+                                    android:id="@+id/data_ketidakhadiran_bagian_rv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+                                </androidx.recyclerview.widget.RecyclerView>
+
+                                <LinearLayout
+                                    android:visibility="gone"
+                                    android:id="@+id/no_data_tidak_hadir_bagian"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:paddingBottom="20dp"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="20dp"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginTop="20dp"
+                                        android:textAlignment="center"
+                                        android:layout_marginBottom="10dp"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold"
+                                        android:background="@drawable/ic_baseline_no_data"/>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textAlignment="center"
+                                        android:textSize="15dp"
+                                        android:textStyle="bold"
+                                        android:text="Data tidak tersedia!"/>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textAlignment="center"
+                                        android:textSize="11dp"
+                                        android:layout_marginTop="7dp"
+                                        android:text="Data ketidakhadiran tidak tersedia."/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/loading_data_ketidakhadiran_bagian_part"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:paddingBottom="20dp"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="20dp"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+
+                                    <ImageView
+                                        android:id="@+id/loading_data_ketidakhadiran_bagian"
+                                        android:layout_width="68dp"
+                                        android:layout_height="68dp"
+                                        android:layout_marginBottom="5dp"
+                                        app:srcCompat="@drawable/loading" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textAlignment="center"
+                                        android:textSize="15dp"
+                                        android:textStyle="bold"
+                                        android:text="Memuat data"/>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textAlignment="center"
+                                        android:textSize="11dp"
+                                        android:layout_marginTop="5dp"
+                                        android:text="Tunggu beberapa saat"/>
+
+                                </LinearLayout>
 
                             </LinearLayout>
 
