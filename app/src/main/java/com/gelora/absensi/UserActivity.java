@@ -99,8 +99,8 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, reloadBTN, backBTN, logoutBTN, historyBTN;
-    TextView hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, currentAddress2, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    LinearLayout monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
+    TextView bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
@@ -172,7 +172,6 @@ public class UserActivity extends AppCompatActivity {
         layoffLoading = findViewById(R.id.layoff_loading);
         batasBagDept = findViewById(R.id.batas_bag_dept);
         currentAddress = findViewById(R.id.current_address);
-        currentAddress2 = findViewById(R.id.current_address_2);
         weatherTemp = findViewById(R.id.weather_temp);
         feelsLikeTemp = findViewById(R.id.feels_like_temp);
         weatherIcon = findViewById(R.id.weather_icon);
@@ -201,6 +200,8 @@ public class UserActivity extends AppCompatActivity {
         notificationWarningLate = findViewById(R.id.warning_gif_absen_late);
         notificationWarningNocheckout = findViewById(R.id.warning_gif_absen_nocheckout);
         notificationWarningAlpha = findViewById(R.id.warning_gif_absen_alpha);
+        monitoringStaffBTN = findViewById(R.id.monitoring_staff_btn);
+        bagianNameTV = findViewById(R.id.bagian_name_tv);
         hTime = findViewById(R.id.h_time);
         mTime = findViewById(R.id.m_time);
         sTime = findViewById(R.id.s_time);
@@ -375,6 +376,16 @@ public class UserActivity extends AppCompatActivity {
                                 dialog.dismiss();
                             }
                         }).show();
+            }
+        });
+
+        monitoringStaffBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, MonitoringAbsensiBagianActivity.class);
+                intent.putExtra("nama_bagian", bagianTV.getText().toString());
+                intent.putExtra("nama_departemen", departemenTV.getText().toString());
+                startActivity(intent);
             }
         });
 
@@ -633,6 +644,13 @@ public class UserActivity extends AppCompatActivity {
                                 departemenTV.setText(department);
                                 bagianTV.setText(bagian);
                                 jabatanTV.setText(jabatan);
+
+                                if (jabatan.equals("Kepala Bagian") || sharedPrefManager.getSpNik().equals("3186150321")){
+                                    bagianNameTV.setText(bagian);
+                                    monitoringStaffBTN.setVisibility(View.VISIBLE);
+                                } else {
+                                    monitoringStaffBTN.setVisibility(View.GONE);
+                                }
 
                                 if(!avatar.equals("null")){
                                     if(!avatar.equals("default_profile.jpg")){
@@ -1608,7 +1626,6 @@ public class UserActivity extends AppCompatActivity {
             super.onReceiveResult(resultCode, resultData);
             if (resultCode == Constants.SUCCESS_RESULT) {
                 currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
-                currentAddress2.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
             } else {
                 currentAddress.setText(resultData.getString(Constants.NO_ADDRESS));
             }
