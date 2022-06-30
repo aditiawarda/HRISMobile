@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -51,7 +52,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     ImageView dataTidakHadirLoading, dataHadirLoading, loadingDataKehadiranBagian, loadingDataKetidakhadiranBagian;
     SwipeRefreshLayout refreshLayout;
-    LinearLayout indikatorHadirBTN, indikatorTidakHadirBTN, hadirBTN, tidakHadirBTN, hadirPart, tidakHadirPart, backBTN, homeBTN, loadingDataKehadiranPart, loadingDataKetidakhadiranPart, choiceDateBTN, noDataHadirBagian, noDataTidakHadirBagian;
+    LinearLayout seacrhKaryawanBTN, indikatorHadirBTN, indikatorTidakHadirBTN, hadirBTN, tidakHadirBTN, hadirPart, tidakHadirPart, backBTN, homeBTN, loadingDataKehadiranPart, loadingDataKetidakhadiranPart, choiceDateBTN, noDataHadirBagian, noDataTidakHadirBagian;
 
     private RecyclerView dataKehadiranBagianRV, dataKeTidakhadiranBagianRV;
     private DataMonitoringKehadiranBagian[] dataMonitoringKehadiranBagians;
@@ -91,6 +92,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         noDataTidakHadirBagian = findViewById(R.id.no_data_tidak_hadir_bagian);
         indHadir = findViewById(R.id.ind_hadir);
         indTidakhadir = findViewById(R.id.ind_tidak_hadir);
+        seacrhKaryawanBTN = findViewById(R.id.seacrh_karyawan_btn);
 
         dateChoiceForHistory = getDate();
 
@@ -130,6 +132,8 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
             public void onRefresh() {
                 dateChoiceForHistory = getDate();
 
+                indHadir.setVisibility(View.GONE);
+                indTidakhadir.setVisibility(View.GONE);
                 dataHadirLoading.setVisibility(View.VISIBLE);
                 dataTidakHadirLoading.setVisibility(View.VISIBLE);
                 monitorDataHadir.setVisibility(View.GONE);
@@ -171,6 +175,14 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
             }
         });
 
+        seacrhKaryawanBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MonitoringAbsensiBagianActivity.this, SearchKaryawanBagianActivity.class);
+                startActivity(intent);
+            }
+        });
+
         choiceDateBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,6 +193,8 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         hadirBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                indHadir.setVisibility(View.GONE);
+                indTidakhadir.setVisibility(View.GONE);
                 indikatorHadirBTN.setVisibility(View.VISIBLE);
                 indikatorTidakHadirBTN.setVisibility(View.GONE);
                 hadirPart.setVisibility(View.VISIBLE);
@@ -208,6 +222,8 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         tidakHadirBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                indHadir.setVisibility(View.GONE);
+                indTidakhadir.setVisibility(View.GONE);
                 indikatorTidakHadirBTN.setVisibility(View.VISIBLE);
                 indikatorHadirBTN.setVisibility(View.GONE);
                 tidakHadirPart.setVisibility(View.VISIBLE);
@@ -570,6 +586,8 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                 monitorDataHadir.setVisibility(View.GONE);
                 monitorDataTidakHadir.setVisibility(View.GONE);
 
+                indHadir.setVisibility(View.GONE);
+                indTidakhadir.setVisibility(View.GONE);
                 noDataHadirBagian.setVisibility(View.GONE);
                 noDataTidakHadirBagian.setVisibility(View.GONE);
                 loadingDataKehadiranPart.setVisibility(View.VISIBLE);
@@ -678,6 +696,8 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                 monitorDataHadir.setVisibility(View.GONE);
                 monitorDataTidakHadir.setVisibility(View.GONE);
 
+                indHadir.setVisibility(View.GONE);
+                indTidakhadir.setVisibility(View.GONE);
                 noDataHadirBagian.setVisibility(View.GONE);
                 noDataTidakHadirBagian.setVisibility(View.GONE);
                 loadingDataKehadiranPart.setVisibility(View.VISIBLE);

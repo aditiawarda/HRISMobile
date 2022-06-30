@@ -323,6 +323,35 @@
 
                             </LinearLayout>
 
+                            <LinearLayout
+                                android:id="@+id/seacrh_karyawan_btn"
+                                android:background="@drawable/shape_search_btn"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:backgroundTint="@color/colorPrimaryDark"
+                                    android:background="@drawable/ic_baseline_search"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nama Karyawan"
+                                    android:textSize="15dp"
+                                    android:layout_marginTop="9.3dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="20dp"
+                                    android:textColor="#DA6F46" />
+
+                            </LinearLayout>
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -368,7 +397,7 @@
                                         android:layout_marginRight="20dp"
                                         android:layout_width="17dp"
                                         android:layout_height="17dp"
-                                        android:backgroundTint="@color/green"
+                                        android:backgroundTint="#3FBC69"
                                         android:layout_marginTop="6dp"
                                         android:background="@drawable/ic_baseline_hadir"
                                         android:layout_marginBottom="10dp" />
@@ -510,7 +539,7 @@
                                         android:layout_marginRight="20dp"
                                         android:layout_width="17dp"
                                         android:layout_height="17dp"
-                                        android:backgroundTint="@color/red"
+                                        android:backgroundTint="#FFB259"
                                         android:layout_marginTop="6dp"
                                         android:background="@drawable/ic_baseline_tidak_hadir"
                                         android:layout_marginBottom="10dp" />
