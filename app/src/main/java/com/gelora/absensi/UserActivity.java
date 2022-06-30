@@ -1594,7 +1594,6 @@ public class UserActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("HH");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("01");
     }
 
     private String getTimeM() {
@@ -1602,7 +1601,6 @@ public class UserActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("mm");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("00");
     }
 
     private String getTimeS() {
@@ -1610,7 +1608,6 @@ public class UserActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("ss");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("00");
     }
 
     private class AddressResultReceiver extends ResultReceiver {
@@ -1954,7 +1951,6 @@ public class UserActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("11");
     }
 
     private String getDateM() {

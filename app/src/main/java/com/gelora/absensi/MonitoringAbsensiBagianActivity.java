@@ -1,16 +1,21 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,12 +29,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.adapter.AdapterBagian;
 import com.gelora.absensi.adapter.AdapterKehadiranBagian;
 import com.gelora.absensi.adapter.AdapterKetidakhadiranBagian;
 import com.gelora.absensi.adapter.AdapterPulangCepat;
+import com.gelora.absensi.adapter.AdapterStatusAbsen;
+import com.gelora.absensi.model.Bagian;
 import com.gelora.absensi.model.DataMonitoringKehadiranBagian;
 import com.gelora.absensi.model.DataMonitoringKetidakhadiranBagian;
 import com.gelora.absensi.model.DataPulangCepat;
+import com.gelora.absensi.model.StatusAbsen;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.takisoft.datetimepicker.DatePickerDialog;
@@ -47,12 +57,14 @@ import java.util.Map;
 
 public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
 
-    TextView indHadir, indTidakhadir, jumlahKaryawanTV, currentDateTV, namaDepartemen, namaBagian, monitorDataHadir, monitorDataTidakHadir;
-    String currentDay = "", dateChoiceForHistory;
+    TextView titleDataKehadiran, titleDataKetidakhadiran, pageTitle, indHadir, indTidakhadir, jumlahKaryawanTV, currentDateTV, bagianChoiceTV, namaDepartemen, namaBagian, monitorDataHadir, monitorDataTidakHadir;
+    String currentDay = "", dateChoiceForHistory, idBagianChoice = "", kdBagianChoice = "";
     SharedPrefManager sharedPrefManager;
+    SharedPrefAbsen sharedPrefAbsen;
     ImageView dataTidakHadirLoading, dataHadirLoading, loadingDataKehadiranBagian, loadingDataKetidakhadiranBagian;
     SwipeRefreshLayout refreshLayout;
-    LinearLayout seacrhKaryawanBTN, indikatorHadirBTN, indikatorTidakHadirBTN, hadirBTN, tidakHadirBTN, hadirPart, tidakHadirPart, backBTN, homeBTN, loadingDataKehadiranPart, loadingDataKetidakhadiranPart, choiceDateBTN, noDataHadirBagian, noDataTidakHadirBagian;
+    BottomSheetLayout bottomSheet;
+    LinearLayout seacrhKaryawanBTN, indikatorHadirBTN, indikatorTidakHadirBTN, hadirBTN, tidakHadirBTN, hadirPart, tidakHadirPart, backBTN, homeBTN, loadingDataKehadiranPart, loadingDataKetidakhadiranPart, choiceDateBTN, choiceBagianBTN, noDataHadirBagian, noDataTidakHadirBagian;
 
     private RecyclerView dataKehadiranBagianRV, dataKeTidakhadiranBagianRV;
     private DataMonitoringKehadiranBagian[] dataMonitoringKehadiranBagians;
@@ -60,12 +72,18 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
     private DataMonitoringKetidakhadiranBagian[] dataMonitoringKetidakhadiranBagians;
     private AdapterKetidakhadiranBagian adapterKetidakhadiranBagian;
 
+    private RecyclerView bagianRV;
+    private Bagian[] bagians;
+    private AdapterBagian adapterBagian;
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitoring_absensi_bagian);
 
         sharedPrefManager = new SharedPrefManager(this);
+        sharedPrefAbsen = new SharedPrefAbsen(this);
         jumlahKaryawanTV = findViewById(R.id.jumlah_karyawan_tv);
         currentDateTV = findViewById(R.id.current_date);
         namaDepartemen = findViewById(R.id.nama_departemen);
@@ -93,8 +111,16 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         indHadir = findViewById(R.id.ind_hadir);
         indTidakhadir = findViewById(R.id.ind_tidak_hadir);
         seacrhKaryawanBTN = findViewById(R.id.seacrh_karyawan_btn);
+        choiceBagianBTN = findViewById(R.id.choice_bagian);
+        bagianChoiceTV = findViewById(R.id.bagian_choice);
+        bottomSheet = findViewById(R.id.bottom_sheet_layout);
+        pageTitle = findViewById(R.id.page_title);
+        titleDataKehadiran = findViewById(R.id.title_data_kehadiran);
+        titleDataKetidakhadiran = findViewById(R.id.title_data_ketidakhadiran);
 
         dateChoiceForHistory = getDate();
+        idBagianChoice = sharedPrefManager.getSpIdDept();
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_BAGIAN, "");
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
@@ -123,11 +149,14 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         dataKeTidakhadiranBagianRV.setHasFixedSize(true);
         dataKeTidakhadiranBagianRV.setItemAnimator(new DefaultItemAnimator());
 
+        LocalBroadcastManager.getInstance(this).registerReceiver(bagianBroad, new IntentFilter("bagian_broad"));
+
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 dateChoiceForHistory = getDate();
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_BAGIAN, "");
 
                 indHadir.setVisibility(View.GONE);
                 indTidakhadir.setVisibility(View.GONE);
@@ -176,6 +205,8 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MonitoringAbsensiBagianActivity.this, SearchKaryawanBagianActivity.class);
+                intent.putExtra("id_bagian", idBagianChoice);
+                intent.putExtra("nama_bagian", kdBagianChoice);
                 startActivity(intent);
             }
         });
@@ -184,6 +215,13 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 datePicker();
+            }
+        });
+
+        choiceBagianBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choiceBagian();
             }
         });
 
@@ -245,8 +283,64 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
             }
         });
 
+        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpNik().equals("3186150321")) {
+            pageTitle.setText("KEHADIRAN DEPARTEMEN");
+            choiceBagianBTN.setVisibility(View.VISIBLE);
+        } else {
+            choiceBagianBTN.setVisibility(View.GONE);
+            pageTitle.setText("KEHADIRAN BAGIAN");
+        }
+
         getKehadiranBagian();
         getCurrentDay();
+
+    }
+
+    public BroadcastReceiver bagianBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String idbagian = intent.getStringExtra("id_bagian");
+            String namaBagian = intent.getStringExtra("nama_bagian");
+            String descBagian = intent.getStringExtra("desc_bagian");
+            bagianChoiceTV.setText(namaBagian);
+            idBagianChoice = idbagian;
+            kdBagianChoice = namaBagian;
+
+            dataHadirLoading.setVisibility(View.VISIBLE);
+            dataTidakHadirLoading.setVisibility(View.VISIBLE);
+            monitorDataHadir.setVisibility(View.GONE);
+            monitorDataTidakHadir.setVisibility(View.GONE);
+
+            indHadir.setVisibility(View.GONE);
+            indTidakhadir.setVisibility(View.GONE);
+            noDataHadirBagian.setVisibility(View.GONE);
+            noDataTidakHadirBagian.setVisibility(View.GONE);
+            loadingDataKehadiranPart.setVisibility(View.VISIBLE);
+            loadingDataKetidakhadiranPart.setVisibility(View.VISIBLE);
+            dataKehadiranBagianRV.setVisibility(View.GONE);
+            dataKeTidakhadiranBagianRV.setVisibility(View.GONE);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                    getKehadiranBagian();
+                }
+            }, 300);
+
+        }
+    };
+
+    private void choiceBagian(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_list_bagian, bottomSheet, false));
+        bagianRV = findViewById(R.id.bagian_rv);
+
+        bagianRV.setLayoutManager(new LinearLayoutManager(this));
+        bagianRV.setHasFixedSize(true);
+        bagianRV.setItemAnimator(new DefaultItemAnimator());
+
+        getListBagian();
 
     }
 
@@ -255,6 +349,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         final String url = "https://geloraaksara.co.id/absen-online/api/monitoring_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
                         // response
@@ -264,13 +359,23 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
-                                namaBagian.setText(data.getString("nama_bagian"));
+                                if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpNik().equals("3186150321")){
+                                    namaBagian.setText(data.getString("desc_departemen"));
+                                    jumlahKaryawanTV.setText(data.getString("jumlah_karyawan_dept"));
+                                } else {
+                                    namaBagian.setText(data.getString("nama_bagian"));
+                                    jumlahKaryawanTV.setText(data.getString("jumlah_karyawan"));
+                                }
                                 namaDepartemen.setText(data.getString("nama_departemen"));
-                                String jumlah_karyawan = data.getString("jumlah_karyawan");
                                 String hadir = data.getString("hadir");
                                 String tidak_hadir = data.getString("tidak_hadir");
 
-                                jumlahKaryawanTV.setText(jumlah_karyawan);
+                                bagianChoiceTV.setText(data.getString("kd_bagian"));
+                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_BAGIAN, data.getString("id_bagian"));
+                                idBagianChoice = data.getString("id_bagian");
+                                titleDataKehadiran.setText("Data Kehadiran "+data.getString("kd_bagian"));
+                                titleDataKetidakhadiran.setText("Data Ketidakhadiran "+data.getString("kd_bagian"));
+
                                 monitorDataHadir.setText(hadir);
                                 monitorDataTidakHadir.setText(tidak_hadir);
 
@@ -376,7 +481,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                params.put("id_bagian", idBagianChoice);
                 params.put("tanggal", dateChoiceForHistory);
                 return params;
             }
@@ -444,7 +549,6 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("11");
     }
 
     private String getDateM() {
@@ -715,7 +819,65 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
             dpd.show();
         }
 
+    }
 
+    private void getListBagian() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_list_bagian";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+
+                            JSONObject data = new JSONObject(response);
+                            String data_bagian = data.getString("data_bagian");
+
+                            GsonBuilder builder = new GsonBuilder();
+                            Gson gson = builder.create();
+                            bagians = gson.fromJson(data_bagian, Bagian[].class);
+                            adapterBagian = new AdapterBagian(bagians,MonitoringAbsensiBagianActivity.this);
+                            bagianRV.setAdapter(adapterBagian);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        //connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_departemen", sharedPrefManager.getSpIdHeadDept());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (bottomSheet.isSheetShowing()){
+            bottomSheet.dismissSheet();
+        } else {
+            super.onBackPressed();
+        }
     }
 
 }

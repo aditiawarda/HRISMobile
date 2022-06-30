@@ -55,7 +55,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
                                     android:paddingStart="20dp"
-                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginBottom="10dp"
                                     android:background="@drawable/shape_feel"
                                     android:orientation="horizontal">
 
@@ -93,6 +93,56 @@
                                                 android:layout_width="25dp"
                                                 android:layout_height="25dp"
                                                 android:background="@drawable/ic_baseline_date"/>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/choice_bagian"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:paddingStart="20dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:background="@drawable/shape_feel"
+                                    android:orientation="horizontal">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
+
+                                        <LinearLayout
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="40dp"
+                                            android:orientation="vertical"
+                                            android:gravity="center|left">
+
+                                            <TextView
+                                                android:id="@+id/bagian_choice"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="#B15735"
+                                                android:textStyle="bold"
+                                                android:text=""/>
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/change_bagian_btn"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_width="40dp"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/shape_btn"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:background="@drawable/ic_baseline_bagian"/>
 
                                         </LinearLayout>
 
@@ -194,6 +244,7 @@
                                     android:text="Perhatian :"/>
 
                                 <TextView
+                                    android:id="@+id/attantion_desc"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
@@ -366,6 +417,26 @@
             </RelativeLayout>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <com.flipboard.bottomsheet.BottomSheetLayout
+            android:id="@+id/bottom_sheet_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/root"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical" />
+
+            </LinearLayout>
+
+        </com.flipboard.bottomsheet.BottomSheetLayout>
 
     </RelativeLayout>
 

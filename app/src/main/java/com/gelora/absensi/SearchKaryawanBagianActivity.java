@@ -1,20 +1,24 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -30,10 +34,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.adapter.AdapterBagian;
+import com.gelora.absensi.adapter.AdapterBagianSearch;
 import com.gelora.absensi.adapter.AdapterKehadiranBagian;
 import com.gelora.absensi.adapter.AdapterKehadiranBagianSearch;
 import com.gelora.absensi.adapter.AdapterKetidakhadiranBagian;
 import com.gelora.absensi.adapter.AdapterKetidakhadiranBagianSearch;
+import com.gelora.absensi.model.Bagian;
 import com.gelora.absensi.model.DataMonitoringKehadiranBagian;
 import com.gelora.absensi.model.DataMonitoringKetidakhadiranBagian;
 import com.google.gson.Gson;
@@ -53,13 +61,14 @@ import java.util.Map;
 
 public class SearchKaryawanBagianActivity extends AppCompatActivity {
 
-    String dateChoiceForHistory="", currentDay="", keyWordSearch = "";
-    TextView currentDateTV;
-    LinearLayout attantionPart, choiceDateBTN, backBTN, homeBTN, loadingDataPart, emptyDataPart;
+    String dateChoiceForHistory = "", currentDay="", keyWordSearch = "", idBagianChoice = "", kdBagianChoice = "";
+    TextView attantionDesc, currentDateTV, bagianChoiceTV;
+    LinearLayout choiceBagianBTN, attantionPart, choiceDateBTN, backBTN, homeBTN, loadingDataPart, emptyDataPart;
     EditText keywordUserED;
     SharedPrefManager sharedPrefManager;
     ImageView loadingData;
     SwipeRefreshLayout refreshLayout;
+    BottomSheetLayout bottomSheet;
 
     private RecyclerView dataAbsensiKaryawanRV;
     private DataMonitoringKehadiranBagian[] dataMonitoringKehadiranBagians;
@@ -67,6 +76,11 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
     private DataMonitoringKetidakhadiranBagian[] dataMonitoringKetidakhadiranBagians;
     private AdapterKetidakhadiranBagianSearch adapterKetidakhadiranBagian;
 
+    private RecyclerView bagianRV;
+    private Bagian[] bagians;
+    private AdapterBagianSearch adapterBagian;
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +97,16 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
         loadingData = findViewById(R.id.loading_data);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         attantionPart = findViewById(R.id.attantion_part);
+        bottomSheet = findViewById(R.id.bottom_sheet_layout);
+        choiceBagianBTN = findViewById(R.id.choice_bagian);
+        bagianChoiceTV = findViewById(R.id.bagian_choice);
+        attantionDesc = findViewById(R.id.attantion_desc);
+
+        idBagianChoice = getIntent().getExtras().getString("id_bagian");
+        kdBagianChoice = getIntent().getExtras().getString("nama_bagian");
+        bagianChoiceTV.setText(kdBagianChoice);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(bagianBroad, new IntentFilter("bagian_broad"));
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading)
@@ -140,6 +164,16 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
             }
         });
 
+        choiceBagianBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+                choiceBagian();
+            }
+        });
+
         keywordUserED.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -179,10 +213,44 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
             }
         });
 
+        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpNik().equals("3186150321")) {
+            choiceBagianBTN.setVisibility(View.VISIBLE);
+            attantionDesc.setText("Fitur ini dibuat khusus untuk Ka. Departemen agar dapat memantau kehadiran karyawan di departemennya masing-masing.");
+        } else {
+            choiceBagianBTN.setVisibility(View.GONE);
+            attantionDesc.setText("Fitur ini dibuat khusus untuk Kepala Bagian agar dapat memantau kehadiran karyawan di bagiannya masing-masing.");
+        }
+
         dateChoiceForHistory = getDate();
         getCurrentDay();
 
     }
+
+    public BroadcastReceiver bagianBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String idbagian = intent.getStringExtra("id_bagian");
+            String namaBagian = intent.getStringExtra("nama_bagian");
+            String descBagian = intent.getStringExtra("desc_bagian");
+            bagianChoiceTV.setText(namaBagian);
+            idBagianChoice = idbagian;
+
+            attantionPart.setVisibility(View.GONE);
+            loadingDataPart.setVisibility(View.VISIBLE);
+            emptyDataPart.setVisibility(View.GONE);
+            dataAbsensiKaryawanRV.setVisibility(View.GONE);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                    getDataAbsensiUser(keyWordSearch);
+                }
+            }, 300);
+
+        }
+    };
 
     private String getDate() {
         @SuppressLint("SimpleDateFormat")
@@ -576,7 +644,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                params.put("id_bagian", idBagianChoice);
                 params.put("tanggal", dateChoiceForHistory);
                 params.put("keyword", keyword);
                 return params;
@@ -590,7 +658,78 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
     public void showSoftKeyboard(View view){
         if(view.requestFocus()){
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        }
+    }
+
+    private void choiceBagian(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_list_bagian, bottomSheet, false));
+        bagianRV = findViewById(R.id.bagian_rv);
+
+        bagianRV.setLayoutManager(new LinearLayoutManager(this));
+        bagianRV.setHasFixedSize(true);
+        bagianRV.setItemAnimator(new DefaultItemAnimator());
+
+        getListBagian();
+
+    }
+
+    private void getListBagian() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_list_bagian";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+
+                            JSONObject data = new JSONObject(response);
+                            String data_bagian = data.getString("data_bagian");
+
+                            GsonBuilder builder = new GsonBuilder();
+                            Gson gson = builder.create();
+                            bagians = gson.fromJson(data_bagian, Bagian[].class);
+                            adapterBagian = new AdapterBagianSearch(bagians,SearchKaryawanBagianActivity.this);
+                            bagianRV.setAdapter(adapterBagian);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        //connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_departemen", sharedPrefManager.getSpIdHeadDept());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (bottomSheet.isSheetShowing()){
+            bottomSheet.dismissSheet();
+        } else {
+            super.onBackPressed();
         }
     }
 

@@ -9,8 +9,10 @@ public class SharedPrefAbsen {
     public static final String SP_ABSENSI_APP = "spAbsensiApp";
     public static final String SP_ID_STATUS = "spIdStatus";
     public static final String SP_ID_SHIFT = "spIdShift";
+    public static final String SP_ID_BAGIAN = "spIdBagian";
     public static final String SP_STATUS_ABSEN = "spStatusAbsen";
     public static final String SP_SHIFT_ABSEN = "spShiftAbsen";
+    public static final String SP_BAGIAN = "spBagian";
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -44,12 +46,20 @@ public class SharedPrefAbsen {
         return sp.getString(SP_ID_SHIFT, "");
     }
 
+    public String getSpIdBagian(){
+        return sp.getString(SP_ID_BAGIAN, "");
+    }
+
     public String getSpStatusAbsen(){
         return sp.getString(SP_STATUS_ABSEN, "");
     }
 
     public String getSpShiftAbsen(){
         return sp.getString(SP_SHIFT_ABSEN, "");
+    }
+
+    public String getSpBagian(){
+        return sp.getString(SP_BAGIAN, "");
     }
 
 }
