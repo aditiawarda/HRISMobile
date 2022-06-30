@@ -923,7 +923,7 @@
                                             android:layout_height="wrap_content"
                                             android:textSize="12dp"
                                             android:textColor="@color/white"
-                                            android:text="EDP"/>
+                                            android:text=""/>
 
                                         <TextView
                                             android:id="@+id/note_pantau"
