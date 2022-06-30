@@ -372,9 +372,10 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
 
                                 bagianChoiceTV.setText(data.getString("kd_bagian"));
                                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_BAGIAN, data.getString("id_bagian"));
-                                idBagianChoice = data.getString("id_bagian");
                                 titleDataKehadiran.setText("Data Kehadiran "+data.getString("kd_bagian"));
                                 titleDataKetidakhadiran.setText("Data Ketidakhadiran "+data.getString("kd_bagian"));
+                                idBagianChoice = data.getString("id_bagian");
+                                kdBagianChoice = data.getString("kd_bagian");
 
                                 monitorDataHadir.setText(hadir);
                                 monitorDataTidakHadir.setText(tidak_hadir);

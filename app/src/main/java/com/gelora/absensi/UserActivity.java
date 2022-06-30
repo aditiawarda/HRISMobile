@@ -100,7 +100,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 public class UserActivity extends AppCompatActivity {
 
     LinearLayout monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
-    TextView bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    TextView notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
@@ -119,6 +119,7 @@ public class UserActivity extends AppCompatActivity {
     ResultReceiver resultReceiver;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,6 +203,8 @@ public class UserActivity extends AppCompatActivity {
         notificationWarningAlpha = findViewById(R.id.warning_gif_absen_alpha);
         monitoringStaffBTN = findViewById(R.id.monitoring_staff_btn);
         bagianNameTV = findViewById(R.id.bagian_name_tv);
+        titlePantau = findViewById(R.id.title_pantau);
+        notePantau = findViewById(R.id.note_pantau);
         hTime = findViewById(R.id.h_time);
         mTime = findViewById(R.id.m_time);
         sTime = findViewById(R.id.s_time);
@@ -570,6 +573,18 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
+        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpNik().equals("3186150321")){
+            monitoringStaffBTN.setVisibility(View.VISIBLE);
+            titlePantau.setText("Pantau kehadiran departemen*");
+            notePantau.setText("*Fitur khusus Kepala Departemen");
+        } else if (sharedPrefManager.getSpIdJabatan().equals("11")){
+            monitoringStaffBTN.setVisibility(View.VISIBLE);
+            titlePantau.setText("Pantau kehadiran bagian*");
+            notePantau.setText("*Fitur khusus Kepala Bagian");
+        } else {
+            monitoringStaffBTN.setVisibility(View.GONE);
+        }
+
         getDataUser();
 
     }
@@ -643,11 +658,10 @@ public class UserActivity extends AppCompatActivity {
                                 bagianTV.setText(bagian);
                                 jabatanTV.setText(jabatan);
 
-                                if (jabatan.equals("Kepala Bagian") || sharedPrefManager.getSpNik().equals("3186150321")){
+                                if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpNik().equals("3186150321")){
+                                    bagianNameTV.setText(department);
+                                } else if (sharedPrefManager.getSpIdJabatan().equals("11")){
                                     bagianNameTV.setText(bagian);
-                                    monitoringStaffBTN.setVisibility(View.VISIBLE);
-                                } else {
-                                    monitoringStaffBTN.setVisibility(View.GONE);
                                 }
 
                                 if(!avatar.equals("null")){
