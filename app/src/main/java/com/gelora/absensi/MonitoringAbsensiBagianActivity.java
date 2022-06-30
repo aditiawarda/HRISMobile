@@ -112,9 +112,6 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                 .load(R.drawable.loading)
                 .into(loadingDataKetidakhadiranBagian);
 
-        namaBagian.setText(getIntent().getExtras().getString("nama_bagian"));
-        namaDepartemen.setText(getIntent().getExtras().getString("nama_departemen"));
-
         dataKehadiranBagianRV = findViewById(R.id.data_kehadiran_bagian_rv);
         dataKeTidakhadiranBagianRV = findViewById(R.id.data_ketidakhadiran_bagian_rv);
 
@@ -267,6 +264,8 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
+                                namaBagian.setText(data.getString("nama_bagian"));
+                                namaDepartemen.setText(data.getString("nama_departemen"));
                                 String jumlah_karyawan = data.getString("jumlah_karyawan");
                                 String hadir = data.getString("hadir");
                                 String tidak_hadir = data.getString("tidak_hadir");

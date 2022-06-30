@@ -383,8 +383,6 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, MonitoringAbsensiBagianActivity.class);
-                intent.putExtra("nama_bagian", bagianTV.getText().toString());
-                intent.putExtra("nama_departemen", departemenTV.getText().toString());
                 startActivity(intent);
             }
         });

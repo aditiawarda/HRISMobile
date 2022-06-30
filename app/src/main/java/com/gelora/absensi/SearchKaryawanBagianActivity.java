@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -54,10 +55,11 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
 
     String dateChoiceForHistory="", currentDay="", keyWordSearch = "";
     TextView currentDateTV;
-    LinearLayout choiceDateBTN, backBTN, homeBTN, loadingDataPart, emptyDataPart;
+    LinearLayout attantionPart, choiceDateBTN, backBTN, homeBTN, loadingDataPart, emptyDataPart;
     EditText keywordUserED;
     SharedPrefManager sharedPrefManager;
     ImageView loadingData;
+    SwipeRefreshLayout refreshLayout;
 
     private RecyclerView dataAbsensiKaryawanRV;
     private DataMonitoringKehadiranBagian[] dataMonitoringKehadiranBagians;
@@ -79,16 +81,42 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
         loadingDataPart = findViewById(R.id.loading_data_part);
         emptyDataPart = findViewById(R.id.no_data_part);
         loadingData = findViewById(R.id.loading_data);
+        refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
+        attantionPart = findViewById(R.id.attantion_part);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading)
                 .into(loadingData);
+
+        showSoftKeyboard(keywordUserED);
 
         dataAbsensiKaryawanRV = findViewById(R.id.data_absensi_karyawan_rv);
 
         dataAbsensiKaryawanRV.setLayoutManager(new LinearLayoutManager(this));
         dataAbsensiKaryawanRV.setHasFixedSize(true);
         dataAbsensiKaryawanRV.setItemAnimator(new DefaultItemAnimator());
+
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                dateChoiceForHistory = getDate();
+
+                attantionPart.setVisibility(View.GONE);
+                loadingDataPart.setVisibility(View.VISIBLE);
+                emptyDataPart.setVisibility(View.GONE);
+                dataAbsensiKaryawanRV.setVisibility(View.GONE);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                        getDataAbsensiUser(keyWordSearch);
+                        getCurrentDay();
+                    }
+                }, 800);
+            }
+        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +153,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 keyWordSearch = keywordUserED.getText().toString();
 
+                attantionPart.setVisibility(View.GONE);
                 loadingDataPart.setVisibility(View.VISIBLE);
                 emptyDataPart.setVisibility(View.GONE);
                 dataAbsensiKaryawanRV.setVisibility(View.GONE);
@@ -348,6 +377,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
 
                 currentDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                attantionPart.setVisibility(View.GONE);
                 loadingDataPart.setVisibility(View.VISIBLE);
                 emptyDataPart.setVisibility(View.GONE);
                 dataAbsensiKaryawanRV.setVisibility(View.GONE);
@@ -449,6 +479,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
 
                 currentDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                attantionPart.setVisibility(View.GONE);
                 loadingDataPart.setVisibility(View.VISIBLE);
                 emptyDataPart.setVisibility(View.GONE);
                 dataAbsensiKaryawanRV.setVisibility(View.GONE);
@@ -554,6 +585,13 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    public void showSoftKeyboard(View view){
+        if(view.requestFocus()){
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+        }
     }
 
 }

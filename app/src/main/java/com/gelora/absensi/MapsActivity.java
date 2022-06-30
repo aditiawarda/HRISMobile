@@ -129,7 +129,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     SwipeRefreshLayout refreshLayout;
     ImageView weatherIconPart, onlineGif, loadingGif, warningGif, notificationWarning;
     TextView reminderDecs, reminderCelebrateTV, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout reminderCongrat, markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    LinearLayout pantauBTN, reminderCongrat, markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -250,6 +250,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         reminderCongrat = findViewById(R.id.reminder_congrat);
         reminderDecs = findViewById(R.id.reminder_desc);
         reminderCelebrateTV = findViewById(R.id.reminder_celebrate);
+        pantauBTN = findViewById(R.id.pantau_btn);
         requestQueue = Volley.newRequestQueue(getBaseContext());
 
         Glide.with(getApplicationContext())
@@ -414,6 +415,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+        pantauBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, MonitoringAbsensiBagianActivity.class);
+                startActivity(intent);;
+            }
+        });
+
         userBTNPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -471,6 +480,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(intent);
             }
         });
+
+        if (sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("11")|| sharedPrefManager.getSpNik().equals("3186150321")){
+            pantauBTN.setVisibility(View.VISIBLE);
+        } else {
+            pantauBTN.setVisibility(View.GONE);
+        }
 
         checkLogin();
         getCurrentDay();

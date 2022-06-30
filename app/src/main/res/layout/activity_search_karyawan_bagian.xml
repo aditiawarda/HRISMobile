@@ -173,7 +173,39 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
+                            <LinearLayout
+                                android:id="@+id/attantion_part"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:paddingBottom="20dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingTop="15dp"
+                                android:orientation="vertical"
+                                android:background="@drawable/shape_attantion">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="#C68D46"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold"
+                                    android:text="Perhatian :"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:textColor="#C68D46"
+                                    android:textSize="11dp"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Fitur ini dibuat khusus untuk Kepala Bagian agar dapat memantau kehadiran karyawan di bagiannya masing-masing."/>
+
+                            </LinearLayout>
+
                             <androidx.recyclerview.widget.RecyclerView
+                                android:visibility="gone"
                                 android:id="@+id/data_absensi_karyawan_rv"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"

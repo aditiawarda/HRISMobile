@@ -1138,6 +1138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="21dp"
                     android:layout_marginTop="3dp"
+                    android:layout_marginRight="7dp"
                     android:background="@drawable/shape_button_cuaca"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -1151,6 +1152,31 @@
                         android:textSize="10dp"
                         android:textStyle="bold"
                         android:text="Info Cuaca"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/pantau_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="21dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/shape_button_pantau"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="0.5dp"
+                    android:gravity="center|left">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:drawableTint="@color/white"
+                        android:drawablePadding="5dp"
+                        android:drawableLeft="@drawable/ic_baseline_laptop"
+                        android:textSize="10dp"
+                        android:textStyle="bold"
+                        android:text="Pantau"/>
 
                 </LinearLayout>
 
