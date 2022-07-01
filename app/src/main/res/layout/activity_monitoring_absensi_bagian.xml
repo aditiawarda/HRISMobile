@@ -451,7 +451,7 @@
                                         android:layout_height="17dp"
                                         android:backgroundTint="#3FBC69"
                                         android:layout_marginTop="6dp"
-                                        android:background="@drawable/ic_baseline_hadir"
+                                        android:background="@drawable/ic_baseline_lens"
                                         android:layout_marginBottom="10dp" />
 
                                 </RelativeLayout>
@@ -594,7 +594,7 @@
                                         android:layout_height="17dp"
                                         android:backgroundTint="#FFB259"
                                         android:layout_marginTop="6dp"
-                                        android:background="@drawable/ic_baseline_tidak_hadir"
+                                        android:background="@drawable/ic_baseline_lens"
                                         android:layout_marginBottom="10dp" />
 
                                 </RelativeLayout>

@@ -51,6 +51,7 @@ public class AdapterKetidakhadiranBagian extends RecyclerView.Adapter<AdapterKet
 
         myViewHolder.userName.setText(dataMonitoringKetidakhadiranBagian.getNmKaryawan().toUpperCase());
         myViewHolder.userNIK.setText(dataMonitoringKetidakhadiranBagian.getNIK());
+        myViewHolder.ketTV.setText(dataMonitoringKetidakhadiranBagian.getKeterangan()+" ("+dataMonitoringKetidakhadiranBagian.getKode()+")");
 
     }
 
@@ -60,11 +61,12 @@ public class AdapterKetidakhadiranBagian extends RecyclerView.Adapter<AdapterKet
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView userName, userNIK;
+        TextView userName, userNIK, ketTV;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             userName = itemView.findViewById(R.id.nama_staff_tv);
             userNIK = itemView.findViewById(R.id.nik_staff_tv);
+            ketTV = itemView.findViewById(R.id.keterangan_tv);
         }
     }
 

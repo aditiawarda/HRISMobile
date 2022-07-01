@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +46,7 @@ public class AdapterKetidakhadiranBagianSearch extends RecyclerView.Adapter<Adap
 
         myViewHolder.userName.setText(dataMonitoringKetidakhadiranBagian.getNmKaryawan().toUpperCase());
         myViewHolder.userNIK.setText(dataMonitoringKetidakhadiranBagian.getNIK());
+        myViewHolder.ketTV.setText(dataMonitoringKetidakhadiranBagian.getKeterangan()+" ("+dataMonitoringKetidakhadiranBagian.getKode()+")");
 
     }
 
@@ -54,11 +56,12 @@ public class AdapterKetidakhadiranBagianSearch extends RecyclerView.Adapter<Adap
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView userName, userNIK;
+        TextView userName, userNIK, ketTV;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             userName = itemView.findViewById(R.id.nama_staff_tv);
             userNIK = itemView.findViewById(R.id.nik_staff_tv);
+            ketTV = itemView.findViewById(R.id.keterangan_tv);
         }
     }
 
