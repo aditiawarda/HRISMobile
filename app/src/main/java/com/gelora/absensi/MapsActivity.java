@@ -4870,7 +4870,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String join_reminder = data.getString("join_reminder");
                                 String monitoring = data.getString("monitoring");
 
-                                if (sharedPrefManager.getSpNik().length()==10 || sharedPrefManager.getSpNik().equals("0000011")){
+                                if (sharedPrefManager.getSpNik().length()==10){
                                     String tgl_masuk = data.getString("tgl_masuk");
                                     String tglBulanMasuk = tgl_masuk.substring(5,10);
                                     String tahunMasuk = tgl_masuk.substring(0,4);
