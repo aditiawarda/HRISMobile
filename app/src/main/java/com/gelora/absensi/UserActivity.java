@@ -646,7 +646,7 @@ public class UserActivity extends AppCompatActivity {
                                 bagianTV.setText(bagian);
                                 jabatanTV.setText(jabatan);
 
-                                if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpNik().equals("3186150321")){
+                                if (sharedPrefManager.getSpIdJabatan().equals("10")){
                                     bagianNameTV.setText(department);
                                 } else if (sharedPrefManager.getSpIdJabatan().equals("11")){
                                     bagianNameTV.setText(bagian);
@@ -1851,7 +1851,7 @@ public class UserActivity extends AppCompatActivity {
                                 }
 
                                 if (monitoring.equals("1")){
-                                    if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpNik().equals("3186150321")){
+                                    if (sharedPrefManager.getSpIdJabatan().equals("10")){
                                         monitoringStaffBTN.setVisibility(View.VISIBLE);
                                         titlePantau.setText("Pantau kehadiran departemen*");
                                         notePantau.setText("*Fitur khusus Kepala Departemen");
