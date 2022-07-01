@@ -466,6 +466,31 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
+                                <LinearLayout
+                                    android:visibility="gone"
+                                    android:id="@+id/attantion_part"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="15dp"
+                                    android:paddingLeft="15dp"
+                                    android:paddingRight="15dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:paddingTop="15dp"
+                                    android:orientation="vertical"
+                                    android:background="@drawable/shape_attantion">
+
+                                    <TextView
+                                        android:id="@+id/attantion_desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:textColor="#C68D46"
+                                        android:textSize="11dp"
+                                        android:text="Data absensi karyawan yang masuk pada hari libur/tanggal merah (jam kerja terhitung lembur)."/>
+
+                                </LinearLayout>
+
                                 <androidx.recyclerview.widget.RecyclerView
                                     android:visibility="gone"
                                     android:id="@+id/data_kehadiran_bagian_rv"

@@ -64,7 +64,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
     ImageView dataTidakHadirLoading, dataHadirLoading, loadingDataKehadiranBagian, loadingDataKetidakhadiranBagian;
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheet;
-    LinearLayout seacrhKaryawanBTN, indikatorHadirBTN, indikatorTidakHadirBTN, hadirBTN, tidakHadirBTN, hadirPart, tidakHadirPart, backBTN, homeBTN, loadingDataKehadiranPart, loadingDataKetidakhadiranPart, choiceDateBTN, choiceBagianBTN, noDataHadirBagian, noDataTidakHadirBagian;
+    LinearLayout attantionPart, seacrhKaryawanBTN, indikatorHadirBTN, indikatorTidakHadirBTN, hadirBTN, tidakHadirBTN, hadirPart, tidakHadirPart, backBTN, homeBTN, loadingDataKehadiranPart, loadingDataKetidakhadiranPart, choiceDateBTN, choiceBagianBTN, noDataHadirBagian, noDataTidakHadirBagian;
 
     private RecyclerView dataKehadiranBagianRV, dataKeTidakhadiranBagianRV;
     private DataMonitoringKehadiranBagian[] dataMonitoringKehadiranBagians;
@@ -117,6 +117,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         pageTitle = findViewById(R.id.page_title);
         titleDataKehadiran = findViewById(R.id.title_data_kehadiran);
         titleDataKetidakhadiran = findViewById(R.id.title_data_ketidakhadiran);
+        attantionPart = findViewById(R.id.attantion_part);
 
         dateChoiceForHistory = getDate();
         idBagianChoice = sharedPrefManager.getSpIdDept();
@@ -174,6 +175,8 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                 loadingDataKetidakhadiranPart.setVisibility(View.VISIBLE);
                 dataKehadiranBagianRV.setVisibility(View.GONE);
                 dataKeTidakhadiranBagianRV.setVisibility(View.GONE);
+
+                attantionPart.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -244,6 +247,8 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                 dataKehadiranBagianRV.setVisibility(View.GONE);
                 dataKeTidakhadiranBagianRV.setVisibility(View.GONE);
 
+                attantionPart.setVisibility(View.GONE);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -272,6 +277,8 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                 loadingDataKetidakhadiranPart.setVisibility(View.VISIBLE);
                 dataKehadiranBagianRV.setVisibility(View.GONE);
                 dataKeTidakhadiranBagianRV.setVisibility(View.GONE);
+
+                attantionPart.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -321,6 +328,8 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
             dataKehadiranBagianRV.setVisibility(View.GONE);
             dataKeTidakhadiranBagianRV.setVisibility(View.GONE);
 
+            attantionPart.setVisibility(View.GONE);
+
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -366,6 +375,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                                     namaBagian.setText(data.getString("nama_bagian"));
                                     jumlahKaryawanTV.setText(data.getString("jumlah_karyawan"));
                                 }
+
                                 namaDepartemen.setText(data.getString("nama_departemen"));
                                 String hadir = data.getString("hadir");
                                 String tidak_hadir = data.getString("tidak_hadir");
@@ -421,10 +431,18 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                                     }
 
                                 } else {
+                                    String message = data.getString("message");
 
                                     new Handler().postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
+
+                                            if (message.equals("Tanggal Merah")) {
+                                                attantionPart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                attantionPart.setVisibility(View.GONE);
+                                            }
+
                                             indHadir.setVisibility(View.VISIBLE);
                                             noDataHadirBagian.setVisibility(View.GONE);
                                             loadingDataKehadiranPart.setVisibility(View.GONE);
@@ -699,6 +717,8 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                 dataKehadiranBagianRV.setVisibility(View.GONE);
                 dataKeTidakhadiranBagianRV.setVisibility(View.GONE);
 
+                attantionPart.setVisibility(View.GONE);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -808,6 +828,8 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                 loadingDataKetidakhadiranPart.setVisibility(View.VISIBLE);
                 dataKehadiranBagianRV.setVisibility(View.GONE);
                 dataKeTidakhadiranBagianRV.setVisibility(View.GONE);
+
+                attantionPart.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
