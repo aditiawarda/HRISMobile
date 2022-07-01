@@ -481,12 +481,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        if (sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("11")|| sharedPrefManager.getSpNik().equals("3186150321")){
-            pantauBTN.setVisibility(View.VISIBLE);
-        } else {
-            pantauBTN.setVisibility(View.GONE);
-        }
-
         checkLogin();
         getCurrentDay();
         timeLive();
@@ -4874,6 +4868,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String fake_time = data.getString("faketime_check");
                                 String devmod_check = data.getString("devmod_check");
                                 String join_reminder = data.getString("join_reminder");
+                                String monitoring = data.getString("monitoring");
 
                                 if (sharedPrefManager.getSpNik().length()==10 || sharedPrefManager.getSpNik().equals("0000011")){
                                     String tgl_masuk = data.getString("tgl_masuk");
@@ -4901,6 +4896,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     cuacaBTN.setVisibility(View.VISIBLE);
                                 } else {
                                     cuacaBTN.setVisibility(View.GONE);
+                                }
+
+                                if (monitoring.equals("1")){
+                                    if (sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("11")|| sharedPrefManager.getSpNik().equals("3186150321")){
+                                        pantauBTN.setVisibility(View.VISIBLE);
+                                    } else {
+                                        pantauBTN.setVisibility(View.GONE);
+                                    }
+                                } else {
+                                    pantauBTN.setVisibility(View.GONE);
                                 }
 
                                 int alpaNumb = Integer.parseInt(alpa);

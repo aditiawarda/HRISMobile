@@ -573,18 +573,6 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
-        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpNik().equals("3186150321")){
-            monitoringStaffBTN.setVisibility(View.VISIBLE);
-            titlePantau.setText("Pantau kehadiran departemen*");
-            notePantau.setText("*Fitur khusus Kepala Departemen");
-        } else if (sharedPrefManager.getSpIdJabatan().equals("11")){
-            monitoringStaffBTN.setVisibility(View.VISIBLE);
-            titlePantau.setText("Pantau kehadiran bagian*");
-            notePantau.setText("*Fitur khusus Kepala Bagian");
-        } else {
-            monitoringStaffBTN.setVisibility(View.GONE);
-        }
-
         getDataUser();
 
     }
@@ -1840,6 +1828,7 @@ public class UserActivity extends AppCompatActivity {
         final String url = "https://geloraaksara.co.id/absen-online/api/warning_absen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
                         // response
@@ -1853,11 +1842,28 @@ public class UserActivity extends AppCompatActivity {
                                 String terlambat = data.getString("terlambat");
                                 String tidak_checkout = data.getString("tidak_checkout");
                                 String cuaca_button = data.getString("cuaca_button");
+                                String monitoring = data.getString("monitoring");
 
                                 if (cuaca_button.equals("1")){
                                     dataCuaca.setVisibility(View.VISIBLE);
                                 } else {
                                     dataCuaca.setVisibility(View.GONE);
+                                }
+
+                                if (monitoring.equals("1")){
+                                    if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpNik().equals("3186150321")){
+                                        monitoringStaffBTN.setVisibility(View.VISIBLE);
+                                        titlePantau.setText("Pantau kehadiran departemen*");
+                                        notePantau.setText("*Fitur khusus Kepala Departemen");
+                                    } else if (sharedPrefManager.getSpIdJabatan().equals("11")){
+                                        monitoringStaffBTN.setVisibility(View.VISIBLE);
+                                        titlePantau.setText("Pantau kehadiran bagian*");
+                                        notePantau.setText("*Fitur khusus Kepala Bagian");
+                                    } else {
+                                        monitoringStaffBTN.setVisibility(View.GONE);
+                                    }
+                                } else {
+                                    monitoringStaffBTN.setVisibility(View.GONE);
                                 }
 
                                 int alpaNumb = Integer.parseInt(alpa);
