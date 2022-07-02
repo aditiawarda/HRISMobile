@@ -1324,7 +1324,7 @@
                                             <androidx.cardview.widget.CardView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
-                                                app:cardCornerRadius="90dp"
+                                                app:cardCornerRadius="40dp"
                                                 android:layout_marginTop="1dp"
                                                 android:layout_marginLeft="1dp"
                                                 android:layout_marginBottom="1dp"
@@ -1357,14 +1357,14 @@
                                             android:id="@+id/upload_file"
                                             android:layout_marginBottom="2dp"
                                             android:layout_marginRight="2dp"
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
+                                            android:layout_width="18dp"
+                                            android:layout_height="18dp"
                                             android:gravity="center"
                                             android:background="@drawable/shape_ring_camera">
 
                                             <TextView
-                                                android:layout_width="13dp"
-                                                android:layout_height="13dp"
+                                                android:layout_width="12dp"
+                                                android:layout_height="12dp"
                                                 android:background="@drawable/ic_baseline_camera"/>
 
                                         </LinearLayout>
@@ -1372,16 +1372,17 @@
                                         <LinearLayout
                                             android:visibility="gone"
                                             android:id="@+id/edit_file"
+                                            android:layout_width="18dp"
+                                            android:layout_height="18dp"
                                             android:layout_marginBottom="2dp"
                                             android:layout_marginRight="2dp"
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
                                             android:gravity="center"
                                             android:background="@drawable/shape_ring_camera">
 
                                             <TextView
-                                                android:layout_width="15dp"
-                                                android:layout_height="15dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_width="13dp"
+                                                android:layout_height="13dp"
                                                 android:background="@drawable/ic_baseline_edit"/>
 
                                         </LinearLayout>
@@ -1402,8 +1403,8 @@
 
                             <TextView
                                 android:id="@+id/status_indikator"
-                                android:layout_width="12dp"
-                                android:layout_height="12dp"
+                                android:layout_width="11dp"
+                                android:layout_height="11dp"
                                 android:textColor="@color/white"
                                 android:layout_marginRight="5dp" />
 
@@ -1411,7 +1412,7 @@
                                 android:id="@+id/status_user_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="12dp"
+                                android:textSize="11dp"
                                 android:textColor="@color/white"
                                 android:text=""/>
 
