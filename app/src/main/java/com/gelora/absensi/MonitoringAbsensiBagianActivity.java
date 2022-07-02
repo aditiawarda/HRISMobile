@@ -42,6 +42,7 @@ import com.gelora.absensi.model.DataPulangCepat;
 import com.gelora.absensi.model.StatusAbsen;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.shasin.notificationbanner.Banner;
 import com.takisoft.datetimepicker.DatePickerDialog;
 
 import org.json.JSONException;
@@ -65,6 +66,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheet;
     LinearLayout attantionPart, seacrhKaryawanBTN, indikatorHadirBTN, indikatorTidakHadirBTN, hadirBTN, tidakHadirBTN, hadirPart, tidakHadirPart, backBTN, homeBTN, loadingDataKehadiranPart, loadingDataKetidakhadiranPart, choiceDateBTN, choiceBagianBTN, noDataHadirBagian, noDataTidakHadirBagian;
+    View rootview;
 
     private RecyclerView dataKehadiranBagianRV, dataKeTidakhadiranBagianRV;
     private DataMonitoringKehadiranBagian[] dataMonitoringKehadiranBagians;
@@ -83,6 +85,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         setContentView(R.layout.activity_monitoring_absensi_bagian);
 
         sharedPrefManager = new SharedPrefManager(this);
+        rootview = findViewById(android.R.id.content);
         sharedPrefAbsen = new SharedPrefAbsen(this);
         jumlahKaryawanTV = findViewById(R.id.jumlah_karyawan_tv);
         currentDateTV = findViewById(R.id.current_date);
@@ -493,7 +496,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         ) {
@@ -901,6 +904,10 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    private void connectionFailed(){
+        Banner.make(rootview, MonitoringAbsensiBagianActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
     }
 
 }

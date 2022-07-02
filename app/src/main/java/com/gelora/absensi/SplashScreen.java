@@ -111,6 +111,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         rootview = findViewById(android.R.id.content);
         updateLayout = findViewById(R.id.update_layout);

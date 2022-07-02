@@ -291,7 +291,7 @@ public class CovidActivity extends AppCompatActivity {
                                     break;
                             }
 
-                            dateData.setText("Update : "+hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+                            dateData.setText("Update : "+hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
                             penambahanConfirm.setText(numberFormat.format(Double.parseDouble(confirmAdd)));
                             penambahanHealt.setText(numberFormat.format(Double.parseDouble(healtAdd)));
@@ -444,7 +444,7 @@ public class CovidActivity extends AppCompatActivity {
                                     break;
                             }
 
-                            dateVaksin.setText("Update : "+hariName+", "+dayDate+" "+bulanName+" "+yearDate);
+                            dateVaksin.setText("Update : "+hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
                             new Handler().postDelayed(new Runnable() {
                                 @Override

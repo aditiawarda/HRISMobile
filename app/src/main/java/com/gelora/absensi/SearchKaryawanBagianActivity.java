@@ -46,6 +46,7 @@ import com.gelora.absensi.model.DataMonitoringKehadiranBagian;
 import com.gelora.absensi.model.DataMonitoringKetidakhadiranBagian;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.shasin.notificationbanner.Banner;
 import com.takisoft.datetimepicker.DatePickerDialog;
 
 import org.json.JSONException;
@@ -69,6 +70,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
     ImageView loadingData;
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheet;
+    View rootview;
 
     private RecyclerView dataAbsensiKaryawanRV;
     private DataMonitoringKehadiranBagian[] dataMonitoringKehadiranBagians;
@@ -87,6 +89,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_karyawan_bagian);
 
         sharedPrefManager = new SharedPrefManager(this);
+        rootview = findViewById(android.R.id.content);
         currentDateTV = findViewById(R.id.current_date);
         choiceDateBTN = findViewById(R.id.choice_date);
         backBTN = findViewById(R.id.back_btn);
@@ -636,6 +639,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
+                        connectionFailed();
                     }
                 }
         )
@@ -706,7 +710,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
                         // error
                         Log.d("Error.Response", error.toString());
                         bottomSheet.dismissSheet();
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -731,6 +735,10 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    private void connectionFailed(){
+        Banner.make(rootview, SearchKaryawanBagianActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
     }
 
 }
