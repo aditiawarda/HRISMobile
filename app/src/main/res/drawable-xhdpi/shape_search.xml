@@ -7,7 +7,7 @@
                 android:width="1dp"
                 android:color="@color/colorPrimaryDark">
             </stroke>
-            <corners android:radius="17dp"/>
+            <corners android:radius="20dp"/>
         </shape>
     </item>
     <item>
@@ -17,7 +17,7 @@
                 android:width="1dp"
                 android:color="@color/colorPrimaryDark">
             </stroke>
-            <corners android:radius="17dp"/>
+            <corners android:radius="20dp"/>
         </shape>
     </item>
 </selector>
