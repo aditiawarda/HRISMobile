@@ -4071,7 +4071,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             String dayCheckout = dateCheckin.substring(8,10);
             String dateCheckout = dateCheckin.substring(0,8);
             int tgl_besok = Integer.parseInt(dayCheckout)+1;
-            batasAbsenPulang = dateCheckout+String.valueOf(tgl_besok)+" "+batasPulang;
+            String besok = "";
+            if (tgl_besok<10){
+                besok = "0"+String.valueOf(tgl_besok);
+            } else {
+                besok = String.valueOf(tgl_besok);
+            }
+            batasAbsenPulang = dateCheckout+besok+" "+batasPulang;
         }
         String pulangAbsen = getDate()+" "+getTime();
 
@@ -4085,8 +4091,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        long waktu1 = date1.getTime();
-        long waktu2 = date2.getTime();
+        long waktu1 = date1.getTime(); //batas
+        long waktu2 = date2.getTime(); //current
 
         if (waktu1>waktu2){
             if (statusLibur.equals("aktif")){
@@ -4100,6 +4106,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             statusPulangCepat = "nonaktif";
         }
 
+        Toast.makeText(this, statusPulangCepat, Toast.LENGTH_SHORT).show();
     }
 
     private void permissionLoc(){
