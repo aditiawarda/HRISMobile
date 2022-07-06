@@ -160,7 +160,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "1.1.31";
+    String appVersion = "1.1.32";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -4106,7 +4106,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             statusPulangCepat = "nonaktif";
         }
 
-        Toast.makeText(this, statusPulangCepat, Toast.LENGTH_SHORT).show();
     }
 
     private void permissionLoc(){

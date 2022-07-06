@@ -2031,7 +2031,7 @@ public class UserActivity extends AppCompatActivity {
                             String popup = response.getString("pop_up");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.1.31"; //harus disesuaikan
+                                String currentVersion = "1.1.32"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && popup.equals("1")){
                                     updateBTN.setVisibility(View.VISIBLE);
                                     updateBTN.setOnClickListener(new View.OnClickListener() {
