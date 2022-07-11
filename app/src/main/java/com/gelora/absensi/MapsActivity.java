@@ -18,6 +18,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
@@ -61,6 +62,7 @@ import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.ShiftAbsen;
 import com.gelora.absensi.model.StatusAbsen;
+import com.gelora.absensi.support.Preferences;
 import com.gelora.absensi.support.StatusBarColorManager;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
@@ -133,7 +135,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String sesiBaru = "nonaktif", actionSession = "", checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String warningPerangkat = "nonaktif", sesiBaru = "nonaktif", actionSession = "", checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -953,8 +955,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (bottomSheet.isSheetShowing()){
             bottomSheet.dismissSheet();
         } else {
-            super.onBackPressed();
+            if (warningPerangkat.equals("aktif")){
+                logoutFunction();
+            } else {
+                super.onBackPressed();
+            }
         }
+    }
+
+    private void logoutFunction(){
+        Preferences.setLoggedInStatus(MapsActivity.this,false);
+        sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_CAB, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_HEAD_DEPT, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_DEPT, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_JABATAN, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_USER, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_AKTIF, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_HALAMAN, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
+        Preferences.clearLoggedInUser(MapsActivity.this);
+        Intent intent = new Intent(MapsActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void checkLogin() {
@@ -4971,6 +4996,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
+                            String message = data.getString("message");
+
+                            if (message.equals("Device ID tidak sesuai")){
+                                warningPerangkat = "aktif";
+
+                                pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("PERANGKAT ANDA TELAH DIGANTI, HARAP GUNAKAN PERANGKAT YANG TERAKHIR DIDAFTARKAN!")
+                                        .setConfirmText("KELUAR");
+                                pDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                        logoutFunction();
+                                    }
+                                });
+                                pDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                    @Override
+                                    public void onDismiss(DialogInterface dialog) {
+                                        dialog.dismiss();
+                                        logoutFunction();
+                                    }
+                                });
+                                pDialog.show();
+
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -4983,7 +5034,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -5004,6 +5055,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         requestQueue.add(postRequest);
 
     }
+
 
     private void bukaSesi() {
         openSessionBTN.setVisibility(View.GONE);

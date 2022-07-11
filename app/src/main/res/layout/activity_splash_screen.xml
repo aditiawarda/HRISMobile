@@ -14,15 +14,6 @@
         android:layout_marginLeft="-165dp"
         android:layout_marginRight="-165dp"
         android:layout_height="match_parent"
-        android:background="@drawable/shape_splash_screen_2"/>
-
-    <LinearLayout
-        android:layout_marginBottom="185dp"
-        android:layout_width="match_parent"
-        android:layout_marginTop="-150dp"
-        android:layout_marginLeft="-130dp"
-        android:layout_marginRight="-130dp"
-        android:layout_height="match_parent"
         android:background="@drawable/shape_splash_screen"/>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
