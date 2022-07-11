@@ -135,7 +135,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String warningPerangkat = "nonaktif", sesiBaru = "nonaktif", actionSession = "", checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String shiftIdAbsen = "", warningPerangkat = "nonaktif", sesiBaru = "nonaktif", actionSession = "", checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -1795,6 +1795,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String id_shift = data_checkin.getString("id_shift");
                                 idCheckin = data_checkin.getString("id");
                                 checkinTimeZone = timezone_masuk;
+                                shiftIdAbsen = id_shift;
 
                                 String input_date = date_checkin;
                                 String dayDate = input_date.substring(8,10);
@@ -3577,9 +3578,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if (waktu1<waktu2){
             if (statusLibur.equals("aktif")){
-                //Pulang
-                checkoutStatus = "1";
-                overTime = "00:00:00";
+                if (shiftIdAbsen.equals("91")){
+                    //Pulang Cepat
+                    checkoutStatus = "2";
+                    overTime = "00:00:00";
+                } else {
+                    //Pulang
+                    checkoutStatus = "1";
+                    overTime = "00:00:00";
+                }
             } else {
                 //Pulang Cepat
                 checkoutStatus = "2";
