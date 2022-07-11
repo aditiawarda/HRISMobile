@@ -3652,8 +3652,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             inputAbsenPart.setVisibility(View.VISIBLE);
                                             recordAbsenPart.setVisibility(View.GONE);
                                             skeletonLayout.setVisibility(View.GONE);
-
                                             warningPart.setVisibility(View.VISIBLE);
+
                                             Glide.with(getApplicationContext())
                                                     .load(R.drawable.warning_circle_gif)
                                                     .into(warningGif);
