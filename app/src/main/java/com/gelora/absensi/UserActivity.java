@@ -466,8 +466,6 @@ public class UserActivity extends AppCompatActivity {
         reminderBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(UserActivity.this, NewsUpdateActivity.class);
-                //startActivity(intent);
                 reminderBar();
             }
         });
@@ -1302,7 +1300,7 @@ public class UserActivity extends AppCompatActivity {
                     }
                     public void onFinish() {
                         i = -1;
-                        pDialog.setTitleText("Upload Berhasil")
+                        pDialog.setTitleText("Unggah Berhasil")
                                 .setConfirmText("OK")
                                 .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                         bottomSheet.dismissSheet();
