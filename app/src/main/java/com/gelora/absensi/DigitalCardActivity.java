@@ -171,7 +171,6 @@ public class DigitalCardActivity extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, oStream);
             oStream.flush();
             oStream.close();
-            //progressBar.setIndeterminate(false);
         } catch (IOException e) {
             e.printStackTrace();
             Log.i("TAG", "There was an issue saving the image.");
