@@ -25,6 +25,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.shasin.notificationbanner.Banner;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -50,6 +51,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
     EditText alasanED;
     KAlertDialog pDialog;
     ImageView successGif;
+    View rootview;
     private int i = -1;
 
     @Override
@@ -75,6 +77,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         successPart = findViewById(R.id.success_submit);
         goToDasboard = findViewById(R.id.go_to_user);
         goToHome = findViewById(R.id.go_to_home);
+        rootview = findViewById(android.R.id.content);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -175,13 +178,12 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                             Log.d("Success.Response", response.toString());
                             data = new JSONObject(response);
                             String status = data.getString("status");
+
                             if (status.equals("Success")){
                                 String department = data.getString("departemen");
                                 String bagian = data.getString("bagian");
                                 String jabatan = data.getString("jabatan");
-
                                 detailTV.setText(jabatan+" | "+bagian+" | "+department);
-
                             }
 
                         } catch (JSONException e) {
@@ -195,7 +197,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -1194,6 +1196,8 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 successPart.setVisibility(View.VISIBLE);
                                 formPart.setVisibility(View.GONE);
                             } else {
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
                                 pDialog.setTitleText("Gagal Terkirim")
                                         .setConfirmText("OK")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
@@ -1210,7 +1214,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -1232,6 +1236,10 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    private void connectionFailed(){
+        Banner.make(rootview, FormPermohonanIzinActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
     }
 
     private String getDate() {
