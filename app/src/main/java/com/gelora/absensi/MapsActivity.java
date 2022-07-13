@@ -421,7 +421,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MapsActivity.this, MonitoringAbsensiBagianActivity.class);
-                startActivity(intent);;
+                startActivity(intent);
             }
         });
 

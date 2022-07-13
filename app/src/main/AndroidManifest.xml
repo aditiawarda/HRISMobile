@@ -32,8 +32,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".FormPermohonanIzinActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".SearchKaryawanBagianActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MonitoringAbsensiBagianActivity"
             android:screenOrientation="portrait" />
