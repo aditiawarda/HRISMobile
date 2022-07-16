@@ -13,7 +13,7 @@
     </stroke>
 
     <corners
-        android:bottomRightRadius="60dp">
+        android:bottomRightRadius="53dp">
     </corners>
 
 </shape>

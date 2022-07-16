@@ -155,7 +155,7 @@
                                     android:background="@drawable/shape_search"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:drawableLeft="@drawable/ic_baseline_search"
+                                    android:drawableLeft="@drawable/ic_baseline_search_2"
                                     android:drawablePadding="10dp"
                                     android:drawableTint="@color/colorPrimaryDark"
                                     android:paddingLeft="17dp"

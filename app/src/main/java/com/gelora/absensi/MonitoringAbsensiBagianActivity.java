@@ -748,9 +748,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 DateFormat format2 = new SimpleDateFormat("EEE");
-                DateFormat getweek = new SimpleDateFormat("W");
                 String finalDay = format2.format(dt1);
-                String week = getweek.format(dt1);
                 String hariName = "";
 
                 if (finalDay.equals("Mon") || finalDay.equals("Sen")) {

@@ -489,7 +489,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         dateLive();
         checkIzin();
         checkWarning();
-        deviceIdFunction();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
 
@@ -4268,7 +4267,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onRestart() {
         super.onRestart();
-        //refreshData();
+        refreshData();
     }
 
     private void openCalender(){
@@ -4954,6 +4953,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 } else {
                                     markerWarningAbsensi.setVisibility(View.GONE);
                                 }
+
+                                deviceIdFunction();
+
                             }
 
                         } catch (JSONException e) {

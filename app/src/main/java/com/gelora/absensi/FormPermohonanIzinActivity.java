@@ -5,12 +5,14 @@ import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -114,6 +116,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(FormPermohonanIzinActivity.this, MapsActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -122,6 +125,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(FormPermohonanIzinActivity.this, UserActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -1195,6 +1199,13 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 pDialog.dismiss();
                                 successPart.setVisibility(View.VISIBLE);
                                 formPart.setVisibility(View.GONE);
+                            } else if (status.equals("Available")){
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setContentText("Permohonan serupa sudah anda ajukan sebelumnya, harap tunggu persetujuan Kepala Bagian/Supervisor")
+                                        .setConfirmText("OK")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
@@ -1226,6 +1237,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                 params.put("NIK", sharedPrefManager.getSpNik());
                 params.put("tipe_izin", "4");
                 params.put("tanggal", getDate());
+                params.put("time", getTime());
                 params.put("tanggal_mulai", dateChoiceMulai);
                 params.put("tanggal_akhir", dateChoiceAkhir);
                 params.put("keterangan", alasanIzin);
@@ -1240,6 +1252,13 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     private void connectionFailed(){
         Banner.make(rootview, FormPermohonanIzinActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
+    }
+
+    private String getTime() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     private String getDate() {

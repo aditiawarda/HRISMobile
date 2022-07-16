@@ -53,26 +53,26 @@
                     android:id="@+id/nama_shift_late"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#9E6216"
+                    android:drawableLeft="@drawable/ic_baseline_work_last_history"
                     android:drawablePadding="7dp"
                     android:drawableTint="#9E6216"
-                    android:drawableLeft="@drawable/ic_baseline_work"
-                    android:textStyle="bold"
+                    android:text="---- - ----"
+                    android:textColor="#9E6216"
                     android:textSize="12dp"
-                    android:text="---- - ----"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/jam_shift_late"
-                    android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#9E6216"
+                    android:layout_alignParentRight="true"
+                    android:drawableRight="@drawable/ic_baseline_time_last_history"
                     android:drawablePadding="7dp"
                     android:drawableTint="#9E6216"
-                    android:drawableRight="@drawable/ic_baseline_time"
-                    android:textStyle="bold"
+                    android:text="-- : -- - -- : --"
+                    android:textColor="#9E6216"
                     android:textSize="12dp"
-                    android:text="-- : -- - -- : --"/>
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 

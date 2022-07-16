@@ -164,11 +164,12 @@ public class DigitalCardActivity extends AppCompatActivity {
         }
         String filename = pictureFileDir.getPath() +File.separator+ System.currentTimeMillis()+".jpg";
         File pictureFile = new File(filename);
-        Bitmap bitmap =getBitmapFromView(drawView);
+        Bitmap bitmap = getBitmapFromView(drawView);
+        //Bitmap resized = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
         try {
             pictureFile.createNewFile();
             FileOutputStream oStream = new FileOutputStream(pictureFile);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, oStream);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, oStream); //relative
             oStream.flush();
             oStream.close();
         } catch (IOException e) {
@@ -199,7 +200,6 @@ public class DigitalCardActivity extends AppCompatActivity {
         //return the bitmap
         return returnedBitmap;
     }
-
 
     private void scanGallery(Context cntx, String path) {
         try {
