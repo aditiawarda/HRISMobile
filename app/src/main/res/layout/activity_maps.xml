@@ -292,12 +292,12 @@
                                             android:gravity="center">
 
                                             <TextView
-                                                android:layout_width="28dp"
-                                                android:layout_height="28dp"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
                                                 android:textColor="#A8C74A1A"
                                                 android:textSize="12dp"
                                                 android:backgroundTint="@color/white"
-                                                android:background="@drawable/ic_baseline_dashboar_user"
+                                                android:background="@drawable/ic_baseline_account"
                                                 android:textStyle="bold"
                                                 android:text=""/>
 
