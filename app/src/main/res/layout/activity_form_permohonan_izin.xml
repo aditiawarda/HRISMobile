@@ -125,11 +125,76 @@
 
                                 </LinearLayout>
 
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Tipe Izin :"/>
+
+                                    <LinearLayout
+                                        android:id="@+id/tipe_choice_btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:paddingStart="20dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left">
+
+                                                <TextView
+                                                    android:id="@+id/tipe_choice_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textStyle="bold"
+                                                    android:text=""/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_down"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textSize="12dp"
-                                    android:layout_marginTop="5dp"
+
                                     android:layout_marginBottom="5dp"
                                     android:text="Tanggal Mulai :"/>
 
@@ -351,13 +416,11 @@
                                 </RelativeLayout>
 
                                 <LinearLayout
-                                    android:id="@+id/go_to_user"
+                                    android:id="@+id/view_permohonan_btn"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
-                                    android:paddingTop="12dp"
-                                    android:paddingBottom="12dp"
-                                    android:background="@drawable/shape_btn_chat"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/shape_btn_view"
                                     android:gravity="center">
 
                                     <TextView
@@ -365,27 +428,53 @@
                                         android:layout_height="wrap_content"
                                         android:textStyle="bold"
                                         android:textColor="@color/white"
-                                        android:text="DASBOARD"/>
+                                        android:text="LIHAT PERMOHONAN"/>
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:id="@+id/go_to_home"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="20dp"
-                                    android:layout_marginTop="10dp"
-                                    android:paddingTop="12dp"
-                                    android:paddingBottom="12dp"
-                                    android:background="@drawable/shape_second_btn"
-                                    android:gravity="center">
+                                    android:orientation="horizontal">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textStyle="bold"
-                                        android:textColor="@color/white"
-                                        android:text="HOME"/>
+                                    <LinearLayout
+                                        android:id="@+id/go_to_home"
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".20"
+                                        android:layout_height="40dp"
+                                        android:layout_marginBottom="20dp"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginRight="5dp"
+                                        android:background="@drawable/shape_second_btn"
+                                        android:gravity="center">
+
+                                        <TextView
+                                            android:layout_width="28dp"
+                                            android:layout_height="28dp"
+                                            android:textStyle="bold"
+                                            android:background="@drawable/ic_baseline_home"
+                                            android:textColor="@color/white" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/go_to_user"
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".80"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_height="40dp"
+                                        android:layout_marginTop="10dp"
+                                        android:background="@drawable/shape_btn_chat"
+                                        android:gravity="center">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textStyle="bold"
+                                            android:textColor="@color/white"
+                                            android:text="DASBOARD"/>
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
 
@@ -468,6 +557,26 @@
             </RelativeLayout>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <com.flipboard.bottomsheet.BottomSheetLayout
+            android:id="@+id/bottom_sheet_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/root"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical" />
+
+            </LinearLayout>
+
+        </com.flipboard.bottomsheet.BottomSheetLayout>
 
     </RelativeLayout>
 

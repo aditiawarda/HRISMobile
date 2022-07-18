@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.volley.Request;
@@ -19,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterDataTerlambat;
 import com.gelora.absensi.adapter.AdapterPermohonanIzin;
 import com.gelora.absensi.model.DataTerlambat;
@@ -38,7 +40,8 @@ public class ListNotifikasiActivity extends AppCompatActivity {
     private ListPermohonanIzin[] listPermohonanIzins;
     private AdapterPermohonanIzin adapterPermohonanIzin;
     SharedPrefManager sharedPrefManager;
-    LinearLayout backBTN, homeBTN;
+    LinearLayout noDataPart, loadingDataPart, backBTN, homeBTN;
+    ImageView loadingImage;
     SwipeRefreshLayout refreshLayout;
 
     @Override
@@ -51,6 +54,13 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
+        noDataPart = findViewById(R.id.no_data_part);
+        loadingDataPart = findViewById(R.id.loading_data_part);
+        loadingImage = findViewById(R.id.loading_data_img);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading)
+                .into(loadingImage);
 
         dataNotifikasiRV.setLayoutManager(new LinearLayoutManager(this));
         dataNotifikasiRV.setHasFixedSize(true);
@@ -60,6 +70,9 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                loadingDataPart.setVisibility(View.VISIBLE);
+                noDataPart.setVisibility(View.GONE);
+                dataNotifikasiRV.setVisibility(View.GONE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -107,7 +120,11 @@ public class ListNotifikasiActivity extends AppCompatActivity {
 
                                 if (count.equals("0")){
                                     dataNotifikasiRV.setVisibility(View.GONE);
+                                    noDataPart.setVisibility(View.VISIBLE);
+                                    loadingDataPart.setVisibility(View.GONE);
                                 } else {
+                                    noDataPart.setVisibility(View.GONE);
+                                    loadingDataPart.setVisibility(View.GONE);
                                     dataNotifikasiRV.setVisibility(View.VISIBLE);
                                     String data_permohonan_izin = data.getString("data");
                                     GsonBuilder builder = new GsonBuilder();
@@ -149,4 +166,18 @@ public class ListNotifikasiActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadingDataPart.setVisibility(View.VISIBLE);
+        noDataPart.setVisibility(View.GONE);
+        dataNotifikasiRV.setVisibility(View.GONE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.setRefreshing(false);
+                getData();
+            }
+        }, 500);
+    }
 }

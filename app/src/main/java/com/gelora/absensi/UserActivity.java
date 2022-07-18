@@ -407,6 +407,7 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, DigitalSignatureActivity.class);
+                intent.putExtra("kode", "dashboard");
                 startActivity(intent);
             }
         });
@@ -601,7 +602,6 @@ public class UserActivity extends AppCompatActivity {
         });
 
         getDataUser();
-        getCountNotification();
 
     }
 
@@ -615,6 +615,7 @@ public class UserActivity extends AppCompatActivity {
         getDataHadir();
         checkWarning();
         checkVersion();
+        getCountNotification();
         nameUserTV.setText(nama.toUpperCase());
         nikTV.setText(nik);
 
@@ -1319,7 +1320,7 @@ public class UserActivity extends AppCompatActivity {
                     String file_directori = getRealPathFromURIPath(uri, UserActivity.this);
                     String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
                     Log.e("PaRSE JSON", a);
-                    //uploadMultipart();
+                    uploadMultipart();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -2146,4 +2147,9 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getCountNotification();
+    }
 }

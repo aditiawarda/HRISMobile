@@ -28,6 +28,7 @@ import android.provider.OpenableColumns;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -43,6 +44,9 @@ import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
 import com.github.gcacace.signaturepad.views.SignaturePad;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 import com.yalantis.ucrop.UCrop;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -62,14 +66,15 @@ import java.util.UUID;
 
 public class DigitalSignatureActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, homeBTN, saveBTN, removeBTN;
+    LinearLayout redPen, bluePen, blackPen, cancelBTN, showSignaturePart, creatSignaturePart, changeBTN, backBTN, homeBTN, saveBTN, removeBTN;
     SignaturePad mSignaturePad;
     SharedPrefManager sharedPrefManager;
-    String uriImage;
     Bitmap bitmapFixSize;
     private int i = -1;
     Uri destinationUri;
     KAlertDialog pDialog;
+    ImageView signatureIMG;
+    String kodeString = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +85,48 @@ public class DigitalSignatureActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
         saveBTN = findViewById(R.id.save_btn);
+        changeBTN = findViewById(R.id.change_btn);
         removeBTN = findViewById(R.id.remove_btn);
         mSignaturePad = findViewById(R.id.signature_pad);
+        signatureIMG = findViewById(R.id.signature_img);
+        showSignaturePart = findViewById(R.id.show_signature_part);
+        creatSignaturePart = findViewById(R.id.creat_signature_part);
+        cancelBTN = findViewById(R.id.cancel_btn);
+        redPen = findViewById(R.id.pen_red);
+        bluePen = findViewById(R.id.pen_blue);
+        blackPen = findViewById(R.id.pen_black);
+
+        kodeString = getIntent().getExtras().getString("kode");
+
+        redPen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redPen.setBackground(ContextCompat.getDrawable(DigitalSignatureActivity.this, R.drawable.shape_pen_red_choice));
+                bluePen.setBackground(ContextCompat.getDrawable(DigitalSignatureActivity.this, R.drawable.shape_pen_blue));
+                blackPen.setBackground(ContextCompat.getDrawable(DigitalSignatureActivity.this, R.drawable.shape_pen_black));
+                mSignaturePad.setPenColor(Color.parseColor("#D32525"));
+            }
+        });
+
+        bluePen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redPen.setBackground(ContextCompat.getDrawable(DigitalSignatureActivity.this, R.drawable.shape_pen_red));
+                bluePen.setBackground(ContextCompat.getDrawable(DigitalSignatureActivity.this, R.drawable.shape_pen_blue_choice));
+                blackPen.setBackground(ContextCompat.getDrawable(DigitalSignatureActivity.this, R.drawable.shape_pen_black));
+                mSignaturePad.setPenColor(Color.parseColor("#0D2E80"));
+            }
+        });
+
+        blackPen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redPen.setBackground(ContextCompat.getDrawable(DigitalSignatureActivity.this, R.drawable.shape_pen_red));
+                bluePen.setBackground(ContextCompat.getDrawable(DigitalSignatureActivity.this, R.drawable.shape_pen_blue));
+                blackPen.setBackground(ContextCompat.getDrawable(DigitalSignatureActivity.this, R.drawable.shape_pen_black_choice));
+                mSignaturePad.setPenColor(Color.parseColor("#000000"));
+            }
+        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,12 +146,32 @@ public class DigitalSignatureActivity extends AppCompatActivity {
         saveBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File file = saveBitMap(DigitalSignatureActivity.this, mSignaturePad);
-                if (file != null) {
-                    Log.i("TAG", "Drawing saved to the gallery!");
-                } else {
-                    Log.i("TAG", "Oops! Image could not be saved.");
-                }
+                new KAlertDialog(DigitalSignatureActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Yakin untuk menyimpan tanda tangan?")
+                        .setCancelText("NO")
+                        .setConfirmText("YES")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                File file = saveBitMap(DigitalSignatureActivity.this, mSignaturePad);
+                                if (file != null) {
+                                    Log.i("TAG", "Drawing saved to the gallery!");
+                                } else {
+                                    Log.i("TAG", "Oops! Image could not be saved.");
+                                }
+
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -116,6 +181,26 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                 mSignaturePad.clear();
             }
         });
+
+        cancelBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSignaturePad.clear();
+                creatSignaturePart.setVisibility(View.GONE);
+                showSignaturePart.setVisibility(View.VISIBLE);
+            }
+        });
+
+        changeBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSignaturePad.clear();
+                creatSignaturePart.setVisibility(View.VISIBLE);
+                showSignaturePart.setVisibility(View.GONE);
+            }
+        });
+
+        checkSignature();
 
     }
 
@@ -236,12 +321,30 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                             String status = data.getString("status");
 
                             if (status.equals("Success")){
-                                pDialog.setTitleText("Berhasil Disimpan")
-                                        .setContentText("Tanda tangan digital berhasil disimpan")
-                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                checkSignature();
+                                if (kodeString.equals("form")){
+                                    pDialog.setTitleText("Berhasil Disimpan")
+                                            .setContentText("Tanda tangan digital berhasil disimpan")
+                                            .setConfirmText("OK")
+                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                @Override
+                                                public void onClick(KAlertDialog sDialog) {
+                                                    sDialog.dismiss();
+                                                    onBackPressed();
+                                                    finish();
+                                                }
+                                            })
+                                            .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                } else {
+                                    pDialog.setTitleText("Berhasil Disimpan")
+                                            .setContentText("Tanda tangan digital berhasil disimpan")
+                                            .setConfirmText("OK")
+                                            .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                }
                             } else {
                                 pDialog.setTitleText("Gagal Disimpan")
                                         .setContentText("Tanda tangan digital gagal disimpan")
+                                        .setConfirmText("OK")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }
 
@@ -267,6 +370,67 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", sharedPrefManager.getSpNik());
                 params.put("file", file);
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void checkSignature(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Available")){
+                                String signature = data.getString("data");
+                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+
+                                Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                        .into(signatureIMG);
+
+                                showSignaturePart.setVisibility(View.VISIBLE);
+                                creatSignaturePart.setVisibility(View.GONE);
+
+                            } else {
+                                cancelBTN.setVisibility(View.GONE);
+                                showSignaturePart.setVisibility(View.GONE);
+                                creatSignaturePart.setVisibility(View.VISIBLE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        //connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
 
                 return params;
             }

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -26,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.shasin.notificationbanner.Banner;
 import com.squareup.picasso.MemoryPolicy;
@@ -36,6 +38,7 @@ import com.takisoft.datetimepicker.DatePickerDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,13 +48,14 @@ import java.util.Map;
 
 public class FormPermohonanIzinActivity extends AppCompatActivity {
 
-    LinearLayout goToHome, goToDasboard, formPart, successPart, submitBTN, backBTN, homeBTN, dateMulaiPicker, dateAkhirPicker;
-    TextView mulaiDateTV, akhirDateTV, namaTV, nikTV, detailTV;
-    String dateChoiceMulai = "", dateChoiceAkhir = "", alasanIzin = "";
+    LinearLayout markStatusSakit, markStatusIzin, izinBTN, sakitBTN, tipeChoiceBTN, viewBTN, goToHome, goToDasboard, formPart, successPart, submitBTN, backBTN, homeBTN, dateMulaiPicker, dateAkhirPicker;
+    TextView tipeChoiceTV, mulaiDateTV, akhirDateTV, namaTV, nikTV, detailTV;
+    String idIzin = "", tipeIzin = "", dateChoiceMulai = "", dateChoiceAkhir = "", alasanIzin = "";
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     EditText alasanED;
     KAlertDialog pDialog;
+    BottomSheetLayout bottomSheet;
     ImageView successGif;
     View rootview;
     private int i = -1;
@@ -80,6 +84,10 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         goToDasboard = findViewById(R.id.go_to_user);
         goToHome = findViewById(R.id.go_to_home);
         rootview = findViewById(android.R.id.content);
+        viewBTN = findViewById(R.id.view_permohonan_btn);
+        bottomSheet = findViewById(R.id.bottom_sheet_layout);
+        tipeChoiceBTN = findViewById(R.id.tipe_choice_btn);
+        tipeChoiceTV = findViewById(R.id.tipe_choice_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -93,11 +101,13 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
+                        tipeIzin = "";
                         dateChoiceMulai = "";
                         dateChoiceAkhir = "";
                         alasanIzin = "";
                         mulaiDateTV.setText("");
                         akhirDateTV.setText("");
+                        tipeChoiceTV.setText("");
                         getDataKaryawan();
                     }
                 }, 800);
@@ -108,6 +118,16 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        viewBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormPermohonanIzinActivity.this, DetailPermohonanIzinActivity.class);
+                intent.putExtra("kode", "form");
+                intent.putExtra("id_izin", idIzin);
+                startActivity(intent);
             }
         });
 
@@ -134,6 +154,13 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(FormPermohonanIzinActivity.this, MapsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        tipeChoiceBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tipeChoice();
             }
         });
 
@@ -1040,145 +1067,287 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     private void actionIzin(){
         alasanIzin = alasanED.getText().toString();
-        if (!dateChoiceMulai.equals("")){
-            if(!dateChoiceAkhir.equals("")){
-                if(!alasanIzin.equals("")){
+        if (!tipeIzin.equals("")){
+            if (!dateChoiceMulai.equals("")){
+                if(!dateChoiceAkhir.equals("")){
+                    if(!alasanIzin.equals("")){
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.WARNING_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Kirim permohonan sekarang?")
+                                .setCancelText("NO")
+                                .setConfirmText("YES")
+                                .showCancelButton(true)
+                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                        pDialog = new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                        pDialog.show();
+                                        pDialog.setCancelable(false);
+                                        new CountDownTimer(1300, 800) {
+                                            public void onTick(long millisUntilFinished) {
+                                                i++;
+                                                switch (i) {
+                                                    case 0:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormPermohonanIzinActivity.this, R.color.colorGradien));
+                                                        break;
+                                                    case 1:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormPermohonanIzinActivity.this, R.color.colorGradien2));
+                                                        break;
+                                                    case 2:
+                                                    case 6:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormPermohonanIzinActivity.this, R.color.colorGradien3));
+                                                        break;
+                                                    case 3:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormPermohonanIzinActivity.this, R.color.colorGradien4));
+                                                        break;
+                                                    case 4:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormPermohonanIzinActivity.this, R.color.colorGradien5));
+                                                        break;
+                                                    case 5:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormPermohonanIzinActivity.this, R.color.colorGradien6));
+                                                        break;
+                                                }
+                                            }
+                                            public void onFinish() {
+                                                i = -1;
+                                                checkSignature();
+                                            }
+                                        }.start();
 
-                    pDialog = new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                    pDialog.show();
-                    pDialog.setCancelable(false);
-                    new CountDownTimer(1300, 800) {
-                        public void onTick(long millisUntilFinished) {
-                            i++;
-                            switch (i) {
-                                case 0:
-                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            (FormPermohonanIzinActivity.this, R.color.colorGradien));
-                                    break;
-                                case 1:
-                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            (FormPermohonanIzinActivity.this, R.color.colorGradien2));
-                                    break;
-                                case 2:
-                                case 6:
-                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            (FormPermohonanIzinActivity.this, R.color.colorGradien3));
-                                    break;
-                                case 3:
-                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            (FormPermohonanIzinActivity.this, R.color.colorGradien4));
-                                    break;
-                                case 4:
-                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            (FormPermohonanIzinActivity.this, R.color.colorGradien5));
-                                    break;
-                                case 5:
-                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            (FormPermohonanIzinActivity.this, R.color.colorGradien6));
-                                    break;
-                            }
-                        }
-                        public void onFinish() {
-                            i = -1;
-                            submitIzin();
-                        }
-                    }.start();
+                                    }
+                                })
+                                .show();
 
+                    }
+                    else {
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi alasan!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
                 } else {
-                    new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Harap isi alasan!")
-                            .setConfirmText("OK")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
+                    if(!alasanIzin.equals("")){
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tanggal akhir!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                    else {
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tanggal akhir dan alasan!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
                 }
-            } else {
-                if(!alasanIzin.equals("")){
-                    new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Harap isi tanggal akhir!")
-                            .setConfirmText("OK")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
+            }
+            else {
+                if(!dateChoiceAkhir.equals("")){
+                    if(!alasanIzin.equals("")){
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tanggal mulai!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                    else {
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tanggal mulai dan alasan!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
                 } else {
-                    new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Harap isi tanggal akhir dan alasan!")
-                            .setConfirmText("OK")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
+                    if(!alasanIzin.equals("")){
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tanggal mulai dan tanggal akhir!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                    else {
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi semua data!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
                 }
             }
         } else {
-            if(!dateChoiceAkhir.equals("")){
-                if(!alasanIzin.equals("")){
-                    new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Harap isi tanggal mulai!")
-                            .setConfirmText("OK")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
+            if (!dateChoiceMulai.equals("")){
+                if(!dateChoiceAkhir.equals("")){
+                    if(!alasanIzin.equals("")){
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tipe izin!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                    else {
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tipe izin dan alasan!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
                 } else {
-                    new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Harap isi tanggal mulai dan alasan!")
-                            .setConfirmText("OK")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
+                    if(!alasanIzin.equals("")){
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tipe izin dan tanggal akhir!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                    else {
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tipe izin, tanggal akhir dan alasan!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
                 }
-            } else {
-                if(!alasanIzin.equals("")){
-                    new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Harap isi tanggal mulai dan tanggal akhir!")
-                            .setConfirmText("OK")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
+            }
+            else {
+                if(!dateChoiceAkhir.equals("")){
+                    if(!alasanIzin.equals("")){
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tipe izin dan tanggal mulai!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                    else {
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tipe izin, tanggal mulai dan alasan!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
                 } else {
-                    new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Harap isi semua data!")
-                            .setConfirmText("OK")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
+                    if(!alasanIzin.equals("")){
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tipe izin, tanggal mulai dan tanggal akhir!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                    else {
+                        new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi semua data!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
                 }
             }
         }
+
     }
 
     private void submitIzin(){
@@ -1199,6 +1368,9 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 pDialog.dismiss();
                                 successPart.setVisibility(View.VISIBLE);
                                 formPart.setVisibility(View.GONE);
+                                JSONObject data_izin = data.getJSONObject("data");
+                                String id = data_izin.getString("id");
+                                idIzin = id;
                             } else if (status.equals("Available")){
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
@@ -1254,6 +1426,78 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         Banner.make(rootview, FormPermohonanIzinActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
     }
 
+    private void checkSignature(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Available")){
+                                String signature = data.getString("data");
+                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                submitIzin();
+                            } else {
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")
+                                        .setCancelText(" BATAL ")
+                                        .setConfirmText("LANJUT")
+                                        .showCancelButton(true)
+                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                Intent intent = new Intent(FormPermohonanIzinActivity.this, DigitalSignatureActivity.class);
+                                                intent.putExtra("kode", "form");
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.WARNING_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        //connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
     private String getTime() {
         @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -1287,6 +1531,70 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    private void tipeChoice(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_list_tipe_izin, bottomSheet, false));
+        izinBTN = findViewById(R.id.izin_btn);
+        sakitBTN = findViewById(R.id.sakit_btn);
+        markStatusSakit = findViewById(R.id.mark_status_sakit);
+        markStatusIzin = findViewById(R.id.mark_status_izin);
+
+        if (tipeIzin.equals("4")){
+            izinBTN.setBackground(ContextCompat.getDrawable(FormPermohonanIzinActivity.this, R.drawable.shape_option_choice));
+            sakitBTN.setBackground(ContextCompat.getDrawable(FormPermohonanIzinActivity.this, R.drawable.shape_option));
+            markStatusIzin.setVisibility(View.VISIBLE);
+            markStatusSakit.setVisibility(View.GONE);
+        } else if (tipeIzin.equals("5")){
+            izinBTN.setBackground(ContextCompat.getDrawable(FormPermohonanIzinActivity.this, R.drawable.shape_option));
+            sakitBTN.setBackground(ContextCompat.getDrawable(FormPermohonanIzinActivity.this, R.drawable.shape_option_choice));
+            markStatusIzin.setVisibility(View.GONE);
+            markStatusSakit.setVisibility(View.VISIBLE);
+        } else {
+            izinBTN.setBackground(ContextCompat.getDrawable(FormPermohonanIzinActivity.this, R.drawable.shape_option));
+            sakitBTN.setBackground(ContextCompat.getDrawable(FormPermohonanIzinActivity.this, R.drawable.shape_option));
+            markStatusIzin.setVisibility(View.GONE);
+            markStatusSakit.setVisibility(View.GONE);
+        }
+
+        izinBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                markStatusIzin.setVisibility(View.VISIBLE);
+                markStatusSakit.setVisibility(View.GONE);
+                izinBTN.setBackground(ContextCompat.getDrawable(FormPermohonanIzinActivity.this, R.drawable.shape_option_choice));
+                sakitBTN.setBackground(ContextCompat.getDrawable(FormPermohonanIzinActivity.this, R.drawable.shape_option));
+                tipeIzin = "4";
+                tipeChoiceTV.setText("Izin");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        sakitBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                markStatusIzin.setVisibility(View.GONE);
+                markStatusSakit.setVisibility(View.VISIBLE);
+                sakitBTN.setBackground(ContextCompat.getDrawable(FormPermohonanIzinActivity.this, R.drawable.shape_option_choice));
+                izinBTN.setBackground(ContextCompat.getDrawable(FormPermohonanIzinActivity.this, R.drawable.shape_option));
+                tipeIzin = "5";
+                tipeChoiceTV.setText("Sakit");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
     }
 
 }

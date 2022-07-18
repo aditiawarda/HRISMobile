@@ -143,6 +143,7 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetailPermohonanIzinActivity.class);
+                intent.putExtra("kode", "notif");
                 intent.putExtra("id_izin",listPermohonanIzin.getId());
                 mContext.startActivity(intent);
             }

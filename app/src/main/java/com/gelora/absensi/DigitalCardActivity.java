@@ -66,73 +66,95 @@ public class DigitalCardActivity extends AppCompatActivity {
         captureBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File file = saveBitMap(DigitalCardActivity.this, digitalCard);    //which view you want to pass that view as parameter
-                if (file != null) {
-
-                    final KAlertDialog pDialog = new KAlertDialog(DigitalCardActivity.this, KAlertDialog.PROGRESS_TYPE)
-                            .setTitleText("Loading");
-                    pDialog.show();
-                    pDialog.setCancelable(false);
-                    new CountDownTimer(2000, 1000) {
-                        public void onTick(long millisUntilFinished) {
-                            i++;
-                            switch (i) {
-                                case 0:
-                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            (DigitalCardActivity.this, R.color.colorGradien));
-                                    break;
-                                case 1:
-                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            (DigitalCardActivity.this, R.color.colorGradien2));
-                                    break;
-                                case 2:
-                                case 6:
-                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            (DigitalCardActivity.this, R.color.colorGradien3));
-                                    break;
-                                case 3:
-                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            (DigitalCardActivity.this, R.color.colorGradien4));
-                                    break;
-                                case 4:
-                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            (DigitalCardActivity.this, R.color.colorGradien5));
-                                    break;
-                                case 5:
-                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            (DigitalCardActivity.this, R.color.colorGradien6));
-                                    break;
+                new KAlertDialog(DigitalCardActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Unduh ID Card Digital?")
+                        .setCancelText("NO")
+                        .setConfirmText("YES")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
                             }
-                        }
-                        public void onFinish() {
-                            i = -1;
-                            pDialog.setTitleText("Unduh Berhasil")
-                                    .setContentText("ID Card berhasil diunduh dan disimpan")
-                                    .setCancelText("TUTUP")
-                                    .setConfirmText("LIHAT")
-                                    .showCancelButton(true)
-                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-                                        }
-                                    })
-                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-                                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uriImage));
-                                            startActivity(intent);
-                                        }
-                                    })
-                                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                        }
-                    }.start();
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
 
-                    Log.i("TAG", "Drawing saved to the gallery!");
-                } else {
-                    Log.i("TAG", "Oops! Image could not be saved.");
-                }
+                                File file = saveBitMap(DigitalCardActivity.this, digitalCard);    //which view you want to pass that view as parameter
+                                if (file != null) {
+
+                                    final KAlertDialog pDialog = new KAlertDialog(DigitalCardActivity.this, KAlertDialog.PROGRESS_TYPE)
+                                            .setTitleText("Loading");
+                                    pDialog.show();
+                                    pDialog.setCancelable(false);
+                                    new CountDownTimer(2000, 1000) {
+                                        public void onTick(long millisUntilFinished) {
+                                            i++;
+                                            switch (i) {
+                                                case 0:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DigitalCardActivity.this, R.color.colorGradien));
+                                                    break;
+                                                case 1:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DigitalCardActivity.this, R.color.colorGradien2));
+                                                    break;
+                                                case 2:
+                                                case 6:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DigitalCardActivity.this, R.color.colorGradien3));
+                                                    break;
+                                                case 3:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DigitalCardActivity.this, R.color.colorGradien4));
+                                                    break;
+                                                case 4:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DigitalCardActivity.this, R.color.colorGradien5));
+                                                    break;
+                                                case 5:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DigitalCardActivity.this, R.color.colorGradien6));
+                                                    break;
+                                            }
+                                        }
+                                        public void onFinish() {
+                                            i = -1;
+                                            pDialog.setTitleText("Unduh Berhasil")
+                                                    .setContentText("ID Card berhasil diunduh dan disimpan")
+                                                    .setCancelText("TUTUP")
+                                                    .setConfirmText("LIHAT")
+                                                    .showCancelButton(true)
+                                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uriImage));
+                                                            startActivity(intent);
+                                                        }
+                                                    })
+                                                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                        }
+                                    }.start();
+
+                                    Log.i("TAG", "Drawing saved to the gallery!");
+                                } else {
+                                    Log.i("TAG", "Oops! Image could not be saved.");
+                                }
+
+                            }
+                        })
+                        .show();
+
             }
         });
 

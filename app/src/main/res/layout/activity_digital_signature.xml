@@ -41,53 +41,202 @@
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:orientation="vertical"
-                            android:background="@drawable/shape_detail_permohonan"
+                            android:visibility="gone"
+                            android:id="@+id/creat_signature_part"
                             android:layout_width="match_parent"
-                            android:layout_height="400dp">
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                            <com.github.gcacace.signaturepad.views.SignaturePad
-                                android:id="@+id/signature_pad"
+                            <LinearLayout
+                                android:orientation="horizontal"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
+                                android:layout_height="wrap_content">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_marginTop="3dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="right"
+                                        android:layout_marginBottom="10dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:gravity="center"
+                                            android:textColor="#4A4A4A"
+                                            android:layout_marginRight="12dp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:text="Warna Pena :"/>
+
+                                        <LinearLayout
+                                            android:id="@+id/pen_red"
+                                            android:layout_marginRight="10dp"
+                                            android:background="@drawable/shape_pen_red"
+                                            android:layout_width="33dp"
+                                            android:layout_height="33dp"
+                                            android:orientation="horizontal" />
+
+                                        <LinearLayout
+                                            android:id="@+id/pen_blue"
+                                            android:layout_marginRight="10dp"
+                                            android:background="@drawable/shape_pen_blue"
+                                            android:layout_width="33dp"
+                                            android:layout_height="33dp"
+                                            android:orientation="horizontal" />
+
+                                        <LinearLayout
+                                            android:id="@+id/pen_black"
+                                            android:background="@drawable/shape_pen_black_choice"
+                                            android:layout_width="33dp"
+                                            android:layout_height="33dp"
+                                            android:orientation="horizontal" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <LinearLayout
+                                            android:layout_width="40dp"
+                                            android:layout_height="40dp"
+                                            android:background="@drawable/ic_baseline_draw"
+                                            android:backgroundTint="@color/colorPrimaryDark" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:background="@drawable/shape_detail_permohonan"
+                                android:layout_width="match_parent"
+                                android:layout_height="400dp">
+
+                                <com.github.gcacace.signaturepad.views.SignaturePad
+                                    android:id="@+id/signature_pad"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/remove_btn"
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".50"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:paddingTop="12dp"
+                                    android:paddingBottom="12dp"
+                                    android:background="@drawable/shape_btn_remove"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/white"
+                                        android:text="HAPUS"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/save_btn"
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".50"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:paddingTop="12dp"
+                                    android:paddingBottom="12dp"
+                                    android:background="@drawable/shape_btn_approved"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/white"
+                                        android:text="SIMPAN"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/cancel_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
+                                android:background="@drawable/shape_btn_cancel"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:textColor="#E88825"
+                                    android:text="BATAL"/>
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/save_btn"
+                            android:id="@+id/show_signature_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:paddingTop="12dp"
-                            android:paddingBottom="12dp"
-                            android:background="@drawable/shape_btn_approved"
-                            android:gravity="center">
+                            android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:background="@drawable/shape_detail_permohonan"
+                                android:layout_width="match_parent"
+                                android:layout_height="400dp">
+
+                                <ImageView
+                                    android:id="@+id/signature_img"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/change_btn"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:textColor="@color/white"
-                                android:text="SIMPAN"/>
+                                android:layout_marginTop="10dp"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
+                                android:background="@drawable/shape_second_btn"
+                                android:gravity="center">
 
-                        </LinearLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"
+                                    android:text="UBAH TANDA TANGAN"/>
 
-                        <LinearLayout
-                            android:id="@+id/remove_btn"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:paddingTop="12dp"
-                            android:paddingBottom="12dp"
-                            android:background="@drawable/shape_btn_remove"
-                            android:gravity="center">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:textColor="#E88825"
-                                android:text="HAPUS"/>
+                            </LinearLayout>
 
                         </LinearLayout>
 
