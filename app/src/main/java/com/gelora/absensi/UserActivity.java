@@ -573,8 +573,8 @@ public class UserActivity extends AppCompatActivity {
                 new KAlertDialog(UserActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Perhatian")
                         .setContentText("Apakah anda yakin untuk logout?")
-                        .setCancelText("NO")
-                        .setConfirmText("YES")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
                         .showCancelButton(true)
                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override
@@ -891,7 +891,7 @@ public class UserActivity extends AppCompatActivity {
 
     private void getCountNotification() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_notification_permohonan_izin";
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_list_permohonan_izin";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -904,12 +904,13 @@ public class UserActivity extends AppCompatActivity {
                             String status = data.getString("status");
                             if (status.equals("Success")){
                                 String count = data.getString("count");
+                                String count2 = data.getString("count2");
 
-                                if (count.equals("0")){
+                                if (count.equals("0") && count2.equals("0")){
                                     countNotification.setVisibility(View.GONE);
                                 } else {
                                     countNotification.setVisibility(View.VISIBLE);
-                                    countNotifTV.setText(count);
+                                    countNotifTV.setText(String.valueOf(Integer.parseInt(count)+Integer.parseInt(count2)));
                                 }
 
                             }
@@ -935,7 +936,10 @@ public class UserActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_departemen", sharedPrefManager.getSpIdHeadDept());
                 params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
+                params.put("NIK", sharedPrefManager.getSpNik());
                 return params;
             }
         };
@@ -1250,7 +1254,7 @@ public class UserActivity extends AppCompatActivity {
             public void onChooseGallerySelected() {
                 launchGalleryIntent();
             }
-        });
+        }, "avatar");
     }
 
     private void launchGalleryIntent() {
@@ -1484,8 +1488,8 @@ public class UserActivity extends AppCompatActivity {
                 new KAlertDialog(UserActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Perhatian")
                         .setContentText("Apakah anda yakin hapus foto profil?")
-                        .setCancelText("NO")
-                        .setConfirmText("YES")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
                         .showCancelButton(true)
                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override

@@ -877,7 +877,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                         // error
                         Log.d("Error.Response", error.toString());
                         bottomSheet.dismissSheet();
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )

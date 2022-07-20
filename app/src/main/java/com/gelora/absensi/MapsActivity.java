@@ -314,8 +314,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                             .setTitleText("Perhatian")
                             .setContentText("Apakah anda yakin untuk membuka sesi absensi?")
-                            .setCancelText("NO")
-                            .setConfirmText("YES")
+                            .setCancelText("TIDAK")
+                            .setConfirmText("   YA   ")
                             .showCancelButton(true)
                             .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
@@ -382,8 +382,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                             .setTitleText("Perhatian")
                             .setContentText("Apakah anda yakin untuk membuka sesi absensi dan menghapus status yang tertera hari ini?")
-                            .setCancelText("NO")
-                            .setConfirmText("YES")
+                            .setCancelText("TIDAK")
+                            .setConfirmText("   YA   ")
                             .showCancelButton(true)
                             .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
@@ -1924,8 +1924,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Check In sekarang?")
                                         .setContentText(namaStatusAbsen+" ("+datangShiftAbsen.substring(0,5)+" - "+pulangShiftAbsen.substring(0,5)+")")
-                                        .setCancelText("NO")
-                                        .setConfirmText("YES")
+                                        .setCancelText("TIDAK")
+                                        .setConfirmText("   YA   ")
                                         .showCancelButton(true)
                                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
@@ -2042,8 +2042,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Check In sekarang?")
                                         .setContentText(namaStatusAbsen+" - "+namaShiftAbsen+" ("+datangShiftAbsen.substring(0,5)+" - "+pulangShiftAbsen.substring(0,5)+")")
-                                        .setCancelText("NO")
-                                        .setConfirmText("YES")
+                                        .setCancelText("TIDAK")
+                                        .setConfirmText("   YA   ")
                                         .showCancelButton(true)
                                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
@@ -2218,8 +2218,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Check Out sekarang?")
                                     .setContentText(pesanCheckout)
-                                    .setCancelText("NO")
-                                    .setConfirmText("YES")
+                                    .setCancelText("TIDAK")
+                                    .setConfirmText("   YA   ")
                                     .showCancelButton(true)
                                     .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                                         @Override
@@ -2336,8 +2336,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Check Out sekarang?")
                                     .setContentText(pesanCheckout)
-                                    .setCancelText("NO")
-                                    .setConfirmText("YES")
+                                    .setCancelText("TIDAK")
+                                    .setConfirmText("   YA   ")
                                     .showCancelButton(true)
                                     .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                                         @Override
@@ -2481,8 +2481,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Apakah anda yakin hari ini akan Libur/Absen?")
-                                .setCancelText("NO")
-                                .setConfirmText("YES")
+                                .setCancelText("TIDAK")
+                                .setConfirmText("   YA   ")
                                 .showCancelButton(true)
                                 .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
@@ -2592,8 +2592,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Apakah anda yakin hari ini akan Libur/Absen?")
-                                    .setCancelText("NO")
-                                    .setConfirmText("YES")
+                                    .setCancelText("TIDAK")
+                                    .setConfirmText("   YA   ")
                                     .showCancelButton(true)
                                     .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                                         @Override
@@ -2721,8 +2721,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Check Out sekarang?")
                                         .setContentText(pesanCheckout)
-                                        .setCancelText("NO")
-                                        .setConfirmText("YES")
+                                        .setCancelText("TIDAK")
+                                        .setConfirmText("   YA   ")
                                         .showCancelButton(true)
                                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
@@ -2839,8 +2839,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Check Out sekarang?")
                                         .setContentText(pesanCheckout)
-                                        .setCancelText("NO")
-                                        .setConfirmText("YES")
+                                        .setCancelText("TIDAK")
+                                        .setConfirmText("   YA   ")
                                         .showCancelButton(true)
                                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
@@ -2966,8 +2966,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Check In sekarang?")
                                         .setContentText(namaStatusAbsen+" ("+datangShiftAbsen.substring(0,5)+" - "+pulangShiftAbsen.substring(0,5)+")")
-                                        .setCancelText("NO")
-                                        .setConfirmText("YES")
+                                        .setCancelText("TIDAK")
+                                        .setConfirmText("   YA   ")
                                         .showCancelButton(true)
                                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
@@ -3085,8 +3085,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Check In sekarang?")
                                         .setContentText(namaStatusAbsen+" - "+namaShiftAbsen+" ("+datangShiftAbsen.substring(0,5)+" - "+pulangShiftAbsen.substring(0,5)+")")
-                                        .setCancelText("NO")
-                                        .setConfirmText("YES")
+                                        .setCancelText("TIDAK")
+                                        .setConfirmText("   YA   ")
                                         .showCancelButton(true)
                                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
@@ -3225,8 +3225,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Apakah anda yakin hari ini akan Libur/Absen?")
-                                    .setCancelText("NO")
-                                    .setConfirmText("YES")
+                                    .setCancelText("TIDAK")
+                                    .setConfirmText("   YA   ")
                                     .showCancelButton(true)
                                     .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                                         @Override
@@ -4906,6 +4906,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String devmod_check = data.getString("devmod_check");
                                 String join_reminder = data.getString("join_reminder");
                                 String monitoring = data.getString("monitoring");
+                                String cegat_device = data.getString("cegat_device");
 
                                 if (sharedPrefManager.getSpNik().length()==10){
                                     String tgl_masuk = data.getString("tgl_masuk");
@@ -4954,7 +4955,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     markerWarningAbsensi.setVisibility(View.GONE);
                                 }
 
-                                deviceIdFunction();
+                                if(cegat_device.equals("1")){
+                                    deviceIdFunction();
+                                }
 
                             }
 

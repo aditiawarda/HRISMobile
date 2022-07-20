@@ -157,6 +157,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 refreshLabel.setText("LOADING...");
+
                 Glide.with(SplashScreen.this)
                         .load(R.drawable.load_progress)
                         .into(loadingProgress);

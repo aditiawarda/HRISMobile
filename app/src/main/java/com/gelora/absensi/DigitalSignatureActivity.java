@@ -44,6 +44,7 @@ import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
 import com.github.gcacace.signaturepad.views.SignaturePad;
+import com.shasin.notificationbanner.Banner;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -75,6 +76,7 @@ public class DigitalSignatureActivity extends AppCompatActivity {
     KAlertDialog pDialog;
     ImageView signatureIMG;
     String kodeString = "";
+    View rootview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,7 @@ public class DigitalSignatureActivity extends AppCompatActivity {
         setContentView(R.layout.activity_digital_signature);
 
         sharedPrefManager = new SharedPrefManager(this);
+        rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
         saveBTN = findViewById(R.id.save_btn);
@@ -149,8 +152,8 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                 new KAlertDialog(DigitalSignatureActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Perhatian")
                         .setContentText("Yakin untuk menyimpan tanda tangan?")
-                        .setCancelText("NO")
-                        .setConfirmText("YES")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
                         .showCancelButton(true)
                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override
@@ -359,7 +362,7 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -421,7 +424,7 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -438,6 +441,10 @@ public class DigitalSignatureActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    private void connectionFailed(){
+        Banner.make(rootview, DigitalSignatureActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
     }
 
 }

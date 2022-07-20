@@ -69,8 +69,8 @@ public class DigitalCardActivity extends AppCompatActivity {
                 new KAlertDialog(DigitalCardActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Perhatian")
                         .setContentText("Unduh ID Card Digital?")
-                        .setCancelText("NO")
-                        .setConfirmText("YES")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
                         .showCancelButton(true)
                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override

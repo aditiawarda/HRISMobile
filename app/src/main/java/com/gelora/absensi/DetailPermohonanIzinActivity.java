@@ -3,6 +3,7 @@ package com.gelora.absensi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -71,7 +72,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     TextView appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, supervisorTV, hrdTV;
     String uriImage, uriImage2, idIzinRecord, statusKondisi = "", kode;
-    LinearLayout downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, homeBTN, approvedBTN, rejectedBTN, actionPart;
+    LinearLayout viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, homeBTN, approvedBTN, rejectedBTN, actionPart;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdSupervisor, qrDocument;
     KAlertDialog pDialog;
@@ -114,15 +115,10 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         downloadBTN = findViewById(R.id.download_btn);
         qrDocument = findViewById(R.id.qr_document);
         appoveStatusHRD = findViewById(R.id.appove_status_hrd);
+        viewSuratSakitBTN = findViewById(R.id.view_surat_sakit_btn);
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
-
-        if (kode.equals("form")){
-            actionPart.setVisibility(View.GONE);
-        } else {
-            actionPart.setVisibility(View.VISIBLE);
-        }
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -152,8 +148,8 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                 new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Perhatian")
                         .setContentText("Unduh File Permohonan?")
-                        .setCancelText("NO")
-                        .setConfirmText("YES")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
                         .showCancelButton(true)
                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override
@@ -255,8 +251,8 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                 new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Setujui?")
                         .setContentText("Yakin untuk disetujui sekarang?")
-                        .setCancelText("NO")
-                        .setConfirmText("YES")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
                         .showCancelButton(true)
                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override
@@ -323,8 +319,8 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                 new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Tolak?")
                         .setContentText("Yakin untuk tolak permohonan?")
-                        .setCancelText("NO")
-                        .setConfirmText("YES")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
                         .showCancelButton(true)
                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override
@@ -460,7 +456,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -517,7 +513,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -529,6 +525,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                 params.put("id_izin_record", idIzinRecord);
                 params.put("NIK", sharedPrefManager.getSpNik());
                 params.put("timestamp_approve", getTimeStamp());
+                params.put("updated_at", getTimeStamp());
 
                 return params;
             }
@@ -576,7 +573,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -586,6 +583,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("id_izin_record", idIzinRecord);
+                params.put("updated_at", getTimeStamp());
 
                 return params;
             }
@@ -621,6 +619,22 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                 String tgl_akhir = detail.getString("tanggal_akhir");
                                 String tgl_permohonan = detail.getString("tanggal");
                                 String digital_signature = detail.getString("digital_signature");
+                                String tipe_izin = detail.getString("tipe_izin");
+
+                                if(tipe_izin.equals("5")){
+                                    String foto_surat_sakit = detail.getString("foto_surat_sakit");
+                                    String url_surat_sakit = "https://geloraaksara.co.id/absen-online/upload/surat_sakit/"+foto_surat_sakit;
+                                    viewSuratSakitBTN.setVisibility(View.VISIBLE);
+                                    viewSuratSakitBTN.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url_surat_sakit));
+                                            startActivity(intent);
+                                        }
+                                    });
+                                } else {
+                                    viewSuratSakitBTN.setVisibility(View.GONE);
+                                }
 
                                 namaKaryawanTV.setText(nama_karyawan.toUpperCase());
                                 nikKaryawanTV.setText(nik_karyawan);
@@ -834,6 +848,21 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                     supervisorTV.setVisibility(View.GONE);
                                 }
 
+                                if (kode.equals("form")){
+                                    actionPart.setVisibility(View.GONE);
+                                } else {
+                                    if (nik_karyawan.equals(sharedPrefManager.getSpNik())){
+                                        actionRead();
+                                        if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                                            actionPart.setVisibility(View.VISIBLE);
+                                        } else {
+                                            actionPart.setVisibility(View.GONE);
+                                        }
+                                    } else {
+                                        actionPart.setVisibility(View.VISIBLE);
+                                    }
+                                }
+
                             }
 
                         } catch (JSONException | ParseException e) {
@@ -846,7 +875,48 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_izin_record", idIzinRecord);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void actionRead() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/read_notif_izin";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
                     }
                 }
         ) {
@@ -976,4 +1046,9 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    private void connectionFailed(){
+        Banner.make(rootview, DetailPermohonanIzinActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
+    }
+
 }

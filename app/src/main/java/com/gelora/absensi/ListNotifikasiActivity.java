@@ -1,6 +1,7 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,12 +23,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.gelora.absensi.adapter.AdapterDataTerlambat;
 import com.gelora.absensi.adapter.AdapterPermohonanIzin;
-import com.gelora.absensi.model.DataTerlambat;
+import com.gelora.absensi.adapter.AdapterPermohonanSaya;
 import com.gelora.absensi.model.ListPermohonanIzin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.shasin.notificationbanner.Banner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,12 +39,16 @@ import java.util.Map;
 public class ListNotifikasiActivity extends AppCompatActivity {
 
     private RecyclerView dataNotifikasiRV;
+    private RecyclerView dataNotifikasi2RV;
     private ListPermohonanIzin[] listPermohonanIzins;
     private AdapterPermohonanIzin adapterPermohonanIzin;
+    private AdapterPermohonanSaya adapterPermohonanSaya;
     SharedPrefManager sharedPrefManager;
-    LinearLayout noDataPart, loadingDataPart, backBTN, homeBTN;
-    ImageView loadingImage;
+    LinearLayout countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2, backBTN, homeBTN;
+    ImageView loadingImage,loadingImage2;
     SwipeRefreshLayout refreshLayout;
+    View rootview;
+    TextView countNotifMasuk, countNotifSaya;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,28 +56,51 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_notifikasi);
 
         sharedPrefManager = new SharedPrefManager(this);
+        rootview = findViewById(android.R.id.content);
         dataNotifikasiRV = findViewById(R.id.data_notifikasi_rv);
+        dataNotifikasi2RV = findViewById(R.id.data_notifikasi_2_rv);
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         noDataPart = findViewById(R.id.no_data_part);
+        noDataPart2 = findViewById(R.id.no_data_part_2);
         loadingDataPart = findViewById(R.id.loading_data_part);
+        loadingDataPart2 = findViewById(R.id.loading_data_part_2);
         loadingImage = findViewById(R.id.loading_data_img);
+        loadingImage2 = findViewById(R.id.loading_data_img_2);
+        notifyInBTN = findViewById(R.id.notify_in_btn);
+        notifySayaBTN = findViewById(R.id.notify_out_btn);
+        permohonanMasukPart = findViewById(R.id.permohonan_masuk);
+        permohonanSayaPart = findViewById(R.id.permohonan_saya);
+        countNotifMasuk = findViewById(R.id.count_notif_in_tv);
+        countNotifSaya = findViewById(R.id.count_notif_me_tv);
+        countPartIn = findViewById(R.id.count_notification_in);
+        countPartMe = findViewById(R.id.count_notification_me);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading)
                 .into(loadingImage);
 
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading)
+                .into(loadingImage2);
+
         dataNotifikasiRV.setLayoutManager(new LinearLayoutManager(this));
         dataNotifikasiRV.setHasFixedSize(true);
         dataNotifikasiRV.setItemAnimator(new DefaultItemAnimator());
+
+        dataNotifikasi2RV.setLayoutManager(new LinearLayoutManager(this));
+        dataNotifikasi2RV.setHasFixedSize(true);
+        dataNotifikasi2RV.setItemAnimator(new DefaultItemAnimator());
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 loadingDataPart.setVisibility(View.VISIBLE);
+                loadingDataPart2.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
+                noDataPart2.setVisibility(View.GONE);
                 dataNotifikasiRV.setVisibility(View.GONE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -98,6 +127,57 @@ public class ListNotifikasiActivity extends AppCompatActivity {
             }
         });
 
+        notifySayaBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notifySayaBTN.setBackground(ContextCompat.getDrawable(ListNotifikasiActivity.this, R.drawable.shape_notify_choice));
+                notifyInBTN.setBackground(ContextCompat.getDrawable(ListNotifikasiActivity.this, R.drawable.shape_notify));
+                permohonanMasukPart.setVisibility(View.GONE);
+                permohonanSayaPart.setVisibility(View.VISIBLE);
+
+                loadingDataPart.setVisibility(View.GONE);
+                loadingDataPart2.setVisibility(View.VISIBLE);
+                noDataPart.setVisibility(View.GONE);
+                noDataPart2.setVisibility(View.GONE);
+                dataNotifikasiRV.setVisibility(View.GONE);
+                dataNotifikasi2RV.setVisibility(View.GONE);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                        getData();
+                    }
+                }, 500);
+
+            }
+        });
+
+        notifyInBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notifyInBTN.setBackground(ContextCompat.getDrawable(ListNotifikasiActivity.this, R.drawable.shape_notify_choice));
+                notifySayaBTN.setBackground(ContextCompat.getDrawable(ListNotifikasiActivity.this, R.drawable.shape_notify));
+                permohonanMasukPart.setVisibility(View.VISIBLE);
+                permohonanSayaPart.setVisibility(View.GONE);
+
+                loadingDataPart.setVisibility(View.VISIBLE);
+                loadingDataPart2.setVisibility(View.GONE);
+                noDataPart.setVisibility(View.GONE);
+                noDataPart2.setVisibility(View.GONE);
+                dataNotifikasiRV.setVisibility(View.GONE);
+                dataNotifikasi2RV.setVisibility(View.GONE);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                        getData();
+                    }
+                }, 500);
+
+
+            }
+        });
+
         getData();
 
     }
@@ -117,21 +197,57 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                             String status = data.getString("status");
                             if (status.equals("Success")){
                                 String count = data.getString("count");
+                                String count2 = data.getString("count2");
+                                String count2_data = data.getString("count2_data");
+                                countNotifMasuk.setText(count);
+                                countNotifSaya.setText(count2);
 
-                                if (count.equals("0")){
+                                if (count.equals("0")) {
+                                    countPartIn.setVisibility(View.GONE);
                                     dataNotifikasiRV.setVisibility(View.GONE);
                                     noDataPart.setVisibility(View.VISIBLE);
                                     loadingDataPart.setVisibility(View.GONE);
                                 } else {
+                                    countPartIn.setVisibility(View.VISIBLE);
                                     noDataPart.setVisibility(View.GONE);
                                     loadingDataPart.setVisibility(View.GONE);
                                     dataNotifikasiRV.setVisibility(View.VISIBLE);
-                                    String data_permohonan_izin = data.getString("data");
+                                    String data_permohonan_masuk = data.getString("data");
                                     GsonBuilder builder = new GsonBuilder();
                                     Gson gson = builder.create();
-                                    listPermohonanIzins = gson.fromJson(data_permohonan_izin, ListPermohonanIzin[].class);
+                                    listPermohonanIzins = gson.fromJson(data_permohonan_masuk, ListPermohonanIzin[].class);
                                     adapterPermohonanIzin = new AdapterPermohonanIzin(listPermohonanIzins,ListNotifikasiActivity.this);
                                     dataNotifikasiRV.setAdapter(adapterPermohonanIzin);
+                                }
+
+                                if (count2.equals("0")){
+                                    countPartMe.setVisibility(View.GONE);
+                                    if(count2_data.equals("0")){
+                                        dataNotifikasi2RV.setVisibility(View.GONE);
+                                        noDataPart2.setVisibility(View.VISIBLE);
+                                        loadingDataPart2.setVisibility(View.GONE);
+                                    } else {
+                                        noDataPart2.setVisibility(View.GONE);
+                                        loadingDataPart2.setVisibility(View.GONE);
+                                        dataNotifikasi2RV.setVisibility(View.VISIBLE);
+                                        String data_permohonan_saya = data.getString("data2");
+                                        GsonBuilder builder = new GsonBuilder();
+                                        Gson gson = builder.create();
+                                        listPermohonanIzins = gson.fromJson(data_permohonan_saya, ListPermohonanIzin[].class);
+                                        adapterPermohonanSaya = new AdapterPermohonanSaya(listPermohonanIzins,ListNotifikasiActivity.this);
+                                        dataNotifikasi2RV.setAdapter(adapterPermohonanSaya);
+                                    }
+                                } else {
+                                    countPartMe.setVisibility(View.VISIBLE);
+                                    noDataPart2.setVisibility(View.GONE);
+                                    loadingDataPart2.setVisibility(View.GONE);
+                                    dataNotifikasi2RV.setVisibility(View.VISIBLE);
+                                    String data_permohonan_saya = data.getString("data2");
+                                    GsonBuilder builder = new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    listPermohonanIzins = gson.fromJson(data_permohonan_saya, ListPermohonanIzin[].class);
+                                    adapterPermohonanSaya = new AdapterPermohonanSaya(listPermohonanIzins,ListNotifikasiActivity.this);
+                                    dataNotifikasi2RV.setAdapter(adapterPermohonanSaya);
                                 }
 
 
@@ -148,7 +264,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -157,7 +273,10 @@ public class ListNotifikasiActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_departemen", sharedPrefManager.getSpIdHeadDept());
                 params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
+                params.put("NIK", sharedPrefManager.getSpNik());
                 return params;
             }
         };
@@ -180,4 +299,9 @@ public class ListNotifikasiActivity extends AppCompatActivity {
             }
         }, 500);
     }
+
+    private void connectionFailed(){
+        Banner.make(rootview, ListNotifikasiActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
+    }
+
 }

@@ -16,7 +16,10 @@ public class ListPermohonanIzin {
     private String keterangan;
     private String status;
     private String created_at;
+    private String updated_at;
     private String status_approve;
+    private String status_approve_hrd;
+    private String status_read;
 
     public String getId() {
         return id;
@@ -128,5 +131,29 @@ public class ListPermohonanIzin {
 
     public void setStatus_approve(String status_approve) {
         this.status_approve = status_approve;
+    }
+
+    public String getStatus_approve_hrd() {
+        return status_approve_hrd;
+    }
+
+    public void setStatus_approve_hrd(String status_approve_hrd) {
+        this.status_approve_hrd = status_approve_hrd;
+    }
+
+    public String getStatus_read() {
+        return status_read;
+    }
+
+    public void setStatus_read(String status_read) {
+        this.status_read = status_read;
+    }
+
+    public String getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
     }
 }

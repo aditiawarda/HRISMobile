@@ -54,9 +54,16 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final ListPermohonanIzin listPermohonanIzin = data[i];
 
+        String tipe_izin = listPermohonanIzin.getTipe_izin();
+        if (tipe_izin.equals("5")){
+            tipe_izin = "Tidak Masuk (Sakit)";
+        } else {
+            tipe_izin = "Permohonan Izin";
+        }
+
         myViewHolder.namaKaryawanTV.setText(listPermohonanIzin.getNmKaryawan().toUpperCase());
-        myViewHolder.nikKaryawanTV.setText("NIK. "+listPermohonanIzin.getNIK());
-        myViewHolder.deskrisiPermohonan.setText("Permohonan "+listPermohonanIzin.getDeskripsi_izin());
+        myViewHolder.nikKaryawanTV.setText("NIK "+listPermohonanIzin.getNIK());
+        myViewHolder.deskrisiPermohonan.setText(tipe_izin);
 
         String input_date = listPermohonanIzin.getTanggal();
         String dayDate = input_date.substring(8,10);

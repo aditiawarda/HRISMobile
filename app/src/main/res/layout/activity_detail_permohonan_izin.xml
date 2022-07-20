@@ -630,6 +630,47 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/view_surat_sakit_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:background="@drawable/shape_second_btn">
+
+                                <TextView
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:drawableLeft="@drawable/ic_baseline_content_surat"
+                                    android:drawablePadding="7dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Lihat Surat Sakit"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/download_btn"
+                                android:layout_marginBottom="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="38dp"
+                                android:background="@drawable/shape_third_btn"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:drawablePadding="7dp"
+                                    android:drawableLeft="@drawable/ic_baseline_save_permohonan"
+                                    android:textColor="#CF811F"
+                                    android:text="Unduh Permohonan"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:visibility="gone"
                                 android:id="@+id/action_part"
                                 android:layout_marginTop="10dp"
                                 android:orientation="horizontal"
@@ -675,26 +716,6 @@
                                         android:text="SETUJUI"/>
 
                                 </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/download_btn"
-                                android:layout_marginBottom="10dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:background="@drawable/shape_third_btn"
-                                android:gravity="center">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textStyle="bold"
-                                    android:drawablePadding="7dp"
-                                    android:drawableLeft="@drawable/ic_baseline_save_permohonan"
-                                    android:textColor="#CF811F"
-                                    android:text="Unduh Permohonan"/>
 
                             </LinearLayout>
 
