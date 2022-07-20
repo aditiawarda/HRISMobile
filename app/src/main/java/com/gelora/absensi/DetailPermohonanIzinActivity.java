@@ -814,6 +814,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
                                 String status_approve = detail.getString("status_approve");
                                 if(status_approve.equals("1")){
+                                    actionPart.setVisibility(View.GONE);
                                     rejectedMark.setVisibility(View.GONE);
                                     supervisorTV.setVisibility(View.VISIBLE);
                                     String approver = detail.getString("approver");
@@ -841,9 +842,11 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                     }
 
                                 } else if(status_approve.equals("2")) {
+                                    actionPart.setVisibility(View.GONE);
                                     rejectedMark.setVisibility(View.VISIBLE);
                                     supervisorTV.setVisibility(View.GONE);
                                 } else {
+                                    actionPart.setVisibility(View.VISIBLE);
                                     rejectedMark.setVisibility(View.GONE);
                                     supervisorTV.setVisibility(View.GONE);
                                 }
@@ -854,12 +857,24 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                     if (nik_karyawan.equals(sharedPrefManager.getSpNik())){
                                         actionRead();
                                         if(sharedPrefManager.getSpIdJabatan().equals("10")){
-                                            actionPart.setVisibility(View.VISIBLE);
+                                            if(status_approve.equals("1")){
+                                                actionPart.setVisibility(View.GONE);
+                                            } else if (status_approve.equals("2")){
+                                                actionPart.setVisibility(View.GONE);
+                                            } else {
+                                                actionPart.setVisibility(View.VISIBLE);
+                                            }
                                         } else {
                                             actionPart.setVisibility(View.GONE);
                                         }
                                     } else {
-                                        actionPart.setVisibility(View.VISIBLE);
+                                        if(status_approve.equals("1")){
+                                            actionPart.setVisibility(View.GONE);
+                                        } else if (status_approve.equals("2")){
+                                            actionPart.setVisibility(View.GONE);
+                                        } else {
+                                            actionPart.setVisibility(View.VISIBLE);
+                                        }
                                     }
                                 }
 

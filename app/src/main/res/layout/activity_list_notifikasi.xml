@@ -37,11 +37,12 @@
                         android:paddingBottom="3dp">
 
                         <LinearLayout
+                            android:id="@+id/main_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:paddingLeft="17dp"
-                            android:paddingTop="145dp"
+                            android:paddingTop="190dp"
                             android:paddingRight="17dp"
                             android:paddingBottom="20dp">
 
@@ -240,6 +241,7 @@
                     android:id="@+id/action_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#FAFAFA"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -247,7 +249,7 @@
                         android:layout_marginRight="-2dp"
                         android:layout_marginLeft="-2dp"
                         android:orientation="horizontal"
-                        android:background="@drawable/shape_bar_profile_notify"
+                        android:background="@drawable/shape_bar_profile"
                         android:layout_width="match_parent"
                         android:layout_height="70dp">
 
@@ -304,127 +306,181 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/option_part"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
-                            android:id="@+id/notify_in_btn"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="13dp"
-                            android:paddingBottom="13dp"
-                            android:background="@drawable/shape_notify_choice"
-                            android:gravity="center"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
                             android:orientation="horizontal"
-                            android:layout_weight=".50">
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp">
 
                             <LinearLayout
-                                android:orientation="vertical"
+                                android:id="@+id/notify_in_btn"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".50"
+                                android:layout_marginRight="3dp"
+                                android:background="@drawable/shape_notify_choice"
                                 android:gravity="center"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:orientation="horizontal">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:textSize="12dp"
-                                    android:text="Permohonan"/>
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:textSize="15dp"
-                                    android:text="Masuk"/>
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="13dp"
+                                        android:paddingBottom="13dp"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Permohonan"
+                                            android:textStyle="bold"
+                                            android:textColor="@color/white"
+                                            android:textSize="12dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Masuk"
+                                            android:textStyle="bold"
+                                            android:textColor="@color/white"
+                                            android:textSize="15dp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:gravity="right"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="5dp"
+                                        android:paddingLeft="5dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <LinearLayout
+                                            android:id="@+id/count_notification_in"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_marginTop="1dp"
+                                            android:background="@drawable/shape_notification_mark"
+                                            android:gravity="center"
+                                            android:paddingLeft="4dp"
+                                            android:paddingRight="4dp"
+                                            android:paddingBottom="1dp"
+                                            android:visibility="gone">
+
+                                            <TextView
+                                                android:id="@+id/count_notif_in_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center"
+                                                android:text="0"
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
 
                             </LinearLayout>
 
-
                             <LinearLayout
-                                android:visibility="gone"
-                                android:id="@+id/count_notification_in"
-                                android:layout_marginLeft="5dp"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/notify_out_btn"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:paddingRight="4dp"
-                                android:layout_marginTop="1dp"
-                                android:paddingLeft="4dp"
-                                android:paddingBottom="1dp"
-                                android:gravity="center"
-                                android:background="@drawable/shape_notification_mark">
+                                android:layout_weight=".50"
+                                android:layout_marginLeft="3dp"
+                                android:background="@drawable/shape_notify"
+                                android:gravity="center">
 
-                                <TextView
-                                    android:id="@+id/count_notif_in_tv"
-                                    android:gravity="center"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:textSize="12dp"
-                                    android:text="0"/>
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="13dp"
+                                        android:paddingBottom="13dp"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Permohonan"
+                                            android:textStyle="bold"
+                                            android:textColor="@color/white"
+                                            android:textSize="12dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Saya"
+                                            android:textStyle="bold"
+                                            android:textColor="@color/white"
+                                            android:textSize="15dp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:gravity="right"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="5dp"
+                                        android:paddingLeft="5dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <LinearLayout
+                                            android:id="@+id/count_notification_me"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_marginTop="1dp"
+                                            android:background="@drawable/shape_notification_mark"
+                                            android:gravity="center"
+                                            android:paddingLeft="4dp"
+                                            android:paddingRight="4dp"
+                                            android:paddingBottom="1dp"
+                                            android:visibility="gone">
+
+                                            <TextView
+                                                android:id="@+id/count_notif_me_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center"
+                                                android:text="0"
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
 
                             </LinearLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/notify_out_btn"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="13dp"
-                            android:paddingBottom="13dp"
-                            android:background="@drawable/shape_notify"
-                            android:gravity="center"
-                            android:layout_weight=".50">
-
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:gravity="center"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:textSize="12dp"
-                                    android:text="Permohonan"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:textSize="15dp"
-                                    android:text="Saya"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:visibility="gone"
-                                android:id="@+id/count_notification_me"
-                                android:layout_marginLeft="5dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingRight="4dp"
-                                android:layout_marginTop="1dp"
-                                android:paddingLeft="4dp"
-                                android:paddingBottom="1dp"
-                                android:gravity="center"
-                                android:background="@drawable/shape_notification_mark">
-
-                                <TextView
-                                    android:id="@+id/count_notif_me_tv"
-                                    android:gravity="center"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:textSize="12dp"
-                                    android:text="0"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="#F0F0F0"/>
 
                     </LinearLayout>
 

@@ -297,7 +297,7 @@
                                                 android:textColor="#A8C74A1A"
                                                 android:textSize="12dp"
                                                 android:backgroundTint="@color/white"
-                                                android:background="@drawable/ic_baseline_account"
+                                                android:background="@drawable/ic_baseline_dashboar_user"
                                                 android:textStyle="bold"
                                                 android:text=""/>
 
@@ -314,7 +314,7 @@
                                         android:layout_height="wrap_content">
 
                                         <LinearLayout
-                                            android:visibility="gone"
+                                           android:visibility="gone"
                                             android:id="@+id/marker_warning"
                                             android:layout_width="15dp"
                                             android:layout_height="15dp"
@@ -324,6 +324,32 @@
                                                 android:id="@+id/warning_gif_absen"
                                                 android:layout_width="15dp"
                                                 android:layout_height="15dp"
+                                                app:srcCompat="@drawable/ic_warning_notification_gif_main" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="50dp"
+                                        android:gravity="right|bottom"
+                                        android:paddingLeft="13dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="13dp">
+
+                                        <LinearLayout
+                                            android:visibility="gone"
+                                            android:id="@+id/marker_notification"
+                                            android:layout_width="15dp"
+                                            android:layout_height="15dp"
+                                            android:background="@drawable/shape_ring_notification_home"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="10dp"
+                                                android:layout_height="10dp"
+                                                android:background="@drawable/ic_baseline_notifications_icon"
                                                 app:srcCompat="@drawable/ic_warning_notification_gif_main" />
 
                                         </LinearLayout>

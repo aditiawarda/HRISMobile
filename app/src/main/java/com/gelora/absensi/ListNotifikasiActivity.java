@@ -44,7 +44,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
     private AdapterPermohonanIzin adapterPermohonanIzin;
     private AdapterPermohonanSaya adapterPermohonanSaya;
     SharedPrefManager sharedPrefManager;
-    LinearLayout countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2, backBTN, homeBTN;
+    LinearLayout mainPart, optionPart, countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2, backBTN, homeBTN;
     ImageView loadingImage,loadingImage2;
     SwipeRefreshLayout refreshLayout;
     View rootview;
@@ -76,6 +76,8 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         countNotifSaya = findViewById(R.id.count_notif_me_tv);
         countPartIn = findViewById(R.id.count_notification_in);
         countPartMe = findViewById(R.id.count_notification_me);
+        optionPart = findViewById(R.id.option_part);
+        mainPart = findViewById(R.id.main_part);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading)
@@ -102,6 +104,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                 noDataPart.setVisibility(View.GONE);
                 noDataPart2.setVisibility(View.GONE);
                 dataNotifikasiRV.setVisibility(View.GONE);
+                dataNotifikasi2RV.setVisibility(View.GONE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -177,6 +180,19 @@ public class ListNotifikasiActivity extends AppCompatActivity {
 
             }
         });
+
+        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
+            optionPart.setVisibility(View.VISIBLE);
+        } else {
+            float scale = getResources().getDisplayMetrics().density;
+            int side = (int) (17*scale + 0.5f);
+            int top = (int) (85*scale + 0.5f);
+            int bottom = (int) (20*scale + 0.5f);
+            mainPart.setPadding(side,top,side,bottom);
+            optionPart.setVisibility(View.GONE);
+            permohonanMasukPart.setVisibility(View.GONE);
+            permohonanSayaPart.setVisibility(View.VISIBLE);
+        }
 
         getData();
 

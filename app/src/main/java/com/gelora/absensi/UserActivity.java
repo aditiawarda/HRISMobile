@@ -99,7 +99,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout digitalSignatureBTN, notifikationBTN, countNotification, permohonanBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
     TextView countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -107,7 +107,7 @@ public class UserActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     NestedScrollView scrollView;
     RelativeLayout dataCuaca;
-    ImageView notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
+    ImageView positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
     String selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
 
@@ -210,11 +210,18 @@ public class UserActivity extends AppCompatActivity {
         countNotifTV = findViewById(R.id.count_notif_tv);
         notifikationBTN = findViewById(R.id.notifikation_btn);
         digitalSignatureBTN = findViewById(R.id.signature_digital_btn);
+        positionPart = findViewById(R.id.position_part);
+        positionLoadingPart = findViewById(R.id.position_loading_part);
+        positionLoadingImg = findViewById(R.id.position_loading);
         hTime = findViewById(R.id.h_time);
         mTime = findViewById(R.id.m_time);
         sTime = findViewById(R.id.s_time);
 
         selectMonth = getBulanTahun();
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(positionLoadingImg);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
@@ -303,7 +310,7 @@ public class UserActivity extends AppCompatActivity {
                         refreshLayout.setRefreshing(false);
                         getDataUser();
                     }
-                }, 800);
+                }, 1000);
             }
         });
 
@@ -374,7 +381,7 @@ public class UserActivity extends AppCompatActivity {
                                         getDataHadir();
                                         checkWarning();
                                     }
-                                }, 500);
+                                }, 100);
 
                             }
                         })
@@ -675,6 +682,9 @@ public class UserActivity extends AppCompatActivity {
                                 bagianTV.setText(bagian);
                                 jabatanTV.setText(jabatan);
 
+                                positionLoadingPart.setVisibility(View.GONE);
+                                positionPart.setVisibility(View.VISIBLE);
+
                                 if (sharedPrefManager.getSpIdJabatan().equals("10")){
                                     bagianNameTV.setText(department);
                                 } else if (sharedPrefManager.getSpIdJabatan().equals("11")){
@@ -829,7 +839,7 @@ public class UserActivity extends AppCompatActivity {
                                         layoffData.setVisibility(View.VISIBLE);
 
                                     }
-                                }, 500);
+                                }, 100);
 
                             } else {
                                 bulanLoading.setVisibility(View.GONE);
