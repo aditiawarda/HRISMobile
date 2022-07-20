@@ -129,7 +129,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng userPoint;
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
-    ImageView weatherIconPart, onlineGif, loadingGif, warningGif, notificationWarning;
+    ImageView weatherIconPart, onlineGif, warningGif, notificationWarning;
     TextView reminderDecs, reminderCelebrateTV, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
     LinearLayout markerNotification, pantauBTN, reminderCongrat, markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
@@ -231,7 +231,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         reloadBTN = findViewById(R.id.reload_btn);
         userBTNPart = findViewById(R.id.user_btn_part);
         loadingLayout = findViewById(R.id.layout_loding);
-        loadingGif = findViewById(R.id.loading);
         warningGif = findViewById(R.id.warning_gif);
         connectionSuccess = findViewById(R.id.connection_success);
         connectionFailed = findViewById(R.id.connection_failed);
@@ -259,10 +258,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Glide.with(getApplicationContext())
                 .load(R.drawable.icon_none)
                 .into(onlineGif);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.load_progress)
-                .into(loadingGif);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.ic_warning_notification_gif_main)

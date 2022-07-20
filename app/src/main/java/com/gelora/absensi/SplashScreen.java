@@ -38,6 +38,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -97,10 +98,10 @@ public class SplashScreen extends AppCompatActivity {
     private static final int LOCATION_REQUEST = INITIAL_REQUEST + 3;
     View rootview;
     LinearLayout refreshPart, refreshBTN, updateBTN, closeBTN, updateLayout, updateDialog;
-    TextView refreshLabel, descTV;
+    TextView loadingOff, refreshLabel, descTV;
     String closeBottomSheet, statusUpdateLayout = "0";
     SwipeRefreshLayout refreshLayout;
-    ImageView loadingProgress;
+    ProgressBar loadingProgressBar;
 
     private StatusBarColorManager mStatusBarColorManager;
     private LocationRequest mLocationRequest;
@@ -121,8 +122,9 @@ public class SplashScreen extends AppCompatActivity {
         descTV = findViewById(R.id.desc_tv);
         refreshBTN = findViewById(R.id.refresh_ss_btn);
         refreshPart = findViewById(R.id.refresh_part);
-        loadingProgress = findViewById(R.id.loading_progress);
         refreshLabel = findViewById(R.id.refresh_label);
+        loadingProgressBar = findViewById(R.id.loadingProgressBar);
+        loadingOff = findViewById(R.id.loading_off);
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
 
@@ -152,15 +154,15 @@ public class SplashScreen extends AppCompatActivity {
             }
         }, 50);
 
-       refreshBTN.setOnClickListener(new View.OnClickListener() {
+        refreshBTN.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 refreshLabel.setText("LOADING...");
-
-                Glide.with(SplashScreen.this)
-                        .load(R.drawable.load_progress)
-                        .into(loadingProgress);
+                loadingOff.setVisibility(View.GONE);
+                loadingProgressBar.setVisibility(View.VISIBLE);
+                refreshBTN.setOnClickListener(null);
+                refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss_off));
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -170,7 +172,7 @@ public class SplashScreen extends AppCompatActivity {
                         }
                         versionCheck();
                     }
-                }, 2000);
+                }, 1200);
             }
         });
 
@@ -255,7 +257,7 @@ public class SplashScreen extends AppCompatActivity {
                 public void run() {
                     permissionLoc();
                 }
-            }, 200);
+            }, 50);
         } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -264,7 +266,7 @@ public class SplashScreen extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-            }, 500);
+            }, 50);
         }
     }
 
@@ -301,7 +303,7 @@ public class SplashScreen extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         }
-                    }, 500);
+                    }, 50);
                 }  else {
                     gpsEnableAction();
                 }
@@ -333,7 +335,7 @@ public class SplashScreen extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-            }, 200);
+            }, 50);
 
         } else {
             gpsEnableAction();
@@ -379,6 +381,32 @@ public class SplashScreen extends AppCompatActivity {
                         Log.e("PaRSE JSON", response + "");
                         try {
                             refreshLayout.setRefreshing(false);
+                            refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss));
+                            loadingOff.setVisibility(View.VISIBLE);
+                            loadingProgressBar.setVisibility(View.GONE);
+
+                            refreshBTN.setOnClickListener(new View.OnClickListener() {
+                                @SuppressLint("SetTextI18n")
+                                @Override
+                                public void onClick(View v) {
+                                    refreshLabel.setText("LOADING...");
+                                    loadingOff.setVisibility(View.GONE);
+                                    loadingProgressBar.setVisibility(View.VISIBLE);
+                                    refreshBTN.setOnClickListener(null);
+                                    refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss_off));
+
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                                requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
+                                            }
+                                            versionCheck();
+                                        }
+                                    }, 2000);
+                                }
+                            });
+
                             String status = response.getString("status");
                             String version = response.getString("version");
                             String popup = response.getString("pop_up");
@@ -475,9 +503,7 @@ public class SplashScreen extends AppCompatActivity {
                             } else {
                                 refreshPart.setVisibility(View.VISIBLE);
                                 refreshLabel.setText("REFRESH");
-                                Glide.with(getApplicationContext())
-                                        .load(R.drawable.loading_prog)
-                                        .into(loadingProgress);
+
                                 Banner.make(rootview, SplashScreen.this, Banner.ERROR, "Not found!", Banner.BOTTOM, 5000).show();
                             }
 
@@ -490,11 +516,35 @@ public class SplashScreen extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 refreshLayout.setRefreshing(false);
+                loadingOff.setVisibility(View.VISIBLE);
+                loadingProgressBar.setVisibility(View.GONE);
+
+                refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss));
+                refreshBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onClick(View v) {
+                        refreshLabel.setText("LOADING...");
+                        loadingOff.setVisibility(View.GONE);
+                        loadingProgressBar.setVisibility(View.VISIBLE);
+                        refreshBTN.setOnClickListener(null);
+                        refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss_off));
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                    requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
+                                }
+                                versionCheck();
+                            }
+                        }, 2000);
+                    }
+                });
+
                 refreshPart.setVisibility(View.VISIBLE);
                 refreshLabel.setText("REFRESH");
-                Glide.with(getApplicationContext())
-                        .load(R.drawable.loading_prog)
-                        .into(loadingProgress);
+
                 Banner.make(rootview, SplashScreen.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 5000).show();
             }
         });

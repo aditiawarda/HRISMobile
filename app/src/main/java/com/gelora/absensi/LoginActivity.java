@@ -3,6 +3,7 @@ package com.gelora.absensi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,7 +11,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -56,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView showPassword, testBTN;
     String statusCheck = "", deviceID, visibilityPassword = "hide";
     BottomSheetLayout bottomSheet, bottomSheetCS;
+    SwipeRefreshLayout refreshLayout;
     View rootview;
 
     @Override
@@ -66,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         getStatusCheckDivice();
 
         sharedPrefManager = new SharedPrefManager(this);
+        refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         rootview = findViewById(android.R.id.content);
         nikED = findViewById(R.id.nikED);
         passwordED = findViewById(R.id.passwordED);
@@ -81,9 +86,24 @@ public class LoginActivity extends AppCompatActivity {
 
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
-        //LoginActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(APPEARANCE_LIGHT_STATUS_BARS, APPEARANCE_LIGHT_STATUS_BARS);
 
         deviceID = String.valueOf(Settings.Secure.getString(LoginActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID)).toUpperCase();
+
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                        nikED.setText("");
+                        passwordED.setText("");
+                        getStatusCheckDivice();
+                    }
+                }, 1000);
+            }
+        });
 
         testBTN.setOnClickListener(new View.OnClickListener() {
             @Override
