@@ -214,15 +214,28 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                             if (status.equals("Success")){
                                 String count = data.getString("count");
                                 String count2 = data.getString("count2");
+                                String count_data = data.getString("count_data");
                                 String count2_data = data.getString("count2_data");
                                 countNotifMasuk.setText(count);
                                 countNotifSaya.setText(count2);
 
                                 if (count.equals("0")) {
                                     countPartIn.setVisibility(View.GONE);
-                                    dataNotifikasiRV.setVisibility(View.GONE);
-                                    noDataPart.setVisibility(View.VISIBLE);
-                                    loadingDataPart.setVisibility(View.GONE);
+                                    if(count_data.equals("0")){
+                                        dataNotifikasiRV.setVisibility(View.GONE);
+                                        noDataPart.setVisibility(View.VISIBLE);
+                                        loadingDataPart.setVisibility(View.GONE);
+                                    } else {
+                                        noDataPart.setVisibility(View.GONE);
+                                        loadingDataPart.setVisibility(View.GONE);
+                                        dataNotifikasiRV.setVisibility(View.VISIBLE);
+                                        String data_permohonan_masuk = data.getString("data");
+                                        GsonBuilder builder = new GsonBuilder();
+                                        Gson gson = builder.create();
+                                        listPermohonanIzins = gson.fromJson(data_permohonan_masuk, ListPermohonanIzin[].class);
+                                        adapterPermohonanIzin = new AdapterPermohonanIzin(listPermohonanIzins,ListNotifikasiActivity.this);
+                                        dataNotifikasiRV.setAdapter(adapterPermohonanIzin);
+                                    }
                                 } else {
                                     countPartIn.setVisibility(View.VISIBLE);
                                     noDataPart.setVisibility(View.GONE);

@@ -29,8 +29,7 @@
                 android:layout_marginTop="18dp"
                 android:text="-"
                 android:textColor="#C16D02"
-                android:textSize="13dp"
-                android:textStyle="bold" />
+                android:textSize="13dp" />
 
             <TextView
                 android:id="@+id/nik_karyawan_tv"
@@ -41,6 +40,7 @@
                 android:textSize="11dp" />
 
             <TextView
+                android:id="@+id/line_limit"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="7dp"

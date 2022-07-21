@@ -3,6 +3,8 @@ package com.gelora.absensi.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -146,6 +148,17 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
 
         myViewHolder.tanggalKirimPermohonan.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate+" "+time);
 
+        if (!listPermohonanIzin.getStatus_approve().equals("0")){
+            myViewHolder.namaKaryawanTV.setTextColor(Color.parseColor("#919191"));
+            myViewHolder.namaKaryawanTV.setTypeface(myViewHolder.namaKaryawanTV.getTypeface(), Typeface.NORMAL);
+            myViewHolder.nikKaryawanTV.setTextColor(Color.parseColor("#919191"));
+            myViewHolder.deskrisiPermohonan.setTextColor(Color.parseColor("#919191"));
+            myViewHolder.tanggalKirimPermohonan.setTextColor(Color.parseColor("#919191"));
+            myViewHolder.lineLimit.setBackgroundColor(Color.parseColor("#EAEAEA"));
+        } else {
+            myViewHolder.namaKaryawanTV.setTypeface(myViewHolder.namaKaryawanTV.getTypeface(), Typeface.BOLD);
+        }
+
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,7 +178,7 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView namaKaryawanTV, nikKaryawanTV, deskrisiPermohonan, tanggalKirimPermohonan;
+        TextView namaKaryawanTV, nikKaryawanTV, deskrisiPermohonan, tanggalKirimPermohonan, lineLimit;
         LinearLayout parentPart;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -173,6 +186,7 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
             tanggalKirimPermohonan = itemView.findViewById(R.id.tanggal_kirim_permohonan);
             nikKaryawanTV = itemView.findViewById(R.id.nik_karyawan_tv);
             namaKaryawanTV = itemView.findViewById(R.id.nama_karyawan_tv);
+            lineLimit = itemView.findViewById(R.id.line_limit);
             parentPart = itemView.findViewById(R.id.parent_part);
         }
     }
