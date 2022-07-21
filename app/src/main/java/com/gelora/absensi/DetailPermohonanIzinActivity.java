@@ -841,7 +841,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         acceptedMark.setVisibility(View.GONE);
                                         rejectedMark.setVisibility(View.VISIBLE);
                                         appoveStatusHRD.setVisibility(View.GONE);
-                                    }else {
+                                    } else {
                                         acceptedMark.setVisibility(View.GONE);
                                         rejectedMark.setVisibility(View.GONE);
                                         appoveStatusHRD.setVisibility(View.GONE);
