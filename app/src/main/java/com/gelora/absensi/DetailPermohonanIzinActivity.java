@@ -835,9 +835,15 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                     String status_approve_hrd = detail.getString("status_approve_hrd");
                                     if (status_approve_hrd.equals("1")){
                                         acceptedMark.setVisibility(View.VISIBLE);
+                                        rejectedMark.setVisibility(View.GONE);
                                         appoveStatusHRD.setVisibility(View.VISIBLE);
-                                    } else {
+                                    } else if (status_approve_hrd.equals("2")){
                                         acceptedMark.setVisibility(View.GONE);
+                                        rejectedMark.setVisibility(View.VISIBLE);
+                                        appoveStatusHRD.setVisibility(View.GONE);
+                                    }else {
+                                        acceptedMark.setVisibility(View.GONE);
+                                        rejectedMark.setVisibility(View.GONE);
                                         appoveStatusHRD.setVisibility(View.GONE);
                                     }
 

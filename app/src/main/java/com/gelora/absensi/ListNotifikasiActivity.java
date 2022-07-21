@@ -177,7 +177,6 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                     }
                 }, 500);
 
-
             }
         });
 

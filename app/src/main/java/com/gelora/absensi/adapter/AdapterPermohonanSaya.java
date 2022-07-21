@@ -66,11 +66,13 @@ public class AdapterPermohonanSaya extends RecyclerView.Adapter<AdapterPermohona
         } else if (listPermohonanIzin.getStatus_approve().equals("1")){
             if(listPermohonanIzin.getStatus_approve_hrd().equals("1")){
                 statusPermohonan = "Permohonan Disetujui HRD";
+            } else if (listPermohonanIzin.getStatus_approve_hrd().equals("2")) {
+                statusPermohonan = "Permohonan Ditolak HRD";
             } else {
                 statusPermohonan = "Permohonan Disetujui Supervisor";
             }
         } else if (listPermohonanIzin.getStatus_approve().equals("2")){
-            statusPermohonan = "Permohonan Ditolak";
+            statusPermohonan = "Permohonan Ditolak Supervisor";
         }
 
         myViewHolder.statusPermohonanTV.setText(statusPermohonan);
