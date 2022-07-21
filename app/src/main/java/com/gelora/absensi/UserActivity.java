@@ -2166,4 +2166,5 @@ public class UserActivity extends AppCompatActivity {
         super.onResume();
         getCountNotification();
     }
+
 }

@@ -317,8 +317,11 @@ public class ListNotifikasiActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadingDataPart.setVisibility(View.VISIBLE);
+        loadingDataPart2.setVisibility(View.VISIBLE);
         noDataPart.setVisibility(View.GONE);
+        noDataPart2.setVisibility(View.GONE);
         dataNotifikasiRV.setVisibility(View.GONE);
+        dataNotifikasi2RV.setVisibility(View.GONE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
