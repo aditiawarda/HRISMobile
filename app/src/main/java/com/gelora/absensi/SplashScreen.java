@@ -382,8 +382,6 @@ public class SplashScreen extends AppCompatActivity {
                         try {
                             refreshLayout.setRefreshing(false);
                             refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss));
-                            loadingOff.setVisibility(View.VISIBLE);
-                            loadingProgressBar.setVisibility(View.GONE);
 
                             refreshBTN.setOnClickListener(new View.OnClickListener() {
                                 @SuppressLint("SetTextI18n")
@@ -415,6 +413,18 @@ public class SplashScreen extends AppCompatActivity {
                             if (status.equals("Success")){
                                 String currentVersion = "1.1.33";
                                 if (!currentVersion.equals(version) && popup.equals("1")){
+
+                                    refreshPart.animate()
+                                            .translationY(refreshPart.getHeight())
+                                            .setDuration(300)
+                                            .setListener(new AnimatorListenerAdapter() {
+                                                @Override
+                                                public void onAnimationEnd(Animator animation) {
+                                                    super.onAnimationEnd(animation);
+                                                    refreshPart.setVisibility(View.GONE);
+                                                }
+                                            });
+
                                     statusUpdateLayout = "1";
 
                                     Animation animation = new TranslateAnimation(0, 0,500, 0);
@@ -498,6 +508,16 @@ public class SplashScreen extends AppCompatActivity {
 
                                 } else {
                                     refreshLayout.setRefreshing(false);
+                                    refreshPart.animate()
+                                            .translationY(refreshPart.getHeight())
+                                            .setDuration(300)
+                                            .setListener(new AnimatorListenerAdapter() {
+                                                @Override
+                                                public void onAnimationEnd(Animator animation) {
+                                                    super.onAnimationEnd(animation);
+                                                    refreshPart.setVisibility(View.GONE);
+                                                }
+                                            });
                                     permissionLoc();
                                 }
                             } else {
@@ -542,6 +562,10 @@ public class SplashScreen extends AppCompatActivity {
                     }
                 });
 
+                Animation animation = new TranslateAnimation(0, 0,500, 0);
+                animation.setDuration(600);
+                animation.setFillAfter(true);
+                refreshPart.startAnimation(animation);
                 refreshPart.setVisibility(View.VISIBLE);
                 refreshLabel.setText("REFRESH");
 
