@@ -70,7 +70,7 @@ import androidmads.library.qrgenearator.QRGEncoder;
 
 public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
-    TextView appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, supervisorTV, hrdTV;
+    TextView notedTV, appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, supervisorTV, hrdTV;
     String uriImage, uriImage2, idIzinRecord, statusKondisi = "", kode;
     LinearLayout viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, homeBTN, approvedBTN, rejectedBTN, actionPart;
     SwipeRefreshLayout refreshLayout;
@@ -116,6 +116,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         qrDocument = findViewById(R.id.qr_document);
         appoveStatusHRD = findViewById(R.id.appove_status_hrd);
         viewSuratSakitBTN = findViewById(R.id.view_surat_sakit_btn);
+        notedTV = findViewById(R.id.noted_tv);
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
@@ -622,6 +623,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                 String tipe_izin = detail.getString("tipe_izin");
 
                                 if(tipe_izin.equals("5")){
+                                    notedTV.setVisibility(View.INVISIBLE);
                                     String foto_surat_sakit = detail.getString("foto_surat_sakit");
                                     String url_surat_sakit = "https://geloraaksara.co.id/absen-online/upload/surat_sakit/"+foto_surat_sakit;
                                     viewSuratSakitBTN.setVisibility(View.VISIBLE);
@@ -633,6 +635,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         }
                                     });
                                 } else {
+                                    notedTV.setVisibility(View.INVISIBLE);
                                     viewSuratSakitBTN.setVisibility(View.GONE);
                                 }
 

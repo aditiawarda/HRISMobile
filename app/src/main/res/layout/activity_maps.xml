@@ -297,7 +297,7 @@
                                                 android:textColor="#A8C74A1A"
                                                 android:textSize="12dp"
                                                 android:backgroundTint="@color/white"
-                                                android:background="@drawable/ic_baseline_dashboar_user"
+                                                android:background="@drawable/ic_baseline_account_home"
                                                 android:textStyle="bold"
                                                 android:text=""/>
 
