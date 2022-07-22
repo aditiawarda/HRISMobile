@@ -149,7 +149,7 @@
                                 android:textSize="14dp"
                                 android:layout_marginBottom="15dp"
                                 android:justificationMode="inter_word"
-                                android:text="Menjadi perusahaan yang dikenal dan dihormati sebagai perusahaan percetakan berkualitas terkemuka di Indonesia."/>
+                                android:text="Menjadi perusahaan yang dikenal dan dihormati sebagai perusahaan percetakan berkualitas dan terkemuka di Indonesia."/>
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -226,7 +226,6 @@
 
                 </LinearLayout>
 
-
                 <LinearLayout
                     android:gravity="right|center"
                     android:paddingLeft="30dp"
@@ -235,6 +234,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:gravity="right"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"

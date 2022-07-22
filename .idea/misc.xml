@@ -73,7 +73,12 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_success.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_company.xml" value="0.33" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_detail_hadir.xml" value="0.15307971014492755" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_detail_kelebihan_jam.xml" value="0.17222222222222222" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_detail_layoff.xml" value="0.17222222222222222" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_detail_permohonan_izin.xml" value="0.22" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_detail_pulang_cepat.xml" value="0.17222222222222222" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_detail_terlambat.xml" value="0.17222222222222222" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_detail_tidak_checkout.xml" value="0.17222222222222222" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_detail_tidak_hadir.xml" value="0.1" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_digital_card.xml" value="0.33" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_digital_signature.xml" value="0.16" />
@@ -83,8 +88,11 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_login.xml" value="0.17222222222222222" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_maps.xml" value="0.2957486136783734" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_monitoring_absensi_bagian.xml" value="0.1" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_news_update.xml" value="0.17222222222222222" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_notify.xml" value="0.17222222222222222" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_permohonan_masuk.xml" value="0.15307971014492755" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_personal_chat.xml" value="0.16" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_register.xml" value="0.17222222222222222" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_search_karyawan_bagian.xml" value="0.15307971014492755" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_user.xml" value="0.18" />
