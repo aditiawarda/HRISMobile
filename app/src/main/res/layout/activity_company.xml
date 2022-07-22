@@ -116,7 +116,7 @@
                                 android:textSize="14dp"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
-                                android:text="PT. Gelora Aksara Pratama merupakan bagian dari Penerbit Erlangga Group. Dimulai dari bisnis percetakan sederhana pada tanggal 1 Juni 1987, Gelora Aksara Pratama didirikan hanya dengan dua mesin cetak bekas, dioperasikan oleh 20 karyawan di sebuah pabrik kecil. Awalnya dibangun untuk mendukung bisnis yang berkembang pesat dari sister company kami, Penerbit Erlangga, yang kini menjadi salah satu perusahaan penerbitan terkemuka di Indonesia (erlangga.co.id). Sejak didirikan, Gelora Aksara Pratama selalu berusaha untuk menjadi perusahaan percetakan berteknologi maju, yang dikenal di kawasan ini untuk memberikan produksi tepat waktu dan layanan terbaik kepada setiap pelanggan kami."/>
+                                android:text="PT. Gelora Aksara Pratama merupakan bagian dari Penerbit Erlangga Group. Dimulai dari bisnis percetakan sederhana pada tanggal 1 Juni 1987, Gelora Aksara Pratama didirikan hanya dengan dua mesin cetak bekas, dioperasikan oleh 20 karyawan di sebuah pabrik kecil. Awalnya dibangun untuk mendukung bisnis yang berkembang pesat dari sister company kami, Penerbit Erlangga, yang kini menjadi salah satu perusahaan penerbitan terkemuka di Indonesia (erlangga.co.id). Sejak didirikan, Gelora Aksara Pratama selalu berusaha untuk menjadi perusahaan percetakan berteknologi maju, serta memberikan layanan terbaik kepada setiap pelanggan."/>
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -124,7 +124,7 @@
                                 android:textSize="14dp"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
-                                android:text="Setelah lebih dari dua dekade, kami telah berkembang untuk memahami kompleksitas dan keindahan dalam seni percetakan. Melalui pengalaman yang tak terhitung jumlahnya dan dukungan tak ternilai dari klien dan mitra kami, kami terus belajar, berubah, dan meningkat."/>
+                                android:text="Setelah lebih dari dua dekade, kami telah berkembang untuk memahami kompleksitas dalam bidang percetakan. Melalui pengalaman yang tak terhitung jumlahnya dan dukungan tak ternilai dari klien dan mitra kami, kami terus belajar, serta terus meningkatkan mutu."/>
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -132,7 +132,7 @@
                                 android:textSize="14dp"
                                 android:layout_marginBottom="15dp"
                                 android:justificationMode="inter_word"
-                                android:text="Hari ini kami telah menjadi pemimpin industri di pasar kami dan telah menerima ISO 9001:2015 dalam Manajemen Mutu. Bengkel kami saat ini di Jalan Haji Baping Raya adalah rumah bagi 700 staf terampil, 21 mesin cetak offset kelas dunia dan berbagai mesin pra-cetak dan pasca-cetak. Selain teknologi canggih serta kompetensi teknis, kami menerapkan manajemen waktu dan kualitas yang ketat, dan menanamkan seni kami untuk membantu klien kami mengubah ide mereka menjadi terobosan."/>
+                                android:text="Hari ini kami telah menjadi pelopor di industri percetakan dan telah menerima ISO 9001:2015 dalam Manajemen Mutu Perusahaan. Kantor kami saat ini di Jalan Haji Baping Raya adalah rumah bagi 700 staf terampil, 21 mesin cetak offset kelas dunia serta berbagai mesin pra-cetak dan pasca-cetak. Selain teknologi canggih serta kompetensi teknis, kami menerapkan manajemen waktu dan kualitas yang ketat serta membantu klien kami mengubah ide mereka menjadi terobosan."/>
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -149,7 +149,7 @@
                                 android:textSize="14dp"
                                 android:layout_marginBottom="15dp"
                                 android:justificationMode="inter_word"
-                                android:text="Menjadi diakui dan dihormati sebagai perusahaan percetakan berkualitas terkemuka di Indonesia."/>
+                                android:text="Menjadi perusahaan yang dikenal dan dihormati sebagai perusahaan percetakan berkualitas terkemuka di Indonesia."/>
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -167,7 +167,7 @@
                                 android:textSize="14dp"
                                 android:layout_marginBottom="15dp"
                                 android:justificationMode="inter_word"
-                                android:text="PT Gelora Aksara Pratama berdedikasi untuk mencapai kepuasan pelanggan dengan menghasilkan produk percetakan yang berkualitas terbaik, inovatif, unggul dan aman. Kami akan terus memiliki pertumbuhan yang berkelanjutan dengan secara konsisten menciptakan sinergi inovatif antara semua pemangku kepentingan, pengalaman, dan teknologi serta sistem manajemen mutu."/>
+                                android:text="PT Gelora Aksara Pratama berdedikasi untuk mencapai kepuasan pelanggan dengan menghasilkan produk percetakan yang berkualitas terbaik, inovatif, unggul dan aman. Kami akan terus meningkatkan kualitas secara berkelanjutan dan konsisten menciptakan sinergi inovatif antara semua pemangku kepentingan, pengalaman, dan teknologi serta sistem manajemen mutu."/>
 
                         </LinearLayout>
 
