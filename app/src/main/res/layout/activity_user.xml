@@ -1037,7 +1037,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
-                                    android:textColor="#2AA1E1"
+                                    android:textColor="#CC7656"
                                     android:text="Permohonan Izin"/>
 
                             </LinearLayout>
@@ -1056,7 +1056,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
-                                    android:textColor="#2AA1E1"
+                                    android:textColor="#CC7656"
                                     android:text="ID Card Digital"/>
 
                             </LinearLayout>
@@ -1074,7 +1074,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
-                                    android:textColor="#2AA1E1"
+                                    android:textColor="#CC7656"
                                     android:text="Tanda Tangan Digital"/>
 
                             </LinearLayout>
