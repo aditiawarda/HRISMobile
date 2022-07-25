@@ -135,7 +135,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String shiftIdAbsen = "", warningPerangkat = "nonaktif", sesiBaru = "nonaktif", actionSession = "", checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String statusLooping = "on", shiftIdAbsen = "", warningPerangkat = "nonaktif", sesiBaru = "nonaktif", actionSession = "", checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -416,6 +416,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         pantauBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                statusLooping = "off";
                 Intent intent = new Intent(MapsActivity.this, MonitoringAbsensiBagianActivity.class);
                 startActivity(intent);
             }
@@ -424,6 +425,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         userBTNPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                statusLooping = "off";
                 Intent intent = new Intent(MapsActivity.this, UserActivity.class);
                 startActivity(intent);
             }
@@ -556,6 +558,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             userLat = location.getLatitude();
             userLong = location.getLongitude();
 
+            //userLat = -6.3211913;
+            //userLong = 106.8704657;
+
             long milliSec = location.getTime();
             DateFormat dateNetworkFormat = new SimpleDateFormat("yyyy-MM-dd");
             DateFormat timeNetworkFormat = new SimpleDateFormat("HH:mm");
@@ -658,7 +663,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void onLocationResult(LocationResult locationResult) {
                         // do work here
-                        onLocationChanged(locationResult.getLastLocation());
+                        if(statusLooping.equals("on")){
+                            onLocationChanged(locationResult.getLastLocation());
+                        }
                     }
                 },
                 Looper.myLooper());
@@ -954,6 +961,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if (warningPerangkat.equals("aktif")){
                 logoutFunction();
             } else {
+                statusLooping = "off";
                 super.onBackPressed();
             }
         }
@@ -978,6 +986,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         finish();
     }
 
+    @SuppressLint("SetTextI18n")
     private void checkLogin() {
         if(!sharedPrefManager.getSpSudahLogin()){
             Intent intent = new Intent(this, LoginActivity.class);
@@ -1781,7 +1790,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 statusTglLibur = "0";
                             }
 
-                            if(status.equals("Success")){
+                            if(status.equals("Success")){ //Sudah checkin atau sudah checkout dan interval masih ada
                                 JSONObject data_checkin = data.getJSONObject("data");
                                 String date_checkin = data_checkin.getString("tanggal");
                                 String time_checkin = data_checkin.getString("jam_masuk");
@@ -1857,7 +1866,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 detailAbsen(id_status, id_shift);
                                 String id_checkout = data.getString("id_checkout");
                                 checkoutRecord(id_checkout);
-                            } else {
+
+                            } else { //Belum checkin atau interval sudah habis
                                 attantionPart.setVisibility(View.VISIBLE);
                                 statusAbsenBTN.setVisibility(View.VISIBLE);
                                 changeStatusAbsen.setVisibility(View.GONE);
@@ -2572,6 +2582,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 actionBTN.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        statusLooping = "off";
                         Intent intent = new Intent(MapsActivity.this, HistoryActivity.class);
                         startActivity(intent);
                     }
@@ -3207,6 +3218,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     actionBTN.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            statusLooping = "off";
                             Intent intent = new Intent(MapsActivity.this, HistoryActivity.class);
                             startActivity(intent);
                         }
@@ -3315,6 +3327,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     actionBTN.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            statusLooping = "off";
                             Intent intent = new Intent(MapsActivity.this, HistoryActivity.class);
                             startActivity(intent);
                         }
@@ -3635,12 +3648,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             String status = data.getString("status");
                             String jam_pulang_shift = data.getString("jam_pulang_shift");
 
-                            if(status.equals("Success")){
+                            if(status.equals("Success")){ // Belum Checkout
                                 String tgl_checkin = data.getString("tgl_checkin");
                                 String tipe_shift = data.getString("tipe_shift");
                                 String interval = data.getString("interval");
                                 String timestamp_checkin = data.getString("timestamp_checkin");
                                 JSONObject data_checkin = data.getJSONObject("data");
+                                String id_shift = data_checkin.getString("id_shift");
                                 String time_checkout = data_checkin.getString("jam_pulang");
                                 String timezone_pulang = data_checkin.getString("timezone_pulang");
                                 String date_checkout = data_checkin.getString("tanggal");
@@ -3905,8 +3919,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         actionButton();
                                     }
 
-                                } else {
+                                }
 
+                                else { // Sudah Checkout dan masih ada interval
                                     if (tipe_shift.equals("Next day")){
                                         actionSession = "close_nextday";
                                         openSessionBTN.setVisibility(View.VISIBLE);
@@ -3974,6 +3989,76 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             actionButton();
                                         }
 
+                                    } else if (tipe_shift.equals("Tanggung")) {
+                                        if(id_shift.equals("85")||id_shift.equals("87")){
+                                            actionSession = "close_nextday";
+                                            openSessionBTN.setVisibility(View.VISIBLE);
+                                            if (sesiBaru.equals("aktif")){
+                                                bukaSesi();
+                                            } else {
+                                                warningPart.setVisibility(View.GONE);
+                                                inputAbsenPart.setVisibility(View.GONE);
+                                                recordAbsenPart.setVisibility(View.VISIBLE);
+                                                attantionPart.setVisibility(View.GONE);
+                                                skeletonLayout.setVisibility(View.GONE);
+
+                                                String input_date = date_checkout;
+                                                String dayDate = input_date.substring(8, 10);
+                                                String yearDate = input_date.substring(0, 4);
+                                                String bulanValue = input_date.substring(5, 7);
+                                                String bulanName;
+
+                                                switch (bulanValue) {
+                                                    case "01":
+                                                        bulanName = "Januari";
+                                                        break;
+                                                    case "02":
+                                                        bulanName = "Februari";
+                                                        break;
+                                                    case "03":
+                                                        bulanName = "Maret";
+                                                        break;
+                                                    case "04":
+                                                        bulanName = "April";
+                                                        break;
+                                                    case "05":
+                                                        bulanName = "Mei";
+                                                        break;
+                                                    case "06":
+                                                        bulanName = "Juni";
+                                                        break;
+                                                    case "07":
+                                                        bulanName = "Juli";
+                                                        break;
+                                                    case "08":
+                                                        bulanName = "Agustus";
+                                                        break;
+                                                    case "09":
+                                                        bulanName = "September";
+                                                        break;
+                                                    case "10":
+                                                        bulanName = "Oktober";
+                                                        break;
+                                                    case "11":
+                                                        bulanName = "November";
+                                                        break;
+                                                    case "12":
+                                                        bulanName = "Desember";
+                                                        break;
+                                                    default:
+                                                        bulanName = "Not found";
+                                                        break;
+                                                }
+
+                                                dateCheckoutTV.setText(String.valueOf(Integer.parseInt(dayDate)) + " " + bulanName + " " + yearDate);
+                                                timeCheckoutTV.setText(time_checkout + " " + timezone_pulang);
+                                                ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini\"");
+                                                statusAction = "history";
+                                                actionButton();
+                                            }
+
+                                        }
+
                                     } else {
                                         openSessionBTN.setVisibility(View.GONE);
                                         warningPart.setVisibility(View.GONE);
@@ -4035,6 +4120,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini\"");
                                         statusAction = "history";
                                         actionButton();
+
                                     }
 
                                 }
@@ -4101,11 +4187,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (!sharedPrefManager.getSpSudahLogin()){
             finish();
         } else {
+            statusLooping = "on";
             refreshData2();
         }
     }
 
     private void checkPulang(){
+        sesiBaru = "nonaktif";
         String batasAbsenPulang;
         if (shiftType.equals("Normal")||shiftType.equals("Tanggung")){
             batasAbsenPulang = dateCheckin+" "+batasPulang;
@@ -5162,10 +5250,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onPause() {
+        super.onPause();
         if (requestQueue != null) {
             requestQueue.cancelAll(this);
         }
-        super.onPause();
+        statusLooping = "off";
     }
 
     @Override
@@ -5174,6 +5263,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (requestQueue != null) {
             requestQueue.cancelAll(this);
         }
+        statusLooping = "off";
     }
 
 }

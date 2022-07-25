@@ -635,7 +635,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         }
                                     });
                                 } else {
-                                    notedTV.setVisibility(View.INVISIBLE);
+                                    notedTV.setVisibility(View.VISIBLE);
                                     viewSuratSakitBTN.setVisibility(View.GONE);
                                 }
 
