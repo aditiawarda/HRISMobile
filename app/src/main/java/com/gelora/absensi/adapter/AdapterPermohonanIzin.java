@@ -67,7 +67,7 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
         myViewHolder.nikKaryawanTV.setText("NIK "+listPermohonanIzin.getNIK());
         myViewHolder.deskrisiPermohonan.setText(tipe_izin);
 
-        String input_date = listPermohonanIzin.getUpdated_at().substring(0,10);
+        String input_date = listPermohonanIzin.getCreated_at().substring(0,10);
         String dayDate = input_date.substring(8,10);
         String yearDate = input_date.substring(0,4);
         String bulanValue = input_date.substring(5,7);
@@ -144,7 +144,7 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
                 break;
         }
 
-        String time = listPermohonanIzin.getUpdated_at().substring(10,16);
+        String time = listPermohonanIzin.getCreated_at().substring(10,16);
 
         myViewHolder.tanggalKirimPermohonan.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate+" "+time);
 

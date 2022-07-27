@@ -83,7 +83,17 @@
                         android:paddingBottom="15dp"
                         android:orientation="vertical">
 
+                        <ProgressBar
+                            android:id="@+id/loading_cuaca"
+                            android:indeterminateTint="@color/white"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="35dp"
+                            android:layout_height="34dp" />
+
                         <ImageView
+                            android:visibility="gone"
                             android:id="@+id/weather_icon_part"
                             android:layout_width="60dp"
                             android:layout_height="60dp"

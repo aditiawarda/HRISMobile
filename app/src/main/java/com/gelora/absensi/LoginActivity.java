@@ -26,6 +26,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     String statusCheck = "", deviceID, visibilityPassword = "hide";
     BottomSheetLayout bottomSheet, bottomSheetCS;
     SwipeRefreshLayout refreshLayout;
+    ProgressBar loadingProgressBar;
     View rootview;
 
     @Override
@@ -81,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         bottomSheetCS = findViewById(R.id.bottom_sheet_cs);
         contactServiceBTN = findViewById(R.id.contact_service_btn);
         registerBTN = findViewById(R.id.register_btn);
+        loadingProgressBar = findViewById(R.id.loadingProgressBar);
 
         testBTN = findViewById(R.id.test_btn);
 
@@ -145,6 +148,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL) {
                         String nik = nikED.getText().toString();
                         String password = passwordED.getText().toString();
+                        loadingProgressBar.setVisibility(View.VISIBLE);
                         if (statusCheck.equals("1")){
                             checkDevice(nik, password, deviceID);
                         } else {
@@ -228,6 +232,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                    loadingProgressBar.setVisibility(View.VISIBLE);
                     if (statusCheck.equals("1")){
                         checkDevice(nik, password, deviceID);
                     } else {
@@ -282,7 +287,7 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
 
                     } else {
-
+                        loadingProgressBar.setVisibility(View.GONE);
                         new KAlertDialog(LoginActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText(status+"!")
@@ -300,6 +305,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
+                loadingProgressBar.setVisibility(View.GONE);
                 connectionFailed();
             }
         });
@@ -421,12 +427,14 @@ public class LoginActivity extends AppCompatActivity {
                             if (status.equals("Success")){
                                 loginFunction(nik,password);
                             } else if (status.equals("Warning")){
+                                loadingProgressBar.setVisibility(View.GONE);
                                 new KAlertDialog(LoginActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("NIK tidak terdaftar!")
                                         .setConfirmText("OK")
                                         .show();
                             } else {
+                                loadingProgressBar.setVisibility(View.GONE);
                                 String atas_nama = data.getString("atas_nama");
                                 String nik = data.getString("NIK");
                                 Intent intent = new Intent(LoginActivity.this, DeviceWarningActivity.class);
@@ -446,6 +454,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
+                        loadingProgressBar.setVisibility(View.GONE);
                         connectionFailed();
                     }
                 }

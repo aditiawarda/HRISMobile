@@ -39,6 +39,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -99,7 +100,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
     TextView countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -107,6 +108,7 @@ public class UserActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     NestedScrollView scrollView;
     RelativeLayout dataCuaca;
+    ProgressBar loadingProgressBarCuaca;
     ImageView positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
     String selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
@@ -213,6 +215,9 @@ public class UserActivity extends AppCompatActivity {
         positionPart = findViewById(R.id.position_part);
         positionLoadingPart = findViewById(R.id.position_loading_part);
         positionLoadingImg = findViewById(R.id.position_loading);
+        fiturPart = findViewById(R.id.fitur_part);
+        notificationPart = findViewById(R.id.notification_part);
+        loadingProgressBarCuaca = findViewById(R.id.loadingProgressBar_cuaca);
         hTime = findViewById(R.id.h_time);
         mTime = findViewById(R.id.m_time);
         sTime = findViewById(R.id.s_time);
@@ -1892,11 +1897,14 @@ public class UserActivity extends AppCompatActivity {
                                 }
 
                                 mainWeather.setText(desc_idn);
+                                loadingProgressBarCuaca.setVisibility(View.GONE);
+                                weatherIcon.setVisibility(View.VISIBLE);
                                 String url = "https://geloraaksara.co.id/absen-online/upload/weather_icon/"+icon+".png";
 
                                 Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                                         .into(weatherIcon);
+
 
                             }
                         } catch (JSONException e) {
@@ -1941,6 +1949,7 @@ public class UserActivity extends AppCompatActivity {
                                 String tidak_checkout = data.getString("tidak_checkout");
                                 String cuaca_button = data.getString("cuaca_button");
                                 String monitoring = data.getString("monitoring");
+                                String fitur_izin = data.getString("fitur_izin");
 
                                 if (cuaca_button.equals("1")){
                                     dataCuaca.setVisibility(View.VISIBLE);
@@ -1984,6 +1993,14 @@ public class UserActivity extends AppCompatActivity {
                                     markerWarningLate.setVisibility(View.VISIBLE);
                                 } else {
                                     markerWarningLate.setVisibility(View.GONE);
+                                }
+
+                                if(fitur_izin.equals("1")){
+                                    fiturPart.setVisibility(View.VISIBLE);
+                                    notificationPart.setVisibility(View.VISIBLE);
+                                } else {
+                                    fiturPart.setVisibility(View.GONE);
+                                    notificationPart.setVisibility(View.GONE);
                                 }
 
                             }

@@ -43,6 +43,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -135,7 +136,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String statusLooping = "on", shiftIdAbsen = "", warningPerangkat = "nonaktif", sesiBaru = "nonaktif", actionSession = "", checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String statusDialog = "0", statusLooping = "on", shiftIdAbsen = "", warningPerangkat = "nonaktif", sesiBaru = "nonaktif", actionSession = "", checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -143,6 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     KAlertDialog pDialog;
     ResultReceiver resultReceiver;
     SwitchButton switchZoom;
+    ProgressBar loadingCuaca;
 
     private RecyclerView statusAbsenRV;
     private StatusAbsen[] statusAbsens;
@@ -555,11 +557,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if (location != null) {
             Log.e("TAG", "GPS is on" + String.valueOf(location));
-            userLat = location.getLatitude();
-            userLong = location.getLongitude();
+            //userLat = location.getLatitude();
+            //userLong = location.getLongitude();
 
-            //userLat = -6.3211913;
-            //userLong = 106.8704657;
+            userLat = -6.3211913;
+            userLong = 106.8704657;
 
             long milliSec = location.getTime();
             DateFormat dateNetworkFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -599,16 +601,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             gpsEnableAction();
         }
 
-        userPoint = new LatLng(userLat, userLong);
-
-        if (zoomAction.equals("0")){
-            // User position camera
-            float zoomLevel = 18.0f; //This goes up to 21
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
-            mMap.getUiSettings().setCompassEnabled(false);
+        if (location != null) {
+            userPoint = new LatLng(userLat, userLong);
+            if (zoomAction.equals("0")){
+                // User position camera
+                float zoomLevel = 18.0f; //This goes up to 21
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
+                mMap.getUiSettings().setCompassEnabled(false);
+            }
+            getAction();
         }
-
-        getAction();
 
     }
 
@@ -740,7 +742,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        // connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -3452,7 +3454,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -3687,26 +3689,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             statusAction = "checkin";
                                             idShiftAbsen = "";
 
-                                            new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
-                                                    .setTitleText("Perhatian")
-                                                    .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
-                                                    .setConfirmText("OK")
-                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                        @Override
-                                                        public void onClick(KAlertDialog sDialog) {
-                                                            sDialog.dismiss();
-                                                        }
-                                                    })
-                                                    .show();
+                                            if(statusDialog.equals("0")){
+                                                statusDialog = "1";
+                                                KAlertDialog dialodWarning;
+                                                dialodWarning = new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                        .setTitleText("Perhatian")
+                                                        .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                        .setConfirmText("OK");
+                                                dialodWarning.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                        statusDialog = "0";
+                                                    }
+                                                });
+                                                dialodWarning.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                                    @Override
+                                                    public void onDismiss(DialogInterface dialog) {
+                                                        dialog.dismiss();
+                                                        statusDialog = "0";
+                                                    }
+                                                });
+                                                dialodWarning.show();
 
-                                            Notify.build(getApplicationContext())
-                                                    .setTitle("Absensi App")
-                                                    .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
-                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                    .setColor(R.color.colorPrimary)
-                                                    .largeCircularIcon()
-                                                    .enableVibration(true)
-                                                    .show();
+                                                Notify.build(getApplicationContext())
+                                                        .setTitle("Absensi App")
+                                                        .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
+                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                        .setColor(R.color.colorPrimary)
+                                                        .largeCircularIcon()
+                                                        .enableVibration(true)
+                                                        .show();
+                                            }
 
                                             warningPart.setOnClickListener(new View.OnClickListener() {
                                                 @Override
@@ -3767,26 +3781,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 statusAction = "checkin";
                                                 idShiftAbsen = "";
 
-                                                new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
-                                                        .setTitleText("Perhatian")
-                                                        .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
-                                                        .setConfirmText("OK")
-                                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                            @Override
-                                                            public void onClick(KAlertDialog sDialog) {
-                                                                sDialog.dismiss();
-                                                            }
-                                                        })
-                                                        .show();
+                                                if(statusDialog.equals("0")){
+                                                    statusDialog = "1";
+                                                    KAlertDialog dialodWarning;
+                                                    dialodWarning = new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                            .setTitleText("Perhatian")
+                                                            .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                            .setConfirmText("OK");
+                                                    dialodWarning.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                            statusDialog = "0";
+                                                        }
+                                                    });
+                                                    dialodWarning.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                                        @Override
+                                                        public void onDismiss(DialogInterface dialog) {
+                                                            dialog.dismiss();
+                                                            statusDialog = "0";
+                                                        }
+                                                    });
+                                                    dialodWarning.show();
 
-                                                Notify.build(getApplicationContext())
-                                                        .setTitle("Absensi App")
-                                                        .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
-                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                        .setColor(R.color.colorPrimary)
-                                                        .largeCircularIcon()
-                                                        .enableVibration(true)
-                                                        .show();
+                                                    Notify.build(getApplicationContext())
+                                                            .setTitle("Absensi App")
+                                                            .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
+                                                            .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                            .setColor(R.color.colorPrimary)
+                                                            .largeCircularIcon()
+                                                            .enableVibration(true)
+                                                            .show();
+                                                }
 
                                                 warningPart.setOnClickListener(new View.OnClickListener() {
                                                     @Override
@@ -3856,26 +3882,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 statusAction = "checkin";
                                                 idShiftAbsen = "";
 
-                                                new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
-                                                        .setTitleText("Perhatian")
-                                                        .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
-                                                        .setConfirmText("OK")
-                                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                            @Override
-                                                            public void onClick(KAlertDialog sDialog) {
-                                                                sDialog.dismiss();
-                                                            }
-                                                        })
-                                                        .show();
+                                                if(statusDialog.equals("0")){
+                                                    statusDialog = "1";
+                                                    KAlertDialog dialodWarning;
+                                                    dialodWarning = new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                                            .setTitleText("Perhatian")
+                                                            .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                            .setConfirmText("OK");
+                                                    dialodWarning.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                            statusDialog = "0";
+                                                        }
+                                                    });
+                                                    dialodWarning.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                                        @Override
+                                                        public void onDismiss(DialogInterface dialog) {
+                                                            dialog.dismiss();
+                                                            statusDialog = "0";
+                                                        }
+                                                    });
+                                                    dialodWarning.show();
 
-                                                Notify.build(getApplicationContext())
-                                                        .setTitle("Absensi App")
-                                                        .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
-                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                        .setColor(R.color.colorPrimary)
-                                                        .largeCircularIcon()
-                                                        .enableVibration(true)
-                                                        .show();
+                                                    Notify.build(getApplicationContext())
+                                                            .setTitle("Absensi App")
+                                                            .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
+                                                            .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                            .setColor(R.color.colorPrimary)
+                                                            .largeCircularIcon()
+                                                            .enableVibration(true)
+                                                            .show();
+                                                }
 
                                                 warningPart.setOnClickListener(new View.OnClickListener() {
                                                     @Override
@@ -3987,76 +4025,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini\"");
                                             statusAction = "history";
                                             actionButton();
-                                        }
-
-                                    } else if (tipe_shift.equals("Tanggung")) {
-                                        if(id_shift.equals("85")||id_shift.equals("87")){
-                                            actionSession = "close_nextday";
-                                            openSessionBTN.setVisibility(View.VISIBLE);
-                                            if (sesiBaru.equals("aktif")){
-                                                bukaSesi();
-                                            } else {
-                                                warningPart.setVisibility(View.GONE);
-                                                inputAbsenPart.setVisibility(View.GONE);
-                                                recordAbsenPart.setVisibility(View.VISIBLE);
-                                                attantionPart.setVisibility(View.GONE);
-                                                skeletonLayout.setVisibility(View.GONE);
-
-                                                String input_date = date_checkout;
-                                                String dayDate = input_date.substring(8, 10);
-                                                String yearDate = input_date.substring(0, 4);
-                                                String bulanValue = input_date.substring(5, 7);
-                                                String bulanName;
-
-                                                switch (bulanValue) {
-                                                    case "01":
-                                                        bulanName = "Januari";
-                                                        break;
-                                                    case "02":
-                                                        bulanName = "Februari";
-                                                        break;
-                                                    case "03":
-                                                        bulanName = "Maret";
-                                                        break;
-                                                    case "04":
-                                                        bulanName = "April";
-                                                        break;
-                                                    case "05":
-                                                        bulanName = "Mei";
-                                                        break;
-                                                    case "06":
-                                                        bulanName = "Juni";
-                                                        break;
-                                                    case "07":
-                                                        bulanName = "Juli";
-                                                        break;
-                                                    case "08":
-                                                        bulanName = "Agustus";
-                                                        break;
-                                                    case "09":
-                                                        bulanName = "September";
-                                                        break;
-                                                    case "10":
-                                                        bulanName = "Oktober";
-                                                        break;
-                                                    case "11":
-                                                        bulanName = "November";
-                                                        break;
-                                                    case "12":
-                                                        bulanName = "Desember";
-                                                        break;
-                                                    default:
-                                                        bulanName = "Not found";
-                                                        break;
-                                                }
-
-                                                dateCheckoutTV.setText(String.valueOf(Integer.parseInt(dayDate)) + " " + bulanName + " " + yearDate);
-                                                timeCheckoutTV.setText(time_checkout + " " + timezone_pulang);
-                                                ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini\"");
-                                                statusAction = "history";
-                                                actionButton();
-                                            }
-
                                         }
 
                                     } else {
@@ -4655,6 +4623,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         feelLikeTempPart = findViewById(R.id.feels_like_temp_part);
         currentDatePart = findViewById(R.id.current_date_part);
         closeBTNPart = findViewById(R.id.close_btn_part);
+        loadingCuaca = findViewById(R.id.loading_cuaca);
 
         switch (getDateM()) {
             case "01":
@@ -4962,6 +4931,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 }
 
                                 mainWeatherPart.setText(desc_idn);
+                                loadingCuaca.setVisibility(View.GONE);
+                                weatherIconPart.setVisibility(View.VISIBLE);
                                 String url = "https://geloraaksara.co.id/absen-online/upload/weather_icon/"+icon+".png";
 
                                 Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
@@ -5190,7 +5161,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 if (count.equals("0")){
                                     markerNotification.setVisibility(View.GONE);
                                 } else {
-                                    markerNotification.setVisibility(View.VISIBLE);
+                                    String visibility = data.getString("visibility");
+                                    if (visibility.equals("1")){
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    } else {
+                                        markerNotification.setVisibility(View.GONE);
+                                    }
                                 }
 
                             }

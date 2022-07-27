@@ -179,7 +179,17 @@
                                         android:paddingBottom="15dp"
                                         android:orientation="vertical">
 
+                                        <ProgressBar
+                                            android:id="@+id/loadingProgressBar_cuaca"
+                                            android:indeterminateTint="@color/white"
+                                            android:layout_marginBottom="10dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_width="35dp"
+                                            android:layout_height="34dp" />
+
                                         <ImageView
+                                            android:visibility="gone"
                                             android:id="@+id/weather_icon"
                                             android:layout_width="60dp"
                                             android:layout_height="60dp"
@@ -1024,67 +1034,76 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/permohonan_btn"
+                                android:visibility="gone"
+                                android:id="@+id/fitur_part"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginBottom="10dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:background="@drawable/shape_fourth_btn"
-                                android:gravity="center">
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textStyle="bold"
-                                    android:textColor="#CC7656"
-                                    android:text="Permohonan Izin"/>
+                                <LinearLayout
+                                    android:id="@+id/permohonan_btn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:background="@drawable/shape_fourth_btn"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:textColor="#DC734D"
+                                        android:text="Permohonan Izin"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/id_card_digital_btn"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:background="@drawable/shape_fourth_btn"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:textColor="#DC734D"
+                                        android:text="ID Card Digital"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/signature_digital_btn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:background="@drawable/shape_fourth_btn"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:textColor="#DC734D"
+                                        android:text="Tanda Tangan Digital"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="10dp"
+                                    android:background="#3CCFCFCF"/>
 
                             </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/id_card_digital_btn"
-                                android:layout_marginBottom="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:background="@drawable/shape_fourth_btn"
-                                android:gravity="center">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textStyle="bold"
-                                    android:textColor="#CC7656"
-                                    android:text="ID Card Digital"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/signature_digital_btn"
-                                android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:background="@drawable/shape_fourth_btn"
-                                android:gravity="center">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textStyle="bold"
-                                    android:textColor="#CC7656"
-                                    android:text="Tanda Tangan Digital"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_marginTop="20dp"
-                                android:layout_marginBottom="20dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="10dp"
-                                android:background="#3CCFCFCF"/>
 
                             <LinearLayout
                                 android:id="@+id/about_company_btn"
@@ -1528,6 +1547,8 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/notification_part"
                                 android:orientation="vertical"
                                 android:layout_marginLeft="11dp"
                                 android:layout_width="wrap_content"
