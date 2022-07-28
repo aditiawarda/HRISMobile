@@ -33,6 +33,7 @@ import com.google.gson.GsonBuilder;
 import com.kal.rackmonthpicker.RackMonthPicker;
 import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
 import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
+import com.shasin.notificationbanner.Banner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,6 +53,7 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     String bulanPilih;
+    View rootview;
 
     private RecyclerView dataNoCheckoutRV;
     private DataNoCheckout[] dataNoCheckouts;
@@ -63,6 +65,7 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_tidak_checkout);
 
         sharedPrefManager = new SharedPrefManager(this);
+        rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
         dataBulan = findViewById(R.id.bulan_data);
@@ -286,7 +289,7 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -303,6 +306,10 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    private void connectionFailed(){
+        Banner.make(rootview, DetailTidakCheckoutActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
     }
 
     private String getBulanTahun() {

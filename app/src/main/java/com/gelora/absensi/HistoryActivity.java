@@ -600,7 +600,7 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, HistoryActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
+        Banner.make(rootview, HistoryActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
     }
 
     private void getHistoryAbsensi() {

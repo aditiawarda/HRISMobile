@@ -905,7 +905,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, MonitoringAbsensiBagianActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
+        Banner.make(rootview, MonitoringAbsensiBagianActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
     }
 
 }

@@ -524,7 +524,7 @@ public class SplashScreen extends AppCompatActivity {
                                 refreshPart.setVisibility(View.VISIBLE);
                                 refreshLabel.setText("REFRESH");
 
-                                Banner.make(rootview, SplashScreen.this, Banner.ERROR, "Not found!", Banner.BOTTOM, 5000).show();
+                                Banner.make(rootview, SplashScreen.this, Banner.ERROR, "Not found!", Banner.BOTTOM, 3000).show();
                             }
 
                         } catch (JSONException e) {
@@ -569,7 +569,7 @@ public class SplashScreen extends AppCompatActivity {
                 refreshPart.setVisibility(View.VISIBLE);
                 refreshLabel.setText("REFRESH");
 
-                Banner.make(rootview, SplashScreen.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 5000).show();
+                Banner.make(rootview, SplashScreen.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
             }
         });
 

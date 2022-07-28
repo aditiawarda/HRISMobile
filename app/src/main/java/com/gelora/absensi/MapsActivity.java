@@ -136,7 +136,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String statusDialog = "0", statusLooping = "on", shiftIdAbsen = "", warningPerangkat = "nonaktif", sesiBaru = "nonaktif", actionSession = "", checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String connectionStatus = "success", statusDialog = "0", statusLooping = "on", shiftIdAbsen = "", warningPerangkat = "nonaktif", sesiBaru = "nonaktif", actionSession = "", checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -557,11 +557,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if (location != null) {
             Log.e("TAG", "GPS is on" + String.valueOf(location));
-            //userLat = location.getLatitude();
-            //userLong = location.getLongitude();
+            userLat = location.getLatitude();
+            userLong = location.getLongitude();
 
-            userLat = -6.3211913;
-            userLong = 106.8704657;
+            //userLat = -6.3211913;
+            //userLong = 106.8704657;
 
             long milliSec = location.getTime();
             DateFormat dateNetworkFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -665,7 +665,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void onLocationResult(LocationResult locationResult) {
                         // do work here
-                        if(statusLooping.equals("on")){
+                        if(statusLooping.equals("on") && connectionStatus=="success"){
                             onLocationChanged(locationResult.getLastLocation());
                         }
                     }
@@ -3363,6 +3363,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
         idShiftAbsen = "";
+        connectionStatus = "success";
     }
 
     private void refreshData2(){
@@ -3378,6 +3379,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
         idShiftAbsen = "";
+        connectionStatus = "success";
     }
 
     private void refreshMaps(){
@@ -4303,7 +4305,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         connectionFailed.setVisibility(View.VISIBLE);
         connectionSuccess.setVisibility(View.GONE);
         skeletonLayout.setVisibility(View.GONE);
-        Banner.make(rootview, MapsActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
+        Banner.make(rootview, MapsActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+
+        connectionStatus = "failed";
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.icon_none)

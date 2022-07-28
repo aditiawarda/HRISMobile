@@ -35,6 +35,7 @@ import com.google.gson.GsonBuilder;
 import com.kal.rackmonthpicker.RackMonthPicker;
 import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
 import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
+import com.shasin.notificationbanner.Banner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,6 +55,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     String bulanPilih;
+    View rootview;
 
     private RecyclerView dataIzinRV;
     private DataIzin[] dataIzins;
@@ -69,6 +71,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_tidak_hadir);
 
         sharedPrefManager = new SharedPrefManager(this);
+        rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
         dataBulan = findViewById(R.id.bulan_data);
@@ -222,7 +225,6 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         getDataTidakHadir();
-                                        getDetailTidakHadir();
                                     }
                                 }, 500);
 
@@ -254,7 +256,6 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
 
         nameUserTV.setText(sharedPrefManager.getSpNama().toUpperCase());
         getDataTidakHadir();
-        getDetailTidakHadir();
 
     }
 
@@ -292,6 +293,8 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                                     }
                                 }, 500);
 
+                                getDetailTidakHadir();
+
                             }
 
                         } catch (JSONException e) {
@@ -305,7 +308,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -394,7 +397,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -411,6 +414,10 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    private void connectionFailed(){
+        Banner.make(rootview, DetailTidakHadirActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
     }
 
     private String getBulanTahun() {

@@ -1072,7 +1072,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, DetailPermohonanIzinActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
+        Banner.make(rootview, DetailPermohonanIzinActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
     }
 
 }

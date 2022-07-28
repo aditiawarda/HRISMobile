@@ -315,7 +315,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, LoginActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
+        Banner.make(rootview, LoginActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
     }
 
     private void contactService(){
@@ -377,7 +377,7 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
 
                     } else {
-
+                        loadingProgressBar.setVisibility(View.GONE);
                         new KAlertDialog(LoginActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText(status+"!")
@@ -395,6 +395,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
+                loadingProgressBar.setVisibility(View.GONE);
                 connectionFailed();
             }
         });

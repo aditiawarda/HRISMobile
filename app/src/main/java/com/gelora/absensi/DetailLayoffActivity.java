@@ -34,6 +34,7 @@ import com.google.gson.GsonBuilder;
 import com.kal.rackmonthpicker.RackMonthPicker;
 import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
 import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
+import com.shasin.notificationbanner.Banner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,6 +54,7 @@ public class DetailLayoffActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     String bulanPilih;
+    View rootview;
 
     private RecyclerView dataLayoffRV;
     private DataLayoff[] dataLayoffs;
@@ -64,6 +66,7 @@ public class DetailLayoffActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_layoff);
 
         sharedPrefManager = new SharedPrefManager(this);
+        rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
         dataBulan = findViewById(R.id.bulan_data);
@@ -271,7 +274,7 @@ public class DetailLayoffActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         ) {
@@ -288,13 +291,15 @@ public class DetailLayoffActivity extends AppCompatActivity {
 
     }
 
+    private void connectionFailed(){
+        Banner.make(rootview, DetailLayoffActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+    }
+
     private String getBulanTahun() {
         @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
         Date date = new Date();
         return dateFormat.format(date);
     }
-
-
 
 }

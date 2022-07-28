@@ -444,7 +444,7 @@ public class DigitalSignatureActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, DigitalSignatureActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
+        Banner.make(rootview, DigitalSignatureActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
     }
 
 }

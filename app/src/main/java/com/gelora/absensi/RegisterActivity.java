@@ -1,6 +1,7 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -22,6 +24,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +56,8 @@ public class RegisterActivity extends AppCompatActivity {
     String regisStatus = "", statusPass = "hide";
     LinearLayout toLoginBTN, registerBTN, contactServiceBTN, connectBTN, closeBTN;
     BottomSheetLayout bottomSheetCS;
+    SwipeRefreshLayout refreshLayout;
+    ProgressBar loadingProgressBar;
     View rootview;
 
     @Override
@@ -65,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
         //RegisterActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(APPEARANCE_LIGHT_STATUS_BARS, APPEARANCE_LIGHT_STATUS_BARS);
 
         rootview = findViewById(android.R.id.content);
+        refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         nikED = findViewById(R.id.nikED);
         namaTV = findViewById(R.id.namaTV);
         passwordED = findViewById(R.id.passwordED);
@@ -76,6 +82,24 @@ public class RegisterActivity extends AppCompatActivity {
         contactServiceBTN = findViewById(R.id.contact_service_btn);
         bottomSheetCS = findViewById(R.id.bottom_sheet_cs);
         toLoginBTN = findViewById(R.id.to_login_btn);
+        loadingProgressBar = findViewById(R.id.loadingProgressBar);
+
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                        nikED.setText("");
+                        namaTV.setText("Nama Karyawan");
+                        passwordED.setText("");
+                        repasswordED.setText("");
+                    }
+                }, 1000);
+            }
+        });
 
         toLoginBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +128,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String nik = nikED.getText().toString();
-                getNamaKaryawan(nik);
+                if(!nik.equals("")){
+                    getNamaKaryawan(nik);
+                }
             }
 
         });
@@ -353,6 +379,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                    loadingProgressBar.setVisibility(View.VISIBLE);
                     registerFunction(nik,password);
                 }
 
@@ -521,6 +548,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                    loadingProgressBar.setVisibility(View.VISIBLE);
                     registerFunction(nik,password);
                 }
             }
@@ -598,7 +626,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-
     private void registerFunction(String nik,String password) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/register_akun";
@@ -622,15 +649,13 @@ public class RegisterActivity extends AppCompatActivity {
                                 intent.putExtra("nik_karyawan", nikKaryawan);
                                 startActivity(intent);
                                 finish();
-
                             } else {
-
+                                loadingProgressBar.setVisibility(View.GONE);
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Opps")
                                         .setContentText("Not Found!")
                                         .setConfirmText("OK")
                                         .show();
-
                             }
 
                         } catch (JSONException e) {
@@ -644,6 +669,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
+                        loadingProgressBar.setVisibility(View.GONE);
                         connectionFailed();
                     }
                 }
@@ -678,7 +704,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, RegisterActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 4000).show();
+        Banner.make(rootview, RegisterActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
     }
 
     @Override
