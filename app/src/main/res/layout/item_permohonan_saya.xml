@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:text="Permohonan Terkirim"
+                android:text="-"
                 android:textColor="#C16D02"
                 android:textSize="13dp" />
 
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
-                android:text="Permohonan Izin"
+                android:text="-"
                 android:textColor="#C16D02"
                 android:textSize="13dp"
                 android:textStyle="italic" />
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
-                android:text="Untuk tanggal 28 Juli 2022 s.d. 29 Juli 2022"
+                android:text="-"
                 android:textColor="#C16D02"
                 android:textSize="12dp"
                 android:textStyle="italic" />

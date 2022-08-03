@@ -69,8 +69,8 @@ import java.util.UUID;
 
 public class FormPermohonanIzinActivity extends AppCompatActivity {
 
-    LinearLayout markUpload, uploadBTN, uploadFilePart, markStatusSakit, markStatusIzin, izinBTN, sakitBTN, tipeChoiceBTN, viewBTN, goToHome, goToDasboard, formPart, successPart, submitBTN, backBTN, homeBTN, dateMulaiPicker, dateAkhirPicker;
-    TextView statusUploadTV, tipeChoiceTV, mulaiDateTV, akhirDateTV, namaTV, nikTV, detailTV;
+    LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadFilePart, markStatusSakit, markStatusIzin, izinBTN, sakitBTN, tipeChoiceBTN, viewBTN, goToHome, goToDasboard, formPart, successPart, submitBTN, backBTN, homeBTN, dateMulaiPicker, dateAkhirPicker;
+    TextView labelUnggahTV, statusUploadTV, tipeChoiceTV, mulaiDateTV, akhirDateTV, namaTV, nikTV, detailTV;
     String uploadStatus = "", idIzin = "", tipeIzin = "", dateChoiceMulai = "", dateChoiceAkhir = "", alasanIzin = "";
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -115,6 +115,8 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         uploadBTN = findViewById(R.id.upload_btn);
         markUpload = findViewById(R.id.mark_upload);
         statusUploadTV = findViewById(R.id.status_upload_tv);
+        labelUnggahTV = findViewById(R.id.label_unggah);
+        viewUploadBTN = findViewById(R.id.view_btn);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -139,7 +141,9 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         alasanED.setText("");
                         uploadFilePart.setVisibility(View.GONE);
                         markUpload.setVisibility(View.GONE);
+                        viewUploadBTN.setVisibility(View.GONE);
                         statusUploadTV.setText("Unggah Surat Sakit");
+                        labelUnggahTV.setText("Unggah");
                         getDataKaryawan();
                     }
                 }, 800);
@@ -1977,12 +1981,12 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_IMAGE_CAPTURE);
         // setting aspect ratio
         intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
-        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 9); // 16x9, 1x1, 3:4, 3:2
-        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 16);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 4); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 6);
         // setting maximum bitmap width and height
         intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
-        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 720);
-        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1280);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 600);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 900);
         startActivityForResult(intent, REQUEST_IMAGE);
     }
 
@@ -1991,8 +1995,8 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_GALLERY_IMAGE);
         // setting aspect ratio
         intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
-        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 9); // 16x9, 1x1, 3:4, 3:2
-        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 16);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 4); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 6);
         startActivityForResult(intent, REQUEST_IMAGE);
     }
 
@@ -2029,8 +2033,21 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
                     Log.e("PaRSE JSON", a);
                     markUpload.setVisibility(View.VISIBLE);
-                    statusUploadTV.setText("Surat sakit berhasil diunggah");
+                    viewUploadBTN.setVisibility(View.VISIBLE);
+                    statusUploadTV.setText("Berhasil diunggah");
+                    labelUnggahTV.setText("Ganti");
                     uploadStatus = "1";
+
+                    viewUploadBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(FormPermohonanIzinActivity.this, ViewImageActivity.class);
+                            intent.putExtra("url", String.valueOf(uri));
+                            intent.putExtra("kode", "form");
+                            startActivity(intent);
+                        }
+                    });
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -2056,6 +2073,38 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
             } catch (Exception exc) {
                 Log.e("PaRSE JSON", "Oke");
             }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!tipeIzin.equals("") || !dateChoiceMulai.equals("") || !dateChoiceAkhir.equals("") || !alasanIzin.equals("")){
+            new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.WARNING_TYPE)
+                    .setTitleText("Perhatian")
+                    .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
+                    .setCancelText("TIDAK")
+                    .setConfirmText("   YA   ")
+                    .showCancelButton(true)
+                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                        }
+                    })
+                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                            tipeIzin = "";
+                            dateChoiceMulai = "";
+                            dateChoiceAkhir = "";
+                            alasanIzin = "";
+                            onBackPressed();
+                        }
+                    })
+                    .show();
+        } else {
+            super.onBackPressed();
         }
     }
 

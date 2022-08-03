@@ -1468,8 +1468,13 @@ public class UserActivity extends AppCompatActivity {
         updateAvatarBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dexterCall();
                 bottomSheet.dismissSheet();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dexterCall();
+                    }
+                }, 240);
             }
         });
 
@@ -1477,50 +1482,47 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bottomSheet.dismissSheet();
-                AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
-                LayoutInflater inflater = getLayoutInflater();
-                View imageLayoutView = inflater.inflate(R.layout.show_avatar, null);
-                ImageView image = (ImageView) imageLayoutView.findViewById(R.id.dialog_imageview);
-                Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
-                        .memoryPolicy(MemoryPolicy.NO_CACHE)
-                        .into(image);
-
-                builder.setView(imageLayoutView)
-                        .setPositiveButton("Tutup", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                builder.create();
-                builder.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(UserActivity.this, ViewImageActivity.class);
+                        intent.putExtra("url", avatarPath);
+                        intent.putExtra("kode", "profile");
+                        startActivity(intent);
+                    }
+                }, 200);
             }
         });
 
         removeAvatarBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new KAlertDialog(UserActivity.this, KAlertDialog.WARNING_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Apakah anda yakin hapus foto profil?")
-                        .setCancelText("TIDAK")
-                        .setConfirmText("   YA   ")
-                        .showCancelButton(true)
-                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
-                            }
-                        })
-                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
-                                removePic();
-                            }
-                        })
-                        .show();
                 bottomSheet.dismissSheet();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new KAlertDialog(UserActivity.this, KAlertDialog.WARNING_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Yakin untuk menghapus foto profil?")
+                                .setCancelText("TIDAK")
+                                .setConfirmText("   YA   ")
+                                .showCancelButton(true)
+                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                        removePic();
+                                    }
+                                })
+                                .show();
+                    }
+                }, 240);
             }
         });
 

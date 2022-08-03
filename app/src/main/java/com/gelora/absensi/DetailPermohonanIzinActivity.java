@@ -6,10 +6,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -56,6 +58,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -71,7 +74,7 @@ import androidmads.library.qrgenearator.QRGEncoder;
 public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     TextView notedTV, appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, supervisorTV, hrdTV;
-    String uriImage, uriImage2, idIzinRecord, statusKondisi = "", kode;
+    String uriImage, uriImage2, idIzinRecord, statusKondisi = "0", kode;
     LinearLayout viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, homeBTN, approvedBTN, rejectedBTN, actionPart;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdSupervisor, qrDocument;
@@ -422,7 +425,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                 String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
                                 approvedAction();
                             } else {
-                                statusKondisi = "1";
                                 pDialog.setTitleText("Perhatian")
                                         .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")
                                         .setCancelText(" BATAL ")
@@ -438,12 +440,63 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
+                                                statusKondisi = "1";
                                                 Intent intent = new Intent(DetailPermohonanIzinActivity.this, DigitalSignatureActivity.class);
                                                 intent.putExtra("kode", "form");
                                                 startActivity(intent);
                                             }
                                         })
                                         .changeAlertType(KAlertDialog.WARNING_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void recheckSignature(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Available")){
+                                approvedAction();
+                            } else {
+                                getDataDetailPermohonan();
                             }
 
                         } catch (JSONException e) {
@@ -630,7 +683,9 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                     viewSuratSakitBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url_surat_sakit));
+                                            Intent intent = new Intent(DetailPermohonanIzinActivity.this, ViewImageActivity.class);
+                                            intent.putExtra("url", url_surat_sakit);
+                                            intent.putExtra("kode", "detail");
                                             startActivity(intent);
                                         }
                                     });
@@ -967,7 +1022,8 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if(statusKondisi.equals("1")){
-            approvedAction();
+            statusKondisi = "0";
+            recheckSignature();
         }
     }
 
@@ -1025,7 +1081,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         scanGallery(context,pictureFile.getAbsolutePath());
         return pictureFile;
     }
-
 
     private Bitmap getBitmapFromView(View view) {
         //Define a bitmap with the same size as the view

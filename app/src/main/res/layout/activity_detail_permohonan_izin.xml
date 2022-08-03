@@ -382,7 +382,7 @@
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="7dp"
-                                                    android:layout_weight=".27"
+                                                    android:layout_weight=".25"
                                                     android:gravity="right"
                                                     android:text="s/d"
                                                     android:textColor="#515151"
@@ -403,7 +403,7 @@
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginLeft="-20dp"
                                                     android:layout_marginBottom="7dp"
-                                                    android:layout_weight=".63"
+                                                    android:layout_weight=".65"
                                                     android:text=""
                                                     android:textColor="#515151"
                                                     android:textSize="12dp" />
@@ -419,7 +419,7 @@
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="7dp"
-                                                    android:layout_weight=".27"
+                                                    android:layout_weight=".25"
                                                     android:text=""
                                                     android:textColor="#515151"
                                                     android:textSize="12dp" />
@@ -439,7 +439,7 @@
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginLeft="-20dp"
                                                     android:layout_marginBottom="7dp"
-                                                    android:layout_weight=".63"
+                                                    android:layout_weight=".65"
                                                     android:text="( ..... Hari )"
                                                     android:textColor="#515151"
                                                     android:textSize="12dp" />
@@ -523,7 +523,7 @@
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
                                                         android:gravity="center"
-                                                        android:text="RANTI"
+                                                        android:text=""
                                                         android:textColor="#515151"
                                                         android:textSize="12dp"
                                                         android:visibility="gone" />
@@ -551,11 +551,11 @@
                                                         android:layout_height="50dp">
 
                                                         <TextView
-                                                            android:visibility="gone"
                                                             android:id="@+id/appove_status_hrd"
-                                                            android:background="@drawable/approved_img"
                                                             android:layout_width="match_parent"
-                                                            android:layout_height="match_parent" />
+                                                            android:layout_height="match_parent"
+                                                            android:background="@drawable/approved_img"
+                                                            android:visibility="gone" />
 
                                                     </LinearLayout>
 

@@ -334,16 +334,26 @@
                                     android:visibility="gone"
                                     android:id="@+id/upload_file_part"
                                     android:layout_width="match_parent"
-                                    android:layout_marginTop="10dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginBottom="10dp"
+                                    android:orientation="vertical"
                                     android:layout_height="wrap_content">
 
-                                    <RelativeLayout
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Surat Sakit :"/>
+
+                                    <LinearLayout
+                                        android:orientation="horizontal"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content">
 
                                         <LinearLayout
-                                            android:layout_width="match_parent"
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
                                             android:layout_height="wrap_content"
                                             android:orientation="horizontal">
 
@@ -362,12 +372,13 @@
                                                 android:layout_marginLeft="5dp"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="Unggah Surat Sakit"/>
+                                                android:text="Belum diunggah"/>
 
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:layout_width="match_parent"
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
                                             android:gravity="right"
                                             android:layout_height="wrap_content">
 
@@ -382,6 +393,7 @@
                                                 android:layout_height="wrap_content">
 
                                                 <TextView
+                                                    android:id="@+id/label_unggah"
                                                     android:layout_width="wrap_content"
                                                     android:gravity="center"
                                                     android:textColor="@color/white"
@@ -393,9 +405,29 @@
 
                                             </LinearLayout>
 
+                                            <LinearLayout
+                                                android:visibility="gone"
+                                                android:id="@+id/view_btn"
+                                                android:layout_width="wrap_content"
+                                                android:paddingTop="5dp"
+                                                android:paddingBottom="5dp"
+                                                android:paddingRight="5dp"
+                                                android:paddingLeft="5dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:background="@drawable/shape_btn_view_upload"
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                    android:layout_width="20dp"
+                                                    android:gravity="center"
+                                                    android:background="@drawable/ic_baseline_content_surat"
+                                                    android:layout_height="20dp" />
+
+                                            </LinearLayout>
+
                                         </LinearLayout>
 
-                                    </RelativeLayout>
+                                    </LinearLayout>
 
                                 </LinearLayout>
 

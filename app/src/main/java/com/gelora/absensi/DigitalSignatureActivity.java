@@ -203,6 +203,12 @@ public class DigitalSignatureActivity extends AppCompatActivity {
             }
         });
 
+        if (kodeString.equals("form")){
+            homeBTN.setVisibility(View.GONE);
+        } else {
+            homeBTN.setVisibility(View.VISIBLE);
+        }
+
         checkSignature();
 
     }

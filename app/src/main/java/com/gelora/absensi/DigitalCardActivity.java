@@ -198,7 +198,7 @@ public class DigitalCardActivity extends AppCompatActivity {
             e.printStackTrace();
             Log.i("TAG", "There was an issue saving the image.");
         }
-        scanGallery( context,pictureFile.getAbsolutePath());
+        scanGallery(context,pictureFile.getAbsolutePath());
         return pictureFile;
     }
 

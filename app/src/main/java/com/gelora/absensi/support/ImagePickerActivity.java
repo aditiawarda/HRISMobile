@@ -6,6 +6,8 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -26,6 +28,8 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
 
 import static androidx.core.content.FileProvider.getUriForFile;
@@ -46,7 +50,7 @@ public class ImagePickerActivity extends AppCompatActivity {
     public static final int REQUEST_GALLERY_IMAGE = 1;
 
     private boolean lockAspectRatio = false, setBitmapMaxWidthHeight = false;
-    private int ASPECT_RATIO_X = 16, ASPECT_RATIO_Y = 9, bitmapMaxWidth = 1000, bitmapMaxHeight = 1000;
+    private int ASPECT_RATIO_X = 4, ASPECT_RATIO_Y = 6, bitmapMaxWidth = 600, bitmapMaxHeight = 900;
     private int IMAGE_COMPRESSION = 80;
     public static String fileName;
 
@@ -139,8 +143,7 @@ public class ImagePickerActivity extends AppCompatActivity {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         if (report.areAllPermissionsGranted()) {
-                            Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                             startActivityForResult(pickPhoto, REQUEST_GALLERY_IMAGE);
                         }
                     }
@@ -235,13 +238,11 @@ public class ImagePickerActivity extends AppCompatActivity {
         File path = new File(getExternalCacheDir(), "camera");
         if (!path.exists()) path.mkdirs();
         File image = new File(path, fileName);
-        //return getUriForFile(com.dashgard.sumaappjava.imageprofilepicker.ImagePickerActivity.this, getPackageName() + ".provider", image);
         return getUriForFile(ImagePickerActivity.this, getPackageName() + ".provider", image);
     }
 
     private static String queryName(ContentResolver resolver, Uri uri) {
-        Cursor returnCursor =
-                resolver.query(uri, null, null, null, null);
+        Cursor returnCursor = resolver.query(uri, null, null, null, null);
         assert returnCursor != null;
         int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
         returnCursor.moveToFirst();
