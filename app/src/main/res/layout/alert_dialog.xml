@@ -10,9 +10,9 @@
     android:orientation="vertical"
     android:background="?attr/alertDialogDark"
     android:paddingTop="15dp"
-    android:paddingRight="18dp"
+    android:paddingRight="17dp"
     android:paddingBottom="17dp"
-    android:paddingLeft="18dp">
+    android:paddingLeft="17dp">
 
     <ImageView
         android:id="@+id/custom_image"
