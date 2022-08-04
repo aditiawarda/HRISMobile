@@ -86,7 +86,7 @@ public class NewsUpdateActivity extends AppCompatActivity {
 
     private void getNewsUpdate() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://newsapi.org/v2/top-headlines?country=id&category=technology&apiKey=d7046d646c9644318ca1feafb8b8389b";
+        final String url = "https://newsapi.org/v2/top-headlines?country=id&apiKey=d7046d646c9644318ca1feafb8b8389b";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -115,5 +115,6 @@ public class NewsUpdateActivity extends AppCompatActivity {
         requestQueue.add(request);
 
     }
+
 
 }
