@@ -35,7 +35,7 @@ import java.util.List;
 import static androidx.core.content.FileProvider.getUriForFile;
 
 public class ImagePickerActivity extends AppCompatActivity {
-    //private static final String TAG = com.dashgard.sumaappjava.imageprofilepicker.ImagePickerActivity.class.getSimpleName();
+
     private static final String TAG = com.gelora.absensi.support.ImagePickerActivity.class.getSimpleName();
     public static final String INTENT_IMAGE_PICKER_OPTION = "image_picker_option";
     public static final String INTENT_ASPECT_RATIO_X = "aspect_ratio_x";
