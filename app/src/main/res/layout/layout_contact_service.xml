@@ -44,7 +44,7 @@
                 <LinearLayout
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:background="@drawable/ic_baseline_cs"/>
+                    android:background="@drawable/call_center_img"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
