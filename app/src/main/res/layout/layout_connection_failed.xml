@@ -10,64 +10,64 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="30dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginLeft="170dp"
             android:layout_marginTop="17dp"
             android:layout_marginRight="170dp"
-            android:layout_marginLeft="170dp"
-            android:layout_height="3dp"
             android:background="#34455A64"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:orientation="vertical"
             android:paddingLeft="20dp"
-            android:paddingRight="16dp"
             android:paddingTop="13dp"
-            android:orientation="vertical">
+            android:paddingRight="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="20dp"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:paddingTop="10dp"
                 android:paddingRight="10dp"
-                android:paddingLeft="15dp"
-                android:paddingBottom="20dp"
-                android:orientation="horizontal">
+                android:paddingBottom="20dp">
 
                 <LinearLayout
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@drawable/ic_baseline_connection_off"/>
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/ic_baseline_connection_off" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="25dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textSize="20dp"
-                        android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
-                        android:text="Opps !"/>
+                        android:text="Opps !"
+                        android:textColor="@color/text_color"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="16dp"
+                        android:text="Koneksi anda terputus!"
                         android:textColor="@color/text_color"
-                        android:text="Koneksi anda terputus!"/>
+                        android:textSize="16dp" />
 
                 </LinearLayout>
 
@@ -83,9 +83,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
+                    android:text="COBA LAGI"
                     android:textColor="@color/white"
-                    android:text="COBA LAGI"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
