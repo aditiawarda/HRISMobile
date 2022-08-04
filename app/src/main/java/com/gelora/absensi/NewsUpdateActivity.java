@@ -58,7 +58,6 @@ public class NewsUpdateActivity extends AppCompatActivity {
 
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
-
         newsRV = findViewById(R.id.news_rv);
 
         newsRV.setLayoutManager(new LinearLayoutManager(this));
@@ -115,6 +114,5 @@ public class NewsUpdateActivity extends AppCompatActivity {
         requestQueue.add(request);
 
     }
-
 
 }
