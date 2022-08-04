@@ -645,7 +645,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textStyle="bold"
-                                android:text="PERMOHONAN IZIN"
+                                android:text="FORM IZIN"
                                 android:textColor="@color/white"
                                 android:textSize="15dp" />
 

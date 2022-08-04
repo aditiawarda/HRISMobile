@@ -71,7 +71,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadFilePart, markStatusSakit, markStatusIzin, izinBTN, sakitBTN, tipeChoiceBTN, viewBTN, goToHome, goToDasboard, formPart, successPart, submitBTN, backBTN, homeBTN, dateMulaiPicker, dateAkhirPicker;
     TextView labelUnggahTV, statusUploadTV, tipeChoiceTV, mulaiDateTV, akhirDateTV, namaTV, nikTV, detailTV;
-    String uploadStatus = "", idIzin = "", tipeIzin = "", dateChoiceMulai = "", dateChoiceAkhir = "", alasanIzin = "";
+    String permohonanTerkirim = "0", uploadStatus = "", idIzin = "", tipeIzin = "", dateChoiceMulai = "", dateChoiceAkhir = "", alasanIzin = "";
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     EditText alasanED;
@@ -1693,16 +1693,17 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                             String status = data.getString("status");
 
                             if(status.equals("Success")){
-                                pDialog.dismiss();
-                                successPart.setVisibility(View.VISIBLE);
-                                formPart.setVisibility(View.GONE);
                                 JSONObject data_izin = data.getJSONObject("data");
                                 String id = data_izin.getString("id");
                                 idIzin = id;
                                 if(tipeIzin.equals("5")){
                                     uploadSuratSakit();
+                                } else {
+                                    permohonanTerkirim = "1";
+                                    pDialog.dismiss();
+                                    successPart.setVisibility(View.VISIBLE);
+                                    formPart.setVisibility(View.GONE);
                                 }
-
                             } else if (status.equals("Available")){
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
@@ -1730,6 +1731,11 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         // error
                         Log.d("Error.Response", error.toString());
                         connectionFailed();
+                        successPart.setVisibility(View.GONE);
+                        formPart.setVisibility(View.VISIBLE);
+                        pDialog.setTitleText("Gagal Terkirim")
+                                .setConfirmText("OK")
+                                .changeAlertType(KAlertDialog.ERROR_TYPE);
                     }
                 }
         )
@@ -2062,6 +2068,12 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
             Toast.makeText(this, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
         } else {
             try {
+
+                permohonanTerkirim = "1";
+                pDialog.dismiss();
+                successPart.setVisibility(View.VISIBLE);
+                formPart.setVisibility(View.GONE);
+
                 String uploadId = UUID.randomUUID().toString();
                 new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
                         .addFileToUpload(path1, "file") //Adding file
@@ -2072,6 +2084,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         .startUpload();
             } catch (Exception exc) {
                 Log.e("PaRSE JSON", "Oke");
+                pDialog.dismiss();
             }
         }
     }
@@ -2079,30 +2092,34 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (!tipeIzin.equals("") || !dateChoiceMulai.equals("") || !dateChoiceAkhir.equals("") || !alasanIzin.equals("")){
-            new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.WARNING_TYPE)
-                    .setTitleText("Perhatian")
-                    .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
-                    .setCancelText("TIDAK")
-                    .setConfirmText("   YA   ")
-                    .showCancelButton(true)
-                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                        }
-                    })
-                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                            tipeIzin = "";
-                            dateChoiceMulai = "";
-                            dateChoiceAkhir = "";
-                            alasanIzin = "";
-                            onBackPressed();
-                        }
-                    })
-                    .show();
+            if (permohonanTerkirim.equals("1")){
+                super.onBackPressed();
+            } else {
+                new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                tipeIzin = "";
+                                dateChoiceMulai = "";
+                                dateChoiceAkhir = "";
+                                alasanIzin = "";
+                                onBackPressed();
+                            }
+                        })
+                        .show();
+            }
         } else {
             super.onBackPressed();
         }

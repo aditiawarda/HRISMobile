@@ -682,6 +682,7 @@ public class UserActivity extends AppCompatActivity {
                                 String logout_part = data.getString("logout_part");
                                 String chat_room = data.getString("chat_room");
                                 String web_btn = data.getString("web_btn");
+
                                 batasBagDept.setVisibility(View.VISIBLE);
                                 departemenTV.setText(department);
                                 bagianTV.setText(bagian);
@@ -2145,11 +2146,11 @@ public class UserActivity extends AppCompatActivity {
                         try {
                             String status = response.getString("status");
                             String version = response.getString("version");
-                            String popup = response.getString("pop_up");
+                            String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
                                 String currentVersion = "1.1.33"; //harus disesuaikan
-                                if (!currentVersion.equals(version) && popup.equals("1")){
+                                if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateBTN.setVisibility(View.VISIBLE);
                                     updateBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override

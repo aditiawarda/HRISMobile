@@ -52,7 +52,7 @@
                         android:id="@+id/image_produk"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/icon_app"
+                        android:background="@drawable/icon_app_update"
                         android:scaleType="centerCrop" />
 
                 </androidx.cardview.widget.CardView>

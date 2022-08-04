@@ -1055,7 +1055,7 @@
                                         android:layout_height="wrap_content"
                                         android:textStyle="bold"
                                         android:textColor="#DC734D"
-                                        android:text="Permohonan Izin"/>
+                                        android:text="Form Izin"/>
 
                                 </LinearLayout>
 
