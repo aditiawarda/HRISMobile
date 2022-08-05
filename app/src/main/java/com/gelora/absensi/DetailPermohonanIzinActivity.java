@@ -547,12 +547,12 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                 getDataDetailPermohonan();
                                 actionPart.setVisibility(View.GONE);
                                 pDialog.setTitleText("Berhasil Disetujui")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                             } else {
                                 actionPart.setVisibility(View.VISIBLE);
                                 pDialog.setTitleText("Gagal Disetujui")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }
 
@@ -607,12 +607,12 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                 getDataDetailPermohonan();
                                 actionPart.setVisibility(View.GONE);
                                 pDialog.setTitleText("Berhasil Ditolak")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                             } else {
                                 actionPart.setVisibility(View.VISIBLE);
                                 pDialog.setTitleText("Gagal Ditolak")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }
 

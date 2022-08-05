@@ -365,7 +365,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             i = -1;
                                             pDialog.setTitleText("Sesi Absensi Dibuka")
                                                     .setContentText("Anda bisa melakukan absensi hari ini.")
-                                                    .setConfirmText("OK")
+                                                    .setConfirmText("    OK    ")
                                                     .changeAlertType(KAlertDialog.SUCCESS_TYPE);
 
                                             bukaSesi();
@@ -1419,7 +1419,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Hari ini anda sudah melakukan Check In!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .showCancelButton(true)
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
@@ -1605,7 +1605,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         i = -1;
                                         pDialog.setTitleText("Sesi Absensi Dibuka")
                                                 .setContentText("Anda bisa melakukan absensi hari ini.")
-                                                .setConfirmText("OK")
+                                                .setConfirmText("    OK    ")
                                                 .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                                         checkIzin();
                                     }
@@ -1727,7 +1727,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 refreshData();
 
                                 pDialog.setTitleText("Anda Diliburkan")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
 
                             }
@@ -3527,7 +3527,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             checkoutRecord(id_checkout);
 
                             pDialog.setTitleText("Check Out Berhasil")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .changeAlertType(KAlertDialog.SUCCESS_TYPE);
 
                         } catch (JSONException e) {
@@ -3697,7 +3697,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 dialodWarning = new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                                         .setTitleText("Perhatian")
                                                         .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
-                                                        .setConfirmText("OK");
+                                                        .setConfirmText("    OK    ");
                                                 dialodWarning.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                     @Override
                                                     public void onClick(KAlertDialog sDialog) {
@@ -3730,7 +3730,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                                             .setTitleText("Perhatian")
                                                             .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
-                                                            .setConfirmText("OK")
+                                                            .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
                                                                 public void onClick(KAlertDialog sDialog) {
@@ -3789,7 +3789,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     dialodWarning = new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                                             .setTitleText("Perhatian")
                                                             .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
-                                                            .setConfirmText("OK");
+                                                            .setConfirmText("    OK    ");
                                                     dialodWarning.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                         @Override
                                                         public void onClick(KAlertDialog sDialog) {
@@ -3822,7 +3822,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                                                 .setTitleText("Perhatian")
                                                                 .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
-                                                                .setConfirmText("OK")
+                                                                .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
                                                                     public void onClick(KAlertDialog sDialog) {
@@ -3890,7 +3890,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     dialodWarning = new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                                             .setTitleText("Perhatian")
                                                             .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
-                                                            .setConfirmText("OK");
+                                                            .setConfirmText("    OK    ");
                                                     dialodWarning.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                         @Override
                                                         public void onClick(KAlertDialog sDialog) {
@@ -3923,7 +3923,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                                                 .setTitleText("Perhatian")
                                                                 .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
-                                                                .setConfirmText("OK")
+                                                                .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
                                                                     public void onClick(KAlertDialog sDialog) {
@@ -4111,7 +4111,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                 if (dialogAktif.equals("1")){
                                     pDialog.setTitleText("Check In Berhasil")
-                                            .setConfirmText("OK")
+                                            .setConfirmText("    OK    ")
                                             .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                                     dialogAktif = "0";
                                 }

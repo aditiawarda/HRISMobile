@@ -241,7 +241,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Masukkan data!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -249,7 +249,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Masukkan NIK dan Password!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -259,7 +259,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Masukkan NIK dan Re-Password!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -267,7 +267,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Masukkan NIK!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = nikED;
                                 cancel = true;
@@ -279,7 +279,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("NIK tidak terdaftar dan Password kosong!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -287,7 +287,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("NIK tidak terdaftar dan lenkapi Password!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -297,7 +297,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("NIK tidak terdaftar dan lengkapi Password!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -306,7 +306,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                             .setTitleText("Perhatian")
                                             .setContentText("NIK tidak terdaftar dan Password tidak cocok!")
-                                            .setConfirmText("OK")
+                                            .setConfirmText("    OK    ")
                                             .show();
                                     fokus = repasswordED;
                                     cancel = true;
@@ -315,13 +315,13 @@ public class RegisterActivity extends AppCompatActivity {
                                         new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                                 .setTitleText("Perhatian")
                                                 .setContentText("Akun sudah teregistrasi, silakan Login!")
-                                                .setConfirmText("OK")
+                                                .setConfirmText("    OK    ")
                                                 .show();
                                     } else {
                                         new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                                 .setTitleText("Perhatian")
                                                 .setContentText("NIK tidak terdaftar!")
-                                                .setConfirmText("OK")
+                                                .setConfirmText("    OK    ")
                                                 .show();
                                     }
                                     fokus = namaTV;
@@ -336,7 +336,7 @@ public class RegisterActivity extends AppCompatActivity {
                             new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Lengkapi Password dan Re-Passwword!")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .show();
                             fokus = repasswordED;
                             cancel = true;
@@ -344,7 +344,7 @@ public class RegisterActivity extends AppCompatActivity {
                             new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Lengkapi Password!")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .show();
                             fokus = passwordED;
                             cancel = true;
@@ -354,7 +354,7 @@ public class RegisterActivity extends AppCompatActivity {
                             new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Lengkapi Re-Password!")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .show();
                             fokus = repasswordED;
                             cancel = true;
@@ -363,7 +363,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Password tidak cocok!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -410,7 +410,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Masukkan data!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -418,7 +418,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Masukkan NIK dan Password!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -428,7 +428,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Masukkan NIK dan Re-Password!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -436,7 +436,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Masukkan NIK!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = nikED;
                                 cancel = true;
@@ -448,7 +448,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("NIK tidak terdaftar dan Password kosong!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -456,7 +456,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("NIK tidak terdaftar dan lenkapi Password!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -466,7 +466,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("NIK tidak terdaftar dan lengkapi Password!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -475,7 +475,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                             .setTitleText("Perhatian")
                                             .setContentText("NIK tidak terdaftar dan Password tidak cocok!")
-                                            .setConfirmText("OK")
+                                            .setConfirmText("    OK    ")
                                             .show();
                                     fokus = repasswordED;
                                     cancel = true;
@@ -484,13 +484,13 @@ public class RegisterActivity extends AppCompatActivity {
                                         new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                                 .setTitleText("Perhatian")
                                                 .setContentText("Akun sudah teregistrasi, silakan Login!")
-                                                .setConfirmText("OK")
+                                                .setConfirmText("    OK    ")
                                                 .show();
                                     } else {
                                         new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                                 .setTitleText("Perhatian")
                                                 .setContentText("NIK tidak terdaftar!")
-                                                .setConfirmText("OK")
+                                                .setConfirmText("    OK    ")
                                                 .show();
                                     }
                                     fokus = namaTV;
@@ -505,7 +505,7 @@ public class RegisterActivity extends AppCompatActivity {
                             new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Lengkapi Password dan Re-Passwword!")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .show();
                             fokus = repasswordED;
                             cancel = true;
@@ -513,7 +513,7 @@ public class RegisterActivity extends AppCompatActivity {
                             new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Lengkapi Password!")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .show();
                             fokus = passwordED;
                             cancel = true;
@@ -523,7 +523,7 @@ public class RegisterActivity extends AppCompatActivity {
                             new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Lengkapi Re-Password!")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .show();
                             fokus = repasswordED;
                             cancel = true;
@@ -532,7 +532,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Password tidak cocok!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
                                 cancel = true;
@@ -583,7 +583,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Akun sudah teregistrasi!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                             } else {
                                 regisStatus = "notfound";
@@ -654,7 +654,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Opps")
                                         .setContentText("Not Found!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                             }
 

@@ -334,7 +334,7 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                                 if (kodeString.equals("form")){
                                     pDialog.setTitleText("Berhasil Disimpan")
                                             .setContentText("Tanda tangan digital berhasil disimpan")
-                                            .setConfirmText("OK")
+                                            .setConfirmText("    OK    ")
                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                 @Override
                                                 public void onClick(KAlertDialog sDialog) {
@@ -347,13 +347,13 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                                 } else {
                                     pDialog.setTitleText("Berhasil Disimpan")
                                             .setContentText("Tanda tangan digital berhasil disimpan")
-                                            .setConfirmText("OK")
+                                            .setConfirmText("    OK    ")
                                             .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                                 }
                             } else {
                                 pDialog.setTitleText("Gagal Disimpan")
                                         .setContentText("Tanda tangan digital gagal disimpan")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }
 

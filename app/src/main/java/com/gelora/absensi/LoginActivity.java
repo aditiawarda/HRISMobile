@@ -142,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
                     new KAlertDialog(LoginActivity.this, KAlertDialog.WARNING_TYPE)
                             .setTitleText("Perhatian")
                             .setContentText("Masukkan Password!")
-                            .setConfirmText("OK")
+                            .setConfirmText("    OK    ")
                             .show();
                 } else {
                     if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL) {
@@ -192,7 +192,7 @@ public class LoginActivity extends AppCompatActivity {
                         new KAlertDialog(LoginActivity.this, KAlertDialog.WARNING_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Masukkan NIK dan Password!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .show();
                         fokus = nikED;
                         cancel = true;
@@ -200,7 +200,7 @@ public class LoginActivity extends AppCompatActivity {
                         new KAlertDialog(LoginActivity.this, KAlertDialog.WARNING_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Masukkan NIK!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .show();
                         fokus = nikED;
                         cancel = true;
@@ -210,7 +210,7 @@ public class LoginActivity extends AppCompatActivity {
                         new KAlertDialog(LoginActivity.this, KAlertDialog.WARNING_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Masukkan NIK dan Password!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .show();
                         fokus = passwordED;
                         cancel = true;
@@ -218,7 +218,7 @@ public class LoginActivity extends AppCompatActivity {
                         new KAlertDialog(LoginActivity.this, KAlertDialog.WARNING_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Masukkan Password!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .show();
                         fokus = passwordED;
                         cancel = true;
@@ -291,7 +291,7 @@ public class LoginActivity extends AppCompatActivity {
                         new KAlertDialog(LoginActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText(status+"!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .show();
 
                     }
@@ -381,7 +381,7 @@ public class LoginActivity extends AppCompatActivity {
                         new KAlertDialog(LoginActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText(status+"!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .show();
 
                     }
@@ -432,7 +432,7 @@ public class LoginActivity extends AppCompatActivity {
                                 new KAlertDialog(LoginActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("NIK tidak terdaftar!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .show();
                             } else {
                                 loadingProgressBar.setVisibility(View.GONE);

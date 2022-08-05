@@ -399,7 +399,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Tanggal mulai tidak bisa lebih besar dari tanggal akhir. Harap ulangi!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
                                     public void onClick(KAlertDialog sDialog) {
@@ -601,7 +601,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Tanggal mulai tidak bisa lebih besar dari tanggal akhir. Harap ulangi!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
                                     public void onClick(KAlertDialog sDialog) {
@@ -807,7 +807,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Tanggal akhir tidak bisa lebih kecil dari tanggal mulai. Harap ulangi!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
                                     public void onClick(KAlertDialog sDialog) {
@@ -1009,7 +1009,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Tanggal akhir tidak bisa lebih kecil dari tanggal mulai. Harap ulangi!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
                                     public void onClick(KAlertDialog sDialog) {
@@ -1180,7 +1180,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap unggah surat sakit!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1195,7 +1195,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi alasan!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1208,7 +1208,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi alasan dan unggah surat sakit!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1224,7 +1224,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi tanggal akhir!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1237,7 +1237,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi tanggal akhir dan unggah surat sakit!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1252,7 +1252,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi tanggal akhir dan alasan!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1265,7 +1265,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi tanggal akhir, alasan dan unggah surat sakit!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1284,7 +1284,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi tanggal mulai!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1297,7 +1297,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi tanggal mulai dan unggah surat sakit!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1312,7 +1312,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi tanggal mulai dan alasan!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1325,7 +1325,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi tanggal mulai, alasan dan unggah surat sakit!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1341,7 +1341,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi tanggal mulai dan tanggal akhir!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1354,7 +1354,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi tanggal mulai, tanggal akhir dan unggah surat sakit!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1369,7 +1369,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi tanggal mulai, tanggal akhir dan alasan!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1381,7 +1381,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Harap isi tanggal mulai, tanggal akhir, alasan dan unggah surat sakit!")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
@@ -1463,7 +1463,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                             new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Harap isi alasan!")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                         @Override
                                         public void onClick(KAlertDialog sDialog) {
@@ -1477,7 +1477,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                             new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Harap isi tanggal akhir!")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                         @Override
                                         public void onClick(KAlertDialog sDialog) {
@@ -1490,7 +1490,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                             new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Harap isi tanggal akhir dan alasan!")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                         @Override
                                         public void onClick(KAlertDialog sDialog) {
@@ -1507,7 +1507,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                             new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Harap isi tanggal mulai!")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                         @Override
                                         public void onClick(KAlertDialog sDialog) {
@@ -1520,7 +1520,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                             new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Harap isi tanggal mulai dan alasan!")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                         @Override
                                         public void onClick(KAlertDialog sDialog) {
@@ -1534,7 +1534,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                             new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Harap isi tanggal mulai dan tanggal akhir!")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                         @Override
                                         public void onClick(KAlertDialog sDialog) {
@@ -1547,7 +1547,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                             new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Harap isi tanggal mulai, tanggal akhir dan alasan!")
-                                    .setConfirmText("OK")
+                                    .setConfirmText("    OK    ")
                                     .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                         @Override
                                         public void onClick(KAlertDialog sDialog) {
@@ -1566,7 +1566,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Harap isi tipe izin!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
                                     public void onClick(KAlertDialog sDialog) {
@@ -1579,7 +1579,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Harap isi tipe izin dan alasan!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
                                     public void onClick(KAlertDialog sDialog) {
@@ -1593,7 +1593,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Harap isi tipe izin dan tanggal akhir!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
                                     public void onClick(KAlertDialog sDialog) {
@@ -1606,7 +1606,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Harap isi tipe izin, tanggal akhir dan alasan!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
                                     public void onClick(KAlertDialog sDialog) {
@@ -1623,7 +1623,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Harap isi tipe izin dan tanggal mulai!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
                                     public void onClick(KAlertDialog sDialog) {
@@ -1636,7 +1636,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Harap isi tipe izin, tanggal mulai dan alasan!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
                                     public void onClick(KAlertDialog sDialog) {
@@ -1650,7 +1650,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Harap isi tipe izin, tanggal mulai dan tanggal akhir!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
                                     public void onClick(KAlertDialog sDialog) {
@@ -1663,7 +1663,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Harap isi semua data!")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
                                     public void onClick(KAlertDialog sDialog) {
@@ -1709,13 +1709,13 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 formPart.setVisibility(View.VISIBLE);
                                 pDialog.setTitleText("Gagal Terkirim")
                                         .setContentText("Permohonan serupa sudah anda ajukan sebelumnya, harap tunggu persetujuan Kepala Bagian/Supervisor")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
                                 pDialog.setTitleText("Gagal Terkirim")
-                                        .setConfirmText("OK")
+                                        .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }
 
@@ -1734,7 +1734,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         successPart.setVisibility(View.GONE);
                         formPart.setVisibility(View.VISIBLE);
                         pDialog.setTitleText("Gagal Terkirim")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .changeAlertType(KAlertDialog.ERROR_TYPE);
                     }
                 }

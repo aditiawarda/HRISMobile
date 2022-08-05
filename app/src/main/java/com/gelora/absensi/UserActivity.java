@@ -1407,7 +1407,7 @@ public class UserActivity extends AppCompatActivity {
                     public void onFinish() {
                         i = -1;
                         pDialog.setTitleText("Unggah Berhasil")
-                                .setConfirmText("OK")
+                                .setConfirmText("    OK    ")
                                 .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                         bottomSheet.dismissSheet();
                         getDataKaryawan();
@@ -1601,7 +1601,7 @@ public class UserActivity extends AppCompatActivity {
                                     public void onFinish() {
                                         i = -1;
                                         pDialog.setTitleText("Foto Berhasil Dihapus")
-                                                .setConfirmText("OK")
+                                                .setConfirmText("    OK    ")
                                                 .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                                         getDataKaryawan();
                                     }
