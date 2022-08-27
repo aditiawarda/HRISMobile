@@ -88,6 +88,7 @@ public class DetailHadirActivity extends AppCompatActivity {
 
         dataHadirRV.setLayoutManager(new LinearLayoutManager(this));
         dataHadirRV.setHasFixedSize(true);
+        dataHadirRV.setNestedScrollingEnabled(false);
         dataHadirRV.setItemAnimator(new DefaultItemAnimator());
 
         Glide.with(getApplicationContext())

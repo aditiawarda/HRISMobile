@@ -89,6 +89,7 @@ public class DetailLayoffActivity extends AppCompatActivity {
 
         dataLayoffRV.setLayoutManager(new LinearLayoutManager(this));
         dataLayoffRV.setHasFixedSize(true);
+        dataLayoffRV.setNestedScrollingEnabled(false);
         dataLayoffRV.setItemAnimator(new DefaultItemAnimator());
 
         Glide.with(getApplicationContext())

@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/debug/res/menu/action_overflow.xml" value="0.10431808465156049" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/debug/res/menu/bottom_nav_menu.xml" value="0.10431808465156049" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/debug/res/menu/dropdown_menu.xml" value="0.10431808465156049" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/debug/res/menu/menu_opsi_pengiriman.xml" value="0.10431808465156049" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/debug/res/menu/menu_option.xml" value="0.16" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-v24/shape_btn_capture.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-v24/shape_refresh_ss_off.xml" value="0.103" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-v24/shape_ring_notification_home.xml" value="0.103" />
@@ -12,24 +17,34 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/ic_baseline_laptop.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/ic_baseline_late.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/ic_baseline_no_checkout.xml" value="0.104" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/ic_baseline_no_data.xml" value="0.102" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/ic_baseline_save.xml" value="0.159" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/ic_baseline_send.xml" value="0.1025" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/ic_baseline_send_form.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/ic_success_tick.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_action_bar.xml" value="0.159" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_bar_profile_notify.xml" value="0.107" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_bg_input_massage.xml" value="0.1" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_btn_approved.xml" value="0.159" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_btn_remove.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_btn_upload.xml" value="0.1045" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_btn_view.xml" value="0.1045" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_fourth_btn.xml" value="0.18" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_item_chat_list.xml" value="0.1" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_message_fill.xml" value="0.102" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_monitoring_detail.xml" value="0.104" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_new_chat.xml" value="0.102" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_notification_mark.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_notifikasi.xml" value="0.159" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_pen_black.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_pen_blue.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_pen_red.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_profile_bottom.xml" value="0.104" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_receiver_chat.xml" value="0.102" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_refresh_ss.xml" value="0.2015" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_ring_close.xml" value="0.102" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_search.xml" value="0.102" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_sender_chat.xml" value="0.102" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_success.xml" value="0.169" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/shape_third_btn.xml" value="0.152" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable-xhdpi/success_bow.xml" value="0.104" />
@@ -39,20 +54,26 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_content_surat.xml" value="0.144" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_date_akhir.xml" value="0.1025" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_date_mulai.xml" value="0.1025" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_emoji.xml" value="0.107" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_mark_alpha.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_mark_izin.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_mark_layoff.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_notifications_icon.xml" value="0.104" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_person_search.xml" value="0.102" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_save.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_save_permohonan.xml" value="0.159" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_search_2.xml" value="0.104" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_search_3.xml" value="0.102" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_send.xml" value="0.1025" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_send_form.xml" value="0.1025" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_time_kelebihan_jam.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_time_last_history.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_upload_file.xml" value="0.159" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/ic_baseline_work_last_history.xml" value="0.104" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/scollbar_style.xml" value="0.102" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_bar_chat.xml" value="0.107" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_bar_profile_notify.xml" value="0.159" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_bg_input_massage.xml" value="0.1" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_btn_approved.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_btn_cancel.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_btn_rejected.xml" value="0.104" />
@@ -60,9 +81,13 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_btn_upload.xml" value="0.159" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_btn_view.xml" value="0.169" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_btn_view_upload.xml" value="0.1045" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_date_chat.xml" value="0.107" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_detail_permohonan.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_fourth_btn.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_input_form.xml" value="0.1015" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_item_chat_list.xml" value="0.1" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_message_fill.xml" value="0.107" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_new_chat.xml" value="0.107" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_notification_mark.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_notifikasi.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_notify.xml" value="0.146" />
@@ -75,9 +100,15 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_pen_blue_choice.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_pen_red.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_pen_red_choice.xml" value="0.104" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_receiver_chat.xml" value="0.1245" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_ring_count_chat.xml" value="0.118" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_ring_success.xml" value="0.104" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_search_contact.xml" value="0.102" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_sender_chat.xml" value="0.1245" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/drawable/shape_success.xml" value="0.104" />
-        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_company.xml" value="0.33" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_chat_contact.xml" value="0.16" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_chat_splash_screen.xml" value="0.15904232578024796" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_company.xml" value="0.16" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_covid.xml" value="0.17222222222222222" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_detail_hadir.xml" value="0.15307971014492755" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_detail_kelebihan_jam.xml" value="0.17222222222222222" />
@@ -93,6 +124,7 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_history.xml" value="0.16" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_image_picker.xml" value="0.10740740740740741" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_image_surat_sakit.xml" value="0.10740740740740741" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_list_chat_mate.xml" value="0.18" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_list_notifikasi.xml" value="0.18" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_login.xml" value="0.16" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_maps.xml" value="0.2957486136783734" />
@@ -107,6 +139,9 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_user.xml" value="0.1" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/activity_view_image.xml" value="0.18" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/alert_dialog.xml" value="0.10601851851851851" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/item_chat.xml" value="0.5" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/item_chat_contact.xml" value="0.22" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/item_chat_mate.xml" value="0.2740619902120718" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/item_data_alpa.xml" value="0.15307971014492755" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/item_data_hadir.xml" value="0.15307971014492755" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/item_data_izin.xml" value="0.15307971014492755" />
@@ -135,6 +170,7 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/layout_update_app.xml" value="0.17" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/show_avatar.xml" value="0.17255434782608695" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/layout/view_surat_sakit.xml" value="0.16064814814814815" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/AbsensiApp/app/src/main/res/menu/menu_option.xml" value="0.10431808465156049" />
       </map>
     </option>
   </component>

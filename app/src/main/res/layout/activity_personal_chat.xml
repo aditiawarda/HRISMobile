@@ -7,170 +7,233 @@
     android:fitsSystemWindows="true"
     tools:context=".PersonalChatActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:clipToPadding="false"
-        android:background="@color/colorPrimaryDark"
-        android:elevation="20dp"
-        android:outlineAmbientShadowColor="@color/colorAccent"
-        android:outlineSpotShadowColor="@color/colorAccent"
-        android:shadowDx="4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:adjustViewBounds="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/backpress_btn"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.272" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/partner_pic"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignStart="@+id/imageView"
-            android:layout_alignTop="@+id/imageView"
-            android:layout_alignEnd="@+id/imageView"
-            android:layout_alignBottom="@+id/imageView"
-            android:src="@drawable/default_profile"
-            tools:ignore="MissingConstraints"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-        <TextView
-            android:id="@+id/partner_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:shadowColor="#898A89"
-            android:layout_marginBottom="3dp"
-            android:text="Nama Karyawan"
-            android:textColor="@color/white"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.52" />
-
-        <ImageButton
-            android:id="@+id/backpress_btn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:adjustViewBounds="true"
-            android:cropToPadding="true"
-            android:scaleType="centerInside"
-            android:background="@drawable/btn_effect"
-            android:src="@drawable/ic_baseline_back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/more_btn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/btn_effect"
-            android:src="@drawable/ic_baseline_more"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:focusableInTouchMode="true"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        tools:layout_editor_absoluteX="-2dp">
-
-        <ListView
-            android:id="@+id/messages_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:divider="#fff" />
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_chat_image"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/message_et"
-                android:layout_width="0dp"
-                android:layout_weight=".80"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="10dp"
-                android:paddingStart="17dp"
-                android:paddingEnd="17dp"
-                android:background="@drawable/shape_point"
-                android:imeOptions="flagNoEnterAction"
-                android:hint="Kirim pesan"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingHorizontal="10dp"
-                android:text="" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:clipToPadding="false"
+                android:background="@color/colorPrimaryDark"
+                android:elevation="20dp"
+                android:outlineAmbientShadowColor="@color/colorAccent"
+                android:outlineSpotShadowColor="@color/colorAccent"
+                android:shadowDx="4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:layout_width="0.dp"
-                android:layout_weight=".20"
-                android:gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/back_btn"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:scaleType="centerInside"
+                        android:background="@drawable/btn_effect"
+                        android:src="@drawable/ic_baseline_arrow_back" />
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/partner_pic"
+                        android:layout_gravity="center"
+                        android:layout_width="37dp"
+                        android:layout_height="37dp"
+                        android:layout_alignStart="@+id/imageView"
+                        android:layout_alignTop="@+id/imageView"
+                        android:layout_alignEnd="@+id/imageView"
+                        android:layout_alignBottom="@+id/imageView"
+                        android:background="@drawable/user_default_image"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/partner_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
 
                 <ImageButton
-                    android:id="@+id/send_message_btn"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_toEndOf="@+id/message_et"
+                    android:id="@+id/more_btn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="16dp"
                     android:background="@drawable/btn_effect"
-                    android:src="@drawable/ic_baseline_send"
-                    android:scaleType="fitCenter" />
+                    android:src="@drawable/ic_baseline_more"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <RelativeLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/chat_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollIndicators="right"
+                        android:scrollbars="vertical"
+                        android:scrollbarSize="4dp"
+                        android:scrollbarThumbVertical="@drawable/scollbar_style"
+                        android:scrollbarAlwaysDrawVerticalTrack="true"
+                        android:paddingBottom="69dp">
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/linearLayout2"
+            android:gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-3dp"
+                    android:layout_marginRight="-3dp"
+                    android:layout_marginBottom="-3dp"
+                    android:background="@drawable/shape_bg_input_massage"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp">
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@drawable/ic_baseline_emoji" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/message_et"
+                            android:layout_width="0.dp"
+                            android:layout_weight=".80"
+                            android:animateLayoutChanges="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/shape_message_fill"
+                            android:hint="Ketik pesan"
+                            android:imeOptions="flagNoEnterAction"
+                            android:maxHeight="100dp"
+                            android:paddingHorizontal="10dp"
+                            android:paddingStart="17dp"
+                            android:paddingTop="10dp"
+                            android:paddingEnd="17dp"
+                            android:paddingBottom="10dp"
+                            android:scrollbars="vertical"
+                            android:text="" />
+
+                        <LinearLayout
+                            android:id="@+id/loadingProgressBar"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="7dp"
+                            android:gravity="center"
+                            android:layout_marginBottom="10dp">
+
+                            <ProgressBar
+                                android:indeterminateTint="@color/colorPrimaryDark"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/send_btn_part"
+                            android:visibility="gone"
+                            android:animateLayoutChanges="true"
+                            android:layout_width="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:layout_height="match_parent">
+
+                            <ImageButton
+                                android:id="@+id/send_message_btn"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginEnd="7dp"
+                                android:layout_toEndOf="@+id/message_et"
+                                android:background="@drawable/btn_effect"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/ic_baseline_send" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

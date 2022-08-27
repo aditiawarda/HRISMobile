@@ -108,6 +108,7 @@ public class HistoryActivity extends AppCompatActivity {
 
         historyAbsenRV.setLayoutManager(new LinearLayoutManager(this));
         historyAbsenRV.setHasFixedSize(true);
+        historyAbsenRV.setNestedScrollingEnabled(false);
         historyAbsenRV.setItemAnimator(new DefaultItemAnimator());
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);

@@ -116,7 +116,7 @@
                                 android:textSize="14dp"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
-                                android:text="PT. Gelora Aksara Pratama merupakan bagian dari Penerbit Erlangga Group. Dimulai dari bisnis percetakan sederhana pada tanggal 1 Juni 1987, Gelora Aksara Pratama didirikan hanya dengan dua mesin cetak bekas, dioperasikan oleh 20 karyawan di sebuah pabrik kecil. Awalnya dibangun untuk mendukung bisnis yang berkembang pesat dari sister company kami, Penerbit Erlangga, yang kini menjadi salah satu perusahaan penerbitan terkemuka di Indonesia (erlangga.co.id). Sejak didirikan, Gelora Aksara Pratama selalu berusaha untuk menjadi perusahaan percetakan berteknologi maju, serta memberikan layanan terbaik kepada setiap pelanggan."/>
+                                android:text="PT. Gelora Aksara Pratama merupakan salah satu perusahaan yang tergabung dalam Erlangga Group. Perusahaan lainnya adalah PT Penerbit Erlangga Mahameru (Penerbit Buku), PT Eureka (Logistik dan Retail), dan PT Erlass Prokreatif Indonesia (Pendidikan)."/>
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -124,7 +124,171 @@
                                 android:textSize="14dp"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
-                                android:text="Setelah lebih dari dua dekade, kami telah berkembang untuk memahami kompleksitas dalam bidang percetakan. Melalui pengalaman yang tak terhitung jumlahnya dan dukungan tak ternilai dari klien dan mitra kami, kami terus belajar, serta terus meningkatkan mutu."/>
+                                android:text="Erlangga Group diawali dengan pendirian PT Penerbit Erlangga pada tahun 1952 oleh Bapak Dr. Marulam Hutauruk, SH di tengah keprihatinan kondisi pendidikan nasional saat para siswa Indonesia kesulitan memperoleh buku-buku untuk belajar. Keprihatinan ini memotivasi Penerbit Erlangga untuk berkarya dengan melahirkan banyak buku ilmu pengetahuan."/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14dp"
+                                android:layout_marginBottom="5dp"
+                                android:justificationMode="inter_word"
+                                android:text="Bapak Dr. Marulam Hutauruk, SH lahir tanggal 7 November 1915 di Tarutung, Tapanuli Utara. Beliau disebut tokoh pendidikan sejati karena pernah menjadi guru, dosen, dan rektor universitas terkemuka di Indonesia serta aktif di IKAPI. Bapak Dr. Marulam Hutauruk menjadi Doktor Ilmu Hukum Universitas Indonesia pada tahun 1953. Peran Beliau dalam bidang pendidikan sangat banyak antara lain :"/>
+
+                            <LinearLayout
+                                android:layout_marginBottom="10dp"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".10"
+                                        android:textSize="14dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="1."/>
+
+                                    <TextView
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".90"
+                                        android:textSize="14dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="Guru SMP Pelajar Pejuang di Yogyakarta tahun 1945."/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".10"
+                                        android:textSize="14dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="2."/>
+
+                                    <TextView
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".90"
+                                        android:textSize="14dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="Kepala Sekolah SMA 5 Jakarta tahun 1952 dan turut membangun IKIP."/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".10"
+                                        android:textSize="14dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="3."/>
+
+                                    <TextView
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".90"
+                                        android:textSize="14dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="Direktur Utama Balai Pustaka tahun 1959 - 1964."/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".10"
+                                        android:textSize="14dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="4."/>
+
+                                    <TextView
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".90"
+                                        android:textSize="14dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="Ketua Umum IKAPI Pusat periode 1960 - 1968."/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".10"
+                                        android:textSize="14dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="5."/>
+
+                                    <TextView
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".90"
+                                        android:textSize="14dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="Sekjen Depdikbud 1965 - 1967."/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".10"
+                                        android:textSize="14dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="6."/>
+
+                                    <TextView
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".90"
+                                        android:textSize="14dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="Rektor Universitas Kristen Indonesia (UKI) 1968 - 1972."/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14dp"
+                                android:layout_marginBottom="10dp"
+                                android:justificationMode="inter_word"
+                                android:text="Komitmen Penerbit Erlangga tampak dari misinya : &quot;Melayani ilmu pengetahuan&quot;. Sebagai &quot;pelayan&quot;, Penerbit Erlangga berupaya tetap tanggap terhadap arus reformasi pendidikan. Untuk itulah, revisi, pembaruan, dan penerbitan buku-buku baru terus dilakukan dan dilanjutkan generasi ke-2, yaitu Bapak Gunawan Hutauruk, MBA pada tahun 1980."/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14dp"
+                                android:layout_marginBottom="10dp"
+                                android:justificationMode="inter_word"
+                                android:text="Seiring dengan pertumbuhan pesat usaha PT Penerbit Erlangga, kebutuhan untuk memiliki percetakan sendiri menjadi tinggi. Oleh karena itu, pada tanggal 7 Januari 1986 didirikan PT Gelora Aksara Pratama dengan alamat Jln. Toapekong No. 1, Kebayoran Lama. Perusahaan ini dipimpin oleh Ibu Rita Hutauruk sebagai Direktur dan Bapak Gunawan sebagai Komisaris."/>
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -132,7 +296,7 @@
                                 android:textSize="14dp"
                                 android:layout_marginBottom="15dp"
                                 android:justificationMode="inter_word"
-                                android:text="Hari ini kami telah menjadi pelopor di industri percetakan dan telah menerima ISO 9001:2015 dalam Manajemen Mutu Perusahaan. Kantor kami saat ini di Jalan Haji Baping Raya adalah rumah bagi 700 staf terampil, 21 mesin cetak offset kelas dunia serta berbagai mesin pra-cetak dan pasca-cetak. Selain teknologi canggih serta kompetensi teknis, kami menerapkan manajemen waktu dan kualitas yang ketat serta membantu klien kami mengubah ide mereka menjadi terobosan."/>
+                                android:text="Sejak didirikan tahun 2008, PT Gelora Aksara Pratama menjadi percetakan yang hanya melayani Penerbit Erlangga. Sejak tahun 2009, Ibu Sarah Hutauruk, sebagai generasi ke-3, mulai bergabung untuk lebih mengembangkan bisnis dan pasar, tidak hanya melayani internal tetapi juga komersial."/>
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -149,7 +313,7 @@
                                 android:textSize="14dp"
                                 android:layout_marginBottom="15dp"
                                 android:justificationMode="inter_word"
-                                android:text="Menjadi perusahaan yang dikenal dan dihormati sebagai perusahaan percetakan berkualitas dan terkemuka di Indonesia."/>
+                                android:text="Menjadi perusahaan percetakan yang unggul dalam penggunaan teknologi dan pelayanan kepada pelanggan."/>
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -160,14 +324,13 @@
                                 android:textStyle="bold"
                                 android:text="Misi"/>
 
-
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="14dp"
                                 android:layout_marginBottom="15dp"
                                 android:justificationMode="inter_word"
-                                android:text="PT Gelora Aksara Pratama berdedikasi untuk mencapai kepuasan pelanggan dengan menghasilkan produk percetakan yang berkualitas terbaik, inovatif, unggul dan aman. Kami akan terus meningkatkan kualitas secara berkelanjutan dan konsisten menciptakan sinergi inovatif antara semua pemangku kepentingan, pengalaman, dan teknologi serta sistem manajemen mutu."/>
+                                android:text="Menjadi perusahaan percetakan yang produktif dan efisien serta memberikan manfaat maksimum kepada pemilik sumber daya antara lain pelanggan, vendor, pemegang saham, dan karyawan serta mendukung pendidikan dengan memberikan produk berkualitas tinggi dan aktual."/>
 
                         </LinearLayout>
 

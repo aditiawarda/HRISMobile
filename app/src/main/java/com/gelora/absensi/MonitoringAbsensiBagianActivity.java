@@ -147,10 +147,12 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
 
         dataKehadiranBagianRV.setLayoutManager(new LinearLayoutManager(this));
         dataKehadiranBagianRV.setHasFixedSize(true);
+        dataKehadiranBagianRV.setNestedScrollingEnabled(false);
         dataKehadiranBagianRV.setItemAnimator(new DefaultItemAnimator());
 
         dataKeTidakhadiranBagianRV.setLayoutManager(new LinearLayoutManager(this));
         dataKeTidakhadiranBagianRV.setHasFixedSize(true);
+        dataKeTidakhadiranBagianRV.setNestedScrollingEnabled(false);
         dataKeTidakhadiranBagianRV.setItemAnimator(new DefaultItemAnimator());
 
         LocalBroadcastManager.getInstance(this).registerReceiver(bagianBroad, new IntentFilter("bagian_broad"));

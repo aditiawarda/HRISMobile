@@ -89,10 +89,12 @@ public class ListNotifikasiActivity extends AppCompatActivity {
 
         dataNotifikasiRV.setLayoutManager(new LinearLayoutManager(this));
         dataNotifikasiRV.setHasFixedSize(true);
+        dataNotifikasiRV.setNestedScrollingEnabled(false);
         dataNotifikasiRV.setItemAnimator(new DefaultItemAnimator());
 
         dataNotifikasi2RV.setLayoutManager(new LinearLayoutManager(this));
         dataNotifikasi2RV.setHasFixedSize(true);
+        dataNotifikasi2RV.setNestedScrollingEnabled(false);
         dataNotifikasi2RV.setItemAnimator(new DefaultItemAnimator());
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);

@@ -88,6 +88,7 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
 
         dataKelebihanJamRV.setLayoutManager(new LinearLayoutManager(this));
         dataKelebihanJamRV.setHasFixedSize(true);
+        dataKelebihanJamRV.setNestedScrollingEnabled(false);
         dataKelebihanJamRV.setItemAnimator(new DefaultItemAnimator());
 
         Glide.with(getApplicationContext())

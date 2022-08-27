@@ -90,6 +90,7 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
 
         dataNoCheckoutRV.setLayoutManager(new LinearLayoutManager(this));
         dataNoCheckoutRV.setHasFixedSize(true);
+        dataNoCheckoutRV.setNestedScrollingEnabled(false);
         dataNoCheckoutRV.setItemAnimator(new DefaultItemAnimator());
 
         Glide.with(getApplicationContext())

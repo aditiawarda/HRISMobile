@@ -507,7 +507,7 @@ public class UserActivity extends AppCompatActivity {
         chatBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserActivity.this, PersonalChatActivity.class);
+                Intent intent = new Intent(UserActivity.this, ChatSplashScreenActivity.class);
                 startActivity(intent);
             }
         });

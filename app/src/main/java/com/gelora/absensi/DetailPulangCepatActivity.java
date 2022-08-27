@@ -88,6 +88,7 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
 
         dataPulangCepatRV.setLayoutManager(new LinearLayoutManager(this));
         dataPulangCepatRV.setHasFixedSize(true);
+        dataPulangCepatRV.setNestedScrollingEnabled(false);
         dataPulangCepatRV.setItemAnimator(new DefaultItemAnimator());
 
         Glide.with(getApplicationContext())

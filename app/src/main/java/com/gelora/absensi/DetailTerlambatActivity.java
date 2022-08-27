@@ -92,6 +92,7 @@ public class DetailTerlambatActivity extends AppCompatActivity {
 
         dataLateRV.setLayoutManager(new LinearLayoutManager(this));
         dataLateRV.setHasFixedSize(true);
+        dataLateRV.setNestedScrollingEnabled(false);
         dataLateRV.setItemAnimator(new DefaultItemAnimator());
 
         Glide.with(getApplicationContext())

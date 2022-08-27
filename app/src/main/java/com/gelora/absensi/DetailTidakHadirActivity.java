@@ -104,10 +104,12 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
 
         dataIzinRV.setLayoutManager(new LinearLayoutManager(this));
         dataIzinRV.setHasFixedSize(true);
+        dataIzinRV.setNestedScrollingEnabled(false);
         dataIzinRV.setItemAnimator(new DefaultItemAnimator());
 
         dataAlpaRV.setLayoutManager(new LinearLayoutManager(this));
         dataAlpaRV.setHasFixedSize(true);
+        dataAlpaRV.setNestedScrollingEnabled(false);
         dataAlpaRV.setItemAnimator(new DefaultItemAnimator());
 
         Glide.with(getApplicationContext())
