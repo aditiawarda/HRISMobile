@@ -570,7 +570,7 @@ public class PersonalChatActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
-                                pDialog.setTitleText("Percakapan dihapus")
+                                pDialog.setTitleText("Percakapan Dihapus")
                                         .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
