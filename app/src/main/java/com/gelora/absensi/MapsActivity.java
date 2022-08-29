@@ -164,7 +164,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "1.1.34";
+    String appVersion = "1.1.35";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
