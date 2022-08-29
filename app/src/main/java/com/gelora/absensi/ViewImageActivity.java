@@ -56,6 +56,12 @@ public class ViewImageActivity extends AppCompatActivity {
             Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .into(mainImage);
+        } else if (kode.equals("chat_mate")){
+            String nameChatMate = getIntent().getExtras().getString("name_chat_mate");
+            titlePageTV.setText(nameChatMate.toUpperCase());
+            Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .into(mainImage);
         }
 
         new Handler().postDelayed(new Runnable() {

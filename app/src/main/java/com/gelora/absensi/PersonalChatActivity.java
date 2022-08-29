@@ -367,6 +367,17 @@ public class PersonalChatActivity extends AppCompatActivity {
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                                         .into(partnerPic);
 
+                                partnerPic.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(PersonalChatActivity.this, ViewImageActivity.class);
+                                        intent.putExtra("url", avatar);
+                                        intent.putExtra("kode", "chat_mate");
+                                        intent.putExtra("name_chat_mate", partner);
+                                        startActivity(intent);
+                                    }
+                                });
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
