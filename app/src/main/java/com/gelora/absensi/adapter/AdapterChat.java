@@ -28,6 +28,8 @@ import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.Bagian;
 import com.gelora.absensi.model.ChatModel;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -83,22 +85,15 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyViewHolder> 
             myViewHolder.recieverPart.setVisibility(View.VISIBLE);
             myViewHolder.senderPart.setVisibility(View.GONE);
 
-            myViewHolder.textReciever.setText(chat.getMessage());
+            myViewHolder.textReciever.setText(StringEscapeUtils.unescapeJava(String.valueOf(chat.getMessage())));
             myViewHolder.timeReciever.setText(chat.getTimestamp().substring(11,16));
-
-            // myViewHolder.recieverPart.setOnClickListener(new View.OnClickListener() {
-            //    @Override
-            //    public void onClick(View v) {
-            //        Toast.makeText(mContext, chat.getId(), Toast.LENGTH_SHORT).show();
-            //    }
-            // });
 
         } else {
             //Pesan dikirim
             myViewHolder.senderPart.setVisibility(View.VISIBLE);
             myViewHolder.recieverPart.setVisibility(View.GONE);
 
-            myViewHolder.textSender.setText(chat.getMessage());
+            myViewHolder.textSender.setText(StringEscapeUtils.unescapeJava(String.valueOf(chat.getMessage())));
             myViewHolder.timeSender.setText(chat.getTimestamp().substring(11,16));
 
             if(chat.getRead_status().equals("1")){

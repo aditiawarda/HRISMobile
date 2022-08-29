@@ -26,6 +26,8 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -64,7 +66,7 @@ public class AdapterListChatMate extends RecyclerView.Adapter<AdapterListChatMat
                 .into(myViewHolder.avatarChatmate);
 
         myViewHolder.namaChatmate.setText(chatMate.getNama());
-        myViewHolder.lastMessage.setText(chatMate.getMessage());
+        myViewHolder.lastMessage.setText(StringEscapeUtils.unescapeJava(String.valueOf(chatMate.getMessage())));
 
         if (chatMate.getTime().substring(0,7).equals(getDate().substring(0,7))){
             int selisih_hari = Integer.parseInt(getDate().substring(8,10))-Integer.parseInt(chatMate.getTime().substring(8,10));

@@ -66,19 +66,39 @@
                         android:background="@drawable/user_default_image"
                         tools:ignore="MissingConstraints" />
 
-                    <TextView
-                        android:id="@+id/partner_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <LinearLayout
                         android:layout_gravity="center"
+                        android:orientation="vertical"
                         android:layout_marginRight="50dp"
                         android:layout_marginLeft="10dp"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:text=""
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/partner_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textSize="17dp" />
+
+                        <TextView
+                            android:id="@+id/partner_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textSize="10dp" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -109,12 +129,12 @@
                         android:id="@+id/chat_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingBottom="69dp"
                         android:scrollIndicators="right"
-                        android:scrollbars="vertical"
+                        android:scrollbarAlwaysDrawVerticalTrack="true"
                         android:scrollbarSize="4dp"
                         android:scrollbarThumbVertical="@drawable/scollbar_style"
-                        android:scrollbarAlwaysDrawVerticalTrack="true"
-                        android:paddingBottom="69dp">
+                        android:scrollbars="vertical">
                     </androidx.recyclerview.widget.RecyclerView>
 
                 </LinearLayout>
@@ -151,6 +171,7 @@
                     android:paddingBottom="5dp">
 
                     <LinearLayout
+                        android:id="@+id/emoji_btn"
                         android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -178,6 +199,7 @@
                             android:layout_marginStart="5dp"
                             android:layout_marginBottom="10dp"
                             android:layout_marginEnd="10dp"
+                            android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
                             android:background="@drawable/shape_message_fill"
                             android:hint="Ketik pesan"
                             android:imeOptions="flagNoEnterAction"

@@ -1,6 +1,7 @@
 package com.gelora.absensi.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -69,9 +70,12 @@ public class AdapterListContactSearch extends RecyclerView.Adapter<AdapterListCo
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent("chat_mate_search");
+
+                Intent intent = new Intent(mContext, PersonalChatActivity.class);
                 intent.putExtra("chat_mate",String.valueOf(contactSearch.getNIK()));
-                LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+                ((Activity)mContext).finish();
+                mContext.startActivity(intent);
+
             }
 
         });

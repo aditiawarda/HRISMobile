@@ -823,7 +823,7 @@
                                 <LinearLayout
                                     android:id="@+id/history_btn"
                                     android:layout_width="0dp"
-                                    android:layout_weight=".50"
+                                    android:layout_weight=".80"
                                     android:layout_height="38dp"
                                     android:layout_marginLeft="20dp"
                                     android:layout_marginRight="5dp"
@@ -836,25 +836,6 @@
                                         android:textStyle="bold"
                                         android:textColor="@color/white"
                                         android:text="RIWAYAT ABSENSI"/>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:visibility="gone"
-                                    android:id="@+id/chat_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_weight=".30"
-                                    android:layout_height="38dp"
-                                    android:layout_marginRight="5dp"
-                                    android:background="@drawable/shape_btn_chat"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textStyle="bold"
-                                        android:text="CHAT"
-                                        android:textColor="@color/white" />
 
                                 </LinearLayout>
 
@@ -1588,6 +1569,60 @@
 
                                         <TextView
                                             android:id="@+id/count_notif_tv"
+                                            android:gravity="center"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="@color/white"
+                                            android:textSize="10dp"
+                                            android:text="0"/>
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/chat_btn"
+                                android:visibility="gone"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="11dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_marginTop="15dp"
+                                        android:layout_width="33dp"
+                                        android:layout_height="33dp"
+                                        android:gravity="center"
+                                        android:background="@drawable/shape_back_2">
+
+                                        <TextView
+                                            android:layout_width="23dp"
+                                            android:layout_height="23dp"
+                                            android:background="@drawable/g_messenger_logo"/>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:visibility="gone"
+                                        android:id="@+id/count_notification_message"
+                                        android:layout_marginLeft="23dp"
+                                        android:layout_marginTop="15dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingRight="4dp"
+                                        android:paddingLeft="4dp"
+                                        android:paddingBottom="1dp"
+                                        android:gravity="center"
+                                        android:background="@drawable/shape_notification_mark">
+
+                                        <TextView
+                                            android:id="@+id/count_message"
                                             android:gravity="center"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"

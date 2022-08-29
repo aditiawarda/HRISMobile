@@ -71,9 +71,6 @@ public class ChatContactActivity extends AppCompatActivity {
         listContactRV.setHasFixedSize(true);
         listContactRV.setItemAnimator(new DefaultItemAnimator());
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(chatMateSearch,
-                new IntentFilter("chat_mate_search"));
-
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,17 +140,6 @@ public class ChatContactActivity extends AppCompatActivity {
         });
 
     }
-
-    public BroadcastReceiver chatMateSearch = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String nik_chat_mate = intent.getStringExtra("chat_mate");
-            Intent a = new Intent(ChatContactActivity.this, PersonalChatActivity.class);
-            a.putExtra("chat_mate",nik_chat_mate);
-            startActivity(a);
-            finish();
-        }
-    };
 
     private void searchContact(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);

@@ -297,7 +297,7 @@
                                                 android:textColor="#A8C74A1A"
                                                 android:textSize="12dp"
                                                 android:backgroundTint="@color/white"
-                                                android:background="@drawable/ic_baseline_account_home"
+                                                android:background="@drawable/ic_baseline_dashboar_user"
                                                 android:textStyle="bold"
                                                 android:text=""/>
 
@@ -345,12 +345,6 @@
                                             android:layout_height="15dp"
                                             android:background="@drawable/shape_ring_notification_home"
                                             android:gravity="center">
-
-                                            <TextView
-                                                android:layout_width="10dp"
-                                                android:layout_height="10dp"
-                                                android:background="@drawable/ic_baseline_notifications_icon"
-                                                app:srcCompat="@drawable/ic_warning_notification_gif_main" />
 
                                         </LinearLayout>
 

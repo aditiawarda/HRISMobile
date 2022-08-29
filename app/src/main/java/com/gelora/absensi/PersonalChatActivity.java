@@ -45,6 +45,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -62,6 +63,7 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -79,11 +81,11 @@ public class PersonalChatActivity extends AppCompatActivity {
     ImageButton sendBTN, backBTN, moreBTN;
     String repeat = "true";
     String keyboard = "hide";
-    String state = "0";
-    String rekanChat;
-    TextView partnerName;
+    String state = "0", removeChatLast = "";
+    String rekanChat, partnerNameString;
+    TextView partnerName, partnerDetail;
     CircleImageView partnerPic;
-    LinearLayout sendBTNPart;
+    LinearLayout sendBTNPart, emojiBTN;
     KAlertDialog pDialog;
     private int i = -1;
     LinearLayout loadingProgressBar;
@@ -111,6 +113,8 @@ public class PersonalChatActivity extends AppCompatActivity {
         partnerPic = findViewById(R.id.partner_pic);
         sendBTNPart = findViewById(R.id.send_btn_part);
         moreBTN = findViewById(R.id.more_btn);
+        emojiBTN = findViewById(R.id.emoji_btn);
+        partnerDetail = findViewById(R.id.partner_detail);
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
 
         rekanChat = getIntent().getExtras().getString("chat_mate");
@@ -154,8 +158,9 @@ public class PersonalChatActivity extends AppCompatActivity {
 
                 for (int i = start; i < end; i++) {
                     char currentChar = source.charAt(i);
+                    int type = Character.getType(source.charAt(i));
 
-                    if (Character.isLetterOrDigit(currentChar) || blockCharacterSet.contains(("" + source))) {
+                    if (Character.isLetterOrDigit(currentChar) || blockCharacterSet.contains(("" + source)) || type == Character.SURROGATE || type == Character.OTHER_SYMBOL) {
                         builder.append(currentChar);
                         canEnterSpace = true;
                     }
@@ -202,9 +207,8 @@ public class PersonalChatActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(canEnterSpace){
                     sendBTN.setVisibility(View.GONE);
-                            loadingProgressBar.setVisibility(View.VISIBLE);
-                            sendChat();
-
+                    loadingProgressBar.setVisibility(View.VISIBLE);
+                    sendChat();
                 }
             }
         });
@@ -225,11 +229,15 @@ public class PersonalChatActivity extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         int id = menuItem.getItemId();
+                        String shortName = partnerNameString;
+                        if(shortName.contains(" ")){
+                            shortName = shortName.substring(0, shortName.indexOf(" "));
+                        }
                         if (id == R.id.dropdown_end_chat) {
 
                             new KAlertDialog(PersonalChatActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
-                                    .setContentText("Apakah anda yakin untuk menghapus percakan?")
+                                    .setContentText("Apakah anda yakin untuk menghapus percakapan dengan "+shortName+"?")
                                     .setCancelText("TIDAK")
                                     .setConfirmText("   YA   ")
                                     .showCancelButton(true)
@@ -348,7 +356,12 @@ public class PersonalChatActivity extends AppCompatActivity {
                             if (status.equals("Success")) {
                                 String partner = data.getString("nama");
                                 String avatar = data.getString("avatar");
+                                String jabatan = data.getString("jabatan");
+                                String bagian = data.getString("bagian");
+                                String departemen = data.getString("departemen");
                                 partnerName.setText(partner);
+                                partnerDetail.setText(jabatan+" | "+bagian+" | "+departemen);
+                                partnerNameString = partner;
 
                                 Picasso.get().load(avatar).networkPolicy(NetworkPolicy.NO_CACHE)
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -421,10 +434,14 @@ public class PersonalChatActivity extends AppCompatActivity {
                 params.put("saya", sharedPrefManager.getSpNik());
                 params.put("rekan", rekanChat);
                 params.put("timestamp", getTime());
-                params.put("message", messageED.getText().toString());
+                params.put("message", StringEscapeUtils.escapeJava(messageED.getText().toString()));
                 return params;
             }
         };
+
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         requestQueue.add(postRequest);
 
@@ -444,6 +461,7 @@ public class PersonalChatActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
+                                removeChatLast = "";
                                 chatRV.setVisibility(View.VISIBLE);
                                 String data_chat = data.getString("data");
                                 GsonBuilder builder = new GsonBuilder();
@@ -452,7 +470,12 @@ public class PersonalChatActivity extends AppCompatActivity {
                                 adapterChat = new AdapterChat(dataChat, PersonalChatActivity.this);
                                 chatRV.setAdapter(adapterChat);
                             } else {
-                                chatRV.setVisibility(View.GONE);
+                                if(removeChatLast.equals("on")){
+                                    removeChatLast = "";
+                                    onBackPressed();
+                                } else {
+                                    chatRV.setVisibility(View.GONE);
+                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -484,6 +507,7 @@ public class PersonalChatActivity extends AppCompatActivity {
     public BroadcastReceiver removeChat = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            removeChatLast = "on";
             String id_chat = intent.getStringExtra("id_chat");
             removeChatFunction(id_chat);
         }
@@ -594,7 +618,11 @@ public class PersonalChatActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         repeat = "false";
-        super.onBackPressed();
+        try{
+            super.onBackPressed();
+        } catch (NullPointerException nullPointerException){
+            System.out.println("Catch the NullPointerException in FragmentPagerAdapter.finishUpdate");
+        }
     }
 
 }

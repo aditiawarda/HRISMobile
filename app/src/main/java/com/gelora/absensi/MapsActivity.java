@@ -5161,15 +5161,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             String status = data.getString("status");
                             if (status.equals("Success")){
                                 String count = data.getString("count");
+                                String message_yet = data.getString("message_yet");
 
-                                if (count.equals("0")){
+                                if (count.equals("0") && message_yet.equals("0")){
                                     markerNotification.setVisibility(View.GONE);
                                 } else {
                                     String visibility = data.getString("visibility");
-                                    if (visibility.equals("1")){
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    } else {
+                                    String visibility2 = data.getString("visibility2");
+                                    if (visibility.equals("0") && visibility2.equals("0")){
                                         markerNotification.setVisibility(View.GONE);
+                                    } else {
+                                        markerNotification.setVisibility(View.VISIBLE);
                                     }
                                 }
 
