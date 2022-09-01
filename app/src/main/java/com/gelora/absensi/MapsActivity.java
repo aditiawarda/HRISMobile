@@ -130,7 +130,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng userPoint;
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
-    ImageView weatherIconPart, onlineGif, warningGif, notificationWarning;
+    ImageView weatherIconPart, onlineGif, warningGif, notificationWarning, notificationMessage;
     TextView reminderDecs, reminderCelebrateTV, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
     LinearLayout markerNotification, pantauBTN, reminderCongrat, markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
@@ -250,6 +250,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         switchZoom = findViewById(R.id.switch_zoom);
         markerWarningAbsensi = findViewById(R.id.marker_warning);
         notificationWarning = findViewById(R.id.warning_gif_absen);
+        notificationMessage = findViewById(R.id.warning_gif_notification);
         reminderCongrat = findViewById(R.id.reminder_congrat);
         reminderDecs = findViewById(R.id.reminder_desc);
         reminderCelebrateTV = findViewById(R.id.reminder_celebrate);
@@ -264,6 +265,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Glide.with(getApplicationContext())
                 .load(R.drawable.ic_warning_notification_gif_main)
                 .into(notificationWarning);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.notification_warning_gif)
+                .into(notificationMessage);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(statusAbsenBroad, new IntentFilter("status_absen_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(shiftAbsenBroad, new IntentFilter("shift_absen_broad"));

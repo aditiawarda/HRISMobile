@@ -343,8 +343,13 @@
                                             android:id="@+id/marker_notification"
                                             android:layout_width="15dp"
                                             android:layout_height="15dp"
-                                            android:background="@drawable/shape_ring_notification_home"
                                             android:gravity="center">
+
+                                            <ImageView
+                                                android:id="@+id/warning_gif_notification"
+                                                android:layout_width="15dp"
+                                                android:layout_height="15dp"
+                                                app:srcCompat="@drawable/notification_warning_gif" />
 
                                         </LinearLayout>
 
