@@ -17,17 +17,20 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingLeft="10dp"
-            android:paddingRight="20dp"
+            android:paddingRight="10dp"
             android:paddingBottom="10dp"
             android:background="@drawable/shape_detail_3"
             android:gravity="center|left">
 
             <TextView
                 android:id="@+id/date_absen_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:drawablePadding="7dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:drawableTint="@color/white"
                 android:drawableLeft="@drawable/ic_baseline_date"
                 android:textStyle="bold"
@@ -49,30 +52,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/nama_shift"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_baseline_work_last_history"
-                    android:drawablePadding="7dp"
-                    android:drawableTint="#9E6216"
-                    android:text="---- - ----"
-                    android:textColor="#9E6216"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/jam_shift"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:drawableRight="@drawable/ic_baseline_time_last_history"
-                    android:drawablePadding="7dp"
-                    android:drawableTint="#9E6216"
-                    android:text="-- : -- - -- : --"
-                    android:textColor="#9E6216"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/nama_shift"
+                        android:layout_width="0dp"
+                        android:layout_weight=".50"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_baseline_work_last_history"
+                        android:drawablePadding="7dp"
+                        android:layout_marginRight="2dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:drawableTint="#9E6216"
+                        android:text="---- - ----"
+                        android:textColor="#9E6216"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/jam_shift"
+                        android:layout_width="0dp"
+                        android:layout_weight=".50"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:gravity="right"
+                        android:layout_alignParentRight="true"
+                        android:drawableRight="@drawable/ic_baseline_time_last_history"
+                        android:drawablePadding="7dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:drawableTint="#9E6216"
+                        android:text="-- : -- - -- : --"
+                        android:textColor="#9E6216"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
             </RelativeLayout>
 
@@ -123,6 +144,9 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_baseline_date_range"
                     android:drawablePadding="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_marginBottom="5dp"
                     android:textSize="11dp"
                     android:text="---- - -- - --"/>
@@ -135,6 +159,9 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_baseline_time"
                     android:drawablePadding="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_marginBottom="5dp"
                     android:textSize="11dp"
                     android:text="-- : -- : -- ---"/>
@@ -148,6 +175,9 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_baseline_place"
                     android:drawablePadding="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textSize="11dp"
                     android:text="-"/>
 
@@ -192,6 +222,9 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_baseline_date_range"
                     android:drawablePadding="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_marginBottom="5dp"
                     android:textSize="11dp"
                     android:text="---- - -- - --"/>
@@ -204,6 +237,9 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_baseline_time"
                     android:drawablePadding="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_marginBottom="5dp"
                     android:textSize="11dp"
                     android:text="-- : -- : -- ---"/>
@@ -217,6 +253,9 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_baseline_place"
                     android:drawablePadding="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textSize="11dp"
                     android:text="-"/>
 

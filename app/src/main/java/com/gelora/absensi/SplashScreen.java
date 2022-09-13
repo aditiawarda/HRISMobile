@@ -415,15 +415,15 @@ public class SplashScreen extends AppCompatActivity {
                                 if (!currentVersion.equals(version) && popup.equals("1")){
 
                                     refreshPart.animate()
-                                            .translationY(refreshPart.getHeight())
-                                            .setDuration(300)
-                                            .setListener(new AnimatorListenerAdapter() {
-                                                @Override
-                                                public void onAnimationEnd(Animator animation) {
-                                                    super.onAnimationEnd(animation);
-                                                    refreshPart.setVisibility(View.GONE);
-                                                }
-                                            });
+                                        .translationY(refreshPart.getHeight())
+                                        .setDuration(300)
+                                        .setListener(new AnimatorListenerAdapter() {
+                                            @Override
+                                            public void onAnimationEnd(Animator animation) {
+                                            super.onAnimationEnd(animation);
+                                            refreshPart.setVisibility(View.GONE);
+                                            }
+                                        });
 
                                     statusUpdateLayout = "1";
 

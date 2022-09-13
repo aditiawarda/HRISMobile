@@ -15,20 +15,20 @@
 
         <androidx.core.widget.NestedScrollView
             android:id="@id/scrollView"
-            android:background="@drawable/shape_head_user"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/shape_head_user"
             tools:ignore="MissingConstraints">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="-2dp"
+                android:orientation="vertical"
+                android:paddingLeft="3dp"
                 android:paddingTop="60dp"
                 android:paddingRight="3dp"
-                android:paddingLeft="3dp"
-                android:paddingBottom="3dp"
-                android:layout_marginBottom="-2dp"
-                android:orientation="vertical">
+                android:paddingBottom="3dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -43,8 +43,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
                             android:layout_marginLeft="20dp"
+                            android:layout_marginTop="20dp"
                             android:layout_marginRight="20dp"
                             android:layout_marginBottom="20dp"
                             android:orientation="vertical">
@@ -52,26 +52,26 @@
                             <androidx.cardview.widget.CardView
                                 android:layout_width="match_parent"
                                 android:layout_height="150dp"
-                                app:cardCornerRadius="6dp"
-                                android:outlineSpotShadowColor="#40000000">
+                                android:outlineSpotShadowColor="#40000000"
+                                app:cardCornerRadius="6dp">
 
                                 <LinearLayout
-                                    android:background="@drawable/shape_attantion"
                                     android:layout_width="match_parent"
-                                    android:padding="1dp"
-                                    android:layout_height="match_parent">
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/shape_attantion"
+                                    android:padding="1dp">
 
                                     <androidx.cardview.widget.CardView
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        app:cardCornerRadius="6dp"
-                                        android:outlineSpotShadowColor="#40000000">
+                                        android:outlineSpotShadowColor="#40000000"
+                                        app:cardCornerRadius="6dp">
 
                                         <ImageView
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:scaleType="centerCrop"
-                                            android:src="@drawable/company_picture"/>
+                                            android:src="@drawable/company_picture" />
 
                                     </androidx.cardview.widget.CardView>
 
@@ -82,21 +82,21 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:paddingTop="30dp"
                                 android:layout_marginTop="-20dp"
-                                android:paddingRight="20dp"
+                                android:background="@drawable/shape_attantion"
                                 android:paddingLeft="20dp"
-                                android:paddingBottom="13dp"
-                                android:background="@drawable/shape_attantion">
+                                android:paddingTop="30dp"
+                                android:paddingRight="20dp"
+                                android:paddingBottom="13dp">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:textSize="13dp"
+                                    android:text="PT. GELORA AKSARA PRATAMA"
                                     android:textColor="#B1670B"
-                                    android:textStyle="bold"
-                                    android:text="PT. GELORA AKSARA PRATAMA"/>
+                                    android:textSize="13dp"
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
 
@@ -105,170 +105,170 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:paddingBottom="30dp"
                             android:layout_marginLeft="25dp"
                             android:layout_marginRight="25dp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingBottom="30dp">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="14dp"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
-                                android:text="PT. Gelora Aksara Pratama merupakan salah satu perusahaan yang tergabung dalam Erlangga Group. Perusahaan lainnya adalah PT Penerbit Erlangga Mahameru (Penerbit Buku), PT Eureka (Logistik dan Retail), dan PT Erlass Prokreatif Indonesia (Pendidikan)."/>
+                                android:text="PT. Gelora Aksara Pratama merupakan salah satu perusahaan yang tergabung dalam Erlangga Group. Perusahaan lainnya adalah PT Penerbit Erlangga Mahameru (Penerbit Buku), PT Eureka (Logistik dan Retail), dan PT Erlass Prokreatif Indonesia (Pendidikan)."
+                                android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="14dp"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
-                                android:text="Erlangga Group diawali dengan pendirian PT Penerbit Erlangga pada tahun 1952 oleh Bapak Dr. Marulam Hutauruk, SH di tengah keprihatinan kondisi pendidikan nasional saat para siswa Indonesia kesulitan memperoleh buku-buku untuk belajar. Keprihatinan ini memotivasi Penerbit Erlangga untuk berkarya dengan melahirkan banyak buku ilmu pengetahuan."/>
+                                android:text="Erlangga Group diawali dengan pendirian PT Penerbit Erlangga pada tahun 1952 oleh Bapak Dr. Marulam Hutauruk, SH di tengah keprihatinan kondisi pendidikan nasional saat para siswa Indonesia kesulitan memperoleh buku-buku untuk belajar. Keprihatinan ini memotivasi Penerbit Erlangga untuk berkarya dengan melahirkan banyak buku ilmu pengetahuan."
+                                android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="14dp"
                                 android:layout_marginBottom="5dp"
                                 android:justificationMode="inter_word"
-                                android:text="Bapak Dr. Marulam Hutauruk, SH lahir tanggal 7 November 1915 di Tarutung, Tapanuli Utara. Beliau disebut tokoh pendidikan sejati karena pernah menjadi guru, dosen, dan rektor universitas terkemuka di Indonesia serta aktif di IKAPI. Bapak Dr. Marulam Hutauruk menjadi Doktor Ilmu Hukum Universitas Indonesia pada tahun 1953. Peran Beliau dalam bidang pendidikan sangat banyak antara lain :"/>
+                                android:text="Bapak Dr. Marulam Hutauruk, SH lahir tanggal 7 November 1915 di Tarutung, Tapanuli Utara. Beliau disebut tokoh pendidikan sejati karena pernah menjadi guru, dosen, dan rektor universitas terkemuka di Indonesia serta aktif di IKAPI. Bapak Dr. Marulam Hutauruk menjadi Doktor Ilmu Hukum Universitas Indonesia pada tahun 1953. Peran Beliau dalam bidang pendidikan sangat banyak antara lain :"
+                                android:textSize="14dp" />
 
                             <LinearLayout
-                                android:layout_marginBottom="10dp"
-                                android:orientation="vertical"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:orientation="vertical">
 
                                 <LinearLayout
-                                    android:orientation="horizontal"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
 
                                     <TextView
                                         android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
                                         android:layout_weight=".10"
-                                        android:textSize="14dp"
-                                        android:layout_height="wrap_content"
-                                        android:text="1."/>
+                                        android:text="1."
+                                        android:textSize="14dp" />
 
                                     <TextView
-                                        android:layout_marginLeft="-10dp"
                                         android:layout_width="0dp"
-                                        android:layout_weight=".90"
-                                        android:textSize="14dp"
                                         android:layout_height="wrap_content"
-                                        android:text="Guru SMP Pelajar Pejuang di Yogyakarta tahun 1945."/>
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_weight=".90"
+                                        android:text="Guru SMP Pelajar Pejuang di Yogyakarta tahun 1945."
+                                        android:textSize="14dp" />
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:orientation="horizontal"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
 
                                     <TextView
                                         android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
                                         android:layout_weight=".10"
-                                        android:textSize="14dp"
-                                        android:layout_height="wrap_content"
-                                        android:text="2."/>
+                                        android:text="2."
+                                        android:textSize="14dp" />
 
                                     <TextView
-                                        android:layout_marginLeft="-10dp"
                                         android:layout_width="0dp"
-                                        android:layout_weight=".90"
-                                        android:textSize="14dp"
                                         android:layout_height="wrap_content"
-                                        android:text="Kepala Sekolah SMA 5 Jakarta tahun 1952 dan turut membangun IKIP."/>
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_weight=".90"
+                                        android:text="Kepala Sekolah SMA 5 Jakarta tahun 1952 dan turut membangun IKIP."
+                                        android:textSize="14dp" />
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:orientation="horizontal"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
 
                                     <TextView
                                         android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
                                         android:layout_weight=".10"
-                                        android:textSize="14dp"
-                                        android:layout_height="wrap_content"
-                                        android:text="3."/>
+                                        android:text="3."
+                                        android:textSize="14dp" />
 
                                     <TextView
-                                        android:layout_marginLeft="-10dp"
                                         android:layout_width="0dp"
-                                        android:layout_weight=".90"
-                                        android:textSize="14dp"
                                         android:layout_height="wrap_content"
-                                        android:text="Direktur Utama Balai Pustaka tahun 1959 - 1964."/>
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_weight=".90"
+                                        android:text="Direktur Utama Balai Pustaka tahun 1959 - 1964."
+                                        android:textSize="14dp" />
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:orientation="horizontal"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
 
                                     <TextView
                                         android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
                                         android:layout_weight=".10"
-                                        android:textSize="14dp"
-                                        android:layout_height="wrap_content"
-                                        android:text="4."/>
+                                        android:text="4."
+                                        android:textSize="14dp" />
 
                                     <TextView
-                                        android:layout_marginLeft="-10dp"
                                         android:layout_width="0dp"
-                                        android:layout_weight=".90"
-                                        android:textSize="14dp"
                                         android:layout_height="wrap_content"
-                                        android:text="Ketua Umum IKAPI Pusat periode 1960 - 1968."/>
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_weight=".90"
+                                        android:text="Ketua Umum IKAPI Pusat periode 1960 - 1968."
+                                        android:textSize="14dp" />
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:orientation="horizontal"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
 
                                     <TextView
                                         android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
                                         android:layout_weight=".10"
-                                        android:textSize="14dp"
-                                        android:layout_height="wrap_content"
-                                        android:text="5."/>
+                                        android:text="5."
+                                        android:textSize="14dp" />
 
                                     <TextView
-                                        android:layout_marginLeft="-10dp"
                                         android:layout_width="0dp"
-                                        android:layout_weight=".90"
-                                        android:textSize="14dp"
                                         android:layout_height="wrap_content"
-                                        android:text="Sekjen Depdikbud 1965 - 1967."/>
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_weight=".90"
+                                        android:text="Sekjen Depdikbud 1965 - 1967."
+                                        android:textSize="14dp" />
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:orientation="horizontal"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
 
                                     <TextView
                                         android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
                                         android:layout_weight=".10"
-                                        android:textSize="14dp"
-                                        android:layout_height="wrap_content"
-                                        android:text="6."/>
+                                        android:text="6."
+                                        android:textSize="14dp" />
 
                                     <TextView
-                                        android:layout_marginLeft="-10dp"
                                         android:layout_width="0dp"
-                                        android:layout_weight=".90"
-                                        android:textSize="14dp"
                                         android:layout_height="wrap_content"
-                                        android:text="Rektor Universitas Kristen Indonesia (UKI) 1968 - 1972."/>
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_weight=".90"
+                                        android:text="Rektor Universitas Kristen Indonesia (UKI) 1968 - 1972."
+                                        android:textSize="14dp" />
 
                                 </LinearLayout>
 
@@ -277,60 +277,60 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="14dp"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
-                                android:text="Komitmen Penerbit Erlangga tampak dari misinya : &quot;Melayani ilmu pengetahuan&quot;. Sebagai &quot;pelayan&quot;, Penerbit Erlangga berupaya tetap tanggap terhadap arus reformasi pendidikan. Untuk itulah, revisi, pembaruan, dan penerbitan buku-buku baru terus dilakukan dan dilanjutkan generasi ke-2, yaitu Bapak Gunawan Hutauruk, MBA pada tahun 1980."/>
+                                android:text="Komitmen Penerbit Erlangga tampak dari misinya : &quot;Melayani ilmu pengetahuan&quot;. Sebagai &quot;pelayan&quot;, Penerbit Erlangga berupaya tetap tanggap terhadap arus reformasi pendidikan. Untuk itulah, revisi, pembaruan, dan penerbitan buku-buku baru terus dilakukan dan dilanjutkan generasi ke-2, yaitu Bapak Gunawan Hutauruk, MBA pada tahun 1980."
+                                android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="14dp"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
-                                android:text="Seiring dengan pertumbuhan pesat usaha PT Penerbit Erlangga, kebutuhan untuk memiliki percetakan sendiri menjadi tinggi. Oleh karena itu, pada tanggal 7 Januari 1986 didirikan PT Gelora Aksara Pratama dengan alamat Jln. Toapekong No. 1, Kebayoran Lama. Perusahaan ini dipimpin oleh Ibu Rita Hutauruk sebagai Direktur dan Bapak Gunawan sebagai Komisaris."/>
+                                android:text="Seiring dengan pertumbuhan pesat usaha PT Penerbit Erlangga, kebutuhan untuk memiliki percetakan sendiri menjadi tinggi. Oleh karena itu, pada tanggal 7 Januari 1986 didirikan PT Gelora Aksara Pratama dengan alamat Jln. Toapekong No. 1, Kebayoran Lama. Perusahaan ini dipimpin oleh Ibu Rita Hutauruk sebagai Direktur dan Bapak Gunawan sebagai Komisaris."
+                                android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="14dp"
                                 android:layout_marginBottom="15dp"
                                 android:justificationMode="inter_word"
-                                android:text="Sejak didirikan tahun 2008, PT Gelora Aksara Pratama menjadi percetakan yang hanya melayani Penerbit Erlangga. Sejak tahun 2009, Ibu Sarah Hutauruk, sebagai generasi ke-3, mulai bergabung untuk lebih mengembangkan bisnis dan pasar, tidak hanya melayani internal tetapi juga komersial."/>
+                                android:text="Sejak didirikan tahun 2008, PT Gelora Aksara Pratama menjadi percetakan yang hanya melayani Penerbit Erlangga. Sejak tahun 2009, Ibu Sarah Hutauruk, sebagai generasi ke-3, mulai bergabung untuk lebih mengembangkan bisnis dan pasar, tidak hanya melayani internal tetapi juga komersial."
+                                android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:justificationMode="inter_word"
+                                android:text="Visi"
                                 android:textSize="16dp"
-                                android:layout_marginBottom="10dp"
-                                android:justificationMode="inter_word"
-                                android:textStyle="bold"
-                                android:text="Visi"/>
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="14dp"
                                 android:layout_marginBottom="15dp"
                                 android:justificationMode="inter_word"
-                                android:text="Menjadi perusahaan percetakan yang unggul dalam penggunaan teknologi dan pelayanan kepada pelanggan."/>
+                                android:text="Menjadi perusahaan percetakan yang unggul dalam penggunaan teknologi dan pelayanan kepada pelanggan."
+                                android:textSize="14dp" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:justificationMode="inter_word"
+                                android:text="Misi"
                                 android:textSize="16dp"
-                                android:layout_marginBottom="10dp"
-                                android:justificationMode="inter_word"
-                                android:textStyle="bold"
-                                android:text="Misi"/>
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="14dp"
                                 android:layout_marginBottom="15dp"
                                 android:justificationMode="inter_word"
-                                android:text="Menjadi perusahaan percetakan yang produktif dan efisien serta memberikan manfaat maksimum kepada pemilik sumber daya antara lain pelanggan, vendor, pemegang saham, dan karyawan serta mendukung pendidikan dengan memberikan produk berkualitas tinggi dan aktual."/>
+                                android:text="Menjadi perusahaan percetakan yang produktif dan efisien serta memberikan manfaat maksimum kepada pemilik sumber daya antara lain pelanggan, vendor, pemegang saham, dan karyawan serta mendukung pendidikan dengan memberikan produk berkualitas tinggi dan aktual."
+                                android:textSize="14dp" />
 
                         </LinearLayout>
 
@@ -398,9 +398,12 @@
 
                     <TextView
                         android:gravity="right"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
                         android:text="PROFIL PERUSAHAAN"
                         android:textColor="@color/white"
                         android:textSize="15dp" />

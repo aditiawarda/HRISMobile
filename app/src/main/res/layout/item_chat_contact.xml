@@ -34,7 +34,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="Aditia Wardani"
+                    android:text="-"
                     android:textColor="#424242"
                     android:textSize="16dp" />
 
@@ -45,7 +45,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="3186150321"
+                    android:text="-"
                     android:textSize="12dp" />
 
                 <TextView
@@ -55,7 +55,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="Staff | EDP | RND"
+                    android:text="- | - | -"
                     android:textSize="12dp" />
 
             </LinearLayout>

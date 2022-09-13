@@ -302,8 +302,11 @@
 
                         <TextView
                             android:gravity="right"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:singleLine="true"
                             android:textStyle="bold"
                             android:text="TANDA TANGAN DIGITAL"
                             android:textColor="@color/white"

@@ -31,38 +31,41 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingRight="3dp"
-                        android:paddingLeft="3dp"
-                        android:paddingBottom="3dp"
                         android:layout_marginBottom="-2dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        android:paddingBottom="3dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingRight="20dp"
+                            android:orientation="vertical"
                             android:paddingLeft="20dp"
                             android:paddingTop="90dp"
-                            android:paddingBottom="10dp"
-                            android:orientation="vertical">
+                            android:paddingRight="20dp"
+                            android:paddingBottom="10dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/shape_attantion"
+                                android:paddingLeft="20dp"
                                 android:paddingTop="10dp"
                                 android:paddingRight="20dp"
-                                android:paddingLeft="20dp"
-                                android:paddingBottom="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:background="@drawable/shape_attantion">
+                                android:paddingBottom="10dp">
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textSize="13dp"
+                                    android:text="KASUS HARIAN"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
                                     android:textColor="#B1670B"
-                                    android:textStyle="bold"
-                                    android:text="KASUS HARIAN"/>
+                                    android:textSize="13dp"
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
 
@@ -70,46 +73,50 @@
                                 android:id="@+id/date_data"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:layout_marginBottom="15dp"
                                 android:layout_marginLeft="5dp"
-                                android:textStyle="bold"
+                                android:layout_marginBottom="15dp"
+                                android:text="Update : "
+                                android:textColor="@color/colorPrimaryDark"
                                 android:textSize="15dp"
-                                android:text="Update : "/>
+                                android:textStyle="bold" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
-                                android:paddingBottom="15dp"
-                                android:paddingTop="15dp"
-                                android:paddingLeft="30dp"
-                                android:paddingRight="30dp"
                                 android:background="@drawable/shape_covid_confirm"
                                 android:orientation="horizontal"
-                                android:layout_height="wrap_content">
+                                android:paddingLeft="30dp"
+                                android:paddingTop="15dp"
+                                android:paddingRight="30dp"
+                                android:paddingBottom="15dp">
 
                                 <LinearLayout
                                     android:layout_width="0dp"
-                                    android:layout_weight=".50"
                                     android:layout_height="match_parent"
+                                    android:layout_weight=".50"
                                     android:orientation="vertical">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginRight="5dp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
                                         android:layout_height="wrap_content"
+                                        android:text="Terkonfirmasi"
                                         android:textColor="@color/white"
-                                        android:textStyle="bold"
-                                        android:text="Terkonfirmasi"/>
+                                        android:textStyle="bold" />
 
                                     <TextView
-                                        android:visibility="gone"
                                         android:id="@+id/confirm_covid"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:text=""
                                         android:textColor="@color/white"
                                         android:textSize="22dp"
                                         android:textStyle="bold"
-                                        android:text=""/>
+                                        android:visibility="gone" />
 
                                     <ImageView
                                         android:id="@+id/confirm_covid_loading"
@@ -122,15 +129,15 @@
                                 <LinearLayout
                                     android:layout_width="1dp"
                                     android:layout_height="match_parent"
-                                    android:background="#CDFFFFFF"/>
+                                    android:background="#CDFFFFFF" />
 
                                 <LinearLayout
                                     android:layout_width="0dp"
-                                    android:layout_weight=".50"
                                     android:layout_height="match_parent"
-                                    android:paddingLeft="20dp"
+                                    android:layout_weight=".50"
                                     android:gravity="left|center"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="20dp">
 
                                     <TextView
                                         android:layout_width="25dp"
@@ -142,14 +149,14 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:visibility="gone"
                                         android:id="@+id/penambahan_positif"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:text=""
                                         android:textColor="@color/white"
                                         android:textSize="17dp"
                                         android:textStyle="bold"
-                                        android:text=""/>
+                                        android:visibility="gone" />
 
                                     <ImageView
                                         android:id="@+id/penambahan_positif_loading"
@@ -162,37 +169,41 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_marginBottom="10dp"
                                 android:layout_width="match_parent"
-                                android:paddingBottom="15dp"
-                                android:paddingTop="15dp"
-                                android:paddingLeft="30dp"
-                                android:paddingRight="30dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
                                 android:background="@drawable/shape_covid_healt"
-                                android:layout_height="wrap_content">
+                                android:paddingLeft="30dp"
+                                android:paddingTop="15dp"
+                                android:paddingRight="30dp"
+                                android:paddingBottom="15dp">
 
                                 <LinearLayout
                                     android:layout_width="0dp"
-                                    android:layout_weight=".50"
                                     android:layout_height="match_parent"
+                                    android:layout_weight=".50"
                                     android:orientation="vertical">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginRight="5dp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
                                         android:layout_height="wrap_content"
+                                        android:text="Sembuh"
                                         android:textColor="@color/white"
-                                        android:textStyle="bold"
-                                        android:text="Sembuh"/>
+                                        android:textStyle="bold" />
 
                                     <TextView
-                                        android:visibility="gone"
                                         android:id="@+id/healt_covid"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:text=""
                                         android:textColor="@color/white"
                                         android:textSize="22dp"
                                         android:textStyle="bold"
-                                        android:text=""/>
+                                        android:visibility="gone" />
 
                                     <ImageView
                                         android:id="@+id/healt_covid_loading"
@@ -205,15 +216,15 @@
                                 <LinearLayout
                                     android:layout_width="1dp"
                                     android:layout_height="match_parent"
-                                    android:background="#CDFFFFFF"/>
+                                    android:background="#CDFFFFFF" />
 
                                 <LinearLayout
                                     android:layout_width="0dp"
-                                    android:layout_weight=".50"
                                     android:layout_height="match_parent"
-                                    android:paddingLeft="20dp"
+                                    android:layout_weight=".50"
                                     android:gravity="left|center"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="20dp">
 
                                     <TextView
                                         android:layout_width="25dp"
@@ -225,14 +236,14 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:visibility="gone"
                                         android:id="@+id/penambahan_sembuh"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:text=""
                                         android:textColor="@color/white"
                                         android:textSize="17dp"
                                         android:textStyle="bold"
-                                        android:text=""/>
+                                        android:visibility="gone" />
 
                                     <ImageView
                                         android:id="@+id/penambahan_sembuh_loading"
@@ -245,37 +256,41 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_marginBottom="10dp"
                                 android:layout_width="match_parent"
-                                android:paddingBottom="15dp"
-                                android:paddingTop="15dp"
-                                android:paddingLeft="30dp"
-                                android:paddingRight="30dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
                                 android:background="@drawable/shape_covid_dead"
-                                android:layout_height="wrap_content">
+                                android:paddingLeft="30dp"
+                                android:paddingTop="15dp"
+                                android:paddingRight="30dp"
+                                android:paddingBottom="15dp">
 
                                 <LinearLayout
                                     android:layout_width="0dp"
-                                    android:layout_weight=".50"
                                     android:layout_height="match_parent"
+                                    android:layout_weight=".50"
                                     android:orientation="vertical">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
+                                        android:layout_marginRight="5dp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
                                         android:layout_height="wrap_content"
+                                        android:text="Meninggal"
                                         android:textColor="@color/white"
-                                        android:textStyle="bold"
-                                        android:text="Meninggal"/>
+                                        android:textStyle="bold" />
 
                                     <TextView
-                                        android:visibility="gone"
                                         android:id="@+id/dead_covid"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:text=""
                                         android:textColor="@color/white"
                                         android:textSize="22dp"
                                         android:textStyle="bold"
-                                        android:text=""/>
+                                        android:visibility="gone" />
 
                                     <ImageView
                                         android:id="@+id/dead_covid_loading"
@@ -288,15 +303,15 @@
                                 <LinearLayout
                                     android:layout_width="1dp"
                                     android:layout_height="match_parent"
-                                    android:background="#CDFFFFFF"/>
+                                    android:background="#CDFFFFFF" />
 
                                 <LinearLayout
                                     android:layout_width="0dp"
-                                    android:layout_weight=".50"
                                     android:layout_height="match_parent"
-                                    android:paddingLeft="20dp"
+                                    android:layout_weight=".50"
                                     android:gravity="left|center"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="20dp">
 
                                     <TextView
                                         android:layout_width="25dp"
@@ -308,14 +323,14 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:visibility="gone"
                                         android:id="@+id/penambahan_meninggal"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:text=""
                                         android:textColor="@color/white"
                                         android:textSize="17dp"
                                         android:textStyle="bold"
-                                        android:text=""/>
+                                        android:visibility="gone" />
 
                                     <ImageView
                                         android:id="@+id/penambahan_meninggal_loading"
@@ -341,19 +356,19 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:gravity="left"
-                                        android:paddingLeft="10dp"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        android:paddingLeft="10dp">
 
                                         <TextView
-                                            android:gravity="center"
-                                            android:drawablePadding="5dp"
-                                            android:drawableLeft="@drawable/ic_baseline_source"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginRight="20dp"
-                                            android:textStyle="italic"
+                                            android:drawableLeft="@drawable/ic_baseline_source"
+                                            android:drawablePadding="5dp"
+                                            android:gravity="center"
                                             android:text="Sumber : covid19.go.id"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            android:textStyle="italic" />
 
                                     </LinearLayout>
 
@@ -375,22 +390,25 @@
                                             android:paddingBottom="10dp">
 
                                             <TextView
-                                                android:layout_width="wrap_content"
+                                                android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:textStyle="bold"
-                                                android:textSize="12dp"
+                                                android:text="Kasus aktif"
+                                                android:ellipsize="end"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
                                                 android:textColor="@color/white"
-                                                android:text="Kasus aktif"/>
+                                                android:textSize="12dp"
+                                                android:textStyle="bold" />
 
                                             <TextView
-                                                android:visibility="gone"
                                                 android:id="@+id/active_case"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:text=""
                                                 android:textColor="@color/white"
                                                 android:textSize="20dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                android:visibility="gone" />
 
                                             <ImageView
                                                 android:id="@+id/active_case_loading"
@@ -409,31 +427,34 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="25dp"
                             android:layout_width="match_parent"
                             android:layout_height="10dp"
-                            android:background="#3CCFCFCF"/>
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="25dp"
+                            android:background="#3CCFCFCF" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="10dp"
-                            android:paddingRight="20dp"
-                            android:paddingLeft="20dp"
-                            android:paddingBottom="10dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:layout_marginBottom="10dp"
-                            android:background="@drawable/shape_attantion">
+                            android:background="@drawable/shape_attantion"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="10dp">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="13dp"
+                                android:text="CAPAIAN VAKSINASI NASIONAL"
                                 android:textColor="#B1670B"
-                                android:textStyle="bold"
-                                android:text="CAPAIAN VAKSINASI NASIONAL"/>
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textSize="13dp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -441,20 +462,20 @@
                             android:id="@+id/date_vaksin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:layout_marginBottom="15dp"
                             android:layout_marginLeft="25dp"
-                            android:textStyle="bold"
+                            android:layout_marginBottom="15dp"
+                            android:text="Update : "
+                            android:textColor="@color/colorPrimaryDark"
                             android:textSize="15dp"
-                            android:text="Update : "/>
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:layout_height="match_parent"
                             android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
-                            android:paddingBottom="50dp"
-                            android:orientation="vertical">
+                            android:paddingBottom="50dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -463,32 +484,32 @@
 
                                 <LinearLayout
                                     android:layout_width="0dp"
-                                    android:layout_weight=".50"
-                                    android:paddingTop="10dp"
-                                    android:paddingBottom="10dp"
-                                    android:paddingRight="15dp"
-                                    android:paddingLeft="15dp"
-                                    android:background="@drawable/shape_vaksin_1"
                                     android:layout_height="wrap_content"
                                     android:layout_marginRight="5dp"
-                                    android:orientation="vertical">
+                                    android:layout_weight=".50"
+                                    android:background="@drawable/shape_vaksin_1"
+                                    android:orientation="vertical"
+                                    android:paddingLeft="15dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="15dp"
+                                    android:paddingBottom="10dp">
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:text="Dosis 1"
                                         android:textColor="@color/white"
-                                        android:textStyle="bold"
-                                        android:text="Dosis 1"/>
+                                        android:textStyle="bold" />
 
                                     <TextView
-                                        android:visibility="gone"
                                         android:id="@+id/vaksin_1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:text=""
                                         android:textColor="@color/white"
                                         android:textSize="20dp"
                                         android:textStyle="bold"
-                                        android:text=""/>
+                                        android:visibility="gone" />
 
                                     <ImageView
                                         android:id="@+id/vaksin_1_loading"
@@ -513,14 +534,14 @@
                                             android:textStyle="bold" />
 
                                         <TextView
-                                            android:visibility="gone"
                                             android:id="@+id/vaksin_1_add"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
+                                            android:text=""
                                             android:textColor="@color/white"
                                             android:textSize="14dp"
                                             android:textStyle="bold"
-                                            android:text=""/>
+                                            android:visibility="gone" />
 
                                         <ImageView
                                             android:id="@+id/vaksin_1_add_loading"
@@ -534,32 +555,32 @@
 
                                 <LinearLayout
                                     android:layout_width="0dp"
-                                    android:layout_weight=".50"
-                                    android:paddingTop="10dp"
-                                    android:paddingBottom="10dp"
-                                    android:paddingRight="15dp"
-                                    android:paddingLeft="15dp"
-                                    android:background="@drawable/shape_vaksin_2"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
-                                    android:orientation="vertical">
+                                    android:layout_weight=".50"
+                                    android:background="@drawable/shape_vaksin_2"
+                                    android:orientation="vertical"
+                                    android:paddingLeft="15dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="15dp"
+                                    android:paddingBottom="10dp">
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:text="Dosis 2"
                                         android:textColor="@color/white"
-                                        android:textStyle="bold"
-                                        android:text="Dosis 2"/>
+                                        android:textStyle="bold" />
 
                                     <TextView
-                                        android:visibility="gone"
                                         android:id="@+id/vaksin_2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:text=""
                                         android:textColor="@color/white"
                                         android:textSize="20dp"
                                         android:textStyle="bold"
-                                        android:text=""/>
+                                        android:visibility="gone" />
 
                                     <ImageView
                                         android:id="@+id/vaksin_2_loading"
@@ -568,9 +589,9 @@
                                         app:srcCompat="@drawable/loading_dots" />
 
                                     <LinearLayout
-                                        android:layout_marginTop="10dp"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
+                                        android:layout_marginTop="10dp"
                                         android:gravity="center|left"
                                         android:orientation="horizontal">
 
@@ -584,14 +605,14 @@
                                             android:textStyle="bold" />
 
                                         <TextView
-                                            android:visibility="gone"
                                             android:id="@+id/vaksin_2_add"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
+                                            android:text=""
                                             android:textColor="@color/white"
                                             android:textSize="14dp"
                                             android:textStyle="bold"
-                                            android:text=""/>
+                                            android:visibility="gone" />
 
                                         <ImageView
                                             android:id="@+id/vaksin_2_add_loading"
@@ -606,16 +627,16 @@
                             </LinearLayout>
 
                             <TextView
-                                android:gravity="center"
-                                android:drawablePadding="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginTop="15dp"
                                 android:drawableLeft="@drawable/ic_baseline_source"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textStyle="italic"
+                                android:drawablePadding="5dp"
+                                android:gravity="center"
                                 android:text="Sumber : covid19.go.id"
-                                android:textSize="12dp" />
+                                android:textSize="12dp"
+                                android:textStyle="italic" />
 
                         </LinearLayout>
 
@@ -680,9 +701,12 @@
 
                             <TextView
                                 android:gravity="right"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textStyle="bold"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true"
                                 android:text="UPDATE COVID-19"
                                 android:textColor="@color/white"
                                 android:textSize="15dp" />

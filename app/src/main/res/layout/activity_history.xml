@@ -67,9 +67,12 @@
                                         android:background="@drawable/shape_attantion_head">
 
                                         <TextView
-                                            android:layout_width="wrap_content"
+                                            android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:textSize="13dp"
+                                            android:ellipsize="end"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
                                             android:textColor="#B1670B"
                                             android:textStyle="bold"
                                             android:text="RIWAYAT ABSENSI TERAKHIR"/>
@@ -88,9 +91,12 @@
 
                                         <TextView
                                             android:id="@+id/name_of_user_tv"
-                                            android:layout_width="wrap_content"
+                                            android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:textSize="13dp"
+                                            android:ellipsize="end"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
                                             android:textColor="#B1670B"
                                             android:textStyle="bold"
                                             android:text=""/>
@@ -109,15 +115,18 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="35dp"
                                             android:paddingLeft="10dp"
-                                            android:paddingRight="20dp"
+                                            android:paddingRight="10dp"
                                             android:background="@drawable/shape_detail_2"
                                             android:gravity="center|left">
 
                                             <TextView
                                                 android:id="@+id/date_absen_tv"
-                                                android:layout_width="wrap_content"
+                                                android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:textColor="@color/white"
+                                                android:ellipsize="end"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
                                                 android:drawablePadding="10dp"
                                                 android:drawableTint="@color/white"
                                                 android:drawableLeft="@drawable/ic_baseline_date"
@@ -141,30 +150,48 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content">
 
-                                                <TextView
-                                                    android:id="@+id/shift_name"
-                                                    android:layout_width="wrap_content"
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
-                                                    android:drawableLeft="@drawable/ic_baseline_work_last_history"
-                                                    android:drawablePadding="7dp"
-                                                    android:drawableTint="#9E6216"
-                                                    android:text="---- - ----"
-                                                    android:textColor="#9E6216"
-                                                    android:textSize="12dp"
-                                                    android:textStyle="bold" />
+                                                    android:orientation="horizontal">
 
-                                                <TextView
-                                                    android:id="@+id/shift_time"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_alignParentRight="true"
-                                                    android:drawableRight="@drawable/ic_baseline_time_last_history"
-                                                    android:drawablePadding="7dp"
-                                                    android:drawableTint="#9E6216"
-                                                    android:text="-- : -- - -- : --"
-                                                    android:textColor="#9E6216"
-                                                    android:textSize="12dp"
-                                                    android:textStyle="bold" />
+                                                    <TextView
+                                                        android:id="@+id/shift_name"
+                                                        android:layout_width="0dp"
+                                                        android:layout_weight=".50"
+                                                        android:layout_marginRight="2dp"
+                                                        android:layout_height="wrap_content"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:drawableLeft="@drawable/ic_baseline_work_last_history"
+                                                        android:drawablePadding="7dp"
+                                                        android:drawableTint="#9E6216"
+                                                        android:text="---- - ----"
+                                                        android:textColor="#9E6216"
+                                                        android:textSize="12dp"
+                                                        android:textStyle="bold" />
+
+                                                    <TextView
+                                                        android:id="@+id/shift_time"
+                                                        android:layout_width="0dp"
+                                                        android:layout_weight=".50"
+                                                        android:gravity="right"
+                                                        android:layout_marginRight="2dp"
+                                                        android:layout_height="wrap_content"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_alignParentRight="true"
+                                                        android:drawableRight="@drawable/ic_baseline_time_last_history"
+                                                        android:drawablePadding="7dp"
+                                                        android:drawableTint="#9E6216"
+                                                        android:text="-- : -- - -- : --"
+                                                        android:textColor="#9E6216"
+                                                        android:textSize="12dp"
+                                                        android:textStyle="bold" />
+
+                                                </LinearLayout>
 
                                             </RelativeLayout>
 
@@ -215,6 +242,9 @@
                                                     android:layout_height="wrap_content"
                                                     android:drawableLeft="@drawable/ic_baseline_date_range"
                                                     android:drawablePadding="7dp"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
                                                     android:layout_marginBottom="5dp"
                                                     android:textSize="11dp"
                                                     android:text="---- - -- - --"/>
@@ -227,6 +257,9 @@
                                                     android:layout_height="wrap_content"
                                                     android:drawableLeft="@drawable/ic_baseline_time"
                                                     android:drawablePadding="7dp"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
                                                     android:layout_marginBottom="5dp"
                                                     android:textSize="11dp"
                                                     android:text="-- : -- : -- ---"/>
@@ -240,6 +273,9 @@
                                                     android:layout_height="wrap_content"
                                                     android:drawableLeft="@drawable/ic_baseline_place"
                                                     android:drawablePadding="7dp"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
                                                     android:textSize="11dp"
                                                     android:text="-"/>
 
@@ -284,6 +320,9 @@
                                                     android:layout_height="wrap_content"
                                                     android:drawableLeft="@drawable/ic_baseline_date_range"
                                                     android:drawablePadding="7dp"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
                                                     android:layout_marginBottom="5dp"
                                                     android:textSize="11dp"
                                                     android:text="---- - -- - --"/>
@@ -296,6 +335,9 @@
                                                     android:layout_height="wrap_content"
                                                     android:drawableLeft="@drawable/ic_baseline_time"
                                                     android:drawablePadding="7dp"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
                                                     android:layout_marginBottom="5dp"
                                                     android:textSize="11dp"
                                                     android:text="-- : -- : -- ---"/>
@@ -309,6 +351,9 @@
                                                     android:layout_height="wrap_content"
                                                     android:drawableLeft="@drawable/ic_baseline_place"
                                                     android:drawablePadding="7dp"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
                                                     android:textSize="11dp"
                                                     android:text="-"/>
 
@@ -377,15 +422,19 @@
                                             <LinearLayout
                                                 android:layout_marginTop="10dp"
                                                 android:layout_marginBottom="10dp"
-                                                android:layout_width="wrap_content"
+                                                android:layout_width="match_parent"
+                                                android:layout_marginRight="50dp"
                                                 android:layout_height="40dp"
                                                 android:orientation="vertical"
                                                 android:gravity="center|left">
 
                                                 <TextView
                                                     android:id="@+id/filter_date_choice_tv"
-                                                    android:layout_width="wrap_content"
+                                                    android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
                                                     android:textColor="#B15735"
                                                     android:textStyle="bold"
                                                     android:text=""/>
@@ -646,9 +695,12 @@
 
                             <TextView
                                 android:gravity="right"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textStyle="bold"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true"
                                 android:text="RIWAYAT ABSENSI"
                                 android:textColor="@color/white"
                                 android:textSize="15dp" />

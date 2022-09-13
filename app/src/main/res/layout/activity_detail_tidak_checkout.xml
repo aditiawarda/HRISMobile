@@ -56,9 +56,12 @@
 
                                 <TextView
                                     android:id="@+id/name_of_user_tv"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textSize="13dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
                                     android:textColor="#B1670B"
                                     android:textStyle="bold"
                                     android:text=""/>
@@ -85,10 +88,13 @@
                                     android:orientation="vertical">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:textColor="@color/white"
                                         android:textStyle="bold"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
                                         android:textSize="10dp"
                                         android:text="Data Periode"/>
 
@@ -96,9 +102,12 @@
                                         android:visibility="gone"
                                         android:id="@+id/bulan_data"
                                         android:layout_marginTop="0.5dp"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:textColor="@color/white"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
                                         android:textSize="16dp"
                                         android:textStyle="bold"
                                         android:text=""/>
@@ -106,9 +115,12 @@
                                     <TextView
                                         android:visibility="gone"
                                         android:id="@+id/tahun_data"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:textColor="@color/white"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
                                         android:textSize="13dp"
                                         android:textStyle="bold"
                                         android:text=""/>
@@ -148,11 +160,14 @@
                                                 android:layout_height="wrap_content">
 
                                                 <TextView
-                                                    android:layout_width="wrap_content"
+                                                    android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:textColor="@color/white"
                                                     android:textStyle="bold"
                                                     android:textSize="10dp"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
                                                     android:text="Total Tidak Checkout"/>
 
                                                 <TextView
@@ -404,9 +419,12 @@
 
                             <TextView
                                 android:gravity="right"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textStyle="bold"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true"
                                 android:text="DETAIL TIDAK CHECKOUT"
                                 android:textColor="@color/white"
                                 android:textSize="15dp" />

@@ -17,16 +17,19 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingLeft="10dp"
-            android:paddingRight="20dp"
+            android:paddingRight="10dp"
             android:paddingBottom="10dp"
             android:background="@drawable/shape_head_layoff"
             android:gravity="center|left">
 
             <TextView
                 android:id="@+id/date_layoff_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#207EA8"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:drawablePadding="7dp"
                 android:drawableLeft="@drawable/ic_baseline_date_layoff"
                 android:textStyle="bold"
@@ -64,6 +67,9 @@
                     android:drawableTint="#919BAC"
                     android:drawableLeft="@drawable/ic_baseline_mark_layoff"
                     android:drawablePadding="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_marginBottom="10dp"
                     android:textSize="11dp"
                     android:text="---- - -- - --"/>

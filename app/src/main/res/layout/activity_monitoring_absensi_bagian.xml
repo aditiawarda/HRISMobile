@@ -141,16 +141,20 @@
                                     <LinearLayout
                                         android:layout_marginTop="10dp"
                                         android:layout_marginBottom="10dp"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="40dp"
+                                        android:layout_marginRight="50dp"
                                         android:orientation="vertical"
                                         android:gravity="center|left">
 
                                         <TextView
                                             android:id="@+id/current_date"
-                                            android:layout_width="wrap_content"
+                                            android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:textColor="#B15735"
+                                            android:ellipsize="end"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
                                             android:textStyle="bold"
                                             android:text=""/>
 
@@ -261,10 +265,13 @@
                                                 android:layout_height="wrap_content">
 
                                                 <TextView
-                                                    android:layout_width="wrap_content"
+                                                    android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:textColor="@color/white"
                                                     android:textStyle="bold"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
                                                     android:textSize="10dp"
                                                     android:text="Hadir"/>
 
@@ -330,9 +337,12 @@
                                                 android:layout_height="wrap_content">
 
                                                 <TextView
-                                                    android:layout_width="wrap_content"
+                                                    android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:textColor="@color/white"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
                                                     android:textStyle="bold"
                                                     android:textSize="10dp"
                                                     android:text="Tidak Hadir"/>
@@ -429,17 +439,17 @@
 
                                     <TextView
                                         android:id="@+id/title_data_kehadiran"
-                                        android:layout_marginLeft="20dp"
-                                        android:layout_marginRight="20dp"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="13dp"
-                                        android:paddingLeft="1dp"
-                                        android:textStyle="italic|bold"
-                                        android:textColor="@color/colorPrimaryDark"
-                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginLeft="20dp"
                                         android:layout_marginTop="5dp"
-                                        android:text="Data Kehadiran"/>
+                                        android:layout_marginRight="20dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:paddingLeft="1dp"
+                                        android:text="Data Kehadiran"
+                                        android:textColor="@color/colorPrimaryDark"
+                                        android:textSize="13dp"
+                                        android:textStyle="italic|bold" />
 
                                     <TextView
                                         android:visibility="gone"
@@ -783,9 +793,12 @@
                             <TextView
                                 android:gravity="right"
                                 android:id="@+id/page_title"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textStyle="bold"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true"
                                 android:text="KEHADIRAN BAGIAN"
                                 android:textColor="@color/white"
                                 android:textSize="15dp" />
