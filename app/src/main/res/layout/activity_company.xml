@@ -115,6 +115,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
+                                android:textColor="@color/text_color"
                                 android:text="PT. Gelora Aksara Pratama merupakan salah satu perusahaan yang tergabung dalam Erlangga Group. Perusahaan lainnya adalah PT Penerbit Erlangga Mahameru (Penerbit Buku), PT Eureka (Logistik dan Retail), dan PT Erlass Prokreatif Indonesia (Pendidikan)."
                                 android:textSize="14dp" />
 
@@ -123,6 +124,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
+                                android:textColor="@color/text_color"
                                 android:text="Erlangga Group diawali dengan pendirian PT Penerbit Erlangga pada tahun 1952 oleh Bapak Dr. Marulam Hutauruk, SH di tengah keprihatinan kondisi pendidikan nasional saat para siswa Indonesia kesulitan memperoleh buku-buku untuk belajar. Keprihatinan ini memotivasi Penerbit Erlangga untuk berkarya dengan melahirkan banyak buku ilmu pengetahuan."
                                 android:textSize="14dp" />
 
@@ -131,6 +133,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="5dp"
                                 android:justificationMode="inter_word"
+                                android:textColor="@color/text_color"
                                 android:text="Bapak Dr. Marulam Hutauruk, SH lahir tanggal 7 November 1915 di Tarutung, Tapanuli Utara. Beliau disebut tokoh pendidikan sejati karena pernah menjadi guru, dosen, dan rektor universitas terkemuka di Indonesia serta aktif di IKAPI. Bapak Dr. Marulam Hutauruk menjadi Doktor Ilmu Hukum Universitas Indonesia pada tahun 1953. Peran Beliau dalam bidang pendidikan sangat banyak antara lain :"
                                 android:textSize="14dp" />
 
@@ -149,6 +152,7 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight=".10"
+                                        android:textColor="@color/text_color"
                                         android:text="1."
                                         android:textSize="14dp" />
 
@@ -157,6 +161,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="-10dp"
                                         android:layout_weight=".90"
+                                        android:textColor="@color/text_color"
                                         android:text="Guru SMP Pelajar Pejuang di Yogyakarta tahun 1945."
                                         android:textSize="14dp" />
 
@@ -171,6 +176,7 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight=".10"
+                                        android:textColor="@color/text_color"
                                         android:text="2."
                                         android:textSize="14dp" />
 
@@ -179,6 +185,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="-10dp"
                                         android:layout_weight=".90"
+                                        android:textColor="@color/text_color"
                                         android:text="Kepala Sekolah SMA 5 Jakarta tahun 1952 dan turut membangun IKIP."
                                         android:textSize="14dp" />
 
@@ -193,6 +200,7 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight=".10"
+                                        android:textColor="@color/text_color"
                                         android:text="3."
                                         android:textSize="14dp" />
 
@@ -201,6 +209,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="-10dp"
                                         android:layout_weight=".90"
+                                        android:textColor="@color/text_color"
                                         android:text="Direktur Utama Balai Pustaka tahun 1959 - 1964."
                                         android:textSize="14dp" />
 
@@ -215,6 +224,7 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight=".10"
+                                        android:textColor="@color/text_color"
                                         android:text="4."
                                         android:textSize="14dp" />
 
@@ -223,6 +233,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="-10dp"
                                         android:layout_weight=".90"
+                                        android:textColor="@color/text_color"
                                         android:text="Ketua Umum IKAPI Pusat periode 1960 - 1968."
                                         android:textSize="14dp" />
 
@@ -237,6 +248,7 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight=".10"
+                                        android:textColor="@color/text_color"
                                         android:text="5."
                                         android:textSize="14dp" />
 
@@ -245,6 +257,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="-10dp"
                                         android:layout_weight=".90"
+                                        android:textColor="@color/text_color"
                                         android:text="Sekjen Depdikbud 1965 - 1967."
                                         android:textSize="14dp" />
 
@@ -259,6 +272,7 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight=".10"
+                                        android:textColor="@color/text_color"
                                         android:text="6."
                                         android:textSize="14dp" />
 
@@ -267,6 +281,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="-10dp"
                                         android:layout_weight=".90"
+                                        android:textColor="@color/text_color"
                                         android:text="Rektor Universitas Kristen Indonesia (UKI) 1968 - 1972."
                                         android:textSize="14dp" />
 
@@ -279,6 +294,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
+                                android:textColor="@color/text_color"
                                 android:text="Komitmen Penerbit Erlangga tampak dari misinya : &quot;Melayani ilmu pengetahuan&quot;. Sebagai &quot;pelayan&quot;, Penerbit Erlangga berupaya tetap tanggap terhadap arus reformasi pendidikan. Untuk itulah, revisi, pembaruan, dan penerbitan buku-buku baru terus dilakukan dan dilanjutkan generasi ke-2, yaitu Bapak Gunawan Hutauruk, MBA pada tahun 1980."
                                 android:textSize="14dp" />
 
@@ -287,6 +303,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
+                                android:textColor="@color/text_color"
                                 android:text="Seiring dengan pertumbuhan pesat usaha PT Penerbit Erlangga, kebutuhan untuk memiliki percetakan sendiri menjadi tinggi. Oleh karena itu, pada tanggal 7 Januari 1986 didirikan PT Gelora Aksara Pratama dengan alamat Jln. Toapekong No. 1, Kebayoran Lama. Perusahaan ini dipimpin oleh Ibu Rita Hutauruk sebagai Direktur dan Bapak Gunawan sebagai Komisaris."
                                 android:textSize="14dp" />
 
@@ -295,6 +312,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="15dp"
                                 android:justificationMode="inter_word"
+                                android:textColor="@color/text_color"
                                 android:text="Sejak didirikan tahun 2008, PT Gelora Aksara Pratama menjadi percetakan yang hanya melayani Penerbit Erlangga. Sejak tahun 2009, Ibu Sarah Hutauruk, sebagai generasi ke-3, mulai bergabung untuk lebih mengembangkan bisnis dan pasar, tidak hanya melayani internal tetapi juga komersial."
                                 android:textSize="14dp" />
 
@@ -303,6 +321,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
+                                android:textColor="@color/text_color"
                                 android:text="Visi"
                                 android:textSize="16dp"
                                 android:textStyle="bold" />
@@ -311,6 +330,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="15dp"
+                                android:textColor="@color/text_color"
                                 android:justificationMode="inter_word"
                                 android:text="Menjadi perusahaan percetakan yang unggul dalam penggunaan teknologi dan pelayanan kepada pelanggan."
                                 android:textSize="14dp" />
@@ -318,6 +338,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:textColor="@color/text_color"
                                 android:layout_marginBottom="10dp"
                                 android:justificationMode="inter_word"
                                 android:text="Misi"
@@ -328,6 +349,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="15dp"
+                                android:textColor="@color/text_color"
                                 android:justificationMode="inter_word"
                                 android:text="Menjadi perusahaan percetakan yang produktif dan efisien serta memberikan manfaat maksimum kepada pemilik sumber daya antara lain pelanggan, vendor, pemegang saham, dan karyawan serta mendukung pendidikan dengan memberikan produk berkualitas tinggi dan aktual."
                                 android:textSize="14dp" />

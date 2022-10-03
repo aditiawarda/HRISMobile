@@ -172,6 +172,7 @@
                     android:singleLine="true"
                     android:layout_marginBottom="5dp"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="---- - -- - --"/>
 
                 <TextView
@@ -187,6 +188,7 @@
                     android:singleLine="true"
                     android:layout_marginBottom="5dp"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="-- : -- : -- ---"/>
 
                 <TextView
@@ -202,6 +204,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="-"/>
 
             </LinearLayout>
@@ -251,6 +254,7 @@
                     android:singleLine="true"
                     android:layout_marginBottom="5dp"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="---- - -- - --"/>
 
                 <TextView
@@ -266,6 +270,7 @@
                     android:singleLine="true"
                     android:layout_marginBottom="5dp"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="-- : -- : -- ---"/>
 
                 <TextView
@@ -281,6 +286,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="-"/>
 
             </LinearLayout>
@@ -312,6 +318,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="Keterlambatan :"/>
 
                 <TextView
@@ -345,6 +352,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="Kelebihan Jam Pulang :"/>
 
                 <TextView

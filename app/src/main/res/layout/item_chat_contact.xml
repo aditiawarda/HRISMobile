@@ -46,6 +46,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="-"
+                    android:textColor="#696969"
                     android:textSize="12dp" />
 
                 <TextView
@@ -56,6 +57,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="- | - | -"
+                    android:textColor="#696969"
                     android:textSize="12dp" />
 
             </LinearLayout>

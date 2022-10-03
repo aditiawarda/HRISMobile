@@ -140,6 +140,19 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
+<!--                                    <com.skyfishjy.library.RippleBackground-->
+<!--                                        android:visibility="gone"-->
+<!--                                        android:layout_width="50dp"-->
+<!--                                        android:layout_height="50dp"-->
+<!--                                        android:layout_marginRight="10dp"-->
+<!--                                        android:id="@+id/content"-->
+<!--                                        app:rb_color="#388E3C"-->
+<!--                                        app:rb_radius="5dp"-->
+<!--                                        app:rb_rippleAmount="2"-->
+<!--                                        app:rb_duration="3000"-->
+<!--                                        app:rb_scale="6">-->
+<!--                                    </com.skyfishjy.library.RippleBackground>-->
+
                                     <ImageView
                                         android:layout_marginTop="0.5dp"
                                         android:id="@+id/img_online"
@@ -745,6 +758,7 @@
                                                 android:drawablePadding="7dp"
                                                 android:layout_marginBottom="4dp"
                                                 android:textSize="11dp"
+                                                android:textColor="#696969"
                                                 android:text="---- - -- - --"/>
 
                                             <TextView
@@ -760,6 +774,7 @@
                                                 android:drawablePadding="7dp"
                                                 android:layout_marginBottom="4dp"
                                                 android:textSize="11dp"
+                                                android:textColor="#696969"
                                                 android:text="-- : -- : -- ---"/>
 
                                             <TextView
@@ -775,6 +790,7 @@
                                                 android:drawableLeft="@drawable/ic_baseline_place"
                                                 android:drawablePadding="7dp"
                                                 android:textSize="11dp"
+                                                android:textColor="#696969"
                                                 android:text="-"/>
 
                                         </LinearLayout>
@@ -814,6 +830,7 @@
                                                 android:drawablePadding="7dp"
                                                 android:layout_marginBottom="4dp"
                                                 android:textSize="11dp"
+                                                android:textColor="#696969"
                                                 android:text="---- - -- - --"/>
 
                                             <TextView
@@ -829,6 +846,7 @@
                                                 android:drawablePadding="7dp"
                                                 android:layout_marginBottom="4dp"
                                                 android:textSize="11dp"
+                                                android:textColor="#696969"
                                                 android:text="-- : -- : -- ---"/>
 
                                             <TextView
@@ -844,6 +862,7 @@
                                                 android:drawableLeft="@drawable/ic_baseline_place"
                                                 android:drawablePadding="7dp"
                                                 android:textSize="11dp"
+                                                android:textColor="#696969"
                                                 android:text="-"/>
 
                                         </LinearLayout>
@@ -1041,6 +1060,7 @@
                                         android:textAlignment="center"
                                         android:textSize="15dp"
                                         android:textStyle="bold"
+                                        android:textColor="#696969"
                                         android:text="Koneksi terputus!"/>
 
                                     <TextView
@@ -1049,6 +1069,7 @@
                                         android:textAlignment="center"
                                         android:textSize="11dp"
                                         android:layout_marginTop="7dp"
+                                        android:textColor="#696969"
                                         android:text="Pastikan koneksi internet anda aktif."/>
 
                                 </LinearLayout>

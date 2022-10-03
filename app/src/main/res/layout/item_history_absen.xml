@@ -149,6 +149,7 @@
                     android:singleLine="true"
                     android:layout_marginBottom="5dp"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="---- - -- - --"/>
 
                 <TextView
@@ -164,6 +165,7 @@
                     android:singleLine="true"
                     android:layout_marginBottom="5dp"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="-- : -- : -- ---"/>
 
                 <TextView
@@ -179,6 +181,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="-"/>
 
             </LinearLayout>
@@ -227,6 +230,7 @@
                     android:singleLine="true"
                     android:layout_marginBottom="5dp"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="---- - -- - --"/>
 
                 <TextView
@@ -242,6 +246,7 @@
                     android:singleLine="true"
                     android:layout_marginBottom="5dp"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="-- : -- : -- ---"/>
 
                 <TextView
@@ -257,6 +262,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="11dp"
+                    android:textColor="#696969"
                     android:text="-"/>
 
             </LinearLayout>

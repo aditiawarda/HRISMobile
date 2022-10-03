@@ -97,6 +97,7 @@ import com.google.gson.GsonBuilder;
 import com.mahfa.dnswitch.DayNightSwitch;
 import com.mahfa.dnswitch.DayNightSwitchListener;
 import com.shasin.notificationbanner.Banner;
+import com.skyfishjy.library.RippleBackground;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -145,6 +146,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ResultReceiver resultReceiver;
     SwitchButton switchZoom;
     ProgressBar loadingCuaca;
+    //RippleBackground rippleBackground;
 
     private RecyclerView statusAbsenRV;
     private StatusAbsen[] statusAbsens;
@@ -257,6 +259,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         pantauBTN = findViewById(R.id.pantau_btn);
         markerNotification = findViewById(R.id.marker_notification);
         requestQueue = Volley.newRequestQueue(getBaseContext());
+        //rippleBackground = (RippleBackground)findViewById(R.id.content);
+
+        //rippleBackground.startRippleAnimation();
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.icon_none)
