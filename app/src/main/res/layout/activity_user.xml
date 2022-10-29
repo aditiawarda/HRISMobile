@@ -288,7 +288,6 @@
                                         android:id="@+id/current_address"
                                         android:textSize="12dp"
                                         android:layout_marginLeft="4dp"
-                                        android:layout_marginRight="7dp"
                                         android:ellipsize="end"
                                         android:maxLines="1"
                                         android:singleLine="true"

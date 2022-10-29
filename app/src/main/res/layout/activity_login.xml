@@ -308,7 +308,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#CBFFFFFF"
                 android:textSize="13dp"
-                android:text="Absensi Gelora v 1.1.37"/>
+                android:text="Absensi Gelora v 1.1.38"/>
 
         </LinearLayout>
 

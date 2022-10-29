@@ -36,6 +36,8 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -146,6 +148,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ResultReceiver resultReceiver;
     SwitchButton switchZoom;
     ProgressBar loadingCuaca;
+    Vibrator v;
     //RippleBackground rippleBackground;
 
     private RecyclerView statusAbsenRV;
@@ -259,6 +262,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markerNotification = findViewById(R.id.marker_notification);
         notifMasukTV = findViewById(R.id.jumlah_notif_masuk);
         requestQueue = Volley.newRequestQueue(getBaseContext());
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         //rippleBackground = (RippleBackground)findViewById(R.id.content);
 
         //rippleBackground.startRippleAnimation();
@@ -1324,6 +1328,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .enableVibration(true)
                     .show();
 
+            // Vibrate for 500 milliseconds
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+            } else {
+                //deprecated in API 26
+                v.vibrate(500);
+            }
+
         } else {
             if (waktu1<waktu2+60000){
                 // lateStatus = "1";
@@ -1363,6 +1375,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .largeCircularIcon()
                         .enableVibration(true)
                         .show();
+
+                // Vibrate for 500 milliseconds
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                } else {
+                    //deprecated in API 26
+                    v.vibrate(500);
+                }
+
             }
         }
 
@@ -3728,6 +3749,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         .largeCircularIcon()
                                                         .enableVibration(true)
                                                         .show();
+
+                                                // Vibrate for 500 milliseconds
+                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                    v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                } else {
+                                                    //deprecated in API 26
+                                                    v.vibrate(500);
+                                                }
+
                                             }
 
                                             warningPart.setOnClickListener(new View.OnClickListener() {
@@ -3820,6 +3850,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                             .largeCircularIcon()
                                                             .enableVibration(true)
                                                             .show();
+
+                                                    // Vibrate for 500 milliseconds
+                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                        v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                    } else {
+                                                        //deprecated in API 26
+                                                        v.vibrate(500);
+                                                    }
+
                                                 }
 
                                                 warningPart.setOnClickListener(new View.OnClickListener() {
@@ -3921,6 +3960,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                             .largeCircularIcon()
                                                             .enableVibration(true)
                                                             .show();
+
+                                                    // Vibrate for 500 milliseconds
+                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                        v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                    } else {
+                                                        //deprecated in API 26
+                                                        v.vibrate(500);
+                                                    }
+
                                                 }
 
                                                 warningPart.setOnClickListener(new View.OnClickListener() {
@@ -5169,7 +5217,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String count = data.getString("count");
                                 String message_yet = data.getString("message_yet");
                                 int count_notify = Integer.parseInt(count) + Integer.parseInt(message_yet);
-
 
                                 if (count.equals("0") && message_yet.equals("0")){
                                     markerNotification.setVisibility(View.GONE);
