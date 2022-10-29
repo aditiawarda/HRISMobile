@@ -54,7 +54,7 @@
                         android:textSize="18dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_marginBottom="15dp"
-                        android:text="Absensi App"/>
+                        android:text="Absensi Gelora"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                         android:textSize="13dp"
                         android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
-                        android:text="Absensi App merupakan aplikasi android dari Sistem Absensi Online PT Gelora Aksara Pratama, Absensi App diharapkan dapat memfasilitasi karyawan PT. Gelora Aksara Pratama dalam melakukan absensi kerja."/>
+                        android:text="Absensi Gelora merupakan aplikasi android dari Sistem Absensi Online PT Gelora Aksara Pratama, Absensi Gelora diharapkan dapat memfasilitasi karyawan PT. Gelora Aksara Pratama dalam melakukan absensi kerja."/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                         android:textSize="13dp"
                         android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
-                        android:text="Absensi App dikembangkan oleh Tim IT PT. Gelora Aksara Pratama."/>
+                        android:text="Absensi Gelora dikembangkan oleh Tim IT PT. Gelora Aksara Pratama."/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -78,7 +78,7 @@
                         android:textSize="13dp"
                         android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
-                        android:text="Untuk kemudahan dan kelancaran penggunaan, Absensi App didukung oleh API Google Maps sebagai penanda posisi."/>
+                        android:text="Untuk kemudahan dan kelancaran penggunaan, Absensi Gelora didukung oleh API Google Maps sebagai penanda posisi."/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -103,6 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textSize="13dp"
                     android:textColor="@color/white"
                     android:text="TUTUP"/>
 

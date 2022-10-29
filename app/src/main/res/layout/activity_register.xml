@@ -66,6 +66,7 @@
                             android:paddingLeft="20dp"
                             android:background="@drawable/shape_feel_login"
                             android:hint="NIK"
+                            android:textSize="17dp"
                             android:inputType="number"
                             android:textColor="@color/white"
                             android:textColorHint="#BFFFF3E9"
@@ -105,6 +106,7 @@
                             android:paddingLeft="20dp"
                             android:background="@drawable/shape_feel_login"
                             android:hint="Password"
+                            android:textSize="17dp"
                             android:inputType="textPassword"
                             android:textColor="@color/white"
                             android:textColorHint="#BFFFF3E9"
@@ -124,6 +126,7 @@
                             android:paddingLeft="20dp"
                             android:background="@drawable/shape_feel_login"
                             android:hint="Re-password"
+                            android:textSize="17dp"
                             android:inputType="textPassword"
                             android:textColor="@color/white"
                             android:textColorHint="#BFFFF3E9"
@@ -212,6 +215,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold"
+                                android:textSize="13dp"
                                 android:text="DAFTAR"/>
 
                         </LinearLayout>
@@ -337,7 +341,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#CBFFFFFF"
-                android:text="Absensi App v 1.1.37"/>
+                android:textSize="13dp"
+                android:text="Absensi Gelora v 1.1.37"/>
 
         </LinearLayout>
 

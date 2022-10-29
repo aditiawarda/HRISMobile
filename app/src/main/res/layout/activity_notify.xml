@@ -89,6 +89,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorPrimaryDark"
                             android:textStyle="bold"
+                            android:textSize="13dp"
                             android:text="LOGIN AKUN"/>
 
                     </LinearLayout>

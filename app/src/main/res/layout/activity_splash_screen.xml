@@ -94,7 +94,7 @@
             android:textSize="20dp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:text="ABSENSI APP"/>
+            android:text="ABSENSI GELORA"/>
 
     </LinearLayout>
 
@@ -140,6 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:textSize="13dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:text="REFRESH"/>
 
@@ -217,7 +218,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="13dp"
-                            android:text="Absensi App v telah tersedia di Google Play Store"/>
+                            android:textColor="#696969"
+                            android:text="Absensi Gelora v telah tersedia di Google Play Store"/>
 
                     </LinearLayout>
 
@@ -240,6 +242,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
+                            android:textSize="13dp"
                             android:textColor="@color/white"
                             android:text="UPDATE SEKARANG"/>
 
@@ -258,6 +261,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
+                            android:textSize="13dp"
                             android:textColor="@color/white"
                             android:text="NANTI"/>
 

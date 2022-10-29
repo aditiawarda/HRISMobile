@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="@color/white"
-                android:text="Anda terdeteksi login bukan pada perangkat pribadi anda, harap gunakan Absensi App di perangkat pribadi anda."/>
+                android:text="Anda terdeteksi login bukan pada perangkat pribadi anda, harap gunakan Absensi Gelora di perangkat pribadi anda."/>
 
             <TextView
                 android:visibility="gone"

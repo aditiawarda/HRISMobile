@@ -69,6 +69,7 @@
                                             android:textColor="#4A4A4A"
                                             android:layout_marginRight="12dp"
                                             android:layout_width="wrap_content"
+                                            android:textSize="13dp"
                                             android:layout_height="match_parent"
                                             android:text="Warna Pena :"/>
 
@@ -147,6 +148,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textStyle="bold"
+                                        android:textSize="13dp"
                                         android:textColor="@color/white"
                                         android:text="HAPUS"/>
 
@@ -168,6 +170,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textStyle="bold"
+                                        android:textSize="13dp"
                                         android:textColor="@color/white"
                                         android:text="SIMPAN"/>
 
@@ -189,6 +192,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
+                                    android:textSize="13dp"
                                     android:textColor="#E88825"
                                     android:text="BATAL"/>
 
@@ -233,6 +237,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
+                                    android:textSize="13dp"
                                     android:textColor="@color/white"
                                     android:text="UBAH TANDA TANGAN"/>
 

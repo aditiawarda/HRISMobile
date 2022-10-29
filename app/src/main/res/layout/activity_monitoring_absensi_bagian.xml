@@ -154,6 +154,7 @@
                                             android:textColor="#B15735"
                                             android:ellipsize="end"
                                             android:maxLines="1"
+                                            android:textSize="13dp"
                                             android:singleLine="true"
                                             android:textStyle="bold"
                                             android:text=""/>
@@ -206,6 +207,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textColor="#B15735"
+                                            android:textSize="13dp"
                                             android:textStyle="bold"
                                             android:text="-"/>
 

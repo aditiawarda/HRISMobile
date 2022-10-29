@@ -84,6 +84,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="7dp"
+                                android:textColor="#7C7C7C"
                                 android:text="Mulai percakapan dengan klik tombol tambah dibawah"
                                 android:textAlignment="center"
                                 android:textSize="11dp" />

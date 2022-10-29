@@ -44,7 +44,7 @@
                         android:textStyle="bold"
                         android:paddingBottom="20dp"
                         android:textColor="@color/colorPrimaryDark"
-                        android:text="ABSENSI APP"/>
+                        android:text="ABSENSI GELORA"/>
 
                 </LinearLayout>
 
@@ -75,6 +75,7 @@
                                 android:background="@drawable/shape_feel_login"
                                 android:drawableLeft="@drawable/ic_baseline_person"
                                 android:drawablePadding="10dp"
+                                android:textSize="17dp"
                                 android:hint="NIK"
                                 android:inputType="number"
                                 android:padding="10dp"
@@ -107,6 +108,7 @@
                                         android:inputType="textPassword"
                                         android:paddingLeft="10dp"
                                         android:paddingTop="10dp"
+                                        android:textSize="17dp"
                                         android:paddingRight="80dp"
                                         android:paddingBottom="10dp"
                                         android:textColor="@color/white"
@@ -159,6 +161,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="LOGIN"
+                                    android:textSize="13dp"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textStyle="bold" />
 
@@ -304,7 +307,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#CBFFFFFF"
-                android:text="Absensi App v 1.1.37"/>
+                android:textSize="13dp"
+                android:text="Absensi Gelora v 1.1.37"/>
 
         </LinearLayout>
 

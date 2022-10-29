@@ -204,6 +204,7 @@
                                         android:layout_marginLeft="1dp"
                                         android:layout_marginRight="1dp"
                                         android:layout_marginBottom="1dp"
+                                        android:textSize="13dp"
                                         android:text=":"
                                         android:textStyle="bold"
                                         android:textColor="#000" />
@@ -230,6 +231,7 @@
                                         android:layout_marginLeft="1dp"
                                         android:layout_marginRight="1dp"
                                         android:layout_marginBottom="1dp"
+                                        android:textSize="13dp"
                                         android:text=":"
                                         android:textStyle="bold"
                                         android:textColor="#000" />
@@ -368,11 +370,24 @@
                                             android:layout_height="15dp"
                                             android:gravity="center">
 
-                                            <ImageView
-                                                android:id="@+id/warning_gif_notification"
+                                            <LinearLayout
                                                 android:layout_width="15dp"
                                                 android:layout_height="15dp"
-                                                app:srcCompat="@drawable/notification_warning_gif" />
+                                                android:gravity="center"
+                                                android:background="@drawable/shape_ring_notification_home">
+
+                                                <TextView
+                                                    android:id="@+id/jumlah_notif_masuk"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="0"
+                                                    android:gravity="center"
+                                                    android:textStyle="bold"
+                                                    android:textSize="8dp"
+                                                    android:textColor="@color/white" />
+
+                                            </LinearLayout>
+
 
                                         </LinearLayout>
 
@@ -429,6 +444,7 @@
                                             android:layout_height="wrap_content"
                                             android:textColor="@color/white"
                                             android:textStyle="bold"
+                                            android:textSize="13dp"
                                             android:text="Pilih Status Absensi"/>
 
                                     </LinearLayout>
@@ -447,6 +463,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textSize="12dp"
+                                            android:textColor="#696969"
                                             android:layout_marginBottom="5dp"
                                             android:text="Status Absensi :"/>
 
@@ -476,6 +493,7 @@
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
                                                         android:textColor="#B15735"
+                                                        android:textSize="13dp"
                                                         android:textStyle="bold"
                                                         android:text=""/>
 
@@ -519,6 +537,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textColor="@color/white"
+                                            android:textSize="13dp"
                                             android:textStyle="bold"
                                             android:text="Pilih Shift"/>
 
@@ -539,6 +558,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textSize="12dp"
+                                            android:textColor="#696969"
                                             android:layout_marginBottom="5dp"
                                             android:text="Shift Absensi :"/>
 
@@ -569,6 +589,7 @@
                                                         android:layout_height="wrap_content"
                                                         android:ellipsize="end"
                                                         android:maxLines="1"
+                                                        android:textSize="13dp"
                                                         android:singleLine="true"
                                                         android:textColor="#B15735"
                                                         android:textStyle="bold"
@@ -1122,6 +1143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     android:text="Memuat data..."/>
 

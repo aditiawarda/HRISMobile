@@ -879,6 +879,7 @@
                                         android:maxLines="1"
                                         android:singleLine="true"
                                         android:textStyle="bold"
+                                        android:textSize="13dp"
                                         android:textColor="@color/white"
                                         android:text="RIWAYAT ABSENSI"/>
 
@@ -1081,6 +1082,7 @@
                                         android:layout_height="wrap_content"
                                         android:textStyle="bold"
                                         android:textColor="#DC734D"
+                                        android:textSize="13dp"
                                         android:text="Form Izin"/>
 
                                 </LinearLayout>
@@ -1100,6 +1102,7 @@
                                         android:layout_height="wrap_content"
                                         android:textStyle="bold"
                                         android:textColor="#DC734D"
+                                        android:textSize="13dp"
                                         android:text="ID Card Digital"/>
 
                                 </LinearLayout>
@@ -1118,6 +1121,7 @@
                                         android:layout_height="wrap_content"
                                         android:textStyle="bold"
                                         android:textColor="#DC734D"
+                                        android:textSize="13dp"
                                         android:text="Tanda Tangan Digital"/>
 
                                 </LinearLayout>
@@ -1146,6 +1150,7 @@
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
                                     android:textColor="#CF811F"
+                                    android:textSize="13dp"
                                     android:text="Profil Perusahaan"/>
 
                             </LinearLayout>
@@ -1165,6 +1170,7 @@
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
                                     android:textColor="#CF811F"
+                                    android:textSize="13dp"
                                     android:text="Tentang Aplikasi"/>
 
                             </LinearLayout>
@@ -1184,6 +1190,7 @@
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
                                     android:textColor="#CF811F"
+                                    android:textSize="13dp"
                                     android:text="Kebijakan Privasi"/>
 
                             </LinearLayout>
@@ -1203,6 +1210,7 @@
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
                                     android:textColor="#CF811F"
+                                    android:textSize="13dp"
                                     android:text="Layanan Pengaduan"/>
 
                             </LinearLayout>
@@ -1223,6 +1231,7 @@
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
                                     android:textColor="#CF811F"
+                                    android:textSize="13dp"
                                     android:text="Buka Versi Web"/>
 
                             </LinearLayout>
@@ -1251,6 +1260,7 @@
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
                                     android:textColor="#CF811F"
+                                    android:textSize="13dp"
                                     android:text="Update Aplikasi Sekarang!"/>
 
                             </LinearLayout>
@@ -1295,6 +1305,7 @@
                                         android:layout_height="wrap_content"
                                         android:textColor="@color/colorPrimaryDark"
                                         android:layout_marginLeft="7dp"
+                                        android:textSize="13dp"
                                         android:textStyle="bold"
                                         android:text="LOGOUT"/>
 

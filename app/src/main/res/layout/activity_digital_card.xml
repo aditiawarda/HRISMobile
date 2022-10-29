@@ -187,6 +187,7 @@
                     android:textStyle="bold"
                     android:drawableLeft="@drawable/ic_baseline_save"
                     android:drawablePadding="7dp"
+                    android:textSize="13dp"
                     android:drawableTint="@color/white"
                     android:textColor="@color/white"
                     android:text="UNDUH ID CARD"/>

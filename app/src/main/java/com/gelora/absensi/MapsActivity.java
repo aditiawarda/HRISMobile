@@ -131,8 +131,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng userPoint;
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
-    ImageView weatherIconPart, onlineGif, warningGif, notificationWarning, notificationMessage;
-    TextView reminderDecs, reminderCelebrateTV, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
+    ImageView weatherIconPart, onlineGif, warningGif, notificationWarning;
+    TextView notifMasukTV, reminderDecs, reminderCelebrateTV, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
     LinearLayout markerNotification, pantauBTN, reminderCongrat, markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, reloadBTN, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
@@ -252,12 +252,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         switchZoom = findViewById(R.id.switch_zoom);
         markerWarningAbsensi = findViewById(R.id.marker_warning);
         notificationWarning = findViewById(R.id.warning_gif_absen);
-        notificationMessage = findViewById(R.id.warning_gif_notification);
         reminderCongrat = findViewById(R.id.reminder_congrat);
         reminderDecs = findViewById(R.id.reminder_desc);
         reminderCelebrateTV = findViewById(R.id.reminder_celebrate);
         pantauBTN = findViewById(R.id.pantau_btn);
         markerNotification = findViewById(R.id.marker_notification);
+        notifMasukTV = findViewById(R.id.jumlah_notif_masuk);
         requestQueue = Volley.newRequestQueue(getBaseContext());
         //rippleBackground = (RippleBackground)findViewById(R.id.content);
 
@@ -270,10 +270,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Glide.with(getApplicationContext())
                 .load(R.drawable.ic_warning_notification_gif_main)
                 .into(notificationWarning);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.notification_warning_gif)
-                .into(notificationMessage);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(statusAbsenBroad, new IntentFilter("status_absen_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(shiftAbsenBroad, new IntentFilter("shift_absen_broad"));
@@ -1320,7 +1316,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             lateTime = "00:00:00";
 
             Notify.build(getApplicationContext())
-                    .setTitle("Absensi App")
+                    .setTitle("Absensi Gelora")
                     .setContent("Anda lembur di hari libur. Selamat bekerja dan utamakan keselamatan")
                     .setSmallIcon(R.drawable.ic_skylight_notification)
                     .setColor(R.color.colorPrimary)
@@ -1360,7 +1356,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
 
                 Notify.build(getApplicationContext())
-                        .setTitle("Absensi App")
+                        .setTitle("Absensi Gelora")
                         .setContent("Anda terlambat "+lateDesc+", segera gunakan prosedur fingerscan dan serahkan ke bagian HRD")
                         .setSmallIcon(R.drawable.ic_skylight_notification)
                         .setColor(R.color.colorPrimary)
@@ -3725,7 +3721,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 dialodWarning.show();
 
                                                 Notify.build(getApplicationContext())
-                                                        .setTitle("Absensi App")
+                                                        .setTitle("Absensi Gelora")
                                                         .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
                                                         .setSmallIcon(R.drawable.ic_skylight_notification)
                                                         .setColor(R.color.colorPrimary)
@@ -3817,7 +3813,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     dialodWarning.show();
 
                                                     Notify.build(getApplicationContext())
-                                                            .setTitle("Absensi App")
+                                                            .setTitle("Absensi Gelora")
                                                             .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
                                                             .setSmallIcon(R.drawable.ic_skylight_notification)
                                                             .setColor(R.color.colorPrimary)
@@ -3918,7 +3914,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     dialodWarning.show();
 
                                                     Notify.build(getApplicationContext())
-                                                            .setTitle("Absensi App")
+                                                            .setTitle("Absensi Gelora")
                                                             .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
                                                             .setSmallIcon(R.drawable.ic_skylight_notification)
                                                             .setColor(R.color.colorPrimary)
@@ -5172,6 +5168,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             if (status.equals("Success")){
                                 String count = data.getString("count");
                                 String message_yet = data.getString("message_yet");
+                                int count_notify = Integer.parseInt(count) + Integer.parseInt(message_yet);
+
 
                                 if (count.equals("0") && message_yet.equals("0")){
                                     markerNotification.setVisibility(View.GONE);
@@ -5180,6 +5178,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     if (visibility.equals("0")){
                                         markerNotification.setVisibility(View.GONE);
                                     } else {
+                                        notifMasukTV.setText(count);
                                         markerNotification.setVisibility(View.VISIBLE);
                                     }
                                 } else if (count.equals("0") && !message_yet.equals("0")) {
@@ -5187,6 +5186,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     if (visibility2.equals("0")){
                                         markerNotification.setVisibility(View.GONE);
                                     } else {
+                                        notifMasukTV.setText(message_yet);
                                         markerNotification.setVisibility(View.VISIBLE);
                                     }
                                 } else if (!count.equals("0") && !message_yet.equals("0")) {
@@ -5195,6 +5195,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     if (visibility.equals("0") && visibility2.equals("0")){
                                         markerNotification.setVisibility(View.GONE);
                                     } else {
+                                        notifMasukTV.setText(String.valueOf(count_notify));
                                         markerNotification.setVisibility(View.VISIBLE);
                                     }
                                 }
