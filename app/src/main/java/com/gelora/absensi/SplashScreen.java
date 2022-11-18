@@ -135,6 +135,12 @@ public class SplashScreen extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        refreshLabel.setText("LOADING...");
+                        loadingOff.setVisibility(View.GONE);
+                        loadingProgressBar.setVisibility(View.VISIBLE);
+                        refreshBTN.setOnClickListener(null);
+                        refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss_off));
+
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
                         }

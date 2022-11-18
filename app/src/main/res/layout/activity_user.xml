@@ -1087,6 +1087,26 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/permohonan_cuti_btn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:background="@drawable/shape_fourth_btn"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:textColor="#DC734D"
+                                        android:textSize="13dp"
+                                        android:text="Form Permohonan Cuti"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:id="@+id/id_card_digital_btn"
                                     android:layout_marginBottom="10dp"
                                     android:layout_width="match_parent"
@@ -1309,6 +1329,26 @@
                                         android:text="LOGOUT"/>
 
                                 </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/develop_by_part"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30dp"
+                                android:gravity="bottom|center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textSize="12dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textColor="#939393"
+                                    android:text="© 2022 IT PT. Gelora Aksara Pratama"/>
 
                             </LinearLayout>
 

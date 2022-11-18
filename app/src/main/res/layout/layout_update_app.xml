@@ -78,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
                         android:textColor="@color/text_color"
-                        android:text="Absensi Gelora v telah tersedia di Google Play Store"/>
+                        android:text="HRIS Mobile Gelora v telah tersedia di Google Play Store"/>
 
                 </LinearLayout>
 

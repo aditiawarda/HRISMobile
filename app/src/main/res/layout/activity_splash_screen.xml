@@ -94,7 +94,15 @@
             android:textSize="20dp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:text="ABSENSI GELORA"/>
+            android:text="HRIS MOBILE"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="G    E    L    O    R    A"/>
 
     </LinearLayout>
 
@@ -219,7 +227,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="13dp"
                             android:textColor="#696969"
-                            android:text="Absensi Gelora v telah tersedia di Google Play Store"/>
+                            android:text="HRIS Mobile Gelora v telah tersedia di Google Play Store"/>
 
                     </LinearLayout>
 

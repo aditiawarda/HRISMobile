@@ -5039,24 +5039,57 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String join_reminder = data.getString("join_reminder");
                                 String monitoring = data.getString("monitoring");
                                 String cegat_device = data.getString("cegat_device");
+                                String fitur_pengumuman = data.getString("fitur_pengumuman");
+                                String pengumuman_date = data.getString("pengumuman_date");
+                                String pengumuman_title = data.getString("pengumuman_title");
+                                String pengumuman_desc = data.getString("pengumuman_desc");
 
-                                if (sharedPrefManager.getSpNik().length()==10){
-                                    String tgl_masuk = data.getString("tgl_masuk");
-                                    String tglBulanMasuk = tgl_masuk.substring(5,10);
-                                    String tahunMasuk = tgl_masuk.substring(0,4);
+                                if(fitur_pengumuman.equals("0")){
+                                    if (sharedPrefManager.getSpNik().length()==10){
+                                        String tgl_masuk = data.getString("tgl_masuk");
+                                        String tglBulanMasuk = tgl_masuk.substring(5,10);
+                                        String tahunMasuk = tgl_masuk.substring(0,4);
 
-                                    if(tglBulanMasuk.equals(getDayMonth())) {
-                                        int masaKerja = Integer.parseInt(getDateY()) - Integer.parseInt(tahunMasuk);
-                                        reminderDecs.setText("Hari ini tepat "+String.valueOf(masaKerja)+" tahun anda bekerja di PT. Gelora Aksara Pratama");
-                                        reminderCelebrateTV.setText("Selamat Merayakan "+String.valueOf(masaKerja)+" Tahun Masa Kerja.");
-                                        if (join_reminder.equals("1")){
-                                            reminderCongrat.setVisibility(View.VISIBLE);
+                                        if(tglBulanMasuk.equals(getDayMonth())) {
+                                            int masaKerja = Integer.parseInt(getDateY()) - Integer.parseInt(tahunMasuk);
+                                            reminderDecs.setText("Hari ini tepat "+String.valueOf(masaKerja)+" tahun anda bekerja di PT. Gelora Aksara Pratama");
+                                            reminderCelebrateTV.setText("Selamat Merayakan "+String.valueOf(masaKerja)+" Tahun Masa Kerja.");
+                                            if (join_reminder.equals("1")){
+                                                reminderCongrat.setVisibility(View.VISIBLE);
+                                            } else {
+                                                reminderCongrat.setVisibility(View.GONE);
+                                            }
                                         } else {
                                             reminderCongrat.setVisibility(View.GONE);
                                         }
-                                    } else {
-                                        reminderCongrat.setVisibility(View.GONE);
                                     }
+                                } else if(fitur_pengumuman.equals("1")) {
+
+                                    if(pengumuman_date.equals(getDate())){
+                                        reminderCongrat.setVisibility(View.VISIBLE);
+                                        reminderDecs.setText(pengumuman_title);
+                                        reminderCelebrateTV.setText(pengumuman_desc);
+                                    } else {
+                                        if (sharedPrefManager.getSpNik().length()==10){
+                                            String tgl_masuk = data.getString("tgl_masuk");
+                                            String tglBulanMasuk = tgl_masuk.substring(5,10);
+                                            String tahunMasuk = tgl_masuk.substring(0,4);
+
+                                            if(tglBulanMasuk.equals(getDayMonth())) {
+                                                int masaKerja = Integer.parseInt(getDateY()) - Integer.parseInt(tahunMasuk);
+                                                reminderDecs.setText("Hari ini tepat "+String.valueOf(masaKerja)+" tahun anda bekerja di PT. Gelora Aksara Pratama");
+                                                reminderCelebrateTV.setText("Selamat Merayakan "+String.valueOf(masaKerja)+" Tahun Masa Kerja.");
+                                                if (join_reminder.equals("1")){
+                                                    reminderCongrat.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    reminderCongrat.setVisibility(View.GONE);
+                                                }
+                                            } else {
+                                                reminderCongrat.setVisibility(View.GONE);
+                                            }
+                                        }
+                                    }
+
                                 }
 
                                 fakeTimeCheck = fake_time;

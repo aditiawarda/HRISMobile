@@ -9,13 +9,9 @@ import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -30,13 +26,9 @@ import android.os.Looper;
 import android.os.ResultReceiver;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -85,7 +77,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.DateFormat;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -100,7 +91,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
     TextView countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -207,7 +198,8 @@ public class UserActivity extends AppCompatActivity {
         bagianNameTV = findViewById(R.id.bagian_name_tv);
         titlePantau = findViewById(R.id.title_pantau);
         notePantau = findViewById(R.id.note_pantau);
-        permohonanBTN = findViewById(R.id.permohonan_btn);
+        permohonanIzinBTN = findViewById(R.id.permohonan_btn);
+        permohonanCutiBTN = findViewById(R.id.permohonan_cuti_btn);
         countNotification = findViewById(R.id.count_notification);
         countNotifTV = findViewById(R.id.count_notif_tv);
         notifikationBTN = findViewById(R.id.notifikation_btn);
@@ -401,10 +393,18 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
-        permohonanBTN.setOnClickListener(new View.OnClickListener() {
+        permohonanIzinBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, FormPermohonanIzinActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        permohonanCutiBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, FormPermohonanCutiActivity.class);
                 startActivity(intent);
             }
         });
@@ -1963,6 +1963,7 @@ public class UserActivity extends AppCompatActivity {
                                 String cuaca_button = data.getString("cuaca_button");
                                 String monitoring = data.getString("monitoring");
                                 String fitur_izin = data.getString("fitur_izin");
+                                String id_card_digital = data.getString("id_card_digital");
 
                                 if (cuaca_button.equals("1")){
                                     dataCuaca.setVisibility(View.VISIBLE);
@@ -2011,6 +2012,13 @@ public class UserActivity extends AppCompatActivity {
                                 if(fitur_izin.equals("1")){
                                     fiturPart.setVisibility(View.VISIBLE);
                                     notificationPart.setVisibility(View.VISIBLE);
+
+                                    if(id_card_digital.equals("1")){
+                                        idCardDigitalBTN.setVisibility(View.VISIBLE);
+                                    } else {
+                                        idCardDigitalBTN.setVisibility(View.GONE);
+                                    }
+
                                 } else {
                                     fiturPart.setVisibility(View.GONE);
                                     notificationPart.setVisibility(View.GONE);

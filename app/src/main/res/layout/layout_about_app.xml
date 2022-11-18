@@ -54,7 +54,7 @@
                         android:textSize="18dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_marginBottom="15dp"
-                        android:text="Absensi Gelora"/>
+                        android:text="HRIS Mobile Gelora"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                         android:textSize="13dp"
                         android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
-                        android:text="Absensi Gelora merupakan aplikasi android dari Sistem Absensi Online PT Gelora Aksara Pratama, Absensi Gelora diharapkan dapat memfasilitasi karyawan PT. Gelora Aksara Pratama dalam melakukan absensi kerja."/>
+                        android:text="HRIS Mobile Gelora merupakan aplikasi android dari HR System PT Gelora Aksara Pratama, HRIS Mobile Gelora diharapkan dapat memfasilitasi karyawan PT. Gelora Aksara Pratama untuk layanan kepegawaian perusahaan."/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                         android:textSize="13dp"
                         android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
-                        android:text="Absensi Gelora dikembangkan oleh Tim IT PT. Gelora Aksara Pratama."/>
+                        android:text="HRIS Mobile Gelora dikembangkan oleh Tim IT PT. Gelora Aksara Pratama."/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -78,7 +78,7 @@
                         android:textSize="13dp"
                         android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
-                        android:text="Untuk kemudahan dan kelancaran penggunaan, Absensi Gelora didukung oleh API Google Maps sebagai penanda posisi."/>
+                        android:text="Untuk kemudahan dan kelancaran penggunaan, HRIS Mobile Gelora didukung oleh API Google Maps sebagai penanda posisi."/>
 
                     <TextView
                         android:layout_width="match_parent"

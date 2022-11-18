@@ -62,7 +62,7 @@
                         android:textSize="13dp"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/text_color"
-                        android:text="Absensi Gelora dibuat untuk mencatat kehadiran karyawan PT. Gelora Aksara Pratama secara online. Diharapkan aplikasi ini dapat mempermudah karyawan dalam melaksanakan absensi kerja."/>
+                        android:text="HRIS Mobile Gelora dibuat untuk membantu pelayannan kepegawaian PT. Gelora Aksara Pratama secara online. Diharapkan aplikasi ini dapat mempermudah karyawan dalam melaksanakan absensi kerja serta pengurusan cuti dan izin."/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="8dp"
                         android:textColor="@color/text_color"
-                        android:text="Absensi Gelora mengikuti prosedur standar menggunakan file log. Informasi yang dikumpulkan oleh file log termasuk data lokasi, tanggal dan waktu. Data ini hanya diolah secara internal oleh PT. Gelora Aksara Pratama dan tidak untuk disebarluaskan."/>
+                        android:text="HRIS Mobile Gelora mengikuti prosedur standar menggunakan file log. Informasi yang dikumpulkan oleh file log termasuk data lokasi, tanggal dan waktu. Data ini hanya diolah secara internal oleh PT. Gelora Aksara Pratama dan tidak untuk disebarluaskan."/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="8dp"
                         android:textColor="@color/text_color"
-                        android:text="Dalam penggunaan Absensi Gelora pada satu perangkat hanya dapat login untuk satu NIK/id karyawan."/>
+                        android:text="Dalam penggunaan HRIS Mobile Gelora pada satu perangkat hanya dapat login untuk satu NIK/id karyawan."/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="8dp"
                         android:textColor="@color/text_color"
-                        android:text="Kebijakan privasi ini hanya berlaku untuk aktivitas online sehubungan dengan informasi yang dimasukkan dan/atau dikumpulkan di Absensi Gelora."/>
+                        android:text="Kebijakan privasi ini hanya berlaku untuk aktivitas online sehubungan dengan informasi yang dimasukkan dan/atau dikumpulkan di HRIS Mobile Gelora."/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -134,7 +134,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/text_color"
-                        android:text="Dengan menggunakan Absensi Gelora, pengguna dengan ini menyetujui kebijakan privasi beserta syarat dan ketentuannya."/>
+                        android:text="Dengan menggunakan HRIS Mobile Gelora, pengguna dengan ini menyetujui kebijakan privasi beserta syarat dan ketentuannya."/>
 
                 </LinearLayout>
 
