@@ -332,7 +332,7 @@
                                     android:drawablePadding="10dp"
                                     android:textColor="#595959"
                                     android:hint=""
-                                    android:textSize="13dp"
+                                    android:textSize="14dp"
                                     android:textColorHint="#595959"
                                     android:textColorHighlight="#FFE1BC"/>
 

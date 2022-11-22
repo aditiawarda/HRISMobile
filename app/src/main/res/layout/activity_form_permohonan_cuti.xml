@@ -599,7 +599,7 @@
                                     android:drawablePadding="10dp"
                                     android:textColor="#595959"
                                     android:hint=""
-                                    android:textSize="13dp"
+                                    android:textSize="14dp"
                                     android:textColorHint="#595959"
                                     android:textColorHighlight="#FFE1BC"/>
 
@@ -685,7 +685,7 @@
                                     android:drawablePadding="10dp"
                                     android:textColor="#595959"
                                     android:hint=""
-                                    android:textSize="13dp"
+                                    android:textSize="14dp"
                                     android:textColorHint="#595959"
                                     android:textColorHighlight="#FFE1BC"/>
 
@@ -700,10 +700,10 @@
                                 <EditText
                                     android:id="@+id/no_hp_tv"
                                     android:layout_width="match_parent"
-                                    android:gravity="top"
+                                    android:gravity="center|left"
                                     android:layout_height="40dp"
-                                    android:paddingTop="13dp"
-                                    android:paddingBottom="13dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
                                     android:paddingLeft="20dp"
                                     android:paddingRight="20dp"
                                     android:inputType="number"
@@ -712,7 +712,7 @@
                                     android:drawablePadding="10dp"
                                     android:textColor="#595959"
                                     android:hint=""
-                                    android:textSize="13dp"
+                                    android:textSize="14dp"
                                     android:textColorHint="#595959"
                                     android:textColorHighlight="#FFE1BC"/>
 
@@ -731,7 +731,6 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textStyle="bold"
-                                        android:drawableLeft="@drawable/ic_baseline_send_form"
                                         android:drawablePadding="7dp"
                                         android:textSize="13dp"
                                         android:drawableTint="@color/white"

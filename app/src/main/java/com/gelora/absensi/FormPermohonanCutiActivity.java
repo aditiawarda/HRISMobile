@@ -18,8 +18,10 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -64,12 +66,12 @@ import java.util.Map;
 
 public class FormPermohonanCutiActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, homeBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
+    LinearLayout backBTN, homeBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, submitBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
     SwipeRefreshLayout refreshLayout;
     TextView namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
     String dateChoiceMulai = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
     ImageView loadingGif;
-    EditText keywordKaryawanPengganti;
+    EditText keywordKaryawanPengganti, alasanTV, alamatSelamaCutiTV, noHpTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
@@ -110,6 +112,10 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         kategoriCutiPilihTV = findViewById(R.id.kategori_cuti_pilih);
         penggantiSelamaCutiTV = findViewById(R.id.pengganti_selama_cuti_tv);
         penggantiSelamaCutiBTN = findViewById(R.id.pengganti_selama_cuti_part);
+        alasanTV = findViewById(R.id.alasan_tv);
+        alamatSelamaCutiTV = findViewById(R.id.alamat_selama_cuti_tv);
+        noHpTV = findViewById(R.id.no_hp_tv);
+        submitBTN = findViewById(R.id.submit_btn);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(kategoriCutiBroad, new IntentFilter("kategori_cuti_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(karyawanPenggantiBroad, new IntentFilter("karyawan_pengganti_broad"));
@@ -128,6 +134,13 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         sampaiTanggalTV.setText("");
                         kategoriCutiPilihTV.setText("");
                         penggantiSelamaCutiTV.setText("");
+                        alasanTV.setText("");
+                        alamatSelamaCutiTV.setText("");
+                        noHpTV.setText("");
+
+                        alasanTV.clearFocus();
+                        alamatSelamaCutiTV.clearFocus();
+                        noHpTV.clearFocus();
 
                         getDataKaryawan();
                     }
@@ -167,6 +180,11 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         tipeCutiBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                alasanTV.clearFocus();
+                alamatSelamaCutiTV.clearFocus();
+                noHpTV.clearFocus();
+
                 kategoriCuti();
             }
         });
@@ -174,7 +192,2187 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         penggantiSelamaCutiBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                alasanTV.clearFocus();
+                alamatSelamaCutiTV.clearFocus();
+                noHpTV.clearFocus();
+
                 karyawanPengganti();
+            }
+        });
+
+        submitBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alasanTV.clearFocus();
+                alamatSelamaCutiTV.clearFocus();
+                noHpTV.clearFocus();
+
+                if(dateChoiceMulai.equals("")){
+                    if(dateChoiceAkhir.equals("")){
+                        if(kategoriCutiPilihTV.getText().toString().equals("")){
+                            if(alasanTV.getText().toString().equals("")){
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi semua data
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi semua data!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori, alasan, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti, alasan, pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori, alasan, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti, alasan, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori, alasan dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti, alasan dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori, alasan, alamat, dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti, alasan, alamat selama cuti, dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori, alasan, dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti, alasan dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori, alasan, dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti, alasan, dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori dan alasan
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti dan alasan!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            } else {
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti, pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori, dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti, dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, kategori, dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, kategori cuti, dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir, dan kategori
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, dan kategori cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if(alasanTV.getText().toString().equals("")){
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, alasan, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, alasan, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir, alasan, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, alasan, pengganti selama cuti dan alamat pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, alasan, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, alasan, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir, alasan dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, alasan dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, alasan, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, alasan, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir, alasan dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, alasan dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, alasan dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, alasan dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir dan alasan
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir dan alasan!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            } else {
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, tanggal akhir dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, tanggal akhir dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, tanggal akhir dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai dan tanggal akhir
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai dan tanggal akhir!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if(kategoriCutiPilihTV.getText().equals("")){
+                            if(alasanTV.getText().toString().equals("")){
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, kategori, alasan, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti, alasan, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, kategori, alasan, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti, alasan, pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, kategori, alasan, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti, alasan, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, kategori, alasan, dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti, alasan, dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, kategori, alasan, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti, alasan, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, kategori, alasan dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti, alasan dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, kategori, alasan dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti, alasan dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, kategori dan alasan
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti dan alasan!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            } else {
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, kategori, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, kategori, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti, pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, kategori, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, kategori dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, kategori, alamat dan no hp
+
+                                             new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, kategori dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, kategori dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, kategori cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai dan kategori
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai dan kategori cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if(alasanTV.getText().toString().equals("")){
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, alasan, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, alasan, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, alasan, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, alasan, pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, alasan, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, alasan, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, alasan, dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, alasan, dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, alasan, alamat dan no hp
+
+                                              new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, alasan, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, alasan dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, alasan dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, alasan dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, alasan dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai dan alasan
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai dan alasan!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            } else {
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai dan alamat
+
+                                              new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal mulai dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal mulai
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal mulai!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if(dateChoiceAkhir.equals("")){
+                        if(kategoriCutiPilihTV.getText().toString().equals("")){
+                            if(alasanTV.getText().toString().equals("")){
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, kategori, alasan, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti, alasan, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir, kategori, alasan, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti, alasan, pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, kategori, alasan, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti, alasan, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir, kategori, alasan dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti, alasan dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, kategori, alasan, alamat, dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti, alasan, alamat selama cuti, dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir, kategori, alasan, dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti, alasan, dan alamat alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, kategori, alasan, dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti, alasan, dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir, kategori dan alasan
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti dan alasan!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            } else {
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, kategori, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir, kategori, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti, pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, kategori, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir, kategori dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, kategori, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir, kategori, dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti, dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, kategori dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, kategori cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir dan kategori
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir dan kategori cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if(alasanTV.getText().toString().equals("")){
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, alasan, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, alasan, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir, alasan, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, alasan, pengganti selama cuti dan alamat pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, alasan, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, alasan, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir, alasan dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, alasan dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, alasan, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, alasan, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir, alasan dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, alasan dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, alasan dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, alasan dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir dan alasan
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir dan alasan!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            } else {
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi tanggal akhir dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi tanggal akhir
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi tanggal akhir!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if(kategoriCutiPilihTV.getText().equals("")){
+                            if(alasanTV.getText().toString().equals("")){
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi kategori, alasan, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti, alasan, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi kategori, alasan, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti, alasan, pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi kategori, alasan, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti, alasan, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi kategori, alasan, dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti, alasan, dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi kategori, alasan, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti, alasan, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi kategori, alasan dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti, alasan dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi kategori, alasan dan no hp
+
+                                              new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti, alasan dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi kategori dan alasan
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti dan alasan!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            } else {
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi kategori, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi kategori, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti, pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi kategori, pengganti dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi kategori dan pengganti
+
+                                              new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi kategori, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi kategori dan alamat
+
+                                              new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi kategori dan no hp
+
+                                             new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi kategori
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi kategori cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if(alasanTV.getText().toString().equals("")){
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi alasan, pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi alasan, pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi alasan, pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi alasan, pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi alasan, pengganti dan no hp
+
+                                               new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi alasan, pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi alasan, dan pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi alasan, dan pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi alasan, alamat dan no hp
+
+                                             new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi alasan, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi alasan dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi alasan dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi alasan dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi alasan dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi alasan
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi alasan!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                }
+                            } else {
+                                if(penggantiSelamaCutiTV.getText().toString().equals("")){
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi pengganti, alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi pengganti selama cuti, alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi pengganti dan alamat
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi pengganti selama cuti dan alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi pengganti dan no hp
+
+                                               new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi pengganti selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi pengganti
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi pengganti selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    }
+                                } else {
+                                    if(alamatSelamaCutiTV.getText().toString().equals("")){
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi alamat dan no hp
+
+                                            new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi alamat selama cuti dan no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Harap isi alamat
+
+                                             new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi alamat selama cuti!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        }
+                                    } else {
+                                        if(noHpTV.getText().toString().equals("")){
+                                            // Harap isi no hp
+
+                                             new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Harap isi no hp!")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+
+                                        } else {
+                                            // Diisi semua
+
+
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
             }
         });
 
@@ -296,6 +2494,10 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                alasanTV.clearFocus();
+                alamatSelamaCutiTV.clearFocus();
+                noHpTV.clearFocus();
+
                 String keyWordSearch = keywordKaryawanPengganti.getText().toString();
 
                 startAttantionPart.setVisibility(View.GONE);
@@ -311,6 +2513,30 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 }, 500);
             }
 
+        });
+
+        keywordKaryawanPengganti.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    String keyWordSearch = keywordKaryawanPengganti.getText().toString();
+                    getDataKaryawanPengganti(keyWordSearch);
+
+                    InputMethodManager imm = (InputMethodManager) FormPermohonanCutiActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    View view = FormPermohonanCutiActivity.this.getCurrentFocus();
+                    if (view == null) {
+                        view = new View(FormPermohonanCutiActivity.this);
+                    }
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+                    alasanTV.clearFocus();
+                    alamatSelamaCutiTV.clearFocus();
+                    noHpTV.clearFocus();
+
+                    return true;
+                }
+                return false;
+            }
         });
 
     }
@@ -1250,6 +3476,10 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
             kategoriCutiPilihTV.setText(descCuti);
 
+            alasanTV.clearFocus();
+            alamatSelamaCutiTV.clearFocus();
+            noHpTV.clearFocus();
+
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -1274,6 +3504,10 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 view = new View(FormPermohonanCutiActivity.this);
             }
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+            alasanTV.clearFocus();
+            alamatSelamaCutiTV.clearFocus();
+            noHpTV.clearFocus();
 
             new Handler().postDelayed(new Runnable() {
                 @Override
