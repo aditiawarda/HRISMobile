@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -64,8 +66,8 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
     LinearLayout backBTN, homeBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
     SwipeRefreshLayout refreshLayout;
-    TextView namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
-    String dateChoiceMulai = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "";
+    TextView namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
+    String dateChoiceMulai = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
     ImageView loadingGif;
     EditText keywordKaryawanPengganti;
     SharedPrefManager sharedPrefManager;
@@ -106,9 +108,11 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         sampaiTanggalTV = findViewById(R.id.akhir_date_pilih);
         tipeCutiBTN = findViewById(R.id.tipe_cuti);
         kategoriCutiPilihTV = findViewById(R.id.kategori_cuti_pilih);
+        penggantiSelamaCutiTV = findViewById(R.id.pengganti_selama_cuti_tv);
         penggantiSelamaCutiBTN = findViewById(R.id.pengganti_selama_cuti_part);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(kategoriCutiBroad, new IntentFilter("kategori_cuti_broad"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(karyawanPenggantiBroad, new IntentFilter("karyawan_pengganti_broad"));
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -119,9 +123,11 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                     public void run() {
                         refreshLayout.setRefreshing(false);
                         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_CUTI, "");
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PENGGANTI, "");
                         dariTanggalTV.setText("");
                         sampaiTanggalTV.setText("");
                         kategoriCutiPilihTV.setText("");
+                        penggantiSelamaCutiTV.setText("");
 
                         getDataKaryawan();
                     }
@@ -174,6 +180,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
         getDataKaryawan();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_CUTI, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PENGGANTI, "");
 
     }
 
@@ -1242,6 +1249,31 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
             descCuti = intent.getStringExtra("desc_kategori_cuti");
 
             kategoriCutiPilihTV.setText(descCuti);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                }
+            }, 300);
+        }
+    };
+
+    public BroadcastReceiver karyawanPenggantiBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            nikKaryawanPengganti = intent.getStringExtra("nik_karyawan_pengganti");
+            namaKaryawanPenganti = intent.getStringExtra("nama_karyawan_pengganti");
+
+            penggantiSelamaCutiTV.setText(namaKaryawanPenganti);
+
+            InputMethodManager imm = (InputMethodManager) FormPermohonanCutiActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            View view = FormPermohonanCutiActivity.this.getCurrentFocus();
+            if (view == null) {
+                view = new View(FormPermohonanCutiActivity.this);
+            }
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
             new Handler().postDelayed(new Runnable() {
                 @Override

@@ -63,13 +63,12 @@ public class AdapterKaryawanPengganti extends RecyclerView.Adapter<AdapterKaryaw
 
                 notifyDataSetChanged();
 
-//                Intent intent = new Intent("kategori_cuti_broad");
-//                intent.putExtra("id_kategori_cuti",kategoriIzin.getId());
-//                intent.putExtra("kode_kategori_cuti",kategoriIzin.getKode());
-//                intent.putExtra("desc_kategori_cuti",kategoriIzin.getDeskripsi());
-//                LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
-//
-//                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_CUTI, kategoriIzin.getId());
+                Intent intent = new Intent("karyawan_pengganti_broad");
+                intent.putExtra("nik_karyawan_pengganti",karyawanPengganti.getNIK());
+                intent.putExtra("nama_karyawan_pengganti",karyawanPengganti.getNama());
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PENGGANTI, karyawanPengganti.getNIK());
 
             }
 
