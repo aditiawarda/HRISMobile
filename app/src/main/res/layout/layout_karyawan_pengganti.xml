@@ -94,6 +94,7 @@
                     </androidx.recyclerview.widget.RecyclerView>
 
                     <LinearLayout
+                        android:visibility="gone"
                         android:id="@+id/loading_data_part"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
