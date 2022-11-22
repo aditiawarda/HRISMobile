@@ -637,7 +637,7 @@
                                             android:textSize="11dp"
                                             android:layout_marginTop="7dp"
                                             android:textColor="#7C7C7C"
-                                            android:text="Pastikan koneksi internet anda aktif."/>
+                                            android:text="Pastikan perangkat anda terhubung dengan internet."/>
 
                                     </LinearLayout>
 

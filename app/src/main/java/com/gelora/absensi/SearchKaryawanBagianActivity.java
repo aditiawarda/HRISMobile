@@ -673,6 +673,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
 
         bagianRV.setLayoutManager(new LinearLayoutManager(this));
         bagianRV.setHasFixedSize(true);
+        bagianRV.setNestedScrollingEnabled(false);
         bagianRV.setItemAnimator(new DefaultItemAnimator());
 
         getListBagian();

@@ -89,7 +89,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:drawablePadding="5dp"
-                                                android:text="ADITIA WARDANI"
+                                                android:text="-"
                                                 android:textColor="@color/white"
                                                 android:textSize="16dp" />
 
@@ -105,7 +105,7 @@
                                                 android:id="@+id/jabatan_karyawan_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="Staff"
+                                                android:text="-"
                                                 android:textColor="@color/white"
                                                 android:textSize="13dp" />
 
@@ -115,7 +115,7 @@
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
                                                 android:layout_marginBottom="5dp"
-                                                android:text="EDP | RND"
+                                                android:text="- | -"
                                                 android:textColor="@color/white"
                                                 android:textSize="12dp" />
 
@@ -157,6 +157,7 @@
                                                 android:text="Mulai Bekerja"/>
 
                                             <TextView
+                                                android:id="@+id/tgl_mulai_kerja_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:textSize="14dp"
@@ -185,13 +186,14 @@
                                                 android:text="NIK"/>
 
                                             <TextView
+                                                android:id="@+id/nik_karyawan_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:textSize="14dp"
                                                 android:layout_marginTop="0dp"
                                                 android:layout_marginBottom="5dp"
                                                 android:textColor="#696969"
-                                                android:text="3186150321"/>
+                                                android:text="-"/>
 
                                         </LinearLayout>
 
@@ -226,6 +228,7 @@
                                                 android:text="Status"/>
 
                                             <TextView
+                                                android:id="@+id/status_karyawan"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:textSize="14dp"
@@ -254,6 +257,7 @@
                                                 android:text="Sisa Cuti"/>
 
                                             <TextView
+                                                android:id="@+id/sisa_cuti_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:textSize="14dp"
@@ -325,6 +329,7 @@
                                                 android:text="Tahun"/>
 
                                             <TextView
+                                                android:id="@+id/tahun_telah_cuti_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:textSize="14dp"
@@ -353,6 +358,7 @@
                                                 android:text="Total"/>
 
                                             <TextView
+                                                android:id="@+id/total_telah_cuti_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:textSize="14dp"
@@ -504,6 +510,65 @@
                                                 android:layout_width="25dp"
                                                 android:layout_height="25dp"
                                                 android:background="@drawable/ic_baseline_date_akhir"/>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:textColor="#696969"
+                                    android:text="Kategori Cuti :"/>
+
+                                <LinearLayout
+                                    android:id="@+id/tipe_cuti"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:paddingStart="20dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:background="@drawable/shape_feel"
+                                    android:orientation="horizontal">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
+
+                                        <LinearLayout
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="40dp"
+                                            android:orientation="vertical"
+                                            android:gravity="center|left">
+
+                                            <TextView
+                                                android:id="@+id/kategori_cuti_pilih"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="#B15735"
+                                                android:textSize="13dp"
+                                                android:textStyle="bold"
+                                                android:text=""/>
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/change_kategori_cuti"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_width="40dp"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/shape_btn"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:background="@drawable/ic_baseline_down"/>
 
                                         </LinearLayout>
 

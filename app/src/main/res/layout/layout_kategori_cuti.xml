@@ -31,7 +31,7 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:text="Pilih Shift"/>
+                android:text="Pilih Tipe Cuti"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                     android:orientation="vertical">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/shift_absen_rv"
+                        android:id="@+id/kategori_cuti_rv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">

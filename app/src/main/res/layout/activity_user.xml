@@ -1347,7 +1347,7 @@
                                     android:textSize="12dp"
                                     android:ellipsize="end"
                                     android:maxLines="1"
-                                    android:textColor="#939393"
+                                    android:textColor="#BDBDBD"
                                     android:text="© 2022 IT PT. Gelora Aksara Pratama"/>
 
                             </LinearLayout>

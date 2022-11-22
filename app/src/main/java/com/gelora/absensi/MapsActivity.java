@@ -947,6 +947,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         statusAbsenRV.setLayoutManager(new LinearLayoutManager(this));
         statusAbsenRV.setHasFixedSize(true);
+        statusAbsenRV.setNestedScrollingEnabled(false);
         statusAbsenRV.setItemAnimator(new DefaultItemAnimator());
 
         getStatusAbsenBagian();
@@ -959,6 +960,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         shifAbsenRV.setLayoutManager(new LinearLayoutManager(this));
         shifAbsenRV.setHasFixedSize(true);
+        shifAbsenRV.setNestedScrollingEnabled(false);
         shifAbsenRV.setItemAnimator(new DefaultItemAnimator());
 
         getShiftAbsenBagian();

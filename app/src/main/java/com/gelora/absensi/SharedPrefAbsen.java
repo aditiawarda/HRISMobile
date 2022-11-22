@@ -10,9 +10,13 @@ public class SharedPrefAbsen {
     public static final String SP_ID_STATUS = "spIdStatus";
     public static final String SP_ID_SHIFT = "spIdShift";
     public static final String SP_ID_BAGIAN = "spIdBagian";
+    public static final String SP_ID_CUTI = "spIdCuti";
+    public static final String SP_ID_KARYAWAN_PENGGANTI = "spIdKaryawanPengganti";
     public static final String SP_STATUS_ABSEN = "spStatusAbsen";
     public static final String SP_SHIFT_ABSEN = "spShiftAbsen";
     public static final String SP_BAGIAN = "spBagian";
+    public static final String SP_CUTI = "spCuti";
+    public static final String SP_KARYAWAN_PENGGANTI = "spKaryawanPengganti";
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -50,6 +54,14 @@ public class SharedPrefAbsen {
         return sp.getString(SP_ID_BAGIAN, "");
     }
 
+    public String getSpIdCuti(){
+        return sp.getString(SP_ID_CUTI, "");
+    }
+
+    public String getSpIdKaryawanPengganti(){
+        return sp.getString(SP_ID_KARYAWAN_PENGGANTI, "");
+    }
+
     public String getSpStatusAbsen(){
         return sp.getString(SP_STATUS_ABSEN, "");
     }
@@ -60,6 +72,14 @@ public class SharedPrefAbsen {
 
     public String getSpBagian(){
         return sp.getString(SP_BAGIAN, "");
+    }
+
+    public String getSpCuti(){
+        return sp.getString(SP_CUTI, "");
+    }
+
+    public String getSpKaryawanPengganti(){
+        return sp.getString(SP_KARYAWAN_PENGGANTI, "");
     }
 
 }
