@@ -41,6 +41,7 @@ import android.os.Vibrator;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -105,6 +106,7 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.suke.widget.SwitchButton;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -4361,7 +4363,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         connectionFailed.setVisibility(View.VISIBLE);
         connectionSuccess.setVisibility(View.GONE);
         skeletonLayout.setVisibility(View.GONE);
-        Banner.make(rootview, MapsActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+        //Banner.make(rootview, MapsActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
 
         connectionStatus = "failed";
 

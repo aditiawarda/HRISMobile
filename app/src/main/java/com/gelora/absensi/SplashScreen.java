@@ -1,9 +1,7 @@
 package com.gelora.absensi;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -12,35 +10,23 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.provider.Settings;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.Menu;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -48,47 +34,28 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
-import com.flipboard.bottomsheet.BottomSheetLayout;
-import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.StatusBarColorManager;
-import com.github.sundeepk.compactcalendarview.domain.Event;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MapStyleOptions;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.shasin.notificationbanner.Banner;
 
-import org.json.JSONArray;
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
-import static com.gelora.absensi.R.layout.activity_splash_screen;
 import static android.service.controls.ControlsProviderService.TAG;
-import static android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
 public class SplashScreen extends AppCompatActivity {
@@ -575,7 +542,15 @@ public class SplashScreen extends AppCompatActivity {
                 refreshPart.setVisibility(View.VISIBLE);
                 refreshLabel.setText("REFRESH");
 
-                Banner.make(rootview, SplashScreen.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+                CookieBar.build(SplashScreen.this)
+                        .setCustomView(R.layout.layout_custom_cookie)
+                        .setEnableAutoDismiss(true)
+                        .setSwipeToDismiss(false)
+                        .setCookiePosition(Gravity.TOP)
+                        .show();
+
+                // Banner.make(rootview, SplashScreen.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+
             }
         });
 

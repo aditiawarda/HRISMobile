@@ -44,8 +44,18 @@ public class ViewImageActivity extends AppCompatActivity {
         String kode = getIntent().getExtras().getString("kode");
 
         if(kode.equals("form")){
-            titlePageTV.setText("SURAT SAKIT");
-            Picasso.get().load(url).into(mainImage);
+            String jenis_form = getIntent().getExtras().getString("jenis_form");
+            if(jenis_form.equals("izin")){
+                titlePageTV.setText("SURAT SAKIT");
+                Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        .into(mainImage);
+            } else if(jenis_form.equals("cuti")){
+                titlePageTV.setText("LAMPIRAN");
+                Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        .into(mainImage);
+            }
         } else if (kode.equals("profile")){
             titlePageTV.setText("FOTO PROFIL");
             Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)

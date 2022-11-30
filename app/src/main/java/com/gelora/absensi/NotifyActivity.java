@@ -34,7 +34,6 @@ public class NotifyActivity extends AppCompatActivity {
 
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
-        //NotifyActivity.this.getWindow().getDecorView().getWindowInsetsController().setSystemBarsAppearance(APPEARANCE_LIGHT_STATUS_BARS, APPEARANCE_LIGHT_STATUS_BARS);
 
         descRegister = findViewById(R.id.desc);
         toLoginBTN = findViewById(R.id.to_login_btn);

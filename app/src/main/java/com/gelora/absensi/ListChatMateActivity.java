@@ -28,6 +28,7 @@ import com.gelora.absensi.model.ListChatMate;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -131,7 +132,7 @@ public class ListChatMateActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         ) {
@@ -145,6 +146,18 @@ public class ListChatMateActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    private void connectionFailed(){
+        CookieBar.build(ListChatMateActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
     }
 
     @Override

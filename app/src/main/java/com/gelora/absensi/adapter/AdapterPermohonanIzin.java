@@ -17,6 +17,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DetailHadirActivity;
+import com.gelora.absensi.DetailPermohonanCutiActivity;
 import com.gelora.absensi.DetailPermohonanIzinActivity;
 import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.R;
@@ -56,16 +57,25 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final ListPermohonanIzin listPermohonanIzin = data[i];
 
+        String tipe_pengajuan = listPermohonanIzin.getTipe_pengajuan();
         String tipe_izin = listPermohonanIzin.getTipe_izin();
-        if (tipe_izin.equals("5")){
-            tipe_izin = "Tidak Masuk (Sakit)";
-        } else {
-            tipe_izin = "Permohonan Izin";
+        String desc_izin = listPermohonanIzin.getDeskripsi_izin();
+
+        if(tipe_pengajuan.equals("1")){
+            if (tipe_izin.equals("5")){
+                desc_izin = "Tidak Masuk (Sakit)";
+            } else if (tipe_izin.equals("4")) {
+                desc_izin = "Permohonan Izin";
+            } else {
+                desc_izin = listPermohonanIzin.getDeskripsi_izin();
+            }
+        } else if(tipe_pengajuan.equals("2")) {
+            desc_izin = "Permohonan Cuti";
         }
 
         myViewHolder.namaKaryawanTV.setText(listPermohonanIzin.getNmKaryawan().toUpperCase());
         myViewHolder.nikKaryawanTV.setText("NIK "+listPermohonanIzin.getNIK());
-        myViewHolder.deskrisiPermohonan.setText(tipe_izin);
+        myViewHolder.deskrisiPermohonan.setText(desc_izin);
 
         String input_date = listPermohonanIzin.getCreated_at().substring(0,10);
         String dayDate = input_date.substring(8,10);
@@ -162,10 +172,17 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, DetailPermohonanIzinActivity.class);
-                intent.putExtra("kode", "notif");
-                intent.putExtra("id_izin",listPermohonanIzin.getId());
-                mContext.startActivity(intent);
+                if(tipe_pengajuan.equals("1")){
+                    Intent intent = new Intent(mContext, DetailPermohonanIzinActivity.class);
+                    intent.putExtra("kode", "notif");
+                    intent.putExtra("id_izin",listPermohonanIzin.getId());
+                    mContext.startActivity(intent);
+                } else if(tipe_pengajuan.equals("2")) {
+                    Intent intent = new Intent(mContext, DetailPermohonanCutiActivity.class);
+                    intent.putExtra("kode", "notif");
+                    intent.putExtra("id_izin",listPermohonanIzin.getId());
+                    mContext.startActivity(intent);
+                }
             }
 
         });

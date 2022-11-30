@@ -26,6 +26,8 @@ import com.gelora.absensi.kalert.KAlertDialog;
 import com.google.zxing.WriterException;
 import com.shasin.notificationbanner.Banner;
 
+import org.aviran.cookiebar2.CookieBar;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -164,7 +166,18 @@ public class DigitalCardActivity extends AppCompatActivity {
 
     private void generateQRCode(){
         if (TextUtils.isEmpty(dataDiri)){
-            Banner.make(rootview,DigitalCardActivity.this,Banner.ERROR,"QR Code gagal di generate",Banner.BOTTOM,2000).show();
+            // Banner.make(rootview,DigitalCardActivity.this,Banner.ERROR,"QR Code gagal di generate",Banner.BOTTOM,2000).show();
+
+            CookieBar.build(DigitalCardActivity.this)
+                    .setTitle("Perhatian")
+                    .setMessage("QR Code gagal di generate!")
+                    .setTitleColor(R.color.colorPrimaryDark)
+                    .setMessageColor(R.color.colorPrimaryDark)
+                    .setBackgroundColor(R.color.warningBottom)
+                    .setIcon(R.drawable.warning_connection_mini)
+                    .setCookiePosition(CookieBar.BOTTOM)
+                    .show();
+
             return;
         }
         try {

@@ -49,6 +49,7 @@ import com.google.gson.GsonBuilder;
 import com.shasin.notificationbanner.Banner;
 import com.takisoft.datetimepicker.DatePickerDialog;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -740,7 +741,17 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, SearchKaryawanBagianActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+        // Banner.make(rootview, SearchKaryawanBagianActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+
+        CookieBar.build(SearchKaryawanBagianActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
     }
 
 }

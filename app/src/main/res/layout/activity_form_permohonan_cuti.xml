@@ -45,7 +45,7 @@
                             android:orientation="vertical">
 
                             <LinearLayout
-                                android:id="@+id/form_part"
+                                android:id="@+id/form_part_cuti"
                                 android:orientation="vertical"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
@@ -164,7 +164,7 @@
                                                 android:layout_marginTop="0dp"
                                                 android:layout_marginBottom="5dp"
                                                 android:textColor="#696969"
-                                                android:text="15/03/2021"/>
+                                                android:text="-"/>
 
                                         </LinearLayout>
 
@@ -235,7 +235,7 @@
                                                 android:layout_marginTop="0dp"
                                                 android:layout_marginBottom="5dp"
                                                 android:textColor="#696969"
-                                                android:text="Kontrak"/>
+                                                android:text="-"/>
 
                                         </LinearLayout>
 
@@ -264,7 +264,7 @@
                                                 android:layout_marginTop="0dp"
                                                 android:layout_marginBottom="5dp"
                                                 android:textColor="#696969"
-                                                android:text="2 Hari"/>
+                                                android:text="-"/>
 
                                         </LinearLayout>
 
@@ -336,7 +336,7 @@
                                                 android:layout_marginTop="0dp"
                                                 android:layout_marginBottom="5dp"
                                                 android:textColor="#696969"
-                                                android:text="2022"/>
+                                                android:text="-"/>
 
                                         </LinearLayout>
 
@@ -365,7 +365,7 @@
                                                 android:layout_marginTop="0dp"
                                                 android:layout_marginBottom="5dp"
                                                 android:textColor="#696969"
-                                                android:text="8 Hari"/>
+                                                android:text="-"/>
 
                                         </LinearLayout>
 
@@ -523,10 +523,10 @@
                                     android:textSize="12dp"
                                     android:layout_marginBottom="5dp"
                                     android:textColor="#696969"
-                                    android:text="Kategori Cuti :"/>
+                                    android:text="Jenis Cuti :"/>
 
                                 <LinearLayout
-                                    android:id="@+id/tipe_cuti"
+                                    android:id="@+id/jenis_cuti"
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
                                     android:paddingStart="20dp"
@@ -573,6 +573,35 @@
                                         </LinearLayout>
 
                                     </RelativeLayout>
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:textColor="#696969"
+                                    android:text="Tipe Cuti :"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:background="@drawable/shape_feel_disable"
+                                    android:gravity="center|left"
+                                    android:orientation="horizontal"
+                                    android:paddingStart="20dp"
+                                    android:paddingEnd="20dp">
+
+                                    <TextView
+                                        android:id="@+id/tipe_cuti_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Pilih Jenis Cuti..."
+                                        android:textColor="#B15735"
+                                        android:textSize="13dp"
+                                        android:textStyle="bold" />
 
                                 </LinearLayout>
 
@@ -717,6 +746,110 @@
                                     android:textColorHighlight="#FFE1BC"/>
 
                                 <LinearLayout
+                                    android:visibility="gone"
+                                    android:id="@+id/upload_file_part"
+                                    android:layout_width="match_parent"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:orientation="vertical"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Lampiran :"/>
+
+                                    <LinearLayout
+                                        android:orientation="horizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <LinearLayout
+                                                android:visibility="gone"
+                                                android:id="@+id/mark_upload"
+                                                android:layout_marginTop="3dp"
+                                                android:layout_width="28dp"
+                                                android:layout_height="28dp"
+                                                android:background="@drawable/ic_baseline_check_circle_outline"
+                                                android:orientation="horizontal" />
+
+                                            <TextView
+                                                android:id="@+id/status_upload_tv"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textSize="13dp"
+                                                android:textColor="#696969"
+                                                android:text="Belum diunggah"/>
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:gravity="right"
+                                            android:layout_height="wrap_content">
+
+                                            <LinearLayout
+                                                android:id="@+id/upload_btn"
+                                                android:layout_width="wrap_content"
+                                                android:paddingTop="5dp"
+                                                android:paddingBottom="5dp"
+                                                android:paddingRight="15dp"
+                                                android:paddingLeft="15dp"
+                                                android:background="@drawable/shape_btn_upload"
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                    android:id="@+id/label_unggah"
+                                                    android:layout_width="wrap_content"
+                                                    android:gravity="center"
+                                                    android:textColor="@color/white"
+                                                    android:drawablePadding="5dp"
+                                                    android:textSize="12dp"
+                                                    android:drawableLeft="@drawable/ic_baseline_upload_file"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Unggah"/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:visibility="gone"
+                                                android:id="@+id/view_btn"
+                                                android:layout_width="wrap_content"
+                                                android:paddingTop="5dp"
+                                                android:paddingBottom="5dp"
+                                                android:paddingRight="5dp"
+                                                android:paddingLeft="5dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:background="@drawable/shape_btn_view_upload"
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                    android:layout_width="20dp"
+                                                    android:gravity="center"
+                                                    android:background="@drawable/ic_baseline_content_surat"
+                                                    android:layout_height="20dp" />
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:id="@+id/submit_btn"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -743,7 +876,7 @@
 
                             <LinearLayout
                                 android:visibility="gone"
-                                android:id="@+id/success_submit"
+                                android:id="@+id/success_submit_cuti"
                                 android:orientation="vertical"
                                 android:gravity="center"
                                 android:layout_width="match_parent"
@@ -777,7 +910,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="15dp"
-                                            android:text="Permohonan anda telah terkirim dan disampaikan kepada Kepala Bagian / Supervisor untuk persetujuan."
+                                            android:text="Permohonan anda telah terkirim dan disampaikan kepada atasan untuk persetujuan."
                                             android:textAlignment="center"
                                             android:textColor="@color/white"
                                             android:textSize="13dp" />

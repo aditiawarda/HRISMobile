@@ -1,35 +1,37 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
+import android.app.DownloadManager;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.pdf.PdfDocument;
 import android.media.MediaScannerConnection;
-import android.net.Uri;
+import android.net.Uri;;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.Size;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -37,28 +39,20 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
-import com.gelora.absensi.adapter.AdapterKehadiranBagian;
-import com.gelora.absensi.adapter.AdapterKetidakhadiranBagian;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.DataMonitoringKehadiranBagian;
-import com.gelora.absensi.model.DataMonitoringKetidakhadiranBagian;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.zxing.WriterException;
 import com.shasin.notificationbanner.Banner;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -73,9 +67,9 @@ import androidmads.library.qrgenearator.QRGEncoder;
 
 public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
-    TextView notedTV, appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, supervisorTV, hrdTV;
-    String uriImage, uriImage2, idIzinRecord, statusKondisi = "0", kode;
-    LinearLayout viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, homeBTN, approvedBTN, rejectedBTN, actionPart;
+    TextView notedTV, appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, tanggalApproveTV, tanggalApproveHRDTV, supervisorTV, hrdTV;
+    String uriImage, uriImage2, idIzinRecord, statusKondisi = "0", kode, title;
+    LinearLayout pdfBTN, viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, homeBTN, approvedBTN, rejectedBTN, actionPart;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdSupervisor, qrDocument;
     KAlertDialog pDialog;
@@ -83,6 +77,13 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     View rootview;
     private int i = -1;
+
+    ProgressDialog prDialog;
+    public static final int progress_bar_type = 0;
+    String file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_izin";
+
+    private NotificationManager mNotifyManager;
+    private NotificationCompat.Builder mBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,9 +117,12 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         acceptedMark = findViewById(R.id.accepted_mark);
         suratIzinPart = findViewById(R.id.surat_izin_part);
         downloadBTN = findViewById(R.id.download_btn);
+        pdfBTN = findViewById(R.id.print_pdf);
         qrDocument = findViewById(R.id.qr_document);
         appoveStatusHRD = findViewById(R.id.appove_status_hrd);
+        tanggalApproveHRDTV = findViewById(R.id.tanggal_approve_hrd);
         viewSuratSakitBTN = findViewById(R.id.view_surat_sakit_btn);
+        tanggalApproveTV = findViewById(R.id.tanggal_approve);
         notedTV = findViewById(R.id.noted_tv);
 
         kode = getIntent().getExtras().getString("kode");
@@ -166,77 +170,88 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                             public void onClick(KAlertDialog sDialog) {
                                 sDialog.dismiss();
 
-                                File file = saveBitMap(DetailPermohonanIzinActivity.this, suratIzinPart);
-                                if (file != null) {
-                                    final KAlertDialog pDialog = new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.PROGRESS_TYPE)
-                                            .setTitleText("Loading");
-                                    pDialog.show();
-                                    pDialog.setCancelable(false);
-                                    new CountDownTimer(2000, 1000) {
-                                        public void onTick(long millisUntilFinished) {
-                                            i++;
-                                            switch (i) {
-                                                case 0:
-                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                            (DetailPermohonanIzinActivity.this, R.color.colorGradien));
-                                                    break;
-                                                case 1:
-                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                            (DetailPermohonanIzinActivity.this, R.color.colorGradien2));
-                                                    break;
-                                                case 2:
-                                                case 6:
-                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                            (DetailPermohonanIzinActivity.this, R.color.colorGradien3));
-                                                    break;
-                                                case 3:
-                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                            (DetailPermohonanIzinActivity.this, R.color.colorGradien4));
-                                                    break;
-                                                case 4:
-                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                            (DetailPermohonanIzinActivity.this, R.color.colorGradien5));
-                                                    break;
-                                                case 5:
-                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                            (DetailPermohonanIzinActivity.this, R.color.colorGradien6));
-                                                    break;
-                                            }
-                                        }
-                                        public void onFinish() {
-                                            i = -1;
-                                            pDialog.setTitleText("Unduh Berhasil")
-                                                    .setContentText("File permohonan berhasil diunduh")
-                                                    .setCancelText("TUTUP")
-                                                    .setConfirmText("LIHAT")
-                                                    .showCancelButton(true)
-                                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                                        @Override
-                                                        public void onClick(KAlertDialog sDialog) {
-                                                            sDialog.dismiss();
-                                                        }
-                                                    })
-                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                        @Override
-                                                        public void onClick(KAlertDialog sDialog) {
-                                                            sDialog.dismiss();
-                                                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uriImage2));
-                                                            startActivity(intent);
-                                                        }
-                                                    })
-                                                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                                        }
-                                    }.start();
+                                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
+                                 startActivity(browserIntent);
 
-                                    Log.i("TAG", "Drawing saved to the gallery!");
-                                } else {
-                                    Log.i("TAG", "Oops! Image could not be saved.");
-                                }
+                                // downloadPermohonan();
+
+                                // File file = saveBitMap(DetailPermohonanIzinActivity.this, suratIzinPart);
+                                // if (file != null) {
+                                //    final KAlertDialog pDialog = new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                //      pDialog.show();
+                                //      pDialog.setCancelable(false);
+                                //    new CountDownTimer(2000, 1000) {
+                                //        public void onTick(long millisUntilFinished) {
+                                //            i++;
+                                //            switch (i) {
+                                //                case 0:
+                                //                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                //                            (DetailPermohonanIzinActivity.this, R.color.colorGradien));
+                                //                    break;
+                                //                case 1:
+                                //                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                //                            (DetailPermohonanIzinActivity.this, R.color.colorGradien2));
+                                //                    break;
+                                //                case 2:
+                                //                case 6:
+                                //                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                //                            (DetailPermohonanIzinActivity.this, R.color.colorGradien3));
+                                //                    break;
+                                //                case 3:
+                                //                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                //                            (DetailPermohonanIzinActivity.this, R.color.colorGradien4));
+                                //                   break;
+                                //                case 4:
+                                //                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                //                            (DetailPermohonanIzinActivity.this, R.color.colorGradien5));
+                                //                    break;
+                                //                case 5:
+                                //                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                //                            (DetailPermohonanIzinActivity.this, R.color.colorGradien6));
+                                //                    break;
+                                //            }
+                                //        }
+                                //        public void onFinish() {
+                                //            i = -1;
+                                //            pDialog.setTitleText("Unduh Berhasil")
+                                //                    .setContentText("File permohonan berhasil diunduh")
+                                //                    .setCancelText("TUTUP")
+                                //                    .setConfirmText("LIHAT")
+                                //                    .showCancelButton(true)
+                                //                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                //                        @Override
+                                //                        public void onClick(KAlertDialog sDialog) {
+                                //                            sDialog.dismiss();
+                                //                        }
+                                //                    })
+                                //                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                //                        @Override
+                                //                        public void onClick(KAlertDialog sDialog) {
+                                //                            sDialog.dismiss();
+                                //                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uriImage2));
+                                //                            startActivity(intent);
+                                //                        }
+                                //                    })
+                                //                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                //        }
+                                //    }.start();
+                                //    Log.i("TAG", "Drawing saved to the gallery!");
+                                // } else {
+                                //    Log.i("TAG", "Oops! Image could not be saved.");
+                                // }
 
                             }
                         })
                         .show();
 
+            }
+        });
+
+        pdfBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
+                startActivity(browserIntent);
             }
         });
 
@@ -416,7 +431,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
 
@@ -489,7 +504,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
 
@@ -539,7 +554,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
 
@@ -599,7 +614,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
 
@@ -658,7 +673,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
@@ -674,6 +689,8 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                 String tgl_permohonan = detail.getString("tanggal");
                                 String digital_signature = detail.getString("digital_signature");
                                 String tipe_izin = detail.getString("tipe_izin");
+
+                                String jumlah_hari = data.getString("jumlah_hari");
 
                                 if(tipe_izin.equals("5")){
                                     notedTV.setVisibility(View.INVISIBLE);
@@ -694,11 +711,11 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                     viewSuratSakitBTN.setVisibility(View.GONE);
                                 }
 
-                                namaKaryawanTV.setText(nama_karyawan.toUpperCase());
-                                nikKaryawanTV.setText(nik_karyawan);
-                                bagianKaryawanTV.setText(bagian);
-                                jabatanKaryawanTV.setText(jabatan);
-                                alasanIzinTV.setText(alasan);
+                                namaKaryawanTV.setText(":  "+nama_karyawan.toUpperCase());
+                                nikKaryawanTV.setText(":  "+nik_karyawan);
+                                bagianKaryawanTV.setText(":  "+bagian);
+                                jabatanKaryawanTV.setText(":  "+jabatan);
+                                alasanIzinTV.setText(":  "+alasan);
 
                                 String input_date_mulai = tgl_mulai;
                                 String dayDateMulai = input_date_mulai.substring(8,10);
@@ -748,7 +765,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         break;
                                 }
 
-                                tglMulaiTV.setText(String.valueOf(Integer.parseInt(dayDateMulai))+" "+bulanNameMulai+" "+yearDateMulai);
+                                tglMulaiTV.setText(":  "+Integer.parseInt(dayDateMulai) +" "+bulanNameMulai+" "+yearDateMulai);
 
                                 String input_date_akhir = tgl_akhir;
                                 String dayDateAkhir = input_date_akhir.substring(8,10);
@@ -798,15 +815,16 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         break;
                                 }
 
-                                tglAkhirTV.setText(String.valueOf(Integer.parseInt(dayDateAkhir))+" "+bulanNameAkhir+" "+yearDateAkhir);
+                                tglAkhirTV.setText(Integer.parseInt(dayDateAkhir) +" "+bulanNameAkhir+" "+yearDateAkhir);
 
                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-                                Date dateBefore = sdf.parse(String.valueOf(tgl_mulai));
-                                Date dateAfter = sdf.parse(String.valueOf(tgl_akhir));
+                                Date dateBefore = sdf.parse(tgl_mulai);
+                                Date dateAfter = sdf.parse(tgl_akhir);
                                 long timeDiff = Math.abs(dateAfter.getTime() - dateBefore.getTime());
                                 long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
 
-                                totalHariTV.setText("( "+String.valueOf(daysDiff+1)+" Hari )");
+                                // totalHariTV.setText("( "+ (daysDiff + 1) +" Hari )");
+                                totalHariTV.setText("( "+ jumlah_hari +" Hari )");
 
                                 String input_date_permohonan = tgl_permohonan;
                                 String dayDatePermohonan = input_date_permohonan.substring(8,10);
@@ -856,7 +874,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         break;
                                 }
 
-                                tglPermohonanTV.setText("JAKARTA, "+String.valueOf(Integer.parseInt(dayDatePermohonan))+" "+bulanNamePermohonan+" "+yearDatePermohonan);
+                                tglPermohonanTV.setText("JAKARTA, "+ Integer.parseInt(dayDatePermohonan) +" "+bulanNamePermohonan+" "+yearDatePermohonan);
 
                                 String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+digital_signature;
 
@@ -877,12 +895,15 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                     supervisorTV.setVisibility(View.VISIBLE);
                                     String approver = detail.getString("approver");
                                     String signature_approver = detail.getString("signature_approver");
+                                    String timestamp_approve = detail.getString("timestamp_approve");
 
                                     String url_approver = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver;
 
                                     Picasso.get().load(url_approver).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                             .into(ttdSupervisor);
+
+                                    tanggalApproveTV.setText(timestamp_approve.substring(8,10)+"/"+timestamp_approve.substring(5,7)+"/"+timestamp_approve.substring(2,4));
 
                                     String shortName2 = approver;
                                     if(shortName2.contains(" ")){
@@ -892,6 +913,8 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
                                     String status_approve_hrd = detail.getString("status_approve_hrd");
                                     if (status_approve_hrd.equals("1")){
+                                        String updated_at = detail.getString("updated_at");
+                                        tanggalApproveHRDTV.setText(updated_at.substring(8,10)+"/"+updated_at.substring(5,7)+"/"+updated_at.substring(2,4));
                                         acceptedMark.setVisibility(View.VISIBLE);
                                         rejectedMark.setVisibility(View.GONE);
                                         appoveStatusHRD.setVisibility(View.VISIBLE);
@@ -981,7 +1004,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("status");
 
@@ -1127,7 +1150,87 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, DetailPermohonanIzinActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+        CookieBar.build(DetailPermohonanIzinActivity.this)
+            .setTitle("Perhatian")
+            .setMessage("Koneksi anda terputus!")
+            .setTitleColor(R.color.colorPrimaryDark)
+            .setMessageColor(R.color.colorPrimaryDark)
+            .setBackgroundColor(R.color.warningBottom)
+            .setIcon(R.drawable.warning_connection_mini)
+            .setCookiePosition(CookieBar.BOTTOM)
+            .show();
     }
+
+    private void downloadPermohonan(){
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(file_url));
+        title = URLUtil.guessFileName(file_url, null, null);
+        request.setTitle(title);
+        request.setDescription("Mengunduh Permohonan Izin...");
+        String cookie = CookieManager.getInstance().getCookie(file_url);
+        request.addRequestHeader("cookie", cookie);
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, title);
+        DownloadManager downloadManager = (DownloadManager)getSystemService(DOWNLOAD_SERVICE);
+        downloadManager.enqueue(request);
+        registerReceiver(onDownloadComplete,new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+
+        pDialog = new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Downloading...");
+        pDialog.show();
+        pDialog.setCancelable(false);
+        new CountDownTimer(2000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                i++;
+                switch (i) {
+                    case 0:
+                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                (DetailPermohonanIzinActivity.this, R.color.colorGradien));
+                        break;
+                    case 1:
+                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                (DetailPermohonanIzinActivity.this, R.color.colorGradien2));
+                        break;
+                    case 2:
+                    case 6:
+                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                (DetailPermohonanIzinActivity.this, R.color.colorGradien3));
+                        break;
+                    case 3:
+                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                (DetailPermohonanIzinActivity.this, R.color.colorGradien4));
+                        break;
+                    case 4:
+                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                (DetailPermohonanIzinActivity.this, R.color.colorGradien5));
+                        break;
+                    case 5:
+                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                (DetailPermohonanIzinActivity.this, R.color.colorGradien6));
+                        break;
+                }
+            }
+            public void onFinish() {
+                i = -1;
+            }
+        }.start();
+
+
+    }
+
+    private final BroadcastReceiver onDownloadComplete = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            pDialog.setTitleText("Download Berhasil")
+                    .setContentText("File permohonan berhasil diunduh")
+                    .setConfirmText("    OK    ")
+                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                        }
+                    })
+                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+        }
+    };
+
 
 }

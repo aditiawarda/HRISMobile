@@ -73,23 +73,52 @@
                             android:orientation="vertical"
                             android:paddingTop="50dp">
 
-                            <EditText
-                                android:id="@+id/nikED"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp"
                                 android:layout_marginLeft="30dp"
+                                android:layout_marginTop="5dp"
                                 android:layout_marginRight="30dp"
                                 android:layout_marginBottom="10dp"
-                                android:background="@drawable/shape_feel_login"
-                                android:drawableLeft="@drawable/ic_baseline_person"
-                                android:drawablePadding="10dp"
-                                android:hint="NIK"
-                                android:inputType="number"
-                                android:padding="10dp"
-                                android:textColor="@color/white"
-                                android:textColorHighlight="#EC9426"
-                                android:textColorHint="#BFFFF3E9"
-                                android:textSize="17dp" />
+                                android:gravity="right"
+                                android:orientation="horizontal">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="43dp"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center">
+
+                                        <TextView
+                                            android:id="@+id/ic_person"
+                                            android:layout_width="24dp"
+                                            android:layout_height="24dp"
+                                            android:background="@drawable/ic_baseline_person"
+                                            android:padding="10dp" />
+
+                                    </LinearLayout>
+
+                                    <EditText
+                                        android:id="@+id/nikED"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/shape_feel_login"
+                                        android:paddingStart="43dp"
+                                        android:drawablePadding="10dp"
+                                        android:hint="NIK"
+                                        android:inputType="number"
+                                        android:padding="10dp"
+                                        android:textColor="@color/white"
+                                        android:textColorHighlight="#EC9426"
+                                        android:textColorHint="#BFFFF3E9"
+                                        android:textSize="17dp" />
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -105,13 +134,26 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
+                                    <LinearLayout
+                                        android:layout_width="43dp"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center">
+
+                                        <TextView
+                                            android:id="@+id/ic_password"
+                                            android:layout_width="24dp"
+                                            android:layout_height="24dp"
+                                            android:background="@drawable/ic_baseline_lock"
+                                            android:padding="10dp" />
+
+                                    </LinearLayout>
+
                                     <EditText
                                         android:id="@+id/passwordED"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:background="@drawable/shape_pw_feel"
-                                        android:drawableLeft="@drawable/ic_baseline_lock"
-                                        android:drawablePadding="10dp"
+                                        android:paddingStart="43dp"
                                         android:hint="Password"
                                         android:inputType="textPassword"
                                         android:paddingLeft="10dp"

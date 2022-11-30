@@ -27,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.gelora.absensi.R;
 import com.shasin.notificationbanner.Banner;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -157,7 +158,6 @@ public class CovidActivity extends AppCompatActivity {
                     public void run() {
                         refreshLayout.setRefreshing(false);
                         getCovidData();
-                        getVaksinData();
                     }
                 }, 500);
             }
@@ -179,9 +179,8 @@ public class CovidActivity extends AppCompatActivity {
         });
 
         getCovidData();
-        getVaksinData();
-    }
 
+    }
 
     private void getCovidData() {
         RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
@@ -323,6 +322,7 @@ public class CovidActivity extends AppCompatActivity {
                                 }
                             }, 500);
 
+                            getVaksinData();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -478,7 +478,18 @@ public class CovidActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, CovidActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+        // Banner.make(rootview, CovidActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+
+        CookieBar.build(CovidActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
+
     }
 
 }

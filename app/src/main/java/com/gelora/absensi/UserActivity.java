@@ -27,6 +27,7 @@ import android.os.ResultReceiver;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -71,6 +72,7 @@ import com.squareup.picasso.Picasso;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -92,7 +94,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 public class UserActivity extends AppCompatActivity {
 
     LinearLayout countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
-    TextView countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    TextView sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
@@ -103,6 +105,7 @@ public class UserActivity extends AppCompatActivity {
     ImageView positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
     String selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
+    ProgressBar loadingProgressBarLogout;
 
     AlarmManager alarmManager;
     CompactCalendarView compactCalendarView;
@@ -212,6 +215,10 @@ public class UserActivity extends AppCompatActivity {
         loadingProgressBarCuaca = findViewById(R.id.loadingProgressBar_cuaca);
         countNotificationMessage = findViewById(R.id.count_notification_message);
         countMessage = findViewById(R.id.count_message);
+        loadingProgressBarLogout = findViewById(R.id.loadingProgressBar_logout);
+        dateUpdateSisaCutiTV = findViewById(R.id.date_update_sisa_cuti_tv);
+        periodeUpdateSisaCutiTV = findViewById(R.id.periode_update_sisa_cuti_tv);
+        sisaCutiTV = findViewById(R.id.sisa_cuti_tv);
         hTime = findViewById(R.id.h_time);
         mTime = findViewById(R.id.m_time);
         sTime = findViewById(R.id.s_time);
@@ -600,7 +607,15 @@ public class UserActivity extends AppCompatActivity {
                             @Override
                             public void onClick(KAlertDialog sDialog) {
                                 sDialog.dismiss();
-                                logoutFunction();
+                                loadingProgressBarLogout.setVisibility(View.VISIBLE);
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        logoutFunction();
+                                    }
+                                }, 500);
+
                             }
                         })
                         .show();
@@ -623,23 +638,10 @@ public class UserActivity extends AppCompatActivity {
     private void getDataUser(){
         String nama = sharedPrefManager.getSpNama();
         String nik = sharedPrefManager.getSpNik();
-        String status = sharedPrefManager.getSpStatusUser();
         getCurrentDay();
         getDataKaryawan();
-        getDataHadir();
-        checkWarning();
-        checkVersion();
-        getCountNotification();
         nameUserTV.setText(nama.toUpperCase());
         nikTV.setText(nik);
-
-        if(status.equals("1")){
-            statusUserTV.setText("Aktif");
-            statusIndicator.setBackground(ContextCompat.getDrawable(UserActivity.this, R.drawable.shape_ring_aktif));
-        } else {
-            statusUserTV.setText("Non-Aktif");
-            statusIndicator.setBackground(ContextCompat.getDrawable(UserActivity.this, R.drawable.shape_ring_nonaktif));
-        }
     }
 
     private void logoutFunction(){
@@ -666,6 +668,7 @@ public class UserActivity extends AppCompatActivity {
         final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
                         // response
@@ -675,6 +678,11 @@ public class UserActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
+                                String tanggal_masuk = data.getString("tanggal_masuk");
+                                String status_karyawan = data.getString("status_karyawan");
+                                String sisa_cuti = data.getString("sisa_cuti");
+                                String periode_mulai = data.getString("periode_mulai");
+                                String periode_akhir = data.getString("periode_akhir");
                                 String department = data.getString("departemen");
                                 String bagian = data.getString("bagian");
                                 String jabatan = data.getString("jabatan");
@@ -684,6 +692,24 @@ public class UserActivity extends AppCompatActivity {
                                 String logout_part = data.getString("logout_part");
                                 String chat_room = data.getString("chat_room");
                                 String web_btn = data.getString("web_btn");
+
+                                if(status_karyawan.equals("null")){
+                                    if(sharedPrefManager.getSpStatusUser().equals("1")){
+                                        statusUserTV.setText("Aktif");
+                                        statusIndicator.setBackground(ContextCompat.getDrawable(UserActivity.this, R.drawable.shape_ring_aktif));
+                                    } else {
+                                        statusUserTV.setText("Non-Aktif");
+                                        statusIndicator.setBackground(ContextCompat.getDrawable(UserActivity.this, R.drawable.shape_ring_nonaktif));
+                                    }
+                                } else {
+                                    if(sharedPrefManager.getSpStatusUser().equals("1")){
+                                        statusUserTV.setText(status_karyawan);
+                                        statusIndicator.setBackground(ContextCompat.getDrawable(UserActivity.this, R.drawable.shape_ring_aktif));
+                                    } else {
+                                        statusUserTV.setText(status_karyawan);
+                                        statusIndicator.setBackground(ContextCompat.getDrawable(UserActivity.this, R.drawable.shape_ring_nonaktif));
+                                    }
+                                }
 
                                 batasBagDept.setVisibility(View.VISIBLE);
                                 departemenTV.setText(department);
@@ -747,7 +773,11 @@ public class UserActivity extends AppCompatActivity {
                                     webBTN.setVisibility(View.GONE);
                                 }
 
+                                sisaCutiTV.setText(sisa_cuti);
+                                periodeUpdateSisaCutiTV.setText("Periode "+periode_mulai.substring(8,10)+"/"+periode_mulai.substring(5,7)+"/"+periode_mulai.substring(0,4)+" s.d. "+periode_akhir.substring(8,10)+"/"+periode_akhir.substring(5,7)+"/"+periode_akhir.substring(0,4));
+
                                 getCurrentLocation(weather_key);
+                                getDataHadir();
 
                             }
 
@@ -849,6 +879,8 @@ public class UserActivity extends AppCompatActivity {
                                     }
                                 }, 100);
 
+                                checkWarning();
+
                             } else {
                                 bulanLoading.setVisibility(View.GONE);
                                 bulanData.setVisibility(View.VISIBLE);
@@ -939,6 +971,8 @@ public class UserActivity extends AppCompatActivity {
                                     countNotifTV.setText(String.valueOf(Integer.parseInt(count)+Integer.parseInt(count2)));
                                 }
 
+                                checkVersion();
+
                             }
 
                         } catch (JSONException e) {
@@ -982,7 +1016,18 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, UserActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+        // Banner.make(rootview, UserActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+
+        CookieBar.build(UserActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
+
     }
 
     private void aboutApp(){
@@ -2024,6 +2069,8 @@ public class UserActivity extends AppCompatActivity {
                                     notificationPart.setVisibility(View.GONE);
                                 }
 
+                                getCountNotification();
+
                             }
 
                         } catch (JSONException e) {
@@ -2061,42 +2108,54 @@ public class UserActivity extends AppCompatActivity {
         switch (getDateM()) {
             case "01":
                 currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Januari " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Januari " + getDateY());
                 break;
             case "02":
                 currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Februari " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Februari " + getDateY());
                 break;
             case "03":
                 currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Maret " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Maret " + getDateY());
                 break;
             case "04":
                 currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " April " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " April " + getDateY());
                 break;
             case "05":
                 currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Mei " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Mei " + getDateY());
                 break;
             case "06":
                 currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Juni " + getDateY());
                 break;
             case "07":
                 currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Juli " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Juli " + getDateY());
                 break;
             case "08":
                 currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Agustus " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Agustus " + getDateY());
                 break;
             case "09":
                 currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " September " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " September " + getDateY());
                 break;
             case "10":
                 currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Oktober " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Oktober " + getDateY());
                 break;
             case "11":
                 currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " November " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " November " + getDateY());
                 break;
             case "12":
                 currentDate.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Desember " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Desember " + getDateY());
                 break;
             default:
                 currentDate.setText("Not found!");
+                dateUpdateSisaCutiTV.setText("Not found!");
                 break;
         }
 

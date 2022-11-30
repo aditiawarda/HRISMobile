@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gelora.absensi.DetailPermohonanCutiActivity;
 import com.gelora.absensi.DetailPermohonanIzinActivity;
 import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.R;
@@ -53,30 +54,62 @@ public class AdapterPermohonanSaya extends RecyclerView.Adapter<AdapterPermohona
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final ListPermohonanIzin listPermohonanIzin = data[i];
 
+        String tipe_pengajuan = listPermohonanIzin.getTipe_pengajuan();
         String tipe_izin = listPermohonanIzin.getTipe_izin();
-        if (tipe_izin.equals("5")){
-            tipe_izin = "Tidak Masuk (Sakit)";
-        } else {
-            tipe_izin = "Permohonan Izin";
+        String desc_izin = listPermohonanIzin.getDeskripsi_izin();
+
+        if(tipe_pengajuan.equals("1")){
+            if (tipe_izin.equals("5")){
+                desc_izin = "Tidak Masuk (Sakit)";
+            } else if (tipe_izin.equals("4")) {
+                desc_izin = "Permohonan Izin";
+            } else {
+                desc_izin = listPermohonanIzin.getDeskripsi_izin();
+            }
+        } else if(tipe_pengajuan.equals("2")) {
+            desc_izin = "Permohonan Cuti";
         }
 
         String statusPermohonan = "";
-        if(listPermohonanIzin.getStatus_approve().equals("0")){
-            statusPermohonan = "Permohonan Terkirim";
-        } else if (listPermohonanIzin.getStatus_approve().equals("1")){
-            if(listPermohonanIzin.getStatus_approve_hrd().equals("1")){
-                statusPermohonan = "Permohonan Disetujui HRD";
-            } else if (listPermohonanIzin.getStatus_approve_hrd().equals("2")) {
-                statusPermohonan = "Permohonan Ditolak HRD";
-            } else {
-                statusPermohonan = "Permohonan Disetujui Supervisor";
+
+        if(tipe_pengajuan.equals("1")){
+            if(listPermohonanIzin.getStatus_approve().equals("0")){
+                statusPermohonan = "Permohonan Terkirim";
+            } else if (listPermohonanIzin.getStatus_approve().equals("1")){
+                if(listPermohonanIzin.getStatus_approve_hrd().equals("1")){
+                    statusPermohonan = "Permohonan Disetujui HRD";
+                } else if (listPermohonanIzin.getStatus_approve_hrd().equals("2")) {
+                    statusPermohonan = "Permohonan Ditolak HRD";
+                } else if (listPermohonanIzin.getStatus_approve_hrd().equals("0")) {
+                    statusPermohonan = "Permohonan Disetujui Supervisor";
+                }
+            } else if (listPermohonanIzin.getStatus_approve().equals("2")){
+                statusPermohonan = "Permohonan Ditolak Supervisor";
             }
-        } else if (listPermohonanIzin.getStatus_approve().equals("2")){
-            statusPermohonan = "Permohonan Ditolak Supervisor";
+        } else if(tipe_pengajuan.equals("2")) {
+            if(listPermohonanIzin.getStatus_approve().equals("0")){
+                statusPermohonan = "Permohonan Terkirim";
+            } else if (listPermohonanIzin.getStatus_approve().equals("1")){
+                if(listPermohonanIzin.getStatus_approve_hrd().equals("1")){
+                    statusPermohonan = "Permohonan Disetujui HRD";
+                } else if (listPermohonanIzin.getStatus_approve_hrd().equals("2")) {
+                    statusPermohonan = "Permohonan Ditolak HRD";
+                } else if (listPermohonanIzin.getStatus_approve_hrd().equals("0")) {
+                    if(listPermohonanIzin.getStatus_approve_kadept().equals("1")){
+                        statusPermohonan = "Permohonan Disetujui Kepala Departement";
+                    } else if(listPermohonanIzin.getStatus_approve_kadept().equals("2")){
+                        statusPermohonan = "Permohonan Ditolak Kepala Departement";
+                    } else if(listPermohonanIzin.getStatus_approve_kadept().equals("0")){
+                        statusPermohonan = "Permohonan Disetujui Supervisor";
+                    }
+                }
+            } else if (listPermohonanIzin.getStatus_approve().equals("2")){
+                statusPermohonan = "Permohonan Ditolak Supervisor";
+            }
         }
 
         myViewHolder.statusPermohonanTV.setText(statusPermohonan);
-        myViewHolder.deskrisiPermohonan.setText(tipe_izin);
+        myViewHolder.deskrisiPermohonan.setText(desc_izin);
 
         String input_date_mulai = listPermohonanIzin.getTanggal_mulai();
         String dayDateMulai = input_date_mulai.substring(8,10);
@@ -271,10 +304,17 @@ public class AdapterPermohonanSaya extends RecyclerView.Adapter<AdapterPermohona
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, DetailPermohonanIzinActivity.class);
-                intent.putExtra("kode", "notif");
-                intent.putExtra("id_izin",listPermohonanIzin.getId());
-                mContext.startActivity(intent);
+                if(tipe_pengajuan.equals("1")){
+                    Intent intent = new Intent(mContext, DetailPermohonanIzinActivity.class);
+                    intent.putExtra("kode", "notif");
+                    intent.putExtra("id_izin",listPermohonanIzin.getId());
+                    mContext.startActivity(intent);
+                } else if(tipe_pengajuan.equals("2")) {
+                    Intent intent = new Intent(mContext, DetailPermohonanCutiActivity.class);
+                    intent.putExtra("kode", "notif");
+                    intent.putExtra("id_izin",listPermohonanIzin.getId());
+                    mContext.startActivity(intent);
+                }
             }
 
         });

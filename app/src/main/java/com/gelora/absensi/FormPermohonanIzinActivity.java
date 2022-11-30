@@ -53,6 +53,7 @@ import com.takisoft.datetimepicker.DatePickerDialog;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -75,10 +76,10 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     EditText alasanED;
-    KAlertDialog pDialog;
     BottomSheetLayout bottomSheet;
     ImageView successGif;
     View rootview;
+    KAlertDialog pDialog;
     private int i = -1;
     int REQUEST_IMAGE = 100;
     private Uri uri;
@@ -89,6 +90,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form_permohonan_izin);
 
         sharedPrefManager = new SharedPrefManager(this);
+        rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
         dateMulaiPicker = findViewById(R.id.mulai_date);
@@ -106,7 +108,6 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         successPart = findViewById(R.id.success_submit);
         goToDasboard = findViewById(R.id.go_to_user);
         goToHome = findViewById(R.id.go_to_home);
-        rootview = findViewById(android.R.id.content);
         viewBTN = findViewById(R.id.view_permohonan_btn);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         tipeChoiceBTN = findViewById(R.id.tipe_choice_btn);
@@ -1761,7 +1762,18 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, FormPermohonanIzinActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+        // Banner.make(rootview, FormPermohonanIzinActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+
+        CookieBar.build(FormPermohonanIzinActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
+
     }
 
     private void checkSignature(){
@@ -2050,6 +2062,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                             Intent intent = new Intent(FormPermohonanIzinActivity.this, ViewImageActivity.class);
                             intent.putExtra("url", String.valueOf(uri));
                             intent.putExtra("kode", "form");
+                            intent.putExtra("jenis_form", "izin");
                             startActivity(intent);
                         }
                     });
@@ -2068,7 +2081,6 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
             Toast.makeText(this, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
         } else {
             try {
-
                 permohonanTerkirim = "1";
                 pDialog.dismiss();
                 successPart.setVisibility(View.VISIBLE);

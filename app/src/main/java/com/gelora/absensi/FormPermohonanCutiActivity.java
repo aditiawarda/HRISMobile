@@ -1,20 +1,30 @@
 package com.gelora.absensi;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -40,36 +50,38 @@ import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterKaryawanPengganti;
 import com.gelora.absensi.adapter.AdapterKategoriIzin;
-import com.gelora.absensi.adapter.AdapterKehadiranBagianSearch;
-import com.gelora.absensi.adapter.AdapterKetidakhadiranBagianSearch;
-import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.DataMonitoringKehadiranBagian;
-import com.gelora.absensi.model.DataMonitoringKetidakhadiranBagian;
 import com.gelora.absensi.model.KaryawanPengganti;
 import com.gelora.absensi.model.KategoriIzin;
-import com.gelora.absensi.model.StatusAbsen;
+import com.gelora.absensi.support.ImagePickerActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.shasin.notificationbanner.Banner;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.takisoft.datetimepicker.DatePickerDialog;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FormPermohonanCutiActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, homeBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, submitBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
+    LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, viewBTN, goToHome, goToDasboard, successPart, formPart, backBTN, homeBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, submitBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
     SwipeRefreshLayout refreshLayout;
-    TextView namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
-    String dateChoiceMulai = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
+    TextView statusUploadTV, labelUnggahTV, tipeCutiTV, namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
+    String uploadStatus = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", dateChoiceMulai = "", kategoriCuti = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
     ImageView loadingGif;
     EditText keywordKaryawanPengganti, alasanTV, alamatSelamaCutiTV, noHpTV;
     SharedPrefManager sharedPrefManager;
@@ -81,7 +93,11 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     private AdapterKategoriIzin adapterKategoriIzin;
     private KaryawanPengganti[] karyawanPenggantis;
     private AdapterKaryawanPengganti adapterKaryawanPengganti;
-
+    KAlertDialog pDialog;
+    String permohonanTerkirim = "0";
+    private int i = -1;
+    int REQUEST_IMAGE = 100;
+    private Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +124,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         sampaiTanggalPicker = findViewById(R.id.akhir_date);
         dariTanggalTV = findViewById(R.id.mulai_date_pilih);
         sampaiTanggalTV = findViewById(R.id.akhir_date_pilih);
-        tipeCutiBTN = findViewById(R.id.tipe_cuti);
+        tipeCutiBTN = findViewById(R.id.jenis_cuti);
         kategoriCutiPilihTV = findViewById(R.id.kategori_cuti_pilih);
         penggantiSelamaCutiTV = findViewById(R.id.pengganti_selama_cuti_tv);
         penggantiSelamaCutiBTN = findViewById(R.id.pengganti_selama_cuti_part);
@@ -116,6 +132,18 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         alamatSelamaCutiTV = findViewById(R.id.alamat_selama_cuti_tv);
         noHpTV = findViewById(R.id.no_hp_tv);
         submitBTN = findViewById(R.id.submit_btn);
+        successPart = findViewById(R.id.success_submit_cuti);
+        formPart = findViewById(R.id.form_part_cuti);
+        goToDasboard = findViewById(R.id.go_to_user);
+        goToHome = findViewById(R.id.go_to_home);
+        viewBTN = findViewById(R.id.view_permohonan_btn);
+        tipeCutiTV = findViewById(R.id.tipe_cuti_tv);
+        uploadBTN = findViewById(R.id.upload_btn);
+        uploadLampiranPart = findViewById(R.id.upload_file_part);
+        markUpload = findViewById(R.id.mark_upload);
+        statusUploadTV = findViewById(R.id.status_upload_tv);
+        labelUnggahTV = findViewById(R.id.label_unggah);
+        viewUploadBTN = findViewById(R.id.view_btn);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(kategoriCutiBroad, new IntentFilter("kategori_cuti_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(karyawanPenggantiBroad, new IntentFilter("karyawan_pengganti_broad"));
@@ -137,6 +165,15 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         alasanTV.setText("");
                         alamatSelamaCutiTV.setText("");
                         noHpTV.setText("");
+
+                        uploadLampiranPart.setVisibility(View.GONE);
+                        markUpload.setVisibility(View.GONE);
+                        viewUploadBTN.setVisibility(View.GONE);
+                        statusUploadTV.setText("Unggah Lampiran");
+                        labelUnggahTV.setText("Unggah");
+                        tipeCuti = "";
+                        uploadStatus = "";
+                        tipeCutiTV.setText("Pilih Jenis Cuti...");
 
                         alasanTV.clearFocus();
                         alamatSelamaCutiTV.clearFocus();
@@ -160,6 +197,41 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(FormPermohonanCutiActivity.this, MapsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        viewBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormPermohonanCutiActivity.this, DetailPermohonanCutiActivity.class);
+                intent.putExtra("kode", "form");
+                intent.putExtra("id_izin", idIzin);
+                startActivity(intent);
+            }
+        });
+
+        goToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormPermohonanCutiActivity.this, MapsActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        goToDasboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormPermohonanCutiActivity.this, UserActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        uploadBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dexterCall();
             }
         });
 
@@ -2360,10 +2432,152 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                                                     .show();
 
                                         } else {
+
                                             // Diisi semua
 
+                                            // if(statusLampiran.equals("1")){
+                                            //    if(uploadStatus.equals("1")){
+                                            //        new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.WARNING_TYPE)
+                                            //               .setTitleText("Perhatian")
+                                            //                .setContentText("Kirim permohonan sekarang?")
+                                            //                .setCancelText("TIDAK")
+                                            //                .setConfirmText("   YA   ")
+                                            //                .showCancelButton(true)
+                                            //                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                            //                    @Override
+                                            //                    public void onClick(KAlertDialog sDialog) {
+                                            //                        sDialog.dismiss();
+                                            //                    }
+                                            //               })
+                                            //                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            //                    @Override
+                                            //                    public void onClick(KAlertDialog sDialog) {
+                                            //                        sDialog.dismiss();
+                                            //                        pDialog = new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                            //                        pDialog.show();
+                                            //                        pDialog.setCancelable(false);
+                                            //                        new CountDownTimer(1300, 800) {
+                                            //                            public void onTick(long millisUntilFinished) {
+                                            //                                i++;
+                                            //                                switch (i) {
+                                            //                                    case 0:
+                                            //                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                            //                                                (FormPermohonanCutiActivity.this, R.color.colorGradien));
+                                            //                                        break;
+                                            //                                    case 1:
+                                            //                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                            //                                                (FormPermohonanCutiActivity.this, R.color.colorGradien2));
+                                            //                                        break;
+                                            //                                    case 2:
+                                            //                                    case 6:
+                                            //                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                            //                                                (FormPermohonanCutiActivity.this, R.color.colorGradien3));
+                                            //                                        break;
+                                            //                                    case 3:
+                                            //                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                            //                                                (FormPermohonanCutiActivity.this, R.color.colorGradien4));
+                                            //                                        break;
+                                            //                                    case 4:
+                                            //                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                            //                                                (FormPermohonanCutiActivity.this, R.color.colorGradien5));
+                                            //                                        break;
+                                            //                                    case 5:
+                                            //                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                            //                                                (FormPermohonanCutiActivity.this, R.color.colorGradien6));
+                                            //                                        break;
+                                            //                                }
+                                            //                            }
+                                            //                            public void onFinish() {
+                                            //                                i = -1;
+                                            //
+                                            //                                checkSignature();
+                                            //
+                                            //                            }
+                                            //                        }.start();
+                                            //
+                                            //                    }
+                                            //                })
+                                            //                .show();
+                                            //    }
+                                            //    else {
+                                            //        new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                            //               .setTitleText("Perhatian")
+                                            //               .setContentText("Harap unggah lampiran!")
+                                            //               .setConfirmText("    OK    ")
+                                            //               .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            //                    @Override
+                                            //                    public void onClick(KAlertDialog sDialog) {
+                                            //                        sDialog.dismiss();
+                                            //                    }
+                                            //                })
+                                            //                .show();
+                                            //   }
+                                            // }
+                                            // else if(statusLampiran.equals("0")) {
 
+                                                new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.WARNING_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Kirim permohonan sekarang?")
+                                                    .setCancelText("TIDAK")
+                                                    .setConfirmText("   YA   ")
+                                                    .showCancelButton(true)
+                                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                            pDialog = new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                                            pDialog.show();
+                                                            pDialog.setCancelable(false);
+                                                            new CountDownTimer(1300, 800) {
+                                                                public void onTick(long millisUntilFinished) {
+                                                                    i++;
+                                                                    switch (i) {
+                                                                        case 0:
+                                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                    (FormPermohonanCutiActivity.this, R.color.colorGradien));
+                                                                            break;
+                                                                        case 1:
+                                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                    (FormPermohonanCutiActivity.this, R.color.colorGradien2));
+                                                                            break;
+                                                                        case 2:
+                                                                        case 6:
+                                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                    (FormPermohonanCutiActivity.this, R.color.colorGradien3));
+                                                                            break;
+                                                                        case 3:
+                                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                    (FormPermohonanCutiActivity.this, R.color.colorGradien4));
+                                                                            break;
+                                                                        case 4:
+                                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                    (FormPermohonanCutiActivity.this, R.color.colorGradien5));
+                                                                            break;
+                                                                        case 5:
+                                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                    (FormPermohonanCutiActivity.this, R.color.colorGradien6));
+                                                                            break;
+                                                                    }
+                                                                }
+                                                                public void onFinish() {
+                                                                    i = -1;
 
+                                                                    checkSignature();
+
+                                                                }
+                                                            }.start();
+
+                                                        }
+                                                    })
+                                                    .show();
+
+                                            // }
 
                                         }
                                     }
@@ -2411,12 +2625,17 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                                 String tanggal_bergabung = data.getString("tanggal_bergabung");
                                 String status_karyawan = data.getString("status_karyawan");
                                 String sisa_cuti = data.getString("sisa_cuti");
+                                String cuti_ambil = data.getString("cuti_ambil");
+
                                 jabatanKaryawan.setText(jabatan);
                                 bagianKaryawan.setText(bagian+" | "+department);
                                 tanggalMulaiBekerja.setText(tanggal_masuk.substring(8,10)+"/"+tanggal_masuk.substring(5,7)+"/"+tanggal_masuk.substring(0,4));
                                 statuskaryawan.setText(status_karyawan);
-                                sisaCuti.setText(sisa_cuti);
+                                sisaCuti.setText(sisa_cuti+" Hari");
+                                sisaCutiSementara = sisa_cuti;
                                 tahunCutiTelah.setText(getDateY());
+                                totalCutiTelah.setText(cuti_ambil+" Hari");
+                                totalCutiDiambil = cuti_ambil;
                             }
 
                         } catch (JSONException e) {
@@ -2443,6 +2662,164 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 params.put("id_bagian", sharedPrefManager.getSpIdDept());
                 params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
                 params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void checkSignature(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Available")){
+                                String signature = data.getString("data");
+                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                submitCuti();
+                            } else {
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")
+                                        .setCancelText(" BATAL ")
+                                        .setConfirmText("LANJUT")
+                                        .showCancelButton(true)
+                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                Intent intent = new Intent(FormPermohonanCutiActivity.this, DigitalSignatureActivity.class);
+                                                intent.putExtra("kode", "form");
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.WARNING_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void submitCuti(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cuti_input";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                JSONObject data_cuti = data.getJSONObject("data");
+                                String id = data_cuti.getString("id");
+                                idIzin = id;
+                                permohonanTerkirim = "1";
+                                pDialog.dismiss();
+                                successPart.setVisibility(View.VISIBLE);
+                                formPart.setVisibility(View.GONE);
+                            } else if (status.equals("Available")){
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setContentText("Permohonan serupa sudah anda ajukan sebelumnya, harap tunggu persetujuan")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            } else {
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                        successPart.setVisibility(View.GONE);
+                        formPart.setVisibility(View.VISIBLE);
+                        pDialog.setTitleText("Gagal Terkirim")
+                                .setConfirmText("    OK    ")
+                                .changeAlertType(KAlertDialog.ERROR_TYPE);
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("sisa_cuti_sementara", sisaCutiSementara);
+                params.put("tahun_cuti_diambil", getDateY());
+                params.put("total_cuti_diambil", totalCutiDiambil);
+                params.put("alasan_cuti", alasanTV.getText().toString());
+                params.put("pengganti", nikKaryawanPengganti);
+                params.put("alamat_selama_cuti", alamatSelamaCutiTV.getText().toString());
+                params.put("no_hp", noHpTV.getText().toString());
+                params.put("tipe_cuti", tipeCuti);
+
+                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("jenis_cuti", kategoriCuti);
+                params.put("tanggal", getDate());
+                params.put("time", getTime());
+                params.put("tanggal_mulai", dateChoiceMulai);
+                params.put("tanggal_akhir", dateChoiceAkhir);
+
                 return params;
             }
         };
@@ -2613,7 +2990,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
     private void getkategoriCuti() {
         RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
-        final String url = "https://geloraaksara.co.id/absen-online/api/izin_kategori";
+        final String url = "https://geloraaksara.co.id/absen-online/api/cuti_kategori";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -2647,7 +3024,18 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, FormPermohonanCutiActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+        // Banner.make(rootview, FormPermohonanCutiActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+
+        CookieBar.build(FormPermohonanCutiActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
+
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -3163,16 +3551,16 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         dateChoiceAkhir = "";
 
                         new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
-                                .setTitleText("Perhatian")
-                                .setContentText("Tanggal akhir tidak bisa lebih kecil dari tanggal mulai. Harap ulangi!")
-                                .setConfirmText("    OK    ")
-                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                    @Override
-                                    public void onClick(KAlertDialog sDialog) {
-                                        sDialog.dismiss();
-                                    }
-                                })
-                                .show();
+                            .setTitleText("Perhatian")
+                            .setContentText("Tanggal akhir tidak bisa lebih kecil dari tanggal mulai. Harap ulangi!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
 
                     }
 
@@ -3473,7 +3861,22 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
             idCuti   = intent.getStringExtra("id_kategori_cuti");
             kodeCuti = intent.getStringExtra("kode_kategori_cuti");
             descCuti = intent.getStringExtra("desc_kategori_cuti");
+            tipeCuti = intent.getStringExtra("tipe_kategori_cuti");
+            statusLampiran = intent.getStringExtra("status_lampiran");
 
+            if(tipeCuti.equals("1")){
+                tipeCutiTV.setText("Tahunan");
+            } else if(tipeCuti.equals("2")) {
+                tipeCutiTV.setText("Khusus");
+            }
+
+            if(statusLampiran.equals("1")){
+                uploadLampiranPart.setVisibility(View.VISIBLE);
+            } else if(statusLampiran.equals("0")) {
+                uploadLampiranPart.setVisibility(View.GONE);
+            }
+
+            kategoriCuti = idCuti;
             kategoriCutiPilihTV.setText(descCuti);
 
             alasanTV.clearFocus();
@@ -3539,13 +3942,185 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         return dateFormat.format(date);
     }
 
+    private String getTime() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDate() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
     @Override
     public void onBackPressed() {
-        if (bottomSheet.isSheetShowing()){
-            bottomSheet.dismissSheet();
+        alasanCuti = alasanTV.getText().toString();
+        pengganti = penggantiSelamaCutiTV.getText().toString();
+        alamat = alamatSelamaCutiTV.getText().toString();
+        hp = noHpTV.getText().toString();
+
+        if (!kategoriCuti.equals("") || !dateChoiceMulai.equals("") || !dateChoiceAkhir.equals("") || !alasanCuti.equals("") || !pengganti.equals("") || !alamat.equals("") || !hp.equals("")){
+            if (permohonanTerkirim.equals("1")){
+                super.onBackPressed();
+            } else {
+                new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                kategoriCuti = "";
+                                dateChoiceMulai = "";
+                                dateChoiceAkhir = "";
+                                alasanCuti = "";
+                                onBackPressed();
+                            }
+                        })
+                        .show();
+            }
         } else {
             super.onBackPressed();
         }
     }
+
+    private void dexterCall(){
+        Dexter.withActivity(FormPermohonanCutiActivity.this)
+                .withPermissions(android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        if (report.areAllPermissionsGranted()) {
+                            showImagePickerOptions();
+                        }
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            showSettingsDialog();
+                        }
+                    }
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+    private void showImagePickerOptions() {
+        ImagePickerActivity.showImagePickerOptions(this, new ImagePickerActivity.PickerOptionListener() {
+            @Override
+            public void onTakeCameraSelected() {
+                launchCameraIntent();
+            }
+            @Override
+            public void onChooseGallerySelected() {
+                launchGalleryIntent();
+            }
+        }, "lampiran");
+    }
+
+    private void showSettingsDialog() {
+        androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(FormPermohonanCutiActivity.this);
+        builder.setTitle(getString(R.string.dialog_permission_title));
+        builder.setMessage(getString(R.string.dialog_permission_message));
+        builder.setPositiveButton(getString(R.string.go_to_settings), (dialog, which) -> {
+            dialog.cancel();
+            openSettings();
+        });
+        builder.setNegativeButton(getString(android.R.string.cancel), (dialog, which) -> dialog.cancel());
+        builder.show();
+    }
+
+    private void launchCameraIntent() {
+        Intent intent = new Intent(FormPermohonanCutiActivity.this, ImagePickerActivity.class);
+        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_IMAGE_CAPTURE);
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 4); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 6);
+        // setting maximum bitmap width and height
+        intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 600);
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 900);
+        startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+    private void launchGalleryIntent() {
+        Intent intent = new Intent(FormPermohonanCutiActivity.this, ImagePickerActivity.class);
+        intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_GALLERY_IMAGE);
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 4); // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 6);
+        startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        String file_directori = getRealPathFromURIPath(uri, FormPermohonanCutiActivity.this);
+        startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+    private String getRealPathFromURIPath(Uri contentURI, Activity activity) {
+        @SuppressLint("Recycle")
+        Cursor cursor = activity.getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) {
+            return contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            return cursor.getString(idx);
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE) {
+            if (resultCode == Activity.RESULT_OK) {
+                uri = data.getParcelableExtra("path");
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                    String file_directori = getRealPathFromURIPath(uri, FormPermohonanCutiActivity.this);
+                    String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
+                    Log.e("PaRSE JSON", a);
+                    markUpload.setVisibility(View.VISIBLE);
+                    viewUploadBTN.setVisibility(View.VISIBLE);
+                    statusUploadTV.setText("Berhasil diunggah");
+                    labelUnggahTV.setText("Ganti");
+                    uploadStatus = "1";
+
+                    viewUploadBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(FormPermohonanCutiActivity.this, ViewImageActivity.class);
+                            intent.putExtra("url", String.valueOf(uri));
+                            intent.putExtra("kode", "form");
+                            intent.putExtra("jenis_form", "cuti");
+                            startActivity(intent);
+                        }
+                    });
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
 }

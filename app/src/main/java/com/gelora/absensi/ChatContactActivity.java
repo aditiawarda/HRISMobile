@@ -39,6 +39,7 @@ import com.gelora.absensi.model.ListChatMate;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -190,7 +191,7 @@ public class ChatContactActivity extends AppCompatActivity {
                         noDataPart.setVisibility(View.VISIBLE);
                         loadingPart.setVisibility(View.GONE);
                         listContactRV.setVisibility(View.GONE);
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         ) {
@@ -206,6 +207,20 @@ public class ChatContactActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    private void connectionFailed(){
+        // Banner.make(rootview, SearchKaryawanBagianActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+
+        CookieBar.build(ChatContactActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
     }
 
 }

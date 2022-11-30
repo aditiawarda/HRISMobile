@@ -18,8 +18,10 @@ public class ListPermohonanIzin {
     private String created_at;
     private String updated_at;
     private String status_approve;
+    private String status_approve_kadept;
     private String status_approve_hrd;
     private String status_read;
+    private String tipe_pengajuan;
 
     public String getId() {
         return id;
@@ -155,5 +157,21 @@ public class ListPermohonanIzin {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public String getTipe_pengajuan() {
+        return tipe_pengajuan;
+    }
+
+    public void setTipe_pengajuan(String tipe_pengajuan) {
+        this.tipe_pengajuan = tipe_pengajuan;
+    }
+
+    public String getStatus_approve_kadept() {
+        return status_approve_kadept;
+    }
+
+    public void setStatus_approve_kadept(String status_approve_kadept) {
+        this.status_approve_kadept = status_approve_kadept;
     }
 }

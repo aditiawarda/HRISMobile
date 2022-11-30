@@ -1,6 +1,7 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
@@ -17,6 +18,7 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,7 @@ import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.StatusBarColorManager;
 import com.shasin.notificationbanner.Banner;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -96,6 +99,19 @@ public class RegisterActivity extends AppCompatActivity {
                         namaTV.setText("Nama Karyawan");
                         passwordED.setText("");
                         repasswordED.setText("");
+
+                        nikED.clearFocus();
+                        passwordED.clearFocus();
+                        repasswordED.clearFocus();
+
+                        nikED.setTextColor(Color.parseColor("#FFFFFF"));
+                        passwordED.setTextColor(Color.parseColor("#FFFFFF"));
+                        repasswordED.setTextColor(Color.parseColor("#FFFFFF"));
+
+                        nikED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+                        passwordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+                        repasswordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+
                     }
                 }, 1000);
             }
@@ -113,6 +129,42 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 contactService();
+            }
+        });
+
+        nikED.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                nikED.setTextColor(Color.parseColor("#FFDFB8"));
+                passwordED.setTextColor(Color.parseColor("#FFFFFF"));
+                repasswordED.setTextColor(Color.parseColor("#FFFFFF"));
+
+                nikED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login_aktif));
+                passwordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+                repasswordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+            }
+        });
+
+        passwordED.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                nikED.setTextColor(Color.parseColor("#FFFFFF"));
+                passwordED.setTextColor(Color.parseColor("#FFDFB8"));
+                repasswordED.setTextColor(Color.parseColor("#FFFFFF"));
+
+                nikED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+                passwordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login_aktif));
+                repasswordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+            }
+        });
+
+        repasswordED.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                nikED.setTextColor(Color.parseColor("#FFFFFF"));
+                passwordED.setTextColor(Color.parseColor("#FFFFFF"));
+                repasswordED.setTextColor(Color.parseColor("#FFDFB8"));
+
+                nikED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+                passwordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+                repasswordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login_aktif));
             }
         });
 
@@ -222,6 +274,19 @@ public class RegisterActivity extends AppCompatActivity {
         repasswordED.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                nikED.clearFocus();
+                passwordED.clearFocus();
+                repasswordED.clearFocus();
+
+                nikED.setTextColor(Color.parseColor("#FFFFFF"));
+                passwordED.setTextColor(Color.parseColor("#FFFFFF"));
+                repasswordED.setTextColor(Color.parseColor("#FFFFFF"));
+
+                nikED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+                passwordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+                repasswordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+
+
                 nikED.setError(null);
                 passwordED.setError(null);
                 repasswordED.setError(null);
@@ -286,7 +351,7 @@ public class RegisterActivity extends AppCompatActivity {
                             } else {
                                 new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
-                                        .setContentText("NIK tidak terdaftar dan lenkapi Password!")
+                                        .setContentText("NIK tidak terdaftar dan lengkapi Password!")
                                         .setConfirmText("    OK    ")
                                         .show();
                                 fokus = repasswordED;
@@ -391,6 +456,19 @@ public class RegisterActivity extends AppCompatActivity {
         registerBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                nikED.clearFocus();
+                passwordED.clearFocus();
+                repasswordED.clearFocus();
+
+                nikED.setTextColor(Color.parseColor("#FFFFFF"));
+                passwordED.setTextColor(Color.parseColor("#FFFFFF"));
+                repasswordED.setTextColor(Color.parseColor("#FFFFFF"));
+
+                nikED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+                passwordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+                repasswordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
+
+
                 nikED.setError(null);
                 passwordED.setError(null);
                 repasswordED.setError(null);
@@ -704,7 +782,15 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, RegisterActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+        // Banner.make(rootview, RegisterActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+
+        CookieBar.build(RegisterActivity.this)
+                .setCustomView(R.layout.layout_custom_cookie)
+                .setEnableAutoDismiss(true)
+                .setSwipeToDismiss(false)
+                .setCookiePosition(Gravity.TOP)
+                .show();
+
     }
 
     @Override

@@ -5,4 +5,8 @@
         android:id="@+id/dropdown_end_chat"
         android:title="Hapus Percakapan"
         tools:ignore="HardcodedText" />
+    <item
+        android:id="@+id/dropdown_contact_it"
+        android:title="Hubungi IT"
+        tools:ignore="HardcodedText" />
 </menu>

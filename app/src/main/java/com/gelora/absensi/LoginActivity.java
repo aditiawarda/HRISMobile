@@ -1,6 +1,9 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -8,6 +11,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -19,8 +23,10 @@ import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -43,6 +49,7 @@ import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.StatusBarColorManager;
 import com.shasin.notificationbanner.Banner;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -57,13 +64,14 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout registerBTN, connectBTN, closeBTN, contactServiceBTN, loginBTN, showPasswordBTN;
     EditText nikED, passwordED;
     SharedPrefManager sharedPrefManager;
-    TextView showPassword, testBTN;
+    TextView showPassword, testBTN, icPerson, icPassword;
     String statusCheck = "", deviceID, visibilityPassword = "hide";
     BottomSheetLayout bottomSheet, bottomSheetCS;
     SwipeRefreshLayout refreshLayout;
     ProgressBar loadingProgressBar;
     View rootview;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +92,8 @@ public class LoginActivity extends AppCompatActivity {
         contactServiceBTN = findViewById(R.id.contact_service_btn);
         registerBTN = findViewById(R.id.register_btn);
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
+        icPerson = findViewById(R.id.ic_person);
+        icPassword = findViewById(R.id.ic_password);
 
         testBTN = findViewById(R.id.test_btn);
 
@@ -102,6 +112,24 @@ public class LoginActivity extends AppCompatActivity {
                         refreshLayout.setRefreshing(false);
                         nikED.setText("");
                         passwordED.setText("");
+
+                        nikED.clearFocus();
+                        passwordED.clearFocus();
+
+                        nikED.setTextColor(Color.parseColor("#FFFFFF"));
+                        passwordED.setTextColor(Color.parseColor("#FFFFFF"));
+
+                        nikED.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_feel_login));
+                        icPerson.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_person));
+
+                        passwordED.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_pw_feel));
+                        icPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_lock));
+
+                        showPasswordBTN.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_pw_show));
+
+                        visibilityPassword = "hide";
+                        showPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_visibility_off));
+
                         getStatusCheckDivice();
                     }
                 }, 1000);
@@ -115,21 +143,67 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        nikED.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                nikED.setTextColor(Color.parseColor("#FFDFB8"));
+                passwordED.setTextColor(Color.parseColor("#FFFFFF"));
+                nikED.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_feel_login_aktif));
+                icPerson.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_person_aktif));
+                passwordED.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_pw_feel));
+                icPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_lock));
+                showPasswordBTN.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_pw_show));
+
+                if(visibilityPassword.equals("hide")){
+                    showPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_visibility_on));
+                } else if(visibilityPassword.equals("show")){
+                    showPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_visibility_off));
+                }
+
+            }
+        });
+
+        passwordED.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                nikED.setTextColor(Color.parseColor("#FFFFFF"));
+                passwordED.setTextColor(Color.parseColor("#FFDFB8"));
+                nikED.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_feel_login));
+                icPerson.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_person));
+                passwordED.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_pw_feel_aktif));
+                icPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_lock_aktif));
+                showPasswordBTN.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_pw_show_aktif));
+
+                if(visibilityPassword.equals("hide")){
+                    showPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_visibility_on_aktif));
+                } else if(visibilityPassword.equals("show")){
+                    showPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_visibility_off_aktif));
+                }
+
+            }
+        });
+
         showPasswordBTN.setOnClickListener(new View.OnClickListener() {
             @SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
             @Override
             public void onClick(View view) {
                 Drawable show = getResources().getDrawable(R.drawable.ic_baseline_visibility_on);
+                Drawable show_aktif = getResources().getDrawable(R.drawable.ic_baseline_visibility_on_aktif);
                 Drawable hide = getResources().getDrawable(R.drawable.ic_baseline_visibility_off);
+                Drawable hide_aktif = getResources().getDrawable(R.drawable.ic_baseline_visibility_off_aktif);
                 if(visibilityPassword.equals("hide")){
-                    //Saat Checkbox dalam keadaan Checked, maka password akan di tampilkan
                     passwordED.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    showPassword.setBackground(hide);
+                    if(passwordED.hasFocus()){
+                        showPassword.setBackground(hide_aktif);
+                    } else {
+                        showPassword.setBackground(hide);
+                    }
                     visibilityPassword = "show";
                 }else if(visibilityPassword.equals("show")) {
-                    //Jika tidak, maka password akan di sembunyikan
                     passwordED.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    showPassword.setBackground(show);
+                    if(passwordED.hasFocus()){
+                        showPassword.setBackground(show_aktif);
+                    } else {
+                        showPassword.setBackground(show);
+                    }
                     visibilityPassword = "hide";
                 }
             }
@@ -138,6 +212,26 @@ public class LoginActivity extends AppCompatActivity {
         passwordED.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                nikED.clearFocus();
+                passwordED.clearFocus();
+
+                nikED.setTextColor(Color.parseColor("#FFFFFF"));
+                passwordED.setTextColor(Color.parseColor("#FFFFFF"));
+
+                nikED.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_feel_login));
+                icPerson.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_person));
+
+                passwordED.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_pw_feel));
+                icPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_lock));
+
+                showPasswordBTN.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_pw_show));
+
+                if(visibilityPassword.equals("hide")){
+                    showPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_visibility_on));
+                } else if(visibilityPassword.equals("show")){
+                    showPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_visibility_off));
+                }
+
                 if (passwordED.getText().toString().equals("")) {
                     new KAlertDialog(LoginActivity.this, KAlertDialog.WARNING_TYPE)
                             .setTitleText("Perhatian")
@@ -178,6 +272,26 @@ public class LoginActivity extends AppCompatActivity {
         loginBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                nikED.clearFocus();
+                passwordED.clearFocus();
+
+                nikED.setTextColor(Color.parseColor("#FFFFFF"));
+                passwordED.setTextColor(Color.parseColor("#FFFFFF"));
+
+                nikED.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_feel_login));
+                icPerson.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_person));
+
+                passwordED.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_pw_feel));
+                icPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_lock));
+
+                showPasswordBTN.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.shape_pw_show));
+
+                if(visibilityPassword.equals("hide")){
+                    showPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_visibility_on));
+                } else if(visibilityPassword.equals("show")){
+                    showPassword.setBackground(ContextCompat.getDrawable(LoginActivity.this, R.drawable.ic_baseline_visibility_off));
+                }
+
                 nikED.setError(null);
                 passwordED.setError(null);
                 View fokus = null;
@@ -212,7 +326,7 @@ public class LoginActivity extends AppCompatActivity {
                                 .setContentText("Masukkan NIK dan Password!")
                                 .setConfirmText("    OK    ")
                                 .show();
-                        fokus = passwordED;
+                        fokus = nikED;
                         cancel = true;
                     } else {
                         new KAlertDialog(LoginActivity.this, KAlertDialog.WARNING_TYPE)
@@ -315,7 +429,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, LoginActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+        // Banner.make(rootview, LoginActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+
+        CookieBar.build(LoginActivity.this)
+                .setCustomView(R.layout.layout_custom_cookie)
+                .setEnableAutoDismiss(true)
+                .setSwipeToDismiss(false)
+                .setCookiePosition(Gravity.TOP)
+                .show();
+
     }
 
     private void contactService(){

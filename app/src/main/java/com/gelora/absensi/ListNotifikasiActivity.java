@@ -30,6 +30,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.shasin.notificationbanner.Banner;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -152,7 +153,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                         refreshLayout.setRefreshing(false);
                         getData();
                     }
-                }, 500);
+                }, 300);
 
             }
         });
@@ -177,7 +178,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                         refreshLayout.setRefreshing(false);
                         getData();
                     }
-                }, 500);
+                }, 300);
 
             }
         });
@@ -330,11 +331,22 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                 refreshLayout.setRefreshing(false);
                 getData();
             }
-        }, 500);
+        }, 300);
     }
 
     private void connectionFailed(){
-        Banner.make(rootview, ListNotifikasiActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+        // Banner.make(rootview, ListNotifikasiActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
+
+        CookieBar.build(ListNotifikasiActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
+
     }
 
 }
