@@ -645,7 +645,7 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:gravity="right"
-                                                    android:layout_marginTop="15dp"
+                                                    android:layout_marginTop="10dp"
                                                     android:paddingRight="40dp"
                                                     android:text="Dibuat :"
                                                     android:textColor="#515151"
@@ -706,26 +706,60 @@
                                                     android:orientation="vertical"
                                                     android:layout_height="wrap_content">
 
-                                                    <ImageView
-                                                        android:id="@+id/ttd_pemohon"
-                                                        android:layout_width="40dp"
-                                                        android:layout_height="30dp" />
-
-                                                    <TextView
+                                                    <RelativeLayout
                                                         android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text="__________________"
-                                                        android:textColor="#515151"
-                                                        android:textSize="8dp" />
+                                                        android:layout_height="match_parent">
 
-                                                    <TextView
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text="Kepala Bagian"
-                                                        android:textColor="#515151"
-                                                        android:textSize="8dp" />
+                                                        <LinearLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:gravity="center"
+                                                            android:orientation="vertical">
+
+                                                            <ImageView
+                                                                android:id="@+id/ttd_approver_1"
+                                                                android:layout_width="40dp"
+                                                                android:layout_height="30dp" />
+
+                                                            <TextView
+                                                                android:id="@+id/nama_approver_1"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:layout_marginBottom="-8dp"
+                                                                android:textColor="#515151"
+                                                                android:text=""
+                                                                android:textSize="8dp" />
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text="__________________"
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text="Kepala Bagian"
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                        </LinearLayout>
+
+                                                        <TextView
+                                                            android:id="@+id/tgl_approver_1"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:gravity="right"
+                                                            android:paddingRight="8dp"
+                                                            android:textColor="#515151"
+                                                            android:text=""
+                                                            android:textSize="7dp" />
+
+                                                    </RelativeLayout>
 
                                                 </LinearLayout>
 
@@ -736,26 +770,60 @@
                                                     android:orientation="vertical"
                                                     android:layout_height="wrap_content">
 
-                                                    <ImageView
-                                                        android:id="@+id/ttd_pemohon"
-                                                        android:layout_width="40dp"
-                                                        android:layout_height="30dp" />
-
-                                                    <TextView
+                                                    <RelativeLayout
                                                         android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text="__________________"
-                                                        android:textColor="#515151"
-                                                        android:textSize="8dp" />
+                                                        android:layout_height="match_parent">
 
-                                                    <TextView
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text="Kepala Departemen"
-                                                        android:textColor="#515151"
-                                                        android:textSize="8dp" />
+                                                        <LinearLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:gravity="center"
+                                                            android:orientation="vertical">
+
+                                                            <ImageView
+                                                                android:id="@+id/ttd_approver_2"
+                                                                android:layout_width="40dp"
+                                                                android:layout_height="30dp" />
+
+                                                            <TextView
+                                                                android:id="@+id/nama_approver_2"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:layout_marginBottom="-8dp"
+                                                                android:textColor="#515151"
+                                                                android:text=""
+                                                                android:textSize="8dp" />
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text="__________________"
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text="Kepala Departemen"
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                        </LinearLayout>
+
+                                                        <TextView
+                                                            android:id="@+id/tgl_approver_2"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:gravity="right"
+                                                            android:paddingRight="8dp"
+                                                            android:text=""
+                                                            android:textColor="#515151"
+                                                            android:textSize="7dp" />
+
+                                                    </RelativeLayout>
 
                                                 </LinearLayout>
 
@@ -766,26 +834,60 @@
                                                     android:orientation="vertical"
                                                     android:layout_height="wrap_content">
 
-                                                    <ImageView
-                                                        android:id="@+id/ttd_pemohon"
-                                                        android:layout_width="40dp"
-                                                        android:layout_height="30dp" />
-
-                                                    <TextView
+                                                    <RelativeLayout
                                                         android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text="__________________"
-                                                        android:textColor="#515151"
-                                                        android:textSize="8dp" />
+                                                        android:layout_height="match_parent">
 
-                                                    <TextView
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:gravity="center"
-                                                        android:text="HRD"
-                                                        android:textColor="#515151"
-                                                        android:textSize="8dp" />
+                                                        <LinearLayout
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:gravity="center"
+                                                            android:orientation="vertical">
+
+                                                            <ImageView
+                                                                android:id="@+id/ttd_approver_hrd"
+                                                                android:layout_width="40dp"
+                                                                android:layout_height="30dp" />
+
+                                                            <TextView
+                                                                android:id="@+id/nama_approver_hrd"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:layout_marginBottom="-8dp"
+                                                                android:textColor="#515151"
+                                                                android:text=""
+                                                                android:textSize="8dp" />
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text="__________________"
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:gravity="center"
+                                                                android:text="HRD"
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                        </LinearLayout>
+
+                                                        <TextView
+                                                            android:id="@+id/tgl_approver_hrd"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:gravity="right"
+                                                            android:paddingRight="8dp"
+                                                            android:text=""
+                                                            android:textColor="#515151"
+                                                            android:textSize="7dp" />
+
+                                                    </RelativeLayout>
 
                                                 </LinearLayout>
 
@@ -860,10 +962,10 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginTop="30dp"
+                                            android:layout_marginTop="250dp"
                                             android:paddingRight="20dp"
                                             android:paddingLeft="20dp"
-                                            android:gravity="right"
+                                            android:gravity="left"
                                             android:orientation="vertical">
 
                                             <LinearLayout

@@ -281,7 +281,6 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                                     dataNotifikasi2RV.setAdapter(adapterPermohonanSaya);
                                 }
 
-
                             }
 
                         } catch (JSONException e) {

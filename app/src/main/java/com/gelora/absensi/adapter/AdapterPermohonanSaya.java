@@ -81,7 +81,11 @@ public class AdapterPermohonanSaya extends RecyclerView.Adapter<AdapterPermohona
                 } else if (listPermohonanIzin.getStatus_approve_hrd().equals("2")) {
                     statusPermohonan = "Permohonan Ditolak HRD";
                 } else if (listPermohonanIzin.getStatus_approve_hrd().equals("0")) {
-                    statusPermohonan = "Permohonan Disetujui Supervisor";
+                    if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                        statusPermohonan = "Menunggu Persetujuan HRD";
+                    } else {
+                        statusPermohonan = "Permohonan Disetujui Supervisor";
+                    }
                 }
             } else if (listPermohonanIzin.getStatus_approve().equals("2")){
                 statusPermohonan = "Permohonan Ditolak Supervisor";
@@ -96,11 +100,19 @@ public class AdapterPermohonanSaya extends RecyclerView.Adapter<AdapterPermohona
                     statusPermohonan = "Permohonan Ditolak HRD";
                 } else if (listPermohonanIzin.getStatus_approve_hrd().equals("0")) {
                     if(listPermohonanIzin.getStatus_approve_kadept().equals("1")){
-                        statusPermohonan = "Permohonan Disetujui Kepala Departement";
+                        if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                            statusPermohonan = "Menunggu Persetujuan HRD";
+                        } else {
+                            statusPermohonan = "Permohonan Disetujui Kepala Departement";
+                        }
                     } else if(listPermohonanIzin.getStatus_approve_kadept().equals("2")){
                         statusPermohonan = "Permohonan Ditolak Kepala Departement";
                     } else if(listPermohonanIzin.getStatus_approve_kadept().equals("0")){
-                        statusPermohonan = "Permohonan Disetujui Supervisor";
+                        if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
+                            statusPermohonan = "Menunggu Persetujuan Kepala Departemen";
+                        } else {
+                            statusPermohonan = "Permohonan Disetujui Supervisor";
+                        }
                     }
                 }
             } else if (listPermohonanIzin.getStatus_approve().equals("2")){

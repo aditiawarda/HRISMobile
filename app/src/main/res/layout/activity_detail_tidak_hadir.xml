@@ -220,6 +220,7 @@
                                             android:ellipsize="end"
                                             android:maxLines="1"
                                             android:singleLine="true"
+                                            android:textSize="14dp"
                                             android:text="DENGAN KETERANGAN"
                                             android:textColor="@color/colorPrimaryDark"
                                             android:textStyle="bold" />
@@ -415,6 +416,7 @@
                                                 android:ellipsize="end"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
+                                                android:textSize="14dp"
                                                 android:text="TANPA KETERANGAN"/>
 
                                         </LinearLayout>

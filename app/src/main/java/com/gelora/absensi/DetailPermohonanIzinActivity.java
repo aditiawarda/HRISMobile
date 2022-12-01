@@ -67,11 +67,11 @@ import androidmads.library.qrgenearator.QRGEncoder;
 
 public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
-    TextView notedTV, appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, tanggalApproveTV, tanggalApproveHRDTV, supervisorTV, hrdTV;
+    TextView approverHrdTV, notedTV, appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, tanggalApproveTV, tanggalApproveHRDTV, supervisorTV, hrdTV;
     String uriImage, uriImage2, idIzinRecord, statusKondisi = "0", kode, title;
     LinearLayout pdfBTN, viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, homeBTN, approvedBTN, rejectedBTN, actionPart;
     SwipeRefreshLayout refreshLayout;
-    ImageView ttdPemohon, ttdSupervisor, qrDocument;
+    ImageView ttdPemohon, ttdSupervisor, ttdHRD, qrDocument;
     KAlertDialog pDialog;
     Bitmap bitmap;
     SharedPrefManager sharedPrefManager;
@@ -112,6 +112,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         hrdTV = findViewById(R.id.hrd_tv);
         ttdPemohon = findViewById(R.id.ttd_pemohon);
         ttdSupervisor = findViewById(R.id.ttd_supervisor);
+        ttdHRD = findViewById(R.id.ttd_hrd);
         actionPart = findViewById(R.id.action_part);
         rejectedMark = findViewById(R.id.rejected_mark);
         acceptedMark = findViewById(R.id.accepted_mark);
@@ -124,6 +125,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         viewSuratSakitBTN = findViewById(R.id.view_surat_sakit_btn);
         tanggalApproveTV = findViewById(R.id.tanggal_approve);
         notedTV = findViewById(R.id.noted_tv);
+        approverHrdTV = findViewById(R.id.approver_hrd_tv);
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
@@ -485,7 +487,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", sharedPrefManager.getSpNik());
-
                 return params;
             }
         };
@@ -546,7 +547,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     private void approvedAction(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/approve_action";
+        final String url = "https://geloraaksara.co.id/absen-online/api/approve_action_izin";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -689,6 +690,8 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                 String tgl_permohonan = detail.getString("tanggal");
                                 String digital_signature = detail.getString("digital_signature");
                                 String tipe_izin = detail.getString("tipe_izin");
+                                String nik_approver_hrd = detail.getString("nik_approver_hrd");
+                                String nama_approver_hrd = detail.getString("nama_approver_hrd");
 
                                 String jumlah_hari = data.getString("jumlah_hari");
 
@@ -913,11 +916,36 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
                                     String status_approve_hrd = detail.getString("status_approve_hrd");
                                     if (status_approve_hrd.equals("1")){
-                                        String updated_at = detail.getString("updated_at");
-                                        tanggalApproveHRDTV.setText(updated_at.substring(8,10)+"/"+updated_at.substring(5,7)+"/"+updated_at.substring(2,4));
-                                        acceptedMark.setVisibility(View.VISIBLE);
-                                        rejectedMark.setVisibility(View.GONE);
-                                        appoveStatusHRD.setVisibility(View.VISIBLE);
+                                        if(nik_approver_hrd.equals("null") || nik_approver_hrd.equals("") || nik_approver_hrd.equals(null)){
+                                            String updated_at = detail.getString("updated_at");
+                                            tanggalApproveHRDTV.setText(updated_at.substring(8,10)+"/"+updated_at.substring(5,7)+"/"+updated_at.substring(2,4));
+                                            acceptedMark.setVisibility(View.VISIBLE);
+                                            rejectedMark.setVisibility(View.GONE);
+                                            appoveStatusHRD.setVisibility(View.VISIBLE);
+                                            ttdHRD.setVisibility(View.GONE);
+                                        } else {
+                                            String updated_at = detail.getString("updated_at");
+                                            tanggalApproveHRDTV.setText(updated_at.substring(8,10)+"/"+updated_at.substring(5,7)+"/"+updated_at.substring(2,4));
+                                            acceptedMark.setVisibility(View.VISIBLE);
+                                            rejectedMark.setVisibility(View.GONE);
+                                            appoveStatusHRD.setVisibility(View.GONE);
+                                            ttdHRD.setVisibility(View.VISIBLE);
+
+                                            String signature_approver_hrd = detail.getString("signature_approver_hrd");
+                                            String url_approver_hrd = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_hrd;
+
+                                            Picasso.get().load(url_approver_hrd).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                    .into(ttdHRD);
+
+                                            String namaPendek = nama_approver_hrd;
+                                            if(namaPendek.contains(" ")){
+                                                namaPendek = namaPendek.substring(0, namaPendek.indexOf(" "));
+                                                approverHrdTV.setText(namaPendek.toUpperCase());
+                                            }
+
+                                            approverHrdTV.setVisibility(View.VISIBLE);
+                                        }
                                     } else if (status_approve_hrd.equals("2")){
                                         acceptedMark.setVisibility(View.GONE);
                                         rejectedMark.setVisibility(View.VISIBLE);

@@ -82,7 +82,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     TextView statusUploadTV, labelUnggahTV, tipeCutiTV, namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
     String uploadStatus = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", dateChoiceMulai = "", kategoriCuti = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
-    ImageView loadingGif;
+    ImageView loadingGif, successGif;
     EditText keywordKaryawanPengganti, alasanTV, alamatSelamaCutiTV, noHpTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -133,6 +133,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         noHpTV = findViewById(R.id.no_hp_tv);
         submitBTN = findViewById(R.id.submit_btn);
         successPart = findViewById(R.id.success_submit_cuti);
+        successGif = findViewById(R.id.success_gif);
         formPart = findViewById(R.id.form_part_cuti);
         goToDasboard = findViewById(R.id.go_to_user);
         goToHome = findViewById(R.id.go_to_home);
@@ -144,6 +145,10 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         statusUploadTV = findViewById(R.id.status_upload_tv);
         labelUnggahTV = findViewById(R.id.label_unggah);
         viewUploadBTN = findViewById(R.id.view_btn);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.success_ic)
+                .into(successGif);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(kategoriCutiBroad, new IntentFilter("kategori_cuti_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(karyawanPenggantiBroad, new IntentFilter("karyawan_pengganti_broad"));
@@ -2819,6 +2824,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 params.put("time", getTime());
                 params.put("tanggal_mulai", dateChoiceMulai);
                 params.put("tanggal_akhir", dateChoiceAkhir);
+                params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
 
                 return params;
             }

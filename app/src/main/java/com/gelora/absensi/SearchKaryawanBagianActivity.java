@@ -221,7 +221,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
         if (sharedPrefManager.getSpIdJabatan().equals("10")) {
             choiceBagianBTN.setVisibility(View.VISIBLE);
             attantionDesc.setText("Fitur ini dibuat khusus untuk Kepala Departemen agar dapat memantau kehadiran karyawan di departemennya masing-masing.");
-        } else if (sharedPrefManager.getSpIdJabatan().equals("11")) {
+        } else if (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")) {
             choiceBagianBTN.setVisibility(View.GONE);
             attantionDesc.setText("Fitur ini dibuat khusus untuk Kepala Bagian agar dapat memantau kehadiran karyawan di bagiannya masing-masing.");
         }

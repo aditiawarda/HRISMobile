@@ -1752,6 +1752,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                 params.put("tanggal_mulai", dateChoiceMulai);
                 params.put("tanggal_akhir", dateChoiceAkhir);
                 params.put("keterangan", alasanIzin);
+                params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
 
                 return params;
             }

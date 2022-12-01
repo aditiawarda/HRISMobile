@@ -6,6 +6,7 @@ public class ListPermohonanIzin {
     private String id;
     private String NIK;
     private String NmKaryawan;
+    private String IdJabatan;
     private String tanggal;
     private String tipe_izin;
     private String deskripsi_izin;
@@ -173,5 +174,13 @@ public class ListPermohonanIzin {
 
     public void setStatus_approve_kadept(String status_approve_kadept) {
         this.status_approve_kadept = status_approve_kadept;
+    }
+
+    public String getIdJabatan() {
+        return IdJabatan;
+    }
+
+    public void setIdJabatan(String idJabatan) {
+        IdJabatan = idJabatan;
     }
 }

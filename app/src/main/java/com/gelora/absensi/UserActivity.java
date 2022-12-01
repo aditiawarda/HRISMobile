@@ -93,7 +93,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout sisaCutiData, sisaCutiBTN, countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
     TextView sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -102,7 +102,7 @@ public class UserActivity extends AppCompatActivity {
     NestedScrollView scrollView;
     RelativeLayout dataCuaca;
     ProgressBar loadingProgressBarCuaca;
-    ImageView positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
+    ImageView sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
     String selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
     ProgressBar loadingProgressBarLogout;
@@ -219,6 +219,9 @@ public class UserActivity extends AppCompatActivity {
         dateUpdateSisaCutiTV = findViewById(R.id.date_update_sisa_cuti_tv);
         periodeUpdateSisaCutiTV = findViewById(R.id.periode_update_sisa_cuti_tv);
         sisaCutiTV = findViewById(R.id.sisa_cuti_tv);
+        sisaCutiBTN = findViewById(R.id.sisa_cuti_btn);
+        sisaCutiData = findViewById(R.id.sisa_cuti_data);
+        sisaCutiLoading = findViewById(R.id.sisa_cuti_loading);
         hTime = findViewById(R.id.h_time);
         mTime = findViewById(R.id.m_time);
         sTime = findViewById(R.id.s_time);
@@ -273,6 +276,10 @@ public class UserActivity extends AppCompatActivity {
                 .load(R.drawable.ic_warning_notification_gif)
                 .into(notificationWarningAlpha);
 
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(sisaCutiLoading);
+
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -309,6 +316,9 @@ public class UserActivity extends AppCompatActivity {
                 markerWarningAlpha.setVisibility(View.GONE);
                 markerWarningLate.setVisibility(View.GONE);
                 markerWarningNoCheckout.setVisibility(View.GONE);
+
+                sisaCutiData.setVisibility(View.GONE);
+                sisaCutiLoading.setVisibility(View.VISIBLE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -397,6 +407,14 @@ public class UserActivity extends AppCompatActivity {
                                 dialog.dismiss();
                             }
                         }).show();
+            }
+        });
+
+        sisaCutiBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, HistoryCutiIzinActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -774,7 +792,9 @@ public class UserActivity extends AppCompatActivity {
                                 }
 
                                 sisaCutiTV.setText(sisa_cuti);
-                                periodeUpdateSisaCutiTV.setText("Periode "+periode_mulai.substring(8,10)+"/"+periode_mulai.substring(5,7)+"/"+periode_mulai.substring(0,4)+" s.d. "+periode_akhir.substring(8,10)+"/"+periode_akhir.substring(5,7)+"/"+periode_akhir.substring(0,4));
+                                periodeUpdateSisaCutiTV.setText("Periode "+periode_mulai.substring(8,10)+"/"+periode_mulai.substring(5,7)+"/"+periode_mulai.substring(0,4)+"  s.d. "+periode_akhir.substring(8,10)+"/"+periode_akhir.substring(5,7)+"/"+periode_akhir.substring(0,4));
+                                sisaCutiData.setVisibility(View.VISIBLE);
+                                sisaCutiLoading.setVisibility(View.GONE);
 
                                 getCurrentLocation(weather_key);
                                 getDataHadir();

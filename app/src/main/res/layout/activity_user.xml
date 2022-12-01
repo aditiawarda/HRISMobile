@@ -1022,25 +1022,42 @@
                                                android:background="@drawable/shape_tidak_hadir"
                                                android:gravity="center"
                                                android:layout_width="85dp"
-                                               android:layout_height="55dp">
+                                               android:layout_height="55dp"
+                                               android:orientation="horizontal">
 
-                                               <TextView
-                                                   android:id="@+id/sisa_cuti_tv"
-                                                   android:layout_width="wrap_content"
-                                                   android:layout_height="wrap_content"
-                                                   android:textColor="@color/white"
-                                                   android:textSize="30dp"
-                                                   android:textStyle="bold"
-                                                   android:layout_marginRight="8dp"
-                                                   android:text="0"/>
+                                               <LinearLayout
+                                                   android:visibility="gone"
+                                                   android:id="@+id/sisa_cuti_data"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:gravity="center"
+                                                   android:orientation="horizontal">
 
-                                               <TextView
-                                                   android:layout_width="wrap_content"
-                                                   android:layout_height="wrap_content"
-                                                   android:textColor="@color/white"
-                                                   android:textSize="10dp"
-                                                   android:textStyle="bold"
-                                                   android:text="Hari"/>
+                                                   <TextView
+                                                       android:id="@+id/sisa_cuti_tv"
+                                                       android:layout_width="wrap_content"
+                                                       android:layout_height="wrap_content"
+                                                       android:textColor="@color/white"
+                                                       android:textSize="30dp"
+                                                       android:textStyle="bold"
+                                                       android:layout_marginRight="8dp"
+                                                       android:text="0"/>
+
+                                                   <TextView
+                                                       android:layout_width="wrap_content"
+                                                       android:layout_height="wrap_content"
+                                                       android:textColor="@color/white"
+                                                       android:textSize="10dp"
+                                                       android:textStyle="bold"
+                                                       android:text="Hari"/>
+
+                                               </LinearLayout>
+
+                                               <ImageView
+                                                   android:id="@+id/sisa_cuti_loading"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="30dp"
+                                                   app:srcCompat="@drawable/loading_dots" />
 
                                            </LinearLayout>
 
@@ -1051,7 +1068,7 @@
                                             android:layout_height="match_parent"
                                             android:gravity="center|left"
                                             android:orientation="vertical"
-                                            android:paddingLeft="30dp"
+                                            android:paddingLeft="25dp"
                                             android:paddingRight="10dp">
 
                                             <TextView
@@ -1073,7 +1090,7 @@
                                                 android:id="@+id/periode_update_sisa_cuti_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="Periode 00/00/0000 s.d. 00/00/0000"
+                                                android:text="Periode 00/00/0000  s.d. 00/00/0000"
                                                 android:textColor="@color/white"
                                                 android:textSize="9dp" />
 
