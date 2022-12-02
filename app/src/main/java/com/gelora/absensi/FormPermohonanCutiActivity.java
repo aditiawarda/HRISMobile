@@ -37,6 +37,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -53,6 +54,7 @@ import com.gelora.absensi.adapter.AdapterKategoriIzin;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.KaryawanPengganti;
 import com.gelora.absensi.model.KategoriIzin;
+import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -62,6 +64,8 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.takisoft.datetimepicker.DatePickerDialog;
+
+import net.gotev.uploadservice.MultipartUploadRequest;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -75,6 +79,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class FormPermohonanCutiActivity extends AppCompatActivity {
 
@@ -2769,6 +2774,16 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                                 pDialog.dismiss();
                                 successPart.setVisibility(View.VISIBLE);
                                 formPart.setVisibility(View.GONE);
+
+                                if(uploadStatus.equals("1")){
+                                    uploadLampiran();
+                                } else {
+                                    permohonanTerkirim = "1";
+                                    pDialog.dismiss();
+                                    successPart.setVisibility(View.VISIBLE);
+                                    formPart.setVisibility(View.GONE);
+                                }
+
                             } else if (status.equals("Available")){
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
@@ -2832,6 +2847,33 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    public void uploadLampiran() {
+        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran_cuti";
+        String path1 = FilePathimage.getPath(this, uri);
+        if (path1 == null) {
+            Toast.makeText(this, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show();
+        } else {
+            try {
+                permohonanTerkirim = "1";
+                pDialog.dismiss();
+                successPart.setVisibility(View.VISIBLE);
+                formPart.setVisibility(View.GONE);
+
+                String uploadId = UUID.randomUUID().toString();
+                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                        .addFileToUpload(path1, "file") //Adding file
+                        .addParameter("id_izin_record", idIzin)
+                        .addParameter("NIK", sharedPrefManager.getSpNik())
+                        .addParameter("current_time", getDate().substring(0,4)+getDate().substring(5,7)+getDate().substring(8,10))//Adding text parameter to the request
+                        .setMaxRetries(1)
+                        .startUpload();
+            } catch (Exception exc) {
+                Log.e("PaRSE JSON", "Oke");
+                pDialog.dismiss();
+            }
+        }
     }
 
     private void kategoriCuti(){
@@ -3876,11 +3918,11 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 tipeCutiTV.setText("Khusus");
             }
 
-            if(statusLampiran.equals("1")){
-                uploadLampiranPart.setVisibility(View.VISIBLE);
-            } else if(statusLampiran.equals("0")) {
-                uploadLampiranPart.setVisibility(View.GONE);
-            }
+            // if(statusLampiran.equals("1")){
+            //     uploadLampiranPart.setVisibility(View.VISIBLE);
+            // } else if(statusLampiran.equals("0")) {
+            //    uploadLampiranPart.setVisibility(View.GONE);
+            // }
 
             kategoriCuti = idCuti;
             kategoriCutiPilihTV.setText(descCuti);

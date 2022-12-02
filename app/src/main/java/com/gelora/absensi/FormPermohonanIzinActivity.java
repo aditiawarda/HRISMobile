@@ -2092,7 +2092,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         .addFileToUpload(path1, "file") //Adding file
                         .addParameter("id_izin_record", idIzin)
                         .addParameter("NIK", sharedPrefManager.getSpNik())
-                        .addParameter("current_time", String.valueOf(System.currentTimeMillis()))//Adding text parameter to the request
+                        .addParameter("current_time", getDate().substring(0,4)+getDate().substring(5,7)+getDate().substring(8,10))//Adding text parameter to the request
                         .setMaxRetries(1)
                         .startUpload();
             } catch (Exception exc) {

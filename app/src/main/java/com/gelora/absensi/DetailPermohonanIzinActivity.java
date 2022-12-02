@@ -607,7 +607,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     private void rejectedAction(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/reject_action";
+        final String url = "https://geloraaksara.co.id/absen-online/api/reject_action_izin";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -653,6 +653,8 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("id_izin_record", idIzinRecord);
+                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("timestamp_approve", getTimeStamp());
                 params.put("updated_at", getTimeStamp());
 
                 return params;
@@ -706,6 +708,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                             Intent intent = new Intent(DetailPermohonanIzinActivity.this, ViewImageActivity.class);
                                             intent.putExtra("url", url_surat_sakit);
                                             intent.putExtra("kode", "detail");
+                                            intent.putExtra("jenis_detail", "izin");
                                             startActivity(intent);
                                         }
                                     });
@@ -819,14 +822,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                 }
 
                                 tglAkhirTV.setText(Integer.parseInt(dayDateAkhir) +" "+bulanNameAkhir+" "+yearDateAkhir);
-
-                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-                                Date dateBefore = sdf.parse(tgl_mulai);
-                                Date dateAfter = sdf.parse(tgl_akhir);
-                                long timeDiff = Math.abs(dateAfter.getTime() - dateBefore.getTime());
-                                long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
-
-                                // totalHariTV.setText("( "+ (daysDiff + 1) +" Hari )");
                                 totalHariTV.setText("( "+ jumlah_hari +" Hari )");
 
                                 String input_date_permohonan = tgl_permohonan;
@@ -930,6 +925,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                             rejectedMark.setVisibility(View.GONE);
                                             appoveStatusHRD.setVisibility(View.GONE);
                                             ttdHRD.setVisibility(View.VISIBLE);
+                                            approverHrdTV.setVisibility(View.VISIBLE);
 
                                             String signature_approver_hrd = detail.getString("signature_approver_hrd");
                                             String url_approver_hrd = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_hrd;
@@ -944,12 +940,19 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                                 approverHrdTV.setText(namaPendek.toUpperCase());
                                             }
 
-                                            approverHrdTV.setVisibility(View.VISIBLE);
                                         }
                                     } else if (status_approve_hrd.equals("2")){
                                         acceptedMark.setVisibility(View.GONE);
                                         rejectedMark.setVisibility(View.VISIBLE);
                                         appoveStatusHRD.setVisibility(View.GONE);
+                                        approverHrdTV.setVisibility(View.VISIBLE);
+
+                                        String namaPendek = nama_approver_hrd;
+                                        if(namaPendek.contains(" ")){
+                                            namaPendek = namaPendek.substring(0, namaPendek.indexOf(" "));
+                                            approverHrdTV.setText(namaPendek.toUpperCase());
+                                        }
+
                                     } else {
                                         acceptedMark.setVisibility(View.GONE);
                                         rejectedMark.setVisibility(View.GONE);
@@ -959,7 +962,16 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                 } else if(status_approve.equals("2")) {
                                     actionPart.setVisibility(View.GONE);
                                     rejectedMark.setVisibility(View.VISIBLE);
-                                    supervisorTV.setVisibility(View.GONE);
+                                    supervisorTV.setVisibility(View.VISIBLE);
+
+                                    String approver = detail.getString("approver");
+
+                                    String shortName2 = approver;
+                                    if(shortName2.contains(" ")){
+                                        shortName2 = shortName2.substring(0, shortName2.indexOf(" "));
+                                        supervisorTV.setText(shortName2.toUpperCase());
+                                    }
+
                                 } else {
                                     actionPart.setVisibility(View.VISIBLE);
                                     rejectedMark.setVisibility(View.GONE);
@@ -995,7 +1007,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
                             }
 
-                        } catch (JSONException | ParseException e) {
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }

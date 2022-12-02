@@ -62,10 +62,18 @@ public class ViewImageActivity extends AppCompatActivity {
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .into(mainImage);
         } else if (kode.equals("detail")){
-            titlePageTV.setText("SURAT SAKIT");
-            Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
-                    .memoryPolicy(MemoryPolicy.NO_CACHE)
-                    .into(mainImage);
+            String jenis_detail = getIntent().getExtras().getString("jenis_detail");
+            if(jenis_detail.equals("izin")){
+                titlePageTV.setText("SURAT SAKIT");
+                Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        .into(mainImage);
+            } else if(jenis_detail.equals("cuti")){
+                titlePageTV.setText("LAMPIRAN CUTI");
+                Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        .into(mainImage);
+            }
         } else if (kode.equals("chat_mate")){
             String nameChatMate = getIntent().getExtras().getString("name_chat_mate");
             titlePageTV.setText(nameChatMate.toUpperCase());

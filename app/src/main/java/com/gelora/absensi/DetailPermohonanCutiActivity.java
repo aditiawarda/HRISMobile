@@ -12,6 +12,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,12 +43,13 @@ import java.util.concurrent.TimeUnit;
 
 public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
-    TextView tglApprover1, tglApprover2, tglApproverHRD, namaApprover1, namaApproverHRD, namaApprover2, namaKaryawanTV, namaPemohonTV, jabatanTV, bagianTV, mulaiBergabungTV, nikTV, statusKaryawanTV, tipeCutiTV, alamatTV, noHpTV, karyawanPenggantiTV, sisaCutiTV, alasanCutiTV, tahunCutiAmbilTV, totalCutiAmbilTV, tahunCutiTV, tglMulaiCutiTV, tglSelesaiCutiTV, totalCutiTV, tglPengajuanTV;
+    TextView lampiranTV, noted2TV, noted1TV, tglApprover1, tglApprover2, tglApproverHRD, namaApprover1, namaApproverHRD, namaApprover2, namaKaryawanTV, namaPemohonTV, jabatanTV, bagianTV, mulaiBergabungTV, nikTV, statusKaryawanTV, tipeCutiTV, alamatTV, noHpTV, karyawanPenggantiTV, sisaCutiTV, alasanCutiTV, tahunCutiAmbilTV, totalCutiAmbilTV, tahunCutiTV, tglMulaiCutiTV, tglSelesaiCutiTV, totalCutiTV, tglPengajuanTV;
     String nikPemohon = "", statusKondisi = "0", idIzinRecord, kode;
-    LinearLayout backBTN, homeBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
+    LinearLayout viewLampiranBTN, backBTN, homeBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdApprover1, ttdApprover2, ttdApproverHRD;
     KAlertDialog pDialog;
+    EditText catatanAtasanTV;
     Bitmap bitmap;
     SharedPrefManager sharedPrefManager;
     View rootview;
@@ -98,6 +100,11 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
         tglApproverHRD = findViewById(R.id.tgl_approver_hrd);
         rejectedMark = findViewById(R.id.rejected_mark);
         acceptedMark = findViewById(R.id.accepted_mark);
+        catatanAtasanTV = findViewById(R.id.catatan_tv);
+        noted1TV = findViewById(R.id.noted_1_tv);
+        noted2TV = findViewById(R.id.noted_2_tv);
+        lampiranTV = findViewById(R.id.lampiran_tv);
+        viewLampiranBTN = findViewById(R.id.view_lampiran_btn);
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
@@ -381,10 +388,40 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 String no_hp = detail.getString("no_hp");
                                 String tanggal = detail.getString("tanggal");
                                 String digital_signature = detail.getString("digital_signature");
-
                                 String status_approve = detail.getString("status_approve");
                                 String status_approve_kadept = detail.getString("status_approve_kadept");
                                 String status_approve_hrd = detail.getString("status_approve_hrd");
+                                String catatan1 = detail.getString("catatan1");
+                                String catatan2 = detail.getString("catatan2");
+                                String lampiran = detail.getString("lampiran");
+
+                                if(!catatan1.equals("null") && !catatan1.equals("") && !catatan1.equals(null)){
+                                    noted1TV.setText(":  "+catatan1);
+                                }
+
+                                if(!catatan2.equals("null") && !catatan2.equals("") && !catatan2.equals(null)){
+                                    noted2TV.setText(":  "+catatan2);
+                                }
+
+                                if(!lampiran.equals("null") && !lampiran.equals("") && !lampiran.equals(null)){
+                                    lampiranTV.setText(":  Terlampir");
+                                    viewLampiranBTN.setVisibility(View.VISIBLE);
+                                    String url_lampiran = "https://geloraaksara.co.id/absen-online/upload/lampiran_cuti/"+lampiran;
+
+                                    viewLampiranBTN.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(DetailPermohonanCutiActivity.this, ViewImageActivity.class);
+                                            intent.putExtra("url", url_lampiran);
+                                            intent.putExtra("kode", "detail");
+                                            intent.putExtra("jenis_detail", "cuti");
+                                            startActivity(intent);
+                                        }
+                                    });
+
+                                } else {
+                                    viewLampiranBTN.setVisibility(View.GONE);
+                                }
 
                                 nikPemohon = NIK;
 
@@ -538,6 +575,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                         } else if(status_approve_hrd.equals("2")){
                                             actionPart.setVisibility(View.GONE);
                                             rejectedMark.setVisibility(View.VISIBLE);
+
+                                            String approver_hrd = detail.getString("approver_hrd");
+                                            namaApproverHRD.setText(approver_hrd);
+
                                         } else {
                                             actionPart.setVisibility(View.GONE);
                                         }
@@ -606,6 +647,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             } else if(status_approve_hrd.equals("2")){
                                                 actionPart.setVisibility(View.GONE);
                                                 rejectedMark.setVisibility(View.VISIBLE);
+
+                                                String approver_hrd = detail.getString("approver_hrd");
+                                                namaApproverHRD.setText(approver_hrd);
+
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
                                             }
@@ -613,6 +658,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                         } else if(status_approve_kadept.equals("2")){
                                             actionPart.setVisibility(View.GONE);
                                             rejectedMark.setVisibility(View.VISIBLE);
+
+                                            String approver_kadept = detail.getString("approver_kadept");
+                                            namaApprover2.setText(approver_kadept);
+
                                         } else {
                                             actionPart.setVisibility(View.GONE);
                                         }
@@ -711,7 +760,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     String approver_hrd = detail.getString("approver_hrd");
                                                     String signature_approver_hrd = detail.getString("signature_approver_hrd");
 
-                                                    String url_approver_hrd = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_kadept;
+                                                    String url_approver_hrd = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_hrd;
 
                                                     Picasso.get().load(url_approver_hrd).networkPolicy(NetworkPolicy.NO_CACHE)
                                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -728,6 +777,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 } else if(status_approve_hrd.equals("2")){
                                                     actionPart.setVisibility(View.GONE);
                                                     rejectedMark.setVisibility(View.VISIBLE);
+
+                                                    String approver_hrd = detail.getString("approver_hrd");
+                                                    namaApproverHRD.setText(approver_hrd);
+
                                                 } else {
                                                     actionPart.setVisibility(View.GONE);
                                                 }
@@ -735,12 +788,113 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             } else if(status_approve_kadept.equals("2")){
                                                 actionPart.setVisibility(View.GONE);
                                                 rejectedMark.setVisibility(View.VISIBLE);
+
+                                                String approver_kadept = detail.getString("approver_kadept");
+                                                namaApprover2.setText(approver_kadept);
+
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
                                             }
 
                                         } else {
-                                            actionPart.setVisibility(View.GONE);
+
+                                            if(status_approve.equals("1")){
+                                                String nik_approver = detail.getString("nik_approver");
+                                                String approver = detail.getString("approver");
+                                                String signature_approver = detail.getString("signature_approver");
+                                                String timestamp_approve = detail.getString("timestamp_approve");
+
+                                                String url_approver_1 = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver;
+
+                                                Picasso.get().load(url_approver_1).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                        .into(ttdApprover1);
+
+                                                namaApprover1.setText(approver);
+
+                                                if(!timestamp_approve.equals("null")){
+                                                    tglApprover1.setText(timestamp_approve.substring(8,10)+"/"+timestamp_approve.substring(5,7)+"/"+timestamp_approve.substring(0,4));
+                                                } else {
+                                                    tglApprover1.setVisibility(View.GONE);
+                                                }
+
+                                                if(status_approve_kadept.equals("1")) {
+                                                    String timestamp_approve_kadept = detail.getString("timestamp_approve_kadept");
+                                                    String nik_approver_kadept = detail.getString("nik_approver_kadept");
+                                                    String approver_kadept = detail.getString("approver_kadept");
+                                                    String signature_approver_kadept = detail.getString("signature_approver_kadept");
+
+                                                    String url_approver_2 = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_kadept;
+
+                                                    Picasso.get().load(url_approver_2).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                            .into(ttdApprover2);
+
+                                                    namaApprover2.setText(approver_kadept);
+
+                                                    if(!timestamp_approve_kadept.equals("null")){
+                                                        tglApprover2.setText(timestamp_approve_kadept.substring(8,10)+"/"+timestamp_approve_kadept.substring(5,7)+"/"+timestamp_approve_kadept.substring(0,4));
+                                                    } else {
+                                                        tglApprover2.setVisibility(View.GONE);
+                                                    }
+
+                                                    if(status_approve_hrd.equals("1")){
+                                                        acceptedMark.setVisibility(View.VISIBLE);
+                                                        String timestamp_approve_hrd = detail.getString("timestamp_approve_hrd");
+                                                        String nik_approver_hrd = detail.getString("nik_approver_hrd");
+                                                        String approver_hrd = detail.getString("approver_hrd");
+                                                        String signature_approver_hrd = detail.getString("signature_approver_hrd");
+
+                                                        String url_approver_hrd = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_hrd;
+
+                                                        Picasso.get().load(url_approver_hrd).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                                .into(ttdApproverHRD);
+
+                                                        namaApproverHRD.setText(approver_hrd);
+
+                                                        if(!timestamp_approve_hrd.equals("null")){
+                                                            tglApproverHRD.setText(timestamp_approve_hrd.substring(8,10)+"/"+timestamp_approve_hrd.substring(5,7)+"/"+timestamp_approve_hrd.substring(0,4));
+                                                        } else {
+                                                            tglApproverHRD.setVisibility(View.GONE);
+                                                        }
+
+                                                    } else if(status_approve_hrd.equals("2")){
+                                                        actionPart.setVisibility(View.GONE);
+                                                        rejectedMark.setVisibility(View.VISIBLE);
+
+                                                        String approver_hrd = detail.getString("approver_hrd");
+                                                        namaApproverHRD.setText(approver_hrd);
+
+                                                    } else {
+                                                        actionPart.setVisibility(View.GONE);
+                                                    }
+
+                                                } else if(status_approve_kadept.equals("2")){
+                                                    actionPart.setVisibility(View.GONE);
+                                                    rejectedMark.setVisibility(View.VISIBLE);
+
+                                                    String approver_kadept = detail.getString("approver_kadept");
+                                                    namaApprover2.setText(approver_kadept);
+
+                                                } else {
+                                                    if(sharedPrefManager.getSpIdJabatan().equals("10")) {
+                                                        actionPart.setVisibility(View.VISIBLE);
+                                                    } else {
+                                                        actionPart.setVisibility(View.GONE);
+                                                    }
+                                                }
+
+                                            } else if (status_approve.equals("2")){
+                                                actionPart.setVisibility(View.GONE);
+                                                rejectedMark.setVisibility(View.VISIBLE);
+
+                                                String approver = detail.getString("approver");
+                                                namaApprover1.setText(approver);
+
+                                            } else {
+                                                actionPart.setVisibility(View.GONE);
+                                            }
                                         }
 
                                     } else {
@@ -791,7 +945,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     String approver_hrd = detail.getString("approver_hrd");
                                                     String signature_approver_hrd = detail.getString("signature_approver_hrd");
 
-                                                    String url_approver_hrd = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_kadept;
+                                                    String url_approver_hrd = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature_approver_hrd;
 
                                                     Picasso.get().load(url_approver_hrd).networkPolicy(NetworkPolicy.NO_CACHE)
                                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
@@ -808,6 +962,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 } else if(status_approve_hrd.equals("2")){
                                                     actionPart.setVisibility(View.GONE);
                                                     rejectedMark.setVisibility(View.VISIBLE);
+
+                                                    String approver_hrd = detail.getString("approver_hrd");
+                                                    namaApproverHRD.setText(approver_hrd);
+
                                                 } else {
                                                     actionPart.setVisibility(View.GONE);
                                                 }
@@ -815,6 +973,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             } else if(status_approve_kadept.equals("2")){
                                                 actionPart.setVisibility(View.GONE);
                                                 rejectedMark.setVisibility(View.VISIBLE);
+
+                                                String approver_kadept = detail.getString("approver_kadept");
+                                                namaApprover2.setText(approver_kadept);
+
                                             } else {
                                                 if(sharedPrefManager.getSpIdJabatan().equals("10")) {
                                                     actionPart.setVisibility(View.VISIBLE);
@@ -826,6 +988,10 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                         } else if (status_approve.equals("2")){
                                             actionPart.setVisibility(View.GONE);
                                             rejectedMark.setVisibility(View.VISIBLE);
+
+                                            String approver = detail.getString("approver");
+                                            namaApprover1.setText(approver);
+
                                         } else {
                                             actionPart.setVisibility(View.VISIBLE);
                                         }
@@ -1068,6 +1234,8 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                     params.put("action", "kadep");
                 }
 
+                params.put("catatan", catatanAtasanTV.getText().toString());
+
                 return params;
             }
         };
@@ -1078,7 +1246,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
     private void rejectedAction(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/reject_action";
+        final String url = "https://geloraaksara.co.id/absen-online/api/reject_action_cuti";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -1124,7 +1292,15 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("id_izin_record", idIzinRecord);
+                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("timestamp_approve", getTimeStamp());
                 params.put("updated_at", getTimeStamp());
+
+                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")){
+                    params.put("action", "kabag");
+                } else if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                    params.put("action", "kadep");
+                }
 
                 return params;
             }

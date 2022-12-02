@@ -626,6 +626,7 @@
                                                     android:textSize="8dp" />
 
                                                 <TextView
+                                                    android:id="@+id/lampiran_tv"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:layout_weight=".10"
@@ -909,7 +910,7 @@
                                                     android:textStyle="italic" />
 
                                                 <TextView
-                                                    android:id="@+id/noted_tv"
+                                                    android:id="@+id/noted_1_tv"
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="10dp"
@@ -936,7 +937,7 @@
                                                     android:textStyle="italic" />
 
                                                 <TextView
-                                                    android:id="@+id/noted_tv"
+                                                    android:id="@+id/noted_2_tv"
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="7dp"
@@ -992,7 +993,7 @@
 
                             <LinearLayout
                                 android:visibility="gone"
-                                android:id="@+id/view_surat_sakit_btn"
+                                android:id="@+id/view_lampiran_btn"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:layout_marginBottom="10dp"
@@ -1007,11 +1008,12 @@
                                     android:drawablePadding="7dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Lihat Surat Sakit"/>
+                                    android:text="Lihat Lampiran"/>
 
                             </LinearLayout>
 
                             <LinearLayout
+                                android:visibility="gone"
                                 android:id="@+id/download_btn"
                                 android:layout_marginBottom="10dp"
                                 android:layout_width="match_parent"
@@ -1056,47 +1058,83 @@
                                 android:visibility="gone"
                                 android:id="@+id/action_part"
                                 android:layout_marginTop="10dp"
-                                android:orientation="horizontal"
+                                android:orientation="vertical"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
-                                <LinearLayout
-                                    android:id="@+id/rejected_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_weight=".50"
-                                    android:layout_marginRight="5dp"
+                                <TextView
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="12dp"
-                                    android:paddingBottom="12dp"
-                                    android:background="@drawable/shape_btn_rejected"
-                                    android:gravity="center">
+                                    android:textSize="12dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:textColor="#696969"
+                                    android:text="Catatan : "/>
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textStyle="bold"
-                                        android:textColor="@color/white"
-                                        android:text="TOLAK"/>
-
-                                </LinearLayout>
+                                <EditText
+                                    android:id="@+id/catatan_tv"
+                                    android:layout_width="match_parent"
+                                    android:gravity="top"
+                                    android:layout_height="wrap_content"
+                                    android:minHeight="60dp"
+                                    android:paddingTop="13dp"
+                                    android:paddingBottom="13dp"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp"
+                                    android:scrollbars="vertical"
+                                    android:layout_marginBottom="10dp"
+                                    android:background="@drawable/shape_input_form_2"
+                                    android:drawablePadding="10dp"
+                                    android:textColor="#595959"
+                                    android:hint="Ketik catatan bila diperluan..."
+                                    android:textSize="14dp"
+                                    android:textColorHint="#A1A1A1"
+                                    android:textColorHighlight="#FFE1BC"/>
 
                                 <LinearLayout
-                                    android:id="@+id/appoved_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_weight=".50"
-                                    android:layout_marginLeft="5dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="12dp"
-                                    android:paddingBottom="12dp"
-                                    android:background="@drawable/shape_btn_approved"
-                                    android:gravity="center">
+                                    android:layout_marginTop="5dp"
+                                    android:orientation="horizontal">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
+                                    <LinearLayout
+                                        android:id="@+id/rejected_btn"
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".50"
+                                        android:layout_marginRight="5dp"
                                         android:layout_height="wrap_content"
-                                        android:textStyle="bold"
-                                        android:textColor="@color/white"
-                                        android:text="SETUJUI"/>
+                                        android:paddingTop="12dp"
+                                        android:paddingBottom="12dp"
+                                        android:background="@drawable/shape_btn_rejected"
+                                        android:gravity="center">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textStyle="bold"
+                                            android:textColor="@color/white"
+                                            android:text="TOLAK"/>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/appoved_btn"
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".50"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="12dp"
+                                        android:paddingBottom="12dp"
+                                        android:background="@drawable/shape_btn_approved"
+                                        android:gravity="center">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textStyle="bold"
+                                            android:textColor="@color/white"
+                                            android:text="SETUJUI"/>
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
 
