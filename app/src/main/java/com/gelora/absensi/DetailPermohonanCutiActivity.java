@@ -1334,6 +1334,8 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                     params.put("action", "kadep");
                 }
 
+                params.put("catatan", catatanAtasanTV.getText().toString());
+
                 return params;
             }
         };

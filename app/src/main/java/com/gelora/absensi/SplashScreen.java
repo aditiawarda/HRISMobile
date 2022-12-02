@@ -407,7 +407,7 @@ public class SplashScreen extends AppCompatActivity {
                                     updateDialog.setVisibility(View.VISIBLE);
                                     updateLayout.setVisibility(View.VISIBLE);
 
-                                    descTV.setText("Absensi Gelora v "+version+" telah tersedia di Google Play Store");
+                                    descTV.setText("HRIS Mobile Gelora v "+version+" telah tersedia di Google Play Store");
 
                                     updateLayout.setOnClickListener(new View.OnClickListener() {
                                         @Override

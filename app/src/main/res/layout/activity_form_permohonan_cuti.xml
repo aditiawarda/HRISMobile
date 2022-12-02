@@ -863,6 +863,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textStyle="bold"
+                                        android:drawableLeft="@drawable/ic_baseline_send_form"
                                         android:drawablePadding="7dp"
                                         android:textSize="13dp"
                                         android:drawableTint="@color/white"

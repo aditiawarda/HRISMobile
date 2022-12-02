@@ -1324,7 +1324,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             lateTime = "00:00:00";
 
             Notify.build(getApplicationContext())
-                    .setTitle("Absensi Gelora")
+                    .setTitle("HRIS Mobile Gelora")
                     .setContent("Anda lembur di hari libur. Selamat bekerja dan utamakan keselamatan")
                     .setSmallIcon(R.drawable.ic_skylight_notification)
                     .setColor(R.color.colorPrimary)
@@ -1372,7 +1372,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
 
                 Notify.build(getApplicationContext())
-                        .setTitle("Absensi Gelora")
+                        .setTitle("HRIS Mobile Gelora")
                         .setContent("Anda terlambat "+lateDesc+", segera gunakan prosedur fingerscan dan serahkan ke bagian HRD")
                         .setSmallIcon(R.drawable.ic_skylight_notification)
                         .setColor(R.color.colorPrimary)
@@ -3746,7 +3746,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 dialodWarning.show();
 
                                                 Notify.build(getApplicationContext())
-                                                        .setTitle("Absensi Gelora")
+                                                        .setTitle("HRIS Mobile Gelora")
                                                         .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
                                                         .setSmallIcon(R.drawable.ic_skylight_notification)
                                                         .setColor(R.color.colorPrimary)
@@ -3847,7 +3847,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     dialodWarning.show();
 
                                                     Notify.build(getApplicationContext())
-                                                            .setTitle("Absensi Gelora")
+                                                            .setTitle("HRIS Mobile Gelora")
                                                             .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
                                                             .setSmallIcon(R.drawable.ic_skylight_notification)
                                                             .setColor(R.color.colorPrimary)
@@ -3957,7 +3957,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     dialodWarning.show();
 
                                                     Notify.build(getApplicationContext())
-                                                            .setTitle("Absensi Gelora")
+                                                            .setTitle("HRIS Mobile Gelora")
                                                             .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
                                                             .setSmallIcon(R.drawable.ic_skylight_notification)
                                                             .setColor(R.color.colorPrimary)
