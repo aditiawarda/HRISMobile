@@ -7,6 +7,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -45,7 +46,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
     TextView lampiranTV, noted2TV, noted1TV, tglApprover1, tglApprover2, tglApproverHRD, namaApprover1, namaApproverHRD, namaApprover2, namaKaryawanTV, namaPemohonTV, jabatanTV, bagianTV, mulaiBergabungTV, nikTV, statusKaryawanTV, tipeCutiTV, alamatTV, noHpTV, karyawanPenggantiTV, sisaCutiTV, alasanCutiTV, tahunCutiAmbilTV, totalCutiAmbilTV, tahunCutiTV, tglMulaiCutiTV, tglSelesaiCutiTV, totalCutiTV, tglPengajuanTV;
     String nikPemohon = "", statusKondisi = "0", idIzinRecord, kode;
-    LinearLayout viewLampiranBTN, backBTN, homeBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
+    LinearLayout downloadBTN, viewLampiranBTN, backBTN, homeBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdApprover1, ttdApprover2, ttdApproverHRD;
     KAlertDialog pDialog;
@@ -54,6 +55,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     View rootview;
     private int i = -1;
+    String file_url = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,9 +107,11 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
         noted2TV = findViewById(R.id.noted_2_tv);
         lampiranTV = findViewById(R.id.lampiran_tv);
         viewLampiranBTN = findViewById(R.id.view_lampiran_btn);
+        downloadBTN = findViewById(R.id.download_btn);
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
+        file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_cuti/"+idIzinRecord;
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -136,6 +140,34 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DetailPermohonanCutiActivity.this, MapsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        downloadBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailPermohonanCutiActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Unduh File Permohonan?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
+                                startActivity(browserIntent);
+                            }
+                        })
+                        .show();
+
             }
         });
 

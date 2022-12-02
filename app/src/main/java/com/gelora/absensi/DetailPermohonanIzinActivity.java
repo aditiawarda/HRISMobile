@@ -80,7 +80,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     ProgressDialog prDialog;
     public static final int progress_bar_type = 0;
-    String file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_izin";
+    String file_url = "";
 
     private NotificationManager mNotifyManager;
     private NotificationCompat.Builder mBuilder;
@@ -129,6 +129,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
+        file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_izin/"+idIzinRecord;
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
