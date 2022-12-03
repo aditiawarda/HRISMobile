@@ -1,0 +1,117 @@
+package com.gelora.absensi;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.aviran.cookiebar2.CookieBar;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class DetailFaqActivity extends AppCompatActivity {
+
+    String noFAQ;
+    TextView titleTV, hubungiIT;
+    LinearLayout backBTN, faq1Detail;
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail_faq);
+
+        titleTV = findViewById(R.id.title_tv);
+        hubungiIT = findViewById(R.id.hubungi_it);
+        backBTN = findViewById(R.id.back_btn);
+
+        faq1Detail = findViewById(R.id.faq_1_detail);
+
+        noFAQ = getIntent().getExtras().getString("no_faq");
+
+        if(noFAQ.equals("1")){
+            titleTV.setText("TITIK PADA MAPS TIDAK AKURAT ATAU TIDAK MUNCUL");
+            faq1Detail.setVisibility(View.VISIBLE);
+        } else if(noFAQ.equals("2")){
+            titleTV.setText("STATUS ABSENSI TIDAK MUNCUL");
+        } else if(noFAQ.equals("3")){
+            titleTV.setText("SHIFT ABSENSI TIDAK MUNCUL");
+        } else if(noFAQ.equals("4")){
+            titleTV.setText("BUKA SESI ABSENSI");
+        }
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        hubungiIT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getContactIT();
+            }
+        });
+
+    }
+
+    private void getContactIT() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_contact_it";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String bagian = response.getString("bagian");
+                            String nama = response.getString("nama");
+                            String whatsapp = response.getString("whatsapp");
+
+                            Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+"+whatsapp+"&text="));
+                            startActivity(webIntent);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                connectionFailed();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
+    private void connectionFailed(){
+        CookieBar.build(DetailFaqActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
+    }
+
+}

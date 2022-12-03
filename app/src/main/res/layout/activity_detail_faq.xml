@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailFaqActivity">
+
+    <RelativeLayout
+        android:layout_marginRight="-3dp"
+        android:layout_marginLeft="-3dp"
+        android:layout_marginBottom="-3dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@id/scrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:ignore="MissingConstraints">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="-2dp"
+                        android:paddingTop="85dp"
+                        android:orientation="vertical"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        android:paddingBottom="3dp">
+
+                        <LinearLayout
+                            android:id="@+id/faq_1_detail"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginRight="25dp"
+                            android:orientation="vertical"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:justificationMode="inter_word"
+                                android:textColor="@color/text_color"
+                                android:text="Pada saat pertama masuk aplikasi, terdapat kasus tampilan maps pada aplikasi tidak muncul, hal ini bisa terjadi karena beberapa faktor diantaranya :"
+                                android:textSize="14dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight=".10"
+                                        android:textColor="@color/text_color"
+                                        android:text="1."
+                                        android:textSize="14dp" />
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_weight=".90"
+                                        android:textColor="@color/text_color"
+                                        android:text="Pengaturan GPS pada perangkat tidak aktif."
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight=".10"
+                                        android:textColor="@color/text_color"
+                                        android:text="2."
+                                        android:textSize="14dp" />
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_weight=".90"
+                                        android:textColor="@color/text_color"
+                                        android:text="Aplikasi tidak diizinkan untuk mengakses lokasi terkini."
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight=".10"
+                                        android:textColor="@color/text_color"
+                                        android:text="3."
+                                        android:textSize="14dp" />
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="-10dp"
+                                        android:layout_weight=".90"
+                                        android:textColor="@color/text_color"
+                                        android:text="Koneksi internet yang lambat atau perangkat tidak terhubung."
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:justificationMode="inter_word"
+                                android:textColor="@color/text_color"
+                                android:text="Untuk mengatasi permasalahan seperti pada poin nomor 1, pastikan lokasi/GPS pada perangkat anda aktif seperti pada gambar dibawah ini :"
+                                android:textSize="14dp" />
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="170dp"
+                                    android:layout_height="50dp"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/faq_img_1" />
+
+                                </androidx.cardview.widget.CardView>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_marginTop="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:justificationMode="inter_word"
+                                android:textColor="@color/text_color"
+                                android:text="Untuk mengatasi permsalahan seperti pada poin nomor 2, pastikan saat pertama memasang serta menjalankan aplikasi, izin akses lokasi diizinkan, seperti pada gambar dibawah ini :"
+                                android:textSize="14dp" />
+
+                            <LinearLayout
+                                android:gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="170dp"
+                                    android:layout_height="110dp"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/faq_img_2" />
+
+                                </androidx.cardview.widget.CardView>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_marginTop="15dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="15dp"
+                                android:justificationMode="inter_word"
+                                android:textColor="@color/text_color"
+                                android:text="Untuk mengatasi permasalahan pada poin nomor 3, Pastikan perangkat anda terkoneksi dengan internet baik menggunkan data seluler ataupun dari wifi."
+                                android:textSize="14dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_marginTop="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="#808080"
+                                android:textStyle="bold"
+                                android:text="Masih memerlukan bantuan?"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:id="@+id/hubungi_it"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="15dp"
+                                android:textColor="#B15B3B"
+                                android:textStyle="bold"
+                                android:text="Hubungi IT"
+                                android:textSize="14dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+                <LinearLayout
+                    android:id="@+id/action_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_marginTop="-2dp"
+                        android:layout_marginRight="-2dp"
+                        android:layout_marginLeft="-2dp"
+                        android:background="@drawable/shape_bar_profile_notify"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp">
+
+                        <LinearLayout
+                            android:id="@+id/back_btn"
+                            android:layout_marginTop="17dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="33dp"
+                            android:layout_height="33dp"
+                            android:gravity="center"
+                            android:background="@drawable/shape_back_2">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_marginRight="1.5dp"
+                                android:background="@drawable/ic_baseline_chevron_back"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="right|center"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/title_tv"
+                                android:gravity="right"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="15dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

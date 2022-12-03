@@ -399,6 +399,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, MapsActivity.class);
                         startActivity(intent);
                         finish();
+                        finishAffinity();
 
                     } else {
                         loadingProgressBar.setVisibility(View.GONE);

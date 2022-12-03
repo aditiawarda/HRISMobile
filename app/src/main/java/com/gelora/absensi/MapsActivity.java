@@ -4752,7 +4752,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         try {
                             String api_key = response.getString("api_key");
                             getCurrentLocation(api_key);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
