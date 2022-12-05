@@ -63,7 +63,7 @@
                     android:id="@+id/text_sender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black_de"
+                    android:textColor="#434343"
                     android:textSize="16dp"
                     android:text=""/>
 
