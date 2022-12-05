@@ -166,7 +166,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="BANTUAN"
+                        android:text="BANTUAN (FAQ)"
                         android:textColor="@color/white"
                         android:textSize="15dp" />
 

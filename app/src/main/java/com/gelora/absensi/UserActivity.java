@@ -104,7 +104,7 @@ public class UserActivity extends AppCompatActivity {
     ProgressBar loadingProgressBarCuaca;
     ImageView sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
-    String selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
+    String statusKaryawan = "", selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
     ProgressBar loadingProgressBarLogout;
 
     AlarmManager alarmManager;
@@ -722,6 +722,8 @@ public class UserActivity extends AppCompatActivity {
                                 String logout_part = data.getString("logout_part");
                                 String chat_room = data.getString("chat_room");
                                 String web_btn = data.getString("web_btn");
+
+                                statusKaryawan = status_karyawan;
 
                                 if(status_karyawan.equals("null")){
                                     if(sharedPrefManager.getSpStatusUser().equals("1")){
@@ -2086,16 +2088,19 @@ public class UserActivity extends AppCompatActivity {
                                     markerWarningLate.setVisibility(View.GONE);
                                 }
 
-                                if(fitur_izin.equals("1")){
-                                    fiturPart.setVisibility(View.VISIBLE);
-                                    notificationPart.setVisibility(View.VISIBLE);
-
-                                    if(id_card_digital.equals("1")){
-                                        idCardDigitalBTN.setVisibility(View.VISIBLE);
+                                if((statusKaryawan.equals("Tetap")||statusKaryawan.equals("Kontrak"))&&!statusKaryawan.equals("null")){
+                                    if(fitur_izin.equals("1")){
+                                        fiturPart.setVisibility(View.VISIBLE);
+                                        notificationPart.setVisibility(View.VISIBLE);
+                                        if(id_card_digital.equals("1")){
+                                            idCardDigitalBTN.setVisibility(View.VISIBLE);
+                                        } else {
+                                            idCardDigitalBTN.setVisibility(View.GONE);
+                                        }
                                     } else {
-                                        idCardDigitalBTN.setVisibility(View.GONE);
+                                        fiturPart.setVisibility(View.GONE);
+                                        notificationPart.setVisibility(View.GONE);
                                     }
-
                                 } else {
                                     fiturPart.setVisibility(View.GONE);
                                     notificationPart.setVisibility(View.GONE);
