@@ -170,7 +170,7 @@
                                     android:paddingTop="9dp"
                                     android:paddingBottom="10dp"
                                     android:paddingRight="20dp"
-                                    android:hint="Nama Karyawan"
+                                    android:hint="Ketik nama karyawan..."
                                     android:imeOptions="actionSearch"
                                     android:inputType="text"
                                     android:textColor="@color/colorPrimaryDark"
