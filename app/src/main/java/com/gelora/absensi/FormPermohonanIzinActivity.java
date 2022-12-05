@@ -2089,12 +2089,12 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
                 String uploadId = UUID.randomUUID().toString();
                 new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
-                        .addFileToUpload(path1, "file") //Adding file
-                        .addParameter("id_izin_record", idIzin)
-                        .addParameter("NIK", sharedPrefManager.getSpNik())
-                        .addParameter("current_time", getDate().substring(0,4)+getDate().substring(5,7)+getDate().substring(8,10))//Adding text parameter to the request
-                        .setMaxRetries(1)
-                        .startUpload();
+                    .addFileToUpload(path1, "file") //Adding file
+                    .addParameter("id_izin_record", idIzin)
+                    .addParameter("NIK", sharedPrefManager.getSpNik())
+                    .addParameter("current_time", getDate().substring(0,4)+getDate().substring(5,7)+getDate().substring(8,10))//Adding text parameter to the request
+                    .setMaxRetries(1)
+                    .startUpload();
             } catch (Exception exc) {
                 Log.e("PaRSE JSON", "Oke");
                 pDialog.dismiss();
@@ -2109,29 +2109,29 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                 super.onBackPressed();
             } else {
                 new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.WARNING_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
-                        .setCancelText("TIDAK")
-                        .setConfirmText("   YA   ")
-                        .showCancelButton(true)
-                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
-                            }
-                        })
-                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
-                                tipeIzin = "";
-                                dateChoiceMulai = "";
-                                dateChoiceAkhir = "";
-                                alasanIzin = "";
-                                onBackPressed();
-                            }
-                        })
-                        .show();
+                    .setTitleText("Perhatian")
+                    .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
+                    .setCancelText("TIDAK")
+                    .setConfirmText("   YA   ")
+                    .showCancelButton(true)
+                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                        }
+                    })
+                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                            tipeIzin = "";
+                            dateChoiceMulai = "";
+                            dateChoiceAkhir = "";
+                            alasanIzin = "";
+                            onBackPressed();
+                        }
+                    })
+                    .show();
             }
         } else {
             super.onBackPressed();

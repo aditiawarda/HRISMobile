@@ -15,7 +15,7 @@
     <string name="toast_image_intent_null">Image picker option is missing!</string>
     <!-- font families -->
     <string name="dialog_permission_title">Berikan Izin</string>
-    <string name="dialog_permission_message">Aplikasi ini memerlukan izin untuk menggunakan fitur ini. Anda dapat memberikannya di pengaturan aplikasi.</string>
+    <string name="dialog_permission_message">HRIS Mobile Gelora memerlukan izin untuk mengakses file gambar jika ingin menggunakan fitur ini. Anda dapat memberikannya di pengaturan aplikasi.</string>
     <string name="go_to_settings">PENGATURAN</string>
     <string name="permohonan_cuti"><u>PERMOHONAN CUTI</u></string>
 

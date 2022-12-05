@@ -4046,6 +4046,10 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                                 dateChoiceMulai = "";
                                 dateChoiceAkhir = "";
                                 alasanCuti = "";
+                                pengganti = "";
+                                alamat = "";
+                                hp = "";
+                                permohonanTerkirim = "1";
                                 onBackPressed();
                             }
                         })
