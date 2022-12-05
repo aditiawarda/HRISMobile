@@ -1475,17 +1475,35 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="30dp"
                                 android:gravity="bottom|center"
-                                android:orientation="vertical">
+                                android:orientation="horizontal">
 
                                 <TextView
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textSize="12dp"
+                                    android:textColor="#BDBDBD"
+                                    android:text="©"/>
+
+                                <TextView
+                                    android:id="@+id/year_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textSize="12dp"
+                                    android:textColor="#BDBDBD"
+                                    android:text=""/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:textSize="12dp"
                                     android:ellipsize="end"
                                     android:maxLines="1"
                                     android:textColor="#BDBDBD"
-                                    android:text="© 2022 IT PT. Gelora Aksara Pratama"/>
+                                    android:text=" IT PT. Gelora Aksara Pratama"/>
+
 
                             </LinearLayout>
 
