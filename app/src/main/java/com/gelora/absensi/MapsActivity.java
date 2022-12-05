@@ -151,7 +151,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     SwitchButton switchZoom;
     ProgressBar loadingCuaca;
     Vibrator v;
-    //RippleBackground rippleBackground;
+    RippleBackground rippleIndicator;
 
     private RecyclerView statusAbsenRV;
     private StatusAbsen[] statusAbsens;
@@ -265,9 +265,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         notifMasukTV = findViewById(R.id.jumlah_notif_masuk);
         requestQueue = Volley.newRequestQueue(getBaseContext());
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        //rippleBackground = (RippleBackground)findViewById(R.id.content);
+        rippleIndicator = (RippleBackground)findViewById(R.id.ripple_indicator);
 
-        //rippleBackground.startRippleAnimation();
+        rippleIndicator.startRippleAnimation();
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.icon_none)
@@ -1000,6 +1000,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent intent = new Intent(MapsActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
+        finishAffinity();
     }
 
     @SuppressLint("SetTextI18n")

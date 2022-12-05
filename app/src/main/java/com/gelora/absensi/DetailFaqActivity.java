@@ -26,7 +26,7 @@ public class DetailFaqActivity extends AppCompatActivity {
 
     String noFAQ;
     TextView titleTV, hubungiIT;
-    LinearLayout backBTN, faq1Detail;
+    LinearLayout backBTN, faq1Detail, faq2Detail;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -37,8 +37,8 @@ public class DetailFaqActivity extends AppCompatActivity {
         titleTV = findViewById(R.id.title_tv);
         hubungiIT = findViewById(R.id.hubungi_it);
         backBTN = findViewById(R.id.back_btn);
-
         faq1Detail = findViewById(R.id.faq_1_detail);
+        faq2Detail = findViewById(R.id.faq_2_detail);
 
         noFAQ = getIntent().getExtras().getString("no_faq");
 
@@ -46,11 +46,8 @@ public class DetailFaqActivity extends AppCompatActivity {
             titleTV.setText("TITIK PADA MAPS TIDAK AKURAT ATAU TIDAK MUNCUL");
             faq1Detail.setVisibility(View.VISIBLE);
         } else if(noFAQ.equals("2")){
-            titleTV.setText("STATUS ABSENSI TIDAK MUNCUL");
-        } else if(noFAQ.equals("3")){
-            titleTV.setText("SHIFT ABSENSI TIDAK MUNCUL");
-        } else if(noFAQ.equals("4")){
-            titleTV.setText("BUKA SESI ABSENSI");
+            titleTV.setText("STATUS ABSENSI ATAU SHIFT TIDAK MUNCUL");
+            faq2Detail.setVisibility(View.VISIBLE);
         }
 
         backBTN.setOnClickListener(new View.OnClickListener() {

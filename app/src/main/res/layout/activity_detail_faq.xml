@@ -17,226 +17,375 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.core.widget.NestedScrollView
-                    android:id="@id/scrollView"
+            <androidx.core.widget.NestedScrollView
+                android:id="@id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="MissingConstraints">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:ignore="MissingConstraints">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-2dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="3dp"
+                    android:paddingTop="85dp"
+                    android:paddingRight="3dp"
+                    android:paddingBottom="3dp">
+
+                    <LinearLayout
+                        android:id="@+id/faq_1_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:justificationMode="inter_word"
+                            android:text="Pada saat pertama masuk aplikasi, terdapat kasus tampilan maps pada aplikasi tidak muncul, hal ini bisa terjadi karena beberapa faktor diantaranya :"
+                            android:textColor="@color/text_color"
+                            android:textSize="14dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".10"
+                                    android:text="1."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="-10dp"
+                                    android:layout_weight=".90"
+                                    android:text="Pengaturan GPS pada perangkat tidak aktif."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".10"
+                                    android:text="2."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="-10dp"
+                                    android:layout_weight=".90"
+                                    android:text="Aplikasi tidak diizinkan untuk mengakses lokasi terkini."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".10"
+                                    android:text="3."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="-10dp"
+                                    android:layout_weight=".90"
+                                    android:text="Koneksi internet yang lambat atau perangkat tidak terhubung."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:justificationMode="inter_word"
+                            android:text="Untuk mengatasi permasalahan seperti pada poin nomor 1, pastikan lokasi/GPS pada perangkat anda aktif seperti pada gambar dibawah ini :"
+                            android:textColor="@color/text_color"
+                            android:textSize="14dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="170dp"
+                                android:layout_height="50dp"
+                                app:cardCornerRadius="10dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_img_1" />
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:justificationMode="inter_word"
+                            android:text="Untuk mengatasi permsalahan seperti pada poin nomor 2, pastikan saat pertama memasang serta menjalankan aplikasi, izin akses lokasi diizinkan, seperti pada gambar dibawah ini :"
+                            android:textColor="@color/text_color"
+                            android:textSize="14dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="170dp"
+                                android:layout_height="110dp"
+                                app:cardCornerRadius="10dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_img_2" />
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:justificationMode="inter_word"
+                            android:text="Untuk mengatasi permasalahan pada poin nomor 3, Pastikan perangkat anda terkoneksi dengan internet baik menggunkan data seluler ataupun dari wifi."
+                            android:textColor="@color/text_color"
+                            android:textSize="14dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/faq_2_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:justificationMode="inter_word"
+                            android:text="Jika anda mengalami kendala terkait status absensi atau shift yang tidak muncul anda bisa melakukan beberapa cara berikut :"
+                            android:textColor="@color/text_color"
+                            android:textSize="14dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".10"
+                                    android:text="1."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="-10dp"
+                                    android:layout_weight=".90"
+                                    android:text="Pastikan perangkat anda terhubung dengan internet."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".10"
+                                    android:text="2."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="-10dp"
+                                    android:layout_weight=".90"
+                                    android:text="Lakukan clear data/cache pada pengaturan aplikasi di perangkat anda."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:justificationMode="inter_word"
+                            android:text="Untuk melakukan perintah seperti pada poin 2 diatas dapat dilakukan seperti pada gambar dibawah ini :"
+                            android:textColor="@color/text_color"
+                            android:textSize="14dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="120dp"
+                                android:layout_height="255dp"
+                                app:cardCornerRadius="10dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_img_3" />
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:justificationMode="inter_word"
+                            android:text="Masuk ke pengaturan manajemen aplikasi HRIS Mobile lalu pilih menu penyimpanan."
+                            android:textColor="@color/text_color"
+                            android:textSize="14dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="120dp"
+                                android:layout_height="255dp"
+                                app:cardCornerRadius="10dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_img_4" />
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:justificationMode="inter_word"
+                            android:text="Selanjutnya pilih hapus data untuk menghapus cache aplikasi, jika telah berhasil di hapus, buka kembali aplikasi HRIS Mobile dan login dengan akun anda."
+                            android:textColor="@color/text_color"
+                            android:textSize="14dp" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="-2dp"
-                        android:paddingTop="85dp"
-                        android:orientation="vertical"
-                        android:paddingLeft="3dp"
-                        android:paddingRight="3dp"
-                        android:paddingBottom="3dp">
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:paddingBottom="50dp"
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:id="@+id/faq_1_detail"
-                            android:visibility="gone"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginRight="25dp"
-                            android:orientation="vertical"
-                            android:paddingBottom="10dp">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:justificationMode="inter_word"
-                                android:textColor="@color/text_color"
-                                android:text="Pada saat pertama masuk aplikasi, terdapat kasus tampilan maps pada aplikasi tidak muncul, hal ini bisa terjadi karena beberapa faktor diantaranya :"
-                                android:textSize="14dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight=".10"
-                                        android:textColor="@color/text_color"
-                                        android:text="1."
-                                        android:textSize="14dp" />
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="-10dp"
-                                        android:layout_weight=".90"
-                                        android:textColor="@color/text_color"
-                                        android:text="Pengaturan GPS pada perangkat tidak aktif."
-                                        android:textSize="14dp" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight=".10"
-                                        android:textColor="@color/text_color"
-                                        android:text="2."
-                                        android:textSize="14dp" />
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="-10dp"
-                                        android:layout_weight=".90"
-                                        android:textColor="@color/text_color"
-                                        android:text="Aplikasi tidak diizinkan untuk mengakses lokasi terkini."
-                                        android:textSize="14dp" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight=".10"
-                                        android:textColor="@color/text_color"
-                                        android:text="3."
-                                        android:textSize="14dp" />
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="-10dp"
-                                        android:layout_weight=".90"
-                                        android:textColor="@color/text_color"
-                                        android:text="Koneksi internet yang lambat atau perangkat tidak terhubung."
-                                        android:textSize="14dp" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:justificationMode="inter_word"
-                                android:textColor="@color/text_color"
-                                android:text="Untuk mengatasi permasalahan seperti pada poin nomor 1, pastikan lokasi/GPS pada perangkat anda aktif seperti pada gambar dibawah ini :"
-                                android:textSize="14dp" />
-
-                            <LinearLayout
-                                android:gravity="center"
-                                android:layout_marginTop="5dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="170dp"
-                                    android:layout_height="50dp"
-                                    app:cardCornerRadius="10dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/faq_img_1" />
-
-                                </androidx.cardview.widget.CardView>
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_marginTop="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:justificationMode="inter_word"
-                                android:textColor="@color/text_color"
-                                android:text="Untuk mengatasi permsalahan seperti pada poin nomor 2, pastikan saat pertama memasang serta menjalankan aplikasi, izin akses lokasi diizinkan, seperti pada gambar dibawah ini :"
-                                android:textSize="14dp" />
-
-                            <LinearLayout
-                                android:gravity="center"
-                                android:layout_marginTop="5dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="170dp"
-                                    android:layout_height="110dp"
-                                    app:cardCornerRadius="10dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/faq_img_2" />
-
-                                </androidx.cardview.widget.CardView>
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_marginTop="15dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="15dp"
-                                android:justificationMode="inter_word"
-                                android:textColor="@color/text_color"
-                                android:text="Untuk mengatasi permasalahan pada poin nomor 3, Pastikan perangkat anda terkoneksi dengan internet baik menggunkan data seluler ataupun dari wifi."
-                                android:textSize="14dp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginRight="25dp"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="Masih perlu bantuan?"
+                            android:textColor="#808080"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_marginTop="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:textColor="#808080"
-                                android:textStyle="bold"
-                                android:text="Masih memerlukan bantuan?"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:id="@+id/hubungi_it"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="15dp"
-                                android:textColor="#B15B3B"
-                                android:textStyle="bold"
-                                android:text="Hubungi IT"
-                                android:textSize="14dp" />
-
-                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/hubungi_it"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:text="Hubungi IT"
+                            android:textColor="#B15B3B"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
-                </androidx.core.widget.NestedScrollView>
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
 
                 <LinearLayout
                     android:id="@+id/action_bar"

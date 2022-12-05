@@ -103,6 +103,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     private int i = -1;
     int REQUEST_IMAGE = 100;
     private Uri uri;
+    private static final int PICKFILE_RESULT_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -241,7 +242,11 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         uploadBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Picture
                 dexterCall();
+
+                // Pdf
+                // getFilePDF();
             }
         });
 
@@ -3035,7 +3040,6 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
     }
 
-
     private void getkategoriCuti() {
         RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
         final String url = "https://geloraaksara.co.id/absen-online/api/cuti_kategori";
@@ -3968,6 +3972,13 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
             }, 300);
         }
     };
+
+    private void getFilePDF(){
+        Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+        chooseFile.setType("*/*");
+        chooseFile = Intent.createChooser(chooseFile, "Choose a file");
+        startActivityForResult(chooseFile, PICKFILE_RESULT_CODE);
+    }
 
     private String getDateD() {
         @SuppressLint("SimpleDateFormat")
