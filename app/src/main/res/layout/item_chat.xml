@@ -63,7 +63,7 @@
                     android:id="@+id/text_sender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#434343"
+                    android:textColor="#595959"
                     android:textSize="16dp"
                     android:text=""/>
 
@@ -128,7 +128,7 @@
                     android:id="@+id/text_reciver"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black_de"
+                    android:textColor="#595959"
                     android:textSize="16dp"
                     android:text=""/>
 
