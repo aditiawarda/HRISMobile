@@ -44,7 +44,7 @@ import java.util.Map;
 public class HistoryCutiIzinActivity extends AppCompatActivity {
 
     LinearLayout backBTN, homeBTN, loadingDataPartCuti, loadingDataPartIzin, noDataPartCuti, noDataPartIzin, dataDiambilPart, dataSisaPart;
-    TextView totalDataCuti, totalDataIzin, nameUserTV, periodeData, dataDiambilTV, dataSisaTV, tahunCutiDiambilTV;
+    TextView totalDataCuti, totalDataIzin, nameUserTV, periodeData, dataDiambilTV, dataSisaTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     ImageView diambilLoading, sisaLoading, periodeLoading, loadingDataCuti, loadingDataIzin;
@@ -83,7 +83,6 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         dataSisaTV = findViewById(R.id.data_sisa_tv);
         dataDiambilPart = findViewById(R.id.data_diambil_part);
         dataSisaPart = findViewById(R.id.data_sisa_part);
-        tahunCutiDiambilTV = findViewById(R.id.tahun_cuti_diambil_tv);
         totalDataCuti = findViewById(R.id.total_data_cuti);
         totalDataIzin = findViewById(R.id.total_data_izin);
 
@@ -201,7 +200,6 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
 
                                 dataDiambilTV.setText(cuti_ambil);
                                 dataSisaTV.setText(sisa_cuti);
-                                tahunCutiDiambilTV.setText("Di Tahun "+tahun);
                                 diambilLoading.setVisibility(View.GONE);
                                 dataDiambilPart.setVisibility(View.VISIBLE);
                                 sisaLoading.setVisibility(View.GONE);

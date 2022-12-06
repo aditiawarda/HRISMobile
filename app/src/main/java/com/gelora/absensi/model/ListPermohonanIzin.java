@@ -23,6 +23,7 @@ public class ListPermohonanIzin {
     private String status_approve_hrd;
     private String status_read;
     private String tipe_pengajuan;
+    private String kdDept;
 
     public String getId() {
         return id;
@@ -183,4 +184,13 @@ public class ListPermohonanIzin {
     public void setIdJabatan(String idJabatan) {
         IdJabatan = idJabatan;
     }
+
+    public String getKdDept() {
+        return kdDept;
+    }
+
+    public void setKdDept(String kdDept) {
+        this.kdDept = kdDept;
+    }
+
 }

@@ -183,7 +183,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
             }
         });
 
-        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
+        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
             optionPart.setVisibility(View.VISIBLE);
         } else {
             float scale = getResources().getDisplayMetrics().density;

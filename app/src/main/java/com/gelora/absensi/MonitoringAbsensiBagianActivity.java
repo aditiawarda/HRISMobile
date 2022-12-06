@@ -296,7 +296,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
             }
         });
 
-        if (sharedPrefManager.getSpIdJabatan().equals("10")) {
+        if (sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) {
             pageTitle.setText("KEHADIRAN DEPARTEMEN");
             choiceBagianBTN.setVisibility(View.VISIBLE);
         } else if (sharedPrefManager.getSpIdJabatan().equals("11")) {
@@ -375,7 +375,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
-                                if (sharedPrefManager.getSpIdJabatan().equals("10")){
+                                if (sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){
                                     namaBagian.setText(data.getString("desc_departemen"));
                                     jumlahKaryawanTV.setText(data.getString("jumlah_karyawan_dept"));
                                 } else if (sharedPrefManager.getSpIdJabatan().equals("11")) {

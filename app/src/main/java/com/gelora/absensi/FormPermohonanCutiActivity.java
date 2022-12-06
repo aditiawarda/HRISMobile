@@ -177,7 +177,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         alamatSelamaCutiTV.setText("");
                         noHpTV.setText("");
 
-                        uploadLampiranPart.setVisibility(View.GONE);
+                        // uploadLampiranPart.setVisibility(View.GONE);
                         markUpload.setVisibility(View.GONE);
                         viewUploadBTN.setVisibility(View.GONE);
                         statusUploadTV.setText("Unggah Lampiran");

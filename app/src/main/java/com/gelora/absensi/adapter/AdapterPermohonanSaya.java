@@ -108,7 +108,7 @@ public class AdapterPermohonanSaya extends RecyclerView.Adapter<AdapterPermohona
                     } else if(listPermohonanIzin.getStatus_approve_kadept().equals("2")){
                         statusPermohonan = "Permohonan Ditolak Kepala Departemen";
                     } else if(listPermohonanIzin.getStatus_approve_kadept().equals("0")){
-                        if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
+                        if(sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
                             statusPermohonan = "Menunggu Persetujuan Kepala Departemen";
                         } else {
                             statusPermohonan = "Permohonan Disetujui Kepala Bagian";

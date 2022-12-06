@@ -2050,11 +2050,15 @@ public class UserActivity extends AppCompatActivity {
                                     dataCuaca.setVisibility(View.GONE);
                                 }
 
-                                if (monitoring.equals("1")){
-                                    if (sharedPrefManager.getSpIdJabatan().equals("10")){
+                                if (monitoring.equals("1")) {
+                                    if (sharedPrefManager.getSpIdJabatan().equals("10")) {
                                         monitoringStaffBTN.setVisibility(View.VISIBLE);
                                         titlePantau.setText("Pantau kehadiran departemen*");
                                         notePantau.setText("*Fitur khusus Kepala Departemen");
+                                    } else if (sharedPrefManager.getSpIdJabatan().equals("3")){
+                                        monitoringStaffBTN.setVisibility(View.VISIBLE);
+                                        titlePantau.setText("Pantau kehadiran departemen*");
+                                        notePantau.setText("*Fitur khusus Ka.Dept & Ast.Ka.Dept");
                                     } else if (sharedPrefManager.getSpIdJabatan().equals("11")){
                                         monitoringStaffBTN.setVisibility(View.VISIBLE);
                                         titlePantau.setText("Pantau kehadiran bagian*");

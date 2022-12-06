@@ -5106,7 +5106,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 }
 
                                 if (monitoring.equals("1")){
-                                    if (sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("11")){
+                                    if (sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")){
                                         pantauBTN.setVisibility(View.VISIBLE);
                                     } else {
                                         pantauBTN.setVisibility(View.GONE);
