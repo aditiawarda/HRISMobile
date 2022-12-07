@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="GELORA MESSENGER"
+            android:fontFamily="@font/roboto"
             android:textColor="@color/white"
             android:textSize="18dp"
             android:textStyle="bold" />
