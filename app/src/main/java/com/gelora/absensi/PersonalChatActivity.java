@@ -290,6 +290,7 @@ public class PersonalChatActivity extends AppCompatActivity {
                                                 }
                                                 public void onFinish() {
                                                     i = -1;
+                                                    repeat = "false";
                                                     endChatFunction();
                                                 }
                                             }.start();
