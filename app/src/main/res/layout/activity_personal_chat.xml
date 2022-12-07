@@ -23,7 +23,6 @@
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:clipToPadding="false"
@@ -115,7 +114,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <RelativeLayout
-                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -143,7 +141,6 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/linearLayout2"
             android:gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

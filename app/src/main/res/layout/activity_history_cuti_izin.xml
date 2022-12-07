@@ -69,14 +69,12 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_absensi"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
                                 android:paddingBottom="5dp">
 
                                 <LinearLayout
-                                    android:id="@+id/periode_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="70dp"
                                     android:background="@drawable/shape_data_absen"
@@ -143,7 +141,6 @@
                                                     android:orientation="horizontal">
 
                                                     <LinearLayout
-                                                        android:id="@+id/hak_cuti_data"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"

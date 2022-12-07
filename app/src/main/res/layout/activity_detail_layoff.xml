@@ -69,7 +69,6 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_absensi"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingBottom="5dp"
@@ -194,7 +193,6 @@
 
                                                 <LinearLayout
                                                     android:visibility="gone"
-                                                    android:id="@+id/marker_warning_layoff_detail"
                                                     android:layout_width="15dp"
                                                     android:layout_height="15dp"
                                                     android:background="@drawable/ic_warning_img"

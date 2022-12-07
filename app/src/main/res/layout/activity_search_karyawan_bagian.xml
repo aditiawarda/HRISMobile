@@ -140,7 +140,6 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/change_bagian_btn"
                                             android:layout_alignParentRight="true"
                                             android:layout_width="40dp"
                                             android:layout_height="match_parent"
@@ -440,7 +439,6 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/root"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

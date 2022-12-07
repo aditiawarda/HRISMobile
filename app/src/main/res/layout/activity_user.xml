@@ -301,7 +301,6 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/data_absensi"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="20dp"
@@ -1470,7 +1469,6 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/develop_by_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="30dp"
@@ -1917,7 +1915,6 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/root"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

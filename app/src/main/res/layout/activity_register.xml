@@ -42,6 +42,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="-1dp"
                         android:textSize="8dp"
                         android:textStyle="bold"
                         android:textColor="@color/colorPrimaryDark"
@@ -164,7 +165,6 @@
                                 android:buttonTint="@color/white" />
 
                             <TextView
-                                android:id="@+id/pass_value"
                                 android:visibility="gone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -362,7 +362,6 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/root"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -382,7 +381,6 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/root_cs"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

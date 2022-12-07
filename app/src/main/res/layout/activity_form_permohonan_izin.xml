@@ -232,7 +232,6 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/change_mulai_date"
                                             android:layout_alignParentRight="true"
                                             android:layout_width="40dp"
                                             android:layout_height="match_parent"
@@ -291,7 +290,6 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/change_akhir_date"
                                             android:layout_alignParentRight="true"
                                             android:layout_width="40dp"
                                             android:layout_height="match_parent"
@@ -680,7 +678,6 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/root"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
