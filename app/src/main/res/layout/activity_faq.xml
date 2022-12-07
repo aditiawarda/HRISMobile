@@ -116,6 +116,96 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/faq_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="-2dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/shape_item_faq">
+
+                    <LinearLayout
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="50dp"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight=".90"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:textColor="#4C4C4C"
+                            android:text="Cara pengisian form izin"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight=".10"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:background="@drawable/ic_baseline_arrow_right"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/faq_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="-2dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/shape_item_faq">
+
+                    <LinearLayout
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="50dp"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight=".90"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:textColor="#4C4C4C"
+                            android:text="Cara pengisian form cuti"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight=".10"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:background="@drawable/ic_baseline_arrow_right"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>

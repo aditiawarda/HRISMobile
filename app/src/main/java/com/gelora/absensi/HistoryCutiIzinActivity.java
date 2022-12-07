@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -44,7 +45,8 @@ import java.util.Map;
 public class HistoryCutiIzinActivity extends AppCompatActivity {
 
     LinearLayout backBTN, homeBTN, loadingDataPartCuti, loadingDataPartIzin, noDataPartCuti, noDataPartIzin, dataDiambilPart, dataSisaPart;
-    TextView totalDataCuti, totalDataIzin, nameUserTV, periodeData, dataDiambilTV, dataSisaTV;
+    TextView hakCutiTV, totalDataCuti, totalDataIzin, nameUserTV, periodeData, dataDiambilTV, dataSisaTV;
+    RelativeLayout periodeDataPart;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     ImageView diambilLoading, sisaLoading, periodeLoading, loadingDataCuti, loadingDataIzin;
@@ -85,6 +87,8 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         dataSisaPart = findViewById(R.id.data_sisa_part);
         totalDataCuti = findViewById(R.id.total_data_cuti);
         totalDataIzin = findViewById(R.id.total_data_izin);
+        periodeDataPart = findViewById(R.id.periode_data_part);
+        hakCutiTV = findViewById(R.id.hak_cuti_tv);
 
         dataHistoryCutiRV = findViewById(R.id.data_cuti_rv);
         dataHistoryIzinRV = findViewById(R.id.data_izin_rv);
@@ -125,7 +129,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
             public void onRefresh() {
 
                 periodeLoading.setVisibility(View.VISIBLE);
-                periodeData.setVisibility(View.GONE);
+                periodeDataPart.setVisibility(View.GONE);
 
                 diambilLoading.setVisibility(View.VISIBLE);
                 dataDiambilPart.setVisibility(View.GONE);
@@ -188,15 +192,17 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                             if (status.equals("Success")){
                                 String periode_mulai = data.getString("periode_mulai");
                                 String periode_akhir = data.getString("periode_akhir");
+                                String hak_cuti_tahunan = data.getString("hak_cuti_tahunan");
                                 String cuti_ambil = data.getString("cuti_ambil");
                                 String sisa_cuti = data.getString("sisa_cuti");
                                 String tahun = data.getString("tahun");
                                 String jumlah_cuti = data.getString("jumlah_cuti");
                                 String jumlah_izin = data.getString("jumlah_izin");
 
+                                hakCutiTV.setText(hak_cuti_tahunan);
                                 periodeData.setText(periode_mulai.substring(8,10)+"/"+periode_mulai.substring(5,7)+"/"+periode_mulai.substring(0,4)+"  s.d. "+periode_akhir.substring(8,10)+"/"+periode_akhir.substring(5,7)+"/"+periode_akhir.substring(0,4));
                                 periodeLoading.setVisibility(View.GONE);
-                                periodeData.setVisibility(View.VISIBLE);
+                                periodeDataPart.setVisibility(View.VISIBLE);
 
                                 dataDiambilTV.setText(cuti_ambil);
                                 dataSisaTV.setText(sisa_cuti);

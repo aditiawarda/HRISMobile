@@ -26,7 +26,7 @@ public class DetailFaqActivity extends AppCompatActivity {
 
     String noFAQ;
     TextView titleTV, hubungiIT;
-    LinearLayout backBTN, faq1Detail, faq2Detail;
+    LinearLayout backBTN, faq1Detail, faq2Detail, faq3Detail, faq4Detail;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -39,6 +39,8 @@ public class DetailFaqActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         faq1Detail = findViewById(R.id.faq_1_detail);
         faq2Detail = findViewById(R.id.faq_2_detail);
+        faq3Detail = findViewById(R.id.faq_3_detail);
+        faq4Detail = findViewById(R.id.faq_4_detail);
 
         noFAQ = getIntent().getExtras().getString("no_faq");
 
@@ -48,6 +50,12 @@ public class DetailFaqActivity extends AppCompatActivity {
         } else if(noFAQ.equals("2")){
             titleTV.setText("STATUS ABSENSI ATAU SHIFT TIDAK MUNCUL");
             faq2Detail.setVisibility(View.VISIBLE);
+        } else if(noFAQ.equals("3")){
+            titleTV.setText("CARA PENGISIAN FORM IZIN");
+            faq3Detail.setVisibility(View.VISIBLE);
+        } else if(noFAQ.equals("4")){
+            titleTV.setText("CARA PENGISIAN FORM PERMOHONAN CUTI");
+            faq4Detail.setVisibility(View.VISIBLE);
         }
 
         backBTN.setOnClickListener(new View.OnClickListener() {

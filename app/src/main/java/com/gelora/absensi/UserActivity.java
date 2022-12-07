@@ -604,6 +604,7 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, FaqActivity.class);
+                intent.putExtra("status_karyawan", statusKaryawan);
                 startActivity(intent);
             }
         });

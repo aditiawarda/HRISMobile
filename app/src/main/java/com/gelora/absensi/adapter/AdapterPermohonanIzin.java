@@ -75,10 +75,10 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
 
         myViewHolder.namaKaryawanTV.setText(listPermohonanIzin.getNmKaryawan().toUpperCase());
         if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){ // Kadep Askadep
-            myViewHolder.nikKaryawanTV.setText("NIK "+listPermohonanIzin.getNIK()+" | "+listPermohonanIzin.getKdDept());
+            myViewHolder.nikKaryawanTV.setText(listPermohonanIzin.getNIK()+" | "+listPermohonanIzin.getKdDept());
         } else if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")) { // Kabag Supervisor
             if(sharedPrefManager.getSpNik().equals("0056010793")){ // Bu Sorta
-                myViewHolder.nikKaryawanTV.setText("NIK "+listPermohonanIzin.getNIK()+" | "+listPermohonanIzin.getKdDept());
+                myViewHolder.nikKaryawanTV.setText(listPermohonanIzin.getNIK()+" | "+listPermohonanIzin.getKdDept());
             } else {
                 myViewHolder.nikKaryawanTV.setText("NIK "+listPermohonanIzin.getNIK());
             }
