@@ -52,38 +52,51 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:textSize="18dp"
+                        android:fontFamily="@font/roboto"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_marginBottom="15dp"
-                        android:text="HRIS Mobile Gelora"/>
+                        android:text="TENTANG APLIKASI"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
+                        android:fontFamily="@font/roboto"
+                        android:justificationMode="inter_word"
+                        android:lineSpacingExtra="2dp"
                         android:textColor="@color/text_color"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="7dp"
                         android:text="HRIS Mobile Gelora merupakan aplikasi android dari HR System PT Gelora Aksara Pratama, HRIS Mobile Gelora diharapkan dapat memfasilitasi karyawan PT. Gelora Aksara Pratama untuk layanan kepegawaian perusahaan."/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
+                        android:fontFamily="@font/roboto"
+                        android:lineSpacingExtra="2dp"
+                        android:justificationMode="inter_word"
                         android:textColor="@color/text_color"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="7dp"
                         android:text="HRIS Mobile Gelora dikembangkan oleh Tim IT PT. Gelora Aksara Pratama."/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
+                        android:fontFamily="@font/roboto"
+                        android:lineSpacingExtra="2dp"
+                        android:justificationMode="inter_word"
                         android:textColor="@color/text_color"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="7dp"
                         android:text="Untuk kemudahan dan kelancaran penggunaan, HRIS Mobile Gelora didukung oleh API Google Maps sebagai penanda posisi."/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
+                        android:fontFamily="@font/roboto"
+                        android:lineSpacingExtra="2dp"
+                        android:justificationMode="inter_word"
                         android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
                         android:text="Versi yang saat ini anda gunakan adalah versi 1.1.38"/>

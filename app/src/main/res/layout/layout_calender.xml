@@ -48,29 +48,31 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
                             android:id="@+id/month_calender"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:textSize="18dp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:layout_marginBottom="15dp"
-                            android:text="Bulan"/>
-
-                        <TextView
-                            android:layout_alignParentRight="true"
-                            android:id="@+id/year_calender"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
+                            android:layout_marginBottom="15dp"
+                            android:text="Bulan"
+                            android:fontFamily="@font/roboto"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/year_calender"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:textSize="18dp"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
                             android:layout_marginBottom="15dp"
-                            android:text="Tahun"/>
+                            android:text="Tahun"
+                            android:fontFamily="@font/roboto"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
 
                     </RelativeLayout>
 
@@ -168,6 +170,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
+                        android:fontFamily="@font/roboto"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_marginBottom="5dp"
                         android:text=""/>

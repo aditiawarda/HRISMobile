@@ -63,6 +63,7 @@
                         android:textSize="12dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="20dp"
+                        android:fontFamily="@font/roboto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
@@ -105,6 +106,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="13dp"
+                            android:fontFamily="@font/roboto"
                             android:textColor="@color/white"
                             android:text="Memuat data..."/>
 
@@ -129,6 +131,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="35dp"
                                 android:textStyle="bold"
+                                android:fontFamily="@font/roboto"
                                 android:textColor="@color/white"
                                 android:text="--°"/>
 
@@ -137,6 +140,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="25dp"
                                 android:textStyle="bold"
+                                android:fontFamily="@font/roboto"
                                 android:textColor="@color/white"
                                 android:text="C"/>
 
@@ -152,6 +156,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12dp"
+                                android:fontFamily="@font/roboto"
                                 android:textColor="@color/white"
                                 android:text="Terasa seperti --°"/>
 
@@ -192,6 +197,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="1"
+                        android:fontFamily="@font/roboto"
                         android:singleLine="true"
                         android:textColor="@color/white"
                         android:text="Memuat data lokasi terkini..."/>

@@ -14,29 +14,30 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginLeft="170dp"
             android:layout_marginTop="17dp"
             android:layout_marginRight="170dp"
-            android:layout_marginLeft="170dp"
-            android:layout_height="3dp"
             android:background="#34455A64"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="15dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:text="Pilih Shift"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="Pilih Shift"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#32787878"/>
+            android:background="#32787878" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -49,20 +50,19 @@
                 tools:ignore="MissingConstraints">
 
                 <LinearLayout
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical"
                     android:paddingTop="15dp"
-                    android:orientation="vertical">
+                    android:paddingBottom="20dp">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/shift_absen_rv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
-                    </androidx.recyclerview.widget.RecyclerView>
+                        android:orientation="vertical"></androidx.recyclerview.widget.RecyclerView>
 
                 </LinearLayout>
 
