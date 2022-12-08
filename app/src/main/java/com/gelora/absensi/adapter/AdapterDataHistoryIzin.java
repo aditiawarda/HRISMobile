@@ -51,9 +51,9 @@ public class AdapterDataHistoryIzin extends RecyclerView.Adapter<AdapterDataHist
         myViewHolder.dateRangeTV.setText(startDate.substring(8,10)+"/"+startDate.substring(5,7)+"/"+startDate.substring(0,4)+"  s.d. "+finishDate.substring(8,10)+"/"+finishDate.substring(5,7)+"/"+finishDate.substring(0,4));
 
         if(tipePengajuan.equals("1")){
-            myViewHolder.notedTV.setText("*)  Menggunakan Form Izin Digital");
+            myViewHolder.notedTV.setText("*)  Menggunakan Form Izin Digital  ");
         } else if(tipePengajuan.equals("0")) {
-            myViewHolder.notedTV.setText("*)  Menggunakan Form Izin Manual");
+            myViewHolder.notedTV.setText("*)  Menggunakan Form Izin Manual  ");
         }
 
     }

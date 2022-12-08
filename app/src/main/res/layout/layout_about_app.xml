@@ -51,11 +51,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:fontFamily="@font/roboto"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_marginBottom="15dp"
-                        android:text="TENTANG APLIKASI"/>
+                        android:text="Tentang Aplikasi"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -99,7 +99,7 @@
                         android:justificationMode="inter_word"
                         android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
-                        android:text="Versi yang saat ini anda gunakan adalah versi 1.1.39"/>
+                        android:text="Versi yang saat ini anda gunakan adalah versi 1.4.0"/>
 
                 </LinearLayout>
 

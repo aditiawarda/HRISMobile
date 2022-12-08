@@ -57,9 +57,9 @@ public class AdapterDataHistoryCuti extends RecyclerView.Adapter<AdapterDataHist
         myViewHolder.dateRangeTV.setText(startDate.substring(8,10)+"/"+startDate.substring(5,7)+"/"+startDate.substring(0,4)+"  s.d. "+finishDate.substring(8,10)+"/"+finishDate.substring(5,7)+"/"+finishDate.substring(0,4));
 
         if(tipePengajuan.equals("2")){
-            myViewHolder.notedTV.setText("*)  Menggunakan Form Cuti Digital");
+            myViewHolder.notedTV.setText("*)  Menggunakan Form Cuti Digital  ");
         } else if(tipePengajuan.equals("0")) {
-            myViewHolder.notedTV.setText("*)  Menggunakan Form Cuti Manual");
+            myViewHolder.notedTV.setText("*)  Menggunakan Form Cuti Manual  ");
         }
 
     }

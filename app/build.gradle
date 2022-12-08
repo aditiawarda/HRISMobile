@@ -10,8 +10,8 @@ android {
         applicationId "com.gelora.absensi"
         minSdkVersion 19 //24 Recommendation //Requered 19
         targetSdkVersion 32
-        versionCode 39
-        versionName "1.1.39"
+        versionCode 40
+        versionName "1.4.0"
 
         multiDexEnabled true
 

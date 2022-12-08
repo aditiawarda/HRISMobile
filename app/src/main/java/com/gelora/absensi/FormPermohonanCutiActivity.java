@@ -86,7 +86,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, viewBTN, goToHome, goToDasboard, successPart, formPart, backBTN, homeBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, submitBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
     SwipeRefreshLayout refreshLayout;
     TextView statusUploadTV, labelUnggahTV, tipeCutiTV, namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
-    String uploadStatus = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", dateChoiceMulai = "", kategoriCuti = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
+    String lampiranWajibAtauTidak = "", uploadStatus = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", dateChoiceMulai = "", kategoriCuti = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
     ImageView loadingGif, successGif;
     EditText keywordKaryawanPengganti, alasanTV, alamatSelamaCutiTV, noHpTV;
     SharedPrefManager sharedPrefManager;
@@ -177,7 +177,9 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         alamatSelamaCutiTV.setText("");
                         noHpTV.setText("");
 
-                        // uploadLampiranPart.setVisibility(View.GONE);
+                        lampiranWajibAtauTidak = "";
+                        dateChoiceMulai = "";
+                        dateChoiceAkhir = "";
                         markUpload.setVisibility(View.GONE);
                         viewUploadBTN.setVisibility(View.GONE);
                         statusUploadTV.setText("Unggah Lampiran");
@@ -2450,85 +2452,85 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
                                             // Diisi semua
 
-                                            // if(statusLampiran.equals("1")){
-                                            //    if(uploadStatus.equals("1")){
-                                            //        new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.WARNING_TYPE)
-                                            //               .setTitleText("Perhatian")
-                                            //                .setContentText("Kirim permohonan sekarang?")
-                                            //                .setCancelText("TIDAK")
-                                            //                .setConfirmText("   YA   ")
-                                            //                .showCancelButton(true)
-                                            //                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                            //                    @Override
-                                            //                    public void onClick(KAlertDialog sDialog) {
-                                            //                        sDialog.dismiss();
-                                            //                    }
-                                            //               })
-                                            //                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                            //                    @Override
-                                            //                    public void onClick(KAlertDialog sDialog) {
-                                            //                        sDialog.dismiss();
-                                            //                        pDialog = new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                            //                        pDialog.show();
-                                            //                        pDialog.setCancelable(false);
-                                            //                        new CountDownTimer(1300, 800) {
-                                            //                            public void onTick(long millisUntilFinished) {
-                                            //                                i++;
-                                            //                                switch (i) {
-                                            //                                    case 0:
-                                            //                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            //                                                (FormPermohonanCutiActivity.this, R.color.colorGradien));
-                                            //                                        break;
-                                            //                                    case 1:
-                                            //                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            //                                                (FormPermohonanCutiActivity.this, R.color.colorGradien2));
-                                            //                                        break;
-                                            //                                    case 2:
-                                            //                                    case 6:
-                                            //                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            //                                                (FormPermohonanCutiActivity.this, R.color.colorGradien3));
-                                            //                                        break;
-                                            //                                    case 3:
-                                            //                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            //                                                (FormPermohonanCutiActivity.this, R.color.colorGradien4));
-                                            //                                        break;
-                                            //                                    case 4:
-                                            //                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            //                                                (FormPermohonanCutiActivity.this, R.color.colorGradien5));
-                                            //                                        break;
-                                            //                                    case 5:
-                                            //                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                            //                                                (FormPermohonanCutiActivity.this, R.color.colorGradien6));
-                                            //                                        break;
-                                            //                                }
-                                            //                            }
-                                            //                            public void onFinish() {
-                                            //                                i = -1;
-                                            //
-                                            //                                checkSignature();
-                                            //
-                                            //                            }
-                                            //                        }.start();
-                                            //
-                                            //                    }
-                                            //                })
-                                            //                .show();
-                                            //    }
-                                            //    else {
-                                            //        new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
-                                            //               .setTitleText("Perhatian")
-                                            //               .setContentText("Harap unggah lampiran!")
-                                            //               .setConfirmText("    OK    ")
-                                            //               .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                            //                    @Override
-                                            //                    public void onClick(KAlertDialog sDialog) {
-                                            //                        sDialog.dismiss();
-                                            //                    }
-                                            //                })
-                                            //                .show();
-                                            //   }
-                                            // }
-                                            // else if(statusLampiran.equals("0")) {
+                                             if(statusLampiran.equals("1")){
+                                                if(uploadStatus.equals("1")){
+                                                    new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.WARNING_TYPE)
+                                                           .setTitleText("Perhatian")
+                                                            .setContentText("Kirim permohonan sekarang?")
+                                                            .setCancelText("TIDAK")
+                                                            .setConfirmText("   YA   ")
+                                                            .showCancelButton(true)
+                                                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                @Override
+                                                                public void onClick(KAlertDialog sDialog) {
+                                                                    sDialog.dismiss();
+                                                                }
+                                                           })
+                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                @Override
+                                                                public void onClick(KAlertDialog sDialog) {
+                                                                    sDialog.dismiss();
+                                                                    pDialog = new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                                                    pDialog.show();
+                                                                    pDialog.setCancelable(false);
+                                                                    new CountDownTimer(1300, 800) {
+                                                                        public void onTick(long millisUntilFinished) {
+                                                                            i++;
+                                                                            switch (i) {
+                                                                                case 0:
+                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                            (FormPermohonanCutiActivity.this, R.color.colorGradien));
+                                                                                    break;
+                                                                                case 1:
+                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                            (FormPermohonanCutiActivity.this, R.color.colorGradien2));
+                                                                                    break;
+                                                                                case 2:
+                                                                                case 6:
+                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                            (FormPermohonanCutiActivity.this, R.color.colorGradien3));
+                                                                                    break;
+                                                                                case 3:
+                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                            (FormPermohonanCutiActivity.this, R.color.colorGradien4));
+                                                                                    break;
+                                                                                case 4:
+                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                            (FormPermohonanCutiActivity.this, R.color.colorGradien5));
+                                                                                    break;
+                                                                                case 5:
+                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                            (FormPermohonanCutiActivity.this, R.color.colorGradien6));
+                                                                                    break;
+                                                                            }
+                                                                        }
+                                                                        public void onFinish() {
+                                                                            i = -1;
+
+                                                                            checkSignature();
+
+                                                                        }
+                                                                    }.start();
+
+                                                                }
+                                                            })
+                                                            .show();
+                                                }
+                                                else {
+                                                    new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                                           .setTitleText("Perhatian")
+                                                           .setContentText("Harap unggah lampiran!")
+                                                           .setConfirmText("    OK    ")
+                                                           .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                @Override
+                                                                public void onClick(KAlertDialog sDialog) {
+                                                                    sDialog.dismiss();
+                                                                }
+                                                            })
+                                                            .show();
+                                               }
+                                             }
+                                             else if(statusLampiran.equals("0")) {
 
                                                 new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.WARNING_TYPE)
                                                     .setTitleText("Perhatian")
@@ -2592,7 +2594,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                                                     })
                                                     .show();
 
-                                            // }
+                                             }
 
                                         }
                                     }
@@ -2641,7 +2643,9 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                                 String status_karyawan = data.getString("status_karyawan");
                                 String sisa_cuti = data.getString("sisa_cuti");
                                 String cuti_ambil = data.getString("cuti_ambil");
+                                String lampiran_cuti_kusus = data.getString("lampiran_cuti_kusus");
 
+                                lampiranWajibAtauTidak = lampiran_cuti_kusus;
                                 jabatanKaryawan.setText(jabatan);
                                 bagianKaryawan.setText(bagian+" | "+department);
                                 tanggalMulaiBekerja.setText(tanggal_masuk.substring(8,10)+"/"+tanggal_masuk.substring(5,7)+"/"+tanggal_masuk.substring(0,4));
@@ -3914,7 +3918,6 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
             kodeCuti = intent.getStringExtra("kode_kategori_cuti");
             descCuti = intent.getStringExtra("desc_kategori_cuti");
             tipeCuti = intent.getStringExtra("tipe_kategori_cuti");
-            statusLampiran = intent.getStringExtra("status_lampiran");
 
             if(tipeCuti.equals("1")){
                 tipeCutiTV.setText("Tahunan");
@@ -3922,11 +3925,15 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 tipeCutiTV.setText("Khusus");
             }
 
-            // if(statusLampiran.equals("1")){
-            //     uploadLampiranPart.setVisibility(View.VISIBLE);
-            // } else if(statusLampiran.equals("0")) {
-            //    uploadLampiranPart.setVisibility(View.GONE);
-            // }
+            if(lampiranWajibAtauTidak.equals("1")){
+                if(tipeCuti.equals("2")){
+                    statusLampiran = "1";
+                } else if(tipeCuti.equals("1")) {
+                    statusLampiran = "0";
+                }
+            } else {
+                statusLampiran = "0";
+            }
 
             kategoriCuti = idCuti;
             kategoriCutiPilihTV.setText(descCuti);

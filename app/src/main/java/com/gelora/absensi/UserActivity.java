@@ -79,6 +79,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -104,7 +106,7 @@ public class UserActivity extends AppCompatActivity {
     ProgressBar loadingProgressBarCuaca;
     ImageView sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
-    String statusKaryawan = "", selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
+    String tanggalBergabung = "", statusKaryawan = "", selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
     ProgressBar loadingProgressBarLogout;
 
     AlarmManager alarmManager;
@@ -605,6 +607,7 @@ public class UserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, FaqActivity.class);
                 intent.putExtra("status_karyawan", statusKaryawan);
+                intent.putExtra("tanggal_bergabung", tanggalBergabung);
                 startActivity(intent);
             }
         });
@@ -725,6 +728,7 @@ public class UserActivity extends AppCompatActivity {
                                 String web_btn = data.getString("web_btn");
 
                                 statusKaryawan = status_karyawan;
+                                tanggalBergabung = tanggal_masuk;
 
                                 if(status_karyawan.equals("null")){
                                     if(sharedPrefManager.getSpStatusUser().equals("1")){
@@ -2095,12 +2099,59 @@ public class UserActivity extends AppCompatActivity {
 
                                 if((statusKaryawan.equals("Tetap")||statusKaryawan.equals("Kontrak"))&&!statusKaryawan.equals("null")){
                                     if(fitur_izin.equals("1")){
-                                        fiturPart.setVisibility(View.VISIBLE);
-                                        notificationPart.setVisibility(View.VISIBLE);
-                                        if(id_card_digital.equals("1")){
-                                            idCardDigitalBTN.setVisibility(View.VISIBLE);
-                                        } else {
-                                            idCardDigitalBTN.setVisibility(View.GONE);
+                                        if(statusKaryawan.equals("Tetap")){
+                                            fiturPart.setVisibility(View.VISIBLE);
+                                            notificationPart.setVisibility(View.VISIBLE);
+                                            sisaCutiBTN.setVisibility(View.VISIBLE);
+                                            permohonanCutiBTN.setVisibility(View.VISIBLE);
+                                            if(id_card_digital.equals("1")){
+                                                idCardDigitalBTN.setVisibility(View.VISIBLE);
+                                            } else {
+                                                idCardDigitalBTN.setVisibility(View.GONE);
+                                            }
+                                        } else if(statusKaryawan.equals("Kontrak")){
+                                            String tanggalMulaiBekerja = tanggalBergabung;
+                                            String tanggalSekarang = getDate();
+
+                                            @SuppressLint("SimpleDateFormat")
+                                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                                            Date date1 = null;
+                                            Date date2 = null;
+                                            try {
+                                                date1 = format.parse(tanggalSekarang);
+                                                date2 = format.parse(tanggalMulaiBekerja);
+                                            } catch (ParseException e) {
+                                                e.printStackTrace();
+                                            }
+                                            long waktu1 = date1.getTime();
+                                            long waktu2 = date2.getTime();
+                                            long selisih_waktu = waktu1 - waktu2;
+                                            long diffDays = selisih_waktu / (24 * 60 * 60 * 1000);
+                                            long diffMonths = (selisih_waktu / (24 * 60 * 60 * 1000)) / 30;
+                                            long diffYears =  ((selisih_waktu / (24 * 60 * 60 * 1000)) / 30) / 12;
+
+                                            if(diffMonths >= 12){
+                                                fiturPart.setVisibility(View.VISIBLE);
+                                                notificationPart.setVisibility(View.VISIBLE);
+                                                sisaCutiBTN.setVisibility(View.VISIBLE);
+                                                permohonanCutiBTN.setVisibility(View.VISIBLE);
+                                                if(id_card_digital.equals("1")){
+                                                    idCardDigitalBTN.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    idCardDigitalBTN.setVisibility(View.GONE);
+                                                }
+                                            } else {
+                                                fiturPart.setVisibility(View.VISIBLE);
+                                                notificationPart.setVisibility(View.VISIBLE);
+                                                sisaCutiBTN.setVisibility(View.GONE);
+                                                permohonanCutiBTN.setVisibility(View.GONE);
+                                                if(id_card_digital.equals("1")){
+                                                    idCardDigitalBTN.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    idCardDigitalBTN.setVisibility(View.GONE);
+                                                }
+                                            }
+
                                         }
                                     } else {
                                         fiturPart.setVisibility(View.GONE);
@@ -2224,6 +2275,13 @@ public class UserActivity extends AppCompatActivity {
         return dateFormat.format(date);
     }
 
+    private String getDate() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
     private void getCurrentDay() {
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
@@ -2268,7 +2326,7 @@ public class UserActivity extends AppCompatActivity {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.1.39"; //harus disesuaikan
+                                String currentVersion = "1.4.0"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateBTN.setVisibility(View.VISIBLE);
                                     updateBTN.setOnClickListener(new View.OnClickListener() {
