@@ -15,11 +15,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
             android:background="@drawable/shape_head_layoff"
+            android:orientation="vertical"
             android:gravity="center|left">
 
             <TextView
@@ -31,6 +28,10 @@
                 android:maxLines="1"
                 android:singleLine="true"
                 android:drawablePadding="7dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
                 android:drawableLeft="@drawable/ic_baseline_date_layoff"
                 android:textStyle="bold"
                 android:textSize="12dp"

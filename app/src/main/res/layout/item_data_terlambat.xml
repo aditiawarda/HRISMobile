@@ -15,12 +15,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
             android:background="@drawable/shape_detail_3"
+            android:orientation="vertical"
             android:gravity="center|left">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginBottom="-20dp"
+                android:layout_marginTop="-20dp"
+                android:layout_width="match_parent"
+                android:gravity="right"
+                android:paddingRight="10dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="45dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_ornament_3"/>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/date_absen_tv_late"
@@ -31,6 +44,10 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
                 android:drawableTint="@color/white"
                 android:drawableLeft="@drawable/ic_baseline_date"
                 android:textStyle="bold"

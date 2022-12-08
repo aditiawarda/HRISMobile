@@ -303,11 +303,11 @@ public class AdapterPermohonanSaya extends RecyclerView.Adapter<AdapterPermohona
         myViewHolder.tanggalNotifikasi.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate+" "+time);
 
         if (listPermohonanIzin.getStatus_read().equals("1")){
-            myViewHolder.statusPermohonanTV.setTextColor(Color.parseColor("#919191"));
+            myViewHolder.statusPermohonanTV.setTextColor(Color.parseColor("#7d7d7d"));
             myViewHolder.statusPermohonanTV.setTypeface(myViewHolder.statusPermohonanTV.getTypeface(), Typeface.NORMAL);
-            myViewHolder.deskrisiPermohonan.setTextColor(Color.parseColor("#919191"));
-            myViewHolder.detailTanggalIzinTV.setTextColor(Color.parseColor("#919191"));
-            myViewHolder.tanggalNotifikasi.setTextColor(Color.parseColor("#919191"));
+            myViewHolder.deskrisiPermohonan.setTextColor(Color.parseColor("#7d7d7d"));
+            myViewHolder.detailTanggalIzinTV.setTextColor(Color.parseColor("#7d7d7d"));
+            myViewHolder.tanggalNotifikasi.setTextColor(Color.parseColor("#7d7d7d"));
             myViewHolder.lineLimit.setBackgroundColor(Color.parseColor("#EAEAEA"));
         } else {
             myViewHolder.statusPermohonanTV.setTypeface(myViewHolder.statusPermohonanTV.getTypeface(), Typeface.BOLD);
