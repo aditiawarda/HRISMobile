@@ -1118,6 +1118,7 @@ public class UserActivity extends AppCompatActivity {
                                     bottomSheet.dismissSheet();
                                 }
                             });
+
                             connectBTN.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {

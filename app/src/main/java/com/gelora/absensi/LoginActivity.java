@@ -615,9 +615,10 @@ public class LoginActivity extends AppCompatActivity {
                             closeBTN.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    bottomSheet.dismissSheet();
+                                    bottomSheetCS.dismissSheet();
                                 }
                             });
+
                             connectBTN.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {

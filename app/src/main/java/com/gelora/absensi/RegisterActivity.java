@@ -822,6 +822,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     bottomSheetCS.dismissSheet();
                                 }
                             });
+
                             connectBTN.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
