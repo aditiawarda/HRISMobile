@@ -1410,23 +1410,31 @@
                 android:id="@+id/reminder_congrat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
                 android:paddingRight="15dp"
                 android:paddingTop="3dp"
                 android:background="@drawable/shape_congrat"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="47dp"
-                    android:layout_height="47dp"
-                    android:layout_gravity="bottom"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="50dp"
                     android:layout_marginRight="7dp"
-                    android:background="@drawable/suma_good"/>
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/reminder_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/suma_good" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="7dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="7dp"
                     android:orientation="vertical">
@@ -1445,6 +1453,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:textSize="12dp"
+                        android:lineSpacingExtra="1dp"
                         android:textStyle="bold"
                         android:text=""/>
 

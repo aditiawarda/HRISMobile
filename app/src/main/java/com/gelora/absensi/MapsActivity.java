@@ -135,7 +135,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng userPoint;
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
-    ImageView weatherIconPart, onlineGif, warningGif, notificationWarning;
+    ImageView reminderImage, weatherIconPart, onlineGif, warningGif, notificationWarning;
     TextView notifMasukTV, reminderDecs, reminderCelebrateTV, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
     LinearLayout markerNotification, pantauBTN, reminderCongrat, markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
@@ -262,6 +262,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         pantauBTN = findViewById(R.id.pantau_btn);
         markerNotification = findViewById(R.id.marker_notification);
         notifMasukTV = findViewById(R.id.jumlah_notif_masuk);
+        reminderImage = findViewById(R.id.reminder_image);
         requestQueue = Volley.newRequestQueue(getBaseContext());
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         rippleIndicator = (RippleBackground)findViewById(R.id.ripple_indicator);
@@ -5059,6 +5060,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             reminderCelebrateTV.setText("Selamat Merayakan "+String.valueOf(masaKerja)+" Tahun Masa Kerja.");
                                             if (join_reminder.equals("1")){
                                                 reminderCongrat.setVisibility(View.VISIBLE);
+                                                Picasso.get().load(R.drawable.suma_good).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                        .into(reminderImage);
                                             } else {
                                                 reminderCongrat.setVisibility(View.GONE);
                                             }
@@ -5070,6 +5074,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                     if(pengumuman_date.equals(getDate())){
                                         reminderCongrat.setVisibility(View.VISIBLE);
+                                        Picasso.get().load(R.drawable.pengumuman_ic).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                .into(reminderImage);
                                         reminderDecs.setText(pengumuman_title);
                                         reminderCelebrateTV.setText(pengumuman_desc);
                                     } else {
@@ -5084,6 +5091,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 reminderCelebrateTV.setText("Selamat Merayakan "+String.valueOf(masaKerja)+" Tahun Masa Kerja.");
                                                 if (join_reminder.equals("1")){
                                                     reminderCongrat.setVisibility(View.VISIBLE);
+                                                    Picasso.get().load(R.drawable.suma_good).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                            .into(reminderImage);
                                                 } else {
                                                     reminderCongrat.setVisibility(View.GONE);
                                                 }

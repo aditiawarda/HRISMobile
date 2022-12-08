@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +22,7 @@ import com.gelora.absensi.PersonalChatActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
+import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataIzin;
 import com.gelora.absensi.model.ListChatMate;
 import com.squareup.picasso.MemoryPolicy;
@@ -115,6 +118,18 @@ public class AdapterListChatMate extends RecyclerView.Adapter<AdapterListChatMat
                 Intent intent = new Intent(mContext, PersonalChatActivity.class);
                 intent.putExtra("chat_mate",chatMate.getNik());
                 mContext.startActivity(intent);
+            }
+        });
+
+        myViewHolder.parentPart.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Intent intent = new Intent("end_chat");
+                intent.putExtra("nik_rekan",String.valueOf(chatMate.getNik()));
+                intent.putExtra("nama_rekan",String.valueOf(chatMate.getNama()));
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+
+                return false;
             }
         });
 
