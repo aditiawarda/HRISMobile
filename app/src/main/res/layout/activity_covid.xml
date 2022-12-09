@@ -370,7 +370,7 @@
                                             android:drawablePadding="5dp"
                                             android:gravity="center"
                                             android:textColor="#7C7C7C"
-                                            android:text="Sumber : covid19.go.id"
+                                            android:text="Sumber : covid19.go.id  "
                                             android:textSize="12dp"
                                             android:textStyle="italic" />
 
@@ -641,7 +641,7 @@
                                 android:drawablePadding="5dp"
                                 android:gravity="center"
                                 android:textColor="#7C7C7C"
-                                android:text="Sumber : covid19.go.id"
+                                android:text="Sumber : covid19.go.id  "
                                 android:textSize="12dp"
                                 android:textStyle="italic" />
 

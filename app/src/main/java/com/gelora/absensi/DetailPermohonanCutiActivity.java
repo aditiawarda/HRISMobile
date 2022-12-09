@@ -428,15 +428,15 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 String lampiran = detail.getString("lampiran");
 
                                 if(!catatan1.equals("null") && !catatan1.equals("") && !catatan1.equals(null)){
-                                    noted1TV.setText(":  "+catatan1);
+                                    noted1TV.setText(":  "+catatan1+"  ");
                                 }
 
                                 if(!catatan2.equals("null") && !catatan2.equals("") && !catatan2.equals(null)){
-                                    noted2TV.setText(":  "+catatan2);
+                                    noted2TV.setText(":  "+catatan2+"  ");
                                 }
 
                                 if(!lampiran.equals("null") && !lampiran.equals("") && !lampiran.equals(null)){
-                                    lampiranTV.setText(":  Terlampir");
+                                    lampiranTV.setText(":  Terlampir  ");
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     String url_lampiran = "https://geloraaksara.co.id/absen-online/upload/lampiran_cuti/"+lampiran;
 
