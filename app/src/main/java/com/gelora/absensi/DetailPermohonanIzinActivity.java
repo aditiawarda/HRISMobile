@@ -32,6 +32,7 @@ import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -69,7 +70,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     TextView approverHrdTV, notedTV, appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, tanggalApproveTV, tanggalApproveHRDTV, supervisorTV, hrdTV;
     String uriImage, uriImage2, idIzinRecord, statusKondisi = "0", kode, title;
-    LinearLayout pdfBTN, viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, homeBTN, approvedBTN, rejectedBTN, actionPart;
+    LinearLayout cancelPermohonanBTN, pdfBTN, viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, homeBTN, approvedBTN, rejectedBTN, actionPart;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdSupervisor, ttdHRD, qrDocument;
     KAlertDialog pDialog;
@@ -126,6 +127,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         tanggalApproveTV = findViewById(R.id.tanggal_approve);
         notedTV = findViewById(R.id.noted_tv);
         approverHrdTV = findViewById(R.id.approver_hrd_tv);
+        cancelPermohonanBTN = findViewById(R.id.cancel_permohonan_btn);
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
@@ -153,6 +155,73 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
             }
         });
 
+        cancelPermohonanBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Yakin untuk membatalkan permohonan izin?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+
+                                pDialog = new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1000, 500) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPermohonanIzinActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPermohonanIzinActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPermohonanIzinActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPermohonanIzinActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPermohonanIzinActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPermohonanIzinActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+
+                                    public void onFinish() {
+                                        i = -1;
+                                        cancelPermohonan(idIzinRecord);
+                                    }
+                                }.start();
+
+                            }
+                        })
+                        .show();
+            }
+        });
+
         downloadBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,77 +241,8 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                             @Override
                             public void onClick(KAlertDialog sDialog) {
                                 sDialog.dismiss();
-
-                                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
-                                 startActivity(browserIntent);
-
-                                // downloadPermohonan();
-
-                                // File file = saveBitMap(DetailPermohonanIzinActivity.this, suratIzinPart);
-                                // if (file != null) {
-                                //    final KAlertDialog pDialog = new KAlertDialog(DetailPermohonanIzinActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                //      pDialog.show();
-                                //      pDialog.setCancelable(false);
-                                //    new CountDownTimer(2000, 1000) {
-                                //        public void onTick(long millisUntilFinished) {
-                                //            i++;
-                                //            switch (i) {
-                                //                case 0:
-                                //                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                //                            (DetailPermohonanIzinActivity.this, R.color.colorGradien));
-                                //                    break;
-                                //                case 1:
-                                //                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                //                            (DetailPermohonanIzinActivity.this, R.color.colorGradien2));
-                                //                    break;
-                                //                case 2:
-                                //                case 6:
-                                //                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                //                            (DetailPermohonanIzinActivity.this, R.color.colorGradien3));
-                                //                    break;
-                                //                case 3:
-                                //                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                //                            (DetailPermohonanIzinActivity.this, R.color.colorGradien4));
-                                //                   break;
-                                //                case 4:
-                                //                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                //                            (DetailPermohonanIzinActivity.this, R.color.colorGradien5));
-                                //                    break;
-                                //                case 5:
-                                //                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                //                            (DetailPermohonanIzinActivity.this, R.color.colorGradien6));
-                                //                    break;
-                                //            }
-                                //        }
-                                //        public void onFinish() {
-                                //            i = -1;
-                                //            pDialog.setTitleText("Unduh Berhasil")
-                                //                    .setContentText("File permohonan berhasil diunduh")
-                                //                    .setCancelText("TUTUP")
-                                //                    .setConfirmText("LIHAT")
-                                //                    .showCancelButton(true)
-                                //                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                //                        @Override
-                                //                        public void onClick(KAlertDialog sDialog) {
-                                //                            sDialog.dismiss();
-                                //                        }
-                                //                    })
-                                //                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                //                        @Override
-                                //                        public void onClick(KAlertDialog sDialog) {
-                                //                            sDialog.dismiss();
-                                //                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uriImage2));
-                                //                            startActivity(intent);
-                                //                        }
-                                //                    })
-                                //                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
-                                //        }
-                                //    }.start();
-                                //    Log.i("TAG", "Drawing saved to the gallery!");
-                                // } else {
-                                //    Log.i("TAG", "Oops! Image could not be saved.");
-                                // }
-
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
+                                startActivity(browserIntent);
                             }
                         })
                         .show();
@@ -422,6 +422,74 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         } catch (WriterException e) {
             e.printStackTrace();
         }
+    }
+
+    private void cancelPermohonan(String id){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cancel_izin";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                actionPart.setVisibility(View.GONE);
+                                pDialog.setTitleText("Permohonan Berhasil Dibatalkan")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                if(kode.equals("form")){
+                                                    Intent intent = new Intent(DetailPermohonanIzinActivity.this, UserActivity.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                } else {
+                                                    onBackPressed();
+                                                }
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            } else {
+                                actionPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Permohonan Gagal Dibatalkan")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id", id);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
     }
 
     private void checkSignature(){
@@ -889,6 +957,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
                                 String status_approve = detail.getString("status_approve");
                                 if(status_approve.equals("1")){
+                                    cancelPermohonanBTN.setVisibility(View.GONE);
                                     actionPart.setVisibility(View.GONE);
                                     rejectedMark.setVisibility(View.GONE);
                                     supervisorTV.setVisibility(View.VISIBLE);
@@ -912,6 +981,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
                                     String status_approve_hrd = detail.getString("status_approve_hrd");
                                     if (status_approve_hrd.equals("1")){
+                                        cancelPermohonanBTN.setVisibility(View.GONE);
                                         if(nik_approver_hrd.equals("null") || nik_approver_hrd.equals("") || nik_approver_hrd.equals(null)){
                                             String updated_at = detail.getString("updated_at");
                                             tanggalApproveHRDTV.setText(updated_at.substring(8,10)+"/"+updated_at.substring(5,7)+"/"+updated_at.substring(2,4));
@@ -940,7 +1010,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                                 namaPendek = namaPendek.substring(0, namaPendek.indexOf(" "));
                                                 approverHrdTV.setText(namaPendek.toUpperCase());
                                             }
-
                                         }
                                     } else if (status_approve_hrd.equals("2")){
                                         acceptedMark.setVisibility(View.GONE);
@@ -958,12 +1027,20 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         acceptedMark.setVisibility(View.GONE);
                                         rejectedMark.setVisibility(View.GONE);
                                         appoveStatusHRD.setVisibility(View.GONE);
+
+                                        if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                                            cancelPermohonanBTN.setVisibility(View.VISIBLE);
+                                        } else {
+                                            cancelPermohonanBTN.setVisibility(View.GONE);
+                                        }
+
                                     }
 
                                 } else if(status_approve.equals("2")) {
                                     actionPart.setVisibility(View.GONE);
                                     rejectedMark.setVisibility(View.VISIBLE);
                                     supervisorTV.setVisibility(View.VISIBLE);
+                                    cancelPermohonanBTN.setVisibility(View.GONE);
 
                                     String approver = detail.getString("approver");
 
@@ -977,6 +1054,18 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                     actionPart.setVisibility(View.VISIBLE);
                                     rejectedMark.setVisibility(View.GONE);
                                     supervisorTV.setVisibility(View.GONE);
+
+                                    if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                                        String status_approve_hrd = detail.getString("status_approve_hrd");
+                                        if(status_approve_hrd.equals("0")){
+                                            cancelPermohonanBTN.setVisibility(View.VISIBLE);
+                                        } else {
+                                            cancelPermohonanBTN.setVisibility(View.GONE);
+                                        }
+                                    } else {
+                                        cancelPermohonanBTN.setVisibility(View.VISIBLE);
+                                    }
+
                                 }
 
                                 if (kode.equals("form")){
@@ -996,6 +1085,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                             actionPart.setVisibility(View.GONE);
                                         }
                                     } else {
+                                        cancelPermohonanBTN.setVisibility(View.GONE);
                                         if(status_approve.equals("1")){
                                             actionPart.setVisibility(View.GONE);
                                         } else if (status_approve.equals("2")){

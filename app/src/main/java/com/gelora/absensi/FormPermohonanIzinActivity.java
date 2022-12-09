@@ -71,7 +71,7 @@ import java.util.UUID;
 public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadFilePart, markStatusSakit, markStatusIzin, izinBTN, sakitBTN, tipeChoiceBTN, viewBTN, goToHome, goToDasboard, formPart, successPart, submitBTN, backBTN, homeBTN, dateMulaiPicker, dateAkhirPicker;
-    TextView labelUnggahTV, statusUploadTV, tipeChoiceTV, mulaiDateTV, akhirDateTV, namaTV, nikTV, detailTV;
+    TextView messageSuccessTV, labelUnggahTV, statusUploadTV, tipeChoiceTV, mulaiDateTV, akhirDateTV, namaTV, nikTV, detailTV;
     String permohonanTerkirim = "0", uploadStatus = "", idIzin = "", tipeIzin = "", dateChoiceMulai = "", dateChoiceAkhir = "", alasanIzin = "";
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -84,6 +84,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
     int REQUEST_IMAGE = 100;
     private Uri uri;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,10 +119,19 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         statusUploadTV = findViewById(R.id.status_upload_tv);
         labelUnggahTV = findViewById(R.id.label_unggah);
         viewUploadBTN = findViewById(R.id.view_btn);
+        messageSuccessTV = findViewById(R.id.message_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
                 .into(successGif);
+
+        if(sharedPrefManager.getSpIdJabatan().equals("10")){
+            messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada bagian HRD untuk persetujuan.");
+        } else if(sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
+            messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada Kepala Departemen untuk persetujuan.");
+        } else {
+            messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada Supervisor untuk persetujuan.");
+        }
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -706,6 +706,26 @@
 
                             <LinearLayout
                                 android:visibility="gone"
+                                android:id="@+id/cancel_permohonan_btn"
+                                android:layout_marginBottom="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="38dp"
+                                android:background="@drawable/shape_btn_rejected"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:drawablePadding="7dp"
+                                    android:textColor="@color/white"
+                                    android:text="Batalkan Permohonan"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:visibility="gone"
                                 android:id="@+id/action_part"
                                 android:layout_marginTop="10dp"
                                 android:orientation="horizontal"
