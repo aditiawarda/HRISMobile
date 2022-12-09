@@ -1055,6 +1055,44 @@
 
                             <LinearLayout
                                 android:visibility="gone"
+                                android:id="@+id/wakili_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
+                                android:background="@drawable/shape_btn"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"
+                                    android:text="Wakili Persetujuan Ka.Dept"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/batal_wakili_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp"
+                                android:background="@drawable/shape_btn_batal"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"
+                                    android:text="Batal"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:visibility="gone"
                                 android:id="@+id/action_part"
                                 android:layout_marginTop="10dp"
                                 android:orientation="vertical"
@@ -1084,7 +1122,7 @@
                                     android:background="@drawable/shape_input_form_2"
                                     android:drawablePadding="10dp"
                                     android:textColor="#595959"
-                                    android:hint="Ketik catatan bila diperluan..."
+                                    android:hint="Ketik catatan bila diperlukan..."
                                     android:textSize="14dp"
                                     android:textColorHint="#A1A1A1"
                                     android:textColorHighlight="#FFE1BC"/>

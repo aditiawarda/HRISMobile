@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -46,7 +47,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
     TextView lampiranTV, noted2TV, noted1TV, tglApprover1, tglApprover2, tglApproverHRD, namaApprover1, namaApproverHRD, namaApprover2, namaKaryawanTV, namaPemohonTV, jabatanTV, bagianTV, mulaiBergabungTV, nikTV, statusKaryawanTV, tipeCutiTV, alamatTV, noHpTV, karyawanPenggantiTV, sisaCutiTV, alasanCutiTV, tahunCutiAmbilTV, totalCutiAmbilTV, tahunCutiTV, tglMulaiCutiTV, tglSelesaiCutiTV, totalCutiTV, tglPengajuanTV;
     String nikApprover = "", nikPemohon = "", statusKondisi = "0", idIzinRecord, kode;
-    LinearLayout downloadBTN, viewLampiranBTN, backBTN, homeBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
+    LinearLayout batalWakiliBTN, wakiliBTN, downloadBTN, viewLampiranBTN, backBTN, homeBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdApprover1, ttdApprover2, ttdApproverHRD;
     KAlertDialog pDialog;
@@ -108,6 +109,8 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
         lampiranTV = findViewById(R.id.lampiran_tv);
         viewLampiranBTN = findViewById(R.id.view_lampiran_btn);
         downloadBTN = findViewById(R.id.download_btn);
+        wakiliBTN = findViewById(R.id.wakili_btn);
+        batalWakiliBTN = findViewById(R.id.batal_wakili_btn);
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
@@ -168,6 +171,24 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                         })
                         .show();
 
+            }
+        });
+
+        wakiliBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionPart.setVisibility(View.VISIBLE);
+                batalWakiliBTN.setVisibility(View.VISIBLE);
+                wakiliBTN.setVisibility(View.GONE);
+            }
+        });
+
+        batalWakiliBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionPart.setVisibility(View.GONE);
+                batalWakiliBTN.setVisibility(View.GONE);
+                wakiliBTN.setVisibility(View.VISIBLE);
             }
         });
 
@@ -948,21 +969,31 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                                                     } else {
                                                         actionPart.setVisibility(View.GONE);
+                                                        wakiliBTN.setVisibility(View.GONE);
+                                                        batalWakiliBTN.setVisibility(View.GONE);
                                                     }
 
                                                 } else if(status_approve_kadept.equals("2")){
                                                     actionPart.setVisibility(View.GONE);
                                                     rejectedMark.setVisibility(View.VISIBLE);
+                                                    wakiliBTN.setVisibility(View.GONE);
+                                                    batalWakiliBTN.setVisibility(View.GONE);
 
                                                     String approver_kadept = detail.getString("approver_kadept");
                                                     namaApprover2.setText(approver_kadept);
 
                                                 } else {
                                                     if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) {
-                                                        actionPart.setVisibility(View.VISIBLE);
+                                                        if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                                                            actionPart.setVisibility(View.VISIBLE);
+                                                        } else if(sharedPrefManager.getSpIdJabatan().equals("3")){
+                                                            actionPart.setVisibility(View.GONE);
+                                                            wakiliBTN.setVisibility(View.VISIBLE);
+                                                        }
                                                     } else {
                                                         if(sharedPrefManager.getSpNik().equals("0056010793")){
-                                                            actionPart.setVisibility(View.VISIBLE);
+                                                            actionPart.setVisibility(View.GONE);
+                                                            wakiliBTN.setVisibility(View.VISIBLE);
                                                         } else {
                                                             actionPart.setVisibility(View.GONE);
                                                         }
@@ -1054,21 +1085,31 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                                                 } else {
                                                     actionPart.setVisibility(View.GONE);
+                                                    wakiliBTN.setVisibility(View.GONE);
+                                                    batalWakiliBTN.setVisibility(View.GONE);
                                                 }
 
                                             } else if(status_approve_kadept.equals("2")){
                                                 actionPart.setVisibility(View.GONE);
                                                 rejectedMark.setVisibility(View.VISIBLE);
+                                                wakiliBTN.setVisibility(View.GONE);
+                                                batalWakiliBTN.setVisibility(View.GONE);
 
                                                 String approver_kadept = detail.getString("approver_kadept");
                                                 namaApprover2.setText(approver_kadept);
 
                                             } else {
                                                 if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) {
-                                                    actionPart.setVisibility(View.VISIBLE);
+                                                    if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                                                        actionPart.setVisibility(View.VISIBLE);
+                                                    } else if(sharedPrefManager.getSpIdJabatan().equals("3")){
+                                                        actionPart.setVisibility(View.GONE);
+                                                        wakiliBTN.setVisibility(View.VISIBLE);
+                                                    }
                                                 } else {
                                                     if(sharedPrefManager.getSpNik().equals("0056010793")){
-                                                        actionPart.setVisibility(View.VISIBLE);
+                                                        actionPart.setVisibility(View.GONE);
+                                                        wakiliBTN.setVisibility(View.VISIBLE);
                                                     } else {
                                                         actionPart.setVisibility(View.GONE);
                                                     }

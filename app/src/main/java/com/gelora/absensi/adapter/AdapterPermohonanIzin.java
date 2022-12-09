@@ -25,11 +25,16 @@ import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataHadir;
 import com.gelora.absensi.model.ListPermohonanIzin;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohonanIzin.MyViewHolder> {
 
@@ -71,6 +76,16 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
             }
         } else if(tipe_pengajuan.equals("2")) {
             desc_izin = "Permohonan Cuti";
+        }
+
+        if(listPermohonanIzin.getAvatar()!=null){
+            Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/"+listPermohonanIzin.getAvatar()).networkPolicy(NetworkPolicy.NO_CACHE)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .into(myViewHolder.profileImage);
+        } else {
+            Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/default_profile.jpg").networkPolicy(NetworkPolicy.NO_CACHE)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .into(myViewHolder.profileImage);
         }
 
         myViewHolder.namaKaryawanTV.setText(listPermohonanIzin.getNmKaryawan().toUpperCase());
@@ -272,6 +287,7 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView namaKaryawanTV, nikKaryawanTV, deskrisiPermohonan, tanggalKirimPermohonan, lineLimit;
         LinearLayout parentPart;
+        CircleImageView profileImage;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             deskrisiPermohonan = itemView.findViewById(R.id.deskrisi_permohonan);
@@ -280,6 +296,7 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
             namaKaryawanTV = itemView.findViewById(R.id.nama_karyawan_tv);
             lineLimit = itemView.findViewById(R.id.line_limit);
             parentPart = itemView.findViewById(R.id.parent_part);
+            profileImage = itemView.findViewById(R.id.profile_image);
         }
     }
 

@@ -24,6 +24,7 @@ public class ListPermohonanIzin {
     private String status_read;
     private String tipe_pengajuan;
     private String kdDept;
+    private String avatar;
 
     public String getId() {
         return id;
@@ -193,4 +194,11 @@ public class ListPermohonanIzin {
         this.kdDept = kdDept;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 }
