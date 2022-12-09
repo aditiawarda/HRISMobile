@@ -1281,6 +1281,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                             String status = data.getString("status");
 
                             if(status.equals("Success")){
+                                catatanAtasanTV.setText("");
                                 getDataDetailPermohonan();
                                 actionPart.setVisibility(View.GONE);
                                 pDialog.setTitleText("Berhasil Disetujui")
@@ -1353,6 +1354,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                             String status = data.getString("status");
 
                             if(status.equals("Success")){
+                                catatanAtasanTV.setText("");
                                 getDataDetailPermohonan();
                                 actionPart.setVisibility(View.GONE);
                                 pDialog.setTitleText("Berhasil Ditolak")
