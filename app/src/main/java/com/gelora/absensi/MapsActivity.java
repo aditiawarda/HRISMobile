@@ -4820,7 +4820,67 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         protected void onReceiveResult(int resultCode, Bundle resultData) {
             super.onReceiveResult(resultCode, resultData);
             if (resultCode == Constants.SUCCESS_RESULT) {
-                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
+                if(resultData.getString(Constants.LOCAITY)!=null){
+                    if(resultData.getString(Constants.DISTRICT)!=null){
+                        if(resultData.getString(Constants.STATE)!=null){
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE));
+                            }
+                        } else {
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT));
+                            }
+                        }
+                    } else {
+                        if(resultData.getString(Constants.STATE)!=null){
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.STATE));
+                            }
+                        } else {
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY));
+                            }
+                        }
+                    }
+                } else {
+                    if(resultData.getString(Constants.DISTRICT)!=null){
+                        if(resultData.getString(Constants.STATE)!=null){
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE));
+                            }
+                        } else {
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.DISTRICT));
+                            }
+                        }
+                    } else {
+                        if(resultData.getString(Constants.STATE)!=null){
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.STATE));
+                            }
+                        } else {
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText("Lokasi tidak ditemukan");
+                            }
+                        }
+                    }
+                }
             } else {
                 currentAddress.setText(resultData.getString(Constants.NO_ADDRESS));
             }

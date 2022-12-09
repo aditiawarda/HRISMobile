@@ -1763,7 +1763,6 @@ public class UserActivity extends AppCompatActivity {
                             int latestlocIndex = locationResult.getLocations().size() - 1;
                             double lati = locationResult.getLocations().get(latestlocIndex).getLatitude();
                             double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
-                            //Toast.makeText(UserActivity.this, String.format("Latitude : %s\n Longitude: %s", lati, longi), Toast.LENGTH_SHORT).show();
 
                             dateLive();
                             timeLive();
@@ -1823,7 +1822,67 @@ public class UserActivity extends AppCompatActivity {
         protected void onReceiveResult(int resultCode, Bundle resultData) {
             super.onReceiveResult(resultCode, resultData);
             if (resultCode == Constants.SUCCESS_RESULT) {
-                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
+                if(resultData.getString(Constants.LOCAITY)!=null){
+                    if(resultData.getString(Constants.DISTRICT)!=null){
+                        if(resultData.getString(Constants.STATE)!=null){
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE));
+                            }
+                        } else {
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT));
+                            }
+                        }
+                    } else {
+                        if(resultData.getString(Constants.STATE)!=null){
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.STATE));
+                            }
+                        } else {
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.LOCAITY));
+                            }
+                        }
+                    }
+                } else {
+                    if(resultData.getString(Constants.DISTRICT)!=null){
+                        if(resultData.getString(Constants.STATE)!=null){
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE));
+                            }
+                        } else {
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.DISTRICT));
+                            }
+                        }
+                    } else {
+                        if(resultData.getString(Constants.STATE)!=null){
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText(resultData.getString(Constants.STATE));
+                            }
+                        } else {
+                            if(resultData.getString(Constants.POST_CODE)!=null){
+                                currentAddress.setText(resultData.getString(Constants.POST_CODE));
+                            } else {
+                                currentAddress.setText("Lokasi tidak ditemukan");
+                            }
+                        }
+                    }
+                }
             } else {
                 currentAddress.setText(resultData.getString(Constants.NO_ADDRESS));
             }
