@@ -5251,25 +5251,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             if (message.equals("Device ID tidak sesuai")){
                                 warningPerangkat = "aktif";
 
-                                pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
-                                        .setTitleText("Perhatian")
-                                        .setContentText("PERANGKAT ANDA TELAH DIGANTI, HARAP GUNAKAN PERANGKAT YANG TERAKHIR DIDAFTARKAN!")
-                                        .setConfirmText("KELUAR");
-                                pDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                    @Override
-                                    public void onClick(KAlertDialog sDialog) {
-                                        sDialog.dismiss();
-                                        logoutFunction();
-                                    }
-                                });
-                                pDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                    @Override
-                                    public void onDismiss(DialogInterface dialog) {
-                                        dialog.dismiss();
-                                        logoutFunction();
-                                    }
-                                });
-                                pDialog.show();
+                                if(pDialog==null){
+                                    pDialog = new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
+                                            .setTitleText("Perhatian")
+                                            .setContentText("PERANGKAT ANDA TELAH DIGANTI, HARAP GUNAKAN PERANGKAT YANG TERAKHIR DIDAFTARKAN!")
+                                            .setConfirmText("KELUAR");
+                                    pDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                            logoutFunction();
+                                        }
+                                    });
+                                    pDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                        @Override
+                                        public void onDismiss(DialogInterface dialog) {
+                                            dialog.dismiss();
+                                            logoutFunction();
+                                        }
+                                    });
+                                    pDialog.show();
+                                }
 
                             }
 
