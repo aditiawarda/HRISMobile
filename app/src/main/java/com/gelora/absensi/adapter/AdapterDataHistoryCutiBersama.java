@@ -15,16 +15,16 @@ import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataHistoryCuti;
-import com.gelora.absensi.model.DataHistoryIzin;
+import com.gelora.absensi.model.DataHistoryCutiBersama;
 
-public class AdapterDataHistoryIzin extends RecyclerView.Adapter<AdapterDataHistoryIzin.MyViewHolder> {
+public class AdapterDataHistoryCutiBersama extends RecyclerView.Adapter<AdapterDataHistoryCutiBersama.MyViewHolder> {
 
-    private DataHistoryIzin[] data;
+    private DataHistoryCutiBersama[] data;
     private Context mContext;
     SharedPrefAbsen sharedPrefAbsen;
     SharedPrefManager sharedPrefManager;
 
-    public AdapterDataHistoryIzin(DataHistoryIzin[] data, HistoryCutiIzinActivity context) {
+    public AdapterDataHistoryCutiBersama(DataHistoryCutiBersama[] data, HistoryCutiIzinActivity context) {
         this.data = data;
         this.mContext = context;
     }
@@ -41,33 +41,19 @@ public class AdapterDataHistoryIzin extends RecyclerView.Adapter<AdapterDataHist
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
-        final DataHistoryIzin dataHistoryIzin = data[i];
+        final DataHistoryCutiBersama dataHistoryCutiBersama = data[i];
 
-        String startDate = dataHistoryIzin.getTanggal_mulai();
-        String finishDate = dataHistoryIzin.getTanggal_akhir();
-        String tipePengajuan = dataHistoryIzin.getTipe_pengajuan();
-
-        myViewHolder.deskripsiHistoryTV.setText(dataHistoryIzin.getDeskripsi_izin());
-        myViewHolder.dateRangeTV.setText(startDate.substring(8,10)+"/"+startDate.substring(5,7)+"/"+startDate.substring(0,4)+"  s.d. "+finishDate.substring(8,10)+"/"+finishDate.substring(5,7)+"/"+finishDate.substring(0,4));
-
-        if(dataHistoryIzin.getKeterangan().equals("-") || dataHistoryIzin.getKeterangan().equals(".") || dataHistoryIzin.getKeterangan().equals(" ") || dataHistoryIzin.getKeterangan()==null){
-            myViewHolder.alasanAtauKeteranganTV.setVisibility(View.GONE);
-        } else {
-            myViewHolder.alasanAtauKeteranganTV.setVisibility(View.VISIBLE);
-            myViewHolder.alasanAtauKeteranganTV.setText(dataHistoryIzin.getKeterangan());
+        String date = dataHistoryCutiBersama.getTanggal();
+        myViewHolder.deskripsiHistoryTV.setText("Cuti Bersama");
+        if(date==null){
+            myViewHolder.dateRangeTV.setVisibility(View.GONE);
+        }else{
+            myViewHolder.dateRangeTV.setVisibility(View.VISIBLE);
+            myViewHolder.dateRangeTV.setText(date.substring(8,10)+"/"+date.substring(5,7)+"/"+date.substring(0,4));
         }
-
-        if(tipePengajuan.equals("1")){
-            myViewHolder.notedTV.setText("*)  Menggunakan Form Izin Digital  ");
-        } else if(tipePengajuan.equals("0")) {
-            myViewHolder.notedTV.setText("*)  Menggunakan Form Izin Manual  ");
-        }
-
-        if(dataHistoryIzin.getTipe_izin().equals("5")){
-            myViewHolder.notedTV2.setVisibility(View.GONE);
-        } else if(tipePengajuan.equals("4")) {
-            myViewHolder.notedTV2.setVisibility(View.VISIBLE);
-        }
+        myViewHolder.alasanAtauKeteranganTV.setText(dataHistoryCutiBersama.getNama());
+        myViewHolder.notedTV.setText("*)  Memotong hak cuti tahunan  ");
+        myViewHolder.notedTV2.setVisibility(View.GONE);
 
     }
 

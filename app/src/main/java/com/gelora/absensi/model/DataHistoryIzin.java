@@ -11,6 +11,7 @@ public class DataHistoryIzin {
     private String tanggal_mulai;
     private String tanggal_akhir;
     private String tipe_pengajuan;
+    private String keterangan;
 
     public String getId() {
         return id;
@@ -74,6 +75,14 @@ public class DataHistoryIzin {
 
     public void setTipe_pengajuan(String tipe_pengajuan) {
         this.tipe_pengajuan = tipe_pengajuan;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setK(String keterangan) {
+        this.keterangan = keterangan;
     }
 
 }

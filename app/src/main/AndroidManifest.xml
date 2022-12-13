@@ -34,6 +34,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".EditPermohonanCutiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditPermohonanIzinActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".DetailFaqActivity"
             android:screenOrientation="portrait" />
         <activity

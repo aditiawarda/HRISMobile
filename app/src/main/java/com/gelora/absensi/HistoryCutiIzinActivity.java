@@ -26,10 +26,12 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterDataAlpa;
 import com.gelora.absensi.adapter.AdapterDataHistoryCuti;
+import com.gelora.absensi.adapter.AdapterDataHistoryCutiBersama;
 import com.gelora.absensi.adapter.AdapterDataHistoryIzin;
 import com.gelora.absensi.adapter.AdapterDataIzin;
 import com.gelora.absensi.model.DataAlpa;
 import com.gelora.absensi.model.DataHistoryCuti;
+import com.gelora.absensi.model.DataHistoryCutiBersama;
 import com.gelora.absensi.model.DataHistoryIzin;
 import com.gelora.absensi.model.DataIzin;
 import com.google.gson.Gson;
@@ -44,17 +46,21 @@ import java.util.Map;
 
 public class HistoryCutiIzinActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, homeBTN, loadingDataPartCuti, loadingDataPartIzin, noDataPartCuti, noDataPartIzin, dataDiambilPart, dataSisaPart;
-    TextView hakCutiTV, totalDataCuti, totalDataIzin, nameUserTV, periodeData, dataDiambilTV, dataSisaTV;
+    LinearLayout backBTN, homeBTN, loadingDataPartCutiBersama, loadingDataPartCuti, loadingDataPartIzin, noDataPartCutiBersama, noDataPartCuti, noDataPartIzin, dataDiambilPart, dataSisaPart;
+    TextView hakCutiTV, totalDataCutiBersama, totalDataCuti, totalDataIzin, nameUserTV, periodeData, dataDiambilTV, dataSisaTV;
     RelativeLayout periodeDataPart;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
-    ImageView diambilLoading, sisaLoading, periodeLoading, loadingDataCuti, loadingDataIzin;
+    ImageView diambilLoading, sisaLoading, periodeLoading, loadingDataCutiBersama, loadingDataCuti, loadingDataIzin;
     View rootview;
 
     private RecyclerView dataHistoryCutiRV;
     private DataHistoryCuti[] dataHistoryCutis;
     private AdapterDataHistoryCuti adapterDataHistoryCuti;
+
+    private RecyclerView dataHistoryCutiBersamaRV;
+    private DataHistoryCutiBersama[] dataHistoryCutiBersamas;
+    private AdapterDataHistoryCutiBersama adapterDataHistoryCutiBersama;
 
     private RecyclerView dataHistoryIzinRV;
     private DataHistoryIzin[] dataHistoryIzins;
@@ -75,10 +81,13 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         sisaLoading = findViewById(R.id.diambil_loading);
         periodeLoading = findViewById(R.id.periode_loading);
         loadingDataCuti = findViewById(R.id.loading_data_cuti);
+        loadingDataCutiBersama = findViewById(R.id.loading_data_cuti_bersama);
         loadingDataIzin = findViewById(R.id.loading_data_izin);
         loadingDataPartCuti = findViewById(R.id.loading_data_part_cuti);
+        loadingDataPartCutiBersama = findViewById(R.id.loading_data_part_cuti_bersama);
         loadingDataPartIzin = findViewById(R.id.loading_data_part_izin);
         noDataPartCuti = findViewById(R.id.no_data_part_cuti);
+        noDataPartCutiBersama = findViewById(R.id.no_data_part_cuti_bersama);
         noDataPartIzin = findViewById(R.id.no_data_part_izin);
         periodeData = findViewById(R.id.periode_data);
         dataDiambilTV = findViewById(R.id.data_diambil_tv);
@@ -86,12 +95,14 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         dataDiambilPart = findViewById(R.id.data_diambil_part);
         dataSisaPart = findViewById(R.id.data_sisa_part);
         totalDataCuti = findViewById(R.id.total_data_cuti);
+        totalDataCutiBersama = findViewById(R.id.total_data_cuti_bersama);
         totalDataIzin = findViewById(R.id.total_data_izin);
         periodeDataPart = findViewById(R.id.periode_data_part);
         hakCutiTV = findViewById(R.id.hak_cuti_tv);
 
         dataHistoryCutiRV = findViewById(R.id.data_cuti_rv);
         dataHistoryIzinRV = findViewById(R.id.data_izin_rv);
+        dataHistoryCutiBersamaRV = findViewById(R.id.data_cuti_bersama_rv);
 
         dataHistoryCutiRV.setLayoutManager(new LinearLayoutManager(this));
         dataHistoryCutiRV.setHasFixedSize(true);
@@ -102,6 +113,11 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         dataHistoryIzinRV.setHasFixedSize(true);
         dataHistoryIzinRV.setNestedScrollingEnabled(false);
         dataHistoryIzinRV.setItemAnimator(new DefaultItemAnimator());
+
+        dataHistoryCutiBersamaRV.setLayoutManager(new LinearLayoutManager(this));
+        dataHistoryCutiBersamaRV.setHasFixedSize(true);
+        dataHistoryCutiBersamaRV.setNestedScrollingEnabled(false);
+        dataHistoryCutiBersamaRV.setItemAnimator(new DefaultItemAnimator());
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
@@ -122,6 +138,11 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading)
                 .into(loadingDataCuti);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading)
+                .into(loadingDataCutiBersama);
+
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -144,6 +165,10 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                 noDataPartIzin.setVisibility(View.GONE);
                 loadingDataPartIzin.setVisibility(View.VISIBLE);
                 dataHistoryIzinRV.setVisibility(View.GONE);
+
+                noDataPartCutiBersama.setVisibility(View.GONE);
+                loadingDataPartCutiBersama.setVisibility(View.VISIBLE);
+                dataHistoryCutiBersamaRV.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -198,6 +223,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                                 String tahun = data.getString("tahun");
                                 String jumlah_cuti = data.getString("jumlah_cuti");
                                 String jumlah_izin = data.getString("jumlah_izin");
+                                String jumlah_cuti_bersama = data.getString("jumlah_cuti_bersama");
 
                                 hakCutiTV.setText(hak_cuti_tahunan);
                                 periodeData.setText(periode_mulai.substring(8,10)+"/"+periode_mulai.substring(5,7)+"/"+periode_mulai.substring(0,4)+"  s.d. "+periode_akhir.substring(8,10)+"/"+periode_akhir.substring(5,7)+"/"+periode_akhir.substring(0,4));
@@ -212,6 +238,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                                 dataSisaPart.setVisibility(View.VISIBLE);
 
                                 totalDataCuti.setText(jumlah_cuti);
+                                totalDataCutiBersama.setText(jumlah_cuti_bersama);
                                 totalDataIzin.setText(jumlah_izin);
 
                                 if(jumlah_cuti.equals("0")){
@@ -250,6 +277,25 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                                     dataHistoryIzins = gson.fromJson(history_izin_data, DataHistoryIzin[].class);
                                     adapterDataHistoryIzin = new AdapterDataHistoryIzin(dataHistoryIzins,HistoryCutiIzinActivity.this);
                                     dataHistoryIzinRV.setAdapter(adapterDataHistoryIzin);
+                                }
+
+                                if(jumlah_cuti_bersama.equals("0")){
+                                    noDataPartCutiBersama.setVisibility(View.VISIBLE);
+                                    loadingDataPartCutiBersama.setVisibility(View.GONE);
+                                    dataHistoryCutiBersamaRV.setVisibility(View.GONE);
+                                } else {
+                                    String history_cuti_bersama_data = data.getString("history_cuti_bersama_data");
+
+                                    noDataPartCutiBersama.setVisibility(View.GONE);
+                                    loadingDataPartCutiBersama.setVisibility(View.GONE);
+                                    dataHistoryCutiBersamaRV.setVisibility(View.VISIBLE);
+
+                                    GsonBuilder builder =new GsonBuilder();
+                                    Gson gson = builder.create();
+
+                                    dataHistoryCutiBersamas = gson.fromJson(history_cuti_bersama_data, DataHistoryCutiBersama[].class);
+                                    adapterDataHistoryCutiBersama = new AdapterDataHistoryCutiBersama(dataHistoryCutiBersamas,HistoryCutiIzinActivity.this);
+                                    dataHistoryCutiBersamaRV.setAdapter(adapterDataHistoryCutiBersama);
                                 }
 
                             }

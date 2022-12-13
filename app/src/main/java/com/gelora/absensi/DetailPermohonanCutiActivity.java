@@ -47,7 +47,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
     TextView lampiranTV, noted2TV, noted1TV, tglApprover1, tglApprover2, tglApproverHRD, namaApprover1, namaApproverHRD, namaApprover2, namaKaryawanTV, namaPemohonTV, jabatanTV, bagianTV, mulaiBergabungTV, nikTV, statusKaryawanTV, tipeCutiTV, alamatTV, noHpTV, karyawanPenggantiTV, sisaCutiTV, alasanCutiTV, tahunCutiAmbilTV, totalCutiAmbilTV, tahunCutiTV, tglMulaiCutiTV, tglSelesaiCutiTV, totalCutiTV, tglPengajuanTV;
     String nikApprover = "", nikPemohon = "", statusKondisi = "0", idIzinRecord, kode;
-    LinearLayout cancelPermohonanBTN, batalWakiliBTN, wakiliBTN, downloadBTN, viewLampiranBTN, backBTN, homeBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
+    LinearLayout editPermohonanBTN, cancelPermohonanBTN, batalWakiliBTN, wakiliBTN, downloadBTN, viewLampiranBTN, backBTN, homeBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdApprover1, ttdApprover2, ttdApproverHRD;
     KAlertDialog pDialog;
@@ -112,6 +112,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
         wakiliBTN = findViewById(R.id.wakili_btn);
         batalWakiliBTN = findViewById(R.id.batal_wakili_btn);
         cancelPermohonanBTN = findViewById(R.id.cancel_permohonan_btn);
+        editPermohonanBTN = findViewById(R.id.edit_permohonan_btn);
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
@@ -172,6 +173,34 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                         })
                         .show();
 
+            }
+        });
+
+        editPermohonanBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailPermohonanCutiActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Yakin untuk merubah data permohonan cuti?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                Intent intent = new Intent(DetailPermohonanCutiActivity.this, EditPermohonanCutiActivity.class);
+                                intent.putExtra("id_record", idIzinRecord);
+                                startActivity(intent);
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -573,6 +602,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 String alasan_cuti = detail.getString("alasan_cuti");
                                 String tipe_cuti = detail.getString("tipe_cuti");
                                 String pengganti = detail.getString("pengganti");
+                                String karyawan_pengganti = detail.getString("karyawan_pengganti");
                                 String alamat_selama_cuti = detail.getString("alamat_selama_cuti");
                                 String no_hp = detail.getString("no_hp");
                                 String tanggal = detail.getString("tanggal");
@@ -704,7 +734,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                                         .into(ttdPemohon);
 
-                                karyawanPengganti(pengganti);
+                                karyawanPenggantiTV.setText(":  "+karyawan_pengganti);
 
                                 if (kode.equals("form")){
                                     if(sharedPrefManager.getSpIdJabatan().equals("10")) {
@@ -751,6 +781,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                         if(status_approve_hrd.equals("1")){
                                             acceptedMark.setVisibility(View.VISIBLE);
                                             cancelPermohonanBTN.setVisibility(View.GONE);
+                                            editPermohonanBTN.setVisibility(View.GONE);
                                             String timestamp_approve_hrd = detail.getString("timestamp_approve_hrd");
                                             String nik_approver_hrd = detail.getString("nik_approver_hrd");
                                             String approver_hrd = detail.getString("approver_hrd");
@@ -774,6 +805,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             actionPart.setVisibility(View.GONE);
                                             rejectedMark.setVisibility(View.VISIBLE);
                                             cancelPermohonanBTN.setVisibility(View.GONE);
+                                            editPermohonanBTN.setVisibility(View.GONE);
 
                                             String approver_hrd = detail.getString("approver_hrd");
                                             namaApproverHRD.setText(approver_hrd);
@@ -781,6 +813,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                         } else {
                                             actionPart.setVisibility(View.GONE);
                                             cancelPermohonanBTN.setVisibility(View.VISIBLE);
+                                            editPermohonanBTN.setVisibility(View.VISIBLE);
                                         }
 
                                     } else if(sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
@@ -807,6 +840,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                                         if(status_approve_kadept.equals("1")) {
                                             cancelPermohonanBTN.setVisibility(View.GONE);
+                                            editPermohonanBTN.setVisibility(View.GONE);
                                             String timestamp_approve_kadept = detail.getString("timestamp_approve_kadept");
                                             String nik_approver_kadept = detail.getString("nik_approver_kadept");
                                             String approver_kadept = detail.getString("approver_kadept");
@@ -862,6 +896,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             actionPart.setVisibility(View.GONE);
                                             rejectedMark.setVisibility(View.VISIBLE);
                                             cancelPermohonanBTN.setVisibility(View.GONE);
+                                            editPermohonanBTN.setVisibility(View.GONE);
 
                                             String approver_kadept = detail.getString("approver_kadept");
                                             namaApprover2.setText(approver_kadept);
@@ -869,11 +904,13 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                         } else {
                                             actionPart.setVisibility(View.GONE);
                                             cancelPermohonanBTN.setVisibility(View.VISIBLE);
+                                            editPermohonanBTN.setVisibility(View.VISIBLE);
                                         }
 
                                     } else {
                                         actionPart.setVisibility(View.GONE);
                                         cancelPermohonanBTN.setVisibility(View.VISIBLE);
+                                        editPermohonanBTN.setVisibility(View.VISIBLE);
                                         // noted
                                     }
                                 }
@@ -924,6 +961,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             if(status_approve_hrd.equals("1")){
                                                 acceptedMark.setVisibility(View.VISIBLE);
                                                 cancelPermohonanBTN.setVisibility(View.GONE);
+                                                editPermohonanBTN.setVisibility(View.GONE);
                                                 String timestamp_approve_hrd = detail.getString("timestamp_approve_hrd");
                                                 String nik_approver_hrd = detail.getString("nik_approver_hrd");
                                                 String approver_hrd = detail.getString("approver_hrd");
@@ -947,6 +985,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 actionPart.setVisibility(View.GONE);
                                                 rejectedMark.setVisibility(View.VISIBLE);
                                                 cancelPermohonanBTN.setVisibility(View.GONE);
+                                                editPermohonanBTN.setVisibility(View.GONE);
 
                                                 String approver_hrd = detail.getString("approver_hrd");
                                                 namaApproverHRD.setText(approver_hrd);
@@ -954,6 +993,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
                                                 cancelPermohonanBTN.setVisibility(View.VISIBLE);
+                                                editPermohonanBTN.setVisibility(View.VISIBLE);
                                             }
 
                                         } else if(sharedPrefManager.getSpIdJabatan().equals("3")|| sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
@@ -980,6 +1020,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                                             if(status_approve_kadept.equals("1")) {
                                                 cancelPermohonanBTN.setVisibility(View.GONE);
+                                                editPermohonanBTN.setVisibility(View.GONE);
                                                 String timestamp_approve_kadept = detail.getString("timestamp_approve_kadept");
                                                 String nik_approver_kadept = detail.getString("nik_approver_kadept");
                                                 String approver_kadept = detail.getString("approver_kadept");
@@ -1002,6 +1043,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 if(status_approve_hrd.equals("1")){
                                                     acceptedMark.setVisibility(View.VISIBLE);
                                                     cancelPermohonanBTN.setVisibility(View.GONE);
+                                                    editPermohonanBTN.setVisibility(View.GONE);
                                                     String timestamp_approve_hrd = detail.getString("timestamp_approve_hrd");
                                                     String nik_approver_hrd = detail.getString("nik_approver_hrd");
                                                     String approver_hrd = detail.getString("approver_hrd");
@@ -1025,6 +1067,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     actionPart.setVisibility(View.GONE);
                                                     rejectedMark.setVisibility(View.VISIBLE);
                                                     cancelPermohonanBTN.setVisibility(View.GONE);
+                                                    editPermohonanBTN.setVisibility(View.GONE);
 
                                                     String approver_hrd = detail.getString("approver_hrd");
                                                     namaApproverHRD.setText(approver_hrd);
@@ -1032,6 +1075,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 } else {
                                                     actionPart.setVisibility(View.GONE);
                                                     cancelPermohonanBTN.setVisibility(View.GONE);
+                                                    editPermohonanBTN.setVisibility(View.GONE);
                                                 }
 
                                             } else if(status_approve_kadept.equals("2")){
@@ -1044,12 +1088,14 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
                                                 cancelPermohonanBTN.setVisibility(View.VISIBLE);
+                                                editPermohonanBTN.setVisibility(View.VISIBLE);
                                             }
 
                                         } else {
 
                                             if(status_approve.equals("1")){
                                                 cancelPermohonanBTN.setVisibility(View.GONE);
+                                                editPermohonanBTN.setVisibility(View.GONE);
                                                 String nik_approver = detail.getString("nik_approver");
                                                 String approver = detail.getString("approver");
                                                 String signature_approver = detail.getString("signature_approver");
@@ -1073,6 +1119,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                                                 if(status_approve_kadept.equals("1")) {
                                                     cancelPermohonanBTN.setVisibility(View.GONE);
+                                                    editPermohonanBTN.setVisibility(View.GONE);
                                                     String timestamp_approve_kadept = detail.getString("timestamp_approve_kadept");
                                                     String nik_approver_kadept = detail.getString("nik_approver_kadept");
                                                     String approver_kadept = detail.getString("approver_kadept");
@@ -1157,6 +1204,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 actionPart.setVisibility(View.GONE);
                                                 rejectedMark.setVisibility(View.VISIBLE);
                                                 cancelPermohonanBTN.setVisibility(View.GONE);
+                                                editPermohonanBTN.setVisibility(View.GONE);
 
                                                 String approver = detail.getString("approver");
                                                 namaApprover1.setText(approver);
@@ -1164,11 +1212,13 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
                                                 cancelPermohonanBTN.setVisibility(View.VISIBLE);
+                                                editPermohonanBTN.setVisibility(View.VISIBLE);
                                             }
                                         }
 
                                     } else {
                                         cancelPermohonanBTN.setVisibility(View.GONE);
+                                        editPermohonanBTN.setVisibility(View.GONE);
                                         if(status_approve.equals("1")){
                                             String nik_approver = detail.getString("nik_approver");
                                             String approver = detail.getString("approver");
@@ -1305,54 +1355,6 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("id_izin_record", idIzinRecord);
-                return params;
-            }
-        };
-
-        requestQueue.add(postRequest);
-
-    }
-
-    private void karyawanPengganti(String nik) {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/karyawan_pengganti_cuti";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        JSONObject data = null;
-                        try {
-                            Log.d("Success.Response", response);
-                            data = new JSONObject(response);
-                            String status = data.getString("status");
-
-                            if(status.equals("Success")){
-                                String nama = data.getString("nama");
-                                karyawanPenggantiTV.setText(":  "+nama);
-                            } else {
-                                karyawanPenggantiTV.setText(":  Data tidak ditemukan");
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", error.toString());
-                        connectionFailed();
-                    }
-                }
-        ) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("NIK", nik);
                 return params;
             }
         };
@@ -1619,6 +1621,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        getDataDetailPermohonan();
         if(statusKondisi.equals("1")){
             statusKondisi = "0";
             recheckSignature();

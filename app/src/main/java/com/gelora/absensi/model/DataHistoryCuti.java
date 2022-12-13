@@ -11,6 +11,8 @@ public class DataHistoryCuti {
     private String tanggal_mulai;
     private String tanggal_akhir;
     private String tipe_pengajuan;
+    private String alasan_cuti;
+    private String tipe;
 
     public String getId() {
         return id;
@@ -76,4 +78,19 @@ public class DataHistoryCuti {
         this.tipe_pengajuan = tipe_pengajuan;
     }
 
+    public String getAlasan_cuti() {
+        return alasan_cuti;
+    }
+
+    public void setAlasan_cuti(String alasan_cuti) {
+        this.alasan_cuti = alasan_cuti;
+    }
+
+    public String getTipe() {
+        return tipe;
+    }
+
+    public void setTipe(String tipe) {
+        this.tipe = tipe;
+    }
 }

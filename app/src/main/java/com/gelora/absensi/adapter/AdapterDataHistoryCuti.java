@@ -56,10 +56,27 @@ public class AdapterDataHistoryCuti extends RecyclerView.Adapter<AdapterDataHist
         myViewHolder.deskripsiHistoryTV.setText(dataHistoryCuti.getDeskripsi_izin());
         myViewHolder.dateRangeTV.setText(startDate.substring(8,10)+"/"+startDate.substring(5,7)+"/"+startDate.substring(0,4)+"  s.d. "+finishDate.substring(8,10)+"/"+finishDate.substring(5,7)+"/"+finishDate.substring(0,4));
 
+        if(dataHistoryCuti.getAlasan_cuti().equals("-") || dataHistoryCuti.getAlasan_cuti().equals(".") || dataHistoryCuti.getAlasan_cuti().equals(" ") || dataHistoryCuti.getAlasan_cuti()==null){
+            myViewHolder.alasanAtauKeteranganTV.setVisibility(View.GONE);
+        } else {
+            myViewHolder.alasanAtauKeteranganTV.setVisibility(View.VISIBLE);
+            myViewHolder.alasanAtauKeteranganTV.setText(dataHistoryCuti.getAlasan_cuti());
+        }
+
         if(tipePengajuan.equals("2")){
             myViewHolder.notedTV.setText("*)  Menggunakan Form Cuti Digital  ");
         } else if(tipePengajuan.equals("0")) {
             myViewHolder.notedTV.setText("*)  Menggunakan Form Cuti Manual  ");
+        }
+
+        if(dataHistoryCuti.getTipe().equals("2")){
+            if(dataHistoryCuti.getTipe_izin().equals("43")){ // Umroh
+                myViewHolder.notedTV2.setVisibility(View.VISIBLE);
+            } else {
+                myViewHolder.notedTV2.setVisibility(View.GONE);
+            }
+        } else if(dataHistoryCuti.getTipe().equals("1")) {
+            myViewHolder.notedTV2.setVisibility(View.VISIBLE);
         }
 
     }
@@ -70,12 +87,14 @@ public class AdapterDataHistoryCuti extends RecyclerView.Adapter<AdapterDataHist
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView deskripsiHistoryTV, dateRangeTV, notedTV;
+        TextView deskripsiHistoryTV, dateRangeTV, notedTV, notedTV2, alasanAtauKeteranganTV;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             deskripsiHistoryTV = itemView.findViewById(R.id.deskripsi_history_tv);
             dateRangeTV = itemView.findViewById(R.id.date_range_tv);
+            alasanAtauKeteranganTV = itemView.findViewById(R.id.alasan_atau_keterangan_tv);
             notedTV = itemView.findViewById(R.id.noted_tv);
+            notedTV2 = itemView.findViewById(R.id.noted2_tv);
         }
     }
 
