@@ -1059,7 +1059,7 @@
                                 android:layout_height="wrap_content">
 
                                 <LinearLayout
-
+                                    android:visibility="gone"
                                     android:layout_marginRight="5dp"
                                     android:id="@+id/cancel_permohonan_btn"
                                     android:layout_marginBottom="10dp"
@@ -1081,7 +1081,7 @@
                                 </LinearLayout>
 
                                 <LinearLayout
-
+                                    android:visibility="gone"
                                     android:layout_marginLeft="5dp"
                                     android:id="@+id/edit_permohonan_btn"
                                     android:layout_marginBottom="10dp"
