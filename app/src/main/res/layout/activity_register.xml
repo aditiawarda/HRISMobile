@@ -34,7 +34,7 @@
                         android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18dp"
+                        android:textSize="17dp"
                         android:textStyle="bold"
                         android:textColor="@color/colorPrimaryDark"
                         android:text="REGISTRASI AKUN"/>
@@ -350,7 +350,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#CBFFFFFF"
                 android:textSize="13dp"
-                android:text="HRIS Mobile Gelora v 1.4.1"/>
+                android:text="HRIS Mobile Gelora v 1.4.2"/>
 
         </LinearLayout>
 
