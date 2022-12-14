@@ -42,7 +42,7 @@ public class DigitalCardActivity extends AppCompatActivity {
     String namaString, nikString, dataDiri, uriImage;
     View rootview;
     ImageView qrKaryawan;
-    LinearLayout captureBTN, digitalCard;
+    LinearLayout backBTN, captureBTN, digitalCard;
     private int i = -1;
 
     @Override
@@ -56,6 +56,7 @@ public class DigitalCardActivity extends AppCompatActivity {
         qrKaryawan = findViewById(R.id.qr_karyawan);
         captureBTN = findViewById(R.id.capture_btn);
         digitalCard = findViewById(R.id.main_content);
+        backBTN = findViewById(R.id.back_btn);
 
         namaString = getIntent().getExtras().getString("nama");
         nikString = getIntent().getExtras().getString("nik");
@@ -64,6 +65,13 @@ public class DigitalCardActivity extends AppCompatActivity {
         nikKaryawan.setText("NIK. "+nikString);
 
         dataDiri = namaString+" - "+nikString;
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         captureBTN.setOnClickListener(new View.OnClickListener() {
             @Override
