@@ -88,12 +88,12 @@ import java.util.UUID;
 
 public class EditPermohonanCutiActivity extends AppCompatActivity {
 
-    LinearLayout submitBTN, loadingDataPart, noDataPart, startAttantionPart, penggantiSelamaCutiBTN, tipeCutiBTN, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, backBTN, dariTanggalPicker, sampaiTanggalPicker;
+    LinearLayout removeLampiranBTN, submitBTN, loadingDataPart, noDataPart, startAttantionPart, penggantiSelamaCutiBTN, tipeCutiBTN, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, backBTN, dariTanggalPicker, sampaiTanggalPicker;
     TextView labelUnggahTV, statusUploadTV, noHpTV, alamatSelamaCutiTV, penggantiSelamaCutiTV, jenisCutiTV, tipeCutiTV, sampaiTanggalTV, dariTanggalTV, totalCutiDiambilTV, tahunCutiDiambilTV, sisaCutiTV, namaKaryawanTV, jabatanKaryawanTV, detailKaryawanTV, tglMulaiKerjaTV, nikKaryawanTV, statusKaryawanTV;
     EditText alasanTV, keywordKaryawanPengganti;
     ImageView loadingGif;
     BottomSheetLayout bottomSheet;
-    String gantiLampiran = "", permohonanTerkirim = "0", uploadStatus = "", idRecord, dateChoiceMulai = "", dateChoiceAkhir = "", idCuti = "";
+    String removeLampiranStatus = "0", gantiLampiran = "", permohonanTerkirim = "0", uploadStatus = "", idRecord, dateChoiceMulai = "", dateChoiceAkhir = "", idCuti = "";
     String lampiranWajibAtauTidak = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", kategoriCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
@@ -146,6 +146,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         statusUploadTV = findViewById(R.id.status_upload_tv);
         labelUnggahTV = findViewById(R.id.label_unggah);
         viewUploadBTN = findViewById(R.id.view_btn);
+        removeLampiranBTN = findViewById(R.id.remove_lampiran_btn);
         tipeCutiBTN = findViewById(R.id.jenis_cuti);
         submitBTN = findViewById(R.id.submit_btn);
 
@@ -219,6 +220,19 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dexterCall();
+            }
+        });
+
+        removeLampiranBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeLampiranStatus = "1";
+                uploadStatus = "";
+                markUpload.setVisibility(View.GONE);
+                viewUploadBTN.setVisibility(View.GONE);
+                removeLampiranBTN.setVisibility(View.GONE);
+                statusUploadTV.setText("Belum diunggah");
+                labelUnggahTV.setText("Unggah");
             }
         });
 
@@ -2789,6 +2803,16 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                                 alamatSelamaCutiTV.setText(alamat_selama_cuti);
                                 noHpTV.setText(no_hp);
 
+                                if(tipeCuti.equals("1")){
+                                    if(lampiran.equals("null") || lampiran.equals("") || lampiran.equals(null)){
+                                        removeLampiranBTN.setVisibility(View.GONE);
+                                    } else {
+                                        removeLampiranBTN.setVisibility(View.VISIBLE);
+                                    }
+                                } else if(tipeCuti.equals("2")){
+                                    removeLampiranBTN.setVisibility(View.GONE);
+                                }
+
                                 if(!lampiran.equals("null") && !lampiran.equals("") && !lampiran.equals(null)){
                                     idIzin = idRecord;
 
@@ -3870,6 +3894,12 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                 statusLampiran = "0";
             }
 
+            if(tipeCuti.equals("1")){
+                removeLampiranBTN.setVisibility(View.VISIBLE);
+            } else if(tipeCuti.equals("2")){
+                removeLampiranBTN.setVisibility(View.GONE);
+            }
+
             kategoriCuti = idCuti;
             jenisCutiTV.setText(descCuti);
 
@@ -4022,6 +4052,13 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                     labelUnggahTV.setText("Ganti");
                     uploadStatus = "1";
                     gantiLampiran = "1";
+                    removeLampiranStatus = "0";
+
+                    if(tipeCuti.equals("1")){
+                        removeLampiranBTN.setVisibility(View.VISIBLE);
+                    } else if(tipeCuti.equals("2")){
+                        removeLampiranBTN.setVisibility(View.GONE);
+                    }
 
                     viewUploadBTN.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -4145,6 +4182,8 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                 params.put("pengganti", nikKaryawanPengganti);
                 params.put("alamat_selama_cuti", alamatSelamaCutiTV.getText().toString());
                 params.put("no_hp", noHpTV.getText().toString());
+
+                params.put("remove_lampiran", removeLampiranStatus);
 
                 return params;
             }
