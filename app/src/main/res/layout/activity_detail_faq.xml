@@ -14,8 +14,8 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <androidx.core.widget.NestedScrollView
                 android:id="@id/scrollView"
@@ -311,18 +311,11 @@
                             android:layout_marginTop="5dp"
                             android:gravity="center">
 
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="120dp"
-                                android:layout_height="255dp"
-                                app:cardCornerRadius="5dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_img_3" />
-
-                            </androidx.cardview.widget.CardView>
+                            <ImageView
+                                android:layout_width="129dp"
+                                android:layout_height="275dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/faq_img_3" />
 
                         </LinearLayout>
 
@@ -343,18 +336,11 @@
                             android:layout_marginTop="5dp"
                             android:gravity="center">
 
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="120dp"
-                                android:layout_height="255dp"
-                                app:cardCornerRadius="5dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_img_4" />
-
-                            </androidx.cardview.widget.CardView>
+                            <ImageView
+                                android:layout_width="129dp"
+                                android:layout_height="275dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/faq_img_4" />
 
                         </LinearLayout>
 
@@ -430,18 +416,11 @@
                                 android:layout_marginBottom="15dp"
                                 android:gravity="center">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="120dp"
-                                    android:layout_height="255dp"
-                                    app:cardCornerRadius="5dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/faq_izin_1" />
-
-                                </androidx.cardview.widget.CardView>
+                                <ImageView
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_izin_1" />
 
                             </LinearLayout>
 
@@ -478,18 +457,11 @@
                                 android:layout_marginBottom="15dp"
                                 android:gravity="center">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="120dp"
-                                    android:layout_height="255dp"
-                                    app:cardCornerRadius="5dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/faq_izin_2" />
-
-                                </androidx.cardview.widget.CardView>
+                                <ImageView
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_izin_2" />
 
                             </LinearLayout>
 
@@ -526,18 +498,11 @@
                                 android:layout_marginBottom="15dp"
                                 android:gravity="center">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="120dp"
-                                    android:layout_height="255dp"
-                                    app:cardCornerRadius="5dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/faq_izin_3" />
-
-                                </androidx.cardview.widget.CardView>
+                                <ImageView
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_izin_3" />
 
                             </LinearLayout>
 
@@ -574,18 +539,11 @@
                                 android:layout_marginBottom="15dp"
                                 android:gravity="center">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="120dp"
-                                    android:layout_height="255dp"
-                                    app:cardCornerRadius="5dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/faq_izin_4" />
-
-                                </androidx.cardview.widget.CardView>
+                                <ImageView
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_izin_4" />
 
                             </LinearLayout>
 
@@ -652,18 +610,11 @@
                                 android:layout_marginBottom="15dp"
                                 android:gravity="center">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="120dp"
-                                    android:layout_height="255dp"
-                                    app:cardCornerRadius="5dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/faq_izin_1" />
-
-                                </androidx.cardview.widget.CardView>
+                                <ImageView
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_izin_1" />
 
                             </LinearLayout>
 
@@ -700,18 +651,11 @@
                                 android:layout_marginBottom="15dp"
                                 android:gravity="center">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="120dp"
-                                    android:layout_height="255dp"
-                                    app:cardCornerRadius="5dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/faq_cuti_2" />
-
-                                </androidx.cardview.widget.CardView>
+                                <ImageView
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_cuti_2" />
 
                             </LinearLayout>
 
@@ -750,32 +694,19 @@
                                 android:orientation="horizontal"
                                 android:gravity="center">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="120dp"
-                                    android:layout_height="255dp"
-                                    app:cardCornerRadius="5dp">
+                                <ImageView
+                                    android:layout_marginRight="5dp"
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_cuti_4" />
 
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/faq_cuti_4" />
-
-                                </androidx.cardview.widget.CardView>
-
-                                <androidx.cardview.widget.CardView
+                                <ImageView
                                     android:layout_marginLeft="5dp"
-                                    android:layout_width="120dp"
-                                    android:layout_height="255dp"
-                                    app:cardCornerRadius="5dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/faq_cuti_5" />
-
-                                </androidx.cardview.widget.CardView>
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_cuti_5" />
 
                             </LinearLayout>
 
@@ -812,18 +743,12 @@
                                 android:layout_marginBottom="15dp"
                                 android:gravity="center">
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="120dp"
-                                    android:layout_height="255dp"
-                                    app:cardCornerRadius="5dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/faq_cuti_6" />
-
-                                </androidx.cardview.widget.CardView>
+                                <ImageView
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_cuti_6" />
 
                             </LinearLayout>
 

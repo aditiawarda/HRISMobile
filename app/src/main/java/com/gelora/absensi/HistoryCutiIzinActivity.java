@@ -150,6 +150,10 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
 
+                totalDataCuti.setText("");
+                totalDataCutiBersama.setText("");
+                totalDataIzin.setText("");
+
                 periodeLoading.setVisibility(View.VISIBLE);
                 periodeDataPart.setVisibility(View.GONE);
 
