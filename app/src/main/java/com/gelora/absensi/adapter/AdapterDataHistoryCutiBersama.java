@@ -47,12 +47,13 @@ public class AdapterDataHistoryCutiBersama extends RecyclerView.Adapter<AdapterD
         myViewHolder.deskripsiHistoryTV.setText("Cuti Bersama");
         if(date==null){
             myViewHolder.dateRangeTV.setVisibility(View.GONE);
+            myViewHolder.notedTV.setText("*)  Memotong hak cuti tahunan (Otomatis)  ");
         }else{
             myViewHolder.dateRangeTV.setVisibility(View.VISIBLE);
             myViewHolder.dateRangeTV.setText(date.substring(8,10)+"/"+date.substring(5,7)+"/"+date.substring(0,4));
+            myViewHolder.notedTV.setText("*)  Memotong hak cuti tahunan  ");
         }
         myViewHolder.alasanAtauKeteranganTV.setText(dataHistoryCutiBersama.getNama());
-        myViewHolder.notedTV.setText("*)  Memotong hak cuti tahunan  ");
         myViewHolder.notedTV2.setVisibility(View.GONE);
 
     }
