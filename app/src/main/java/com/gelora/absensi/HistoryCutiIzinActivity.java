@@ -46,7 +46,7 @@ import java.util.Map;
 
 public class HistoryCutiIzinActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, homeBTN, loadingDataPartCutiBersama, loadingDataPartCuti, loadingDataPartIzin, noDataPartCutiBersama, noDataPartCuti, noDataPartIzin, dataDiambilPart, dataSisaPart;
+    LinearLayout attantionPart, backBTN, homeBTN, loadingDataPartCutiBersama, loadingDataPartCuti, loadingDataPartIzin, noDataPartCutiBersama, noDataPartCuti, noDataPartIzin, dataDiambilPart, dataSisaPart;
     TextView hakCutiTV, totalDataCutiBersama, totalDataCuti, totalDataIzin, nameUserTV, periodeData, dataDiambilTV, dataSisaTV;
     RelativeLayout periodeDataPart;
     SharedPrefManager sharedPrefManager;
@@ -99,6 +99,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         totalDataIzin = findViewById(R.id.total_data_izin);
         periodeDataPart = findViewById(R.id.periode_data_part);
         hakCutiTV = findViewById(R.id.hak_cuti_tv);
+        attantionPart = findViewById(R.id.attantion_part);
 
         dataHistoryCutiRV = findViewById(R.id.data_cuti_rv);
         dataHistoryIzinRV = findViewById(R.id.data_izin_rv);
@@ -224,6 +225,12 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                                 String jumlah_cuti = data.getString("jumlah_cuti");
                                 String jumlah_izin = data.getString("jumlah_izin");
                                 String jumlah_cuti_bersama = data.getString("jumlah_cuti_bersama");
+
+                                if(hak_cuti_tahunan.equals("10")){
+                                    attantionPart.setVisibility(View.VISIBLE);
+                                } else if(hak_cuti_tahunan.equals("12")) {
+                                    attantionPart.setVisibility(View.GONE);
+                                }
 
                                 hakCutiTV.setText(hak_cuti_tahunan);
                                 periodeData.setText(periode_mulai.substring(8,10)+"/"+periode_mulai.substring(5,7)+"/"+periode_mulai.substring(0,4)+"  s.d. "+periode_akhir.substring(8,10)+"/"+periode_akhir.substring(5,7)+"/"+periode_akhir.substring(0,4));

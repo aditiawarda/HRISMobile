@@ -113,10 +113,10 @@
                                                 android:textStyle="bold" />
 
                                             <RelativeLayout
-                                                android:visibility="gone"
                                                 android:id="@+id/periode_data_part"
                                                 android:layout_width="match_parent"
-                                                android:layout_height="match_parent">
+                                                android:layout_height="match_parent"
+                                                android:visibility="gone">
 
                                                 <TextView
                                                     android:id="@+id/periode_data"
@@ -180,6 +180,39 @@
                                         </LinearLayout>
 
                                     </RelativeLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/attantion_part"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="6dp"
+                                    android:layout_marginBottom="1dp"
+                                    android:background="@drawable/shape_attantion_history_cuti"
+                                    android:orientation="vertical"
+                                    android:paddingLeft="20dp"
+                                    android:paddingTop="15dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingBottom="20dp"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Perhatian :"
+                                        android:textColor="#C68D46"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginTop="7dp"
+                                        android:text="Hak cuti tahunan sudah terpotong 2 hari untuk cuti bersama akhir tahun dan cuti bersama lebaran."
+                                        android:textColor="#C68D46"
+                                        android:textSize="11dp" />
 
                                 </LinearLayout>
 

@@ -31,98 +31,98 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingRight="3dp"
+                        android:orientation="vertical"
                         android:paddingLeft="3dp"
-                        android:paddingBottom="3dp"
-                        android:orientation="vertical">
+                        android:paddingRight="3dp"
+                        android:paddingBottom="3dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingRight="20dp"
+                            android:orientation="vertical"
                             android:paddingLeft="20dp"
                             android:paddingTop="90dp"
-                            android:orientation="vertical">
+                            android:paddingRight="20dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/shape_attantion"
+                                android:paddingLeft="20dp"
                                 android:paddingTop="10dp"
                                 android:paddingRight="20dp"
-                                android:paddingLeft="20dp"
-                                android:paddingBottom="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:background="@drawable/shape_attantion">
+                                android:paddingBottom="10dp">
 
                                 <TextView
                                     android:id="@+id/name_of_user_tv"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textSize="13dp"
                                     android:ellipsize="end"
                                     android:maxLines="1"
                                     android:singleLine="true"
+                                    android:text=""
                                     android:textColor="#B1670B"
-                                    android:textStyle="bold"
-                                    android:text=""/>
+                                    android:textSize="13dp"
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:paddingBottom="5dp"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:paddingBottom="5dp">
 
                                 <LinearLayout
                                     android:id="@+id/month_btn"
                                     android:layout_width="0dp"
-                                    android:layout_weight=".40"
-                                    android:paddingTop="10dp"
-                                    android:paddingBottom="10dp"
-                                    android:paddingRight="15dp"
-                                    android:paddingLeft="15dp"
-                                    android:background="@drawable/shape_data_absen"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical">
+                                    android:layout_weight=".40"
+                                    android:background="@drawable/shape_data_absen"
+                                    android:orientation="vertical"
+                                    android:paddingLeft="15dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="15dp"
+                                    android:paddingBottom="10dp">
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:textColor="@color/white"
-                                        android:textStyle="bold"
                                         android:ellipsize="end"
                                         android:maxLines="1"
                                         android:singleLine="true"
+                                        android:text="Data Periode"
+                                        android:textColor="@color/white"
                                         android:textSize="10dp"
-                                        android:text="Data Periode"/>
+                                        android:textStyle="bold" />
 
                                     <TextView
-                                        android:visibility="gone"
                                         android:id="@+id/bulan_data"
-                                        android:layout_marginTop="0.5dp"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:textColor="@color/white"
+                                        android:layout_marginTop="0.5dp"
                                         android:ellipsize="end"
                                         android:maxLines="1"
                                         android:singleLine="true"
+                                        android:text=""
+                                        android:textColor="@color/white"
                                         android:textSize="16dp"
                                         android:textStyle="bold"
-                                        android:text=""/>
+                                        android:visibility="gone" />
 
                                     <TextView
-                                        android:visibility="gone"
                                         android:id="@+id/tahun_data"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:textColor="@color/white"
-                                        android:textSize="13dp"
                                         android:ellipsize="end"
                                         android:maxLines="1"
                                         android:singleLine="true"
+                                        android:text=""
+                                        android:textColor="@color/white"
+                                        android:textSize="13dp"
                                         android:textStyle="bold"
-                                        android:text=""/>
+                                        android:visibility="gone" />
 
                                     <ImageView
                                         android:id="@+id/bulan_loading"
@@ -134,41 +134,41 @@
 
                                 <LinearLayout
                                     android:layout_width="0dp"
-                                    android:layout_weight=".60"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".60">
 
                                     <LinearLayout
                                         android:layout_width="0dp"
-                                        android:layout_weight=".50"
-                                        android:paddingTop="10dp"
-                                        android:paddingBottom="10dp"
-                                        android:paddingRight="15dp"
-                                        android:paddingLeft="15dp"
-                                        android:background="@drawable/shape_hadir"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="5dp"
-                                        android:orientation="vertical">
+                                        android:layout_weight=".50"
+                                        android:background="@drawable/shape_hadir"
+                                        android:orientation="vertical"
+                                        android:paddingLeft="15dp"
+                                        android:paddingTop="10dp"
+                                        android:paddingRight="15dp"
+                                        android:paddingBottom="10dp">
 
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:textColor="@color/white"
                                             android:ellipsize="end"
                                             android:maxLines="1"
                                             android:singleLine="true"
-                                            android:textStyle="bold"
+                                            android:text="Total Hadir"
+                                            android:textColor="@color/white"
                                             android:textSize="10dp"
-                                            android:text="Total Hadir"/>
+                                            android:textStyle="bold" />
 
                                         <TextView
-                                            android:visibility="gone"
                                             android:id="@+id/data_hadir"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
+                                            android:text="0"
                                             android:textColor="@color/white"
                                             android:textSize="30dp"
                                             android:textStyle="bold"
-                                            android:text="0"/>
+                                            android:visibility="gone" />
 
                                         <ImageView
                                             android:id="@+id/hadir_loading"
@@ -185,102 +185,101 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:visibility="gone"
                             android:id="@+id/attantion_part_hadir"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="20dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="5dp"
-                            android:paddingBottom="20dp"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
-                            android:paddingTop="15dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/shape_attantion"
                             android:orientation="vertical"
-                            android:background="@drawable/shape_attantion">
+                            android:paddingLeft="20dp"
+                            android:paddingTop="15dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="20dp"
+                            android:visibility="gone">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:text="Perhatian :"
                                 android:textColor="#C68D46"
                                 android:textSize="12dp"
-                                android:textStyle="bold"
-                                android:text="Perhatian :"/>
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/message_hadir"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
-                                android:textColor="#C68D46"
-                                android:textSize="11dp"
                                 android:layout_marginTop="7dp"
-                                android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur fingerscan."/>
+                                android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur fingerscan."
+                                android:textColor="#C68D46"
+                                android:textSize="11dp" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="20dp"
                             android:layout_width="match_parent"
                             android:layout_height="10dp"
-                            android:background="#3CCFCFCF"/>
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:background="#3CCFCFCF" />
 
                         <LinearLayout
-                            android:paddingRight="20dp"
-                            android:paddingLeft="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginBottom="30dp"
                             android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp">
 
                             <androidx.recyclerview.widget.RecyclerView
-                                android:visibility="gone"
                                 android:id="@+id/data_hadir_rv"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical">
-                            </androidx.recyclerview.widget.RecyclerView>
+                                android:orientation="vertical"
+                                android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
 
                             <LinearLayout
-                                android:visibility="gone"
                                 android:id="@+id/no_data_part_hadir"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:paddingBottom="20dp"
-                                android:paddingLeft="20dp"
-                                android:paddingRight="20dp"
-                                android:paddingTop="20dp"
+                                android:gravity="center"
                                 android:orientation="vertical"
-                                android:gravity="center">
+                                android:paddingLeft="20dp"
+                                android:paddingTop="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingBottom="20dp"
+                                android:visibility="gone">
 
                                 <TextView
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:layout_marginTop="20dp"
-                                    android:textAlignment="center"
                                     android:layout_marginBottom="10dp"
+                                    android:background="@drawable/ic_baseline_no_data"
+                                    android:textAlignment="center"
                                     android:textSize="12dp"
-                                    android:textStyle="bold"
-                                    android:background="@drawable/ic_baseline_no_data"/>
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:text="Data tidak tersedia"
                                     android:textAlignment="center"
+                                    android:textColor="#7C7C7C"
                                     android:textSize="15dp"
-                                    android:textStyle="bold"
-                                    android:textColor="#7C7C7C"
-                                    android:text="Data tidak tersedia"/>
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textAlignment="center"
-                                    android:textSize="11dp"
                                     android:layout_marginTop="7dp"
+                                    android:text="Data hadir tidak tersedia."
+                                    android:textAlignment="center"
                                     android:textColor="#7C7C7C"
-                                    android:text="Data hadir tidak tersedia."/>
+                                    android:textSize="11dp" />
 
                             </LinearLayout>
 
@@ -288,12 +287,12 @@
                                 android:id="@+id/loading_data_part_hadir"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:paddingBottom="20dp"
-                                android:paddingLeft="20dp"
-                                android:paddingRight="20dp"
-                                android:paddingTop="20dp"
+                                android:gravity="center"
                                 android:orientation="vertical"
-                                android:gravity="center">
+                                android:paddingLeft="20dp"
+                                android:paddingTop="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingBottom="20dp">
 
                                 <ImageView
                                     android:id="@+id/loading_data_hadir"
@@ -305,20 +304,20 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:text="Memuat data"
                                     android:textAlignment="center"
-                                    android:textSize="15dp"
-                                    android:textStyle="bold"
                                     android:textColor="#7C7C7C"
-                                    android:text="Memuat data"/>
+                                    android:textSize="15dp"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textAlignment="center"
-                                    android:textSize="11dp"
                                     android:layout_marginTop="5dp"
+                                    android:text="Tunggu beberapa saat"
+                                    android:textAlignment="center"
                                     android:textColor="#7C7C7C"
-                                    android:text="Tunggu beberapa saat"/>
+                                    android:textSize="11dp" />
 
                             </LinearLayout>
 
