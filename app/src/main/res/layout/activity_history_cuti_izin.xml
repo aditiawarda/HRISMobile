@@ -210,7 +210,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
                                         android:layout_marginTop="7dp"
-                                        android:text="Hak cuti tahunan sudah terpotong 2 hari untuk cuti bersama akhir tahun dan cuti bersama lebaran."
+                                        android:text="Hak cuti tahunan sudah terpotong 2 hari secara otomatis untuk cuti bersama akhir tahun dan cuti bersama lebaran."
                                         android:textColor="#C68D46"
                                         android:textSize="11dp" />
 
