@@ -234,6 +234,8 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                                     attantionPart.setVisibility(View.VISIBLE);
                                 } else if(hak_cuti_tahunan.equals("12")) {
                                     attantionPart.setVisibility(View.GONE);
+                                } else {
+                                    attantionPart.setVisibility(View.VISIBLE);
                                 }
 
                                 hakCutiTV.setText(hak_cuti_tahunan);
