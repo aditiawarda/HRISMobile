@@ -731,7 +731,7 @@
                                     android:paddingBottom="10dp"
                                     android:paddingLeft="20dp"
                                     android:paddingRight="20dp"
-                                    android:inputType="number"
+                                    android:inputType="phone"
                                     android:layout_marginBottom="10dp"
                                     android:background="@drawable/shape_input_form"
                                     android:drawablePadding="10dp"

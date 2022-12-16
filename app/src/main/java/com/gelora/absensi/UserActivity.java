@@ -95,7 +95,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout headerBackground, faqBTN, sisaCutiData, sisaCutiBTN, countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout toUserDetail, emailEmptyWarningPart, headerBackground, faqBTN, sisaCutiData, sisaCutiBTN, countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
     TextView yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -225,6 +225,8 @@ public class UserActivity extends AppCompatActivity {
         sisaCutiBTN = findViewById(R.id.sisa_cuti_btn);
         sisaCutiData = findViewById(R.id.sisa_cuti_data);
         sisaCutiLoading = findViewById(R.id.sisa_cuti_loading);
+        emailEmptyWarningPart = findViewById(R.id.email_empty_warning_part);
+        toUserDetail = findViewById(R.id.to_user_detail);
         yearCR = findViewById(R.id.year_tv);
         faqBTN = findViewById(R.id.faq_btn);
         hTime = findViewById(R.id.h_time);
@@ -733,6 +735,9 @@ public class UserActivity extends AppCompatActivity {
                                 String logout_part = data.getString("logout_part");
                                 String chat_room = data.getString("chat_room");
                                 String web_btn = data.getString("web_btn");
+                                String warning_email = data.getString("warning_email");
+                                String email_karyawan = data.getString("email_karyawan");
+                                String nohp_karyawan = data.getString("nohp_karyawan");
 
                                 statusKaryawan = status_karyawan;
                                 tanggalBergabung = tanggal_masuk;
@@ -815,6 +820,44 @@ public class UserActivity extends AppCompatActivity {
                                     webBTN.setVisibility(View.VISIBLE);
                                 } else {
                                     webBTN.setVisibility(View.GONE);
+                                }
+
+                                if(warning_email.equals("1")){
+                                    toUserDetail.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(UserActivity.this, UserDetailActivity.class);
+                                            intent.putExtra("avatar", avatar);
+                                            intent.putExtra("jabatan", jabatan);
+                                            intent.putExtra("bagian", bagian);
+                                            intent.putExtra("departemen", department);
+                                            intent.putExtra("tanggal_bergabung", tanggalBergabung);
+                                            startActivity(intent);
+                                        }
+                                    });
+
+                                    emailEmptyWarningPart.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(UserActivity.this, UserDetailActivity.class);
+                                            intent.putExtra("avatar", avatar);
+                                            intent.putExtra("jabatan", jabatan);
+                                            intent.putExtra("bagian", bagian);
+                                            intent.putExtra("departemen", department);
+                                            intent.putExtra("tanggal_bergabung", tanggalBergabung);
+                                            startActivity(intent);
+                                        }
+                                    });
+
+                                    if((email_karyawan.equals("")||email_karyawan==null||email_karyawan.equals("null")) && (nohp_karyawan.equals("")||nohp_karyawan==null||nohp_karyawan.equals("null"))){
+                                        emailEmptyWarningPart.setVisibility(View.VISIBLE);
+                                    } else {
+                                        emailEmptyWarningPart.setVisibility(View.GONE);
+                                    }
+                                } else {
+                                    toUserDetail.setOnClickListener(null);
+                                    emailEmptyWarningPart.setOnClickListener(null);
+                                    emailEmptyWarningPart.setVisibility(View.GONE);
                                 }
 
                                 sisaCutiTV.setText(sisa_cuti);
@@ -2428,7 +2471,7 @@ public class UserActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        getCountNotification();
+        getDataUser();
     }
 
 }

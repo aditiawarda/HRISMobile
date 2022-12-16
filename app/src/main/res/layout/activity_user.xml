@@ -49,6 +49,7 @@
 
                             <LinearLayout
                                 android:visibility="gone"
+                                android:id="@+id/email_empty_warning_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="-30dp"
@@ -65,8 +66,8 @@
 
                                 <LinearLayout
                                     android:background="@drawable/warning_connection_white"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"/>
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"/>
 
                                 <LinearLayout
                                     android:layout_marginLeft="10dp"
@@ -1568,6 +1569,7 @@
                             android:orientation="horizontal">
 
                             <LinearLayout
+                                android:id="@+id/to_user_detail"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_marginRight="10dp"
