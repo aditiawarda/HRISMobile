@@ -10,36 +10,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="30dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="30dp">
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginLeft="170dp"
             android:layout_marginTop="17dp"
             android:layout_marginRight="170dp"
-            android:layout_marginLeft="170dp"
-            android:layout_height="3dp"
             android:background="#34455A64"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:orientation="vertical"
             android:paddingLeft="20dp"
-            android:paddingRight="16dp"
             android:paddingTop="13dp"
-            android:orientation="vertical">
+            android:paddingRight="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
                 android:paddingTop="20dp"
                 android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:paddingBottom="20dp"
-                android:orientation="horizontal">
+                android:paddingBottom="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -50,56 +50,56 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textSize="16dp"
-                        android:fontFamily="@font/roboto"
-                        android:textColor="@color/colorPrimaryDark"
                         android:layout_marginBottom="15dp"
-                        android:text="Tentang Aplikasi"/>
+                        android:fontFamily="@font/roboto"
+                        android:text="Tentang Aplikasi"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13dp"
-                        android:fontFamily="@font/roboto"
-                        android:justificationMode="inter_word"
-                        android:lineSpacingExtra="2dp"
-                        android:textColor="@color/text_color"
                         android:layout_marginBottom="7dp"
-                        android:text="HRIS Mobile Gelora merupakan aplikasi android dari HR System PT Gelora Aksara Pratama, HRIS Mobile Gelora diharapkan dapat memfasilitasi karyawan PT. Gelora Aksara Pratama untuk layanan kepegawaian perusahaan."/>
+                        android:fontFamily="@font/roboto"
+                        android:justificationMode="inter_word"
+                        android:lineSpacingExtra="2dp"
+                        android:text="HRIS Mobile Gelora merupakan aplikasi android dari HR System PT Gelora Aksara Pratama, HRIS Mobile Gelora diharapkan dapat memfasilitasi karyawan PT. Gelora Aksara Pratama untuk layanan kepegawaian perusahaan."
+                        android:textColor="@color/text_color"
+                        android:textSize="13dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13dp"
-                        android:fontFamily="@font/roboto"
-                        android:lineSpacingExtra="2dp"
-                        android:justificationMode="inter_word"
-                        android:textColor="@color/text_color"
                         android:layout_marginBottom="7dp"
-                        android:text="HRIS Mobile Gelora dikembangkan oleh Tim IT PT. Gelora Aksara Pratama."/>
+                        android:fontFamily="@font/roboto"
+                        android:justificationMode="inter_word"
+                        android:lineSpacingExtra="2dp"
+                        android:text="HRIS Mobile Gelora dikembangkan oleh Tim IT PT. Gelora Aksara Pratama."
+                        android:textColor="@color/text_color"
+                        android:textSize="13dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13dp"
-                        android:fontFamily="@font/roboto"
-                        android:lineSpacingExtra="2dp"
-                        android:justificationMode="inter_word"
-                        android:textColor="@color/text_color"
                         android:layout_marginBottom="7dp"
-                        android:text="Untuk kemudahan dan kelancaran penggunaan, HRIS Mobile Gelora didukung oleh API Google Maps sebagai penanda posisi."/>
+                        android:fontFamily="@font/roboto"
+                        android:justificationMode="inter_word"
+                        android:lineSpacingExtra="2dp"
+                        android:text="Untuk kemudahan dan kelancaran penggunaan, HRIS Mobile Gelora didukung oleh API Google Maps sebagai penanda posisi."
+                        android:textColor="@color/text_color"
+                        android:textSize="13dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13dp"
-                        android:fontFamily="@font/roboto"
-                        android:lineSpacingExtra="2dp"
-                        android:justificationMode="inter_word"
-                        android:textColor="@color/text_color"
                         android:layout_marginBottom="5dp"
-                        android:text="Versi yang saat ini anda gunakan adalah versi 1.4.3"/>
+                        android:fontFamily="@font/roboto"
+                        android:justificationMode="inter_word"
+                        android:lineSpacingExtra="2dp"
+                        android:text="Versi yang saat ini anda gunakan adalah versi 1.4.3"
+                        android:textColor="@color/text_color"
+                        android:textSize="13dp" />
 
                 </LinearLayout>
 
@@ -115,10 +115,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="13dp"
+                    android:text="TUTUP"
                     android:textColor="@color/white"
-                    android:text="TUTUP"/>
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
