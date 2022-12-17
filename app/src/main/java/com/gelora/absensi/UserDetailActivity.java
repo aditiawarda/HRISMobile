@@ -174,7 +174,7 @@ public class UserDetailActivity extends AppCompatActivity {
 
                             new KAlertDialog(UserDetailActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
-                                    .setContentText("Kirim simpan data?")
+                                    .setContentText("Simpan data sekarang?")
                                     .setCancelText("TIDAK")
                                     .setConfirmText("   YA   ")
                                     .showCancelButton(true)
