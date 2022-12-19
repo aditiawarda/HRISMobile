@@ -4930,6 +4930,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     desc_idn = "Badai petir dengan hujan";
                                 } else if (description.equals("thunderstorm with heavy rain")){
                                     desc_idn = "Badai petir dengan hujan lebat";
+                                } else if (description.equals("thunderstorm")){
+                                    desc_idn = "Badai petir";
                                 } else if (description.equals("light thunderstorm")){
                                     desc_idn = "Badai petir";
                                 } else if (description.equals("heavy thunderstorm")){

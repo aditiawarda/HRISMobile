@@ -211,15 +211,29 @@
                                                             android:textColor="#515151"
                                                             android:textSize="8dp" />
 
-                                                        <TextView
-                                                            android:id="@+id/nama_tv"
+                                                        <LinearLayout
                                                             android:layout_width="0dp"
-                                                            android:layout_height="wrap_content"
-                                                            android:layout_marginLeft="-7dp"
-                                                            android:layout_weight=".50"
-                                                            android:text=":  ..................."
-                                                            android:textColor="#515151"
-                                                            android:textSize="8dp" />
+                                                            android:layout_weight=".60"
+                                                            android:orientation="horizontal"
+                                                            android:layout_height="wrap_content">
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:text=":  "
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                            <TextView
+                                                                android:id="@+id/nama_tv"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_marginRight="8dp"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="..................."
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                        </LinearLayout>
 
                                                     </LinearLayout>
 
@@ -236,15 +250,29 @@
                                                             android:textColor="#515151"
                                                             android:textSize="8dp" />
 
-                                                        <TextView
-                                                            android:id="@+id/jabatan_tv"
+                                                        <LinearLayout
                                                             android:layout_width="0dp"
-                                                            android:layout_height="wrap_content"
-                                                            android:layout_marginLeft="-7dp"
-                                                            android:layout_weight=".50"
-                                                            android:text=":  ..................."
-                                                            android:textColor="#515151"
-                                                            android:textSize="8dp" />
+                                                            android:layout_weight=".60"
+                                                            android:orientation="horizontal"
+                                                            android:layout_height="wrap_content">
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:text=":  "
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                            <TextView
+                                                                android:id="@+id/jabatan_tv"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_marginRight="8dp"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="..................."
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                        </LinearLayout>
 
                                                     </LinearLayout>
 
@@ -261,15 +289,29 @@
                                                             android:textColor="#515151"
                                                             android:textSize="8dp" />
 
-                                                        <TextView
-                                                            android:id="@+id/bagian_tv"
+                                                        <LinearLayout
                                                             android:layout_width="0dp"
-                                                            android:layout_height="wrap_content"
-                                                            android:layout_marginLeft="-7dp"
-                                                            android:layout_weight=".50"
-                                                            android:text=":  ..................."
-                                                            android:textColor="#515151"
-                                                            android:textSize="8dp" />
+                                                            android:layout_weight=".60"
+                                                            android:orientation="horizontal"
+                                                            android:layout_height="wrap_content">
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:text=":  "
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                            <TextView
+                                                                android:id="@+id/bagian_tv"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_marginRight="8dp"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="..................."
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                        </LinearLayout>
 
                                                     </LinearLayout>
 
@@ -294,15 +336,29 @@
                                                             android:textColor="#515151"
                                                             android:textSize="8dp" />
 
-                                                        <TextView
-                                                            android:id="@+id/tgl_bergabung_tv"
+                                                        <LinearLayout
                                                             android:layout_width="0dp"
-                                                            android:layout_height="wrap_content"
-                                                            android:layout_marginLeft="-7dp"
-                                                            android:layout_weight=".50"
-                                                            android:text=":  ..................."
-                                                            android:textColor="#515151"
-                                                            android:textSize="8dp" />
+                                                            android:layout_weight=".60"
+                                                            android:orientation="horizontal"
+                                                            android:layout_height="wrap_content">
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:text=":  "
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                            <TextView
+                                                                android:id="@+id/tgl_bergabung_tv"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_marginRight="8dp"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="..................."
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                        </LinearLayout>
 
                                                     </LinearLayout>
 
@@ -319,15 +375,29 @@
                                                             android:textColor="#515151"
                                                             android:textSize="8dp" />
 
-                                                        <TextView
-                                                            android:id="@+id/nik_tv"
+                                                        <LinearLayout
                                                             android:layout_width="0dp"
-                                                            android:layout_height="wrap_content"
-                                                            android:layout_marginLeft="-7dp"
-                                                            android:layout_weight=".50"
-                                                            android:text=":  ..................."
-                                                            android:textColor="#515151"
-                                                            android:textSize="8dp" />
+                                                            android:layout_weight=".60"
+                                                            android:orientation="horizontal"
+                                                            android:layout_height="wrap_content">
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:text=":  "
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                            <TextView
+                                                                android:id="@+id/nik_tv"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_marginRight="8dp"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="..................."
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                        </LinearLayout>
 
                                                     </LinearLayout>
 
@@ -344,15 +414,29 @@
                                                             android:textColor="#515151"
                                                             android:textSize="8dp" />
 
-                                                        <TextView
-                                                            android:id="@+id/status_karyawan_tv"
+                                                        <LinearLayout
                                                             android:layout_width="0dp"
-                                                            android:layout_height="wrap_content"
-                                                            android:layout_marginLeft="-7dp"
-                                                            android:layout_weight=".50"
-                                                            android:text=":  ..................."
-                                                            android:textColor="#515151"
-                                                            android:textSize="8dp" />
+                                                            android:layout_weight=".60"
+                                                            android:orientation="horizontal"
+                                                            android:layout_height="wrap_content">
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:text=":  "
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                            <TextView
+                                                                android:id="@+id/status_karyawan_tv"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_marginRight="8dp"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="..................."
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                        </LinearLayout>
 
                                                     </LinearLayout>
 
@@ -369,15 +453,29 @@
                                                             android:textColor="#515151"
                                                             android:textSize="8dp" />
 
-                                                        <TextView
-                                                            android:id="@+id/sisa_cuti_tv"
+                                                        <LinearLayout
                                                             android:layout_width="0dp"
-                                                            android:layout_height="wrap_content"
-                                                            android:layout_marginLeft="-7dp"
-                                                            android:layout_weight=".50"
-                                                            android:text=":  ..................."
-                                                            android:textColor="#515151"
-                                                            android:textSize="8dp" />
+                                                            android:layout_weight=".60"
+                                                            android:orientation="horizontal"
+                                                            android:layout_height="wrap_content">
+
+                                                            <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:text=":  "
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                            <TextView
+                                                                android:id="@+id/sisa_cuti_tv"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_marginRight="8dp"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="..................."
+                                                                android:textColor="#515151"
+                                                                android:textSize="8dp" />
+
+                                                        </LinearLayout>
 
                                                     </LinearLayout>
 
@@ -493,21 +591,35 @@
                                                 android:orientation="horizontal">
 
                                                 <TextView
-                                                    android:layout_width="match_parent"
+                                                    android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_weight=".25"
-                                                    android:text="Tipe Cuti"
+                                                    android:layout_weight=".28"
+                                                    android:text="Type Cuti"
                                                     android:textColor="#515151"
                                                     android:textSize="8dp" />
 
-                                                <TextView
-                                                    android:id="@+id/tipe_cuti_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight=".10"
-                                                    android:text=":  ......................................................."
-                                                    android:textColor="#515151"
-                                                    android:textSize="8dp" />
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_weight=".72"
+                                                    android:orientation="horizontal"
+                                                    android:layout_height="wrap_content">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text=":  "
+                                                        android:textColor="#515151"
+                                                        android:textSize="8dp" />
+
+                                                    <TextView
+                                                        android:id="@+id/tipe_cuti_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="......................................................."
+                                                        android:textColor="#515151"
+                                                        android:textSize="8dp" />
+
+                                                </LinearLayout>
 
                                             </LinearLayout>
 
@@ -518,21 +630,35 @@
                                                 android:orientation="horizontal">
 
                                                 <TextView
-                                                    android:layout_width="match_parent"
+                                                    android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_weight=".25"
+                                                    android:layout_weight=".28"
                                                     android:text="Alasan Cuti"
                                                     android:textColor="#515151"
                                                     android:textSize="8dp" />
 
-                                                <TextView
-                                                    android:id="@+id/alasan_cuti_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight=".10"
-                                                    android:text=":  ......................................................."
-                                                    android:textColor="#515151"
-                                                    android:textSize="8dp" />
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_weight=".72"
+                                                    android:orientation="horizontal"
+                                                    android:layout_height="wrap_content">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text=":  "
+                                                        android:textColor="#515151"
+                                                        android:textSize="8dp" />
+
+                                                    <TextView
+                                                        android:id="@+id/alasan_cuti_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="......................................................."
+                                                        android:textColor="#515151"
+                                                        android:textSize="8dp" />
+
+                                                </LinearLayout>
 
                                             </LinearLayout>
 
@@ -543,21 +669,35 @@
                                                 android:orientation="horizontal">
 
                                                 <TextView
-                                                    android:layout_width="match_parent"
+                                                    android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_weight=".25"
+                                                    android:layout_weight=".28"
                                                     android:text="Pengganti Selama Cuti"
                                                     android:textColor="#515151"
                                                     android:textSize="8dp" />
 
-                                                <TextView
-                                                    android:id="@+id/karyawan_pengganti_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight=".10"
-                                                    android:text=":  ......................................................."
-                                                    android:textColor="#515151"
-                                                    android:textSize="8dp" />
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_weight=".72"
+                                                    android:orientation="horizontal"
+                                                    android:layout_height="wrap_content">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text=":  "
+                                                        android:textColor="#515151"
+                                                        android:textSize="8dp" />
+
+                                                    <TextView
+                                                        android:id="@+id/karyawan_pengganti_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="......................................................."
+                                                        android:textColor="#515151"
+                                                        android:textSize="8dp" />
+
+                                                </LinearLayout>
 
                                             </LinearLayout>
 
@@ -568,21 +708,35 @@
                                                 android:orientation="horizontal">
 
                                                 <TextView
-                                                    android:layout_width="match_parent"
+                                                    android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_weight=".25"
+                                                    android:layout_weight=".28"
                                                     android:text="Alamat Selama Cuti"
                                                     android:textColor="#515151"
                                                     android:textSize="8dp" />
 
-                                                <TextView
-                                                    android:id="@+id/alamat_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight=".10"
-                                                    android:text=":  ......................................................."
-                                                    android:textColor="#515151"
-                                                    android:textSize="8dp" />
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_weight=".72"
+                                                    android:orientation="horizontal"
+                                                    android:layout_height="wrap_content">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text=":  "
+                                                        android:textColor="#515151"
+                                                        android:textSize="8dp" />
+
+                                                    <TextView
+                                                        android:id="@+id/alamat_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="......................................................."
+                                                        android:textColor="#515151"
+                                                        android:textSize="8dp" />
+
+                                                </LinearLayout>
 
                                             </LinearLayout>
 
@@ -593,21 +747,35 @@
                                                 android:orientation="horizontal">
 
                                                 <TextView
-                                                    android:layout_width="match_parent"
+                                                    android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_weight=".25"
+                                                    android:layout_weight=".28"
                                                     android:text="No HP"
                                                     android:textColor="#515151"
                                                     android:textSize="8dp" />
 
-                                                <TextView
-                                                    android:id="@+id/no_hp_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight=".10"
-                                                    android:text=":  ......................................................."
-                                                    android:textColor="#515151"
-                                                    android:textSize="8dp" />
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_weight=".72"
+                                                    android:orientation="horizontal"
+                                                    android:layout_height="wrap_content">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text=":  "
+                                                        android:textColor="#515151"
+                                                        android:textSize="8dp" />
+
+                                                    <TextView
+                                                        android:id="@+id/no_hp_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="......................................................."
+                                                        android:textColor="#515151"
+                                                        android:textSize="8dp" />
+
+                                                </LinearLayout>
 
                                             </LinearLayout>
 
@@ -618,21 +786,35 @@
                                                 android:orientation="horizontal">
 
                                                 <TextView
-                                                    android:layout_width="match_parent"
+                                                    android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_weight=".25"
+                                                    android:layout_weight=".28"
                                                     android:text="Lampiran"
                                                     android:textColor="#515151"
                                                     android:textSize="8dp" />
 
-                                                <TextView
-                                                    android:id="@+id/lampiran_tv"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight=".10"
-                                                    android:text=":  ......................................................."
-                                                    android:textColor="#515151"
-                                                    android:textSize="8dp" />
+                                                <LinearLayout
+                                                    android:layout_width="0dp"
+                                                    android:layout_weight=".72"
+                                                    android:orientation="horizontal"
+                                                    android:layout_height="wrap_content">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text=":  "
+                                                        android:textColor="#515151"
+                                                        android:textSize="8dp" />
+
+                                                    <TextView
+                                                        android:id="@+id/lampiran_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="......................................................."
+                                                        android:textColor="#515151"
+                                                        android:textSize="8dp" />
+
+                                                </LinearLayout>
 
                                             </LinearLayout>
 

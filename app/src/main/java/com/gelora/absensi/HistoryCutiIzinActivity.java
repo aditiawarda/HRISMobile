@@ -51,7 +51,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
     RelativeLayout periodeDataPart;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
-    ImageView diambilLoading, sisaLoading, periodeLoading, loadingDataCutiBersama, loadingDataCuti, loadingDataIzin;
+    ImageView loadingDataPenambahanCuti, diambilLoading, sisaLoading, periodeLoading, loadingDataCutiBersama, loadingDataCuti, loadingDataIzin;
     View rootview;
 
     private RecyclerView dataHistoryCutiRV;
@@ -82,6 +82,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         periodeLoading = findViewById(R.id.periode_loading);
         loadingDataCuti = findViewById(R.id.loading_data_cuti);
         loadingDataCutiBersama = findViewById(R.id.loading_data_cuti_bersama);
+        loadingDataPenambahanCuti = findViewById(R.id.loading_data_penambahan_cuti);
         loadingDataIzin = findViewById(R.id.loading_data_izin);
         loadingDataPartCuti = findViewById(R.id.loading_data_part_cuti);
         loadingDataPartCutiBersama = findViewById(R.id.loading_data_part_cuti_bersama);
@@ -144,6 +145,9 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                 .load(R.drawable.loading)
                 .into(loadingDataCutiBersama);
 
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading)
+                .into(loadingDataPenambahanCuti);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -824,11 +824,11 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                     viewSuratSakitBTN.setVisibility(View.GONE);
                                 }
 
-                                namaKaryawanTV.setText(":  "+nama_karyawan.toUpperCase());
-                                nikKaryawanTV.setText(":  "+nik_karyawan);
-                                bagianKaryawanTV.setText(":  "+bagian);
-                                jabatanKaryawanTV.setText(":  "+jabatan);
-                                alasanIzinTV.setText(":  "+alasan);
+                                namaKaryawanTV.setText(nama_karyawan.toUpperCase());
+                                nikKaryawanTV.setText(nik_karyawan);
+                                bagianKaryawanTV.setText(bagian);
+                                jabatanKaryawanTV.setText(jabatan);
+                                alasanIzinTV.setText(alasan);
 
                                 String input_date_mulai = tgl_mulai;
                                 String dayDateMulai = input_date_mulai.substring(8,10);

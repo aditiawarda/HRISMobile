@@ -2946,12 +2946,14 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 noDataPart.setVisibility(View.GONE);
                 karyawanPenggantiRV.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        getDataKaryawanPengganti(keyWordSearch);
-                    }
-                }, 500);
+                if(!keyWordSearch.equals("")){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getDataKaryawanPengganti(keyWordSearch);
+                        }
+                    }, 500);
+                }
             }
 
         });

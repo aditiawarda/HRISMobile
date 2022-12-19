@@ -171,15 +171,31 @@
                                                     android:textColor="#515151"
                                                     android:textSize="11dp" />
 
-                                                <TextView
-                                                    android:id="@+id/nama_karyawan_tv"
+                                                <LinearLayout
+                                                    android:orientation="horizontal"
                                                     android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="7dp"
                                                     android:layout_weight=".65"
-                                                    android:text=":  ........................"
-                                                    android:textColor="#515151"
-                                                    android:textSize="11dp" />
+                                                    android:layout_height="wrap_content">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="7dp"
+                                                        android:text=":  "
+                                                        android:textColor="#515151"
+                                                        android:textSize="11dp" />
+
+                                                    <TextView
+                                                        android:id="@+id/nama_karyawan_tv"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="7dp"
+                                                        android:layout_weight=".65"
+                                                        android:text="........................"
+                                                        android:textColor="#515151"
+                                                        android:textSize="11dp" />
+
+                                                </LinearLayout>
 
                                             </LinearLayout>
 
@@ -197,15 +213,31 @@
                                                     android:textColor="#515151"
                                                     android:textSize="11dp" />
 
-                                                <TextView
-                                                    android:id="@+id/nik_karyawan_tv"
+                                                <LinearLayout
+                                                    android:orientation="horizontal"
                                                     android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="7dp"
                                                     android:layout_weight=".65"
-                                                    android:text=":  ........................"
-                                                    android:textColor="#515151"
-                                                    android:textSize="11dp" />
+                                                    android:layout_height="wrap_content">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="7dp"
+                                                        android:text=":  "
+                                                        android:textColor="#515151"
+                                                        android:textSize="11dp" />
+
+                                                    <TextView
+                                                        android:id="@+id/nik_karyawan_tv"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="7dp"
+                                                        android:layout_weight=".65"
+                                                        android:text="........................"
+                                                        android:textColor="#515151"
+                                                        android:textSize="11dp" />
+
+                                                </LinearLayout>
 
                                             </LinearLayout>
 
@@ -223,15 +255,31 @@
                                                     android:textColor="#515151"
                                                     android:textSize="11dp" />
 
-                                                <TextView
-                                                    android:id="@+id/bagian_karyawan_tv"
+                                                <LinearLayout
+                                                    android:orientation="horizontal"
                                                     android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="7dp"
                                                     android:layout_weight=".65"
-                                                    android:text=":  ........................"
-                                                    android:textColor="#515151"
-                                                    android:textSize="11dp" />
+                                                    android:layout_height="wrap_content">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="7dp"
+                                                        android:text=":  "
+                                                        android:textColor="#515151"
+                                                        android:textSize="11dp" />
+
+                                                    <TextView
+                                                        android:id="@+id/bagian_karyawan_tv"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="7dp"
+                                                        android:layout_weight=".65"
+                                                        android:text="........................"
+                                                        android:textColor="#515151"
+                                                        android:textSize="11dp" />
+
+                                                </LinearLayout>
 
                                             </LinearLayout>
 
@@ -249,15 +297,31 @@
                                                     android:textColor="#515151"
                                                     android:textSize="11dp" />
 
-                                                <TextView
-                                                    android:id="@+id/jabatan_karyawan_tv"
+                                                <LinearLayout
+                                                    android:orientation="horizontal"
                                                     android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="7dp"
                                                     android:layout_weight=".65"
-                                                    android:text=":  ........................"
-                                                    android:textColor="#515151"
-                                                    android:textSize="11dp" />
+                                                    android:layout_height="wrap_content">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="7dp"
+                                                        android:text=":  "
+                                                        android:textColor="#515151"
+                                                        android:textSize="11dp" />
+
+                                                    <TextView
+                                                        android:id="@+id/jabatan_karyawan_tv"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="7dp"
+                                                        android:layout_weight=".65"
+                                                        android:text="........................"
+                                                        android:textColor="#515151"
+                                                        android:textSize="11dp" />
+
+                                                </LinearLayout>
 
                                             </LinearLayout>
 
@@ -275,15 +339,31 @@
                                                     android:textColor="#515151"
                                                     android:textSize="11dp" />
 
-                                                <TextView
-                                                    android:id="@+id/alasan_izin_tv"
+                                                <LinearLayout
+                                                    android:orientation="horizontal"
                                                     android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="7dp"
                                                     android:layout_weight=".65"
-                                                    android:text=":  ........................"
-                                                    android:textColor="#515151"
-                                                    android:textSize="11dp" />
+                                                    android:layout_height="wrap_content">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="7dp"
+                                                        android:text=":  "
+                                                        android:textColor="#515151"
+                                                        android:textSize="11dp" />
+
+                                                    <TextView
+                                                        android:id="@+id/alasan_izin_tv"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="7dp"
+                                                        android:layout_weight=".65"
+                                                        android:text="........................"
+                                                        android:textColor="#515151"
+                                                        android:textSize="11dp" />
+
+                                                </LinearLayout>
 
                                             </LinearLayout>
 
@@ -341,7 +421,7 @@
                                                     android:id="@+id/tgl_akhir_tv"
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_marginLeft="-20dp"
+                                                    android:layout_marginLeft="-22dp"
                                                     android:layout_marginBottom="7dp"
                                                     android:layout_weight=".65"
                                                     android:text=""

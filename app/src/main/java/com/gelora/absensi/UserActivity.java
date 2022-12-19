@@ -96,7 +96,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 public class UserActivity extends AppCompatActivity {
 
     LinearLayout toUserDetail, emailEmptyWarningPart, headerBackground, faqBTN, sisaCutiData, sisaCutiBTN, countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
-    TextView yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    TextView tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
@@ -227,6 +227,7 @@ public class UserActivity extends AppCompatActivity {
         sisaCutiLoading = findViewById(R.id.sisa_cuti_loading);
         emailEmptyWarningPart = findViewById(R.id.email_empty_warning_part);
         toUserDetail = findViewById(R.id.to_user_detail);
+        tglBergabungMainTV = findViewById(R.id.tgl_bergabung_main_tv);
         yearCR = findViewById(R.id.year_tv);
         faqBTN = findViewById(R.id.faq_btn);
         hTime = findViewById(R.id.h_time);
@@ -741,6 +742,13 @@ public class UserActivity extends AppCompatActivity {
 
                                 statusKaryawan = status_karyawan;
                                 tanggalBergabung = tanggal_masuk;
+
+                                if((status_karyawan.equals("Tetap")||status_karyawan.equals("Kontrak"))&&!status_karyawan.equals("null")){
+                                    tglBergabungMainTV.setVisibility(View.VISIBLE);
+                                    tglBergabungMainTV.setText("Sejak "+tanggal_masuk.substring(8,10)+"/"+tanggal_masuk.substring(5,7)+"/"+tanggal_masuk.substring(0,4));
+                                } else {
+                                    tglBergabungMainTV.setVisibility(View.GONE);
+                                }
 
                                 if(status_karyawan.equals("null")){
                                     if(sharedPrefManager.getSpStatusUser().equals("1")){
@@ -1981,6 +1989,8 @@ public class UserActivity extends AppCompatActivity {
                                     desc_idn = "Badai petir dengan hujan";
                                 } else if (description.equals("thunderstorm with heavy rain")){
                                     desc_idn = "Badai petir dengan hujan lebat";
+                                } else if (description.equals("thunderstorm")){
+                                    desc_idn = "Badai petir";
                                 } else if (description.equals("light thunderstorm")){
                                     desc_idn = "Badai petir";
                                 } else if (description.equals("heavy thunderstorm")){

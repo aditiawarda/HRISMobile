@@ -615,15 +615,15 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 String lampiran = detail.getString("lampiran");
 
                                 if(!catatan1.equals("null") && !catatan1.equals("") && !catatan1.equals(null)){
-                                    noted1TV.setText(":  "+catatan1+"  ");
+                                    noted1TV.setText(catatan1+"  ");
                                 }
 
                                 if(!catatan2.equals("null") && !catatan2.equals("") && !catatan2.equals(null)){
-                                    noted2TV.setText(":  "+catatan2+"  ");
+                                    noted2TV.setText(catatan2+"  ");
                                 }
 
                                 if(!lampiran.equals("null") && !lampiran.equals("") && !lampiran.equals(null)){
-                                    lampiranTV.setText(":  Terlampir  ");
+                                    lampiranTV.setText("Terlampir  ");
                                     viewLampiranBTN.setVisibility(View.VISIBLE);
                                     String url_lampiran = "https://geloraaksara.co.id/absen-online/upload/lampiran_cuti/"+lampiran;
 
@@ -646,19 +646,19 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 nikPemohon = NIK;
 
                                 namaPemohonTV.setText(NmKaryawan);
-                                namaKaryawanTV.setText(":  "+NmKaryawan);
-                                jabatanTV.setText(":  "+jabatan);
-                                bagianTV.setText(":  "+bagian);
+                                namaKaryawanTV.setText(NmKaryawan);
+                                jabatanTV.setText(jabatan);
+                                bagianTV.setText(bagian);
 
                                 if(!tanggal_bergabung.equals("null")){
-                                    mulaiBergabungTV.setText(":  "+tanggal_bergabung.substring(8,10)+"/"+tanggal_bergabung.substring(5,7)+"/"+tanggal_bergabung.substring(0,4));
+                                    mulaiBergabungTV.setText(tanggal_bergabung.substring(8,10)+"/"+tanggal_bergabung.substring(5,7)+"/"+tanggal_bergabung.substring(0,4));
                                 } else {
-                                    mulaiBergabungTV.setText(":  "+tanggal_bergabung);
+                                    mulaiBergabungTV.setText(tanggal_bergabung);
                                 }
 
-                                nikTV.setText(":  "+NIK);
-                                statusKaryawanTV.setText(":  "+status_karyawan);
-                                sisaCutiTV.setText(":  "+sisa_cuti_sementara+" Hari");
+                                nikTV.setText(NIK);
+                                statusKaryawanTV.setText(status_karyawan);
+                                sisaCutiTV.setText(sisa_cuti_sementara+" Hari");
                                 tahunCutiAmbilTV.setText("Tahun  "+tahun_cuti_telah_diambil);
                                 totalCutiAmbilTV.setText("Total  "+total_cuti_telah_diambil+"  Hari");
                                 tahunCutiTV.setText("Tahun  "+tanggal_mulai.substring(0,4));
@@ -667,16 +667,16 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                                 String jumlah_hari = data.getString("jumlah_hari");
                                 totalCutiTV.setText("Total  "+jumlah_hari+"  Hari");
-                                alasanCutiTV.setText(":  "+alasan_cuti);
-                                alamatTV.setText(":  "+alamat_selama_cuti);
-                                noHpTV.setText(":  "+no_hp);
+                                alasanCutiTV.setText(alasan_cuti);
+                                alamatTV.setText(alamat_selama_cuti);
+                                noHpTV.setText(no_hp);
 
                                 if(tipe_cuti.equals("0")){
-                                    tipeCutiTV.setText(":  Undefined");
+                                    tipeCutiTV.setText("Undefined");
                                 } else if(tipe_cuti.equals("1")){
-                                    tipeCutiTV.setText(":  Tahunan");
+                                    tipeCutiTV.setText("Tahunan");
                                 } else if(tipe_cuti.equals("2")){
-                                    tipeCutiTV.setText(":  Khusus");
+                                    tipeCutiTV.setText("Khusus");
                                 }
 
                                 String pengajuan = tanggal;
@@ -735,7 +735,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                                         .into(ttdPemohon);
 
-                                karyawanPenggantiTV.setText(":  "+karyawan_pengganti);
+                                karyawanPenggantiTV.setText(karyawan_pengganti);
 
                                 if (kode.equals("form")){
                                     if(sharedPrefManager.getSpIdJabatan().equals("10")) {
