@@ -699,6 +699,7 @@ public class UserActivity extends AppCompatActivity {
         sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_USER, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_AKTIF, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_HALAMAN, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_TGL_BERGABUNG, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         Preferences.clearLoggedInUser(UserActivity.this);
         Intent intent = new Intent(UserActivity.this, LoginActivity.class);
@@ -742,6 +743,7 @@ public class UserActivity extends AppCompatActivity {
 
                                 statusKaryawan = status_karyawan;
                                 tanggalBergabung = tanggal_masuk;
+                                sharedPrefManager.saveSPString(SharedPrefManager.SP_TGL_BERGABUNG, tanggal_masuk);
 
                                 if((status_karyawan.equals("Tetap")||status_karyawan.equals("Kontrak"))&&!status_karyawan.equals("null")){
                                     tglBergabungMainTV.setVisibility(View.VISIBLE);

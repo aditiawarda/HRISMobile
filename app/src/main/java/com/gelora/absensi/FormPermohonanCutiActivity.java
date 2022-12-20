@@ -85,7 +85,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
     LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, viewBTN, goToHome, goToDasboard, successPart, formPart, backBTN, homeBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, submitBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
     SwipeRefreshLayout refreshLayout;
-    TextView messageSuccessTV, statusUploadTV, labelUnggahTV, tipeCutiTV, namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
+    TextView jumlahHariTV, messageSuccessTV, statusUploadTV, labelUnggahTV, tipeCutiTV, namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
     String lampiranWajibAtauTidak = "", uploadStatus = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", dateChoiceMulai = "", kategoriCuti = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
     ImageView loadingGif, successGif;
     EditText keywordKaryawanPengganti, alasanTV, alamatSelamaCutiTV, noHpTV;
@@ -153,6 +153,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         labelUnggahTV = findViewById(R.id.label_unggah);
         viewUploadBTN = findViewById(R.id.view_btn);
         messageSuccessTV = findViewById(R.id.message_tv);
+        jumlahHariTV = findViewById(R.id.jumlah_hari_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -197,6 +198,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         tipeCuti = "";
                         uploadStatus = "";
                         tipeCutiTV.setText("Pilih Jenis Cuti...");
+                        jumlahHariTV.setText("Tentukan Tanggal...");
 
                         alasanTV.clearFocus();
                         alamatSelamaCutiTV.clearFocus();
@@ -3204,7 +3206,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         dariTanggalTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
                     } else {
-                        dariTanggalTV.setText("Pilih kembali !");
+                        dariTanggalTV.setText("Pilih Kembali !");
                         dateChoiceMulai = "";
 
                         new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
@@ -3406,7 +3408,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         dariTanggalTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
                     } else {
-                        dariTanggalTV.setText("Pilih kembali !");
+                        dariTanggalTV.setText("Pilih Kembali !");
                         dateChoiceMulai = "";
 
                         new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
@@ -3612,8 +3614,9 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         sampaiTanggalTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
                     } else {
-                        sampaiTanggalTV.setText("Pilih kembali !");
+                        sampaiTanggalTV.setText("Pilih Kembali !");
                         dateChoiceAkhir = "";
+                        jumlahHariTV.setText("Tentukan Tanggal...");
 
                         new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
@@ -3814,8 +3817,9 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         sampaiTanggalTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
                     } else {
-                        sampaiTanggalTV.setText("Pilih kembali !");
+                        sampaiTanggalTV.setText("Pilih Kembali !");
                         dateChoiceAkhir = "";
+                        jumlahHariTV.setText("Tentukan Tanggal...");
 
                         new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_detail_3"
+            android:orientation="vertical"
+            android:gravity="center|left">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginBottom="-20dp"
+                android:layout_marginTop="-20dp"
+                android:layout_width="match_parent"
+                android:gravity="right"
+                android:paddingRight="10dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="45dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_ornament_3"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/title_data_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:drawablePadding="7dp"
+                android:drawableLeft="@drawable/ic_baseline_label_important"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textSize="12dp"
+                android:text="-"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-1dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_ketidakhadiran_item"
+                android:layout_weight=".50"
+                android:paddingBottom="13dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/date_data_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableTint="#B55F44"
+                    android:drawableLeft="@drawable/ic_baseline_date"
+                    android:drawablePadding="7dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="13dp"
+                    android:textColor="#605E5D"
+                    android:text="00/00/0000"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#229A9998"/>
+
+                <TextView
+                    android:id="@+id/field_data_tv"
+                    android:layout_marginLeft="36dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableTint="#B55F44"
+                    android:drawablePadding="7dp"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="13dp"
+                    android:textColor="#605E5D"
+                    android:text="10 Hari"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

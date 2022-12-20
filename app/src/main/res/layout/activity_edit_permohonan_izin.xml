@@ -313,6 +313,45 @@
                                     android:textSize="12dp"
                                     android:layout_marginBottom="5dp"
                                     android:textColor="#696969"
+                                    android:text="Jumlah Hari :"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:background="@drawable/shape_feel_disable"
+                                    android:gravity="center|left"
+                                    android:orientation="horizontal"
+                                    android:paddingStart="20dp"
+                                    android:paddingEnd="20dp">
+
+                                    <TextView
+                                        android:id="@+id/jumlah_hari_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Tentukan tanggal..."
+                                        android:textColor="#B15735"
+                                        android:textSize="13dp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="9dp"
+                                    android:layout_marginTop="-5dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:textStyle="italic"
+                                    android:textColor="#696969"
+                                    android:text="*) Hari Minggu/Tanggal Merah/ Libur Cuti Bersama tidak dihitung  "/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:textColor="#696969"
                                     android:text="Alasan :"/>
 
                                 <EditText

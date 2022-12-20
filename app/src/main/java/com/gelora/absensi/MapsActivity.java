@@ -995,6 +995,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_USER, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_AKTIF, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_HALAMAN, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_TGL_BERGABUNG, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         Preferences.clearLoggedInUser(MapsActivity.this);
         Intent intent = new Intent(MapsActivity.this, LoginActivity.class);

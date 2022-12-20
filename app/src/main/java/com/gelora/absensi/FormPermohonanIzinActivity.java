@@ -72,7 +72,7 @@ import java.util.UUID;
 public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadFilePart, markStatusSakit, markStatusIzin, izinBTN, sakitBTN, tipeChoiceBTN, viewBTN, goToHome, goToDasboard, formPart, successPart, submitBTN, backBTN, homeBTN, dateMulaiPicker, dateAkhirPicker;
-    TextView messageSuccessTV, labelUnggahTV, statusUploadTV, tipeChoiceTV, mulaiDateTV, akhirDateTV, namaTV, nikTV, detailTV;
+    TextView jumlahHariTV, messageSuccessTV, labelUnggahTV, statusUploadTV, tipeChoiceTV, mulaiDateTV, akhirDateTV, namaTV, nikTV, detailTV;
     String permohonanTerkirim = "0", uploadStatus = "", idIzin = "", tipeIzin = "", dateChoiceMulai = "", dateChoiceAkhir = "", alasanIzin = "";
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -121,6 +121,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         labelUnggahTV = findViewById(R.id.label_unggah);
         viewUploadBTN = findViewById(R.id.view_btn);
         messageSuccessTV = findViewById(R.id.message_tv);
+        jumlahHariTV = findViewById(R.id.jumlah_hari_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -156,6 +157,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         viewUploadBTN.setVisibility(View.GONE);
                         statusUploadTV.setText("Unggah Surat Sakit");
                         labelUnggahTV.setText("Unggah");
+                        jumlahHariTV.setText("Tentukan Tanggal...");
                         getDataKaryawan();
                     }
                 }, 800);
@@ -404,9 +406,14 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
                         mulaiDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                        if(!dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                            dayCalculate();
+                        }
+
                     } else {
-                        mulaiDateTV.setText("Pilih kembali !");
+                        mulaiDateTV.setText("Pilih Kembali !");
                         dateChoiceMulai = "";
+                        jumlahHariTV.setText("Tentukan Tanggal...");
 
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -606,9 +613,14 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
                         mulaiDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                        if(!dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                            dayCalculate();
+                        }
+
                     } else {
-                        mulaiDateTV.setText("Pilih kembali !");
+                        mulaiDateTV.setText("Pilih Kembali !");
                         dateChoiceMulai = "";
+                        jumlahHariTV.setText("Tentukan Tanggal...");
 
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -812,9 +824,14 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
                         akhirDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                        if(!dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                            dayCalculate();
+                        }
+
                     } else {
-                        akhirDateTV.setText("Pilih kembali !");
+                        akhirDateTV.setText("Pilih Kembali !");
                         dateChoiceAkhir = "";
+                        jumlahHariTV.setText("Tentukan Tanggal...");
 
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -1014,9 +1031,14 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
                         akhirDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                        if(!dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                            dayCalculate();
+                        }
+
                     } else {
-                        akhirDateTV.setText("Pilih kembali !");
+                        akhirDateTV.setText("Pilih Kembali !");
                         dateChoiceAkhir = "";
+                        jumlahHariTV.setText("Tentukan Tanggal...");
 
                         new KAlertDialog(FormPermohonanIzinActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -1690,6 +1712,66 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
 
     }
 
+    private void dayCalculate(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/total_hari";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Success")){
+                                String jumlah_hari = data.getString("jumlah_hari");
+                                jumlahHariTV.setText(jumlah_hari+" Hari");
+                            } else {
+                                jumlahHariTV.setText("Tentukan Tanggal...");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+
+                if(tipeIzin.equals("")){
+                    params.put("tipe_izin", "4");
+                } else {
+                    params.put("tipe_izin", tipeIzin);
+                }
+
+                params.put("tanggal_mulai", dateChoiceMulai);
+                params.put("tanggal_akhir", dateChoiceAkhir);
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
     private void submitIzin(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/izin_input";
@@ -1934,6 +2016,10 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                 tipeChoiceTV.setText("Izin");
                 uploadFilePart.setVisibility(View.GONE);
 
+                if(!tipeIzin.equals("") && !dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                    dayCalculate();
+                }
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -1953,6 +2039,10 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                 tipeIzin = "5";
                 tipeChoiceTV.setText("Sakit");
                 uploadFilePart.setVisibility(View.VISIBLE);
+
+                if(!tipeIzin.equals("") && !dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                    dayCalculate();
+                }
 
                 new Handler().postDelayed(new Runnable() {
                     @Override

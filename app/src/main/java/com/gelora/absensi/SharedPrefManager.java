@@ -19,6 +19,7 @@ public class SharedPrefManager {
     public static final String SP_STATUS_USER = "spIdStatusUser";
     public static final String SP_STATUS_AKTIF = "spIdStatusAktif";
     public static final String SP_REMINDER = "spReminder";
+    public static final String SP_TGL_BERGABUNG = "spTglBergabung";
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
 
@@ -78,6 +79,9 @@ public class SharedPrefManager {
     }
     public Boolean getSpReminder(){
         return sp.getBoolean(SP_REMINDER, false);
+    }
+    public String getSpTglBergabung(){
+        return sp.getString(SP_TGL_BERGABUNG, "");
     }
 
 }
