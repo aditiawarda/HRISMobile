@@ -171,7 +171,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "1.4.3";
+    String appVersion = "1.4.4";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -5110,6 +5110,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String pengumuman_date = data.getString("pengumuman_date");
                                 String pengumuman_title = data.getString("pengumuman_title");
                                 String pengumuman_desc = data.getString("pengumuman_desc");
+                                String cek_email = data.getString("cek_email");
+                                String cek_nohp = data.getString("cek_nohp");
 
                                 if(fitur_pengumuman.equals("0")){
                                     if (sharedPrefManager.getSpNik().length()==10){
@@ -5187,13 +5189,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     pantauBTN.setVisibility(View.GONE);
                                 }
 
-                                int alpaNumb = Integer.parseInt(alpa);
-                                int lateNumb = Integer.parseInt(terlambat);
-                                int noCheckoutNumb = Integer.parseInt(tidak_checkout);
-                                if (alpaNumb > 0 || lateNumb > 0 || noCheckoutNumb > 0){
+                                if((cek_email.equals("")||cek_email==null||cek_email.equals("null")) && (cek_nohp.equals("")||cek_nohp==null||cek_nohp.equals("null"))){
                                     markerWarningAbsensi.setVisibility(View.VISIBLE);
                                 } else {
-                                    markerWarningAbsensi.setVisibility(View.GONE);
+                                    int alpaNumb = Integer.parseInt(alpa);
+                                    int lateNumb = Integer.parseInt(terlambat);
+                                    int noCheckoutNumb = Integer.parseInt(tidak_checkout);
+                                    if (alpaNumb > 0 || lateNumb > 0 || noCheckoutNumb > 0){
+                                        markerWarningAbsensi.setVisibility(View.VISIBLE);
+                                    } else {
+                                        markerWarningAbsensi.setVisibility(View.GONE);
+                                    }
                                 }
 
                                 if(cegat_device.equals("1")){
