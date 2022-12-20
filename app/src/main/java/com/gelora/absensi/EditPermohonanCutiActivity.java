@@ -89,7 +89,7 @@ import java.util.UUID;
 public class EditPermohonanCutiActivity extends AppCompatActivity {
 
     LinearLayout removeLampiranBTN, submitBTN, loadingDataPart, noDataPart, startAttantionPart, penggantiSelamaCutiBTN, tipeCutiBTN, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, backBTN, dariTanggalPicker, sampaiTanggalPicker;
-    TextView labelUnggahTV, statusUploadTV, noHpTV, alamatSelamaCutiTV, penggantiSelamaCutiTV, jenisCutiTV, tipeCutiTV, sampaiTanggalTV, dariTanggalTV, totalCutiDiambilTV, tahunCutiDiambilTV, sisaCutiTV, namaKaryawanTV, jabatanKaryawanTV, detailKaryawanTV, tglMulaiKerjaTV, nikKaryawanTV, statusKaryawanTV;
+    TextView notejumlahHari, jumlahHariTV, labelUnggahTV, statusUploadTV, noHpTV, alamatSelamaCutiTV, penggantiSelamaCutiTV, jenisCutiTV, tipeCutiTV, sampaiTanggalTV, dariTanggalTV, totalCutiDiambilTV, tahunCutiDiambilTV, sisaCutiTV, namaKaryawanTV, jabatanKaryawanTV, detailKaryawanTV, tglMulaiKerjaTV, nikKaryawanTV, statusKaryawanTV;
     EditText alasanTV, keywordKaryawanPengganti;
     ImageView loadingGif;
     BottomSheetLayout bottomSheet;
@@ -148,6 +148,8 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         viewUploadBTN = findViewById(R.id.view_btn);
         removeLampiranBTN = findViewById(R.id.remove_lampiran_btn);
         tipeCutiBTN = findViewById(R.id.jenis_cuti);
+        jumlahHariTV = findViewById(R.id.jumlah_hari_tv);
+        notejumlahHari = findViewById(R.id.note_jumlah_hari);
         submitBTN = findViewById(R.id.submit_btn);
 
         idRecord = getIntent().getExtras().getString("id_record");
@@ -2602,6 +2604,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                                 String catatan1 = detail.getString("catatan1");
                                 String catatan2 = detail.getString("catatan2");
                                 String lampiran = detail.getString("lampiran");
+                                String jumlah_hari = data.getString("jumlah_hari");
 
                                 idCuti   = jenis_cuti;
                                 descCuti = jenis_cuti_deskripsi;
@@ -2794,6 +2797,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
 
                                 sampaiTanggalTV.setText(hariName_akhir+", "+String.valueOf(Integer.parseInt(dayDate_akhir))+" "+bulanName_akhir+" "+yearDate_akhir);
 
+                                jumlahHariTV.setText(jumlah_hari+" Hari");
                                 jenisCutiTV.setText(jenis_cuti_deskripsi);
                                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_CUTI, jenis_cuti);
 
@@ -2962,10 +2966,14 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                         }
 
                         dariTanggalTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                        if(!dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                            dayCalculate();
+                        }
 
                     } else {
                         dariTanggalTV.setText("Pilih kembali !");
                         dateChoiceMulai = "";
+                        jumlahHariTV.setText("Tentukan Tanggal...");
 
                         new KAlertDialog(EditPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -3164,10 +3172,14 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                         }
 
                         dariTanggalTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                        if(!dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                            dayCalculate();
+                        }
 
                     } else {
                         dariTanggalTV.setText("Pilih kembali !");
                         dateChoiceMulai = "";
+                        jumlahHariTV.setText("Tentukan Tanggal...");
 
                         new KAlertDialog(EditPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -3370,10 +3382,14 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                         }
 
                         sampaiTanggalTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                        if(!dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                            dayCalculate();
+                        }
 
                     } else {
                         sampaiTanggalTV.setText("Pilih kembali !");
                         dateChoiceAkhir = "";
+                        jumlahHariTV.setText("Tentukan Tanggal...");
 
                         new KAlertDialog(EditPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -3572,10 +3588,14 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                         }
 
                         sampaiTanggalTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                        if(!dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                            dayCalculate();
+                        }
 
                     } else {
                         sampaiTanggalTV.setText("Pilih kembali !");
                         dateChoiceAkhir = "";
+                        jumlahHariTV.setText("Tentukan Tanggal...");
 
                         new KAlertDialog(EditPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -3900,6 +3920,16 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                 removeLampiranBTN.setVisibility(View.GONE);
             }
 
+            if(!idCuti.equals("") && !dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                dayCalculate();
+            }
+
+            if(idCuti.equals("9")||idCuti.equals("13")){
+                notejumlahHari.setVisibility(View.GONE);
+            } else {
+                notejumlahHari.setVisibility(View.VISIBLE);
+            }
+
             kategoriCuti = idCuti;
             jenisCutiTV.setText(descCuti);
 
@@ -3944,6 +3974,66 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
             }, 300);
         }
     };
+
+    private void dayCalculate(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/total_hari";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Success")){
+                                String jumlah_hari = data.getString("jumlah_hari");
+                                jumlahHariTV.setText(jumlah_hari+" Hari");
+                            } else {
+                                jumlahHariTV.setText("Tentukan Tanggal...");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+
+                if(kodeCuti.equals("")){
+                    params.put("tipe_izin", "2");
+                } else {
+                    params.put("tipe_izin", kodeCuti);
+                }
+
+                params.put("tanggal_mulai", dateChoiceMulai);
+                params.put("tanggal_akhir", dateChoiceAkhir);
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
 
     private void dexterCall(){
         Dexter.withActivity(EditPermohonanCutiActivity.this)

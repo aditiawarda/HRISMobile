@@ -537,7 +537,7 @@
                                         android:id="@+id/jumlah_hari_tv"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Tentukan tanggal..."
+                                        android:text="Tentukan Tanggal..."
                                         android:textColor="#B15735"
                                         android:textSize="13dp"
                                         android:textStyle="bold" />

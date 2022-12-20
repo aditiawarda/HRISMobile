@@ -85,7 +85,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
     LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, viewBTN, goToHome, goToDasboard, successPart, formPart, backBTN, homeBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, submitBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
     SwipeRefreshLayout refreshLayout;
-    TextView jumlahHariTV, messageSuccessTV, statusUploadTV, labelUnggahTV, tipeCutiTV, namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
+    TextView notejumlahHari, jumlahHariTV, messageSuccessTV, statusUploadTV, labelUnggahTV, tipeCutiTV, namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
     String lampiranWajibAtauTidak = "", uploadStatus = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", dateChoiceMulai = "", kategoriCuti = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
     ImageView loadingGif, successGif;
     EditText keywordKaryawanPengganti, alasanTV, alamatSelamaCutiTV, noHpTV;
@@ -154,6 +154,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         viewUploadBTN = findViewById(R.id.view_btn);
         messageSuccessTV = findViewById(R.id.message_tv);
         jumlahHariTV = findViewById(R.id.jumlah_hari_tv);
+        notejumlahHari = findViewById(R.id.note_jumlah_hari);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -196,6 +197,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         statusUploadTV.setText("Unggah Lampiran");
                         labelUnggahTV.setText("Unggah");
                         tipeCuti = "";
+                        idCuti = "";
                         uploadStatus = "";
                         tipeCutiTV.setText("Pilih Jenis Cuti...");
                         jumlahHariTV.setText("Tentukan Tanggal...");
@@ -203,6 +205,8 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         alasanTV.clearFocus();
                         alamatSelamaCutiTV.clearFocus();
                         noHpTV.clearFocus();
+
+                        notejumlahHari.setVisibility(View.VISIBLE);
 
                         getDataKaryawan();
                     }
@@ -3205,9 +3209,14 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
                         dariTanggalTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                        if(!dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                            dayCalculate();
+                        }
+
                     } else {
                         dariTanggalTV.setText("Pilih Kembali !");
                         dateChoiceMulai = "";
+                        jumlahHariTV.setText("Tentukan Tanggal...");
 
                         new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -3407,9 +3416,14 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
                         dariTanggalTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                        if(!dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                            dayCalculate();
+                        }
+
                     } else {
                         dariTanggalTV.setText("Pilih Kembali !");
                         dateChoiceMulai = "";
+                        jumlahHariTV.setText("Tentukan Tanggal...");
 
                         new KAlertDialog(FormPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -3612,6 +3626,10 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                         }
 
                         sampaiTanggalTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                        if(!dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                            dayCalculate();
+                        }
 
                     } else {
                         sampaiTanggalTV.setText("Pilih Kembali !");
@@ -3816,6 +3834,10 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
                         sampaiTanggalTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
+                        if(!dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                            dayCalculate();
+                        }
+
                     } else {
                         sampaiTanggalTV.setText("Pilih Kembali !");
                         dateChoiceAkhir = "";
@@ -3948,6 +3970,16 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 statusLampiran = "0";
             }
 
+            if(!idCuti.equals("") && !dateChoiceMulai.equals("") && !dateChoiceAkhir.equals("")){
+                dayCalculate();
+            }
+
+            if(idCuti.equals("9")||idCuti.equals("13")){
+                notejumlahHari.setVisibility(View.GONE);
+            } else {
+                notejumlahHari.setVisibility(View.VISIBLE);
+            }
+
             kategoriCuti = idCuti;
             kategoriCutiPilihTV.setText(descCuti);
 
@@ -3992,6 +4024,66 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
             }, 300);
         }
     };
+
+    private void dayCalculate(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/total_hari";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Success")){
+                                String jumlah_hari = data.getString("jumlah_hari");
+                                jumlahHariTV.setText(jumlah_hari+" Hari");
+                            } else {
+                                jumlahHariTV.setText("Tentukan Tanggal...");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+
+                if(kodeCuti.equals("")){
+                    params.put("tipe_izin", "2");
+                } else {
+                    params.put("tipe_izin", kodeCuti);
+                }
+
+                params.put("tanggal_mulai", dateChoiceMulai);
+                params.put("tanggal_akhir", dateChoiceAkhir);
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
 
     private void getFilePDF(){
         Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
