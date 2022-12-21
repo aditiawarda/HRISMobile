@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,8 +44,21 @@ public class AdapterDataHistoryPenambahanCuti extends RecyclerView.Adapter<Adapt
         final DataHistorPenambahanCuti dataHistorPenambahanCuti = data[i];
 
         String dataDate = dataHistorPenambahanCuti.getTanggal();
+        String ket = dataHistorPenambahanCuti.getKeterangan();
 
-        myViewHolder.titleDataTV.setText("Pembahan Hak Cuti");
+        if(dataHistorPenambahanCuti.getKeterangan().equals("AWAL PERIODE")){
+            myViewHolder.titleDataTV.setText("Hak Cuti Awal Periode");
+            myViewHolder.ketPart.setVisibility(View.GONE);
+        } else {
+            myViewHolder.titleDataTV.setText("Penambahan Hak Cuti");
+            if(ket.equals("") || ket.equals(" ") || ket.equals("-") || ket.equals("null") || ket==null){
+                myViewHolder.ketPart.setVisibility(View.GONE);
+            } else {
+                myViewHolder.ketPart.setVisibility(View.VISIBLE);
+                myViewHolder.ketDataTV.setText(ket);
+            }
+        }
+
         myViewHolder.dateDataTV.setText(dataDate.substring(8,10)+"/"+dataDate.substring(5,7)+"/"+dataDate.substring(0,4));
         myViewHolder.fieldDataTV.setText(dataHistorPenambahanCuti.getStok_masuk()+" Hari");
 
@@ -56,12 +70,15 @@ public class AdapterDataHistoryPenambahanCuti extends RecyclerView.Adapter<Adapt
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView titleDataTV, dateDataTV, fieldDataTV;
+        TextView titleDataTV, dateDataTV, fieldDataTV, ketDataTV;
+        LinearLayout ketPart;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             titleDataTV = itemView.findViewById(R.id.title_data_tv);
             dateDataTV = itemView.findViewById(R.id.date_data_tv);
             fieldDataTV = itemView.findViewById(R.id.field_data_tv);
+            ketPart = itemView.findViewById(R.id.ket_part);
+            ketDataTV = itemView.findViewById(R.id.ket_data_tv);
         }
     }
 

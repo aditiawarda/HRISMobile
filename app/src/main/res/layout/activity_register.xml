@@ -350,7 +350,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#CBFFFFFF"
                 android:textSize="13dp"
-                android:text="HRIS Mobile Gelora v 1.4.4"/>
+                android:text="HRIS Mobile Gelora v 1.4.5"/>
 
         </LinearLayout>
 

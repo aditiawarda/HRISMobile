@@ -112,7 +112,37 @@
                     android:layout_marginBottom="5dp"
                     android:textSize="13dp"
                     android:textColor="#605E5D"
-                    android:text="10 Hari"/>
+                    android:text=""/>
+
+                <LinearLayout
+                    android:id="@+id/ket_part"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1.5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#229A9998"/>
+
+                    <TextView
+                        android:id="@+id/ket_data_tv"
+                        android:layout_marginLeft="36dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableTint="#B55F44"
+                        android:drawablePadding="7dp"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="13dp"
+                        android:textColor="#605E5D"
+                        android:text=""/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
