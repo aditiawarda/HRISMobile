@@ -152,7 +152,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ResultReceiver resultReceiver;
     SwitchButton switchZoom;
     ProgressBar loadingCuaca;
-    Vibrator v;
+    Vibrator vibrate;
     RippleBackground rippleIndicator;
     ProgressBar loadingProgressBar;
 
@@ -273,7 +273,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markTitleShift = findViewById(R.id.mark_title_shift);
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
         requestQueue = Volley.newRequestQueue(getBaseContext());
-        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         rippleIndicator = (RippleBackground)findViewById(R.id.ripple_indicator);
 
         loadingProgressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#A6441F"),android.graphics.PorterDuff.Mode.MULTIPLY);
@@ -1368,10 +1368,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             // Vibrate for 500 milliseconds
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
             } else {
                 //deprecated in API 26
-                v.vibrate(500);
+                vibrate.vibrate(500);
             }
 
         } else {
@@ -1416,10 +1416,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 // Vibrate for 500 milliseconds
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                    vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
                 } else {
                     //deprecated in API 26
-                    v.vibrate(500);
+                    vibrate.vibrate(500);
                 }
 
             }
@@ -2071,6 +2071,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                         }
                                                                     })
                                                                     .show();
+
+                                                            // Vibrate for 500 milliseconds
+                                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                            } else {
+                                                                //deprecated in API 26
+                                                                vibrate.vibrate(500);
+                                                            }
+
                                                         } else {
 
                                                             if (timeDetection.equals("matching")){
@@ -2098,6 +2107,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                                 }
                                                                             })
                                                                             .show();
+
+                                                                    // Vibrate for 500 milliseconds
+                                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                                    } else {
+                                                                        //deprecated in API 26
+                                                                        vibrate.vibrate(500);
+                                                                    }
+
                                                                 } else {
                                                                     actionCheckin();
                                                                 }
@@ -2189,6 +2207,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                         }
                                                                     })
                                                                     .show();
+
+                                                            // Vibrate for 500 milliseconds
+                                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                            } else {
+                                                                //deprecated in API 26
+                                                                vibrate.vibrate(500);
+                                                            }
+
                                                         } else {
                                                             if(radiusZone.equals("inside")){
                                                                 if (timeDetection.equals("matching")){
@@ -2216,6 +2243,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                                     }
                                                                                 })
                                                                                 .show();
+
+                                                                        // Vibrate for 500 milliseconds
+                                                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                            vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                                        } else {
+                                                                            //deprecated in API 26
+                                                                            vibrate.vibrate(500);
+                                                                        }
+
                                                                     } else {
                                                                         actionCheckin();
                                                                     }
@@ -2235,6 +2271,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                             }
                                                                         })
                                                                         .show();
+
+                                                                // Vibrate for 500 milliseconds
+                                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                    vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                                } else {
+                                                                    //deprecated in API 26
+                                                                    vibrate.vibrate(500);
+                                                                }
                                                             }
                                                         }
 
@@ -2365,6 +2409,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                     }
                                                                 })
                                                                 .show();
+
+                                                        // Vibrate for 500 milliseconds
+                                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                            vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                        } else {
+                                                            //deprecated in API 26
+                                                            vibrate.vibrate(500);
+                                                        }
+
                                                     } else {
 
                                                         if (timeDetection.equals("matching")){
@@ -2392,6 +2445,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                             }
                                                                         })
                                                                         .show();
+
+                                                                // Vibrate for 500 milliseconds
+                                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                    vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                                } else {
+                                                                    //deprecated in API 26
+                                                                    vibrate.vibrate(500);
+                                                                }
+
                                                             } else {
                                                                 actionCheckout();
                                                             }
@@ -2483,6 +2545,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                     }
                                                                 })
                                                                 .show();
+
+                                                        // Vibrate for 500 milliseconds
+                                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                            vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                        } else {
+                                                            //deprecated in API 26
+                                                            vibrate.vibrate(500);
+                                                        }
+
                                                     } else {
                                                         if(radiusZone.equals("inside")){
 
@@ -2511,6 +2582,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                                 }
                                                                             })
                                                                             .show();
+
+                                                                    // Vibrate for 500 milliseconds
+                                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                                    } else {
+                                                                        //deprecated in API 26
+                                                                        vibrate.vibrate(500);
+                                                                    }
+
                                                                 } else {
                                                                     actionCheckout();
                                                                 }
@@ -2531,6 +2611,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                         }
                                                                     })
                                                                     .show();
+
+                                                            // Vibrate for 500 milliseconds
+                                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                            } else {
+                                                                //deprecated in API 26
+                                                                vibrate.vibrate(500);
+                                                            }
+
                                                         }
 
                                                     }
@@ -2869,6 +2958,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                         }
                                                                     })
                                                                     .show();
+
+                                                            // Vibrate for 500 milliseconds
+                                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                            } else {
+                                                                //deprecated in API 26
+                                                                vibrate.vibrate(500);
+                                                            }
+
                                                         } else {
 
                                                             if (timeDetection.equals("matching")){
@@ -2896,6 +2994,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                                 }
                                                                             })
                                                                             .show();
+
+                                                                    // Vibrate for 500 milliseconds
+                                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                                    } else {
+                                                                        //deprecated in API 26
+                                                                        vibrate.vibrate(500);
+                                                                    }
+
                                                                 } else {
                                                                     actionCheckout();
                                                                 }
@@ -2987,6 +3094,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                         }
                                                                     })
                                                                     .show();
+
+                                                            // Vibrate for 500 milliseconds
+                                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                            } else {
+                                                                //deprecated in API 26
+                                                                vibrate.vibrate(500);
+                                                            }
+
                                                         } else {
 
                                                             if (timeDetection.equals("matching")){
@@ -3014,6 +3130,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                                 }
                                                                             })
                                                                             .show();
+
+                                                                    // Vibrate for 500 milliseconds
+                                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                                    } else {
+                                                                        //deprecated in API 26
+                                                                        vibrate.vibrate(500);
+                                                                    }
+
                                                                 } else {
                                                                     actionCheckout();
                                                                 }
@@ -3115,6 +3240,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                         }
                                                                     })
                                                                     .show();
+
+                                                            // Vibrate for 500 milliseconds
+                                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                            } else {
+                                                                //deprecated in API 26
+                                                                vibrate.vibrate(500);
+                                                            }
+
                                                         } else {
 
                                                             if (timeDetection.equals("matching")){
@@ -3142,6 +3276,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                                 }
                                                                             })
                                                                             .show();
+
+                                                                    // Vibrate for 500 milliseconds
+                                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                                    } else {
+                                                                        //deprecated in API 26
+                                                                        vibrate.vibrate(500);
+                                                                    }
+
                                                                 } else {
                                                                     actionCheckin();
                                                                 }
@@ -3234,6 +3377,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                         }
                                                                     })
                                                                     .show();
+
+                                                            // Vibrate for 500 milliseconds
+                                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                            } else {
+                                                                //deprecated in API 26
+                                                                vibrate.vibrate(500);
+                                                            }
+
                                                         } else {
 
                                                             if (timeDetection.equals("matching")){
@@ -3261,6 +3413,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                                 }
                                                                             })
                                                                             .show();
+
+                                                                    // Vibrate for 500 milliseconds
+                                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                                    } else {
+                                                                        //deprecated in API 26
+                                                                        vibrate.vibrate(500);
+                                                                    }
+
                                                                 } else {
                                                                     actionCheckin();
                                                                 }
@@ -3790,10 +3951,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                 // Vibrate for 500 milliseconds
                                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                    v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                    vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
                                                 } else {
                                                     //deprecated in API 26
-                                                    v.vibrate(500);
+                                                    vibrate.vibrate(500);
                                                 }
 
                                             }
@@ -3891,10 +4052,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                     // Vibrate for 500 milliseconds
                                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                        v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
                                                     } else {
                                                         //deprecated in API 26
-                                                        v.vibrate(500);
+                                                        vibrate.vibrate(500);
                                                     }
 
                                                 }
@@ -4001,10 +4162,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                     // Vibrate for 500 milliseconds
                                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                        v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
                                                     } else {
                                                         //deprecated in API 26
-                                                        v.vibrate(500);
+                                                        vibrate.vibrate(500);
                                                     }
 
                                                 }
@@ -5454,6 +5615,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         }
                                     });
                                     pDialog.show();
+
+                                    // Vibrate for 500 milliseconds
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                    } else {
+                                        //deprecated in API 26
+                                        vibrate.vibrate(500);
+                                    }
+
                                 }
 
                             }
