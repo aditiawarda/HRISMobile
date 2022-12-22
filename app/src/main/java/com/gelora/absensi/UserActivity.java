@@ -2019,7 +2019,6 @@ public class UserActivity extends AppCompatActivity {
         protected void onReceiveResult(int resultCode, Bundle resultData) {
             super.onReceiveResult(resultCode, resultData);
             if (resultCode == Constants.SUCCESS_RESULT) {
-
                 if(resultData.getString(Constants.LOCAITY)!=null){
                     if(resultData.getString(Constants.DISTRICT)!=null){
                         if(resultData.getString(Constants.STATE)!=null){
