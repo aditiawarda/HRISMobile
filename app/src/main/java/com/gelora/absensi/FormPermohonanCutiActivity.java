@@ -2899,7 +2899,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     }
 
     private void kategoriCuti(){
-        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_kategori_cuti, bottomSheet, false));
+        bottomSheet.showWithSheetView(LayoutInflater.from(FormPermohonanCutiActivity.this).inflate(R.layout.layout_kategori_cuti, bottomSheet, false));
         kategoriCutiRV = findViewById(R.id.kategori_cuti_rv);
 
         kategoriCutiRV.setLayoutManager(new LinearLayoutManager(this));
@@ -2912,7 +2912,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     }
 
     private void karyawanPengganti(){
-        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_karyawan_pengganti, bottomSheet, false));
+        bottomSheet.showWithSheetView(LayoutInflater.from(FormPermohonanCutiActivity.this).inflate(R.layout.layout_karyawan_pengganti, bottomSheet, false));
         keywordKaryawanPengganti = findViewById(R.id.keyword_user_ed);
 
         karyawanPenggantiRV = findViewById(R.id.karyawan_rv);
@@ -3060,7 +3060,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     }
 
     private void getkategoriCuti() {
-        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        RequestQueue requestQueue = Volley.newRequestQueue(FormPermohonanCutiActivity.this);
         final String url = "https://geloraaksara.co.id/absen-online/api/cuti_kategori";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {

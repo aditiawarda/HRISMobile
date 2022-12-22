@@ -54,8 +54,8 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:layout_marginBottom="15dp"
+                            android:fontFamily="sans-serif"
                             android:text="Bulan"
-                            android:fontFamily="@font/roboto"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="18dp"
                             android:textStyle="bold" />
@@ -68,8 +68,8 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:layout_marginBottom="15dp"
+                            android:fontFamily="sans-serif"
                             android:text="Tahun"
-                            android:fontFamily="@font/roboto"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="18dp"
                             android:textStyle="bold" />
@@ -170,7 +170,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
-                        android:fontFamily="@font/roboto"
+                        android:fontFamily="sans-serif"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_marginBottom="5dp"
                         android:text=""/>
@@ -192,6 +192,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:fontFamily="sans-serif"
                     android:textSize="13dp"
                     android:textColor="@color/white"
                     android:text="TUTUP"/>

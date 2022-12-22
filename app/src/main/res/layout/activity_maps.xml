@@ -171,6 +171,7 @@
                                         android:singleLine="true"
                                         android:textSize="11dp"
                                         android:textColor="#AAAAAA"
+                                        android:fontFamily="sans-serif"
                                         android:textStyle="bold"
                                         android:text="Memuat data..." />
 
@@ -189,6 +190,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="1dp"
                                         android:textStyle="bold"
+                                        android:fontFamily="sans-serif"
                                         android:textSize="10dp"
                                         android:paddingLeft="3dp"
                                         android:paddingRight="3dp"
@@ -205,6 +207,7 @@
                                         android:layout_marginRight="1dp"
                                         android:layout_marginBottom="1dp"
                                         android:textSize="13dp"
+                                        android:fontFamily="sans-serif"
                                         android:text=":"
                                         android:textStyle="bold"
                                         android:textColor="#000" />
@@ -216,6 +219,7 @@
                                         android:layout_marginLeft="1dp"
                                         android:layout_marginRight="1dp"
                                         android:textStyle="bold"
+                                        android:fontFamily="sans-serif"
                                         android:textSize="10dp"
                                         android:paddingLeft="3dp"
                                         android:paddingRight="3dp"
@@ -233,6 +237,7 @@
                                         android:layout_marginBottom="1dp"
                                         android:textSize="13dp"
                                         android:text=":"
+                                        android:fontFamily="sans-serif"
                                         android:textStyle="bold"
                                         android:textColor="#000" />
 
@@ -246,6 +251,7 @@
                                         android:paddingTop="0dp"
                                         android:paddingBottom="1dp"
                                         android:textStyle="bold"
+                                        android:fontFamily="sans-serif"
                                         android:textSize="10dp"
                                         android:text="00"
                                         android:background="@drawable/shape_time"
@@ -301,6 +307,7 @@
                                                 android:singleLine="true"
                                                 android:textSize="12dp"
                                                 android:textStyle="bold"
+                                                android:fontFamily="sans-serif"
                                                 android:text="Memuat data..."/>
 
                                         </LinearLayout>
@@ -383,6 +390,7 @@
                                                     android:text="0"
                                                     android:gravity="center"
                                                     android:textStyle="bold"
+                                                    android:fontFamily="sans-serif"
                                                     android:textSize="8dp"
                                                     android:textColor="@color/white" />
 
@@ -439,11 +447,11 @@
                                         android:gravity="center">
 
                                         <TextView
-                                            android:id="@+id/status_absen_tv"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textColor="@color/white"
                                             android:textStyle="bold"
+                                            android:fontFamily="sans-serif"
                                             android:textSize="13dp"
                                             android:text="Pilih Status Absensi"/>
 
@@ -460,6 +468,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/mark_title_status"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textSize="12dp"
@@ -494,6 +503,7 @@
                                                         android:layout_height="wrap_content"
                                                         android:textColor="#B15735"
                                                         android:textSize="13dp"
+                                                        android:fontFamily="sans-serif"
                                                         android:textStyle="bold"
                                                         android:text=""/>
 
@@ -538,6 +548,7 @@
                                             android:textColor="@color/white"
                                             android:textSize="13dp"
                                             android:textStyle="bold"
+                                            android:fontFamily="sans-serif"
                                             android:text="Pilih Shift"/>
 
                                     </LinearLayout>
@@ -554,6 +565,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/mark_title_shift"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textSize="12dp"
@@ -592,6 +604,7 @@
                                                         android:singleLine="true"
                                                         android:textColor="#B15735"
                                                         android:textStyle="bold"
+                                                        android:fontFamily="sans-serif"
                                                         android:text=""/>
 
                                                 </LinearLayout>
@@ -641,9 +654,11 @@
                                         android:textColor="#C68D46"
                                         android:textSize="12dp"
                                         android:textStyle="bold"
+                                        android:fontFamily="sans-serif"
                                         android:text="Perhatian :"/>
 
                                     <TextView
+                                        android:id="@+id/desc_start"
                                         android:layout_marginLeft="10dp"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -651,31 +666,6 @@
                                         android:textColor="#C68D46"
                                         android:textSize="11dp"
                                         android:text="Pastikan penanda posisi (warna biru) berada dalam jangkauan area check point Absensi Online."/>
-
-                                    <LinearLayout
-                                        android:visibility="gone"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:gravity="left|center"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            android:layout_width="8dp"
-                                            android:layout_height="12dp"
-                                            android:layout_marginLeft="1dp"
-                                            android:layout_marginTop="0.5dp"
-                                            android:background="@drawable/ic_marker" />
-
-                                        <TextView
-                                            android:layout_marginLeft="7dp"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:textColor="#C68D46"
-                                            android:textSize="10dp"
-                                            android:text="Penanda lokasi untuk absensi"/>
-
-                                    </LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -692,6 +682,7 @@
                                             android:background="@drawable/ic_position" />
 
                                         <TextView
+                                            android:id="@+id/note_point"
                                             android:layout_marginLeft="7dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
@@ -775,6 +766,7 @@
                                                     android:singleLine="true"
                                                     android:textColor="#D65A33"
                                                     android:textStyle="bold"
+                                                    android:fontFamily="sans-serif"
                                                     android:textSize="12dp"
                                                     android:text=""/>
 
@@ -801,6 +793,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:textStyle="bold"
+                                                android:fontFamily="sans-serif"
                                                 android:paddingTop="5dp"
                                                 android:paddingBottom="5dp"
                                                 android:paddingLeft="15dp"
@@ -873,6 +866,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:textStyle="bold"
+                                                android:fontFamily="sans-serif"
                                                 android:paddingTop="5dp"
                                                 android:paddingBottom="5dp"
                                                 android:paddingLeft="15dp"
@@ -954,6 +948,7 @@
                                             android:layout_marginRight="12dp"
                                             android:textColor="#D65A33"
                                             android:textStyle="italic"
+                                            android:fontFamily="sans-serif"
                                             android:textSize="12dp"
                                             android:text="Selamat dan SUMAngat Berkerja!"/>
 
@@ -991,6 +986,7 @@
                                             android:singleLine="true"
                                             android:textSize="13dp"
                                             android:textStyle="bold"
+                                            android:fontFamily="sans-serif"
                                             android:text="Anda Layoff / Diliburkan"/>
 
                                     </LinearLayout>
@@ -1014,9 +1010,11 @@
                                             android:textColor="#C68D46"
                                             android:textSize="12dp"
                                             android:textStyle="bold"
+                                            android:fontFamily="sans-serif"
                                             android:text="Perhatian :"/>
 
                                         <TextView
+                                            android:id="@+id/layoff_desc"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="10dp"
@@ -1054,6 +1052,7 @@
                                             android:textColor="#A8C74A1A"
                                             android:textSize="13dp"
                                             android:textStyle="bold"
+                                            android:fontFamily="sans-serif"
                                             android:text=""/>
 
                                     </LinearLayout>
@@ -1077,9 +1076,11 @@
                                             android:textColor="#C68D46"
                                             android:textSize="12dp"
                                             android:textStyle="bold"
+                                            android:fontFamily="sans-serif"
                                             android:text="Perhatian :"/>
 
                                         <TextView
+                                            android:id="@+id/desc_status_part"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="10dp"
@@ -1131,6 +1132,7 @@
                                         android:textAlignment="center"
                                         android:textSize="15dp"
                                         android:textStyle="bold"
+                                        android:fontFamily="sans-serif"
                                         android:textColor="#696969"
                                         android:text="Koneksi terputus!"/>
 
@@ -1195,6 +1197,7 @@
                     android:textColor="@color/white"
                     android:textSize="13dp"
                     android:textStyle="bold"
+                    android:fontFamily="sans-serif"
                     android:text="Memuat data..."/>
 
             </LinearLayout>
@@ -1334,6 +1337,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:textSize="10dp"
+                        android:fontFamily="sans-serif"
                         android:textStyle="bold"
                         android:text="Info Cuaca"/>
 
@@ -1360,6 +1364,7 @@
                         android:drawableLeft="@drawable/ic_baseline_laptop"
                         android:textSize="10dp"
                         android:textStyle="bold"
+                        android:fontFamily="sans-serif"
                         android:text="Pantau"/>
 
                 </LinearLayout>
@@ -1448,6 +1453,7 @@
                         android:textSize="12dp"
                         android:lineSpacingExtra="1dp"
                         android:textStyle="bold"
+                        android:fontFamily="sans-serif"
                         android:text=""/>
 
                 </LinearLayout>

@@ -87,6 +87,8 @@ public class RegisterActivity extends AppCompatActivity {
         toLoginBTN = findViewById(R.id.to_login_btn);
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
 
+        loadingProgressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#A6441F"),android.graphics.PorterDuff.Mode.MULTIPLY);
+
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -775,7 +777,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void contactService(){
-        bottomSheetCS.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_contact_service, bottomSheetCS, false));
+        bottomSheetCS.showWithSheetView(LayoutInflater.from(RegisterActivity.this).inflate(R.layout.layout_contact_service, bottomSheetCS, false));
         closeBTN = findViewById(R.id.close_btn);
         connectBTN = findViewById(R.id.connect_btn);
         getContact();

@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
+        loadingProgressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#A6441F"),android.graphics.PorterDuff.Mode.MULTIPLY);
 
         deviceID = String.valueOf(Settings.Secure.getString(LoginActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID)).toUpperCase();
 
@@ -442,7 +443,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void contactService(){
-        bottomSheetCS.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_contact_service, bottomSheetCS, false));
+        bottomSheetCS.showWithSheetView(LayoutInflater.from(LoginActivity.this).inflate(R.layout.layout_contact_service, bottomSheetCS, false));
         closeBTN = findViewById(R.id.close_btn);
         connectBTN = findViewById(R.id.connect_btn);
         getContact();

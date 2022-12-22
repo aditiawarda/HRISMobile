@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -25,6 +26,7 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Criteria;
 import android.location.Location;
@@ -136,7 +138,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
     ImageView reminderImage, weatherIconPart, onlineGif, warningGif, notificationWarning;
-    TextView notifMasukTV, reminderDecs, reminderCelebrateTV, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, statusAbsenTV, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
+    TextView markTitleShift, markTitleStatus, notePoint, descStatusPart, layoffDesc, descStart, notifMasukTV, reminderDecs, reminderCelebrateTV, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
     LinearLayout markerNotification, pantauBTN, reminderCongrat, markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
@@ -152,6 +154,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ProgressBar loadingCuaca;
     Vibrator v;
     RippleBackground rippleIndicator;
+    ProgressBar loadingProgressBar;
 
     private RecyclerView statusAbsenRV;
     private StatusAbsen[] statusAbsens;
@@ -171,7 +174,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "1.4.6";
+    String appVersion = "1.4.7";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -213,7 +216,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         pointPart = findViewById(R.id.point_part);
         statusAbsenBTN = findViewById(R.id.status_absen_btn);
         shiftBTN = findViewById(R.id.shift_btn);
-        statusAbsenTV = findViewById(R.id.status_absen_tv);
         dateTV = findViewById(R.id.date_tv);
         userTV = findViewById(R.id.user_tv);
         actionBTN = findViewById(R.id.action_btn);
@@ -263,9 +265,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markerNotification = findViewById(R.id.marker_notification);
         notifMasukTV = findViewById(R.id.jumlah_notif_masuk);
         reminderImage = findViewById(R.id.reminder_image);
+        descStart = findViewById(R.id.desc_start);
+        layoffDesc = findViewById(R.id.layoff_desc);
+        descStatusPart = findViewById(R.id.desc_status_part);
+        notePoint = findViewById(R.id.note_point);
+        markTitleStatus = findViewById(R.id.mark_title_status);
+        markTitleShift = findViewById(R.id.mark_title_shift);
+        loadingProgressBar = findViewById(R.id.loadingProgressBar);
         requestQueue = Volley.newRequestQueue(getBaseContext());
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         rippleIndicator = (RippleBackground)findViewById(R.id.ripple_indicator);
+
+        loadingProgressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#A6441F"),android.graphics.PorterDuff.Mode.MULTIPLY);
+
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
+            Typeface typeface = ResourcesCompat.getFont(MapsActivity.this, R.font.roboto);
+            userTV.setTypeface(typeface);
+            dateTV.setTypeface(typeface);
+            reminderDecs.setTypeface(typeface);
+            reminderDecs.setTypeface(typeface);
+            celebrateName.setTypeface(typeface);
+            dateCheckinTV.setTypeface(typeface);
+            dateCheckoutTV.setTypeface(typeface);
+            timeCheckinTV.setTypeface(typeface);
+            timeCheckoutTV.setTypeface(typeface);
+            checkinPointTV.setTypeface(typeface);
+            checkoutPointTV.setTypeface(typeface);
+            descStart.setTypeface(typeface);
+            layoffDesc.setTypeface(typeface);
+            descStatusPart.setTypeface(typeface);
+            notePoint.setTypeface(typeface);
+            markTitleStatus.setTypeface(typeface);
+            markTitleShift.setTypeface(typeface);
+        }
 
         rippleIndicator.startRippleAnimation();
 
@@ -572,8 +604,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             userLat = location.getLatitude();
             userLong = location.getLongitude();
 
-            //userLat = -6.3211913;
-            //userLong = 106.8704657;
+            // userLat = -6.3280459;
+            // userLong = 106.8768529;
 
             long milliSec = location.getTime();
             DateFormat dateNetworkFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -4414,132 +4446,265 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         nextBTN = findViewById(R.id.nextBTN);
         eventCalender = findViewById(R.id.event_calender);
         compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
+
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
+            Typeface typeface = ResourcesCompat.getFont(MapsActivity.this, R.font.roboto);
+            eventCalender.setTypeface(typeface);
+        }
+
         // Set first day of week to Monday, defaults to Monday so calling setFirstDayOfWeek is not necessary
         // Use constants provided by Java Calendar class
         compactCalendarView.setFirstDayOfWeek(Calendar.MONDAY);
 
-        String month = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(4,7);
-        String year = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(30,34);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            String month = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(4,7);
+            String year = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(30,34);
 
-        String bulanName;
-        switch (month) {
-            case "Jan":
-                bulanName = "Januari";
-                break;
-            case "Feb":
-                bulanName = "Februari";
-                break;
-            case "Mar":
-                bulanName = "Maret";
-                break;
-            case "Apr":
-                bulanName = "April";
-                break;
-            case "May":
-                bulanName = "Mei";
-                break;
-            case "Jun":
-                bulanName = "Juni";
-                break;
-            case "Jul":
-                bulanName = "Juli";
-                break;
-            case "Aug":
-                bulanName = "Agustus";
-                break;
-            case "Sep":
-                bulanName = "September";
-                break;
-            case "Oct":
-                bulanName = "Oktober";
-                break;
-            case "Nov":
-                bulanName = "November";
-                break;
-            case "Dec":
-                bulanName = "Desember";
-                break;
-            default:
-                bulanName = "Not found!";
-                break;
-        }
+            String bulanName;
+            switch (month) {
+                case "Jan":
+                    bulanName = "Januari";
+                    break;
+                case "Feb":
+                    bulanName = "Februari";
+                    break;
+                case "Mar":
+                    bulanName = "Maret";
+                    break;
+                case "Apr":
+                    bulanName = "April";
+                    break;
+                case "May":
+                    bulanName = "Mei";
+                    break;
+                case "Jun":
+                    bulanName = "Juni";
+                    break;
+                case "Jul":
+                    bulanName = "Juli";
+                    break;
+                case "Aug":
+                    bulanName = "Agustus";
+                    break;
+                case "Sep":
+                    bulanName = "September";
+                    break;
+                case "Oct":
+                    bulanName = "Oktober";
+                    break;
+                case "Nov":
+                    bulanName = "November";
+                    break;
+                case "Dec":
+                    bulanName = "Desember";
+                    break;
+                default:
+                    bulanName = "Not found!";
+                    break;
+            }
 
-        monthTV.setText(bulanName);
-        yearTV.setText(year);
+            monthTV.setText(bulanName);
+            yearTV.setText(year);
 
-        // Add event 1 on Sun, 07 Jun 2015 18:20:51 GMT
-        getEventCalender();
+            // Add event 1 on Sun, 07 Jun 2015 18:20:51 GMT
+            getEventCalender();
 
-        // define a listener to receive callbacks when certain events happen.
-        compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
-            @SuppressLint("InlinedApi")
-            @Override
-            public void onDayClick(Date dateClicked) {
-                List<Event> events = compactCalendarView.getEvents(dateClicked);
-                Log.d(TAG, "Day was clicked: " + dateClicked + " with events " + events);
-                if(events.size()<=0){
+            // define a listener to receive callbacks when certain events happen.
+            compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
+                @SuppressLint("InlinedApi")
+                @Override
+                public void onDayClick(Date dateClicked) {
+                    List<Event> events = compactCalendarView.getEvents(dateClicked);
+                    Log.d(TAG, "Day was clicked: " + dateClicked + " with events " + events);
+                    if(events.size()<=0){
+                        eventCalender.setText("");
+                    } else {
+                        eventCalender.setText(String.valueOf(events.get(0).getData()));
+                    }
+                }
+
+                @SuppressLint("InlinedApi")
+                @Override
+                public void onMonthScroll(Date firstDayOfNewMonth) {
+                    Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
+                    String month = String.valueOf(firstDayOfNewMonth).substring(4,7);
+                    String year = String.valueOf(firstDayOfNewMonth).substring(30,34);
+
+                    String bulanName;
+                    switch (month) {
+                        case "Jan":
+                            bulanName = "Januari";
+                            break;
+                        case "Feb":
+                            bulanName = "Februari";
+                            break;
+                        case "Mar":
+                            bulanName = "Maret";
+                            break;
+                        case "Apr":
+                            bulanName = "April";
+                            break;
+                        case "May":
+                            bulanName = "Mei";
+                            break;
+                        case "Jun":
+                            bulanName = "Juni";
+                            break;
+                        case "Jul":
+                            bulanName = "Juli";
+                            break;
+                        case "Aug":
+                            bulanName = "Agustus";
+                            break;
+                        case "Sep":
+                            bulanName = "September";
+                            break;
+                        case "Oct":
+                            bulanName = "Oktober";
+                            break;
+                        case "Nov":
+                            bulanName = "November";
+                            break;
+                        case "Dec":
+                            bulanName = "Desember";
+                            break;
+                        default:
+                            bulanName = "Not found!";
+                            break;
+                    }
+
+                    monthTV.setText(bulanName);
+                    yearTV.setText(year);
                     eventCalender.setText("");
-                } else {
-                    eventCalender.setText(String.valueOf(events.get(0).getData()));
+
                 }
+            });
+        }
+        else {
+            String month = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(4,7);
+            String year = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(24,28);
+
+            String bulanName;
+            switch (month) {
+                case "Jan":
+                    bulanName = "Januari";
+                    break;
+                case "Feb":
+                    bulanName = "Februari";
+                    break;
+                case "Mar":
+                    bulanName = "Maret";
+                    break;
+                case "Apr":
+                    bulanName = "April";
+                    break;
+                case "May":
+                    bulanName = "Mei";
+                    break;
+                case "Jun":
+                    bulanName = "Juni";
+                    break;
+                case "Jul":
+                    bulanName = "Juli";
+                    break;
+                case "Aug":
+                    bulanName = "Agustus";
+                    break;
+                case "Sep":
+                    bulanName = "September";
+                    break;
+                case "Oct":
+                    bulanName = "Oktober";
+                    break;
+                case "Nov":
+                    bulanName = "November";
+                    break;
+                case "Dec":
+                    bulanName = "Desember";
+                    break;
+                default:
+                    bulanName = "Not found!";
+                    break;
             }
 
-            @SuppressLint("InlinedApi")
-            @Override
-            public void onMonthScroll(Date firstDayOfNewMonth) {
-                Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
-                String month = String.valueOf(firstDayOfNewMonth).substring(4,7);
-                String year = String.valueOf(firstDayOfNewMonth).substring(30,34);
+            monthTV.setText(bulanName);
+            yearTV.setText(year);
 
-                String bulanName;
-                switch (month) {
-                    case "Jan":
-                        bulanName = "Januari";
-                        break;
-                    case "Feb":
-                        bulanName = "Februari";
-                        break;
-                    case "Mar":
-                        bulanName = "Maret";
-                        break;
-                    case "Apr":
-                        bulanName = "April";
-                        break;
-                    case "May":
-                        bulanName = "Mei";
-                        break;
-                    case "Jun":
-                        bulanName = "Juni";
-                        break;
-                    case "Jul":
-                        bulanName = "Juli";
-                        break;
-                    case "Aug":
-                        bulanName = "Agustus";
-                        break;
-                    case "Sep":
-                        bulanName = "September";
-                        break;
-                    case "Oct":
-                        bulanName = "Oktober";
-                        break;
-                    case "Nov":
-                        bulanName = "November";
-                        break;
-                    case "Dec":
-                        bulanName = "Desember";
-                        break;
-                    default:
-                        bulanName = "Not found!";
-                        break;
+            // Add event 1 on Sun, 07 Jun 2015 18:20:51 GMT
+            getEventCalender();
+
+            // define a listener to receive callbacks when certain events happen.
+            compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
+                @SuppressLint("InlinedApi")
+                @Override
+                public void onDayClick(Date dateClicked) {
+                    List<Event> events = compactCalendarView.getEvents(dateClicked);
+                    Log.d(TAG, "Day was clicked: " + dateClicked + " with events " + events);
+                    if(events.size()<=0){
+                        eventCalender.setText("");
+                    } else {
+                        eventCalender.setText(String.valueOf(events.get(0).getData()));
+                    }
                 }
 
-                monthTV.setText(bulanName);
-                yearTV.setText(year);
-                eventCalender.setText("");
+                @SuppressLint("InlinedApi")
+                @Override
+                public void onMonthScroll(Date firstDayOfNewMonth) {
+                    Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
+                    String month = String.valueOf(firstDayOfNewMonth).substring(4,7);
+                    String year = String.valueOf(firstDayOfNewMonth).substring(24,28);
 
-            }
-        });
+                    String bulanName;
+                    switch (month) {
+                        case "Jan":
+                            bulanName = "Januari";
+                            break;
+                        case "Feb":
+                            bulanName = "Februari";
+                            break;
+                        case "Mar":
+                            bulanName = "Maret";
+                            break;
+                        case "Apr":
+                            bulanName = "April";
+                            break;
+                        case "May":
+                            bulanName = "Mei";
+                            break;
+                        case "Jun":
+                            bulanName = "Juni";
+                            break;
+                        case "Jul":
+                            bulanName = "Juli";
+                            break;
+                        case "Aug":
+                            bulanName = "Agustus";
+                            break;
+                        case "Sep":
+                            bulanName = "September";
+                            break;
+                        case "Oct":
+                            bulanName = "Oktober";
+                            break;
+                        case "Nov":
+                            bulanName = "November";
+                            break;
+                        case "Dec":
+                            bulanName = "Desember";
+                            break;
+                        default:
+                            bulanName = "Not found!";
+                            break;
+                    }
+
+                    monthTV.setText(bulanName);
+                    yearTV.setText(year);
+                    eventCalender.setText("");
+
+                }
+            });
+
+        }
 
         closeBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -4688,6 +4853,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         currentDatePart = findViewById(R.id.current_date_part);
         closeBTNPart = findViewById(R.id.close_btn_part);
         loadingCuaca = findViewById(R.id.loading_cuaca);
+
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
+            Typeface typeface = ResourcesCompat.getFont(MapsActivity.this, R.font.roboto);
+            currentDatePart.setTypeface(typeface);
+            feelLikeTempPart.setTypeface(typeface);
+            currentAddress.setTypeface(typeface);
+            mainWeatherPart.setTypeface(typeface);
+            tempWeatherPart.setTypeface(typeface);
+        }
 
         switch (getDateM()) {
             case "01":

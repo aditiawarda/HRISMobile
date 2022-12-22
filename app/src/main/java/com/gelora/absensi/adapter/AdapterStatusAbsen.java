@@ -3,6 +3,7 @@ package com.gelora.absensi.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,6 +44,12 @@ public class AdapterStatusAbsen extends RecyclerView.Adapter<AdapterStatusAbsen.
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final StatusAbsen statusAbsen = data[i];
+
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
+            Typeface typeface = ResourcesCompat.getFont(mContext, R.font.roboto);
+            myViewHolder.statusName.setTypeface(typeface);
+            myViewHolder.statusDesc.setTypeface(typeface);
+        }
 
         myViewHolder.statusName.setText(statusAbsen.getNama_status());
         myViewHolder.statusDesc.setText(statusAbsen.getDeskripsi_status());

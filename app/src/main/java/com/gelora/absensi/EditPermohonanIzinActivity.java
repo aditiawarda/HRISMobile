@@ -425,7 +425,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
     }
 
     private void tipeChoice(){
-        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_list_tipe_izin, bottomSheet, false));
+        bottomSheet.showWithSheetView(LayoutInflater.from(EditPermohonanIzinActivity.this).inflate(R.layout.layout_list_tipe_izin, bottomSheet, false));
         izinBTN = findViewById(R.id.izin_btn);
         sakitBTN = findViewById(R.id.sakit_btn);
         markStatusSakit = findViewById(R.id.mark_status_sakit);

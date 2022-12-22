@@ -97,7 +97,7 @@
                         android:fontFamily="@font/roboto"
                         android:justificationMode="inter_word"
                         android:lineSpacingExtra="2dp"
-                        android:text="Versi yang saat ini anda gunakan adalah versi 1.4.6"
+                        android:text="Versi yang saat ini anda gunakan adalah versi 1.4.7"
                         android:textColor="@color/text_color"
                         android:textSize="13dp" />
 
