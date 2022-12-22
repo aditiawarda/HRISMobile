@@ -43,11 +43,10 @@
                         android:paddingBottom="10dp"
                         android:visibility="gone">
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:justificationMode="inter_word"
                             android:text="Pada saat pertama masuk aplikasi, terdapat kasus tampilan maps pada aplikasi tidak muncul, hal ini bisa terjadi karena beberapa faktor diantaranya :"
                             android:textColor="@color/text_color"
                             android:lineSpacingExtra="2dp"
@@ -139,11 +138,10 @@
 
                         </LinearLayout>
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:justificationMode="inter_word"
                             android:lineSpacingExtra="2dp"
                             android:text="Untuk mengatasi permasalahan seperti pada poin nomor 1, pastikan lokasi/GPS pada perangkat anda aktif seperti pada gambar dibawah ini :"
                             android:textColor="@color/text_color"
@@ -170,12 +168,11 @@
 
                         </LinearLayout>
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
-                            android:justificationMode="inter_word"
                             android:lineSpacingExtra="2dp"
                             android:text="Untuk mengatasi permsalahan seperti pada poin nomor 2, pastikan saat pertama memasang serta menjalankan aplikasi, izin akses lokasi diizinkan, seperti pada gambar dibawah ini :"
                             android:textColor="@color/text_color"
@@ -202,12 +199,11 @@
 
                         </LinearLayout>
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="15dp"
-                            android:justificationMode="inter_word"
                             android:lineSpacingExtra="2dp"
                             android:text="Untuk mengatasi permasalahan pada poin nomor 3, Pastikan perangkat anda terkoneksi dengan internet baik menggunkan data seluler ataupun dari wifi."
                             android:textColor="@color/text_color"
@@ -225,11 +221,10 @@
                         android:paddingBottom="10dp"
                         android:visibility="gone">
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:justificationMode="inter_word"
                             android:lineSpacingExtra="2dp"
                             android:text="Jika anda mengalami kendala terkait status absensi atau shift yang tidak muncul anda bisa melakukan beberapa cara berikut :"
                             android:textColor="@color/text_color"
@@ -295,11 +290,10 @@
 
                         </LinearLayout>
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:justificationMode="inter_word"
                             android:lineSpacingExtra="2dp"
                             android:text="Untuk melakukan perintah seperti pada poin 2 diatas dapat dilakukan seperti pada gambar dibawah ini :"
                             android:textColor="@color/text_color"
@@ -319,12 +313,11 @@
 
                         </LinearLayout>
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
-                            android:justificationMode="inter_word"
                             android:lineSpacingExtra="2dp"
                             android:text="Masuk ke pengaturan manajemen aplikasi HRIS Mobile lalu pilih menu penyimpanan."
                             android:textColor="@color/text_color"
@@ -344,12 +337,11 @@
 
                         </LinearLayout>
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="15dp"
-                            android:justificationMode="inter_word"
                             android:lineSpacingExtra="2dp"
                             android:text="Selanjutnya pilih hapus data untuk menghapus cache aplikasi, jika telah berhasil di hapus, buka kembali aplikasi HRIS Mobile dan login dengan akun anda."
                             android:textColor="@color/text_color"
@@ -367,11 +359,10 @@
                         android:paddingBottom="10dp"
                         android:visibility="gone">
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:justificationMode="inter_word"
                             android:lineSpacingExtra="2dp"
                             android:text="Pengajuan permohonan izin dapat dilakukan secara digital di HRIS Mobile berikut merupakan tahapan-tahapan dalam pengisian form permohonan izin :"
                             android:textColor="@color/text_color"
@@ -561,11 +552,10 @@
                         android:paddingBottom="10dp"
                         android:visibility="gone">
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:justificationMode="inter_word"
                             android:lineSpacingExtra="2dp"
                             android:text="Pengajuan permohonan cuti dapat dilakukan secara digital di HRIS Mobile berikut merupakan tahapan-tahapan dalam pengisian form permohonan cuti :"
                             android:textColor="@color/text_color"

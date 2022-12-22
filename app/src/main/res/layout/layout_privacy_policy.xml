@@ -61,13 +61,12 @@
                             android:layout_marginBottom="15dp"
                             android:text="Kebijakan Privasi"/>
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="13dp"
                             android:fontFamily="@font/roboto"
                             android:lineSpacingExtra="2dp"
-                            android:justificationMode="inter_word"
                             android:layout_marginBottom="5dp"
                             android:textColor="@color/text_color"
                             android:text="HRIS Mobile Gelora dibuat untuk membantu pelayannan kepegawaian PT. Gelora Aksara Pratama secara online. Diharapkan aplikasi ini dapat mempermudah karyawan dalam melaksanakan absensi kerja serta pengurusan cuti dan izin."/>
@@ -83,7 +82,7 @@
                             android:layout_marginBottom="4dp"
                             android:textStyle="bold"/>
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="13dp"
@@ -91,7 +90,6 @@
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/roboto"
                             android:lineSpacingExtra="2dp"
-                            android:justificationMode="inter_word"
                             android:textColor="@color/text_color"
                             android:text="HRIS Mobile Gelora mengikuti prosedur standar menggunakan file log. Informasi yang dikumpulkan oleh file log termasuk data lokasi, tanggal dan waktu. Data ini hanya diolah secara internal oleh PT. Gelora Aksara Pratama dan tidak untuk disebarluaskan."/>
 
@@ -106,7 +104,7 @@
                             android:layout_marginBottom="4dp"
                             android:textStyle="bold"/>
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="13dp"
@@ -114,7 +112,6 @@
                             android:lineSpacingExtra="2dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginBottom="8dp"
-                            android:justificationMode="inter_word"
                             android:textColor="@color/text_color"
                             android:text="Dalam penggunaan HRIS Mobile Gelora pada satu perangkat hanya dapat login untuk satu NIK/id karyawan."/>
 
@@ -129,7 +126,7 @@
                             android:textSize="13dp"
                             android:textStyle="bold"/>
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="13dp"
@@ -137,7 +134,6 @@
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/roboto"
                             android:lineSpacingExtra="2dp"
-                            android:justificationMode="inter_word"
                             android:textColor="@color/text_color"
                             android:text="Kebijakan privasi ini hanya berlaku untuk aktivitas online sehubungan dengan informasi yang dimasukkan dan/atau dikumpulkan di HRIS Mobile Gelora."/>
 
@@ -152,7 +148,7 @@
                             android:textColor="@color/text_color"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="13dp"
@@ -160,7 +156,6 @@
                             android:layout_marginBottom="5dp"
                             android:fontFamily="@font/roboto"
                             android:lineSpacingExtra="2dp"
-                            android:justificationMode="inter_word"
                             android:textColor="@color/text_color"
                             android:text="Dengan menggunakan HRIS Mobile Gelora, pengguna dengan ini menyetujui kebijakan privasi beserta syarat dan ketentuannya."/>
 
