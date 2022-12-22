@@ -778,7 +778,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
-                            android:text="Hubungi IT"
+                            android:text="Hubungi IT/EDP"
                             android:textColor="#B15B3B"
                             android:textSize="14dp"
                             android:textStyle="bold" />
