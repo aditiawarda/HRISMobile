@@ -1030,6 +1030,7 @@
                                 android:orientation="vertical">
 
                                 <LinearLayout
+                                    android:visibility="gone"
                                     android:id="@+id/sisa_cuti_btn"
                                     android:layout_marginBottom="20dp"
                                     android:layout_width="match_parent"

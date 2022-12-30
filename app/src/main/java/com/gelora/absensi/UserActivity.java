@@ -2307,6 +2307,7 @@ public class UserActivity extends AppCompatActivity {
                                 String monitoring = data.getString("monitoring");
                                 String fitur_izin = data.getString("fitur_izin");
                                 String id_card_digital = data.getString("id_card_digital");
+                                String sisa_cuti_info = data.getString("sisa_cuti_info");
 
                                 if (cuaca_button.equals("1")){
                                     dataCuaca.setVisibility(View.VISIBLE);
@@ -2361,8 +2362,14 @@ public class UserActivity extends AppCompatActivity {
                                         if(statusKaryawan.equals("Tetap")){
                                             fiturPart.setVisibility(View.VISIBLE);
                                             notificationPart.setVisibility(View.VISIBLE);
-                                            sisaCutiBTN.setVisibility(View.VISIBLE);
                                             permohonanCutiBTN.setVisibility(View.VISIBLE);
+
+                                            if(sisa_cuti_info.equals("1")){
+                                                sisaCutiBTN.setVisibility(View.VISIBLE);
+                                            } else {
+                                                sisaCutiBTN.setVisibility(View.GONE);
+                                            }
+
                                             if(id_card_digital.equals("1")){
                                                 idCardDigitalBTN.setVisibility(View.VISIBLE);
                                             } else {
@@ -2392,8 +2399,14 @@ public class UserActivity extends AppCompatActivity {
                                             if(diffMonths >= 12){
                                                 fiturPart.setVisibility(View.VISIBLE);
                                                 notificationPart.setVisibility(View.VISIBLE);
-                                                sisaCutiBTN.setVisibility(View.VISIBLE);
                                                 permohonanCutiBTN.setVisibility(View.VISIBLE);
+
+                                                if(sisa_cuti_info.equals("1")){
+                                                    sisaCutiBTN.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    sisaCutiBTN.setVisibility(View.GONE);
+                                                }
+
                                                 if(id_card_digital.equals("1")){
                                                     idCardDigitalBTN.setVisibility(View.VISIBLE);
                                                 } else {
@@ -2585,7 +2598,7 @@ public class UserActivity extends AppCompatActivity {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.4.7"; //harus disesuaikan
+                                String currentVersion = "1.4.8"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateBTN.setVisibility(View.VISIBLE);
                                     updateBTN.setOnClickListener(new View.OnClickListener() {
