@@ -245,6 +245,39 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:id="@+id/attantion_part_kelebihan_jam"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:paddingBottom="20dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="15dp"
+                            android:orientation="vertical"
+                            android:background="@drawable/shape_attantion">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="#C68D46"
+                                android:textSize="12dp"
+                                android:textStyle="bold"
+                                android:text="Disclaimer :"/>
+
+                            <TextView
+                                android:id="@+id/message_kelebihan_jam"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:lineSpacingExtra="2dp"
+                                android:textColor="#C68D46"
+                                android:textSize="12dp"
+                                android:layout_marginTop="7dp"
+                                android:text="Tanda tangan digital karyawan hanya dipergunakan untuk kepentingan personal pada aplikasi HRIS Mobile Gelora."/>
+
+                        </LinearLayout>
+
                     </LinearLayout>
 
                 </LinearLayout>
