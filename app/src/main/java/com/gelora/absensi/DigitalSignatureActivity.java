@@ -5,6 +5,7 @@ import static androidx.core.content.FileProvider.getUriForFile;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -44,6 +45,11 @@ import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
 import com.github.gcacace.signaturepad.views.SignaturePad;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.shasin.notificationbanner.Banner;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
@@ -63,6 +69,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -166,12 +173,26 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                             @Override
                             public void onClick(KAlertDialog sDialog) {
                                 sDialog.dismiss();
-                                File file = saveBitMap(DigitalSignatureActivity.this, mSignaturePad);
-                                if (file != null) {
-                                    Log.i("TAG", "Drawing saved to the gallery!");
-                                } else {
-                                    Log.i("TAG", "Oops! Image could not be saved.");
-                                }
+                                Dexter.withActivity(DigitalSignatureActivity.this)
+                                        .withPermissions(android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                                        .withListener(new MultiplePermissionsListener() {
+                                            @Override
+                                            public void onPermissionsChecked(MultiplePermissionsReport report) {
+                                                if (report.areAllPermissionsGranted()) {
+                                                    File file = saveBitMap(DigitalSignatureActivity.this, mSignaturePad);
+                                                    if (file != null) {
+                                                        Log.i("TAG", "Drawing saved to the gallery!");
+                                                    } else {
+                                                        Log.i("TAG", "Oops! Image could not be saved.");
+                                                    }
+                                                }
+                                            }
+                                            @Override
+                                            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                                                token.continuePermissionRequest();
+                                            }
+                                        }).check();
+
 
                             }
                         })

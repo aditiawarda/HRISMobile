@@ -2429,6 +2429,16 @@ public class UserActivity extends AppCompatActivity {
                                         fiturPart.setVisibility(View.GONE);
                                         notificationPart.setVisibility(View.GONE);
                                     }
+                                } else if(statusKaryawan.equals("Harian")) {
+                                    fiturPart.setVisibility(View.VISIBLE);
+                                    notificationPart.setVisibility(View.VISIBLE);
+                                    sisaCutiBTN.setVisibility(View.GONE);
+                                    permohonanCutiBTN.setVisibility(View.GONE);
+                                    if(id_card_digital.equals("1")){
+                                        idCardDigitalBTN.setVisibility(View.VISIBLE);
+                                    } else {
+                                        idCardDigitalBTN.setVisibility(View.GONE);
+                                    }
                                 } else {
                                     fiturPart.setVisibility(View.GONE);
                                     notificationPart.setVisibility(View.GONE);
@@ -2598,7 +2608,7 @@ public class UserActivity extends AppCompatActivity {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.4.8"; //harus disesuaikan
+                                String currentVersion = "1.4.9"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateBTN.setVisibility(View.VISIBLE);
                                     updateBTN.setOnClickListener(new View.OnClickListener() {

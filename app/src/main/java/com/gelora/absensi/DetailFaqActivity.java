@@ -51,7 +51,7 @@ public class DetailFaqActivity extends AppCompatActivity {
             titleTV.setText("STATUS ABSENSI ATAU SHIFT TIDAK MUNCUL");
             faq2Detail.setVisibility(View.VISIBLE);
         } else if(noFAQ.equals("3")){
-            titleTV.setText("CARA PENGISIAN FORM IZIN");
+            titleTV.setText("CARA PENGISIAN FORM IZIN/SAKIT");
             faq3Detail.setVisibility(View.VISIBLE);
         } else if(noFAQ.equals("4")){
             titleTV.setText("CARA PENGISIAN FORM PERMOHONAN CUTI");
