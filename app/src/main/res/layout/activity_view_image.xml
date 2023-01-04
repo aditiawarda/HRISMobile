@@ -7,12 +7,6 @@
     android:background="@color/black_de"
     tools:context=".ViewImageActivity">
 
-    <ImageView
-        android:layout_marginTop="68dp"
-        android:id="@+id/main_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <LinearLayout
         android:id="@+id/loading_part"
         android:gravity="center"
@@ -27,6 +21,12 @@
             android:layout_height="50dp" />
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_marginTop="68dp"
+        android:id="@+id/main_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <RelativeLayout
         android:layout_marginRight="-3dp"
