@@ -639,7 +639,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                     });
 
                                 } else {
-                                    lampiranTV.setText(":  .......................................................  ");
+                                    lampiranTV.setText(".......................................................  ");
                                     viewLampiranBTN.setVisibility(View.GONE);
                                 }
 

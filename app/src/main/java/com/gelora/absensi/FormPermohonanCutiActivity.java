@@ -2845,6 +2845,8 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
+                Toast.makeText(FormPermohonanCutiActivity.this, "", Toast.LENGTH_SHORT).show();
+                
                 params.put("sisa_cuti_sementara", sisaCutiSementara);
                 params.put("tahun_cuti_diambil", getDateY());
                 params.put("total_cuti_diambil", totalCutiDiambil);
@@ -3960,12 +3962,10 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 tipeCutiTV.setText("Khusus");
             }
 
+            String lampiran = intent.getStringExtra("lampiran_kategori_cuti");
+
             if(lampiranWajibAtauTidak.equals("1")){
-                if(tipeCuti.equals("2")){
-                    statusLampiran = "1";
-                } else if(tipeCuti.equals("1")) {
-                    statusLampiran = "0";
-                }
+                statusLampiran = lampiran;
             } else {
                 statusLampiran = "0";
             }

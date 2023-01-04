@@ -3904,12 +3904,10 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                 tipeCutiTV.setText("Khusus");
             }
 
+            String lampiran = intent.getStringExtra("lampiran_kategori_cuti");
+
             if(lampiranWajibAtauTidak.equals("1")){
-                if(tipeCuti.equals("2")){
-                    statusLampiran = "1";
-                } else if(tipeCuti.equals("1")) {
-                    statusLampiran = "0";
-                }
+                statusLampiran = lampiran;
             } else {
                 statusLampiran = "0";
             }

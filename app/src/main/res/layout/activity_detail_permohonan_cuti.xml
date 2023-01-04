@@ -1188,6 +1188,7 @@
                                     android:gravity="center"
                                     android:drawableLeft="@drawable/ic_baseline_content_surat"
                                     android:drawablePadding="7dp"
+                                    android:textSize="14dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Lihat Lampiran"/>
@@ -1210,6 +1211,7 @@
                                     android:gravity="center"
                                     android:drawableLeft="@drawable/ic_baseline_save_permohonan"
                                     android:textColor="#CF811F"
+                                    android:textSize="14dp"
                                     android:text="Unduh File Permohonan"/>
 
                             </LinearLayout>
@@ -1228,6 +1230,7 @@
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
                                     android:gravity="center"
+                                    android:textSize="14dp"
                                     android:drawablePadding="7dp"
                                     android:drawableLeft="@drawable/ic_baseline_pdf"
                                     android:textColor="#CF811F"
@@ -1257,6 +1260,7 @@
                                         android:textStyle="bold"
                                         android:gravity="center"
                                         android:drawablePadding="7dp"
+                                        android:textSize="14dp"
                                         android:textColor="@color/white"
                                         android:text="Batalkan"/>
 
@@ -1279,6 +1283,7 @@
                                         android:textStyle="bold"
                                         android:gravity="center"
                                         android:drawablePadding="7dp"
+                                        android:textSize="14dp"
                                         android:textColor="@color/white"
                                         android:text="Edit"/>
 
@@ -1300,6 +1305,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
+                                    android:textSize="14dp"
                                     android:textColor="@color/white"
                                     android:text="Wakili Persetujuan Ka.Dept"/>
 
@@ -1319,6 +1325,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
+                                    android:textSize="14dp"
                                     android:textColor="@color/white"
                                     android:text="Batal"/>
 
@@ -1381,6 +1388,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textStyle="bold"
+                                            android:textSize="14dp"
                                             android:textColor="@color/white"
                                             android:text="TOLAK"/>
 
@@ -1401,6 +1409,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textStyle="bold"
+                                            android:textSize="14dp"
                                             android:textColor="@color/white"
                                             android:text="SETUJUI"/>
 

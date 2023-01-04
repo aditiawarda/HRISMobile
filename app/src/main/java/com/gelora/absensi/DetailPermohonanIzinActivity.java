@@ -441,7 +441,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     private void generateQRCode(){
         if (TextUtils.isEmpty(idIzinRecord)){
-            // Banner.make(rootview,DetailPermohonanIzinActivity.this,Banner.ERROR,"QR Code gagal di generate",Banner.BOTTOM,2000).show();
             CookieBar.build(DetailPermohonanIzinActivity.this)
                     .setTitle("Perhatian")
                     .setMessage("QR Code gagal di generate!")

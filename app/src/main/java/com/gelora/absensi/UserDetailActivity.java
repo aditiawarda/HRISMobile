@@ -93,7 +93,12 @@ public class UserDetailActivity extends AppCompatActivity {
         nikTV.setText(sharedPrefManager.getSpNik());
         bagianTV.setText(bagian);
         departemenTV.setText(department);
-        bergabungTV.setText(tanggalBergabung.substring(8,10)+"/"+tanggalBergabung.substring(5,7)+"/"+tanggalBergabung.substring(0,4));
+
+        if(tanggalBergabung.equals("0000-00-00")){
+            bergabungTV.setText("Tidak diketahui");
+        } else {
+            bergabungTV.setText(tanggalBergabung.substring(8,10)+"/"+tanggalBergabung.substring(5,7)+"/"+tanggalBergabung.substring(0,4));
+        }
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -334,8 +339,8 @@ public class UserDetailActivity extends AppCompatActivity {
                                 emailData = "";
                                 phoneData = "";
 
-                                emailED.setHint("Harap lengkapi Email");
-                                phoneED.setHint("Harap lengkapi No Handphone");
+                                emailED.setHint(R.string.hint_email);
+                                phoneED.setHint(R.string.hint_phone);
 
                                 submitBTN.setVisibility(View.VISIBLE);
                                 lengkapPart.setVisibility(View.GONE);

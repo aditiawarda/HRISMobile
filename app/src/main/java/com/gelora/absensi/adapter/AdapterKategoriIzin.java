@@ -68,6 +68,7 @@ public class AdapterKategoriIzin extends RecyclerView.Adapter<AdapterKategoriIzi
                 intent.putExtra("kode_kategori_cuti",kategoriIzin.getKode());
                 intent.putExtra("desc_kategori_cuti",kategoriIzin.getDeskripsi());
                 intent.putExtra("tipe_kategori_cuti",kategoriIzin.getTipe());
+                intent.putExtra("lampiran_kategori_cuti",kategoriIzin.getLampiran());
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_CUTI, kategoriIzin.getId());

@@ -17,7 +17,7 @@ import java.util.Date;
 public class FaqActivity extends AppCompatActivity {
 
     LinearLayout backBTN, faq1, faq2, faq3, faq4;
-    String statusKaryawan, tanggalBergabung;
+    String statusKaryawan, tanggalBergabung, statusFitur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,7 @@ public class FaqActivity extends AppCompatActivity {
 
         statusKaryawan = getIntent().getExtras().getString("status_karyawan");
         tanggalBergabung = getIntent().getExtras().getString("tanggal_bergabung");
+        statusFitur = getIntent().getExtras().getString("status_fitur");
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,41 +78,51 @@ public class FaqActivity extends AppCompatActivity {
         });
 
         if(statusKaryawan.equals("Tetap")||statusKaryawan.equals("Kontrak")){
-            if(statusKaryawan.equals("Tetap")){
-                faq3.setVisibility(View.VISIBLE);
-                faq4.setVisibility(View.VISIBLE);
-            } else if(statusKaryawan.equals("Kontrak")){
-                String tanggalMulaiBekerja = tanggalBergabung;
-                String tanggalSekarang = getDate();
-
-                @SuppressLint("SimpleDateFormat")
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                Date date1 = null;
-                Date date2 = null;
-                try {
-                    date1 = format.parse(tanggalSekarang);
-                    date2 = format.parse(tanggalMulaiBekerja);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                long waktu1 = date1.getTime();
-                long waktu2 = date2.getTime();
-                long selisih_waktu = waktu1 - waktu2;
-                long diffDays = selisih_waktu / (24 * 60 * 60 * 1000);
-                long diffMonths = (selisih_waktu / (24 * 60 * 60 * 1000)) / 30;
-                long diffYears =  ((selisih_waktu / (24 * 60 * 60 * 1000)) / 30) / 12;
-
-                if(diffMonths >= 12){
+            if(statusFitur.equals("1")){
+                if(statusKaryawan.equals("Tetap")){
                     faq3.setVisibility(View.VISIBLE);
                     faq4.setVisibility(View.VISIBLE);
-                } else {
-                    faq3.setVisibility(View.VISIBLE);
-                    faq4.setVisibility(View.GONE);
+                } else if(statusKaryawan.equals("Kontrak")){
+                    String tanggalMulaiBekerja = tanggalBergabung;
+                    String tanggalSekarang = getDate();
+
+                    @SuppressLint("SimpleDateFormat")
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date1 = null;
+                    Date date2 = null;
+                    try {
+                        date1 = format.parse(tanggalSekarang);
+                        date2 = format.parse(tanggalMulaiBekerja);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    long waktu1 = date1.getTime();
+                    long waktu2 = date2.getTime();
+                    long selisih_waktu = waktu1 - waktu2;
+                    long diffDays = selisih_waktu / (24 * 60 * 60 * 1000);
+                    long diffMonths = (selisih_waktu / (24 * 60 * 60 * 1000)) / 30;
+                    long diffYears =  ((selisih_waktu / (24 * 60 * 60 * 1000)) / 30) / 12;
+
+                    if(diffMonths >= 12){
+                        faq3.setVisibility(View.VISIBLE);
+                        faq4.setVisibility(View.VISIBLE);
+                    } else {
+                        faq3.setVisibility(View.VISIBLE);
+                        faq4.setVisibility(View.GONE);
+                    }
                 }
+            } else {
+                faq3.setVisibility(View.GONE);
+                faq4.setVisibility(View.GONE);
             }
         } else {
-            faq3.setVisibility(View.VISIBLE);
-            faq4.setVisibility(View.GONE);
+            if(statusFitur.equals("1")){
+                faq3.setVisibility(View.VISIBLE);
+                faq4.setVisibility(View.GONE);
+            } else {
+                faq3.setVisibility(View.GONE);
+                faq4.setVisibility(View.GONE);
+            }
         }
 
     }

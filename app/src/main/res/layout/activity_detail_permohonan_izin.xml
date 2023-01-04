@@ -737,6 +737,7 @@
                                     android:gravity="center"
                                     android:drawableLeft="@drawable/ic_baseline_content_surat"
                                     android:drawablePadding="7dp"
+                                    android:textSize="14dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Lihat Surat Sakit"/>
@@ -757,6 +758,7 @@
                                     android:textStyle="bold"
                                     android:drawablePadding="7dp"
                                     android:gravity="center"
+                                    android:textSize="14dp"
                                     android:drawableLeft="@drawable/ic_baseline_save_permohonan"
                                     android:textColor="#CF811F"
                                     android:text="Unduh File Permohonan"/>
@@ -780,6 +782,7 @@
                                     android:drawablePadding="7dp"
                                     android:drawableLeft="@drawable/ic_baseline_pdf"
                                     android:textColor="#CF811F"
+                                    android:textSize="14dp"
                                     android:text="Lihat PDF"/>
 
                             </LinearLayout>
@@ -807,6 +810,7 @@
                                         android:gravity="center"
                                         android:drawablePadding="7dp"
                                         android:textColor="@color/white"
+                                        android:textSize="14dp"
                                         android:text="Batalkan"/>
 
                                 </LinearLayout>
@@ -829,6 +833,7 @@
                                         android:gravity="center"
                                         android:drawablePadding="7dp"
                                         android:textColor="@color/white"
+                                        android:textSize="14dp"
                                         android:text="Edit"/>
 
                                 </LinearLayout>
@@ -859,6 +864,7 @@
                                         android:layout_height="wrap_content"
                                         android:textStyle="bold"
                                         android:textColor="@color/white"
+                                        android:textSize="14dp"
                                         android:text="TOLAK"/>
 
                                 </LinearLayout>
@@ -879,6 +885,7 @@
                                         android:layout_height="wrap_content"
                                         android:textStyle="bold"
                                         android:textColor="@color/white"
+                                        android:textSize="14dp"
                                         android:text="SETUJUI"/>
 
                                 </LinearLayout>

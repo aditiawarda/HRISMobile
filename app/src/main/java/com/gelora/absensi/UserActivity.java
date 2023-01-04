@@ -108,7 +108,7 @@ public class UserActivity extends AppCompatActivity {
     ProgressBar loadingProgressBarCuaca;
     ImageView sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
-    String tanggalBergabung = "", statusKaryawan = "", selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
+    String statusFitur = "1", tanggalBergabung = "", statusKaryawan = "", selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
     ProgressBar loadingProgressBarLogout;
 
     AlarmManager alarmManager;
@@ -622,6 +622,7 @@ public class UserActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserActivity.this, FaqActivity.class);
                 intent.putExtra("status_karyawan", statusKaryawan);
                 intent.putExtra("tanggal_bergabung", tanggalBergabung);
+                intent.putExtra("status_fitur", statusFitur);
                 startActivity(intent);
             }
         });
@@ -750,8 +751,12 @@ public class UserActivity extends AppCompatActivity {
                                 sharedPrefManager.saveSPString(SharedPrefManager.SP_TGL_BERGABUNG, tanggal_masuk);
 
                                 if((status_karyawan.equals("Tetap")||status_karyawan.equals("Kontrak")||status_karyawan.equals("Harian"))&&!status_karyawan.equals("null")){
-                                    tglBergabungMainTV.setVisibility(View.VISIBLE);
-                                    tglBergabungMainTV.setText("Sejak "+tanggal_masuk.substring(8,10)+"/"+tanggal_masuk.substring(5,7)+"/"+tanggal_masuk.substring(0,4));
+                                    if(tanggal_masuk.equals("0000-00-00")){
+                                        tglBergabungMainTV.setVisibility(View.GONE);
+                                    } else {
+                                        tglBergabungMainTV.setVisibility(View.VISIBLE);
+                                        tglBergabungMainTV.setText("Sejak "+tanggal_masuk.substring(8,10)+"/"+tanggal_masuk.substring(5,7)+"/"+tanggal_masuk.substring(0,4));
+                                    }
                                 } else {
                                     tglBergabungMainTV.setVisibility(View.GONE);
                                 }
@@ -2309,6 +2314,8 @@ public class UserActivity extends AppCompatActivity {
                                 String id_card_digital = data.getString("id_card_digital");
                                 String sisa_cuti_info = data.getString("sisa_cuti_info");
 
+                                statusFitur = fitur_izin;
+
                                 if (cuaca_button.equals("1")){
                                     dataCuaca.setVisibility(View.VISIBLE);
                                 } else {
@@ -2357,7 +2364,7 @@ public class UserActivity extends AppCompatActivity {
                                     markerWarningLate.setVisibility(View.GONE);
                                 }
 
-                                if((statusKaryawan.equals("Tetap")||statusKaryawan.equals("Kontrak"))&&!statusKaryawan.equals("null")){
+                                if((statusKaryawan.equals("Tetap")||statusKaryawan.equals("Kontrak")||statusKaryawan.equals("Harian"))&&!statusKaryawan.equals("null")){
                                     if(fitur_izin.equals("1")){
                                         if(statusKaryawan.equals("Tetap")){
                                             fiturPart.setVisibility(View.VISIBLE);
@@ -2423,21 +2430,35 @@ public class UserActivity extends AppCompatActivity {
                                                     idCardDigitalBTN.setVisibility(View.GONE);
                                                 }
                                             }
-
+                                        } else if(statusKaryawan.equals("Harian")) {
+                                            fiturPart.setVisibility(View.VISIBLE);
+                                            notificationPart.setVisibility(View.VISIBLE);
+                                            sisaCutiBTN.setVisibility(View.GONE);
+                                            permohonanCutiBTN.setVisibility(View.GONE);
+                                            if(id_card_digital.equals("1")){
+                                                idCardDigitalBTN.setVisibility(View.VISIBLE);
+                                            } else {
+                                                idCardDigitalBTN.setVisibility(View.GONE);
+                                            }
                                         }
                                     } else {
                                         fiturPart.setVisibility(View.GONE);
                                         notificationPart.setVisibility(View.GONE);
                                     }
                                 } else {
-                                    fiturPart.setVisibility(View.VISIBLE);
-                                    notificationPart.setVisibility(View.VISIBLE);
-                                    sisaCutiBTN.setVisibility(View.GONE);
-                                    permohonanCutiBTN.setVisibility(View.GONE);
-                                    if(id_card_digital.equals("1")){
-                                        idCardDigitalBTN.setVisibility(View.VISIBLE);
+                                    if(fitur_izin.equals("1")){
+                                        fiturPart.setVisibility(View.VISIBLE);
+                                        notificationPart.setVisibility(View.VISIBLE);
+                                        sisaCutiBTN.setVisibility(View.GONE);
+                                        permohonanCutiBTN.setVisibility(View.GONE);
+                                        if(id_card_digital.equals("1")){
+                                            idCardDigitalBTN.setVisibility(View.VISIBLE);
+                                        } else {
+                                            idCardDigitalBTN.setVisibility(View.GONE);
+                                        }
                                     } else {
-                                        idCardDigitalBTN.setVisibility(View.GONE);
+                                        fiturPart.setVisibility(View.GONE);
+                                        notificationPart.setVisibility(View.GONE);
                                     }
                                 }
 
@@ -2605,7 +2626,7 @@ public class UserActivity extends AppCompatActivity {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.4.9"; //harus disesuaikan
+                                String currentVersion = "1.5.0"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateBTN.setVisibility(View.VISIBLE);
                                     updateBTN.setOnClickListener(new View.OnClickListener() {

@@ -7,6 +7,7 @@ public class KategoriIzin {
     private String deskripsi;
     private String kode;
     private String tipe;
+    private String lampiran;
 
     public String getId() {
         return id;
@@ -40,4 +41,11 @@ public class KategoriIzin {
         this.tipe = tipe;
     }
 
+    public String getLampiran() {
+        return lampiran;
+    }
+
+    public void setLampiran(String lampiran) {
+        this.lampiran = lampiran;
+    }
 }
