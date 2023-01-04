@@ -749,7 +749,7 @@ public class UserActivity extends AppCompatActivity {
                                 tanggalBergabung = tanggal_masuk;
                                 sharedPrefManager.saveSPString(SharedPrefManager.SP_TGL_BERGABUNG, tanggal_masuk);
 
-                                if((status_karyawan.equals("Tetap")||status_karyawan.equals("Kontrak"))&&!status_karyawan.equals("null")){
+                                if((status_karyawan.equals("Tetap")||status_karyawan.equals("Kontrak")||status_karyawan.equals("Harian"))&&!status_karyawan.equals("null")){
                                     tglBergabungMainTV.setVisibility(View.VISIBLE);
                                     tglBergabungMainTV.setText("Sejak "+tanggal_masuk.substring(8,10)+"/"+tanggal_masuk.substring(5,7)+"/"+tanggal_masuk.substring(0,4));
                                 } else {
@@ -2429,7 +2429,7 @@ public class UserActivity extends AppCompatActivity {
                                         fiturPart.setVisibility(View.GONE);
                                         notificationPart.setVisibility(View.GONE);
                                     }
-                                } else if(statusKaryawan.equals("Harian")) {
+                                } else {
                                     fiturPart.setVisibility(View.VISIBLE);
                                     notificationPart.setVisibility(View.VISIBLE);
                                     sisaCutiBTN.setVisibility(View.GONE);
@@ -2439,9 +2439,6 @@ public class UserActivity extends AppCompatActivity {
                                     } else {
                                         idCardDigitalBTN.setVisibility(View.GONE);
                                     }
-                                } else {
-                                    fiturPart.setVisibility(View.GONE);
-                                    notificationPart.setVisibility(View.GONE);
                                 }
 
                                 getCountNotification();

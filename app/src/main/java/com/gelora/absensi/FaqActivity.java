@@ -109,11 +109,8 @@ public class FaqActivity extends AppCompatActivity {
                     faq4.setVisibility(View.GONE);
                 }
             }
-        } else if(statusKaryawan.equals("Harian")) {
-            faq3.setVisibility(View.VISIBLE);
-            faq4.setVisibility(View.GONE);
         } else {
-            faq3.setVisibility(View.GONE);
+            faq3.setVisibility(View.VISIBLE);
             faq4.setVisibility(View.GONE);
         }
 
