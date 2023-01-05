@@ -185,7 +185,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="14dp"
                             android:textColor="#4C4C4C"
-                            android:text="Cara pengisian form cuti"/>
+                            android:text="Cara pengisian form permohonan cuti"/>
 
                     </LinearLayout>
 
