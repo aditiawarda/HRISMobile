@@ -102,6 +102,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
     private int i = -1;
     int REQUEST_IMAGE = 100;
     private Uri uri;
+    RequestQueue requestQueue;
 
     private RecyclerView kategoriCutiRV, karyawanPenggantiRV;
     private KategoriIzin[] kategoriIzins;
@@ -117,6 +118,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
+        requestQueue = Volley.newRequestQueue(this);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         backBTN = findViewById(R.id.back_btn);
         namaKaryawanTV = findViewById(R.id.nama_karyawan_tv);
@@ -4167,7 +4169,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
     }
 
     private void submitCuti(){
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/cuti_edit";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -4276,6 +4278,12 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                 return params;
             }
         };
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                0,
+                -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
 
         requestQueue.add(postRequest);
 

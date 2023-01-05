@@ -104,6 +104,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     int REQUEST_IMAGE = 100;
     private Uri uri;
     private static final int PICKFILE_RESULT_CODE = 1;
+    RequestQueue requestQueue;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -113,6 +114,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
+        requestQueue = Volley.newRequestQueue(this);
         rootview = findViewById(android.R.id.content);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
@@ -2774,7 +2776,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     }
 
     private void submitCuti(){
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/cuti_input";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -2845,8 +2847,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                Toast.makeText(FormPermohonanCutiActivity.this, "", Toast.LENGTH_SHORT).show();
-                
+
                 params.put("sisa_cuti_sementara", sisaCutiSementara);
                 params.put("tahun_cuti_diambil", getDateY());
                 params.put("total_cuti_diambil", totalCutiDiambil);
@@ -2868,8 +2869,13 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
             }
         };
 
-        requestQueue.add(postRequest);
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                0,
+                -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
 
+        requestQueue.add(postRequest);
 
     }
 

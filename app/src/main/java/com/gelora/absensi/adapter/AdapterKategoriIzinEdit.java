@@ -45,7 +45,11 @@ public class AdapterKategoriIzinEdit extends RecyclerView.Adapter<AdapterKategor
         final KategoriIzin kategoriIzin = data[i];
 
         myViewHolder.cutiName.setText(kategoriIzin.getKode());
-        myViewHolder.cituDesc.setText(kategoriIzin.getDeskripsi());
+        if(kategoriIzin.getTipe().equals("2")){
+            myViewHolder.cituDesc.setText(kategoriIzin.getDeskripsi()+"  -  ("+kategoriIzin.getJumlah_potongan()+" Hari)");
+        } else {
+            myViewHolder.cituDesc.setText(kategoriIzin.getDeskripsi());
+        }
 
         if (sharedPrefAbsen.getSpIdCuti().equals(kategoriIzin.getId())) {
             myViewHolder.markStatus.setVisibility(View.VISIBLE);

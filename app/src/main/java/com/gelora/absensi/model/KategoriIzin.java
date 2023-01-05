@@ -8,6 +8,7 @@ public class KategoriIzin {
     private String kode;
     private String tipe;
     private String lampiran;
+    private String jumlah_potongan;
 
     public String getId() {
         return id;
@@ -47,5 +48,13 @@ public class KategoriIzin {
 
     public void setLampiran(String lampiran) {
         this.lampiran = lampiran;
+    }
+
+    public String getJumlah_potongan() {
+        return jumlah_potongan;
+    }
+
+    public void setJumlah_potongan(String jumlah_potongan) {
+        this.jumlah_potongan = jumlah_potongan;
     }
 }

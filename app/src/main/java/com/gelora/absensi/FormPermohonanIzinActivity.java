@@ -84,6 +84,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
     private int i = -1;
     int REQUEST_IMAGE = 100;
     private Uri uri;
+    RequestQueue requestQueue;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -92,6 +93,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form_permohonan_izin);
 
         sharedPrefManager = new SharedPrefManager(this);
+        requestQueue = Volley.newRequestQueue(this);
         rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
@@ -1875,7 +1877,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
     }
 
     private void checkSignature(){
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -1941,6 +1943,12 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                 return params;
             }
         };
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                0,
+                -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
 
         requestQueue.add(postRequest);
 

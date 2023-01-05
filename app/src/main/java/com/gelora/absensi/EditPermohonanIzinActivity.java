@@ -76,6 +76,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
     private int i = -1;
     int REQUEST_IMAGE = 100;
     private Uri uri;
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +84,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_permohonan_izin);
 
         sharedPrefManager = new SharedPrefManager(this);
+        requestQueue = Volley.newRequestQueue(this);
         namaKaryawanTV = findViewById(R.id.nama_karyawan_tv);
         nikKaryawanTV = findViewById(R.id.nik_karyawan_tv);
         detailKaryawanTV = findViewById(R.id.detail_karyawan_tv);
@@ -2027,7 +2029,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
     }
 
     private void submitIzin(){
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/izin_edit";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -2123,11 +2125,13 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
             }
         };
 
-        requestQueue.add(postRequest);
-
-        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                0,
+                -1,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         postRequest.setRetryPolicy(retryPolicy);
+
+        requestQueue.add(postRequest);
 
     }
 
