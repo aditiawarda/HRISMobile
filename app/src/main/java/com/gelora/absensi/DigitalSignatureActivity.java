@@ -236,12 +236,38 @@ public class DigitalSignatureActivity extends AppCompatActivity {
     }
 
     private File saveBitMap(Context context, View drawView){
-        File pictureFileDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"Absensi App");
+        File pictureFileDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"HRIS Mobile");
 
         if (!pictureFileDir.exists()) {
             boolean isDirectoryCreated = pictureFileDir.mkdirs();
-            if(!isDirectoryCreated)
+            if(!isDirectoryCreated){
                 Log.i("ATG", "Can't create directory to save the image");
+                new KAlertDialog(DigitalSignatureActivity.this, KAlertDialog.ERROR_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Terjadi kesalahan!")
+                        .setConfirmText("    TUTUP    ")
+                        .show();
+            } else {
+                Dexter.withActivity(DigitalSignatureActivity.this)
+                        .withPermissions(android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        .withListener(new MultiplePermissionsListener() {
+                            @Override
+                            public void onPermissionsChecked(MultiplePermissionsReport report) {
+                                if (report.areAllPermissionsGranted()) {
+                                    File file = saveBitMap(DigitalSignatureActivity.this, mSignaturePad);
+                                    if (file != null) {
+                                        Log.i("TAG", "Drawing saved to the gallery!");
+                                    } else {
+                                        Log.i("TAG", "Oops! Image could not be saved.");
+                                    }
+                                }
+                            }
+                            @Override
+                            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                                token.continuePermissionRequest();
+                            }
+                        }).check();
+            }
             return null;
         }
         String filename = pictureFileDir.getPath() +File.separator+ "sgn_"+sharedPrefManager.getSpNik()+".jpg";

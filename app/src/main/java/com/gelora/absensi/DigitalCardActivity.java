@@ -192,7 +192,6 @@ public class DigitalCardActivity extends AppCompatActivity {
 
     private void generateQRCode(){
         if (TextUtils.isEmpty(dataDiri)){
-            // Banner.make(rootview,DigitalCardActivity.this,Banner.ERROR,"QR Code gagal di generate",Banner.BOTTOM,2000).show();
 
             CookieBar.build(DigitalCardActivity.this)
                     .setTitle("Perhatian")
@@ -216,11 +215,98 @@ public class DigitalCardActivity extends AppCompatActivity {
     }
 
     private File saveBitMap(Context context, View drawView){
-        File pictureFileDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"HRIS MObile");
+        File pictureFileDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"HRIS Mobile");
         if (!pictureFileDir.exists()) {
             boolean isDirectoryCreated = pictureFileDir.mkdirs();
-            if(!isDirectoryCreated)
+            if(!isDirectoryCreated) {
                 Log.i("ATG", "Can't create directory to save the image");
+                new KAlertDialog(DigitalCardActivity.this, KAlertDialog.ERROR_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Terjadi kesalahan!")
+                        .setConfirmText("    TUTUP    ")
+                        .show();
+            } else {
+                Dexter.withActivity(DigitalCardActivity.this)
+                        .withPermissions(android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        .withListener(new MultiplePermissionsListener() {
+                            @Override
+                            public void onPermissionsChecked(MultiplePermissionsReport report) {
+                                if (report.areAllPermissionsGranted()) {
+                                    File file = saveBitMap(DigitalCardActivity.this, digitalCard);    //which view you want to pass that view as parameter
+                                    if (file != null) {
+                                        final KAlertDialog pDialog = new KAlertDialog(DigitalCardActivity.this, KAlertDialog.PROGRESS_TYPE)
+                                                .setTitleText("Loading");
+                                        pDialog.show();
+                                        pDialog.setCancelable(false);
+                                        new CountDownTimer(2000, 1000) {
+                                            public void onTick(long millisUntilFinished) {
+                                                i++;
+                                                switch (i) {
+                                                    case 0:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (DigitalCardActivity.this, R.color.colorGradien));
+                                                        break;
+                                                    case 1:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (DigitalCardActivity.this, R.color.colorGradien2));
+                                                        break;
+                                                    case 2:
+                                                    case 6:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (DigitalCardActivity.this, R.color.colorGradien3));
+                                                        break;
+                                                    case 3:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (DigitalCardActivity.this, R.color.colorGradien4));
+                                                        break;
+                                                    case 4:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (DigitalCardActivity.this, R.color.colorGradien5));
+                                                        break;
+                                                    case 5:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (DigitalCardActivity.this, R.color.colorGradien6));
+                                                        break;
+                                                }
+                                            }
+                                            public void onFinish() {
+                                                i = -1;
+                                                pDialog.setTitleText("Unduh Berhasil")
+                                                        .setContentText("ID Card berhasil diunduh dan disimpan")
+                                                        .setCancelText("TUTUP")
+                                                        .setConfirmText("LIHAT")
+                                                        .showCancelButton(true)
+                                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                            @Override
+                                                            public void onClick(KAlertDialog sDialog) {
+                                                                sDialog.dismiss();
+                                                            }
+                                                        })
+                                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                            @Override
+                                                            public void onClick(KAlertDialog sDialog) {
+                                                                sDialog.dismiss();
+                                                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uriImage));
+                                                                startActivity(intent);
+                                                            }
+                                                        })
+                                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                            }
+                                        }.start();
+
+                                        Log.i("TAG", "Drawing saved to the gallery!");
+                                    }
+                                    else {
+                                        Log.i("TAG", "Oops! Image could not be saved.");
+                                    }
+                                }
+                            }
+                            @Override
+                            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                                token.continuePermissionRequest();
+                            }
+                        }).check();
+            }
             return null;
         }
         String filename = pictureFileDir.getPath() +File.separator+ System.currentTimeMillis()+".jpg";
