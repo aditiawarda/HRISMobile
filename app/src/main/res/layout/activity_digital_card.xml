@@ -87,19 +87,11 @@
                                 android:textSize="18dp"
                                 android:textStyle="bold" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="7dp"
-                                android:layout_marginBottom="7dp"
-                                android:layout_marginLeft="60dp"
-                                android:layout_marginRight="60dp"
-                                android:background="#80C3C3C3"/>
-
                             <TextView
                                 android:id="@+id/nik_karyawan"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
                                 android:text=""
                                 android:textAlignment="center"
                                 android:textColor="#000"
