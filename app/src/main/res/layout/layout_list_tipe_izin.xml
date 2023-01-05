@@ -32,7 +32,7 @@
                 android:textSize="16dp"
                 android:fontFamily="@font/roboto"
                 android:textStyle="bold"
-                android:text="Pilih Tipe Izin"/>
+                android:text="Pilih Tipe"/>
 
         <TextView
             android:layout_width="match_parent"
