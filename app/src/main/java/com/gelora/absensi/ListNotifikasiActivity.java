@@ -334,7 +334,6 @@ public class ListNotifikasiActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        // Banner.make(rootview, ListNotifikasiActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
 
         CookieBar.build(ListNotifikasiActivity.this)
                 .setTitle("Perhatian")

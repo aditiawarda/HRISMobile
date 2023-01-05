@@ -4074,10 +4074,10 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", sharedPrefManager.getSpNik());
 
-                if(kodeCuti.equals("")){
+                if(idCuti.equals("")){
                     params.put("tipe_izin", "2");
                 } else {
-                    params.put("tipe_izin", kodeCuti);
+                    params.put("tipe_izin", idCuti);
                 }
 
                 params.put("tanggal_mulai", dateChoiceMulai);
