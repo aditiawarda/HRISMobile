@@ -334,7 +334,6 @@ public class ListNotifikasiActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-
         CookieBar.build(ListNotifikasiActivity.this)
                 .setTitle("Perhatian")
                 .setMessage("Koneksi anda terputus!")
