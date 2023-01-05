@@ -56,124 +56,124 @@
                     android:layout_weight=".70">
 
                     <LinearLayout
-                        android:paddingTop="50dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/shape_body_login"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingTop="50dp">
 
                         <EditText
                             android:id="@+id/nikED"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginRight="30dp"
                             android:layout_marginLeft="30dp"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:paddingRight="20dp"
-                            android:paddingLeft="20dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/shape_feel_login"
                             android:hint="NIK"
-                            android:textSize="17dp"
                             android:inputType="number"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="10dp"
                             android:textColor="@color/white"
+                            android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
-                            android:textColorHighlight="#EC9426" />
+                            android:textSize="17dp" />
 
                         <TextView
                             android:id="@+id/namaTV"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginRight="30dp"
                             android:layout_marginLeft="30dp"
-                            android:paddingTop="10dp"
-                            android:textSize="17dp"
-                            android:paddingBottom="10dp"
-                            android:paddingRight="20dp"
-                            android:paddingLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/shape_feel_2"
-                            android:text="Nama Karyawan"
                             android:inputType="number"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="10dp"
+                            android:text="Nama Karyawan"
                             android:textColor="@color/white"
+                            android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
-                            android:textColorHighlight="#EC9426" />
+                            android:textSize="17dp" />
 
                         <EditText
                             android:id="@+id/passwordED"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginRight="30dp"
                             android:layout_marginLeft="30dp"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:paddingRight="20dp"
-                            android:paddingLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/shape_feel_login"
                             android:hint="Password"
-                            android:textSize="17dp"
                             android:inputType="textPassword"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="10dp"
                             android:textColor="@color/white"
+                            android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
-                            android:textColorHighlight="#EC9426" />
+                            android:textSize="17dp" />
 
                         <EditText
                             android:id="@+id/repasswordED"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginRight="30dp"
                             android:layout_marginLeft="30dp"
                             android:layout_marginTop="5dp"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:paddingRight="20dp"
-                            android:paddingLeft="20dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/shape_feel_login"
                             android:hint="Re-password"
-                            android:textSize="17dp"
                             android:inputType="textPassword"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="10dp"
                             android:textColor="@color/white"
+                            android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
-                            android:textColorHighlight="#EC9426" />
+                            android:textSize="17dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="30dp"
-                            android:layout_marginLeft="30dp"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/show_password_register"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Show"
-                                android:drawableLeft="@drawable/ic_baseline_visibility_on"
-                                android:layout_marginRight="10dp"
-                                android:drawablePadding="6dp"
-                                android:textSize="16dp"
                                 android:layout_marginLeft="5dp"
-                                android:layout_marginBottom="10dp"
                                 android:layout_marginTop="0dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:buttonTint="@color/white"
+                                android:drawableLeft="@drawable/ic_baseline_visibility_on"
+                                android:drawablePadding="6dp"
+                                android:text="Show"
                                 android:textColor="@color/white"
-                                android:buttonTint="@color/white" />
+                                android:textSize="16dp" />
 
                             <TextView
-                                android:visibility="gone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="hide"/>
+                                android:text="hide"
+                                android:visibility="gone" />
 
                             <LinearLayout
-                                android:gravity="right|center"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:gravity="right|center">
 
                                 <TextView
                                     android:id="@+id/match_password"
@@ -183,17 +183,17 @@
                                     android:layout_marginTop="-1dp"
                                     android:layout_marginRight="7dp"
                                     android:drawablePadding="6dp"
-                                    android:textSize="15dp"
                                     android:padding="4dp"
                                     android:text=""
                                     android:textColor="@color/white"
+                                    android:textSize="15dp"
                                     tools:ignore="RtlHardcoded" />
 
                                 <TextView
                                     android:id="@+id/indicator_match_pass"
-                                    android:layout_marginRight="7dp"
                                     android:layout_width="20dp"
-                                    android:layout_height="20dp" />
+                                    android:layout_height="20dp"
+                                    android:layout_marginRight="7dp" />
 
                             </LinearLayout>
 
@@ -201,30 +201,30 @@
 
                         <LinearLayout
                             android:id="@+id/register_btn"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="20dp"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:layout_marginRight="30dp"
                             android:layout_marginLeft="30dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginBottom="20dp"
                             android:background="@drawable/shapelogin"
                             android:gravity="center">
 
                             <ProgressBar
-                                android:visibility="gone"
                                 android:id="@+id/loadingProgressBar"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
                                 android:layout_marginRight="7dp"
                                 android:indeterminateTint="@color/colorPrimaryDark"
-                                android:layout_width="22dp"
-                                android:layout_height="22dp" />
+                                android:visibility="gone" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:text="DAFTAR"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textStyle="bold"
                                 android:textSize="13dp"
-                                android:text="DAFTAR"/>
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -235,33 +235,33 @@
 
                             <LinearLayout
                                 android:id="@+id/to_login_btn"
-                                android:layout_marginBottom="20dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="30dp"
-                                android:paddingLeft="5dp"
-                                android:paddingRight="5dp"
-                                android:paddingTop="3dp"
-                                android:paddingBottom="3dp"
-                                android:foreground="@drawable/shape_logout_effect"
                                 android:layout_marginRight="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:foreground="@drawable/shape_logout_effect"
                                 android:gravity="center|left"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:paddingLeft="5dp"
+                                android:paddingTop="3dp"
+                                android:paddingRight="5dp"
+                                android:paddingBottom="3dp">
 
                                 <TextView
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
-                                    android:backgroundTint="@color/white"
-                                    android:background="@drawable/ic_baseline_login" />
+                                    android:background="@drawable/ic_baseline_login"
+                                    android:backgroundTint="@color/white" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
                                     android:layout_marginLeft="7dp"
+                                    android:text="Login"
+                                    android:textColor="@color/white"
                                     android:textSize="15dp"
-                                    android:textStyle="bold"
-                                    android:text="Login"/>
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
 

@@ -107,11 +107,11 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:background="@drawable/shape_feel_login"
-                                        android:paddingStart="43dp"
                                         android:drawablePadding="10dp"
                                         android:hint="NIK"
                                         android:inputType="number"
                                         android:padding="10dp"
+                                        android:paddingStart="43dp"
                                         android:textColor="@color/white"
                                         android:textColorHighlight="#EC9426"
                                         android:textColorHint="#BFFFF3E9"
@@ -154,9 +154,9 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:background="@drawable/shape_pw_feel"
-                                        android:paddingStart="43dp"
                                         android:hint="Password"
                                         android:inputType="textPassword"
+                                        android:paddingStart="43dp"
                                         android:paddingLeft="10dp"
                                         android:paddingTop="10dp"
                                         android:paddingRight="80dp"
@@ -359,7 +359,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#CBFFFFFF"
                 android:textSize="13dp"
-                android:text="HRIS Mobile Gelora v 1.5.0"/>
+                android:text="HRIS Mobile Gelora v 1.5.1"/>
 
         </LinearLayout>
 
