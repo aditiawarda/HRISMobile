@@ -5448,6 +5448,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String cek_email = data.getString("cek_email");
                                 String cek_nohp = data.getString("cek_nohp");
 
+                                String id_cab = data.getString("id_cab");
+                                String id_dept = data.getString("id_dept");
+                                String id_bagian = data.getString("id_bagian");
+                                String id_jabatan = data.getString("id_jabatan");
+
+                                if(!sharedPrefManager.getSpIdCab().equals(id_cab)){
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_CAB, id_cab);
+                                }
+                                if(!sharedPrefManager.getSpIdHeadDept().equals(id_dept)){
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_HEAD_DEPT, id_dept);
+                                }
+                                if(!sharedPrefManager.getSpIdDept().equals(id_bagian)){
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_DEPT, id_bagian);
+                                }
+                                if(!sharedPrefManager.getSpIdJabatan().equals(id_jabatan)){
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_JABATAN, id_jabatan);
+                                }
+
                                 if(fitur_pengumuman.equals("0")){
                                     if (sharedPrefManager.getSpNik().length()==10){
                                         String tgl_masuk = data.getString("tgl_masuk");

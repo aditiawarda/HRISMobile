@@ -1155,7 +1155,7 @@
                                         android:textStyle="bold"
                                         android:textColor="#DC734D"
                                         android:textSize="13dp"
-                                        android:text="Form Izin"/>
+                                        android:text="Form Izin/Sakit"/>
 
                                 </LinearLayout>
 

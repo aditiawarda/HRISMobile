@@ -364,7 +364,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="Pengajuan permohonan izin/sakit dapat dilakukan secara digital di HRIS Mobile berikut merupakan tahapan-tahapan dalam pengisian form permohonan izin :"
+                            android:text="Pengajuan permohonan izin/sakit dapat dilakukan secara online/digital di HRIS Mobile, berikut merupakan tahapan-tahapan dalam pengisian form permohonan izin :"
                             android:textColor="@color/text_color"
                             android:textSize="14dp" />
 
@@ -557,7 +557,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="Pengajuan permohonan cuti dapat dilakukan secara digital di HRIS Mobile berikut merupakan tahapan-tahapan dalam pengisian form permohonan cuti :"
+                            android:text="Pengajuan permohonan cuti dapat dilakukan secara online/digital di HRIS Mobile, berikut merupakan tahapan-tahapan dalam pengisian form permohonan cuti :"
                             android:textColor="@color/text_color"
                             android:textSize="14dp" />
 

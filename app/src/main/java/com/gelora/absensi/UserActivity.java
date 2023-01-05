@@ -746,6 +746,24 @@ public class UserActivity extends AppCompatActivity {
                                 String email_karyawan = data.getString("email_karyawan");
                                 String nohp_karyawan = data.getString("nohp_karyawan");
 
+                                String id_cab = data.getString("id_cab");
+                                String id_dept = data.getString("id_dept");
+                                String id_bagian = data.getString("id_bagian");
+                                String id_jabatan = data.getString("id_jabatan");
+
+                                if(!sharedPrefManager.getSpIdCab().equals(id_cab)){
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_CAB, id_cab);
+                                }
+                                if(!sharedPrefManager.getSpIdHeadDept().equals(id_dept)){
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_HEAD_DEPT, id_dept);
+                                }
+                                if(!sharedPrefManager.getSpIdDept().equals(id_bagian)){
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_DEPT, id_bagian);
+                                }
+                                if(!sharedPrefManager.getSpIdJabatan().equals(id_jabatan)){
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_JABATAN, id_jabatan);
+                                }
+
                                 statusKaryawan = status_karyawan;
                                 tanggalBergabung = tanggal_masuk;
                                 sharedPrefManager.saveSPString(SharedPrefManager.SP_TGL_BERGABUNG, tanggal_masuk);
