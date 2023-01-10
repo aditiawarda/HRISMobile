@@ -1,0 +1,1314 @@
+package com.gelora.absensi;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.icu.util.Calendar;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.adapter.AdapterShiftAbsenFinger;
+import com.gelora.absensi.adapter.AdapterStatusAbsenFinger;
+import com.gelora.absensi.adapter.AdapterTitikAbsenFinger;
+import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.model.ShiftAbsen;
+import com.gelora.absensi.model.StatusAbsen;
+import com.gelora.absensi.model.TitikAbsensi;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.takisoft.datetimepicker.DatePickerDialog;
+import com.takisoft.datetimepicker.TimePickerDialog;
+
+import org.aviran.cookiebar2.CookieBar;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+public class FormFingerscanActivity extends AppCompatActivity {
+
+    SwipeRefreshLayout refreshLayout;
+    LinearLayout backBTN, homeBTN, dateBTN, submitBTN, detailKeterangan1, detailKeterangan2, detailKeterangan3, detailKeterangan5, statusAbsensiBTNK1, shiftAbsensiBTNK1, jamPulangBTNK1, titikBTNK1, tglPulangBTNK1, tglPulangPartK1;
+    TextView namaTV, nikTV, detailTV, datePilihTV, labelDetail, statusAbsensiPilihK1, shiftAbsensiPilihK1, jamMasukTVK1, jamPulangPilihK1, titikPilihK1, datePulangPilihK1;
+    EditText alasanED;
+    SharedPrefManager sharedPrefManager;
+    SharedPrefAbsen sharedPrefAbsen;
+    RadioGroup keteranganGroup;
+    RadioButton keterangan1, keterangan2, keterangan3, keterangan4, keterangan5, keterangan6, keterangan7;
+    String pilihanKeterangan = "",dateChoicePulang = "", dateChoice = "", currentDay = "", alasanDesc = "", permohonanTerkirim = "";
+    BottomSheetLayout bottomSheet;
+
+    private RecyclerView statusAbsenRV;
+    private StatusAbsen[] statusAbsens;
+    private AdapterStatusAbsenFinger adapterStatusAbsen;
+
+    private RecyclerView shifAbsenRV;
+    private ShiftAbsen[] shiftAbsens;
+    private AdapterShiftAbsenFinger adapterShiftAbsen;
+
+    private RecyclerView titikAbsenRV;
+    private TitikAbsensi[] titikAbsensis;
+    private AdapterTitikAbsenFinger adapterTitikAbsenFinger;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_form_fingerscan);
+
+        sharedPrefManager = new SharedPrefManager(this);
+        sharedPrefAbsen = new SharedPrefAbsen(this);
+        refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
+        backBTN = findViewById(R.id.back_btn);
+        homeBTN = findViewById(R.id.home_btn);
+        namaTV = findViewById(R.id.nama_karyawan_tv);
+        nikTV = findViewById(R.id.nik_karyawan_tv);
+        detailTV = findViewById(R.id.detail_karyawan_tv);
+        submitBTN = findViewById(R.id.submit_btn);
+        keteranganGroup = findViewById(R.id.pilihan_keterangan);
+        keterangan1 = findViewById(R.id.keterangan_1);
+        keterangan2 = findViewById(R.id.keterangan_2);
+        keterangan3 = findViewById(R.id.keterangan_3);
+        keterangan4 = findViewById(R.id.keterangan_4);
+        keterangan5 = findViewById(R.id.keterangan_5);
+        keterangan6 = findViewById(R.id.keterangan_6);
+        keterangan7 = findViewById(R.id.keterangan_7);
+        labelDetail = findViewById(R.id.label_detail);
+        detailKeterangan1 = findViewById(R.id.detail_keterangan_1);
+        detailKeterangan2 = findViewById(R.id.detail_keterangan_2);
+        detailKeterangan3 = findViewById(R.id.detail_keterangan_3);
+        detailKeterangan5 = findViewById(R.id.detail_keterangan_5);
+        dateBTN = findViewById(R.id.date_btn);
+        datePilihTV = findViewById(R.id.date_pilih);
+        bottomSheet = findViewById(R.id.bottom_sheet_layout);
+
+        statusAbsensiBTNK1 = findViewById(R.id.status_absensi_btn_k1);
+        shiftAbsensiBTNK1 = findViewById(R.id.shift_absensi_btn_k1);
+        statusAbsensiPilihK1 = findViewById(R.id.status_absensi_pilih_k1);
+        shiftAbsensiPilihK1 = findViewById(R.id.shift_absensi_pilih_k1);
+        jamMasukTVK1 = findViewById(R.id.jam_masuk_tv_k1);
+        jamPulangBTNK1 = findViewById(R.id.jam_pulang_btn_k1);
+        jamPulangPilihK1 = findViewById(R.id.jam_pulang_pilih_k1);
+        titikBTNK1 = findViewById(R.id.titik_btn_k1);
+        titikPilihK1 = findViewById(R.id.titik_pilih_k1);
+        tglPulangBTNK1 = findViewById(R.id.tgl_pulang_btn_k1);
+        datePulangPilihK1 = findViewById(R.id.tgl_pulang_pilih_k1);
+        tglPulangPartK1 = findViewById(R.id.tgl_pulang_part_k1);
+        alasanED = findViewById(R.id.alasan_tv);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(statusAbsenBroad, new IntentFilter("status_absen_broad"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(shiftAbsenBroad, new IntentFilter("shift_absen_broad"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(titikAbsenBroad, new IntentFilter("titik_absen_broad"));
+
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+
+                        currentDay = "";
+                        dateChoice = "";
+                        dateChoicePulang = "";
+                        alasanDesc = "";
+                        alasanED.setText("");
+                        datePilihTV.setText("");
+                        pilihanKeterangan = "";
+                        keteranganGroup.clearCheck();
+                        detailKeterangan1.setVisibility(View.GONE);
+                        detailKeterangan2.setVisibility(View.GONE);
+                        detailKeterangan3.setVisibility(View.GONE);
+                        detailKeterangan5.setVisibility(View.GONE);
+                        labelDetail.setVisibility(View.GONE);
+
+                        statusAbsensiPilihK1.setText("");
+                        shiftAbsensiPilihK1.setText("Tentukan Status Absensi...");
+                        jamMasukTVK1.setText("Tentukan Shift Absensi...");
+                        jamPulangPilihK1.setText("");
+
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_TITIK_ABSENSI, "");
+
+                    }
+                }, 800);
+            }
+        });
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        homeBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormFingerscanActivity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        dateBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePicker();
+            }
+        });
+
+        keteranganGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (keterangan1.isChecked()) {
+                    pilihanKeterangan = keterangan1.getText().toString();
+                    detailKeterangan1.setVisibility(View.VISIBLE);
+                    detailKeterangan2.setVisibility(View.GONE);
+                    detailKeterangan3.setVisibility(View.GONE);
+                    detailKeterangan5.setVisibility(View.GONE);
+                    labelDetail.setVisibility(View.VISIBLE);
+                } else if (keterangan2.isChecked()) {
+                    pilihanKeterangan = keterangan2.getText().toString();
+                    detailKeterangan1.setVisibility(View.GONE);
+                    detailKeterangan2.setVisibility(View.VISIBLE);
+                    detailKeterangan3.setVisibility(View.GONE);
+                    detailKeterangan5.setVisibility(View.GONE);
+                    labelDetail.setVisibility(View.VISIBLE);
+                } else if (keterangan3.isChecked()) {
+                    pilihanKeterangan = keterangan3.getText().toString();
+                    detailKeterangan1.setVisibility(View.GONE);
+                    detailKeterangan2.setVisibility(View.GONE);
+                    detailKeterangan3.setVisibility(View.VISIBLE);
+                    detailKeterangan5.setVisibility(View.GONE);
+                    labelDetail.setVisibility(View.VISIBLE);
+                } else if (keterangan4.isChecked()) {
+                    pilihanKeterangan = keterangan4.getText().toString();
+                    detailKeterangan1.setVisibility(View.GONE);
+                    detailKeterangan2.setVisibility(View.GONE);
+                    detailKeterangan3.setVisibility(View.GONE);
+                    detailKeterangan5.setVisibility(View.GONE);
+                    labelDetail.setVisibility(View.GONE);
+                } else if (keterangan5.isChecked()) {
+                    pilihanKeterangan = keterangan5.getText().toString();
+                    detailKeterangan1.setVisibility(View.GONE);
+                    detailKeterangan2.setVisibility(View.GONE);
+                    detailKeterangan3.setVisibility(View.GONE);
+                    detailKeterangan5.setVisibility(View.GONE);
+                    labelDetail.setVisibility(View.GONE);
+                } else if (keterangan6.isChecked()) {
+                    pilihanKeterangan = keterangan6.getText().toString();
+                    detailKeterangan1.setVisibility(View.GONE);
+                    detailKeterangan2.setVisibility(View.GONE);
+                    detailKeterangan3.setVisibility(View.GONE);
+                    detailKeterangan5.setVisibility(View.VISIBLE);
+                    labelDetail.setVisibility(View.VISIBLE);
+                } else if (keterangan7.isChecked()) {
+                    pilihanKeterangan = keterangan6.getText().toString();
+                    detailKeterangan1.setVisibility(View.GONE);
+                    detailKeterangan2.setVisibility(View.GONE);
+                    detailKeterangan3.setVisibility(View.GONE);
+                    detailKeterangan5.setVisibility(View.GONE);
+                    labelDetail.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        statusAbsensiBTNK1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentDay.equals("")){
+                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Harap tentukan tanggal terlebih dahulu!")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+                } else {
+                    statusAbsen();
+                }
+            }
+        });
+
+        shiftAbsensiBTNK1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentDay.equals("")){
+                    if(statusAbsensiPilihK1.getText().toString().equals("")){
+                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap tentukan tanggal dan pilih status absensi terlebih dahulu!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                    } else {
+                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap tentukan tanggal terlebih dahulu!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                    }
+                } else {
+                    if(statusAbsensiPilihK1.getText().toString().equals("")){
+                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap pilih status absensi terlebih dahulu!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                    } else {
+                        shiftAbsen();
+                    }
+                }
+            }
+        });
+
+        jamPulangBTNK1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    Calendar cal = Calendar.getInstance();
+
+                    @SuppressLint({"DefaultLocale", "SetTextI18n"})
+                    TimePickerDialog tpd = new TimePickerDialog(FormFingerscanActivity.this, (view1, hourOfDay, minute) -> {
+                    jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
+                    },
+                    cal.get(java.util.Calendar.HOUR_OF_DAY),
+                    cal.get(java.util.Calendar.MINUTE),
+                    android.text.format.DateFormat.is24HourFormat(FormFingerscanActivity.this));
+                    tpd.show();
+
+                } else {
+                    int h = Integer.parseInt(getTimeH());
+                    int m = Integer.parseInt(getTimeM());
+
+                    @SuppressLint({"DefaultLocale", "SetTextI18n"})
+                    TimePickerDialog tpd = new TimePickerDialog(FormFingerscanActivity.this, (view1, hourOfDay, minute) -> {
+                        jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
+                    },
+                    h,
+                    m,
+                    android.text.format.DateFormat.is24HourFormat(FormFingerscanActivity.this));
+                    tpd.show();
+
+                }
+            }
+        });
+
+        tglPulangBTNK1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(dateChoice.equals("")){
+                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap tentukan tanggal terlebih dahulu!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    datePickerPulang();
+                }
+            }
+        });
+
+        titikBTNK1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                titikAbsen();
+            }
+        });
+
+        submitBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        getDataKaryawan();
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_TITIK_ABSENSI, "");
+
+    }
+
+    private void getDataKaryawan(){
+        namaTV.setText(sharedPrefManager.getSpNama().toUpperCase());
+        nikTV.setText(sharedPrefManager.getSpNik());
+        getDataKaryawanDetail();
+    }
+
+    private void getDataKaryawanDetail() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan_personal";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Success")){
+                                String department = data.getString("departemen");
+                                String bagian = data.getString("bagian");
+                                String jabatan = data.getString("jabatan");
+                                detailTV.setText(jabatan+" | "+bagian+" | "+department);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_department", sharedPrefManager.getSpIdHeadDept());
+                params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private void datePicker(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            Calendar cal = Calendar.getInstance();
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, (view1, year, month, dayOfMonth) -> {
+
+                dateChoice = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                Date date2 = null;
+                try {
+                    date = sdf.parse(String.valueOf(dateChoice));
+                    date2 = sdf.parse(getDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long mulai = date.getTime();
+                long akhir = date2.getTime();
+
+                if (mulai<=akhir){
+                    String input_date = dateChoice;
+                    SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                    Date dt1= null;
+                    try {
+                        dt1 = format1.parse(input_date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    DateFormat format2 = new SimpleDateFormat("EEE");
+                    DateFormat getweek = new SimpleDateFormat("W");
+                    String finalDay = format2.format(dt1);
+                    String week = getweek.format(dt1);
+                    String hariName = "";
+
+                    if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                        hariName = "Senin";
+                    } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                        hariName = "Selasa";
+                    } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                        hariName = "Rabu";
+                    } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                        hariName = "Kamis";
+                    } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                        hariName = "Jumat";
+                    } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                        hariName = "Sabtu";
+                    } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                        hariName = "Minggu";
+                    }
+
+                    String dayDate = input_date.substring(8,10);
+                    String yearDate = input_date.substring(0,4);;
+                    String bulanValue = input_date.substring(5,7);
+                    String bulanName;
+
+                    switch (bulanValue) {
+                        case "01":
+                            bulanName = "Januari";
+                            break;
+                        case "02":
+                            bulanName = "Februari";
+                            break;
+                        case "03":
+                            bulanName = "Maret";
+                            break;
+                        case "04":
+                            bulanName = "April";
+                            break;
+                        case "05":
+                            bulanName = "Mei";
+                            break;
+                        case "06":
+                            bulanName = "Juni";
+                            break;
+                        case "07":
+                            bulanName = "Juli";
+                            break;
+                        case "08":
+                            bulanName = "Agustus";
+                            break;
+                        case "09":
+                            bulanName = "September";
+                            break;
+                        case "10":
+                            bulanName = "Oktober";
+                            break;
+                        case "11":
+                            bulanName = "November";
+                            break;
+                        case "12":
+                            bulanName = "Desember";
+                            break;
+                        default:
+                            bulanName = "Not found!";
+                            break;
+                    }
+
+                    currentDay = hariName;
+                    datePilihTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                    statusAbsensiPilihK1.setText("");
+                    shiftAbsensiPilihK1.setText("Tentukan Status Absensi...");
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
+                } else {
+                    datePilihTV.setText("Pilih Kembali !");
+                    dateChoice = "";
+
+                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Pengajuan fingerscan tidak dapat untuk tanggal yang akan datang. Harap ulangi!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
+
+            }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+            dpd.show();
+        } else {
+            int y = Integer.parseInt(getDateY());
+            int m = Integer.parseInt(getDateM());
+            int d = Integer.parseInt(getDateD());
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, (view1, year, month, dayOfMonth) -> {
+
+                dateChoice = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                Date date2 = null;
+                try {
+                    date = sdf.parse(String.valueOf(dateChoice));
+                    date2 = sdf.parse(getDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long mulai = date.getTime();
+                long akhir = date2.getTime();
+
+                if (mulai<=akhir){
+                    String input_date = dateChoice;
+                    SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                    Date dt1= null;
+                    try {
+                        dt1 = format1.parse(input_date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    DateFormat format2 = new SimpleDateFormat("EEE");
+                    DateFormat getweek = new SimpleDateFormat("W");
+                    String finalDay = format2.format(dt1);
+                    String week = getweek.format(dt1);
+                    String hariName = "";
+
+                    if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                        hariName = "Senin";
+                    } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                        hariName = "Selasa";
+                    } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                        hariName = "Rabu";
+                    } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                        hariName = "Kamis";
+                    } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                        hariName = "Jumat";
+                    } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                        hariName = "Sabtu";
+                    } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                        hariName = "Minggu";
+                    }
+
+                    String dayDate = input_date.substring(8,10);
+                    String yearDate = input_date.substring(0,4);;
+                    String bulanValue = input_date.substring(5,7);
+                    String bulanName;
+
+                    switch (bulanValue) {
+                        case "01":
+                            bulanName = "Januari";
+                            break;
+                        case "02":
+                            bulanName = "Februari";
+                            break;
+                        case "03":
+                            bulanName = "Maret";
+                            break;
+                        case "04":
+                            bulanName = "April";
+                            break;
+                        case "05":
+                            bulanName = "Mei";
+                            break;
+                        case "06":
+                            bulanName = "Juni";
+                            break;
+                        case "07":
+                            bulanName = "Juli";
+                            break;
+                        case "08":
+                            bulanName = "Agustus";
+                            break;
+                        case "09":
+                            bulanName = "September";
+                            break;
+                        case "10":
+                            bulanName = "Oktober";
+                            break;
+                        case "11":
+                            bulanName = "November";
+                            break;
+                        case "12":
+                            bulanName = "Desember";
+                            break;
+                        default:
+                            bulanName = "Not found";
+                            break;
+                    }
+
+                    currentDay = hariName;
+                    datePilihTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                    statusAbsensiPilihK1.setText("");
+                    shiftAbsensiPilihK1.setText("Tentukan Status Absensi...");
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
+                } else {
+                    datePilihTV.setText("Pilih Kembali !");
+                    dateChoice = "";
+
+                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Pengajuan fingerscan tidak dapat untuk tanggal yang akan datang. Harap ulangi!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
+
+            }, y,m,d);
+            dpd.show();
+        }
+
+
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private void datePickerPulang(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            Calendar cal = Calendar.getInstance();
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, (view1, year, month, dayOfMonth) -> {
+
+                dateChoicePulang = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                Date date2 = null;
+                try {
+                    date = sdf.parse(String.valueOf(dateChoice));
+                    date2 = sdf.parse(String.valueOf(dateChoicePulang));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long mulai = date.getTime();
+                long akhir = date2.getTime();
+
+                if (mulai<=akhir){
+                    String input_date = dateChoicePulang;
+                    SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                    Date dt1= null;
+                    try {
+                        dt1 = format1.parse(input_date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    DateFormat format2 = new SimpleDateFormat("EEE");
+                    DateFormat getweek = new SimpleDateFormat("W");
+                    String finalDay = format2.format(dt1);
+                    String week = getweek.format(dt1);
+                    String hariName = "";
+
+                    if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                        hariName = "Senin";
+                    } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                        hariName = "Selasa";
+                    } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                        hariName = "Rabu";
+                    } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                        hariName = "Kamis";
+                    } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                        hariName = "Jumat";
+                    } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                        hariName = "Sabtu";
+                    } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                        hariName = "Minggu";
+                    }
+
+                    String dayDate = input_date.substring(8,10);
+                    String yearDate = input_date.substring(0,4);;
+                    String bulanValue = input_date.substring(5,7);
+                    String bulanName;
+
+                    switch (bulanValue) {
+                        case "01":
+                            bulanName = "Januari";
+                            break;
+                        case "02":
+                            bulanName = "Februari";
+                            break;
+                        case "03":
+                            bulanName = "Maret";
+                            break;
+                        case "04":
+                            bulanName = "April";
+                            break;
+                        case "05":
+                            bulanName = "Mei";
+                            break;
+                        case "06":
+                            bulanName = "Juni";
+                            break;
+                        case "07":
+                            bulanName = "Juli";
+                            break;
+                        case "08":
+                            bulanName = "Agustus";
+                            break;
+                        case "09":
+                            bulanName = "September";
+                            break;
+                        case "10":
+                            bulanName = "Oktober";
+                            break;
+                        case "11":
+                            bulanName = "November";
+                            break;
+                        case "12":
+                            bulanName = "Desember";
+                            break;
+                        default:
+                            bulanName = "Not found!";
+                            break;
+                    }
+
+                    datePulangPilihK1.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                } else {
+                    datePulangPilihK1.setText("Pilih Kembali !");
+                    dateChoicePulang = "";
+
+                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Tanggal pulang tidak bisa lebih kecil dari tanggal masuk. Harap ulangi!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
+
+            }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+            dpd.show();
+        } else {
+            int y = Integer.parseInt(getDateY());
+            int m = Integer.parseInt(getDateM());
+            int d = Integer.parseInt(getDateD());
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, (view1, year, month, dayOfMonth) -> {
+
+                dateChoicePulang = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                Date date2 = null;
+                try {
+                    date = sdf.parse(String.valueOf(dateChoice));
+                    date2 = sdf.parse(String.valueOf(dateChoicePulang));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long mulai = date.getTime();
+                long akhir = date2.getTime();
+
+                if (mulai<=akhir){
+                    String input_date = dateChoicePulang;
+                    SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                    Date dt1= null;
+                    try {
+                        dt1 = format1.parse(input_date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    DateFormat format2 = new SimpleDateFormat("EEE");
+                    DateFormat getweek = new SimpleDateFormat("W");
+                    String finalDay = format2.format(dt1);
+                    String week = getweek.format(dt1);
+                    String hariName = "";
+
+                    if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                        hariName = "Senin";
+                    } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                        hariName = "Selasa";
+                    } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                        hariName = "Rabu";
+                    } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                        hariName = "Kamis";
+                    } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                        hariName = "Jumat";
+                    } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                        hariName = "Sabtu";
+                    } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                        hariName = "Minggu";
+                    }
+
+                    String dayDate = input_date.substring(8,10);
+                    String yearDate = input_date.substring(0,4);;
+                    String bulanValue = input_date.substring(5,7);
+                    String bulanName;
+
+                    switch (bulanValue) {
+                        case "01":
+                            bulanName = "Januari";
+                            break;
+                        case "02":
+                            bulanName = "Februari";
+                            break;
+                        case "03":
+                            bulanName = "Maret";
+                            break;
+                        case "04":
+                            bulanName = "April";
+                            break;
+                        case "05":
+                            bulanName = "Mei";
+                            break;
+                        case "06":
+                            bulanName = "Juni";
+                            break;
+                        case "07":
+                            bulanName = "Juli";
+                            break;
+                        case "08":
+                            bulanName = "Agustus";
+                            break;
+                        case "09":
+                            bulanName = "September";
+                            break;
+                        case "10":
+                            bulanName = "Oktober";
+                            break;
+                        case "11":
+                            bulanName = "November";
+                            break;
+                        case "12":
+                            bulanName = "Desember";
+                            break;
+                        default:
+                            bulanName = "Not found";
+                            break;
+                    }
+
+
+                    datePulangPilihK1.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                } else {
+                    datePulangPilihK1.setText("Pilih Kembali !");
+                    dateChoicePulang = "";
+
+                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Tanggal pulang tidak bisa lebih kecil dari tanggal masuk. Harap ulangi!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
+
+            }, y,m,d);
+            dpd.show();
+        }
+
+
+    }
+
+    private void statusAbsen(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_status_absen, bottomSheet, false));
+        statusAbsenRV = findViewById(R.id.status_absen_rv);
+
+        statusAbsenRV.setLayoutManager(new LinearLayoutManager(this));
+        statusAbsenRV.setHasFixedSize(true);
+        statusAbsenRV.setNestedScrollingEnabled(false);
+        statusAbsenRV.setItemAnimator(new DefaultItemAnimator());
+
+        getStatusAbsenBagian();
+
+    }
+
+    private void shiftAbsen(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_shift_absen, bottomSheet, false));
+        shifAbsenRV = findViewById(R.id.shift_absen_rv);
+
+        shifAbsenRV.setLayoutManager(new LinearLayoutManager(this));
+        shifAbsenRV.setHasFixedSize(true);
+        shifAbsenRV.setNestedScrollingEnabled(false);
+        shifAbsenRV.setItemAnimator(new DefaultItemAnimator());
+
+        getShiftAbsenBagian();
+
+    }
+
+    private void titikAbsen(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_titik_absen, bottomSheet, false));
+        titikAbsenRV = findViewById(R.id.titik_absen_rv);
+
+        titikAbsenRV.setLayoutManager(new LinearLayoutManager(this));
+        titikAbsenRV.setHasFixedSize(true);
+        titikAbsenRV.setNestedScrollingEnabled(false);
+        titikAbsenRV.setItemAnimator(new DefaultItemAnimator());
+
+        getTitikAbsensi();
+
+    }
+
+    private void getStatusAbsenBagian() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/status_absen_bagian_form_finger";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+
+                            JSONObject data = new JSONObject(response);
+                            String status_absen = data.getString("data");
+
+                            GsonBuilder builder =new GsonBuilder();
+                            Gson gson = builder.create();
+                            statusAbsens = gson.fromJson(status_absen, StatusAbsen[].class);
+                            adapterStatusAbsen = new AdapterStatusAbsenFinger(statusAbsens,FormFingerscanActivity.this);
+                            statusAbsenRV.setAdapter(adapterStatusAbsen);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void getShiftAbsenBagian() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/shift_absen_bagian_form_finger";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+
+                            JSONObject data = new JSONObject(response);
+                            String shift_absen = data.getString("data");
+
+                            GsonBuilder builder =new GsonBuilder();
+                            Gson gson = builder.create();
+                            shiftAbsens = gson.fromJson(shift_absen, ShiftAbsen[].class);
+                            adapterShiftAbsen = new AdapterShiftAbsenFinger(shiftAbsens,FormFingerscanActivity.this);
+                            shifAbsenRV.setAdapter(adapterShiftAbsen);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                params.put("tanggal", dateChoice);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void getTitikAbsensi() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_lokasi_absen";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+
+                            JSONObject data = new JSONObject(response);
+                            String titik_absen = data.getString("data");
+
+                            GsonBuilder builder =new GsonBuilder();
+                            Gson gson = builder.create();
+                            titikAbsensis = gson.fromJson(titik_absen, TitikAbsensi[].class);
+                            adapterTitikAbsenFinger = new AdapterTitikAbsenFinger(titikAbsensis,FormFingerscanActivity.this);
+                            titikAbsenRV.setAdapter(adapterTitikAbsenFinger);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("request", "request");
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    public BroadcastReceiver statusAbsenBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String idStatusAbsen = intent.getStringExtra("id_status_absen");
+            String namaStatusAbsen = intent.getStringExtra("nama_status_absen");
+            String descStatusAbsen = intent.getStringExtra("desc_status_absen");
+
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
+            statusAbsensiPilihK1.setText(namaStatusAbsen);
+            shiftAbsensiPilihK1.setText("");
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                }
+            }, 300);
+
+        }
+    };
+
+    public BroadcastReceiver shiftAbsenBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String idShiftAbsen = intent.getStringExtra("id_shift_absen");
+            String namaShiftAbsen = intent.getStringExtra("nama_shift_absen");
+            String datangShiftAbsen = intent.getStringExtra("datang_shift_absen");
+            String pulangShiftAbsen = intent.getStringExtra("pulang_shift_absen");
+
+            shiftAbsensiPilihK1.setText(namaShiftAbsen+" ("+datangShiftAbsen+" - "+pulangShiftAbsen+")");
+            jamMasukTVK1.setText(datangShiftAbsen);
+
+            if(idShiftAbsen.equals("6")||idShiftAbsen.equals("9")||idShiftAbsen.equals("14")||idShiftAbsen.equals("15")||idShiftAbsen.equals("41")||idShiftAbsen.equals("81")||idShiftAbsen.equals("91")||idShiftAbsen.equals("95")||idShiftAbsen.equals("85")||idShiftAbsen.equals("87")){
+                tglPulangPartK1.setVisibility(View.VISIBLE);
+            } else {
+                tglPulangPartK1.setVisibility(View.GONE);
+            }
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                }
+            }, 300);
+
+        }
+    };
+
+    public BroadcastReceiver titikAbsenBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String latitude = intent.getStringExtra("latitude_titik");
+            String longitude = intent.getStringExtra("longitude_titik");
+            String namaTitik = intent.getStringExtra("nama_titik");
+
+            titikPilihK1.setText(namaTitik);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                }
+            }, 300);
+
+        }
+    };
+
+    private void connectionFailed(){
+        CookieBar.build(FormFingerscanActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
+    }
+
+    private String getTime() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDate() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateD() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateM() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateY() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getTimeH() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("HH");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getTimeM() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("mm");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!dateChoice.equals("") || !pilihanKeterangan.equals("") || !alasanED.getText().toString().equals("")){
+            if(bottomSheet.isSheetShowing()){
+                bottomSheet.dismissSheet();
+            } else {
+                if (permohonanTerkirim.equals("1")){
+                    super.onBackPressed();
+                } else {
+                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
+                            .setCancelText("TIDAK")
+                            .setConfirmText("   YA   ")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                    dateChoice = "";
+                                    pilihanKeterangan = "";
+                                    alasanED.setText("");
+                                    onBackPressed();
+                                }
+                            })
+                            .show();
+                }
+            }
+        } else {
+            if(bottomSheet.isSheetShowing()){
+                bottomSheet.dismissSheet();
+            } else {
+                super.onBackPressed();
+            }
+        }
+    }
+
+}

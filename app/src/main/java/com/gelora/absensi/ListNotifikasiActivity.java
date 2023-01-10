@@ -343,7 +343,6 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
-
     }
 
 }

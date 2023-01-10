@@ -12,11 +12,13 @@ public class SharedPrefAbsen {
     public static final String SP_ID_BAGIAN = "spIdBagian";
     public static final String SP_ID_CUTI = "spIdCuti";
     public static final String SP_ID_KARYAWAN_PENGGANTI = "spIdKaryawanPengganti";
+    public static final String SP_ID_TITIK_ABSENSI = "spIdTitikAbsensi";
     public static final String SP_STATUS_ABSEN = "spStatusAbsen";
     public static final String SP_SHIFT_ABSEN = "spShiftAbsen";
     public static final String SP_BAGIAN = "spBagian";
     public static final String SP_CUTI = "spCuti";
     public static final String SP_KARYAWAN_PENGGANTI = "spKaryawanPengganti";
+    public static final String SP_TITIK_ABSENSI = "spTitikAbsensi";
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -62,6 +64,10 @@ public class SharedPrefAbsen {
         return sp.getString(SP_ID_KARYAWAN_PENGGANTI, "");
     }
 
+    public String getSpIdTitikAbsensi(){
+        return sp.getString(SP_ID_TITIK_ABSENSI, "");
+    }
+
     public String getSpStatusAbsen(){
         return sp.getString(SP_STATUS_ABSEN, "");
     }
@@ -80,6 +86,10 @@ public class SharedPrefAbsen {
 
     public String getSpKaryawanPengganti(){
         return sp.getString(SP_KARYAWAN_PENGGANTI, "");
+    }
+
+    public String getSpTitikAbsensi(){
+        return sp.getString(SP_ID_TITIK_ABSENSI, "");
     }
 
 }

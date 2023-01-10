@@ -1862,8 +1862,6 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        // Banner.make(rootview, FormPermohonanIzinActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
-
         CookieBar.build(FormPermohonanIzinActivity.this)
                 .setTitle("Perhatian")
                 .setMessage("Koneksi anda terputus!")
@@ -1873,7 +1871,6 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
-
     }
 
     private void checkSignature(){

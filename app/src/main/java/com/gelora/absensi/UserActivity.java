@@ -97,7 +97,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout toUserDetail, emailEmptyWarningPart, headerBackground, faqBTN, sisaCutiData, sisaCutiBTN, countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout fingerscanBTN, toUserDetail, emailEmptyWarningPart, headerBackground, faqBTN, sisaCutiData, sisaCutiBTN, countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
     TextView tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -230,6 +230,7 @@ public class UserActivity extends AppCompatActivity {
         emailEmptyWarningPart = findViewById(R.id.email_empty_warning_part);
         toUserDetail = findViewById(R.id.to_user_detail);
         tglBergabungMainTV = findViewById(R.id.tgl_bergabung_main_tv);
+        fingerscanBTN = findViewById(R.id.fingerscan_btn);
         yearCR = findViewById(R.id.year_tv);
         faqBTN = findViewById(R.id.faq_btn);
         hTime = findViewById(R.id.h_time);
@@ -432,6 +433,14 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, HistoryCutiIzinActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        fingerscanBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, FormFingerscanActivity.class);
                 startActivity(intent);
             }
         });
