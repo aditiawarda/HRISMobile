@@ -17,6 +17,7 @@
     <string name="dialog_permission_message">HRIS Mobile Gelora memerlukan izin untuk mengakses file gambar jika ingin menggunakan fitur ini. Anda dapat memberikannya di pengaturan aplikasi.</string>
     <string name="go_to_settings">PENGATURAN</string>
     <string name="permohonan_cuti"><u>PERMOHONAN CUTI</u></string>
+    <string name="finger_scan"><u>FORM KETERANGAN TIDAK ABSEN</u></string>
     <string name="hint_email"><i>Harap lengkapi Email</i></string>
     <string name="hint_phone"><i>Harap lengkapi No Handphone</i></string>
 

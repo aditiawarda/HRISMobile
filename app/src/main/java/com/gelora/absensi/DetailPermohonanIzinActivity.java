@@ -877,7 +877,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         break;
                                 }
 
-                                tglMulaiTV.setText(":  "+Integer.parseInt(dayDateMulai) +" "+bulanNameMulai+" "+yearDateMulai);
+                                tglMulaiTV.setText(Integer.parseInt(dayDateMulai) +" "+bulanNameMulai+" "+yearDateMulai);
 
                                 String input_date_akhir = tgl_akhir;
                                 String dayDateAkhir = input_date_akhir.substring(8,10);
@@ -1397,16 +1397,16 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
     private final BroadcastReceiver onDownloadComplete = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            pDialog.setTitleText("Download Berhasil")
-                    .setContentText("File permohonan berhasil diunduh")
-                    .setConfirmText("    OK    ")
-                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                        }
-                    })
-                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+        pDialog.setTitleText("Download Berhasil")
+                .setContentText("File permohonan berhasil diunduh")
+                .setConfirmText("    OK    ")
+                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                    @Override
+                    public void onClick(KAlertDialog sDialog) {
+                        sDialog.dismiss();
+                    }
+                })
+                .changeAlertType(KAlertDialog.SUCCESS_TYPE);
         }
     };
 

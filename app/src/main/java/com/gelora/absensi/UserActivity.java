@@ -97,8 +97,8 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout fingerscanBTN, toUserDetail, emailEmptyWarningPart, headerBackground, faqBTN, sisaCutiData, sisaCutiBTN, countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
-    TextView tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    LinearLayout countNotificationFinger, notificationFingerPart, fingerscanBTN, toUserDetail, emailEmptyWarningPart, headerBackground, faqBTN, sisaCutiData, sisaCutiBTN, countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
+    TextView countNotifFingerTV, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     BottomSheetLayout bottomSheet;
@@ -151,7 +151,6 @@ public class UserActivity extends AppCompatActivity {
         companyBTN = findViewById(R.id.about_company_btn);
         covidBTN = findViewById(R.id.covid_btn);
         statusUserTV = findViewById(R.id.status_user_tv);
-        avatarUser = findViewById(R.id.avatar_user);
         avatarUser = findViewById(R.id.avatar_user);
         emptyAvatarPart = findViewById(R.id.empty_avatar_part);
         availableAvatarPart = findViewById(R.id.available_avatar_part);
@@ -209,7 +208,9 @@ public class UserActivity extends AppCompatActivity {
         permohonanIzinBTN = findViewById(R.id.permohonan_btn);
         permohonanCutiBTN = findViewById(R.id.permohonan_cuti_btn);
         countNotification = findViewById(R.id.count_notification);
+        countNotificationFinger = findViewById(R.id.count_notification_finger);
         countNotifTV = findViewById(R.id.count_notif_tv);
+        countNotifFingerTV = findViewById(R.id.count_notif_finger_tv);
         notifikationBTN = findViewById(R.id.notifikation_btn);
         digitalSignatureBTN = findViewById(R.id.signature_digital_btn);
         positionPart = findViewById(R.id.position_part);
@@ -231,6 +232,7 @@ public class UserActivity extends AppCompatActivity {
         toUserDetail = findViewById(R.id.to_user_detail);
         tglBergabungMainTV = findViewById(R.id.tgl_bergabung_main_tv);
         fingerscanBTN = findViewById(R.id.fingerscan_btn);
+        notificationFingerPart = findViewById(R.id.notification_finger_part);
         yearCR = findViewById(R.id.year_tv);
         faqBTN = findViewById(R.id.faq_btn);
         hTime = findViewById(R.id.h_time);
@@ -589,6 +591,14 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
+        notificationFingerPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, ListNotifikasiFingerscanActivity.class);
+                startActivity(intent);
+            }
+        });
+
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -749,7 +759,6 @@ public class UserActivity extends AppCompatActivity {
                                 String weather_key = data.getString("weather_key");
                                 String info_covid = data.getString("info_covid");
                                 String logout_part = data.getString("logout_part");
-                                String chat_room = data.getString("chat_room");
                                 String web_btn = data.getString("web_btn");
                                 String warning_email = data.getString("warning_email");
                                 String email_karyawan = data.getString("email_karyawan");
@@ -854,12 +863,6 @@ public class UserActivity extends AppCompatActivity {
                                     logoutPart.setVisibility(View.VISIBLE);
                                 } else {
                                     logoutPart.setVisibility(View.GONE);
-                                }
-
-                                if(chat_room.equals("1")){
-                                    chatBTN.setVisibility(View.VISIBLE);
-                                } else {
-                                    chatBTN.setVisibility(View.GONE);
                                 }
 
                                 if(web_btn.equals("0")){
@@ -1091,6 +1094,8 @@ public class UserActivity extends AppCompatActivity {
                                 String count = data.getString("count");
                                 String count2 = data.getString("count2");
                                 String message_count = data.getString("message_yet");
+                                String count_finger = data.getString("count_finger");
+                                String count_finger_in = data.getString("count_finger_in");
 
                                 if (message_count.equals("0")){
                                     countNotificationMessage.setVisibility(View.GONE);
@@ -1104,6 +1109,13 @@ public class UserActivity extends AppCompatActivity {
                                 } else {
                                     countNotification.setVisibility(View.VISIBLE);
                                     countNotifTV.setText(String.valueOf(Integer.parseInt(count)+Integer.parseInt(count2)));
+                                }
+
+                                if (count_finger.equals("0") && count_finger_in.equals("0")){
+                                    countNotificationFinger.setVisibility(View.GONE);
+                                } else {
+                                    countNotificationFinger.setVisibility(View.VISIBLE);
+                                    countNotifFingerTV.setText(String.valueOf(Integer.parseInt(count_finger)+Integer.parseInt(count_finger_in)));
                                 }
 
                                 checkVersion();
@@ -2340,6 +2352,8 @@ public class UserActivity extends AppCompatActivity {
                                 String fitur_izin = data.getString("fitur_izin");
                                 String id_card_digital = data.getString("id_card_digital");
                                 String sisa_cuti_info = data.getString("sisa_cuti_info");
+                                String finger_scan = data.getString("finger_scan");
+                                String gelora_messanger = data.getString("gelora_messanger");
 
                                 statusFitur = fitur_izin;
 
@@ -2389,6 +2403,20 @@ public class UserActivity extends AppCompatActivity {
                                     markerWarningLate.setVisibility(View.VISIBLE);
                                 } else {
                                     markerWarningLate.setVisibility(View.GONE);
+                                }
+
+                                if(gelora_messanger.equals("1")){
+                                    chatBTN.setVisibility(View.VISIBLE);
+                                } else {
+                                    chatBTN.setVisibility(View.GONE);
+                                }
+
+                                if(finger_scan.equals("1")){
+                                    fingerscanBTN.setVisibility(View.VISIBLE);
+                                    notificationFingerPart.setVisibility(View.VISIBLE);
+                                } else {
+                                    fingerscanBTN.setVisibility(View.GONE);
+                                    notificationFingerPart.setVisibility(View.GONE);
                                 }
 
                                 if((statusKaryawan.equals("Tetap")||statusKaryawan.equals("Kontrak")||statusKaryawan.equals("Harian"))&&!statusKaryawan.equals("null")){

@@ -1155,7 +1155,10 @@
                                         android:textStyle="bold"
                                         android:textColor="#DC734D"
                                         android:textSize="13dp"
-                                        android:text="Form Fingerscan"/>
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="Form Keterangan Tidak Absen"/>
 
                                 </LinearLayout>
 
@@ -1175,6 +1178,9 @@
                                         android:textStyle="bold"
                                         android:textColor="#DC734D"
                                         android:textSize="13dp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
                                         android:text="Form Izin/Sakit"/>
 
                                 </LinearLayout>
@@ -1195,6 +1201,9 @@
                                         android:textStyle="bold"
                                         android:textColor="#DC734D"
                                         android:textSize="13dp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
                                         android:text="Form Permohonan Cuti"/>
 
                                 </LinearLayout>
@@ -1215,6 +1224,9 @@
                                         android:textStyle="bold"
                                         android:textColor="#DC734D"
                                         android:textSize="13dp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
                                         android:text="ID Card Digital"/>
 
                                 </LinearLayout>
@@ -1234,6 +1246,9 @@
                                         android:textStyle="bold"
                                         android:textColor="#DC734D"
                                         android:textSize="13dp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
                                         android:text="Tanda Tangan Digital"/>
 
                                 </LinearLayout>
@@ -1338,6 +1353,9 @@
                                     android:textStyle="bold"
                                     android:textColor="#CF811F"
                                     android:textSize="13dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
                                     android:text="Profil Perusahaan"/>
 
                             </LinearLayout>
@@ -1358,6 +1376,9 @@
                                     android:textStyle="bold"
                                     android:textColor="#CF811F"
                                     android:textSize="13dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
                                     android:text="Tentang Aplikasi"/>
 
                             </LinearLayout>
@@ -1378,6 +1399,9 @@
                                     android:textStyle="bold"
                                     android:textColor="#CF811F"
                                     android:textSize="13dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
                                     android:text="Kebijakan Privasi"/>
 
                             </LinearLayout>
@@ -1398,6 +1422,9 @@
                                     android:textStyle="bold"
                                     android:textColor="#CF811F"
                                     android:textSize="13dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
                                     android:text="Layanan Pengaduan"/>
 
                             </LinearLayout>
@@ -1418,6 +1445,9 @@
                                     android:textStyle="bold"
                                     android:textColor="#CF811F"
                                     android:textSize="13dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
                                     android:text="Bantuan (FAQ)"/>
 
                             </LinearLayout>
@@ -1439,6 +1469,9 @@
                                     android:textStyle="bold"
                                     android:textColor="#CF811F"
                                     android:textSize="13dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
                                     android:text="Buka Versi Web"/>
 
                             </LinearLayout>
@@ -1468,6 +1501,9 @@
                                     android:textStyle="bold"
                                     android:textColor="#CF811F"
                                     android:textSize="13dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
                                     android:text="Update Aplikasi Sekarang!"/>
 
                             </LinearLayout>
@@ -1906,6 +1942,62 @@
 
                                         <TextView
                                             android:id="@+id/count_notif_tv"
+                                            android:gravity="center"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="@color/white"
+                                            android:textSize="10dp"
+                                            android:text="0"/>
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/notification_finger_part"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="11dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:id="@+id/notifikation_finger_btn"
+                                        android:layout_marginTop="15dp"
+                                        android:layout_width="33dp"
+                                        android:layout_height="33dp"
+                                        android:gravity="center"
+                                        android:background="@drawable/shape_back_2">
+
+                                        <TextView
+                                            android:layout_marginRight="3dp"
+                                            android:layout_width="19dp"
+                                            android:layout_height="19dp"
+                                            android:background="@drawable/ic_baseline_finger"/>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:visibility="gone"
+                                        android:id="@+id/count_notification_finger"
+                                        android:layout_marginLeft="23dp"
+                                        android:layout_marginTop="15dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingRight="4dp"
+                                        android:paddingLeft="4dp"
+                                        android:paddingBottom="1dp"
+                                        android:gravity="center"
+                                        android:background="@drawable/shape_notification_mark">
+
+                                        <TextView
+                                            android:id="@+id/count_notif_finger_tv"
                                             android:gravity="center"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"

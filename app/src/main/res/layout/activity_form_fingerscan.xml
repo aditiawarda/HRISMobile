@@ -131,7 +131,7 @@
                                     android:textSize="12dp"
                                     android:layout_marginBottom="5dp"
                                     android:textColor="#696969"
-                                    android:text="Tanggal :"/>
+                                    android:text="Tanggal Masuk :"/>
 
                                 <LinearLayout
                                     android:id="@+id/date_btn"
@@ -197,8 +197,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="8dp"
                                     android:layout_marginTop="2dp"
-                                    android:paddingTop="25dp"
-                                    android:paddingBottom="25dp"
+                                    android:paddingTop="18dp"
+                                    android:paddingBottom="18dp"
                                     android:paddingRight="15dp"
                                     android:background="@drawable/shape_input_form"
                                     android:orientation="horizontal">
@@ -218,7 +218,11 @@
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical">
 
-                                        <RadioButton android:id="@+id/keterangan_1"
+                                        <RadioButton
+                                            android:visibility="gone"
+                                            android:id="@+id/keterangan_1"
+                                            android:layout_marginTop="7dp"
+                                            android:layout_marginBottom="7dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:paddingHorizontal="15dp"
@@ -226,8 +230,10 @@
                                             android:textColor="#4A4A4A"
                                             android:text="Tidak Absen Masuk dan Pulang"/>
 
-                                        <RadioButton android:id="@+id/keterangan_2"
-                                            android:layout_marginTop="15dp"
+                                        <RadioButton
+                                            android:id="@+id/keterangan_2"
+                                            android:layout_marginTop="7dp"
+                                            android:layout_marginBottom="7dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:paddingHorizontal="15dp"
@@ -235,8 +241,10 @@
                                             android:textColor="#4A4A4A"
                                             android:text="Tidak Absen Masuk"/>
 
-                                        <RadioButton android:id="@+id/keterangan_3"
-                                            android:layout_marginTop="15dp"
+                                        <RadioButton
+                                            android:id="@+id/keterangan_3"
+                                            android:layout_marginTop="7dp"
+                                            android:layout_marginBottom="7dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:paddingHorizontal="15dp"
@@ -244,8 +252,10 @@
                                             android:textColor="#4A4A4A"
                                             android:text="Tidak Absen Pulang"/>
 
-                                        <RadioButton android:id="@+id/keterangan_4"
-                                            android:layout_marginTop="15dp"
+                                        <RadioButton
+                                            android:id="@+id/keterangan_4"
+                                            android:layout_marginTop="7dp"
+                                            android:layout_marginBottom="7dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:paddingHorizontal="15dp"
@@ -253,8 +263,10 @@
                                             android:textColor="#4A4A4A"
                                             android:text="Datang Terlambat"/>
 
-                                        <RadioButton android:id="@+id/keterangan_5"
-                                            android:layout_marginTop="15dp"
+                                        <RadioButton
+                                            android:id="@+id/keterangan_5"
+                                            android:layout_marginTop="7dp"
+                                            android:layout_marginBottom="7dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:paddingHorizontal="15dp"
@@ -262,8 +274,11 @@
                                             android:textColor="#4A4A4A"
                                             android:text="Pulang Lebih Awal"/>
 
-                                        <RadioButton android:id="@+id/keterangan_6"
-                                            android:layout_marginTop="15dp"
+                                        <RadioButton
+                                            android:visibility="gone"
+                                            android:id="@+id/keterangan_6"
+                                            android:layout_marginTop="7dp"
+                                            android:layout_marginBottom="7dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:paddingHorizontal="15dp"
@@ -271,8 +286,11 @@
                                             android:textColor="#4A4A4A"
                                             android:text="Salah Pilih Shift"/>
 
-                                        <RadioButton android:id="@+id/keterangan_7"
-                                            android:layout_marginTop="15dp"
+                                        <RadioButton
+                                            android:visibility="gone"
+                                            android:id="@+id/keterangan_7"
+                                            android:layout_marginTop="7dp"
+                                            android:layout_marginBottom="7dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:paddingHorizontal="15dp"

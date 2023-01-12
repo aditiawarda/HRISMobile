@@ -26,7 +26,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -63,7 +62,7 @@ import java.util.Map;
 public class FormFingerscanActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refreshLayout;
-    LinearLayout formPart, successPart;
+    LinearLayout formPart, successPart, viewBTN, goToHome, goToDasboard;
     LinearLayout backBTN, homeBTN, dateBTN, submitBTN, detailKeterangan1, detailKeterangan2, detailKeterangan3, detailKeterangan5, statusAbsensiBTNK1, shiftAbsensiBTNK1, jamPulangBTNK1, titikBTNK1, tglPulangBTNK1, tglPulangPartK1;
     TextView namaTV, nikTV, detailTV, datePilihTV, labelDetail, statusAbsensiPilihK1, shiftAbsensiPilihK1, jamMasukTVK1, jamPulangPilihK1, titikPilihK1, datePulangPilihK1;
     EditText alasanED;
@@ -71,7 +70,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
     SharedPrefAbsen sharedPrefAbsen;
     RadioGroup keteranganGroup;
     RadioButton keterangan1, keterangan2, keterangan3, keterangan4, keterangan5, keterangan6, keterangan7;
-    String kategoriKeterangan = "", pilihanKeterangan = "",dateChoicePulang = "", dateChoice = "", currentDay = "", alasanDesc = "", permohonanTerkirim = "0";
+    String idPermohonan = "", kategoriKeterangan = "", pilihanKeterangan = "",dateChoicePulang = "", dateChoiceMasuk = "", currentDay = "", alasanDesc = "", permohonanTerkirim = "0";
     BottomSheetLayout bottomSheet;
     KAlertDialog pDialog;
     ImageView successGif;
@@ -100,6 +99,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
+        goToDasboard = findViewById(R.id.go_to_user);
+        goToHome = findViewById(R.id.go_to_home);
+        viewBTN = findViewById(R.id.view_permohonan_btn);
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
         backBTN = findViewById(R.id.back_btn);
@@ -160,7 +162,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
                         jamMasuk = "";
                         currentDay = "";
-                        dateChoice = "";
+                        dateChoiceMasuk = "";
                         dateChoicePulang = "";
                         alasanDesc = "";
                         alasanED.setText("");
@@ -178,6 +180,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                         shiftAbsensiPilihK1.setText("Tentukan Status Absensi...");
                         jamMasukTVK1.setText("Tentukan Shift Absensi...");
                         jamPulangPilihK1.setText("");
+                        titikPilihK1.setText("");
 
                         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
                         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
@@ -207,6 +210,34 @@ public class FormFingerscanActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(FormFingerscanActivity.this, MapsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        viewBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormFingerscanActivity.this, DetailPermohonanFingerscanActivity.class);
+                intent.putExtra("kode", "form");
+                intent.putExtra("id_permohonan", idPermohonan);
+                startActivity(intent);
+            }
+        });
+
+        goToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormFingerscanActivity.this, MapsActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        goToDasboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormFingerscanActivity.this, UserActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -286,7 +317,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                 if(currentDay.equals("")){
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                         .setTitleText("Perhatian")
-                        .setContentText("Harap tentukan tanggal terlebih dahulu!")
+                        .setContentText("Harap tentukan tanggal masuk terlebih dahulu!")
                         .setConfirmText("    OK    ")
                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override
@@ -308,7 +339,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     if(statusAbsensiPilihK1.getText().toString().equals("")){
                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Harap tentukan tanggal dan pilih status absensi terlebih dahulu!")
+                            .setContentText("Harap tentukan tanggal masuk dan pilih status absensi terlebih dahulu!")
                             .setConfirmText("    OK    ")
                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
@@ -320,7 +351,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     } else {
                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Harap tentukan tanggal terlebih dahulu!")
+                            .setContentText("Harap tentukan tanggal masuk terlebih dahulu!")
                             .setConfirmText("    OK    ")
                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
@@ -358,8 +389,43 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
                     @SuppressLint({"DefaultLocale", "SetTextI18n"})
                     TimePickerDialog tpd = new TimePickerDialog(FormFingerscanActivity.this, (view1, hourOfDay, minute) -> {
-                        jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
                         jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
+
+                        if(tanggalPulang.equals(getDate())){
+                            @SuppressLint("SimpleDateFormat")
+                            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                            Date time = null;
+                            Date time2 = null;
+                            try {
+                                time = sdf.parse(String.valueOf(jamPulang));
+                                time2 = sdf.parse(getTime());
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            long pilih = time.getTime();
+                            long sekarang = time2.getTime();
+
+                            if (pilih<=sekarang){
+                                jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
+                                jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
+                            } else {
+                                new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Jam pulang tidak dapat lebih besar dari jam saat ini. Harap ulangi!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        } else {
+                            jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
+                            jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
+                        }
+
                     },
                     cal.get(java.util.Calendar.HOUR_OF_DAY),
                     cal.get(java.util.Calendar.MINUTE),
@@ -372,8 +438,43 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
                     @SuppressLint({"DefaultLocale", "SetTextI18n"})
                     TimePickerDialog tpd = new TimePickerDialog(FormFingerscanActivity.this, (view1, hourOfDay, minute) -> {
-                        jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
                         jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
+
+                        if(tanggalPulang.equals(getDate())){
+                            @SuppressLint("SimpleDateFormat")
+                            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                            Date time = null;
+                            Date time2 = null;
+                            try {
+                                time = sdf.parse(String.valueOf(jamPulang));
+                                time2 = sdf.parse(getTime());
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            long pilih = time.getTime();
+                            long sekarang = time2.getTime();
+
+                            if (pilih<=sekarang){
+                                jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
+                                jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
+                            } else {
+                                new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Jam pulang tidak dapat lebih besar dari jam saat ini. Harap ulangi!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        } else {
+                            jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
+                            jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
+                        }
+
                     },
                     h,
                     m,
@@ -387,10 +488,10 @@ public class FormFingerscanActivity extends AppCompatActivity {
         tglPulangBTNK1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(dateChoice.equals("")){
+                if(dateChoiceMasuk.equals("")){
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Harap tentukan tanggal terlebih dahulu!")
+                            .setContentText("Harap tentukan tanggal masuk terlebih dahulu!")
                             .setConfirmText("    OK    ")
                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
@@ -415,7 +516,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(dateChoice.equals("")){
+                if(dateChoiceMasuk.equals("")){
                     if(kategoriKeterangan.equals("")){
                         if(alasanED.getText().toString().equals("")){
                             new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
@@ -432,7 +533,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                         } else {
                             new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
-                                    .setContentText("Harap isi tanggal dan keterangan!")
+                                    .setContentText("Harap isi tanggal masuk dan keterangan!")
                                     .setConfirmText("    OK    ")
                                     .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                         @Override
@@ -451,7 +552,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             if(alasanED.getText().toString().equals("")){
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift, jam pulang, titik absensi dan alasan!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift, jam pulang, titik absensi dan alasan!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -463,7 +564,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             } else {
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift, jam pulang dan titik absensi!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift, jam pulang dan titik absensi!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -477,7 +578,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             if(alasanED.getText().toString().equals("")){
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift, jam pulang dan alasan!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift, jam pulang dan alasan!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -489,7 +590,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             } else {
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift dan jam pulang!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift dan jam pulang!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -505,7 +606,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             if(alasanED.getText().toString().equals("")){
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift, titik absensi dan alasan!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift, titik absensi dan alasan!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -517,7 +618,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             } else {
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift dan titik absensi!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift dan titik absensi!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -531,7 +632,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             if(alasanED.getText().toString().equals("")){
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift dan alasan!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift dan alasan!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -543,7 +644,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             } else {
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi dan shift!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi dan shift!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -563,7 +664,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     if(alasanED.getText().toString().equals("")){
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi, tanggal pulang, jam pulang, titik absensi dan alasan!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi, tanggal pulang, jam pulang, titik absensi dan alasan!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -575,7 +676,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     } else {
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi, tanggal pulang, jam pulang dan titik absensi!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi, tanggal pulang, jam pulang dan titik absensi!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -589,7 +690,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     if(alasanED.getText().toString().equals("")){
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi, tanggal pulang, jam pulang dan alasan!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi, tanggal pulang, jam pulang dan alasan!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -601,7 +702,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     } else {
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi, tanggal pulang dan jam pulang!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi, tanggal pulang dan jam pulang!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -617,7 +718,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     if(alasanED.getText().toString().equals("")){
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi, tanggal pulang, titik absensi dan alasan!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi, tanggal pulang, titik absensi dan alasan!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -629,7 +730,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     } else {
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi, tanggal pulang dan titik absensi!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi, tanggal pulang dan titik absensi!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -643,7 +744,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     if(alasanED.getText().toString().equals("")){
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi, tanggal pulang dan alasan!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi, tanggal pulang dan alasan!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -655,7 +756,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     } else {
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi dan tanggal pulang!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi dan tanggal pulang!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -673,7 +774,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     if(alasanED.getText().toString().equals("")){
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi, jam pulang, titik absensi dan alasan!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi, jam pulang, titik absensi dan alasan!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -685,7 +786,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     } else {
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi, jam pulang dan titik absensi!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi, jam pulang dan titik absensi!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -699,7 +800,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     if(alasanED.getText().toString().equals("")){
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi, jam pulang dan alasan!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi, jam pulang dan alasan!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -711,7 +812,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     } else {
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi dan jam pulang!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi dan jam pulang!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -727,7 +828,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     if(alasanED.getText().toString().equals("")){
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi, titik absensi dan alasan!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi, titik absensi dan alasan!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -739,7 +840,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     } else {
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi dan titik absensi!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi dan titik absensi!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -753,7 +854,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     if(alasanED.getText().toString().equals("")){
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal, status absensi dan alasan!")
+                                                                .setContentText("Harap isi tanggal masuk, status absensi dan alasan!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -765,7 +866,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                     } else {
                                                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("Harap isi tanggal dan status absensi!")
+                                                                .setContentText("Harap isi tanggal masuk dan status absensi!")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -784,7 +885,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 if(alasanED.getText().toString().equals("")){
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal, status absensi, jam pulang, titik absensi dan alasan!")
+                                                            .setContentText("Harap isi tanggal masuk, status absensi, jam pulang, titik absensi dan alasan!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -796,7 +897,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 } else {
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal, status absensi, jam pulang dan titik absensi!")
+                                                            .setContentText("Harap isi tanggal masuk, status absensi, jam pulang dan titik absensi!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -810,7 +911,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 if(alasanED.getText().toString().equals("")){
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal, status absensi, jam pulang dan alasan!")
+                                                            .setContentText("Harap isi tanggal masuk, status absensi, jam pulang dan alasan!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -822,7 +923,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 } else {
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal, status absensi dan jam pulang!")
+                                                            .setContentText("Harap isi tanggal masuk, status absensi dan jam pulang!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -838,7 +939,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 if(alasanED.getText().toString().equals("")){
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal, status absensi, titik absensi dan alasan!")
+                                                            .setContentText("Harap isi tanggal masuk, status absensi, titik absensi dan alasan!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -850,7 +951,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 } else {
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal, status absensi dan titik absensi!")
+                                                            .setContentText("Harap isi tanggal masuk, status absensi dan titik absensi!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -864,7 +965,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 if(alasanED.getText().toString().equals("")){
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal, status absensi dan alasan!")
+                                                            .setContentText("Harap isi tanggal masuk, status absensi dan alasan!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -876,7 +977,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 } else {
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal dan status absensi!")
+                                                            .setContentText("Harap isi tanggal masuk dan status absensi!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -897,7 +998,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             if(alasanED.getText().toString().equals("")){
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift, jam pulang, titik absensi dan alasan!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift, jam pulang, titik absensi dan alasan!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -909,7 +1010,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             } else {
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift, jam pulang dan titik absensi!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift, jam pulang dan titik absensi!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -923,7 +1024,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             if(alasanED.getText().toString().equals("")){
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift, jam pulang dan alasan!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift, jam pulang dan alasan!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -935,7 +1036,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             } else {
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift dan jam pulang!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift dan jam pulang!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -951,7 +1052,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             if(alasanED.getText().toString().equals("")){
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift, titik absensi dan alasan!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift, titik absensi dan alasan!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -963,7 +1064,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             } else {
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift dan titik absensi!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift dan titik absensi!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -977,7 +1078,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             if(alasanED.getText().toString().equals("")){
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi, shift dan alasan!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi, shift dan alasan!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -989,7 +1090,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             } else {
                                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("Harap isi tanggal, status absensi dan shift!")
+                                                        .setContentText("Harap isi tanggal masuk, status absensi dan shift!")
                                                         .setConfirmText("    OK    ")
                                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                             @Override
@@ -1006,160 +1107,269 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                         if(tanggalPulang.equals("0000-00-00")){
                                             if(jamPulang.equals("")){
                                                 if(namaTitikAbsensi.equals("")){
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal pulang, jam pulang dan titik absensi!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang, jam pulang, titik absensi dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang, jam pulang dan titik absensi!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 } else {
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal pulang dan jam pulang!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang, jam pulang dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang dan jam pulang!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 }
                                             } else {
                                                 if(namaTitikAbsensi.equals("")){
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal pulang dan titik absensi!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang, titik absensi dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang dan titik absensi!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 } else {
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal pulang!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 }
                                             }
                                         } else {
                                             if(jamPulang.equals("")){
                                                 if(namaTitikAbsensi.equals("")){
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi jam pulang dan titik absensi!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi jam pulang, titik absensi dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi jam pulang dan titik absensi!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 } else {
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi jam pulang!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi jam pulang dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi jam pulang!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 }
                                             } else {
                                                 if(namaTitikAbsensi.equals("")){
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi titik absensi!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi titik absensi dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi titik absensi!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 } else {
-                                                    //gow
-
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.WARNING_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Kirim permohonan sekarang?")
-                                                            .setCancelText("TIDAK")
-                                                            .setConfirmText("   YA   ")
-                                                            .showCancelButton(true)
-                                                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                    pDialog = new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                                                    pDialog.show();
-                                                                    pDialog.setCancelable(false);
-                                                                    new CountDownTimer(1300, 800) {
-                                                                        public void onTick(long millisUntilFinished) {
-                                                                            i++;
-                                                                            switch (i) {
-                                                                                case 0:
-                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                                            (FormFingerscanActivity.this, R.color.colorGradien));
-                                                                                    break;
-                                                                                case 1:
-                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                                            (FormFingerscanActivity.this, R.color.colorGradien2));
-                                                                                    break;
-                                                                                case 2:
-                                                                                case 6:
-                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                                            (FormFingerscanActivity.this, R.color.colorGradien3));
-                                                                                    break;
-                                                                                case 3:
-                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                                            (FormFingerscanActivity.this, R.color.colorGradien4));
-                                                                                    break;
-                                                                                case 4:
-                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                                            (FormFingerscanActivity.this, R.color.colorGradien5));
-                                                                                    break;
-                                                                                case 5:
-                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                                            (FormFingerscanActivity.this, R.color.colorGradien6));
-                                                                                    break;
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Kirim permohonan sekarang?")
+                                                                .setCancelText("TIDAK")
+                                                                .setConfirmText("   YA   ")
+                                                                .showCancelButton(true)
+                                                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                        pDialog = new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                                                        pDialog.show();
+                                                                        pDialog.setCancelable(false);
+                                                                        new CountDownTimer(1300, 800) {
+                                                                            public void onTick(long millisUntilFinished) {
+                                                                                i++;
+                                                                                switch (i) {
+                                                                                    case 0:
+                                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                                (FormFingerscanActivity.this, R.color.colorGradien));
+                                                                                        break;
+                                                                                    case 1:
+                                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                                (FormFingerscanActivity.this, R.color.colorGradien2));
+                                                                                        break;
+                                                                                    case 2:
+                                                                                    case 6:
+                                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                                (FormFingerscanActivity.this, R.color.colorGradien3));
+                                                                                        break;
+                                                                                    case 3:
+                                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                                (FormFingerscanActivity.this, R.color.colorGradien4));
+                                                                                        break;
+                                                                                    case 4:
+                                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                                (FormFingerscanActivity.this, R.color.colorGradien5));
+                                                                                        break;
+                                                                                    case 5:
+                                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                                (FormFingerscanActivity.this, R.color.colorGradien6));
+                                                                                        break;
+                                                                                }
                                                                             }
-                                                                        }
-                                                                        public void onFinish() {
-                                                                            i = -1;
-                                                                            checkSignature();
-                                                                        }
-                                                                    }.start();
+                                                                            public void onFinish() {
+                                                                                i = -1;
+                                                                                checkSignature();
+                                                                            }
+                                                                        }.start();
 
-                                                                }
-                                                            })
-                                                            .show();
-
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 }
                                             }
                                         }
@@ -1169,7 +1379,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 if(alasanED.getText().toString().equals("")){
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal, jam pulang, titik absensi dan alasan!")
+                                                            .setContentText("Harap isi tanggal masuk, jam pulang, titik absensi dan alasan!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -1181,7 +1391,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 } else {
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal, jam pulang dan titik absensi!")
+                                                            .setContentText("Harap isi tanggal masuk, jam pulang dan titik absensi!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -1195,7 +1405,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 if(alasanED.getText().toString().equals("")){
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal, jam pulang dan alasan!")
+                                                            .setContentText("Harap isi tanggal masuk, jam pulang dan alasan!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -1207,7 +1417,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 } else {
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal dan jam pulang!")
+                                                            .setContentText("Harap isi tanggal masuk dan jam pulang!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -1223,7 +1433,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 if(alasanED.getText().toString().equals("")){
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal, titik absensi dan alasan!")
+                                                            .setContentText("Harap isi tanggal masuk, titik absensi dan alasan!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -1235,7 +1445,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 } else {
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal dan titik absensi!")
+                                                            .setContentText("Harap isi tanggal masuk dan titik absensi!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -1249,7 +1459,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 if(alasanED.getText().toString().equals("")){
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal dan alasan!")
+                                                            .setContentText("Harap isi tanggal masuk dan alasan!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -1261,7 +1471,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                                 } else {
                                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal!")
+                                                            .setContentText("Harap isi tanggal masuk!")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -1281,7 +1491,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                             if(alasanED.getText().toString().equals("")){
                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
-                                        .setContentText("Harap isi tanggal dan alasan!")
+                                        .setContentText("Harap isi tanggal masuk dan alasan!")
                                         .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
@@ -1293,7 +1503,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                             } else {
                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
-                                        .setContentText("Harap isi tanggal!")
+                                        .setContentText("Harap isi tanggal masuk!")
                                         .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
@@ -1896,160 +2106,269 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                         if(tanggalPulang.equals("0000-00-00")){
                                             if(jamPulang.equals("")){
                                                 if(namaTitikAbsensi.equals("")){
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal pulang, jam pulang dan titik absensi!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang, jam pulang, titik absensi dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang, jam pulang dan titik absensi!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 } else {
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal pulang dan jam pulang!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang, jam pulang dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang dan jam pulang!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 }
                                             } else {
                                                 if(namaTitikAbsensi.equals("")){
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal pulang dan titik absensi!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang, titik absensi dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang dan titik absensi!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 } else {
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi tanggal pulang!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi tanggal pulang!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 }
                                             }
                                         } else {
                                             if(jamPulang.equals("")){
                                                 if(namaTitikAbsensi.equals("")){
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi jam pulang dan titik absensi!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi jam pulang, titik absensi dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi jam pulang dan titik absensi!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 } else {
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi jam pulang!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi jam pulang dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi jam pulang!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 }
                                             } else {
                                                 if(namaTitikAbsensi.equals("")){
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Harap isi titik absensi!")
-                                                            .setConfirmText("    OK    ")
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .show();
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi titik absensi dan alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi titik absensi!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 } else {
-                                                    //gow
-
-                                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.WARNING_TYPE)
-                                                            .setTitleText("Perhatian")
-                                                            .setContentText("Kirim permohonan sekarang?")
-                                                            .setCancelText("TIDAK")
-                                                            .setConfirmText("   YA   ")
-                                                            .showCancelButton(true)
-                                                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                }
-                                                            })
-                                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                                @Override
-                                                                public void onClick(KAlertDialog sDialog) {
-                                                                    sDialog.dismiss();
-                                                                    pDialog = new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                                                    pDialog.show();
-                                                                    pDialog.setCancelable(false);
-                                                                    new CountDownTimer(1300, 800) {
-                                                                        public void onTick(long millisUntilFinished) {
-                                                                            i++;
-                                                                            switch (i) {
-                                                                                case 0:
-                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                                            (FormFingerscanActivity.this, R.color.colorGradien));
-                                                                                    break;
-                                                                                case 1:
-                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                                            (FormFingerscanActivity.this, R.color.colorGradien2));
-                                                                                    break;
-                                                                                case 2:
-                                                                                case 6:
-                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                                            (FormFingerscanActivity.this, R.color.colorGradien3));
-                                                                                    break;
-                                                                                case 3:
-                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                                            (FormFingerscanActivity.this, R.color.colorGradien4));
-                                                                                    break;
-                                                                                case 4:
-                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                                            (FormFingerscanActivity.this, R.color.colorGradien5));
-                                                                                    break;
-                                                                                case 5:
-                                                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                                            (FormFingerscanActivity.this, R.color.colorGradien6));
-                                                                                    break;
+                                                    if(alasanED.getText().toString().equals("")){
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Harap isi alasan!")
+                                                                .setConfirmText("    OK    ")
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    } else {
+                                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.WARNING_TYPE)
+                                                                .setTitleText("Perhatian")
+                                                                .setContentText("Kirim permohonan sekarang?")
+                                                                .setCancelText("TIDAK")
+                                                                .setConfirmText("   YA   ")
+                                                                .showCancelButton(true)
+                                                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                    }
+                                                                })
+                                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                                    @Override
+                                                                    public void onClick(KAlertDialog sDialog) {
+                                                                        sDialog.dismiss();
+                                                                        pDialog = new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                                                        pDialog.show();
+                                                                        pDialog.setCancelable(false);
+                                                                        new CountDownTimer(1300, 800) {
+                                                                            public void onTick(long millisUntilFinished) {
+                                                                                i++;
+                                                                                switch (i) {
+                                                                                    case 0:
+                                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                                (FormFingerscanActivity.this, R.color.colorGradien));
+                                                                                        break;
+                                                                                    case 1:
+                                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                                (FormFingerscanActivity.this, R.color.colorGradien2));
+                                                                                        break;
+                                                                                    case 2:
+                                                                                    case 6:
+                                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                                (FormFingerscanActivity.this, R.color.colorGradien3));
+                                                                                        break;
+                                                                                    case 3:
+                                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                                (FormFingerscanActivity.this, R.color.colorGradien4));
+                                                                                        break;
+                                                                                    case 4:
+                                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                                (FormFingerscanActivity.this, R.color.colorGradien5));
+                                                                                        break;
+                                                                                    case 5:
+                                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                                (FormFingerscanActivity.this, R.color.colorGradien6));
+                                                                                        break;
+                                                                                }
                                                                             }
-                                                                        }
-                                                                        public void onFinish() {
-                                                                            i = -1;
-                                                                            checkSignature();
-                                                                        }
-                                                                    }.start();
+                                                                            public void onFinish() {
+                                                                                i = -1;
+                                                                                checkSignature();
+                                                                            }
+                                                                        }.start();
 
-                                                                }
-                                                            })
-                                                            .show();
-
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
                                                 }
                                             }
                                         }
@@ -2449,6 +2768,8 @@ public class FormFingerscanActivity extends AppCompatActivity {
                             String status = data.getString("status");
 
                             if(status.equals("Success")){
+                                String id_permohonan = data.getString("id_permohonan");
+                                idPermohonan = id_permohonan;
                                 permohonanTerkirim = "1";
                                 successPart.setVisibility(View.VISIBLE);
                                 formPart.setVisibility(View.GONE);
@@ -2487,7 +2808,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("nik", sharedPrefManager.getSpNik());
-                params.put("tanggal", dateChoice);
+                params.put("tanggal", dateChoiceMasuk);
                 params.put("keterangan", kategoriKeterangan);
 
                 if(kategoriKeterangan.equals("1")){
@@ -2498,7 +2819,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     if(shiftAbsensi.equals("6")||shiftAbsensi.equals("9")||shiftAbsensi.equals("14")||shiftAbsensi.equals("15")||shiftAbsensi.equals("41")||shiftAbsensi.equals("81")||shiftAbsensi.equals("91")||shiftAbsensi.equals("95")||shiftAbsensi.equals("85")||shiftAbsensi.equals("87")){
                         params.put("tgl_pulang", tanggalPulang);
                     } else {
-                        params.put("tgl_pulang", dateChoice);
+                        params.put("tgl_pulang", dateChoiceMasuk);
                     }
 
                     params.put("jam_pulang", jamPulang);
@@ -2526,13 +2847,13 @@ public class FormFingerscanActivity extends AppCompatActivity {
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
             DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, (view1, year, month, dayOfMonth) -> {
 
-                dateChoice = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+                dateChoiceMasuk = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = null;
                 Date date2 = null;
                 try {
-                    date = sdf.parse(String.valueOf(dateChoice));
+                    date = sdf.parse(String.valueOf(dateChoiceMasuk));
                     date2 = sdf.parse(getDate());
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -2541,7 +2862,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                 long akhir = date2.getTime();
 
                 if (mulai<=akhir){
-                    String input_date = dateChoice;
+                    String input_date = dateChoiceMasuk;
                     SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
                     Date dt1= null;
                     try {
@@ -2626,7 +2947,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
                 } else {
                     datePilihTV.setText("Pilih Kembali !");
-                    dateChoice = "";
+                    dateChoiceMasuk = "";
 
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
@@ -2650,13 +2971,13 @@ public class FormFingerscanActivity extends AppCompatActivity {
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
             DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, (view1, year, month, dayOfMonth) -> {
 
-                dateChoice = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+                dateChoiceMasuk = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = null;
                 Date date2 = null;
                 try {
-                    date = sdf.parse(String.valueOf(dateChoice));
+                    date = sdf.parse(String.valueOf(dateChoiceMasuk));
                     date2 = sdf.parse(getDate());
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -2665,7 +2986,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                 long akhir = date2.getTime();
 
                 if (mulai<=akhir){
-                    String input_date = dateChoice;
+                    String input_date = dateChoiceMasuk;
                     SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
                     Date dt1= null;
                     try {
@@ -2750,7 +3071,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
                 } else {
                     datePilihTV.setText("Pilih Kembali !");
-                    dateChoice = "";
+                    dateChoiceMasuk = "";
 
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
@@ -2785,7 +3106,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                 Date date = null;
                 Date date2 = null;
                 try {
-                    date = sdf.parse(String.valueOf(dateChoice));
+                    date = sdf.parse(String.valueOf(dateChoiceMasuk));
                     date2 = sdf.parse(String.valueOf(dateChoicePulang));
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -2938,7 +3259,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                 Date date = null;
                 Date date2 = null;
                 try {
-                    date = sdf.parse(String.valueOf(dateChoice));
+                    date = sdf.parse(String.valueOf(dateChoiceMasuk));
                     date2 = sdf.parse(String.valueOf(dateChoicePulang));
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -3213,7 +3534,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("id_bagian", sharedPrefManager.getSpIdDept());
-                params.put("tanggal", dateChoice);
+                params.put("tanggal", dateChoiceMasuk);
                 return params;
             }
         };
@@ -3410,7 +3731,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (!dateChoice.equals("") || !pilihanKeterangan.equals("") || !alasanED.getText().toString().equals("")){
+        if (!dateChoiceMasuk.equals("") || !pilihanKeterangan.equals("") || !alasanED.getText().toString().equals("")){
             if(bottomSheet.isSheetShowing()){
                 bottomSheet.dismissSheet();
             } else {
@@ -3433,7 +3754,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(KAlertDialog sDialog) {
                                     sDialog.dismiss();
-                                    dateChoice = "";
+                                    dateChoiceMasuk = "";
                                     pilihanKeterangan = "";
                                     alasanED.setText("");
                                     onBackPressed();

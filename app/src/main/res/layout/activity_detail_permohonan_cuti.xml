@@ -1199,7 +1199,7 @@
                                 android:id="@+id/download_btn"
                                 android:layout_marginBottom="10dp"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
+                                android:layout_height="40dp"
                                 android:background="@drawable/shape_third_btn"
                                 android:gravity="center">
 
@@ -1221,7 +1221,7 @@
                                 android:id="@+id/print_pdf"
                                 android:layout_marginBottom="10dp"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
+                                android:layout_height="40dp"
                                 android:background="@drawable/shape_third_btn"
                                 android:gravity="center">
 
@@ -1250,7 +1250,7 @@
                                     android:layout_marginBottom="10dp"
                                     android:layout_width="0dp"
                                     android:layout_weight=".50"
-                                    android:layout_height="38dp"
+                                    android:layout_height="40dp"
                                     android:background="@drawable/shape_btn_rejected"
                                     android:gravity="center">
 
@@ -1273,7 +1273,7 @@
                                     android:layout_marginBottom="10dp"
                                     android:layout_width="0dp"
                                     android:layout_weight=".50"
-                                    android:layout_height="38dp"
+                                    android:layout_height="40dp"
                                     android:background="@drawable/shape_btn_edit_permohonan"
                                     android:gravity="center">
 
@@ -1378,9 +1378,7 @@
                                         android:layout_width="0dp"
                                         android:layout_weight=".50"
                                         android:layout_marginRight="5dp"
-                                        android:layout_height="wrap_content"
-                                        android:paddingTop="12dp"
-                                        android:paddingBottom="12dp"
+                                        android:layout_height="40dp"
                                         android:background="@drawable/shape_btn_rejected"
                                         android:gravity="center">
 
@@ -1399,9 +1397,7 @@
                                         android:layout_width="0dp"
                                         android:layout_weight=".50"
                                         android:layout_marginLeft="5dp"
-                                        android:layout_height="wrap_content"
-                                        android:paddingTop="12dp"
-                                        android:paddingBottom="12dp"
+                                        android:layout_height="40dp"
                                         android:background="@drawable/shape_btn_approved"
                                         android:gravity="center">
 

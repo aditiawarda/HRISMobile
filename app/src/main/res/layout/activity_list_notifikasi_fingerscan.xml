@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListNotifikasiActivity">
+    tools:context=".ListNotifikasiFingerscanActivity">
 
     <RelativeLayout
         android:layout_marginRight="-3dp"
@@ -309,7 +309,7 @@
                                 android:ellipsize="end"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="NOTIFIKASI IZIN/CUTI"
+                                android:text="NOTIFIKASI FINGERSCAN"
                                 android:textColor="@color/white"
                                 android:textSize="15dp" />
 

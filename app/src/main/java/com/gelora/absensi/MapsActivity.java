@@ -5695,33 +5695,105 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             if (status.equals("Success")){
                                 String count = data.getString("count");
                                 String message_yet = data.getString("message_yet");
-                                int count_notify = Integer.parseInt(count) + Integer.parseInt(message_yet);
+                                String count_finger = data.getString("count_finger");
 
-                                if (count.equals("0") && message_yet.equals("0")){
+                                if (count.equals("0") && message_yet.equals("0") && count_finger.equals("0")){
                                     markerNotification.setVisibility(View.GONE);
-                                } else if (!count.equals("0") && message_yet.equals("0")) {
+                                } else if (!count.equals("0") && message_yet.equals("0") && count_finger.equals("0")) {
                                     String visibility = data.getString("visibility");
                                     if (visibility.equals("0")){
                                         markerNotification.setVisibility(View.GONE);
-                                    } else {
+                                    } else if (visibility.equals("1")){
                                         notifMasukTV.setText(count);
                                         markerNotification.setVisibility(View.VISIBLE);
                                     }
-                                } else if (count.equals("0") && !message_yet.equals("0")) {
+                                } else if (count.equals("0") && !message_yet.equals("0") && count_finger.equals("0")) {
                                     String visibility2 = data.getString("visibility2");
                                     if (visibility2.equals("0")){
                                         markerNotification.setVisibility(View.GONE);
-                                    } else {
+                                    } else if (visibility2.equals("1")){
                                         notifMasukTV.setText(message_yet);
                                         markerNotification.setVisibility(View.VISIBLE);
                                     }
-                                } else if (!count.equals("0") && !message_yet.equals("0")) {
+                                } else if (count.equals("0") && message_yet.equals("0") && !count_finger.equals("0")) {
+                                    String visibility3 = data.getString("visibility3");
+                                    if (visibility3.equals("0")){
+                                        markerNotification.setVisibility(View.GONE);
+                                    } else if (visibility3.equals("1")){
+                                        notifMasukTV.setText(count_finger);
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    }
+                                } else if (!count.equals("0") && !message_yet.equals("0") && count_finger.equals("0")) {
                                     String visibility = data.getString("visibility");
                                     String visibility2 = data.getString("visibility2");
-                                    if (visibility.equals("0") && visibility2.equals("0")){
+                                    if (visibility.equals("0") && visibility2.equals("0")) {
                                         markerNotification.setVisibility(View.GONE);
-                                    } else {
-                                        notifMasukTV.setText(String.valueOf(count_notify));
+                                    } else if (visibility.equals("1") && visibility2.equals("0")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt("0")));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    } else if (visibility.equals("0") && visibility2.equals("1")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt("0") + Integer.parseInt(message_yet)));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    } else if (visibility.equals("1") && visibility2.equals("1")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt(message_yet)));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    }
+                                } else if (!count.equals("0") && message_yet.equals("0") && !count_finger.equals("0")) {
+                                    String visibility = data.getString("visibility");
+                                    String visibility3 = data.getString("visibility3");
+                                    if (visibility.equals("0") && visibility3.equals("0")) {
+                                        markerNotification.setVisibility(View.GONE);
+                                    } else if (visibility.equals("1") && visibility3.equals("0")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt("0")));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    } else if (visibility.equals("0") && visibility3.equals("1")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt("0") + Integer.parseInt(count_finger)));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    } else if (visibility.equals("1") && visibility3.equals("1")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt(count_finger)));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    }
+                                } else if (count.equals("0") && !message_yet.equals("0") && !count_finger.equals("0")) {
+                                    String visibility2 = data.getString("visibility2");
+                                    String visibility3 = data.getString("visibility3");
+                                    if (visibility2.equals("0") && visibility3.equals("0")) {
+                                        markerNotification.setVisibility(View.GONE);
+                                    } else if (visibility2.equals("1") && visibility3.equals("0")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(message_yet) + Integer.parseInt("0")));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    } else if (visibility2.equals("0") && visibility3.equals("1")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt("0") + Integer.parseInt(count_finger)));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    } else if (visibility2.equals("1") && visibility3.equals("1")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(message_yet) + Integer.parseInt(count_finger)));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    }
+                                } else if (!count.equals("0") && !message_yet.equals("0") && !count_finger.equals("0")) {
+                                    String visibility = data.getString("visibility");
+                                    String visibility2 = data.getString("visibility2");
+                                    String visibility3 = data.getString("visibility3");
+                                    if (visibility.equals("0") && visibility2.equals("0") && visibility3.equals("0")) {
+                                        markerNotification.setVisibility(View.GONE);
+                                    } else if (visibility.equals("1") && visibility2.equals("0") && visibility3.equals("0")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt("0") + Integer.parseInt("0")));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    } else if (visibility.equals("0") && visibility2.equals("1") && visibility3.equals("0")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt("0") + Integer.parseInt(message_yet) + Integer.parseInt("0")));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    } else if (visibility.equals("0") && visibility2.equals("0") && visibility3.equals("1")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt("0") + Integer.parseInt("0") + Integer.parseInt(count_finger)));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    } else if (visibility.equals("1") && visibility2.equals("1") && visibility3.equals("0")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt(message_yet) + Integer.parseInt("0")));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    } else if (visibility.equals("0") && visibility2.equals("1") && visibility3.equals("1")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt("0") + Integer.parseInt(message_yet) + Integer.parseInt(count_finger)));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    } else if (visibility.equals("1") && visibility2.equals("0") && visibility3.equals("1")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt("0") + Integer.parseInt(count_finger)));
+                                        markerNotification.setVisibility(View.VISIBLE);
+                                    } else if (visibility.equals("1") && visibility2.equals("1") && visibility3.equals("1")){
+                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt(message_yet) + Integer.parseInt(count_finger)));
                                         markerNotification.setVisibility(View.VISIBLE);
                                     }
                                 }
