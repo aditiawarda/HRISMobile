@@ -253,7 +253,7 @@ public class DetailLayoffActivity extends AppCompatActivity {
                                     loadingLayoffPart.setVisibility(View.GONE);
                                 } else {
                                     attantionPart.setVisibility(View.VISIBLE);
-                                    messageLayoff.setText("Di bulan "+bulan+" "+tahun+" terdapat "+total_layoff+" data diliburkan, jika terdapat kekeliruan data harap segera hubungi bagian HRD atau gunakan prosedur fingerscan.");
+                                    messageLayoff.setText("Di bulan "+bulan+" "+tahun+" terdapat "+total_layoff+" data diliburkan, jika terdapat kekeliruan data harap segera hubungi bagian HRD atau gunakan prosedur fingerscan/form keterangan tidak absen.");
                                     dataLayoffRV.setVisibility(View.VISIBLE);
                                     loadingLayoffPart.setVisibility(View.GONE);
                                     String layoff = data.getString("layoff");

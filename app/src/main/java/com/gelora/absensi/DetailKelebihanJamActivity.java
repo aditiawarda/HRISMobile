@@ -252,7 +252,7 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
                                     loadingKelebihanJamPart.setVisibility(View.GONE);
                                 } else {
                                     attantionPart.setVisibility(View.VISIBLE);
-                                    messageKelebihanJam.setText("Di bulan "+bulan+" "+tahun+" terdapat "+kelebihan_jam+" data kelebihan jam, jika terdapat kekeliruan data harap segera hubungi bagian HRD atau gunakan prosedur fingerscan.");
+                                    messageKelebihanJam.setText("Di bulan "+bulan+" "+tahun+" terdapat "+kelebihan_jam+" data kelebihan jam, jika terdapat kekeliruan data harap segera hubungi bagian HRD atau gunakan prosedur fingerscan/form keterangan tidak absen.");
                                     dataKelebihanJamRV.setVisibility(View.VISIBLE);
                                     loadingKelebihanJamPart.setVisibility(View.GONE);
                                     String data_kelebihan_jam = data.getString("data");

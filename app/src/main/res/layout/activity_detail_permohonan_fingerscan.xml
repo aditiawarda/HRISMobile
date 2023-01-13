@@ -570,6 +570,365 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/detail_keterangan_part"
+                                android:background="@drawable/shape_detail_permohonan"
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:paddingTop="22dp"
+                                android:paddingBottom="20dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:paddingLeft="12dp"
+                                    android:paddingRight="12dp"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:textSize="12dp"
+                                        android:textColor="#515151"
+                                        android:text="DETAIL KETERANGAN"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_marginRight="12dp"
+                                    android:layout_height="2dp"
+                                    android:background="#C6CDCDCD"/>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:paddingLeft="12dp"
+                                    android:paddingRight="12dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <LinearLayout
+                                        android:visibility="gone"
+                                        android:id="@+id/d_status_absen"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="7dp"
+                                            android:layout_weight=".35"
+                                            android:text="STATUS ABSENSI"
+                                            android:textColor="#515151"
+                                            android:textSize="11dp" />
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight=".65"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:text=":  "
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                            <TextView
+                                                android:id="@+id/d_status_absen_tv"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_weight=".65"
+                                                android:text=""
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:visibility="gone"
+                                        android:id="@+id/d_shift_absen"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="7dp"
+                                            android:layout_weight=".35"
+                                            android:text="SHIFT"
+                                            android:textColor="#515151"
+                                            android:textSize="11dp" />
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight=".65"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:text=":  "
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                            <TextView
+                                                android:id="@+id/d_shift_absen_tv"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_weight=".65"
+                                                android:text=""
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:visibility="gone"
+                                        android:id="@+id/d_tanggal_masuk"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="7dp"
+                                            android:layout_weight=".35"
+                                            android:text="TANGGAL MASUK"
+                                            android:textColor="#515151"
+                                            android:textSize="11dp" />
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight=".65"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:text=":  "
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                            <TextView
+                                                android:id="@+id/d_tanggal_masuk_tv"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_weight=".65"
+                                                android:text=""
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:visibility="gone"
+                                        android:id="@+id/d_jam_masuk"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="7dp"
+                                            android:layout_weight=".35"
+                                            android:text="JAM MASUK"
+                                            android:textColor="#515151"
+                                            android:textSize="11dp" />
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight=".65"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:text=":  "
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                            <TextView
+                                                android:id="@+id/d_jam_masuk_tv"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_weight=".65"
+                                                android:text=""
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:visibility="gone"
+                                        android:id="@+id/d_tanggal_pulang"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="7dp"
+                                            android:layout_weight=".35"
+                                            android:text="TANGGAL PULANG"
+                                            android:textColor="#515151"
+                                            android:textSize="11dp" />
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight=".65"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:text=":  "
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                            <TextView
+                                                android:id="@+id/d_tanggal_pulang_tv"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_weight=".65"
+                                                android:text=""
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:visibility="gone"
+                                        android:id="@+id/d_jam_pulang"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="7dp"
+                                            android:layout_weight=".35"
+                                            android:text="JAM PULANG"
+                                            android:textColor="#515151"
+                                            android:textSize="11dp" />
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight=".65"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:text=":  "
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                            <TextView
+                                                android:id="@+id/d_jam_pulang_tv"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_weight=".65"
+                                                android:text=""
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:visibility="gone"
+                                        android:id="@+id/d_titik_absen"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="7dp"
+                                            android:layout_weight=".35"
+                                            android:text="TITIK ABSENSI"
+                                            android:textColor="#515151"
+                                            android:textSize="11dp" />
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight=".65"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:text=":  "
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                            <TextView
+                                                android:id="@+id/d_titik_absen_tv"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_weight=".65"
+                                                android:text=""
+                                                android:textColor="#515151"
+                                                android:textSize="11dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:visibility="gone"
                                 android:id="@+id/download_btn"
                                 android:layout_marginBottom="10dp"
                                 android:layout_width="match_parent"
@@ -597,7 +956,6 @@
 
                                 <LinearLayout
                                     android:visibility="gone"
-                                    android:layout_marginRight="5dp"
                                     android:id="@+id/cancel_permohonan_btn"
                                     android:layout_marginBottom="10dp"
                                     android:layout_width="0dp"
@@ -620,7 +978,7 @@
 
                                 <LinearLayout
                                     android:visibility="gone"
-                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginLeft="10dp"
                                     android:id="@+id/edit_permohonan_btn"
                                     android:layout_marginBottom="10dp"
                                     android:layout_width="0dp"
@@ -758,7 +1116,7 @@
                                 android:ellipsize="end"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="DETAIL FORM FINGERSCAN"
+                                android:text="DETAIL KETERANGAN TIDAK ABSEN"
                                 android:textColor="@color/white"
                                 android:textSize="15dp" />
 

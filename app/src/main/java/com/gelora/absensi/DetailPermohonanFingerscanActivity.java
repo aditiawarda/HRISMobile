@@ -41,12 +41,15 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
     String kode, idPermohonan, statusKondisi = "0";
     TextView noPermohonan, tanggalTV, nikNamaTV, deptBagianTV, keteranganTV, alasanTV, pemohonTV, tanggalApproveTV, approverTV, tanggalApproveHRDTV, approverHRDTV;
-    LinearLayout backBTN, homeBTN, cancelPermohonanBTN, editPermohonanBTN, rejectedMark, acceptedMark, actionPart, approvedBTN, rejectedBTN;
+    LinearLayout detailKeteranganPart, backBTN, homeBTN, cancelPermohonanBTN, editPermohonanBTN, rejectedMark, acceptedMark, actionPart, approvedBTN, rejectedBTN;
     ImageView ttdPemohon, ttdApprover,ttdApproverHRD;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
     KAlertDialog pDialog;
     private int i = -1;
+
+    LinearLayout dStatusAbsen, dShiftAbsen, dTanggalMasuk, dJamMasuk, dTanggalPulang, dJamPulang, dTitikAbsen;
+    TextView dStatusAbsenTV, dShiftAbsenTV, dTanggalMasukTV, dJamMasukTV, dTanggalPulangTV, dJamPulangTV, dTitikAbsenTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +82,22 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
         approvedBTN = findViewById(R.id.appoved_btn);
         rejectedBTN = findViewById(R.id.rejected_btn);
 
+        detailKeteranganPart = findViewById(R.id.detail_keterangan_part);
+        dStatusAbsen = findViewById(R.id.d_status_absen);
+        dShiftAbsen = findViewById(R.id.d_shift_absen);
+        dTanggalMasuk = findViewById(R.id.d_tanggal_masuk);
+        dJamMasuk = findViewById(R.id.d_jam_masuk);
+        dTanggalPulang = findViewById(R.id.d_tanggal_pulang);
+        dJamPulang = findViewById(R.id.d_jam_pulang);
+        dTitikAbsen = findViewById(R.id.d_titik_absen);
+        dStatusAbsenTV = findViewById(R.id.d_status_absen_tv);
+        dShiftAbsenTV = findViewById(R.id.d_shift_absen_tv);
+        dTanggalMasukTV = findViewById(R.id.d_tanggal_masuk_tv);
+        dJamMasukTV = findViewById(R.id.d_jam_masuk_tv);
+        dTanggalPulangTV = findViewById(R.id.d_tanggal_pulang_tv);
+        dJamPulangTV = findViewById(R.id.d_jam_pulang_tv);
+        dTitikAbsenTV = findViewById(R.id.d_titik_absen_tv);
+
         kode = getIntent().getExtras().getString("kode");
         idPermohonan = getIntent().getExtras().getString("id_permohonan");
 
@@ -86,7 +105,6 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -464,7 +482,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
                                         if(sharedPrefManager.getSpIdJabatan().equals("10")){
                                             cancelPermohonanBTN.setVisibility(View.VISIBLE);
-                                            editPermohonanBTN.setVisibility(View.VISIBLE);
+                                            //editPermohonanBTN.setVisibility(View.VISIBLE);
                                         } else {
                                             cancelPermohonanBTN.setVisibility(View.GONE);
                                             editPermohonanBTN.setVisibility(View.GONE);
@@ -494,14 +512,14 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                         String status_approve_hrd = detail.getString("status_approve_hrd");
                                         if(status_approve_hrd.equals("0")){
                                             cancelPermohonanBTN.setVisibility(View.VISIBLE);
-                                            editPermohonanBTN.setVisibility(View.VISIBLE);
+                                            //editPermohonanBTN.setVisibility(View.VISIBLE);
                                         } else {
                                             cancelPermohonanBTN.setVisibility(View.GONE);
                                             editPermohonanBTN.setVisibility(View.GONE);
                                         }
                                     } else {
                                         cancelPermohonanBTN.setVisibility(View.VISIBLE);
-                                        editPermohonanBTN.setVisibility(View.VISIBLE);
+                                        //editPermohonanBTN.setVisibility(View.VISIBLE);
                                     }
 
                                 }
@@ -535,6 +553,86 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     }
                                 }
 
+                                if(keterangan.equals("1")) {
+                                    detailKeteranganPart.setVisibility(View.VISIBLE);
+                                    JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
+                                    String nama_status    = detail_keterangan.getString("nama_status");
+                                    String kode_status    = detail_keterangan.getString("kode_status");
+                                    String nama_shift     = detail_keterangan.getString("nama_shift");
+                                    String shift_datang   = detail_keterangan.getString("shift_datang");
+                                    String shift_pulang   = detail_keterangan.getString("shift_pulang");
+                                    String tanggal_masuk  = detail_keterangan.getString("tanggal_masuk");
+                                    String jam_masuk      = detail_keterangan.getString("jam_masuk");
+                                    String tanggal_pulang = detail_keterangan.getString("tanggal_pulang");
+                                    String jam_pulang     = detail_keterangan.getString("jam_pulang");
+                                    String titik_absen    = detail_keterangan.getString("titik_absen");
+
+                                    dStatusAbsen.setVisibility(View.VISIBLE);
+                                    dShiftAbsen.setVisibility(View.VISIBLE);
+                                    dTanggalMasuk.setVisibility(View.VISIBLE);
+                                    dJamMasuk.setVisibility(View.VISIBLE);
+                                    dTanggalPulang.setVisibility(View.VISIBLE);
+                                    dJamPulang.setVisibility(View.VISIBLE);
+                                    dTitikAbsen.setVisibility(View.VISIBLE);
+
+                                    dStatusAbsenTV.setText(nama_status+" ("+kode_status+")");
+                                    dShiftAbsenTV.setText(nama_shift+" ("+shift_datang+" - "+shift_pulang+")");
+                                    dTanggalMasukTV.setText(tanggal_masuk.substring(8,10)+"/"+tanggal_masuk.substring(5,7)+"/"+tanggal_masuk.substring(0,4));
+                                    dJamMasukTV.setText(jam_masuk);
+                                    dTanggalPulangTV.setText(tanggal_pulang.substring(8,10)+"/"+tanggal_pulang.substring(5,7)+"/"+tanggal_pulang.substring(0,4));
+                                    dJamPulangTV.setText(jam_pulang);
+                                    dTitikAbsenTV.setText(titik_absen);
+
+                                } else if(keterangan.equals("2")){
+                                    detailKeteranganPart.setVisibility(View.VISIBLE);
+                                    JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
+                                    String nama_status   = detail_keterangan.getString("nama_status");
+                                    String kode_status   = detail_keterangan.getString("kode_status");
+                                    String nama_shift    = detail_keterangan.getString("nama_shift");
+                                    String shift_datang  = detail_keterangan.getString("shift_datang");
+                                    String shift_pulang  = detail_keterangan.getString("shift_pulang");
+                                    String tanggal_masuk = detail_keterangan.getString("tanggal_masuk");
+                                    String jam_masuk     = detail_keterangan.getString("jam_masuk");
+                                    String titik_absen   = detail_keterangan.getString("titik_absen");
+
+                                    dStatusAbsen.setVisibility(View.VISIBLE);
+                                    dShiftAbsen.setVisibility(View.VISIBLE);
+                                    dTanggalMasuk.setVisibility(View.VISIBLE);
+                                    dJamMasuk.setVisibility(View.VISIBLE);
+                                    dTitikAbsen.setVisibility(View.VISIBLE);
+
+                                    dStatusAbsenTV.setText(nama_status+" ("+kode_status+")");
+                                    dShiftAbsenTV.setText(nama_shift+" ("+shift_datang+" - "+shift_pulang+")");
+                                    dTanggalMasukTV.setText(tanggal_masuk.substring(8,10)+"/"+tanggal_masuk.substring(5,7)+"/"+tanggal_masuk.substring(0,4));
+                                    dJamMasukTV.setText(jam_masuk);
+                                    dTitikAbsenTV.setText(titik_absen);
+
+                                } else if(keterangan.equals("3")){
+                                    detailKeteranganPart.setVisibility(View.VISIBLE);
+                                    JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
+                                    String tanggal_pulang = detail_keterangan.getString("tanggal_pulang");
+                                    String jam_pulang = detail_keterangan.getString("jam_pulang");
+                                    String titik_absen = detail_keterangan.getString("titik_absen");
+
+                                    dTanggalPulang.setVisibility(View.VISIBLE);
+                                    dJamPulang.setVisibility(View.VISIBLE);
+                                    dTitikAbsen.setVisibility(View.VISIBLE);
+
+                                    dTanggalPulangTV.setText(tanggal_pulang.substring(8,10)+"/"+tanggal_pulang.substring(5,7)+"/"+tanggal_pulang.substring(0,4));
+                                    dJamPulangTV.setText(jam_pulang);
+                                    dTitikAbsenTV.setText(titik_absen);
+
+                                } else if(keterangan.equals("4")){
+                                    detailKeteranganPart.setVisibility(View.GONE);
+
+                                } else if(keterangan.equals("5")){
+                                    detailKeteranganPart.setVisibility(View.GONE);
+
+                                } else if(keterangan.equals("6")){
+
+                                } else if(keterangan.equals("7")){
+
+                                }
 
                             }
 

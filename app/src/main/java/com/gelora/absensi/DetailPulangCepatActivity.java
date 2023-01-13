@@ -252,7 +252,7 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
                                     loadingPulangCepatPart.setVisibility(View.GONE);
                                 } else {
                                     attantionPart.setVisibility(View.VISIBLE);
-                                    messagePulangCepat.setText("Di bulan "+bulan+" "+tahun+" terdapat "+pulang_cepat+" data pulang lebih cepat, jika terdapat kekeliruan data harap segera hubungi bagian HRD atau gunakan prosedur fingerscan.");
+                                    messagePulangCepat.setText("Di bulan "+bulan+" "+tahun+" terdapat "+pulang_cepat+" data pulang lebih cepat, jika terdapat kekeliruan data harap segera hubungi bagian HRD atau gunakan prosedur fingerscan/form keterangan tidak absen.");
                                     dataPulangCepatRV.setVisibility(View.VISIBLE);
                                     loadingPulangCepatPart.setVisibility(View.GONE);
                                     String data_pulang_cepat = data.getString("data");

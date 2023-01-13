@@ -263,7 +263,7 @@ public class DetailTerlambatActivity extends AppCompatActivity {
                                     loadingLatePart.setVisibility(View.GONE);
                                 } else {
                                     attantionPart.setVisibility(View.VISIBLE);
-                                    messageLate.setText("Terdapat "+terlambat+" data keterlambatan, harap segera lakukan prosedur fingerscan dan serahkan ke bagian HRD.");
+                                    messageLate.setText("Terdapat "+terlambat+" data keterlambatan, harap segera lakukan prosedur fingerscan/form keterangan tidak absen.");
                                     markerWarningLate.setVisibility(View.VISIBLE);
                                     dataLateRV.setVisibility(View.VISIBLE);
                                     loadingLatePart.setVisibility(View.GONE);

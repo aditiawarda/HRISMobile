@@ -213,7 +213,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginTop="7dp"
-                                android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur fingerscan."
+                                android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur fingerscan/form keterangan tidak absen."
                                 android:textColor="#C68D46"
                                 android:textSize="11dp" />
 

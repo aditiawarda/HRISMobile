@@ -1407,7 +1407,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 Notify.build(getApplicationContext())
                         .setTitle("HRIS Mobile Gelora")
-                        .setContent("Anda terlambat "+lateDesc+", segera gunakan prosedur fingerscan dan serahkan ke bagian HRD")
+                        .setContent("Anda terlambat "+lateDesc+", segera gunakan prosedur fingerscan/form keterangan tidak absen")
                         .setSmallIcon(R.drawable.ic_skylight_notification)
                         .setColor(R.color.colorPrimary)
                         .largeCircularIcon()
@@ -3922,7 +3922,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 KAlertDialog dialodWarning;
                                                 dialodWarning = new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                                         .setTitleText("Perhatian")
-                                                        .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                        .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN/FORM KETERANGAN TIDAK ABSEN UNTUK MENGOREKSI JAM PULANG. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
                                                         .setConfirmText("    OK    ");
                                                 dialodWarning.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                     @Override
@@ -3942,7 +3942,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                 Notify.build(getApplicationContext())
                                                         .setTitle("HRIS Mobile Gelora")
-                                                        .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
+                                                        .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan/form keterangan tidak absen untuk mengoreksi jam pulang. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
                                                         .setSmallIcon(R.drawable.ic_skylight_notification)
                                                         .setColor(R.color.colorPrimary)
                                                         .largeCircularIcon()
@@ -3964,7 +3964,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 public void onClick(View v) {
                                                     new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                            .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN/FORM KETERANGAN TIDAK ABSEN UNTUK MENGOREKSI JAM PULANG. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
                                                             .setConfirmText("    OK    ")
                                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                 @Override
@@ -4023,7 +4023,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     KAlertDialog dialodWarning;
                                                     dialodWarning = new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                            .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN/FORM KETERANGAN TIDAK ABSEN UNTUK MENGOREKSI JAM PULANG. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
                                                             .setConfirmText("    OK    ");
                                                     dialodWarning.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                         @Override
@@ -4043,7 +4043,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                     Notify.build(getApplicationContext())
                                                             .setTitle("HRIS Mobile Gelora")
-                                                            .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
+                                                            .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan/form keterangan tidak absen untuk mengoreksi jam pulang. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
                                                             .setSmallIcon(R.drawable.ic_skylight_notification)
                                                             .setColor(R.color.colorPrimary)
                                                             .largeCircularIcon()
@@ -4065,7 +4065,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     public void onClick(View v) {
                                                         new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                                .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN/FORM KETERANGAN TIDAK ABSEN UNTUK MENGOREKSI JAM PULANG. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override
@@ -4133,7 +4133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     KAlertDialog dialodWarning;
                                                     dialodWarning = new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                                             .setTitleText("Perhatian")
-                                                            .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                            .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN/FORM KETERANGAN TIDAK ABSEN UNTUK MENGOREKSI JAM PULANG. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
                                                             .setConfirmText("    OK    ");
                                                     dialodWarning.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                         @Override
@@ -4175,7 +4175,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     public void onClick(View v) {
                                                         new KAlertDialog(MapsActivity.this, KAlertDialog.WARNING_TYPE)
                                                                 .setTitleText("Perhatian")
-                                                                .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN UNTUK MENGOREKSI JAM PULANG, DAN SERAHKAN KE BAGIAN HRD. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
+                                                                .setContentText("SEBELUMNYA ANDA TIDAK MELAKUKAN CHECKOUT, SEGERA GUNAKAN PROSEDUR FINGERSCAN/FORM KETERANGAN TIDAK ABSEN UNTUK MENGOREKSI JAM PULANG. JIKA TIDAK DILAKUKAN KOREKSI, MAKA JAM KERJA AKAN TERHITUNG 0")
                                                                 .setConfirmText("    OK    ")
                                                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                                     @Override

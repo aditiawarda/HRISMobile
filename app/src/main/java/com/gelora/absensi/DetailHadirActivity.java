@@ -252,7 +252,7 @@ public class DetailHadirActivity extends AppCompatActivity {
                                     loadingHadirPart.setVisibility(View.GONE);
                                 } else {
                                     attantionPart.setVisibility(View.VISIBLE);
-                                    messageHadir.setText("Di bulan "+bulan+" "+tahun+" terdapat "+hadir+" data kehadiran, jika terdapat kekeliruan data harap segera hubungi bagian HRD atau gunakan prosedur fingerscan.");
+                                    messageHadir.setText("Di bulan "+bulan+" "+tahun+" terdapat "+hadir+" data kehadiran, jika terdapat kekeliruan data harap segera hubungi bagian HRD atau gunakan prosedur fingerscan/form keterangan tidak absen.");
                                     dataHadirRV.setVisibility(View.VISIBLE);
                                     loadingHadirPart.setVisibility(View.GONE);
                                     String data_hadir = data.getString("data");

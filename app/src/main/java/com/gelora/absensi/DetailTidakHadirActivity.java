@@ -377,7 +377,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                                     loadingAlpaPart.setVisibility(View.GONE);
                                 } else {
                                     attantionPart.setVisibility(View.VISIBLE);
-                                    messageAlpha.setText("Terdapat "+total_alpa+" data tanpa keterangan (A), harap segera lakukan prosedur fingerscan jika pada tanggal tersebut anda hadir atau isi form izin jika pada tanggal tersebut anda tidak hadir dan serahkan ke bagian HRD.");
+                                    messageAlpha.setText("Terdapat "+total_alpa+" data tanpa keterangan (A), harap segera lakukan prosedur fingerscan/form keterangan tidak absen jika pada tanggal tersebut anda hadir atau isi form izin jika pada tanggal tersebut anda tidak hadir.");
                                     markerWarningAlpha.setVisibility(View.VISIBLE);
                                     dataAlpaRV.setVisibility(View.VISIBLE);
                                     loadingAlpaPart.setVisibility(View.GONE);

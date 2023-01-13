@@ -97,7 +97,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout countNotificationFinger, notificationFingerPart, fingerscanBTN, toUserDetail, emailEmptyWarningPart, headerBackground, faqBTN, sisaCutiData, sisaCutiBTN, countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout loadingNotifFiturPart, countNotificationFinger, notificationFingerPart, fingerscanBTN, toUserDetail, emailEmptyWarningPart, headerBackground, faqBTN, sisaCutiData, sisaCutiBTN, countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
     TextView countNotifFingerTV, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -106,7 +106,7 @@ public class UserActivity extends AppCompatActivity {
     NestedScrollView scrollView;
     RelativeLayout dataCuaca;
     ProgressBar loadingProgressBarCuaca;
-    ImageView sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
+    ImageView notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
     String statusFitur = "1", tanggalBergabung = "", statusKaryawan = "", selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
     ProgressBar loadingProgressBarLogout;
@@ -217,6 +217,7 @@ public class UserActivity extends AppCompatActivity {
         positionLoadingPart = findViewById(R.id.position_loading_part);
         positionLoadingImg = findViewById(R.id.position_loading);
         fiturPart = findViewById(R.id.fitur_part);
+        loadingNotifFiturPart = findViewById(R.id.loading_notif_fitur_part);
         notificationPart = findViewById(R.id.notification_part);
         loadingProgressBarCuaca = findViewById(R.id.loadingProgressBar_cuaca);
         countNotificationMessage = findViewById(R.id.count_notification_message);
@@ -228,6 +229,7 @@ public class UserActivity extends AppCompatActivity {
         sisaCutiBTN = findViewById(R.id.sisa_cuti_btn);
         sisaCutiData = findViewById(R.id.sisa_cuti_data);
         sisaCutiLoading = findViewById(R.id.sisa_cuti_loading);
+        notifFiturLoading = findViewById(R.id.notif_fitur_loading);
         emailEmptyWarningPart = findViewById(R.id.email_empty_warning_part);
         toUserDetail = findViewById(R.id.to_user_detail);
         tglBergabungMainTV = findViewById(R.id.tgl_bergabung_main_tv);
@@ -294,6 +296,10 @@ public class UserActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(sisaCutiLoading);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_dots)
+                .into(notifFiturLoading);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -2356,6 +2362,7 @@ public class UserActivity extends AppCompatActivity {
                                 String gelora_messanger = data.getString("gelora_messanger");
 
                                 statusFitur = fitur_izin;
+                                loadingNotifFiturPart.setVisibility(View.GONE);
 
                                 if (cuaca_button.equals("1")){
                                     dataCuaca.setVisibility(View.VISIBLE);

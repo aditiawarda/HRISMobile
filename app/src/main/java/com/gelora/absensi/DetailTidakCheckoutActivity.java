@@ -265,7 +265,7 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
                                     loadingNoCheckoutPart.setVisibility(View.GONE);
                                 } else {
                                     attantionPart.setVisibility(View.VISIBLE);
-                                    messageNoCheckout.setText("Terdapat "+tidak_checkout+" data tidak checkout, harap segera lakukan prosedur fingerscan dan serahkan ke bagian HRD.");
+                                    messageNoCheckout.setText("Terdapat "+tidak_checkout+" data tidak checkout, harap segera lakukan prosedur fingerscan/form keterangan tidak absen.");
                                     markerWarningNocheckout.setVisibility(View.VISIBLE);
                                     dataNoCheckoutRV.setVisibility(View.VISIBLE);
                                     loadingNoCheckoutPart.setVisibility(View.GONE);
