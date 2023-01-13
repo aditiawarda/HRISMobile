@@ -624,14 +624,25 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
                                 } else if(keterangan.equals("4")){
                                     detailKeteranganPart.setVisibility(View.GONE);
-
                                 } else if(keterangan.equals("5")){
                                     detailKeteranganPart.setVisibility(View.GONE);
-
                                 } else if(keterangan.equals("6")){
+                                    detailKeteranganPart.setVisibility(View.VISIBLE);
+                                    JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
+                                    String nama_status   = detail_keterangan.getString("nama_status");
+                                    String kode_status   = detail_keterangan.getString("kode_status");
+                                    String nama_shift    = detail_keterangan.getString("nama_shift");
+                                    String shift_datang  = detail_keterangan.getString("shift_datang");
+                                    String shift_pulang  = detail_keterangan.getString("shift_pulang");
+
+                                    dStatusAbsen.setVisibility(View.VISIBLE);
+                                    dShiftAbsen.setVisibility(View.VISIBLE);
+
+                                    dStatusAbsenTV.setText(nama_status+" ("+kode_status+")");
+                                    dShiftAbsenTV.setText(nama_shift+" ("+shift_datang+" - "+shift_pulang+")");
 
                                 } else if(keterangan.equals("7")){
-
+                                    detailKeteranganPart.setVisibility(View.GONE);
                                 }
 
                             }

@@ -4095,6 +4095,11 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             .setContentText("Anda telah melakukan absen pulang pada tanggal yang dipilih")
                                             .setConfirmText("    OK    ")
                                             .changeAlertType(KAlertDialog.ERROR_TYPE);
+                                } else if(kategoriKeterangan.equals("4")){
+                                    pDialog.setTitleText("Gagal Terkirim")
+                                            .setContentText("Jam absen masuk anda tidak terlambat")
+                                            .setConfirmText("    OK    ")
+                                            .changeAlertType(KAlertDialog.ERROR_TYPE);
                                 }
                             } else {
                                 successPart.setVisibility(View.GONE);
@@ -4156,6 +4161,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                 }
 
                 params.put("alasan", alasanED.getText().toString());
+                params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
 
                 return params;
             }
