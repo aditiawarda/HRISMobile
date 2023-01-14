@@ -63,7 +63,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refreshLayout;
     LinearLayout formPart, successPart, viewBTN, goToHome, goToDasboard;
-    LinearLayout backBTN, homeBTN, dateBTN, submitBTN, detailKeterangan1, detailKeterangan2, detailKeterangan3, detailKeterangan5;
+    LinearLayout backBTN, homeBTN, dateBTN, submitBTN, detailKeterangan1, detailKeterangan2, detailKeterangan3, detailKeterangan6;
     TextView namaTV, nikTV, detailTV, datePilihTV, labelDetail;
     EditText alasanED;
     SharedPrefManager sharedPrefManager;
@@ -88,6 +88,10 @@ public class FormFingerscanActivity extends AppCompatActivity {
     //Kategori 3
     LinearLayout tglPulangPartK3, tglPulangBTNK3, jamPulangBTNK3, titikBTNK3;
     TextView tglPulangPilihK3, jamPulangPilihK3, titikPilihK3;
+
+    //Kategori 6
+    LinearLayout statusAbsensiBTNK6, shiftAbsensiBTNK6;
+    TextView statusAbsensiPilihK6, shiftAbsensiPilihK6;
 
     private RecyclerView statusAbsenRV;
     private StatusAbsen[] statusAbsens;
@@ -132,7 +136,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
         detailKeterangan1 = findViewById(R.id.detail_keterangan_1);
         detailKeterangan2 = findViewById(R.id.detail_keterangan_2);
         detailKeterangan3 = findViewById(R.id.detail_keterangan_3);
-        detailKeterangan5 = findViewById(R.id.detail_keterangan_5);
+        detailKeterangan6 = findViewById(R.id.detail_keterangan_6);
         dateBTN = findViewById(R.id.date_btn);
         datePilihTV = findViewById(R.id.date_pilih);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
@@ -170,6 +174,12 @@ public class FormFingerscanActivity extends AppCompatActivity {
         titikBTNK3 = findViewById(R.id.titik_btn_k3);
         titikPilihK3 = findViewById(R.id.titik_pilih_k3);
 
+        //Kategori Keterangan 6
+        statusAbsensiBTNK6 = findViewById(R.id.status_absensi_btn_k6);
+        shiftAbsensiBTNK6 = findViewById(R.id.shift_absensi_btn_k6);
+        statusAbsensiPilihK6 = findViewById(R.id.status_absensi_pilih_k6);
+        shiftAbsensiPilihK6 = findViewById(R.id.shift_absensi_pilih_k6);
+
         alasanED = findViewById(R.id.alasan_tv);
 
         Glide.with(getApplicationContext())
@@ -206,7 +216,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                         detailKeterangan1.setVisibility(View.GONE);
                         detailKeterangan2.setVisibility(View.GONE);
                         detailKeterangan3.setVisibility(View.GONE);
-                        detailKeterangan5.setVisibility(View.GONE);
+                        detailKeterangan6.setVisibility(View.GONE);
                         labelDetail.setVisibility(View.GONE);
 
                         alasanED.setText("");
@@ -226,6 +236,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
                         tglPulangPilihK3.setText("");
                         jamPulangPilihK3.setText("");
                         titikPilihK3.setText("");
+
+                        statusAbsensiPilihK6.setText("");
+                        shiftAbsensiPilihK6.setText("Tentukan Status Absensi...");
 
                         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
                         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
@@ -298,7 +311,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     detailKeterangan1.setVisibility(View.VISIBLE);
                     detailKeterangan2.setVisibility(View.GONE);
                     detailKeterangan3.setVisibility(View.GONE);
-                    detailKeterangan5.setVisibility(View.GONE);
+                    detailKeterangan6.setVisibility(View.GONE);
                     labelDetail.setVisibility(View.VISIBLE);
                 } else if (keterangan2.isChecked()) {
                     pilihanKeterangan = keterangan2.getText().toString();
@@ -306,7 +319,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     detailKeterangan1.setVisibility(View.GONE);
                     detailKeterangan2.setVisibility(View.VISIBLE);
                     detailKeterangan3.setVisibility(View.GONE);
-                    detailKeterangan5.setVisibility(View.GONE);
+                    detailKeterangan6.setVisibility(View.GONE);
                     labelDetail.setVisibility(View.VISIBLE);
                 } else if (keterangan3.isChecked()) {
                     pilihanKeterangan = keterangan3.getText().toString();
@@ -314,7 +327,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     detailKeterangan1.setVisibility(View.GONE);
                     detailKeterangan2.setVisibility(View.GONE);
                     detailKeterangan3.setVisibility(View.VISIBLE);
-                    detailKeterangan5.setVisibility(View.GONE);
+                    detailKeterangan6.setVisibility(View.GONE);
                     labelDetail.setVisibility(View.VISIBLE);
                 } else if (keterangan4.isChecked()) {
                     pilihanKeterangan = keterangan4.getText().toString();
@@ -322,7 +335,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     detailKeterangan1.setVisibility(View.GONE);
                     detailKeterangan2.setVisibility(View.GONE);
                     detailKeterangan3.setVisibility(View.GONE);
-                    detailKeterangan5.setVisibility(View.GONE);
+                    detailKeterangan6.setVisibility(View.GONE);
                     labelDetail.setVisibility(View.GONE);
                 } else if (keterangan5.isChecked()) {
                     pilihanKeterangan = keterangan5.getText().toString();
@@ -330,7 +343,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     detailKeterangan1.setVisibility(View.GONE);
                     detailKeterangan2.setVisibility(View.GONE);
                     detailKeterangan3.setVisibility(View.GONE);
-                    detailKeterangan5.setVisibility(View.GONE);
+                    detailKeterangan6.setVisibility(View.GONE);
                     labelDetail.setVisibility(View.GONE);
                 } else if (keterangan6.isChecked()) {
                     pilihanKeterangan = keterangan6.getText().toString();
@@ -338,7 +351,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     detailKeterangan1.setVisibility(View.GONE);
                     detailKeterangan2.setVisibility(View.GONE);
                     detailKeterangan3.setVisibility(View.GONE);
-                    detailKeterangan5.setVisibility(View.VISIBLE);
+                    detailKeterangan6.setVisibility(View.VISIBLE);
                     labelDetail.setVisibility(View.VISIBLE);
                 } else if (keterangan7.isChecked()) {
                     pilihanKeterangan = keterangan6.getText().toString();
@@ -346,7 +359,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     detailKeterangan1.setVisibility(View.GONE);
                     detailKeterangan2.setVisibility(View.GONE);
                     detailKeterangan3.setVisibility(View.GONE);
-                    detailKeterangan5.setVisibility(View.GONE);
+                    detailKeterangan6.setVisibility(View.GONE);
                     labelDetail.setVisibility(View.GONE);
                 }
             }
@@ -812,6 +825,76 @@ public class FormFingerscanActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 titikAbsen();
+            }
+        });
+
+        //Kategori Keterangan 6
+        statusAbsensiBTNK6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentDay.equals("")){
+                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap tentukan tanggal masuk terlebih dahulu!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    statusAbsen();
+                }
+            }
+        });
+        shiftAbsensiBTNK6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentDay.equals("")){
+                    if(statusAbsensiPilihK6.getText().toString().equals("")){
+                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap tentukan tanggal masuk dan pilih status absensi terlebih dahulu!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    } else {
+                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap tentukan tanggal masuk terlebih dahulu!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                } else {
+                    if(statusAbsensiPilihK6.getText().toString().equals("")){
+                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap pilih status absensi terlebih dahulu!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    } else {
+                        shiftAbsen();
+                    }
+                }
             }
         });
 
@@ -2186,6 +2269,118 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                     }
                                 }
                             }
+                        }
+                        else if(kategoriKeterangan.equals("6")){
+                            if(statusAbsensiPilihK6.getText().toString().equals("")){
+                                if(shiftAbsensiPilihK6.getText().toString().equals("")){
+                                    if(alasanED.getText().toString().equals("")){
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi tanggal masuk, status absensi, shift dan alasan!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    } else {
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi tanggal masuk, status absensi dan shift!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                } else {
+                                    if(alasanED.getText().toString().equals("")){
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi tanggal masuk, status absensi dan alasan!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    } else {
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi tanggal masuk dan status absensi!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                }
+                            } else {
+                                if(shiftAbsensiPilihK6.getText().toString().equals("")){
+                                    if(alasanED.getText().toString().equals("")){
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi tanggal masuk, shift dan alasan!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    } else {
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi tanggal masuk dan shift!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                } else {
+                                    if(alasanED.getText().toString().equals("")){
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi tanggal masuk dan alasan!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    } else {
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi tanggal masuk!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                }
+                            }
+
                         }
                         else {
                             if(alasanED.getText().toString().equals("")){
@@ -3776,6 +3971,166 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                 }
                             }
                         }
+                        else if(kategoriKeterangan.equals("6")){
+                            if(statusAbsensiPilihK6.getText().toString().equals("")){
+                                if(shiftAbsensiPilihK6.getText().toString().equals("")){
+                                    if(alasanED.getText().toString().equals("")){
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi status absensi, shift dan alasan!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    } else {
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi status absensi dan shift!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                } else {
+                                    if(alasanED.getText().toString().equals("")){
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi status absensi dan alasan!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    } else {
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi status absensi!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                }
+                            } else {
+                                if(shiftAbsensiPilihK6.getText().toString().equals("")){
+                                    if(alasanED.getText().toString().equals("")){
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi shift dan alasan!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    } else {
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi shift!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                } else {
+                                    if(alasanED.getText().toString().equals("")){
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Harap isi alasan!")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
+                                    } else {
+                                        new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.WARNING_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Kirim permohonan sekarang?")
+                                                .setCancelText("TIDAK")
+                                                .setConfirmText("   YA   ")
+                                                .showCancelButton(true)
+                                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                        pDialog = new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                                        pDialog.show();
+                                                        pDialog.setCancelable(false);
+                                                        new CountDownTimer(1300, 800) {
+                                                            public void onTick(long millisUntilFinished) {
+                                                                i++;
+                                                                switch (i) {
+                                                                    case 0:
+                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                (FormFingerscanActivity.this, R.color.colorGradien));
+                                                                        break;
+                                                                    case 1:
+                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                (FormFingerscanActivity.this, R.color.colorGradien2));
+                                                                        break;
+                                                                    case 2:
+                                                                    case 6:
+                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                (FormFingerscanActivity.this, R.color.colorGradien3));
+                                                                        break;
+                                                                    case 3:
+                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                (FormFingerscanActivity.this, R.color.colorGradien4));
+                                                                        break;
+                                                                    case 4:
+                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                (FormFingerscanActivity.this, R.color.colorGradien5));
+                                                                        break;
+                                                                    case 5:
+                                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                                (FormFingerscanActivity.this, R.color.colorGradien6));
+                                                                        break;
+                                                                }
+                                                            }
+                                                            public void onFinish() {
+                                                                i = -1;
+                                                                checkSignature();
+                                                            }
+                                                        }.start();
+
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                }
+                            }
+
+                        }
                         else {
                             if(alasanED.getText().toString().equals("")){
                                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
@@ -4100,6 +4455,16 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             .setContentText("Jam absen masuk anda tidak terlambat")
                                             .setConfirmText("    OK    ")
                                             .changeAlertType(KAlertDialog.ERROR_TYPE);
+                                } else if(kategoriKeterangan.equals("5")){
+                                    pDialog.setTitleText("Gagal Terkirim")
+                                            .setContentText("Anda belum melaukan absen pulang pada tanggal yang dipilih")
+                                            .setConfirmText("    OK    ")
+                                            .changeAlertType(KAlertDialog.ERROR_TYPE);
+                                } else if(kategoriKeterangan.equals("7")){
+                                    pDialog.setTitleText("Gagal Terkirim")
+                                            .setContentText("Anda sudah melaukan absen masuk pada tanggal yang dipilih")
+                                            .setConfirmText("    OK    ")
+                                            .changeAlertType(KAlertDialog.ERROR_TYPE);
                                 }
                             } else {
                                 successPart.setVisibility(View.GONE);
@@ -4158,6 +4523,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     params.put("tgl_pulang", tanggalPulang);
                     params.put("jam_pulang", jamPulang);
                     params.put("titik_absen", namaTitikAbsensi);
+                } else if(kategoriKeterangan.equals("6")){
+                    params.put("status_absen", statusAbsensi);
+                    params.put("shift", shiftAbsensi);
                 }
 
                 params.put("alasan", alasanED.getText().toString());
@@ -4972,6 +5340,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
             } else if(kategoriKeterangan.equals("2")){
                 statusAbsensiPilihK2.setText(namaStatusAbsen);
                 shiftAbsensiPilihK2.setText("");
+            } else if(kategoriKeterangan.equals("6")){
+                statusAbsensiPilihK6.setText(namaStatusAbsen);
+                shiftAbsensiPilihK6.setText("");
             }
 
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
@@ -5007,6 +5378,8 @@ public class FormFingerscanActivity extends AppCompatActivity {
             } else if(kategoriKeterangan.equals("2")){
                 shiftAbsensiPilihK2.setText(namaShiftAbsen+" ("+datangShiftAbsen+" - "+pulangShiftAbsen+")");
                 jamMasukTVK2.setText(datangShiftAbsen);
+            } else if(kategoriKeterangan.equals("6")){
+                shiftAbsensiPilihK6.setText(namaShiftAbsen+" ("+datangShiftAbsen+" - "+pulangShiftAbsen+")");
             }
 
             jamMasuk = datangShiftAbsen;

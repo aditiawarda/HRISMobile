@@ -69,56 +69,56 @@
                                     android:layout_height="wrap_content">
 
                                     <LinearLayout
-                                        android:paddingTop="15dp"
-                                        android:paddingBottom="35dp"
-                                        android:orientation="vertical"
-                                        android:background="@drawable/shape_detail_permohonan_finger"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shape_detail_permohonan_finger"
+                                        android:orientation="vertical"
+                                        android:paddingTop="15dp"
+                                        android:paddingBottom="35dp">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:paddingLeft="15dp"
-                                            android:paddingRight="15dp"
                                             android:layout_height="wrap_content"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            android:paddingLeft="15dp"
+                                            android:paddingRight="15dp">
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textStyle="bold"
-                                                android:textSize="12dp"
+                                                android:text="NO. : "
                                                 android:textColor="#515151"
-                                                android:text="NO. : "/>
+                                                android:textSize="12dp"
+                                                android:textStyle="bold" />
 
                                             <TextView
                                                 android:id="@+id/no_permohonan"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:textStyle="bold"
-                                                android:textSize="12dp"
+                                                android:text="00000"
                                                 android:textColor="#515151"
-                                                android:text="00000"/>
+                                                android:textSize="12dp"
+                                                android:textStyle="bold" />
 
                                         </LinearLayout>
 
                                         <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
                                             android:layout_marginTop="25dp"
                                             android:layout_marginBottom="25dp"
-                                            android:layout_width="match_parent"
+                                            android:orientation="horizontal"
                                             android:paddingLeft="15dp"
-                                            android:paddingRight="15dp"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="horizontal">
+                                            android:paddingRight="15dp">
 
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:gravity="center"
-                                                android:textStyle="bold"
-                                                android:textSize="12dp"
+                                                android:text="@string/finger_scan"
                                                 android:textColor="#515151"
-                                                android:text="@string/finger_scan"/>
+                                                android:textSize="12dp"
+                                                android:textStyle="bold" />
 
                                         </LinearLayout>
 
@@ -204,10 +204,10 @@
                                                         android:layout_width="0dp"
                                                         android:layout_height="wrap_content"
                                                         android:layout_marginBottom="7dp"
+                                                        android:layout_weight=".65"
                                                         android:ellipsize="end"
                                                         android:maxLines="1"
                                                         android:singleLine="true"
-                                                        android:layout_weight=".65"
                                                         android:text="........................"
                                                         android:textColor="#515151"
                                                         android:textSize="11dp" />
@@ -249,10 +249,10 @@
                                                         android:layout_width="0dp"
                                                         android:layout_height="wrap_content"
                                                         android:layout_marginBottom="7dp"
+                                                        android:layout_weight=".65"
                                                         android:ellipsize="end"
                                                         android:maxLines="1"
                                                         android:singleLine="true"
-                                                        android:layout_weight=".65"
                                                         android:text="........................"
                                                         android:textColor="#515151"
                                                         android:textSize="11dp" />
@@ -294,10 +294,10 @@
                                                         android:layout_width="0dp"
                                                         android:layout_height="wrap_content"
                                                         android:layout_marginBottom="7dp"
+                                                        android:layout_weight=".65"
                                                         android:ellipsize="end"
                                                         android:maxLines="1"
                                                         android:singleLine="true"
-                                                        android:layout_weight=".65"
                                                         android:text="........................"
                                                         android:textColor="#515151"
                                                         android:textSize="11dp" />
@@ -605,8 +605,8 @@
                                     android:layout_marginBottom="15dp"
                                     android:layout_marginLeft="12dp"
                                     android:layout_marginRight="12dp"
-                                    android:layout_height="2dp"
-                                    android:background="#C6CDCDCD"/>
+                                    android:layout_height="1.5dp"
+                                    android:background="#C6DCDCDC"/>
 
                                 <LinearLayout
                                     android:orientation="vertical"

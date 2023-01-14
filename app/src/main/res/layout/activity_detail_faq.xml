@@ -435,7 +435,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Berikut adalah tampilan halaman dashboard, selanjutnya masuk ke menu form izin."
+                                    android:text="Berikut adalah tampilan halaman dashboard, selanjutnya masuk ke menu form izin/sakit."
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp" />
 
@@ -739,6 +739,199 @@
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
                                     android:src="@drawable/faq_cuti_6" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/faq_5_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        android:visibility="gone">
+
+                        <com.codesgood.views.JustifiedTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:lineSpacingExtra="2dp"
+                            android:text="Pengajuan permohonan fingerscan/form keterangan tidak absen dapat dilakukan secara online/digital di HRIS Mobile, berikut merupakan tahapan-tahapan dalam pengisian form keterangan tidak absen :"
+                            android:textColor="@color/text_color"
+                            android:textSize="14dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".10"
+                                    android:text="1."
+                                    android:lineSpacingExtra="2dp"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="-10dp"
+                                    android:layout_weight=".90"
+                                    android:lineSpacingExtra="2dp"
+                                    android:text="Masuk ke halaman dashboard (Tap pada tombol yang dilingkari merah)."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_izin_1" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".10"
+                                    android:text="2."
+                                    android:lineSpacingExtra="2dp"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="-10dp"
+                                    android:layout_weight=".90"
+                                    android:lineSpacingExtra="2dp"
+                                    android:text="Berikut adalah tampilan halaman dashboard, selanjutnya masuk ke menu form keterangan tidak absen."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_finger_2" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".10"
+                                    android:text="3."
+                                    android:lineSpacingExtra="2dp"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="-10dp"
+                                    android:layout_weight=".90"
+                                    android:lineSpacingExtra="2dp"
+                                    android:text="Berikut adalah tampilan halaman form keterangan tidak absen, selanjutnya isi semua data pastikan tidak ada yang terlewat."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_finger_3" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".10"
+                                    android:text="4."
+                                    android:lineSpacingExtra="2dp"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="-10dp"
+                                    android:layout_weight=".90"
+                                    android:lineSpacingExtra="2dp"
+                                    android:text="Jika tampilan halaman seperti pada gambar dibawah ini, permohonan fingerscan/form keterangan tidak absen anda telah berhasil terkirim."
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="129dp"
+                                    android:layout_height="275dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/faq_finger_4" />
 
                             </LinearLayout>
 

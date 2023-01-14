@@ -1093,7 +1093,7 @@
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:id="@+id/detail_keterangan_5"
+                                    android:id="@+id/detail_keterangan_6"
                                     android:visibility="gone"
                                     android:orientation="vertical"
                                     android:layout_marginBottom="5dp"
@@ -1115,7 +1115,7 @@
                                         android:text="Status Absensi :"/>
 
                                     <LinearLayout
-                                        android:id="@+id/status_absensi_btn_k5"
+                                        android:id="@+id/status_absensi_btn_k6"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:paddingStart="20dp"
@@ -1136,7 +1136,7 @@
                                                 android:gravity="center|left">
 
                                                 <TextView
-                                                    android:id="@+id/status_absensi_pilih_k5"
+                                                    android:id="@+id/status_absensi_pilih_k6"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:textColor="#B15735"
@@ -1168,14 +1168,14 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
+                                        android:layout_marginTop="2dp"
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
                                         android:text="Shift Absensi :"/>
 
                                     <LinearLayout
-                                        android:id="@+id/shift_absensi_btn_k5"
+                                        android:id="@+id/shift_absensi_btn_k6"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:paddingStart="20dp"
@@ -1196,13 +1196,13 @@
                                                 android:gravity="center|left">
 
                                                 <TextView
-                                                    android:id="@+id/shift_absensi_pilih_k5"
+                                                    android:id="@+id/shift_absensi_pilih_k6"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:textColor="#B15735"
                                                     android:textSize="13dp"
                                                     android:textStyle="bold"
-                                                    android:text=""/>
+                                                    android:text="Tentukan Status Absensi..."/>
 
                                             </LinearLayout>
 

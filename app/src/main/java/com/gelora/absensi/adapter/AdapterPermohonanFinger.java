@@ -78,7 +78,7 @@ public class AdapterPermohonanFinger extends RecyclerView.Adapter<AdapterPermoho
         } else if(keterangan.equals("6")) {
             desc_finger = "Salah Pilih Shift";
         } else if(keterangan.equals("7")) {
-            desc_finger = "Tidak Absen Dilibutkan";
+            desc_finger = "Tidak Absen Diliburkan";
         }
 
         if(listPermohonanFingerscan.getAvatar()!=null){
