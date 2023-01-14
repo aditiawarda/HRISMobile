@@ -475,6 +475,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                     jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
                                     jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
                                 } else {
+                                    jamPulang = "";
+                                    jamPulangPilihK1.setText("Pilih kembali !");
+
                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                             .setTitleText("Perhatian")
                                             .setContentText("Jam pulang tidak dapat lebih besar dari jam saat ini. Harap ulangi!")
@@ -524,6 +527,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                     jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
                                     jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
                                 } else {
+                                    jamPulang = "";
+                                    jamPulangPilihK1.setText("Pilih kembali !");
+
                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                             .setTitleText("Perhatian")
                                             .setContentText("Jam pulang tidak dapat lebih besar dari jam saat ini. Harap ulangi!")
@@ -713,19 +719,12 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                 long sekarang = time2.getTime();
 
                                 if (pilih<=sekarang){
-                                    if(kategoriKeterangan.equals("1")){
-                                        jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
-                                    } else if(kategoriKeterangan.equals("3")){
-                                        jamPulangPilihK3.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
-                                    }
+                                    jamPulangPilihK3.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
                                     jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
                                 } else {
                                     jamPulang = "";
-                                    if(kategoriKeterangan.equals("1")){
-                                        jamPulangPilihK1.setText("Pilih kembali !");
-                                    } else if(kategoriKeterangan.equals("3")){
-                                        jamPulangPilihK3.setText("Pilih kembali !");
-                                    }
+                                    jamPulangPilihK3.setText("Pilih kembali !");
+
                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                             .setTitleText("Perhatian")
                                             .setContentText("Jam pulang tidak dapat lebih besar dari jam saat ini. Harap ulangi!")
@@ -739,11 +738,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             .show();
                                 }
                             } else {
-                                if(kategoriKeterangan.equals("1")){
-                                    jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
-                                } else if(kategoriKeterangan.equals("3")){
-                                    jamPulangPilihK3.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
-                                }
+                                jamPulangPilihK3.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
                                 jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
                             }
 
@@ -785,11 +780,8 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                     jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
                                 } else {
                                     jamPulang = "";
-                                    if(kategoriKeterangan.equals("1")){
-                                        jamPulangPilihK1.setText("Pilih kembali !");
-                                    } else if(kategoriKeterangan.equals("3")){
-                                        jamPulangPilihK3.setText("Pilih kembali !");
-                                    }
+                                    jamPulangPilihK3.setText("Pilih kembali !");
+
                                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                             .setTitleText("Perhatian")
                                             .setContentText("Jam pulang tidak dapat lebih besar dari jam saat ini. Harap ulangi!")
@@ -803,11 +795,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             .show();
                                 }
                             } else {
-                                if(kategoriKeterangan.equals("1")){
-                                    jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
-                                } else if(kategoriKeterangan.equals("3")){
-                                    jamPulangPilihK3.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
-                                }
+                                jamPulangPilihK3.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
                                 jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
                             }
 
@@ -5370,11 +5358,6 @@ public class FormFingerscanActivity extends AppCompatActivity {
             if(kategoriKeterangan.equals("1")){
                 shiftAbsensiPilihK1.setText(namaShiftAbsen+" ("+datangShiftAbsen+" - "+pulangShiftAbsen+")");
                 jamMasukTVK1.setText(datangShiftAbsen);
-                if(idShiftAbsen.equals("6")||idShiftAbsen.equals("9")||idShiftAbsen.equals("14")||idShiftAbsen.equals("15")||idShiftAbsen.equals("41")||idShiftAbsen.equals("81")||idShiftAbsen.equals("91")||idShiftAbsen.equals("95")||idShiftAbsen.equals("85")||idShiftAbsen.equals("87")){
-                    tglPulangPartK1.setVisibility(View.VISIBLE);
-                } else {
-                    tglPulangPartK1.setVisibility(View.GONE);
-                }
             } else if(kategoriKeterangan.equals("2")){
                 shiftAbsensiPilihK2.setText(namaShiftAbsen+" ("+datangShiftAbsen+" - "+pulangShiftAbsen+")");
                 jamMasukTVK2.setText(datangShiftAbsen);
