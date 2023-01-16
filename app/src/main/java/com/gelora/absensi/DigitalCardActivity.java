@@ -192,7 +192,6 @@ public class DigitalCardActivity extends AppCompatActivity {
 
     private void generateQRCode(){
         if (TextUtils.isEmpty(dataDiri)){
-
             CookieBar.build(DigitalCardActivity.this)
                     .setTitle("Perhatian")
                     .setMessage("QR Code gagal di generate!")
