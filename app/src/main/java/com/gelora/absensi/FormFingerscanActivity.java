@@ -4445,12 +4445,12 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             .changeAlertType(KAlertDialog.ERROR_TYPE);
                                 } else if(kategoriKeterangan.equals("5")){
                                     pDialog.setTitleText("Gagal Terkirim")
-                                            .setContentText("Anda belum melaukan absen pulang pada tanggal yang dipilih")
+                                            .setContentText("Anda belum melakukan absen pulang pada tanggal yang dipilih")
                                             .setConfirmText("    OK    ")
                                             .changeAlertType(KAlertDialog.ERROR_TYPE);
                                 } else if(kategoriKeterangan.equals("7")){
                                     pDialog.setTitleText("Gagal Terkirim")
-                                            .setContentText("Anda sudah melaukan absen masuk pada tanggal yang dipilih")
+                                            .setContentText("Anda sudah melakukan absen masuk pada tanggal yang dipilih")
                                             .setConfirmText("    OK    ")
                                             .changeAlertType(KAlertDialog.ERROR_TYPE);
                                 }
