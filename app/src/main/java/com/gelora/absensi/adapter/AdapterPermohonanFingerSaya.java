@@ -89,7 +89,7 @@ public class AdapterPermohonanFingerSaya extends RecyclerView.Adapter<AdapterPer
                     statusPermohonan = "Menunggu Persetujuan HRD";
                 } else {
                     if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")) {
-                        statusPermohonan = "Permohonan Disetujui Kepala Departemen";
+                        statusPermohonan = "Permohonan Disetujui Atasan";
                     } else {
                         statusPermohonan = "Permohonan Disetujui Kepala Bagian";
                     }
@@ -97,7 +97,7 @@ public class AdapterPermohonanFingerSaya extends RecyclerView.Adapter<AdapterPer
             }
         } else if (listPermohonanFingerscan.getStatus_approve().equals("2")){
             if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")) {
-                statusPermohonan = "Permohonan Ditolak Kepala Departemen";
+                statusPermohonan = "Permohonan Ditolak Atasan";
             } else {
                 statusPermohonan = "Permohonan Ditolak Kepala Bagian";
             }

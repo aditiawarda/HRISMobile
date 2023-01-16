@@ -40,7 +40,7 @@ import java.util.Map;
 public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
     String kode, idPermohonan, statusKondisi = "0";
-    TextView noPermohonan, tanggalTV, nikNamaTV, deptBagianTV, keteranganTV, alasanTV, pemohonTV, tanggalApproveTV, approverTV, tanggalApproveHRDTV, approverHRDTV;
+    TextView noPermohonan, tanggalTV, nikNamaTV, deptBagianTV, keteranganTV, alasanTV, pemohonTV, tanggalApproveTV, approverTV, jabatanApproverTV, tanggalApproveHRDTV, approverHRDTV;
     LinearLayout detailKeteranganPart, backBTN, homeBTN, cancelPermohonanBTN, editPermohonanBTN, rejectedMark, acceptedMark, actionPart, approvedBTN, rejectedBTN;
     ImageView ttdPemohon, ttdApprover,ttdApproverHRD;
     SwipeRefreshLayout refreshLayout;
@@ -73,6 +73,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
         tanggalApproveTV = findViewById(R.id.tanggal_approve);
         tanggalApproveHRDTV = findViewById(R.id.tanggal_approve_hrd);
         approverTV = findViewById(R.id.approver_tv);
+        jabatanApproverTV = findViewById(R.id.jabatan_approver);
         approverHRDTV = findViewById(R.id.approver_hrd_tv);
         cancelPermohonanBTN = findViewById(R.id.cancel_permohonan_btn);
         editPermohonanBTN = findViewById(R.id.edit_permohonan_btn);
@@ -422,6 +423,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     String nama_approver = detail.getString("NmApprover");
                                     String timestamp_approve = detail.getString("timestamp_approve");
                                     String ttd_approver = detail.getString("ttd_approver");
+                                    String jabatan_approver = detail.getString("jabatan_approver");
 
                                     String url_approver = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_approver;
 
@@ -436,6 +438,8 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                         shortName2 = shortName2.substring(0, shortName2.indexOf(" "));
                                         approverTV.setText("( "+shortName2.toUpperCase()+" )");
                                     }
+
+                                    jabatanApproverTV.setText(jabatan_approver);
 
                                     String status_approve_hrd = detail.getString("status_approve_hrd");
                                     if (status_approve_hrd.equals("1")) {
@@ -497,12 +501,15 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     editPermohonanBTN.setVisibility(View.GONE);
 
                                     String nama_approver = detail.getString("NmApprover");
+                                    String jabatan_approver = detail.getString("jabatan_approver");
 
                                     String shortName2 = nama_approver;
                                     if(shortName2.contains(" ")){
                                         shortName2 = shortName2.substring(0, shortName2.indexOf(" "));
                                         approverTV.setText("( "+shortName2.toUpperCase()+" )");
                                     }
+
+                                    jabatanApproverTV.setText(jabatan_approver);
 
                                 } else {
                                     actionPart.setVisibility(View.VISIBLE);
