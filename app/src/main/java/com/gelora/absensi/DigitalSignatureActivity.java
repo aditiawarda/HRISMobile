@@ -41,6 +41,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.FilePathimage;
 import com.gelora.absensi.support.ImagePickerActivity;
@@ -75,14 +76,14 @@ import java.util.UUID;
 
 public class DigitalSignatureActivity extends AppCompatActivity {
 
-    LinearLayout redPen, bluePen, blackPen, cancelBTN, showSignaturePart, creatSignaturePart, changeBTN, backBTN, homeBTN, saveBTN, removeBTN;
+    LinearLayout redPen, bluePen, blackPen, cancelBTN, loadingPart, showSignaturePart, creatSignaturePart, changeBTN, backBTN, homeBTN, saveBTN, removeBTN;
     SignaturePad mSignaturePad;
     SharedPrefManager sharedPrefManager;
     Bitmap bitmapFixSize;
     private int i = -1;
     Uri destinationUri;
     KAlertDialog pDialog;
-    ImageView signatureIMG;
+    ImageView signatureIMG,loadingSignature;
     String kodeString = "";
     View rootview;
 
@@ -102,10 +103,16 @@ public class DigitalSignatureActivity extends AppCompatActivity {
         signatureIMG = findViewById(R.id.signature_img);
         showSignaturePart = findViewById(R.id.show_signature_part);
         creatSignaturePart = findViewById(R.id.creat_signature_part);
+        loadingPart = findViewById(R.id.loading_part);
+        loadingSignature = findViewById(R.id.loading_sgn_img);
         cancelBTN = findViewById(R.id.cancel_btn);
         redPen = findViewById(R.id.pen_red);
         bluePen = findViewById(R.id.pen_blue);
         blackPen = findViewById(R.id.pen_black);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(loadingSignature);
 
         kodeString = getIntent().getExtras().getString("kode");
 
@@ -192,7 +199,6 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                                                 token.continuePermissionRequest();
                                             }
                                         }).check();
-
 
                             }
                         })
@@ -449,6 +455,8 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                             Log.d("Success.Response", response.toString());
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
+
+                            loadingPart.setVisibility(View.GONE);
 
                             if (status.equals("Available")){
                                 String signature = data.getString("data");

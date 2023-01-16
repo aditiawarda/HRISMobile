@@ -247,6 +247,34 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@id/loading_part"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:gravity="center"
+                                android:background="@drawable/shape_detail_permohonan"
+                                android:layout_width="match_parent"
+                                android:layout_height="400dp">
+
+                                <ImageView
+                                    android:id="@+id/loading_sgn_img"
+                                    android:layout_width="88dp"
+                                    android:layout_height="88dp"
+                                    android:layout_marginBottom="5dp"
+                                    app:srcCompat="@drawable/loading_sgn_digital" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:id="@+id/attantion_part_kelebihan_jam"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
