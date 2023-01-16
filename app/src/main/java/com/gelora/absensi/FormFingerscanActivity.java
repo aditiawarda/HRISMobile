@@ -4486,7 +4486,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams()
             {
-                Map<String, String>  params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<String, String>();
                 params.put("nik", sharedPrefManager.getSpNik());
                 params.put("tanggal", dateChoiceMasuk);
                 params.put("keterangan", kategoriKeterangan);
@@ -4495,11 +4495,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     params.put("status_absen", statusAbsensi);
                     params.put("shift", shiftAbsensi);
                     params.put("jam_masuk", jamMasuk);
-                    if(shiftAbsensi.equals("6")||shiftAbsensi.equals("9")||shiftAbsensi.equals("14")||shiftAbsensi.equals("15")||shiftAbsensi.equals("41")||shiftAbsensi.equals("81")||shiftAbsensi.equals("91")||shiftAbsensi.equals("95")||shiftAbsensi.equals("85")||shiftAbsensi.equals("87")){
-                        params.put("tgl_pulang", tanggalPulang);
-                    } else {
-                        params.put("tgl_pulang", dateChoiceMasuk);
-                    }
+                    params.put("tgl_pulang", tanggalPulang);
                     params.put("jam_pulang", jamPulang);
                     params.put("titik_absen", namaTitikAbsensi);
                 } else if(kategoriKeterangan.equals("2")){
