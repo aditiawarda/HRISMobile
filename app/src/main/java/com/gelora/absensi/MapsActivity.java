@@ -174,7 +174,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "1.5.3";
+    String appVersion = "1.5.4";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1391,7 +1391,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             lateDesc = String.valueOf(Integer.parseInt(String.valueOf((f.format(hour))))) + " jam " + String.valueOf(Integer.parseInt(String.valueOf((f.format(min))))) + " menit";
                         }
                     } else { // 01:00:01
-                        lateDesc = String.valueOf(Integer.parseInt(String.valueOf((f.format(hour))))) + " jam " + String.valueOf(Integer.parseInt(String.valueOf((f.format(sec))))) + " detik";
+                        if(!String.valueOf((f.format(sec))).equals("00")){
+                            lateDesc = String.valueOf(Integer.parseInt(String.valueOf((f.format(hour))))) + " jam " + String.valueOf(Integer.parseInt(String.valueOf((f.format(sec))))) + " detik";
+                        } else {
+                            lateDesc = String.valueOf(Integer.parseInt(String.valueOf((f.format(hour))))) + " jam";
+                        }
                     }
                 } else { // 00:01:01
                     if (!String.valueOf((f.format(min))).equals("00")){ // 00:01:01
@@ -1401,7 +1405,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             lateDesc = String.valueOf(Integer.parseInt(String.valueOf((f.format(min))))) + " menit";
                         }
                     } else { // 00:00:01
-                        lateDesc = String.valueOf(Integer.parseInt(String.valueOf((f.format(sec))))) + " detik";
+                        if(!String.valueOf((f.format(sec))).equals("00")){
+                            lateDesc = String.valueOf(Integer.parseInt(String.valueOf((f.format(sec))))) + " detik";
+                        }
                     }
                 }
 

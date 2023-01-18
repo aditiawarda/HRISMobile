@@ -313,5 +313,4 @@ public class AdapterHistoryAbsen extends RecyclerView.Adapter<AdapterHistoryAbse
         }
     }
 
-
 }

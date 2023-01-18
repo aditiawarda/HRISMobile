@@ -281,7 +281,11 @@ public class AdapterKelebihanJam extends RecyclerView.Adapter<AdapterKelebihanJa
                     myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(3,5)))+" menit");
                 }
             } else { // 01:00:01
-                myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(6,8)))+" detik");
+                if(!dataKelebihanJam.getOvertime().substring(6,8).equals("00")){
+                    myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(6,8)))+" detik");
+                } else {
+                    myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(0,2)))+" jam");
+                }
             }
         } else { // 00:01:01
             if (!dataKelebihanJam.getOvertime().substring(3, 5).equals("00")){ // 00:01:01
@@ -291,7 +295,9 @@ public class AdapterKelebihanJam extends RecyclerView.Adapter<AdapterKelebihanJa
                     myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(3,5)))+" menit");
                 }
             } else { // 00:00:01
-                myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(6,8)))+" detik");
+                if(!dataKelebihanJam.getOvertime().substring(6,8).equals("00")){
+                    myViewHolder.overTimeTV.setText(String.valueOf(Integer.parseInt(dataKelebihanJam.getOvertime().substring(6,8)))+" detik");
+                }
             }
         }
     }
