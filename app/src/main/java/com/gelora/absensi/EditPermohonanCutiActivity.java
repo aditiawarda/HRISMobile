@@ -20,6 +20,7 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -4036,23 +4037,43 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
     }
 
     private void dexterCall(){
-        Dexter.withActivity(EditPermohonanCutiActivity.this)
-                .withPermissions(android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .withListener(new MultiplePermissionsListener() {
-                    @Override
-                    public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        if (report.areAllPermissionsGranted()) {
-                            showImagePickerOptions();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Dexter.withActivity(EditPermohonanCutiActivity.this)
+                    .withPermissions(android.Manifest.permission.CAMERA, Manifest.permission.READ_MEDIA_IMAGES)
+                    .withListener(new MultiplePermissionsListener() {
+                        @Override
+                        public void onPermissionsChecked(MultiplePermissionsReport report) {
+                            if (report.areAllPermissionsGranted()) {
+                                showImagePickerOptions();
+                            }
+                            if (report.isAnyPermissionPermanentlyDenied()) {
+                                showSettingsDialog();
+                            }
                         }
-                        if (report.isAnyPermissionPermanentlyDenied()) {
-                            showSettingsDialog();
+                        @Override
+                        public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                            token.continuePermissionRequest();
                         }
-                    }
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-                        token.continuePermissionRequest();
-                    }
-                }).check();
+                    }).check();
+        } else {
+            Dexter.withActivity(EditPermohonanCutiActivity.this)
+                    .withPermissions(android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    .withListener(new MultiplePermissionsListener() {
+                        @Override
+                        public void onPermissionsChecked(MultiplePermissionsReport report) {
+                            if (report.areAllPermissionsGranted()) {
+                                showImagePickerOptions();
+                            }
+                            if (report.isAnyPermissionPermanentlyDenied()) {
+                                showSettingsDialog();
+                            }
+                        }
+                        @Override
+                        public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                            token.continuePermissionRequest();
+                        }
+                    }).check();
+        }
     }
 
     private void showImagePickerOptions() {
@@ -4131,35 +4152,57 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
                 uri = data.getParcelableExtra("path");
+                String stringUri = String.valueOf(uri);
+                String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                    String file_directori = getRealPathFromURIPath(uri, EditPermohonanCutiActivity.this);
-                    String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
-                    Log.e("PaRSE JSON", a);
-                    markUpload.setVisibility(View.VISIBLE);
-                    viewUploadBTN.setVisibility(View.VISIBLE);
-                    statusUploadTV.setText("Berhasil diunggah");
-                    labelUnggahTV.setText("Ganti");
-                    uploadStatus = "1";
-                    gantiLampiran = "1";
-                    removeLampiranStatus = "0";
+                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                        String file_directori = getRealPathFromURIPath(uri, EditPermohonanCutiActivity.this);
+                        String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
+                        Log.e("PaRSE JSON", a);
+                        markUpload.setVisibility(View.VISIBLE);
+                        viewUploadBTN.setVisibility(View.VISIBLE);
+                        statusUploadTV.setText("Berhasil diunggah");
+                        labelUnggahTV.setText("Ganti");
+                        uploadStatus = "1";
+                        gantiLampiran = "1";
+                        removeLampiranStatus = "0";
 
-                    if(tipeCuti.equals("1")){
-                        removeLampiranBTN.setVisibility(View.VISIBLE);
-                    } else if(tipeCuti.equals("2")){
-                        removeLampiranBTN.setVisibility(View.GONE);
-                    }
-
-                    viewUploadBTN.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(EditPermohonanCutiActivity.this, ViewImageActivity.class);
-                            intent.putExtra("url", String.valueOf(uri));
-                            intent.putExtra("kode", "form");
-                            intent.putExtra("jenis_form", "cuti");
-                            startActivity(intent);
+                        if(tipeCuti.equals("1")){
+                            removeLampiranBTN.setVisibility(View.VISIBLE);
+                        } else if(tipeCuti.equals("2")){
+                            removeLampiranBTN.setVisibility(View.GONE);
                         }
-                    });
+
+                        viewUploadBTN.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(EditPermohonanCutiActivity.this, ViewImageActivity.class);
+                                intent.putExtra("url", String.valueOf(uri));
+                                intent.putExtra("kode", "form");
+                                intent.putExtra("jenis_form", "cuti");
+                                startActivity(intent);
+                            }
+                        });
+
+                    } else {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                new KAlertDialog(EditPermohonanCutiActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Format file tidak sesuai!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        }, 800);
+                    }
 
                 } catch (IOException e) {
                     e.printStackTrace();

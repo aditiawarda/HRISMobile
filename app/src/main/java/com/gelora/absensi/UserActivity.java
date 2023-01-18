@@ -21,6 +21,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -1677,12 +1678,33 @@ public class UserActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
                 uri = data.getParcelableExtra("path");
+                String stringUri = String.valueOf(uri);
+                String extension = stringUri.substring(stringUri.lastIndexOf("."));
                 try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                    String file_directori = getRealPathFromURIPath(uri, UserActivity.this);
-                    String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
-                    Log.e("PaRSE JSON", a);
-                    uploadMultipart();
+                    if(extension.equals(".jpg")||extension.equals(".JPG")||extension.equals(".jpeg")||extension.equals(".png")||extension.equals(".PNG")){
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                        String file_directori = getRealPathFromURIPath(uri, UserActivity.this);
+                        String a = "File Directory : "+file_directori+" URI: "+String.valueOf(uri);
+                        Log.e("PaRSE JSON", a);
+                        uploadMultipart();
+                    } else {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                new KAlertDialog(UserActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Format file tidak sesuai!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        }, 800);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -1872,23 +1894,43 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private void dexterCall(){
-        Dexter.withActivity(UserActivity.this)
-                .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .withListener(new MultiplePermissionsListener() {
-                    @Override
-                    public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        if (report.areAllPermissionsGranted()) {
-                            showImagePickerOptions();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Dexter.withActivity(UserActivity.this)
+                    .withPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_MEDIA_IMAGES)
+                    .withListener(new MultiplePermissionsListener() {
+                        @Override
+                        public void onPermissionsChecked(MultiplePermissionsReport report) {
+                            if (report.areAllPermissionsGranted()) {
+                                showImagePickerOptions();
+                            }
+                            if (report.isAnyPermissionPermanentlyDenied()) {
+                                showSettingsDialog();
+                            }
                         }
-                        if (report.isAnyPermissionPermanentlyDenied()) {
-                            showSettingsDialog();
+                        @Override
+                        public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                            token.continuePermissionRequest();
                         }
-                    }
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-                        token.continuePermissionRequest();
-                    }
-                }).check();
+                    }).check();
+        } else {
+            Dexter.withActivity(UserActivity.this)
+                    .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    .withListener(new MultiplePermissionsListener() {
+                        @Override
+                        public void onPermissionsChecked(MultiplePermissionsReport report) {
+                            if (report.areAllPermissionsGranted()) {
+                                showImagePickerOptions();
+                            }
+                            if (report.isAnyPermissionPermanentlyDenied()) {
+                                showSettingsDialog();
+                            }
+                        }
+                        @Override
+                        public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                            token.continuePermissionRequest();
+                        }
+                    }).check();
+        }
     }
 
     private void removePic() {
