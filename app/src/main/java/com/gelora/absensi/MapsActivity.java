@@ -612,25 +612,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             DateFormat timeNetworkFormat = new SimpleDateFormat("HH:mm");
             Date network = new Date(milliSec);
 
-            if(String.valueOf(dateNetworkFormat.format(network)).equals(getDate())){
-                if(String.valueOf(timeNetworkFormat.format(network)).equals(getTimeCheck())){
+            Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            long milliSecGPS = locationGPS.getTime();
+            Date gps = new Date(milliSecGPS);
+            Date date = new Date();
+            long timeMilli = date.getTime();
+            long selisihMs = milliSecGPS - timeMilli;
 
-                    String zonaWaktu;
-                    if (getTimeZone().equals("GMT+07:00")){
-                        zonaWaktu = "WIB";
-                    } else if (getTimeZone().equals("GMT+08:00")){
-                        zonaWaktu = "WITA";
-                    } else if (getTimeZone().equals("GMT+09:00")){
-                        zonaWaktu = "WIT";
-                    } else {
-                        zonaWaktu = getTimeZone();
-                    }
+            if(selisihMs<0){
+                selisihMs = selisihMs * -1;
+            } else {
+                selisihMs = selisihMs;
+            }
 
-                    if(checkinTimeZone.equals(zonaWaktu)){
-                        timeDetection = "matching";
-                    } else {
-                        timeDetection = "different";
-                    }
+            if (selisihMs<180000){ // Toleransi perbedaan waktu dibawah 3 menit
+                String zonaWaktu;
+                if (getTimeZone().equals("GMT+07:00")){
+                    zonaWaktu = "WIB";
+                } else if (getTimeZone().equals("GMT+08:00")){
+                    zonaWaktu = "WITA";
+                } else if (getTimeZone().equals("GMT+09:00")){
+                    zonaWaktu = "WIT";
+                } else {
+                    zonaWaktu = getTimeZone();
+                }
+
+                if(checkinTimeZone.equals(zonaWaktu)){
+                    timeDetection = "matching";
                 } else {
                     timeDetection = "different";
                 }

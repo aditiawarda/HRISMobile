@@ -591,29 +591,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     dTitikAbsenTV.setText(titik_absen);
 
                                 } else if(keterangan.equals("2")){
-                                    detailKeteranganPart.setVisibility(View.VISIBLE);
-                                    JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
-                                    String nama_status   = detail_keterangan.getString("nama_status");
-                                    String kode_status   = detail_keterangan.getString("kode_status");
-                                    String nama_shift    = detail_keterangan.getString("nama_shift");
-                                    String shift_datang  = detail_keterangan.getString("shift_datang");
-                                    String shift_pulang  = detail_keterangan.getString("shift_pulang");
-                                    String tanggal_masuk = detail_keterangan.getString("tanggal_masuk");
-                                    String jam_masuk     = detail_keterangan.getString("jam_masuk");
-                                    String titik_absen   = detail_keterangan.getString("titik_absen");
-
-                                    dStatusAbsen.setVisibility(View.VISIBLE);
-                                    dShiftAbsen.setVisibility(View.VISIBLE);
-                                    dTanggalMasuk.setVisibility(View.VISIBLE);
-                                    dJamMasuk.setVisibility(View.VISIBLE);
-                                    dTitikAbsen.setVisibility(View.VISIBLE);
-
-                                    dStatusAbsenTV.setText(nama_status+" ("+kode_status+")");
-                                    dShiftAbsenTV.setText(nama_shift+" ("+shift_datang+" - "+shift_pulang+")");
-                                    dTanggalMasukTV.setText(tanggal_masuk.substring(8,10)+"/"+tanggal_masuk.substring(5,7)+"/"+tanggal_masuk.substring(0,4));
-                                    dJamMasukTV.setText(jam_masuk);
-                                    dTitikAbsenTV.setText(titik_absen);
-
+                                    detailKeteranganPart.setVisibility(View.GONE);
                                 } else if(keterangan.equals("3")){
                                     detailKeteranganPart.setVisibility(View.VISIBLE);
                                     JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
