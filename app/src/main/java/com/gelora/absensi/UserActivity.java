@@ -109,7 +109,7 @@ public class UserActivity extends AppCompatActivity {
     ProgressBar loadingProgressBarCuaca;
     ImageView notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     View rootview;
-    String statusFitur = "1", tanggalBergabung = "", statusKaryawan = "", selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
+    String statusFinger = "1", statusFitur = "1", tanggalBergabung = "", statusKaryawan = "", selectMonth = "", currentDay = "", avatarStatus = "0", avatarPath = "";
     ProgressBar loadingProgressBarLogout;
 
     AlarmManager alarmManager;
@@ -649,6 +649,7 @@ public class UserActivity extends AppCompatActivity {
                 intent.putExtra("status_karyawan", statusKaryawan);
                 intent.putExtra("tanggal_bergabung", tanggalBergabung);
                 intent.putExtra("status_fitur", statusFitur);
+                intent.putExtra("status_finger", statusFinger);
                 startActivity(intent);
             }
         });
@@ -2403,6 +2404,7 @@ public class UserActivity extends AppCompatActivity {
                                 String finger_scan = data.getString("finger_scan");
                                 String gelora_messanger = data.getString("gelora_messanger");
 
+                                statusFinger = finger_scan;
                                 statusFitur = fitur_izin;
                                 loadingNotifFiturPart.setVisibility(View.GONE);
 

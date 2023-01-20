@@ -17,7 +17,7 @@ import java.util.Date;
 public class FaqActivity extends AppCompatActivity {
 
     LinearLayout backBTN, faq1, faq2, faq3, faq4, faq5;
-    String statusKaryawan, tanggalBergabung, statusFitur;
+    String statusKaryawan, tanggalBergabung, statusFitur, statusFinger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class FaqActivity extends AppCompatActivity {
         statusKaryawan = getIntent().getExtras().getString("status_karyawan");
         tanggalBergabung = getIntent().getExtras().getString("tanggal_bergabung");
         statusFitur = getIntent().getExtras().getString("status_fitur");
+        statusFinger = getIntent().getExtras().getString("status_finger");
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,6 +134,12 @@ public class FaqActivity extends AppCompatActivity {
                 faq3.setVisibility(View.GONE);
                 faq4.setVisibility(View.GONE);
             }
+        }
+
+        if(statusFinger.equals("1")){
+            faq5.setVisibility(View.VISIBLE);
+        } else {
+            faq5.setVisibility(View.GONE);
         }
 
     }
