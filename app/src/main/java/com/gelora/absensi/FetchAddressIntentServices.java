@@ -8,7 +8,6 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -47,7 +46,6 @@ public class FetchAddressIntentServices extends IntentService {
 
             if (addresses == null || addresses.size() == 0) {
                 errormessgae = "Lokasi tidak ditemukan";
-                //Toast.makeText(this, "" + errormessgae, Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
                 bundle.putString(Constants.NO_ADDRESS, errormessgae);
                 resultReceiver.send(Constants.FAILURE_RESULT, bundle);
@@ -59,13 +57,13 @@ public class FetchAddressIntentServices extends IntentService {
                 String str_district = address.getSubAdminArea();
                 String str_locality = address.getLocality();
                 String str_address = address.getFeatureName();
-                devliverResultToRecevier(Constants.SUCCESS_RESULT, str_address, str_locality, str_district, str_state, str_Country, str_postcode);
+                devliverResultToRecevier(str_address, str_locality, str_district, str_state, str_Country, str_postcode);
             }
         }
 
     }
 
-    private void devliverResultToRecevier(int resultcode, String address, String locality, String district, String state, String country, String postcode) {
+    private void devliverResultToRecevier(String address, String locality, String district, String state, String country, String postcode) {
         Bundle bundle = new Bundle();
         bundle.putString(Constants.ADDRESS, address);
         bundle.putString(Constants.LOCAITY, locality);
@@ -73,7 +71,7 @@ public class FetchAddressIntentServices extends IntentService {
         bundle.putString(Constants.STATE, state);
         bundle.putString(Constants.COUNTRY, country);
         bundle.putString(Constants.POST_CODE, postcode);
-        resultReceiver.send(resultcode, bundle);
+        resultReceiver.send(Constants.SUCCESS_RESULT, bundle);
     }
 
 }
