@@ -147,6 +147,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
+    Location locationGPS;
     CompactCalendarView compactCalendarView;
     KAlertDialog pDialog;
     ResultReceiver resultReceiver;
@@ -174,7 +175,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "1.5.6";
+    String appVersion = "1.5.7";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -202,6 +203,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         resultReceiver = new AddressResultReceiver(new Handler());
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
 
@@ -612,36 +614,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             DateFormat timeNetworkFormat = new SimpleDateFormat("HH:mm");
             Date network = new Date(milliSec);
 
-            Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            long milliSecGPS = locationGPS.getTime();
-            Date gps = new Date(milliSecGPS);
-            Date date = new Date();
-            long timeMilli = date.getTime();
-            long selisihMs = milliSecGPS - timeMilli;
+            if(locationGPS != null) {
+                long milliSecGPS = locationGPS.getTime();
+                Date gps = new Date(milliSecGPS);
+                Date date = new Date();
+                long timeMilli = date.getTime();
+                long selisihMs = milliSecGPS - timeMilli;
 
-            if(selisihMs<0){
-                selisihMs = selisihMs * -1;
-            } else {
-                selisihMs = selisihMs;
-            }
-
-            if (selisihMs<180000){ // Toleransi perbedaan waktu dibawah 3 menit
-                String zonaWaktu;
-                if (getTimeZone().equals("GMT+07:00")){
-                    zonaWaktu = "WIB";
-                } else if (getTimeZone().equals("GMT+08:00")){
-                    zonaWaktu = "WITA";
-                } else if (getTimeZone().equals("GMT+09:00")){
-                    zonaWaktu = "WIT";
+                if(selisihMs<0){
+                    selisihMs = selisihMs * -1;
                 } else {
-                    zonaWaktu = getTimeZone();
+                    selisihMs = selisihMs;
                 }
 
-                if(checkinTimeZone.equals(zonaWaktu)){
-                    timeDetection = "matching";
+                if (selisihMs<180000){ // Toleransi perbedaan waktu dibawah 3 menit
+                    String zonaWaktu;
+                    if (getTimeZone().equals("GMT+07:00")){
+                        zonaWaktu = "WIB";
+                    } else if (getTimeZone().equals("GMT+08:00")){
+                        zonaWaktu = "WITA";
+                    } else if (getTimeZone().equals("GMT+09:00")){
+                        zonaWaktu = "WIT";
+                    } else {
+                        zonaWaktu = getTimeZone();
+                    }
+
+                    if(checkinTimeZone.equals(zonaWaktu)){
+                        timeDetection = "matching";
+                    } else {
+                        timeDetection = "different";
+                    }
+
                 } else {
                     timeDetection = "different";
                 }
+
             } else {
                 timeDetection = "different";
             }
