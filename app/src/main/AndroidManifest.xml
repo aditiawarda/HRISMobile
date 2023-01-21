@@ -195,7 +195,9 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".FetchAddressIntentServices" />
+        <service android:enabled="true"
+            android:name=".FetchAddressIntentServices"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

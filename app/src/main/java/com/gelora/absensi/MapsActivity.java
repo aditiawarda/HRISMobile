@@ -175,7 +175,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "1.5.7";
+    String appVersion = "1.5.8";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -4638,255 +4638,133 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Use constants provided by Java Calendar class
         compactCalendarView.setFirstDayOfWeek(Calendar.MONDAY);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            String month = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(4,7);
-            String year = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(30,34);
+        String month = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(4,7);
 
-            String bulanName;
-            switch (month) {
-                case "Jan":
-                    bulanName = "Januari";
-                    break;
-                case "Feb":
-                    bulanName = "Februari";
-                    break;
-                case "Mar":
-                    bulanName = "Maret";
-                    break;
-                case "Apr":
-                    bulanName = "April";
-                    break;
-                case "May":
-                    bulanName = "Mei";
-                    break;
-                case "Jun":
-                    bulanName = "Juni";
-                    break;
-                case "Jul":
-                    bulanName = "Juli";
-                    break;
-                case "Aug":
-                    bulanName = "Agustus";
-                    break;
-                case "Sep":
-                    bulanName = "September";
-                    break;
-                case "Oct":
-                    bulanName = "Oktober";
-                    break;
-                case "Nov":
-                    bulanName = "November";
-                    break;
-                case "Dec":
-                    bulanName = "Desember";
-                    break;
-                default:
-                    bulanName = "Not found!";
-                    break;
+        int maxLengthYear = Integer.parseInt(String.valueOf(String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).length()));
+        int minLengthYear = maxLengthYear - 4;
+
+        String year = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(minLengthYear,maxLengthYear);
+        String bulanName;
+        switch (month) {
+            case "Jan":
+                bulanName = "Januari";
+                break;
+            case "Feb":
+                bulanName = "Februari";
+                break;
+            case "Mar":
+                bulanName = "Maret";
+                break;
+            case "Apr":
+                bulanName = "April";
+                break;
+            case "May":
+                bulanName = "Mei";
+                break;
+            case "Jun":
+                bulanName = "Juni";
+                break;
+            case "Jul":
+                bulanName = "Juli";
+                break;
+            case "Aug":
+                bulanName = "Agustus";
+                break;
+            case "Sep":
+                bulanName = "September";
+                break;
+            case "Oct":
+                bulanName = "Oktober";
+                break;
+            case "Nov":
+                bulanName = "November";
+                break;
+            case "Dec":
+                bulanName = "Desember";
+                break;
+            default:
+                bulanName = "Not found!";
+                break;
+        }
+
+        monthTV.setText(bulanName);
+        yearTV.setText(year);
+
+        // Add event 1 on Sun, 07 Jun 2015 18:20:51 GMT
+        getEventCalender();
+
+        // define a listener to receive callbacks when certain events happen.
+        compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
+            @SuppressLint("InlinedApi")
+            @Override
+            public void onDayClick(Date dateClicked) {
+                List<Event> events = compactCalendarView.getEvents(dateClicked);
+                Log.d(TAG, "Day was clicked: " + dateClicked + " with events " + events);
+                if(events.size()<=0){
+                    eventCalender.setText("");
+                } else {
+                    eventCalender.setText(String.valueOf(events.get(0).getData()));
+                }
             }
 
-            monthTV.setText(bulanName);
-            yearTV.setText(year);
+            @SuppressLint("InlinedApi")
+            @Override
+            public void onMonthScroll(Date firstDayOfNewMonth) {
+                Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
+                String month = String.valueOf(firstDayOfNewMonth).substring(4,7);
+                int maxLengthYear = Integer.parseInt(String.valueOf(String.valueOf(firstDayOfNewMonth).length()));
+                int minLengthYear = maxLengthYear - 4;
 
-            // Add event 1 on Sun, 07 Jun 2015 18:20:51 GMT
-            getEventCalender();
-
-            // define a listener to receive callbacks when certain events happen.
-            compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
-                @SuppressLint("InlinedApi")
-                @Override
-                public void onDayClick(Date dateClicked) {
-                    List<Event> events = compactCalendarView.getEvents(dateClicked);
-                    Log.d(TAG, "Day was clicked: " + dateClicked + " with events " + events);
-                    if(events.size()<=0){
-                        eventCalender.setText("");
-                    } else {
-                        eventCalender.setText(String.valueOf(events.get(0).getData()));
-                    }
+                String year = String.valueOf(firstDayOfNewMonth).substring(minLengthYear,maxLengthYear);
+                String bulanName;
+                switch (month) {
+                    case "Jan":
+                        bulanName = "Januari";
+                        break;
+                    case "Feb":
+                        bulanName = "Februari";
+                        break;
+                    case "Mar":
+                        bulanName = "Maret";
+                        break;
+                    case "Apr":
+                        bulanName = "April";
+                        break;
+                    case "May":
+                        bulanName = "Mei";
+                        break;
+                    case "Jun":
+                        bulanName = "Juni";
+                        break;
+                    case "Jul":
+                        bulanName = "Juli";
+                        break;
+                    case "Aug":
+                        bulanName = "Agustus";
+                        break;
+                    case "Sep":
+                        bulanName = "September";
+                        break;
+                    case "Oct":
+                        bulanName = "Oktober";
+                        break;
+                    case "Nov":
+                        bulanName = "November";
+                        break;
+                    case "Dec":
+                        bulanName = "Desember";
+                        break;
+                    default:
+                        bulanName = "Not found!";
+                        break;
                 }
 
-                @SuppressLint("InlinedApi")
-                @Override
-                public void onMonthScroll(Date firstDayOfNewMonth) {
-                    Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
-                    String month = String.valueOf(firstDayOfNewMonth).substring(4,7);
-                    String year = String.valueOf(firstDayOfNewMonth).substring(30,34);
+                monthTV.setText(bulanName);
+                yearTV.setText(year);
+                eventCalender.setText("");
 
-                    String bulanName;
-                    switch (month) {
-                        case "Jan":
-                            bulanName = "Januari";
-                            break;
-                        case "Feb":
-                            bulanName = "Februari";
-                            break;
-                        case "Mar":
-                            bulanName = "Maret";
-                            break;
-                        case "Apr":
-                            bulanName = "April";
-                            break;
-                        case "May":
-                            bulanName = "Mei";
-                            break;
-                        case "Jun":
-                            bulanName = "Juni";
-                            break;
-                        case "Jul":
-                            bulanName = "Juli";
-                            break;
-                        case "Aug":
-                            bulanName = "Agustus";
-                            break;
-                        case "Sep":
-                            bulanName = "September";
-                            break;
-                        case "Oct":
-                            bulanName = "Oktober";
-                            break;
-                        case "Nov":
-                            bulanName = "November";
-                            break;
-                        case "Dec":
-                            bulanName = "Desember";
-                            break;
-                        default:
-                            bulanName = "Not found!";
-                            break;
-                    }
-
-                    monthTV.setText(bulanName);
-                    yearTV.setText(year);
-                    eventCalender.setText("");
-
-                }
-            });
-        }
-        else {
-            String month = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(4,7);
-            String year = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(24,28);
-
-            String bulanName;
-            switch (month) {
-                case "Jan":
-                    bulanName = "Januari";
-                    break;
-                case "Feb":
-                    bulanName = "Februari";
-                    break;
-                case "Mar":
-                    bulanName = "Maret";
-                    break;
-                case "Apr":
-                    bulanName = "April";
-                    break;
-                case "May":
-                    bulanName = "Mei";
-                    break;
-                case "Jun":
-                    bulanName = "Juni";
-                    break;
-                case "Jul":
-                    bulanName = "Juli";
-                    break;
-                case "Aug":
-                    bulanName = "Agustus";
-                    break;
-                case "Sep":
-                    bulanName = "September";
-                    break;
-                case "Oct":
-                    bulanName = "Oktober";
-                    break;
-                case "Nov":
-                    bulanName = "November";
-                    break;
-                case "Dec":
-                    bulanName = "Desember";
-                    break;
-                default:
-                    bulanName = "Not found!";
-                    break;
             }
-
-            monthTV.setText(bulanName);
-            yearTV.setText(year);
-
-            // Add event 1 on Sun, 07 Jun 2015 18:20:51 GMT
-            getEventCalender();
-
-            // define a listener to receive callbacks when certain events happen.
-            compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
-                @SuppressLint("InlinedApi")
-                @Override
-                public void onDayClick(Date dateClicked) {
-                    List<Event> events = compactCalendarView.getEvents(dateClicked);
-                    Log.d(TAG, "Day was clicked: " + dateClicked + " with events " + events);
-                    if(events.size()<=0){
-                        eventCalender.setText("");
-                    } else {
-                        eventCalender.setText(String.valueOf(events.get(0).getData()));
-                    }
-                }
-
-                @SuppressLint("InlinedApi")
-                @Override
-                public void onMonthScroll(Date firstDayOfNewMonth) {
-                    Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
-                    String month = String.valueOf(firstDayOfNewMonth).substring(4,7);
-                    String year = String.valueOf(firstDayOfNewMonth).substring(24,28);
-
-                    String bulanName;
-                    switch (month) {
-                        case "Jan":
-                            bulanName = "Januari";
-                            break;
-                        case "Feb":
-                            bulanName = "Februari";
-                            break;
-                        case "Mar":
-                            bulanName = "Maret";
-                            break;
-                        case "Apr":
-                            bulanName = "April";
-                            break;
-                        case "May":
-                            bulanName = "Mei";
-                            break;
-                        case "Jun":
-                            bulanName = "Juni";
-                            break;
-                        case "Jul":
-                            bulanName = "Juli";
-                            break;
-                        case "Aug":
-                            bulanName = "Agustus";
-                            break;
-                        case "Sep":
-                            bulanName = "September";
-                            break;
-                        case "Oct":
-                            bulanName = "Oktober";
-                            break;
-                        case "Nov":
-                            bulanName = "November";
-                            break;
-                        case "Dec":
-                            bulanName = "Desember";
-                            break;
-                        default:
-                            bulanName = "Not found!";
-                            break;
-                    }
-
-                    monthTV.setText(bulanName);
-                    yearTV.setText(year);
-                    eventCalender.setText("");
-
-                }
-            });
-
-        }
+        });
 
         closeBTN.setOnClickListener(new View.OnClickListener() {
             @Override
