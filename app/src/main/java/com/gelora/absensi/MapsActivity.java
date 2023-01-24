@@ -147,7 +147,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
-    Location locationGPS;
     CompactCalendarView compactCalendarView;
     KAlertDialog pDialog;
     ResultReceiver resultReceiver;
@@ -175,7 +174,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "1.5.8";
+    String appVersion = "1.5.9";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,11 +190,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         deviceID = String.valueOf(Secure.getString(MapsActivity.this.getContentResolver(), Secure.ANDROID_ID)).toUpperCase();
 
-        if (getTimeZone().equals("GMT+07:00")){
+        if (getTimeZone().equals("GMT+07:00")||getTimeZone().equals("UTC+07")){
             checkinTimeZone = "WIB";
-        } else if (getTimeZone().equals("GMT+08:00")){
+        } else if (getTimeZone().equals("GMT+08:00")||getTimeZone().equals("UTC+08")){
             checkinTimeZone = "WITA";
-        } else if (getTimeZone().equals("GMT+09:00")){
+        } else if (getTimeZone().equals("GMT+09:00")||getTimeZone().equals("UTC+09")){
             checkinTimeZone = "WIT";
         } else {
             checkinTimeZone = getTimeZone();
@@ -203,7 +202,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         resultReceiver = new AddressResultReceiver(new Handler());
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
 
@@ -609,50 +607,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // userLat = -6.3280459;
             // userLong = 106.8768529;
 
-            long milliSec = location.getTime();
-            DateFormat dateNetworkFormat = new SimpleDateFormat("yyyy-MM-dd");
-            DateFormat timeNetworkFormat = new SimpleDateFormat("HH:mm");
-            Date network = new Date(milliSec);
-
-            if(locationGPS != null) {
-                long milliSecGPS = locationGPS.getTime();
-                Date gps = new Date(milliSecGPS);
-                Date date = new Date();
-                long timeMilli = date.getTime();
-                long selisihMs = milliSecGPS - timeMilli;
-
-                if(selisihMs<0){
-                    selisihMs = selisihMs * -1;
-                } else {
-                    selisihMs = selisihMs;
-                }
-
-                if (selisihMs<180000){ // Toleransi perbedaan waktu dibawah 3 menit
-                    String zonaWaktu;
-                    if (getTimeZone().equals("GMT+07:00")){
-                        zonaWaktu = "WIB";
-                    } else if (getTimeZone().equals("GMT+08:00")){
-                        zonaWaktu = "WITA";
-                    } else if (getTimeZone().equals("GMT+09:00")){
-                        zonaWaktu = "WIT";
-                    } else {
-                        zonaWaktu = getTimeZone();
-                    }
-
-                    if(checkinTimeZone.equals(zonaWaktu)){
-                        timeDetection = "matching";
-                    } else {
-                        timeDetection = "different";
-                    }
-
-                } else {
-                    timeDetection = "different";
-                }
-
-            } else {
-                timeDetection = "different";
-            }
-
+            checkTime();
             getCurrentDay();
             dateLive();
 
@@ -917,6 +872,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private String getDate() {
         @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+        //return ("2022-06-03");
+    }
+
+    private String getDateTime() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
         //return ("2022-06-03");
@@ -1462,11 +1425,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String status_absen = idStatusAbsen;
 
         String zonaWaktu;
-        if (getTimeZone().equals("GMT+07:00")){
+        if (getTimeZone().equals("GMT+07:00")||getTimeZone().equals("UTC+07")){
             zonaWaktu = "WIB";
-        } else if (getTimeZone().equals("GMT+08:00")){
+        } else if (getTimeZone().equals("GMT+08:00")||getTimeZone().equals("UTC+08")){
             zonaWaktu = "WITA";
-        } else if (getTimeZone().equals("GMT+09:00")){
+        } else if (getTimeZone().equals("GMT+09:00")||getTimeZone().equals("UTC+09")){
             zonaWaktu = "WIT";
         } else {
             zonaWaktu = getTimeZone();
@@ -3737,11 +3700,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String longitude = String.valueOf(userLong);
 
         String zonaWaktu;
-        if (getTimeZone().equals("GMT+07:00")){
+        if (getTimeZone().equals("GMT+07:00")||getTimeZone().equals("UTC+07")){
             zonaWaktu = "WIB";
-        } else if (getTimeZone().equals("GMT+08:00")){
+        } else if (getTimeZone().equals("GMT+08:00")||getTimeZone().equals("UTC+08")){
             zonaWaktu = "WITA";
-        } else if (getTimeZone().equals("GMT+09:00")){
+        } else if (getTimeZone().equals("GMT+09:00")||getTimeZone().equals("UTC+09")){
             zonaWaktu = "WIT";
         } else {
             zonaWaktu = getTimeZone();
@@ -5724,6 +5687,103 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 params.put("id_bagian", sharedPrefManager.getSpIdDept());
                 params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
                 params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void checkTime() {
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/server_time";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                String dateTimeServer = data.getString("time");
+                                String tolerance = data.getString("tolerance");
+
+                                int timeTolerance = Integer.parseInt(tolerance);
+
+                                String timeServer = dateTimeServer;
+                                String timeDevice = getDateTime();
+
+                                @SuppressLint("SimpleDateFormat")
+                                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                Date date1 = null;
+                                Date date2 = null;
+                                try {
+                                    date1 = format.parse(timeServer);
+                                    date2 = format.parse(timeDevice);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                long waktu1 = date1.getTime();
+                                long waktu2 = date2.getTime();
+                                long selisih_waktu = waktu1 - waktu2;
+
+                                if(selisih_waktu<0){
+                                    selisih_waktu = selisih_waktu * -1;
+                                } else {
+                                    selisih_waktu = selisih_waktu;
+                                }
+
+                                if (selisih_waktu<=timeTolerance){
+                                    String zonaWaktu;
+                                    if (getTimeZone().equals("GMT+07:00")||getTimeZone().equals("UTC+07")){
+                                        zonaWaktu = "WIB";
+                                    } else if (getTimeZone().equals("GMT+08:00")||getTimeZone().equals("UTC+08")){
+                                        zonaWaktu = "WITA";
+                                    } else if (getTimeZone().equals("GMT+09:00")||getTimeZone().equals("UTC+09")){
+                                        zonaWaktu = "WIT";
+                                    } else {
+                                        zonaWaktu = getTimeZone();
+                                    }
+
+                                    if(checkinTimeZone.equals(zonaWaktu)){
+                                        timeDetection = "matching";
+                                    } else {
+                                        timeDetection = "different";
+                                    }
+
+                                } else {
+                                    timeDetection = "different";
+                                }
+
+                            } else {
+                                timeDetection = "different";
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        timeDetection = "different";
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("time_zone", getTimeZone());
                 return params;
             }
         };
