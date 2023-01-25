@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -171,66 +173,72 @@ public class ListChatMateActivity extends AppCompatActivity {
                 shortName = shortName.substring(0, shortName.indexOf(" "));
             }
 
-            new KAlertDialog(ListChatMateActivity.this, KAlertDialog.WARNING_TYPE)
-                    .setTitleText("Perhatian")
-                    .setContentText("Apakah anda yakin untuk menghapus percakapan dengan "+shortName+"?")
-                    .setCancelText("TIDAK")
-                    .setConfirmText("   YA   ")
-                    .showCancelButton(true)
-                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                        }
-                    })
-                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
+            try {
+                new KAlertDialog(ListChatMateActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Apakah anda yakin untuk menghapus percakapan dengan "+shortName+"?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
 
-                            pDialog = new KAlertDialog(ListChatMateActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                            pDialog.show();
-                            pDialog.setCancelable(false);
-                            new CountDownTimer(1300, 800) {
-                                public void onTick(long millisUntilFinished) {
-                                    i++;
-                                    switch (i) {
-                                        case 0:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (ListChatMateActivity.this, R.color.colorGradien));
-                                            break;
-                                        case 1:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (ListChatMateActivity.this, R.color.colorGradien2));
-                                            break;
-                                        case 2:
-                                        case 6:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (ListChatMateActivity.this, R.color.colorGradien3));
-                                            break;
-                                        case 3:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (ListChatMateActivity.this, R.color.colorGradien4));
-                                            break;
-                                        case 4:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (ListChatMateActivity.this, R.color.colorGradien5));
-                                            break;
-                                        case 5:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (ListChatMateActivity.this, R.color.colorGradien6));
-                                            break;
+                                pDialog = new KAlertDialog(ListChatMateActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1300, 800) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (ListChatMateActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (ListChatMateActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (ListChatMateActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (ListChatMateActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (ListChatMateActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (ListChatMateActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
                                     }
-                                }
-                                public void onFinish() {
-                                    i = -1;
-                                    endChatFunction(nik_rekan_chat);
-                                }
-                            }.start();
+                                    public void onFinish() {
+                                        i = -1;
+                                        endChatFunction(nik_rekan_chat);
+                                    }
+                                }.start();
 
-                        }
-                    })
-                    .show();
+                            }
+                        })
+                        .show();
+            }
+            catch (WindowManager.BadTokenException e) {
+                Log.d("Error", e.toString());
+            }
+
         }
     };
 

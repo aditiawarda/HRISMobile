@@ -2617,7 +2617,7 @@ public class UserActivity extends AppCompatActivity {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.5.9"; //harus disesuaikan
+                                String currentVersion = "1.6.0"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateBTN.setVisibility(View.VISIBLE);
                                     updateBTN.setOnClickListener(new View.OnClickListener() {

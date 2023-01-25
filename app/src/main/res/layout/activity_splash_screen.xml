@@ -210,6 +210,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
+                        android:layout_marginRight="5dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -226,6 +227,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="13dp"
+                            android:lineSpacingExtra="2dp"
                             android:textColor="#696969"
                             android:text="HRIS Mobile Gelora v telah tersedia di Google Play Store"/>
 
