@@ -275,7 +275,6 @@ public class DetailTerlambatActivity extends AppCompatActivity {
                                     dataLateRV.setAdapter(adapterDataLate);
                                 }
 
-
                             }
 
                         } catch (JSONException e) {
