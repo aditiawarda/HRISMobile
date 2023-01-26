@@ -591,26 +591,72 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     dTitikAbsenTV.setText(titik_absen);
 
                                 } else if(keterangan.equals("2")){
-                                    detailKeteranganPart.setVisibility(View.GONE);
+                                    detailKeteranganPart.setVisibility(View.VISIBLE);
+                                    JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
+                                    String nama_status    = detail_keterangan.getString("nama_status");
+                                    String kode_status    = detail_keterangan.getString("kode_status");
+                                    String nama_shift     = detail_keterangan.getString("nama_shift");
+                                    String shift_datang   = detail_keterangan.getString("shift_datang");
+                                    String shift_pulang   = detail_keterangan.getString("shift_pulang");
+
+                                    dStatusAbsen.setVisibility(View.VISIBLE);
+                                    dShiftAbsen.setVisibility(View.VISIBLE);
+
+                                    dStatusAbsenTV.setText(nama_status+" ("+kode_status+")");
+                                    dShiftAbsenTV.setText(nama_shift+" ("+shift_datang+" - "+shift_pulang+")");
+
                                 } else if(keterangan.equals("3")){
                                     detailKeteranganPart.setVisibility(View.VISIBLE);
                                     JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
+                                    String nama_status    = detail_keterangan.getString("nama_status");
+                                    String kode_status    = detail_keterangan.getString("kode_status");
+                                    String nama_shift     = detail_keterangan.getString("nama_shift");
+                                    String shift_datang   = detail_keterangan.getString("shift_datang");
+                                    String shift_pulang   = detail_keterangan.getString("shift_pulang");
                                     String tanggal_pulang = detail_keterangan.getString("tanggal_pulang");
                                     String jam_pulang = detail_keterangan.getString("jam_pulang");
                                     String titik_absen = detail_keterangan.getString("titik_absen");
 
+                                    dStatusAbsen.setVisibility(View.VISIBLE);
+                                    dShiftAbsen.setVisibility(View.VISIBLE);
                                     dTanggalPulang.setVisibility(View.VISIBLE);
                                     dJamPulang.setVisibility(View.VISIBLE);
                                     dTitikAbsen.setVisibility(View.VISIBLE);
 
+                                    dStatusAbsenTV.setText(nama_status+" ("+kode_status+")");
+                                    dShiftAbsenTV.setText(nama_shift+" ("+shift_datang+" - "+shift_pulang+")");
                                     dTanggalPulangTV.setText(tanggal_pulang.substring(8,10)+"/"+tanggal_pulang.substring(5,7)+"/"+tanggal_pulang.substring(0,4));
                                     dJamPulangTV.setText(jam_pulang);
                                     dTitikAbsenTV.setText(titik_absen);
 
                                 } else if(keterangan.equals("4")){
-                                    detailKeteranganPart.setVisibility(View.GONE);
+                                    detailKeteranganPart.setVisibility(View.VISIBLE);
+                                    JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
+                                    String nama_status    = detail_keterangan.getString("nama_status");
+                                    String kode_status    = detail_keterangan.getString("kode_status");
+                                    String nama_shift     = detail_keterangan.getString("nama_shift");
+                                    String shift_datang   = detail_keterangan.getString("shift_datang");
+                                    String shift_pulang   = detail_keterangan.getString("shift_pulang");
+
+                                    dStatusAbsen.setVisibility(View.VISIBLE);
+                                    dShiftAbsen.setVisibility(View.VISIBLE);
+
+                                    dStatusAbsenTV.setText(nama_status+" ("+kode_status+")");
+                                    dShiftAbsenTV.setText(nama_shift+" ("+shift_datang+" - "+shift_pulang+")");
                                 } else if(keterangan.equals("5")){
-                                    detailKeteranganPart.setVisibility(View.GONE);
+                                    detailKeteranganPart.setVisibility(View.VISIBLE);
+                                    JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
+                                    String nama_status    = detail_keterangan.getString("nama_status");
+                                    String kode_status    = detail_keterangan.getString("kode_status");
+                                    String nama_shift     = detail_keterangan.getString("nama_shift");
+                                    String shift_datang   = detail_keterangan.getString("shift_datang");
+                                    String shift_pulang   = detail_keterangan.getString("shift_pulang");
+
+                                    dStatusAbsen.setVisibility(View.VISIBLE);
+                                    dShiftAbsen.setVisibility(View.VISIBLE);
+
+                                    dStatusAbsenTV.setText(nama_status+" ("+kode_status+")");
+                                    dShiftAbsenTV.setText(nama_shift+" ("+shift_datang+" - "+shift_pulang+")");
                                 } else if(keterangan.equals("6")){
                                     detailKeteranganPart.setVisibility(View.VISIBLE);
                                     JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");

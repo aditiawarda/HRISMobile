@@ -83,7 +83,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     //Kategori 3
     LinearLayout tglPulangPartK3, tglPulangBTNK3, jamPulangBTNK3, titikBTNK3;
-    TextView tglPulangPilihK3, jamPulangPilihK3, titikPilihK3;
+    TextView tglPulangPilihK3, shiftTVK3, jamPulangPilihK3, titikPilihK3;
 
     //Kategori 6
     LinearLayout statusAbsensiBTNK6, shiftAbsensiBTNK6;
@@ -152,6 +152,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
         tglPulangPartK1 = findViewById(R.id.tgl_pulang_part_k1);
 
         //Kategori Keterangan 3
+        shiftTVK3 = findViewById(R.id.shift_tv_k3);
         tglPulangPartK3 = findViewById(R.id.tgl_pulang_part_k3);
         tglPulangBTNK3 = findViewById(R.id.tgl_pulang_btn_k3);
         tglPulangPilihK3 = findViewById(R.id.tgl_pulang_pilih_k3);
@@ -216,6 +217,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                         tglPulangPilihK3.setText("");
                         jamPulangPilihK3.setText("");
                         titikPilihK3.setText("");
+                        shiftTVK3.setText("Tentukan Tanggal Masuk...");
 
                         statusAbsensiPilihK6.setText("");
                         shiftAbsensiPilihK6.setText("Tentukan Status Absensi...");
@@ -306,6 +308,11 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     detailKeterangan3.setVisibility(View.VISIBLE);
                     detailKeterangan6.setVisibility(View.GONE);
                     labelDetail.setVisibility(View.VISIBLE);
+
+                    if(!dateChoiceMasuk.equals("")){
+                        getShift();
+                    }
+
                 } else if (keterangan4.isChecked()) {
                     pilihanKeterangan = keterangan4.getText().toString();
                     kategoriKeterangan = "4";
@@ -3737,6 +3744,72 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     }
 
+    private void getShift() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_shift_form_finger";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Success")){
+                                String id = data.getString("id");
+                                String shift = data.getString("shift");
+                                shiftTVK3.setText(shift);
+                            } else {
+                                datePilihTV.setText("Pilih Kembali !");
+                                dateChoiceMasuk = "";
+                                shiftTVK3.setText("Tentukan Tanggal Masuk...");
+                                new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Anda tidak melakukan absen masuk pada tanggal yang dipilih")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("nik", sharedPrefManager.getSpNik());
+                params.put("tanggal_masuk", dateChoiceMasuk);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
     private void checkSignature(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
@@ -3836,12 +3909,17 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                             .setContentText("Anda telah melakukan absen masuk pada tanggal masuk yang dipilih")
                                             .setConfirmText("    OK    ")
                                             .changeAlertType(KAlertDialog.ERROR_TYPE);
+                                } else if(kategoriKeterangan.equals("2")){
+                                    pDialog.setTitleText("Gagal Terkirim")
+                                            .setContentText("Anda telah melakukan absen masuk dan tidak terlambat pada tanggal yang dipilih")
+                                            .setConfirmText("    OK    ")
+                                            .changeAlertType(KAlertDialog.ERROR_TYPE);
                                 } else if(kategoriKeterangan.equals("3")){
                                     pDialog.setTitleText("Gagal Terkirim")
                                             .setContentText("Anda telah melakukan absen pulang pada tanggal yang dipilih")
                                             .setConfirmText("    OK    ")
                                             .changeAlertType(KAlertDialog.ERROR_TYPE);
-                                } else if(kategoriKeterangan.equals("4")||kategoriKeterangan.equals("2")){
+                                } else if(kategoriKeterangan.equals("4")){
                                     pDialog.setTitleText("Gagal Terkirim")
                                             .setContentText("Jam absen masuk anda tidak terlambat")
                                             .setConfirmText("    OK    ")
@@ -4035,6 +4113,11 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     shiftAbsensiPilihK1.setText("Tentukan Status Absensi...");
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
+
+                    if(!kategoriKeterangan.equals("")&&kategoriKeterangan.equals("3")){
+                        getShift();
+                    }
+
                 } else {
                     datePilihTV.setText("Pilih Kembali !");
                     dateChoiceMasuk = "";
@@ -4159,6 +4242,11 @@ public class FormFingerscanActivity extends AppCompatActivity {
                     shiftAbsensiPilihK1.setText("Tentukan Status Absensi...");
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
+
+                    if(!kategoriKeterangan.equals("")&&kategoriKeterangan.equals("3")){
+                        getShift();
+                    }
+
                 } else {
                     datePilihTV.setText("Pilih Kembali !");
                     dateChoiceMasuk = "";
