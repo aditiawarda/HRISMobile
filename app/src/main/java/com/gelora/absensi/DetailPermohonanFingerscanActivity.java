@@ -589,7 +589,6 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     dTanggalPulangTV.setText(tanggal_pulang.substring(8,10)+"/"+tanggal_pulang.substring(5,7)+"/"+tanggal_pulang.substring(0,4));
                                     dJamPulangTV.setText(jam_pulang);
                                     dTitikAbsenTV.setText(titik_absen);
-
                                 } else if(keterangan.equals("2")){
                                     detailKeteranganPart.setVisibility(View.VISIBLE);
                                     JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
@@ -604,7 +603,6 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
                                     dStatusAbsenTV.setText(nama_status+" ("+kode_status+")");
                                     dShiftAbsenTV.setText(nama_shift+" ("+shift_datang+" - "+shift_pulang+")");
-
                                 } else if(keterangan.equals("3")){
                                     detailKeteranganPart.setVisibility(View.VISIBLE);
                                     JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
@@ -628,7 +626,6 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     dTanggalPulangTV.setText(tanggal_pulang.substring(8,10)+"/"+tanggal_pulang.substring(5,7)+"/"+tanggal_pulang.substring(0,4));
                                     dJamPulangTV.setText(jam_pulang);
                                     dTitikAbsenTV.setText(titik_absen);
-
                                 } else if(keterangan.equals("4")){
                                     detailKeteranganPart.setVisibility(View.VISIBLE);
                                     JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
@@ -671,7 +668,6 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
                                     dStatusAbsenTV.setText(nama_status+" ("+kode_status+")");
                                     dShiftAbsenTV.setText(nama_shift+" ("+shift_datang+" - "+shift_pulang+")");
-
                                 } else if(keterangan.equals("7")){
                                     detailKeteranganPart.setVisibility(View.GONE);
                                 }
