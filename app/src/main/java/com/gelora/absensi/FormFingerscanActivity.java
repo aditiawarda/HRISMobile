@@ -3940,6 +3940,11 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                         .setContentText("Anda belum melakukan absen masuk pada tanggal masuk yang dipilih")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            } else if(status.equals("Limit Out")) {
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setContentText("Bulan ini anda telah mengajukan 3 permohonan form keterangan tidak absen/batas maksimum permohonan")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
