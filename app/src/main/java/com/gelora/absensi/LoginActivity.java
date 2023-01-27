@@ -613,6 +613,7 @@ public class LoginActivity extends AppCompatActivity {
                             String nama = response.getString("nama");
                             String whatsapp = response.getString("whatsapp");
 
+                            closeBTN = findViewById(R.id.close_btn);
                             closeBTN.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -620,6 +621,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
 
+                            connectBTN = findViewById(R.id.connect_btn);
                             connectBTN.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
