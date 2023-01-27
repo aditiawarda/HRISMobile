@@ -3942,7 +3942,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else if(status.equals("Limit Out")) {
                                 pDialog.setTitleText("Gagal Terkirim")
-                                        .setContentText("Bulan ini anda telah mengajukan 3 permohonan form keterangan tidak absen/batas maksimum permohonan")
+                                        .setContentText("Bulan ini anda telah mengajukan 3 permohonan form keterangan tidak absen/batas maksimum pengajuan permohonan")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
@@ -4129,7 +4129,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Pengajuan fingerscan tidak dapat untuk tanggal yang akan datang. Harap ulangi!")
+                            .setContentText("Pengajuan form keterangan tidak absen tidak dapat ditujukan untuk tanggal yang akan datang. Harap ulangi!")
                             .setConfirmText("    OK    ")
                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
@@ -4258,7 +4258,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
-                            .setContentText("Pengajuan fingerscan tidak dapat untuk tanggal yang akan datang. Harap ulangi!")
+                            .setContentText("Pengajuan form keterangan tidak absen tidak dapat ditujukan untuk tanggal yang akan datang. Harap ulangi!")
                             .setConfirmText("    OK    ")
                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                 @Override
