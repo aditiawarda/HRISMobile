@@ -4620,10 +4620,12 @@ public class FormFingerscanActivity extends AppCompatActivity {
         bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_status_absen, bottomSheet, false));
         statusAbsenRV = findViewById(R.id.status_absen_rv);
 
-        statusAbsenRV.setLayoutManager(new LinearLayoutManager(this));
-        statusAbsenRV.setHasFixedSize(true);
-        statusAbsenRV.setNestedScrollingEnabled(false);
-        statusAbsenRV.setItemAnimator(new DefaultItemAnimator());
+        if(statusAbsenRV != null){
+            statusAbsenRV.setLayoutManager(new LinearLayoutManager(this));
+            statusAbsenRV.setHasFixedSize(true);
+            statusAbsenRV.setNestedScrollingEnabled(false);
+            statusAbsenRV.setItemAnimator(new DefaultItemAnimator());
+        }
 
         getStatusAbsenBagian();
 
@@ -4633,10 +4635,12 @@ public class FormFingerscanActivity extends AppCompatActivity {
         bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_shift_absen, bottomSheet, false));
         shifAbsenRV = findViewById(R.id.shift_absen_rv);
 
-        shifAbsenRV.setLayoutManager(new LinearLayoutManager(this));
-        shifAbsenRV.setHasFixedSize(true);
-        shifAbsenRV.setNestedScrollingEnabled(false);
-        shifAbsenRV.setItemAnimator(new DefaultItemAnimator());
+        if(shifAbsenRV != null){
+            shifAbsenRV.setLayoutManager(new LinearLayoutManager(this));
+            shifAbsenRV.setHasFixedSize(true);
+            shifAbsenRV.setNestedScrollingEnabled(false);
+            shifAbsenRV.setItemAnimator(new DefaultItemAnimator());
+        }
 
         getShiftAbsenBagian();
 

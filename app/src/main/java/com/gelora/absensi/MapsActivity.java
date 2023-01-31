@@ -174,7 +174,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "1.6.1";
+    String appVersion = "1.6.2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -567,9 +567,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // GPS location can be null if GPS is switched off
                 if (location != null) {
                     Log.e("TAG", "GPS is on" + String.valueOf(location));
-                    mMap.setMyLocationEnabled(true);
-                    mMap.getUiSettings().setMyLocationButtonEnabled(false);
-                    startLocationUpdates();
+                    if(mMap != null){
+                        mMap.setMyLocationEnabled(true);
+                        mMap.getUiSettings().setMyLocationButtonEnabled(false);
+                        startLocationUpdates();
+                    }
                 }  else {
                     gpsEnableAction();
                 }
@@ -957,10 +959,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_status_absen, bottomSheet, false));
         statusAbsenRV = findViewById(R.id.status_absen_rv);
 
-        statusAbsenRV.setLayoutManager(new LinearLayoutManager(this));
-        statusAbsenRV.setHasFixedSize(true);
-        statusAbsenRV.setNestedScrollingEnabled(false);
-        statusAbsenRV.setItemAnimator(new DefaultItemAnimator());
+        if(statusAbsenRV != null){
+            statusAbsenRV.setLayoutManager(new LinearLayoutManager(this));
+            statusAbsenRV.setHasFixedSize(true);
+            statusAbsenRV.setNestedScrollingEnabled(false);
+            statusAbsenRV.setItemAnimator(new DefaultItemAnimator());
+        }
 
         getStatusAbsenBagian();
 
@@ -970,10 +974,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_shift_absen, bottomSheet, false));
         shifAbsenRV = findViewById(R.id.shift_absen_rv);
 
-        shifAbsenRV.setLayoutManager(new LinearLayoutManager(this));
-        shifAbsenRV.setHasFixedSize(true);
-        shifAbsenRV.setNestedScrollingEnabled(false);
-        shifAbsenRV.setItemAnimator(new DefaultItemAnimator());
+        if(shifAbsenRV != null){
+            shifAbsenRV.setLayoutManager(new LinearLayoutManager(this));
+            shifAbsenRV.setHasFixedSize(true);
+            shifAbsenRV.setNestedScrollingEnabled(false);
+            shifAbsenRV.setItemAnimator(new DefaultItemAnimator());
+        }
 
         getShiftAbsenBagian();
 
