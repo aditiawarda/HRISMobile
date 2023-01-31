@@ -1340,7 +1340,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if (statusLibur.equals("aktif")){
             lateTime = "00:00:00";
+        } else {
+            if (waktu1<waktu2+60000){
+                lateTime = "00:00:00";
+            } else {
+                lateTime = String.valueOf((f.format(hour)) + ":" + (f.format(min)) + ":" + f.format(sec));
+            }
+        }
 
+    }
+
+    private void lateTimeNotif() {
+        String timeAbsen = getTime();
+        String timeMasuk = datangShiftAbsen;
+
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        Date date1 = null;
+        Date date2 = null;
+        try {
+            date1 = format.parse(timeAbsen);
+            date2 = format.parse(timeMasuk);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long waktu1 = date1.getTime();
+        long waktu2 = date2.getTime();
+        long selisih_waktu = waktu1 - waktu2;
+        NumberFormat f = new DecimalFormat("00");
+        long hour = (selisih_waktu / 3600000) % 24;
+        long min = (selisih_waktu / 60000) % 60;
+        long sec = (selisih_waktu / 1000) % 60;
+
+        if (statusLibur.equals("aktif")){
             Notify.build(getApplicationContext())
                     .setTitle("HRIS Mobile Gelora")
                     .setContent("Anda lembur di hari libur. Selamat bekerja dan utamakan keselamatan")
@@ -1359,12 +1391,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
         } else {
-            if (waktu1<waktu2+60000){
-                // lateStatus = "1";
-                lateTime = "00:00:00";
-            } else {
-                // lateStatus = "2";
-                lateTime = String.valueOf((f.format(hour)) + ":" + (f.format(min)) + ":" + f.format(sec));
+            if (waktu1>waktu2+60000){
                 String lateDesc = "";
 
                 if(!String.valueOf((f.format(hour))).equals("00")){ // 01:01:01
@@ -1466,6 +1493,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             String message = data.getString("message");
 
                             if (status.equals("Success")){
+                                lateTimeNotif();
                                 dialogAktif = "1";
                                 idCheckin = data.getString("id_checkin");
                                 checkAbsen();
@@ -1484,6 +1512,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 checkAbsen();
                                             }
                                         })
+                                        .show();
+                            } else {
+                                pDialog.dismiss();
+                                new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Check In Gagal")
+                                        .setContentText("Terjadi kesalahan")
+                                        .setConfirmText("    OK    ")
                                         .show();
                             }
 
@@ -3738,13 +3773,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
-                            String message = data.getString("message");
-                            String id_checkout = data.getString("id_checkout");
-                            checkoutRecord(id_checkout);
 
-                            pDialog.setTitleText("Check Out Berhasil")
-                                    .setConfirmText("    OK    ")
-                                    .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            if(status.equals("Success")){
+                                String message = data.getString("message");
+                                String id_checkout = data.getString("id_checkout");
+                                checkoutRecord(id_checkout);
+
+                                pDialog.setTitleText("Check Out Berhasil")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            } else {
+                                pDialog.setTitleText("Check Out Gagal")
+                                        .setContentText("Terjadi kesalahan")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
