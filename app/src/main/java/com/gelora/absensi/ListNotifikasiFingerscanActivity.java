@@ -186,6 +186,15 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
 
         if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
             optionPart.setVisibility(View.VISIBLE);
+        } else if (sharedPrefManager.getSpIdJabatan().equals("8")) {
+            float scale = getResources().getDisplayMetrics().density;
+            int side = (int) (17*scale + 0.5f);
+            int top = (int) (85*scale + 0.5f);
+            int bottom = (int) (20*scale + 0.5f);
+            mainPart.setPadding(side,top,side,bottom);
+            optionPart.setVisibility(View.GONE);
+            permohonanMasukPart.setVisibility(View.VISIBLE);
+            permohonanSayaPart.setVisibility(View.GONE);
         } else {
             float scale = getResources().getDisplayMetrics().density;
             int side = (int) (17*scale + 0.5f);
@@ -195,6 +204,12 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
             optionPart.setVisibility(View.GONE);
             permohonanMasukPart.setVisibility(View.GONE);
             permohonanSayaPart.setVisibility(View.VISIBLE);
+        }
+
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+            homeBTN.setVisibility(View.GONE);
+        } else {
+            homeBTN.setVisibility(View.VISIBLE);
         }
 
         getData();

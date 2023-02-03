@@ -12,6 +12,7 @@ public class DataPulangCepat {
     private String jam_pulang;
     private String timezone_pulang;
     private String status_pulang;
+    private String alasan;
     private String checkin_point;
     private String checkout_point;
 
@@ -101,5 +102,13 @@ public class DataPulangCepat {
 
     public void setStatus_pulang(String status_pulang) {
         this.status_pulang = status_pulang;
+    }
+
+    public String getAlasan() {
+        return alasan;
+    }
+
+    public void setAlasan(String alasan) {
+        this.alasan = alasan;
     }
 }

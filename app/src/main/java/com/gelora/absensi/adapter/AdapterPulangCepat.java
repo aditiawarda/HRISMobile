@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -273,6 +274,13 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
             myViewHolder.checkoutPoint.setText(dataPulangCepat.getCheckout_point());
         }
 
+        if (String.valueOf(dataPulangCepat.getAlasan()).equals("null")||String.valueOf(dataPulangCepat.getAlasan()).equals("")){
+            myViewHolder.alasanPart.setVisibility(View.GONE);
+        } else {
+            myViewHolder.alasanPart.setVisibility(View.VISIBLE);
+            myViewHolder.alasanTV.setText(String.valueOf(dataPulangCepat.getAlasan()));
+        }
+
     }
 
     @Override
@@ -281,7 +289,8 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView namaShift, jamShift, dateAbsen, dateCheckin, dateCheckout, checkinTime, checkinPoint, checkoutTime, checkoutPoint;
+        TextView namaShift, jamShift, dateAbsen, dateCheckin, dateCheckout, checkinTime, checkinPoint, checkoutTime, checkoutPoint, alasanTV;
+        LinearLayout alasanPart;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             dateAbsen = itemView.findViewById(R.id.date_absen_tv);
@@ -293,8 +302,9 @@ public class AdapterPulangCepat extends RecyclerView.Adapter<AdapterPulangCepat.
             checkoutPoint = itemView.findViewById(R.id.checkout_point_tv);
             jamShift = itemView.findViewById(R.id.jam_shift);
             namaShift = itemView.findViewById(R.id.nama_shift);
+            alasanPart = itemView.findViewById(R.id.alasan_part);
+            alasanTV = itemView.findViewById(R.id.alasan_tv);
         }
     }
-
 
 }

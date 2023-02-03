@@ -34,6 +34,14 @@ import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +52,7 @@ public class UserDetailActivity extends AppCompatActivity {
     LinearLayout lengkapPart, backBTN, backHeader, submitBTN;
     CircleImageView profileImage;
     String jabatan = "", emailData = "", phoneData = "", avatar, avatarPath, bagian, department, tanggalBergabung;
-    TextView jabatanTV, namaKaryawanTV, nikTV, bagianTV, departemenTV, bergabungTV;
+    TextView jabatanTV, namaKaryawanTV, nikTV, bagianTV, departemenTV, bergabungTV, masaKerjaTV;
     EditText emailED, phoneED;
     SharedPrefManager sharedPrefManager;
     KAlertDialog pDialog;
@@ -68,6 +76,7 @@ public class UserDetailActivity extends AppCompatActivity {
         bagianTV = findViewById(R.id.bagian_tv);
         departemenTV = findViewById(R.id.departemen_tv);
         bergabungTV = findViewById(R.id.bergabung_tv);
+        masaKerjaTV = findViewById(R.id.masa_kerja_tv);
         emailED = findViewById(R.id.email_tv);
         phoneED = findViewById(R.id.no_hp_tv);
         submitBTN = findViewById(R.id.submit_btn);
@@ -96,8 +105,78 @@ public class UserDetailActivity extends AppCompatActivity {
 
         if(tanggalBergabung.equals("0000-00-00")){
             bergabungTV.setText("Tidak diketahui");
+            masaKerjaTV.setText("Tidak diketahui");
         } else {
             bergabungTV.setText(tanggalBergabung.substring(8,10)+"/"+tanggalBergabung.substring(5,7)+"/"+tanggalBergabung.substring(0,4));
+
+            String tglSekarang = getDate();
+            String tglMasukKerja = tanggalBergabung;
+
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date1 = null;
+            Date date2 = null;
+            try {
+                date1 = format.parse(tglSekarang);
+                date2 = format.parse(tglMasukKerja);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            long waktu1 = date1.getTime();
+            long waktu2 = date2.getTime();
+            long selisih_waktu = waktu1 - waktu2;
+
+            long diffDays = selisih_waktu / (24 * 60 * 60 * 1000);
+
+            long tahun = (diffDays / 365);
+            long bulan = (diffDays - (tahun * 365)) / 30;
+            long hari = (diffDays - ((tahun * 365) + (bulan * 30)));
+
+            if (tahun == 0){
+                if(bulan == 0){
+                    masaKerjaTV.setText(String.valueOf(hari)+" Hari");
+                } else {
+                    masaKerjaTV.setText(String.valueOf(bulan)+" Bulan");
+                }
+            } else {
+                if(bulan == 0){
+                    masaKerjaTV.setText(String.valueOf(tahun)+" Tahun");
+                } else {
+                    masaKerjaTV.setText(String.valueOf(tahun)+" Tahun "+String.valueOf(bulan)+" Bulan");
+                }
+            }
+
+            // if (tahun == 0){
+            //    if(bulan == 0){
+            //        if(hari == 0){
+            //            masaKerjaTV.setText(String.valueOf(1)+" Hari");
+            //        } else {
+            //            masaKerjaTV.setText(String.valueOf(hari)+" Hari");
+            //        }
+            //    } else {
+            //        if(hari == 0){
+            //            masaKerjaTV.setText(String.valueOf(bulan)+" Bulan");
+            //        } else {
+            //            masaKerjaTV.setText(String.valueOf(bulan)+" Bulan "+String.valueOf(hari)+" Hari");
+            //        }
+            //    }
+            // }
+            // else {
+            //    if(bulan == 0){
+            //        if(hari == 0){
+            //            masaKerjaTV.setText(String.valueOf(tahun)+" Tahun");
+            //        } else {
+            //            masaKerjaTV.setText(String.valueOf(tahun)+" Tahun "+String.valueOf(bulan)+" Bulan "+String.valueOf(hari)+" Hari");
+            //        }
+            //    } else {
+            //        if(hari == 0){
+            //            masaKerjaTV.setText(String.valueOf(tahun)+" Tahun "+String.valueOf(bulan)+" Bulan");
+            //        } else {
+            //            masaKerjaTV.setText(String.valueOf(tahun)+" Tahun "+String.valueOf(bulan)+" Bulan "+String.valueOf(hari)+" Hari");
+            //        }
+            //    }
+            // }
+
         }
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
@@ -455,6 +534,13 @@ public class UserDetailActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    private String getDate() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
 }

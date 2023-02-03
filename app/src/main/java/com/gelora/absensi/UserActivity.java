@@ -99,7 +99,7 @@ import static android.service.controls.ControlsProviderService.TAG;
 
 public class UserActivity extends AppCompatActivity {
 
-    LinearLayout loadingNotifFiturPart, countNotificationFinger, notificationFingerPart, fingerscanBTN, toUserDetail, emailEmptyWarningPart, headerBackground, faqBTN, sisaCutiData, sisaCutiBTN, countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
+    LinearLayout dasboardStatistikAbsensi, loadingNotifFiturPart, countNotificationFinger, notificationFingerPart, fingerscanBTN, fingerscanHistoryBTN,  toUserDetail, emailEmptyWarningPart, headerBackground, faqBTN, sisaCutiData, sisaCutiBTN, countNotificationMessage, notificationPart, fiturPart, positionPart, positionLoadingPart, digitalSignatureBTN, notifikationBTN, countNotification, permohonanIzinBTN, permohonanCutiBTN, monitoringStaffBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, idCardDigitalBTN, updateBTN, webBTN, selectMonthBTN, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN, prevBTN, nextBTN, editImg, uploadImg, logoutPart, chatBTN, removeAvatarBTN, closeBSBTN, viewAvatarBTN, updateAvatarBTN, emptyAvatarBTN, availableAvatarBTN, emptyAvatarPart, availableAvatarPart, actionBar, covidBTN, companyBTN, connectBTN, closeBTN, reminderBTN, privacyPolicyBTN, contactServiceBTN, aboutAppBTN, backBTN, logoutBTN, historyBTN;
     TextView countNotifFingerTV, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -145,6 +145,7 @@ public class UserActivity extends AppCompatActivity {
         historyBTN = findViewById(R.id.history_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
+        dasboardStatistikAbsensi = findViewById(R.id.dasboard_statistik_absen);
         aboutAppBTN = findViewById(R.id.about_app_btn);
         privacyPolicyBTN = findViewById(R.id.privacy_policy_btn);
         contactServiceBTN = findViewById(R.id.contact_service_btn);
@@ -236,6 +237,7 @@ public class UserActivity extends AppCompatActivity {
         toUserDetail = findViewById(R.id.to_user_detail);
         tglBergabungMainTV = findViewById(R.id.tgl_bergabung_main_tv);
         fingerscanBTN = findViewById(R.id.fingerscan_btn);
+        fingerscanHistoryBTN = findViewById(R.id.history_fingerscan_btn);
         notificationFingerPart = findViewById(R.id.notification_finger_part);
         yearCR = findViewById(R.id.year_tv);
         faqBTN = findViewById(R.id.faq_btn);
@@ -451,6 +453,14 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, FormFingerscanActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        fingerscanHistoryBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, HistoryFingerscanActivity.class);
                 startActivity(intent);
             }
         });
@@ -704,6 +714,16 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+            dasboardStatistikAbsensi.setVisibility(View.GONE);
+            backBTN.setVisibility(View.GONE);
+            faqBTN.setVisibility(View.GONE);
+        } else {
+            dasboardStatistikAbsensi.setVisibility(View.VISIBLE);
+            backBTN.setVisibility(View.VISIBLE);
+            faqBTN.setVisibility(View.VISIBLE);
+        }
 
         getDataUser();
 
@@ -2349,11 +2369,18 @@ public class UserActivity extends AppCompatActivity {
                                     chatBTN.setVisibility(View.GONE);
                                 }
 
-                                if(finger_scan.equals("1")){
-                                    fingerscanBTN.setVisibility(View.VISIBLE);
+                                if(finger_scan.equals("1")&&fitur_izin.equals("1")){
                                     notificationFingerPart.setVisibility(View.VISIBLE);
+                                    if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+                                        fingerscanBTN.setVisibility(View.GONE);
+                                        fingerscanHistoryBTN.setVisibility(View.GONE);
+                                    } else {
+                                        fingerscanBTN.setVisibility(View.VISIBLE);
+                                        fingerscanHistoryBTN.setVisibility(View.VISIBLE);
+                                    }
                                 } else {
                                     fingerscanBTN.setVisibility(View.GONE);
+                                    fingerscanHistoryBTN.setVisibility(View.GONE);
                                     notificationFingerPart.setVisibility(View.GONE);
                                 }
 
@@ -2362,10 +2389,19 @@ public class UserActivity extends AppCompatActivity {
                                         if(statusKaryawan.equals("Tetap")){
                                             fiturPart.setVisibility(View.VISIBLE);
                                             notificationPart.setVisibility(View.VISIBLE);
-                                            permohonanCutiBTN.setVisibility(View.VISIBLE);
+
+                                            if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+                                                permohonanCutiBTN.setVisibility(View.GONE);
+                                            } else {
+                                                permohonanCutiBTN.setVisibility(View.VISIBLE);
+                                            }
 
                                             if(sisa_cuti_info.equals("1")){
-                                                sisaCutiBTN.setVisibility(View.VISIBLE);
+                                                if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+                                                    sisaCutiBTN.setVisibility(View.GONE);
+                                                } else {
+                                                    sisaCutiBTN.setVisibility(View.VISIBLE);
+                                                }
                                             } else {
                                                 sisaCutiBTN.setVisibility(View.GONE);
                                             }
@@ -2453,6 +2489,12 @@ public class UserActivity extends AppCompatActivity {
                                         fiturPart.setVisibility(View.GONE);
                                         notificationPart.setVisibility(View.GONE);
                                     }
+                                }
+
+                                if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+                                    permohonanIzinBTN.setVisibility(View.GONE);
+                                } else {
+                                    permohonanIzinBTN.setVisibility(View.VISIBLE);
                                 }
 
                                 getCountNotification();

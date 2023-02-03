@@ -181,6 +181,36 @@
                                         android:layout_marginLeft="7dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
+                                        android:text="Masa Kerja :"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_feel_disable_2"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp">
+
+                                        <TextView
+                                            android:id="@+id/masa_kerja_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginLeft="7dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
                                         android:text="Email :"/>
 
                                     <EditText

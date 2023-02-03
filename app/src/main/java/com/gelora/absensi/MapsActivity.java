@@ -1027,12 +1027,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             startActivity(intent);
             finish();
         } else {
-            shortName = sharedPrefManager.getSpNama();
-            if(shortName.contains(" ")){
-                shortName = shortName.substring(0, shortName.indexOf(" "));
-                System.out.println(shortName);
+            if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+                Intent intent = new Intent(this, UserActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                shortName = sharedPrefManager.getSpNama();
+                if(shortName.contains(" ")){
+                    shortName = shortName.substring(0, shortName.indexOf(" "));
+                    System.out.println(shortName);
+                }
+                userTV.setText("Halo, "+shortName);
             }
-            userTV.setText("Halo, "+shortName);
         }
     }
 

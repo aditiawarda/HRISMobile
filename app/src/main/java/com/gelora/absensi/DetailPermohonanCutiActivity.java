@@ -427,6 +427,12 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
             }
         });
 
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+            homeBTN.setVisibility(View.GONE);
+        } else {
+            homeBTN.setVisibility(View.VISIBLE);
+        }
+
         getDataDetailPermohonan();
 
     }
@@ -1217,7 +1223,9 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             }
                                         }
 
-                                    } else {
+                                    }
+
+                                    else {
                                         cancelPermohonanBTN.setVisibility(View.GONE);
                                         editPermohonanBTN.setVisibility(View.GONE);
                                         if(status_approve.equals("1")){
@@ -1306,8 +1314,8 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 namaApprover2.setText(approver_kadept);
 
                                             } else {
-                                                if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")) {
-                                                    if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                                                if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("8")) {
+                                                    if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("8")){
                                                         actionPart.setVisibility(View.VISIBLE);
                                                     } else if(sharedPrefManager.getSpIdJabatan().equals("3")){
                                                         actionPart.setVisibility(View.GONE);
@@ -1527,6 +1535,8 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                     }
                 } else if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){
                     params.put("action", "kadep");
+                } else if(sharedPrefManager.getSpIdJabatan().equals("8")){
+                    params.put("action", "direksi");
                 }
 
                 params.put("catatan", catatanAtasanTV.getText().toString());

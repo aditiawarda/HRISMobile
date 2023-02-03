@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
@@ -39,17 +42,19 @@ import java.util.Map;
 
 public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
-    String kode, idPermohonan, statusKondisi = "0";
-    TextView noPermohonan, tanggalTV, nikNamaTV, deptBagianTV, keteranganTV, alasanTV, pemohonTV, tanggalApproveTV, approverTV, jabatanApproverTV, tanggalApproveHRDTV, approverHRDTV;
-    LinearLayout detailKeteranganPart, backBTN, homeBTN, cancelPermohonanBTN, editPermohonanBTN, rejectedMark, acceptedMark, actionPart, approvedBTN, rejectedBTN;
+    String kode, idPermohonan, keteranganForm = "", statusKondisi = "0", ketLemburStatus = "";
+    TextView ketLemburChoiceTV, noPermohonan, tanggalTV, nikNamaTV, deptBagianTV, keteranganTV, alasanTV, pemohonTV, tanggalApproveTV, approverTV, jabatanApproverTV, tanggalApproveHRDTV, approverHRDTV;
+    LinearLayout markStatusTidakLembur, markStatusLembur, lemburBTN, tidakLemburBTN, ketLemburBTN, opsiKetLembur, detailKeteranganPart, backBTN, homeBTN, cancelPermohonanBTN, editPermohonanBTN, rejectedMark, acceptedMark, actionPart, approvedBTN, rejectedBTN;
     ImageView ttdPemohon, ttdApprover,ttdApproverHRD;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
+    BottomSheetLayout bottomSheet;
+
     KAlertDialog pDialog;
     private int i = -1;
 
-    LinearLayout dStatusAbsen, dShiftAbsen, dTanggalMasuk, dJamMasuk, dTanggalPulang, dJamPulang, dTitikAbsen;
-    TextView dStatusAbsenTV, dShiftAbsenTV, dTanggalMasukTV, dJamMasukTV, dTanggalPulangTV, dJamPulangTV, dTitikAbsenTV;
+    LinearLayout dStatusAbsen, dShiftAbsen, dTanggalMasuk, dJamMasuk, dTanggalPulang, dJamPulang, dTitikAbsen, dKetLembur;
+    TextView dStatusAbsenTV, dShiftAbsenTV, dTanggalMasukTV, dJamMasukTV, dTanggalPulangTV, dJamPulangTV, dTitikAbsenTV, dKetLemburTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
         sharedPrefManager = new SharedPrefManager(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
+        bottomSheet = findViewById(R.id.bottom_sheet_layout);
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
         noPermohonan = findViewById(R.id.no_permohonan);
@@ -79,6 +85,9 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
         editPermohonanBTN = findViewById(R.id.edit_permohonan_btn);
         rejectedMark = findViewById(R.id.rejected_mark);
         acceptedMark = findViewById(R.id.accepted_mark);
+        opsiKetLembur = findViewById(R.id.opsi_ket_lembur);
+        ketLemburBTN = findViewById(R.id.ket_lembur_btn);
+        ketLemburChoiceTV = findViewById(R.id.ket_lembur_choice_tv);
         actionPart = findViewById(R.id.action_part);
         approvedBTN = findViewById(R.id.appoved_btn);
         rejectedBTN = findViewById(R.id.rejected_btn);
@@ -98,6 +107,8 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
         dTanggalPulangTV = findViewById(R.id.d_tanggal_pulang_tv);
         dJamPulangTV = findViewById(R.id.d_jam_pulang_tv);
         dTitikAbsenTV = findViewById(R.id.d_titik_absen_tv);
+        dKetLembur = findViewById(R.id.d_ket_lembur);
+        dKetLemburTV = findViewById(R.id.d_ket_lembur_tv);
 
         kode = getIntent().getExtras().getString("kode");
         idPermohonan = getIntent().getExtras().getString("id_permohonan");
@@ -110,6 +121,9 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
+                        ketLemburStatus = "";
+                        ketLemburChoiceTV.setText("Pilih keterangan lembur...");
+
                         getDataDetailPermohonan();
                     }
                 }, 800);
@@ -198,71 +212,156 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
             }
         });
 
+        ketLemburBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lemburChoice();
+            }
+        });
+
         approvedBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                new KAlertDialog(DetailPermohonanFingerscanActivity.this, KAlertDialog.WARNING_TYPE)
-                        .setTitleText("Setujui?")
-                        .setContentText("Yakin untuk disetujui sekarang?")
-                        .setCancelText("TIDAK")
-                        .setConfirmText("   YA   ")
-                        .showCancelButton(true)
-                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
-                            }
-                        })
-                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
+                if(keteranganForm.equals("3")){
+                    if(ketLemburStatus.equals("")){
+                        new KAlertDialog(DetailPermohonanFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap pilih keterangan lembur!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    } else {
+                        new KAlertDialog(DetailPermohonanFingerscanActivity.this, KAlertDialog.WARNING_TYPE)
+                                .setTitleText("Setujui?")
+                                .setContentText("Yakin untuk disetujui sekarang?")
+                                .setCancelText("TIDAK")
+                                .setConfirmText("   YA   ")
+                                .showCancelButton(true)
+                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
 
-                                pDialog = new KAlertDialog(DetailPermohonanFingerscanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                pDialog.show();
-                                pDialog.setCancelable(false);
-                                new CountDownTimer(1000, 500) {
-                                    public void onTick(long millisUntilFinished) {
-                                        i++;
-                                        switch (i) {
-                                            case 0:
-                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (DetailPermohonanFingerscanActivity.this, R.color.colorGradien));
-                                                break;
-                                            case 1:
-                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (DetailPermohonanFingerscanActivity.this, R.color.colorGradien2));
-                                                break;
-                                            case 2:
-                                            case 6:
-                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (DetailPermohonanFingerscanActivity.this, R.color.colorGradien3));
-                                                break;
-                                            case 3:
-                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (DetailPermohonanFingerscanActivity.this, R.color.colorGradien4));
-                                                break;
-                                            case 4:
-                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (DetailPermohonanFingerscanActivity.this, R.color.colorGradien5));
-                                                break;
-                                            case 5:
-                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                        (DetailPermohonanFingerscanActivity.this, R.color.colorGradien6));
-                                                break;
+                                        pDialog = new KAlertDialog(DetailPermohonanFingerscanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                        pDialog.show();
+                                        pDialog.setCancelable(false);
+                                        new CountDownTimer(1000, 500) {
+                                            public void onTick(long millisUntilFinished) {
+                                                i++;
+                                                switch (i) {
+                                                    case 0:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (DetailPermohonanFingerscanActivity.this, R.color.colorGradien));
+                                                        break;
+                                                    case 1:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (DetailPermohonanFingerscanActivity.this, R.color.colorGradien2));
+                                                        break;
+                                                    case 2:
+                                                    case 6:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (DetailPermohonanFingerscanActivity.this, R.color.colorGradien3));
+                                                        break;
+                                                    case 3:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (DetailPermohonanFingerscanActivity.this, R.color.colorGradien4));
+                                                        break;
+                                                    case 4:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (DetailPermohonanFingerscanActivity.this, R.color.colorGradien5));
+                                                        break;
+                                                    case 5:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (DetailPermohonanFingerscanActivity.this, R.color.colorGradien6));
+                                                        break;
+                                                }
+                                            }
+
+                                            public void onFinish() {
+                                                i = -1;
+                                                checkSignature();
+                                            }
+                                        }.start();
+
+                                    }
+                                })
+                                .show();
+                    }
+                } else {
+                    new KAlertDialog(DetailPermohonanFingerscanActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Setujui?")
+                            .setContentText("Yakin untuk disetujui sekarang?")
+                            .setCancelText("TIDAK")
+                            .setConfirmText("   YA   ")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+
+                                    pDialog = new KAlertDialog(DetailPermohonanFingerscanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                    pDialog.show();
+                                    pDialog.setCancelable(false);
+                                    new CountDownTimer(1000, 500) {
+                                        public void onTick(long millisUntilFinished) {
+                                            i++;
+                                            switch (i) {
+                                                case 0:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailPermohonanFingerscanActivity.this, R.color.colorGradien));
+                                                    break;
+                                                case 1:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailPermohonanFingerscanActivity.this, R.color.colorGradien2));
+                                                    break;
+                                                case 2:
+                                                case 6:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailPermohonanFingerscanActivity.this, R.color.colorGradien3));
+                                                    break;
+                                                case 3:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailPermohonanFingerscanActivity.this, R.color.colorGradien4));
+                                                    break;
+                                                case 4:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailPermohonanFingerscanActivity.this, R.color.colorGradien5));
+                                                    break;
+                                                case 5:
+                                                    pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                            (DetailPermohonanFingerscanActivity.this, R.color.colorGradien6));
+                                                    break;
+                                            }
                                         }
-                                    }
 
-                                    public void onFinish() {
-                                        i = -1;
-                                        checkSignature();
-                                    }
-                                }.start();
+                                        public void onFinish() {
+                                            i = -1;
+                                            checkSignature();
+                                        }
+                                    }.start();
 
-                            }
-                        })
-                        .show();
+                                }
+                            })
+                            .show();
+                }
 
             }
         });
@@ -335,6 +434,12 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
             }
         });
 
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+            homeBTN.setVisibility(View.GONE);
+        } else {
+            homeBTN.setVisibility(View.VISIBLE);
+        }
+
         getDataDetailPermohonan();
 
     }
@@ -364,6 +469,8 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                 String keterangan = detail.getString("keterangan");
                                 String alasan = detail.getString("alasan");
                                 String ttd_pemohon = detail.getString("ttd_pemohon");
+
+                                keteranganForm = keterangan;
 
                                 if(id.length()==1){
                                     noPermohonan.setText("0000"+id);
@@ -417,6 +524,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     cancelPermohonanBTN.setVisibility(View.GONE);
                                     editPermohonanBTN.setVisibility(View.GONE);
                                     actionPart.setVisibility(View.GONE);
+                                    opsiKetLembur.setVisibility(View.GONE);
                                     rejectedMark.setVisibility(View.GONE);
 
                                     String nik_approver = detail.getString("approver");
@@ -496,6 +604,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
                                 } else if(status_approve.equals("2")) {
                                     actionPart.setVisibility(View.GONE);
+                                    opsiKetLembur.setVisibility(View.GONE);
                                     rejectedMark.setVisibility(View.VISIBLE);
                                     cancelPermohonanBTN.setVisibility(View.GONE);
                                     editPermohonanBTN.setVisibility(View.GONE);
@@ -514,6 +623,11 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                 } else {
                                     actionPart.setVisibility(View.VISIBLE);
                                     rejectedMark.setVisibility(View.GONE);
+                                    if(keterangan.equals("3")){
+                                        opsiKetLembur.setVisibility(View.VISIBLE);
+                                    } else {
+                                        opsiKetLembur.setVisibility(View.GONE);
+                                    }
 
                                     if(sharedPrefManager.getSpIdJabatan().equals("10")){
                                         String status_approve_hrd = detail.getString("status_approve_hrd");
@@ -533,29 +647,28 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
                                 if (kode.equals("form")){
                                     actionPart.setVisibility(View.GONE);
+                                    opsiKetLembur.setVisibility(View.GONE);
                                 } else {
                                     if (nik.equals(sharedPrefManager.getSpNik())){
                                         actionRead();
-                                        if(sharedPrefManager.getSpIdJabatan().equals("10")){
-                                            if(status_approve.equals("1")){
-                                                actionPart.setVisibility(View.GONE);
-                                            } else if (status_approve.equals("2")){
-                                                actionPart.setVisibility(View.GONE);
-                                            } else {
-                                                actionPart.setVisibility(View.VISIBLE);
-                                            }
-                                        } else {
-                                            actionPart.setVisibility(View.GONE);
-                                        }
+                                        actionPart.setVisibility(View.GONE);
+                                        opsiKetLembur.setVisibility(View.GONE);
                                     } else {
                                         cancelPermohonanBTN.setVisibility(View.GONE);
                                         editPermohonanBTN.setVisibility(View.GONE);
                                         if(status_approve.equals("1")){
                                             actionPart.setVisibility(View.GONE);
+                                            opsiKetLembur.setVisibility(View.GONE);
                                         } else if (status_approve.equals("2")){
                                             actionPart.setVisibility(View.GONE);
+                                            opsiKetLembur.setVisibility(View.GONE);
                                         } else {
                                             actionPart.setVisibility(View.VISIBLE);
+                                            if(keterangan.equals("3")){
+                                                opsiKetLembur.setVisibility(View.VISIBLE);
+                                            } else {
+                                                opsiKetLembur.setVisibility(View.GONE);
+                                            }
                                         }
                                     }
                                 }
@@ -612,8 +725,8 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     String shift_datang   = detail_keterangan.getString("shift_datang");
                                     String shift_pulang   = detail_keterangan.getString("shift_pulang");
                                     String tanggal_pulang = detail_keterangan.getString("tanggal_pulang");
-                                    String jam_pulang = detail_keterangan.getString("jam_pulang");
-                                    String titik_absen = detail_keterangan.getString("titik_absen");
+                                    String jam_pulang     = detail_keterangan.getString("jam_pulang");
+                                    String titik_absen    = detail_keterangan.getString("titik_absen");
 
                                     dStatusAbsen.setVisibility(View.VISIBLE);
                                     dShiftAbsen.setVisibility(View.VISIBLE);
@@ -626,6 +739,19 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     dTanggalPulangTV.setText(tanggal_pulang.substring(8,10)+"/"+tanggal_pulang.substring(5,7)+"/"+tanggal_pulang.substring(0,4));
                                     dJamPulangTV.setText(jam_pulang);
                                     dTitikAbsenTV.setText(titik_absen);
+
+                                    if(status_approve.equals("1")){
+                                        String status_lembur = detail.getString("status_lembur");
+                                        dKetLembur.setVisibility(View.VISIBLE);
+                                        if(status_lembur.equals("1")){
+                                            dKetLemburTV.setText("Lembur");
+                                        } else if(status_lembur.equals("0")){
+                                            dKetLemburTV.setText("Tidak Lembur");
+                                        }
+                                    } else {
+                                        dKetLembur.setVisibility(View.GONE);
+                                    }
+
                                 } else if(keterangan.equals("4")){
                                     detailKeteranganPart.setVisibility(View.VISIBLE);
                                     JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
@@ -880,11 +1006,17 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                             if(status.equals("Success")){
                                 getDataDetailPermohonan();
                                 actionPart.setVisibility(View.GONE);
+                                opsiKetLembur.setVisibility(View.GONE);
                                 pDialog.setTitleText("Berhasil Disetujui")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                             } else {
                                 actionPart.setVisibility(View.VISIBLE);
+                                if(keteranganForm.equals("3")){
+                                    opsiKetLembur.setVisibility(View.VISIBLE);
+                                } else {
+                                    opsiKetLembur.setVisibility(View.GONE);
+                                }
                                 pDialog.setTitleText("Gagal Disetujui")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
@@ -914,6 +1046,10 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                 params.put("NIK", sharedPrefManager.getSpNik());
                 params.put("timestamp_approve", getTimeStamp());
 
+                if(keteranganForm.equals("3")){
+                    params.put("status_lembur", ketLemburStatus);
+                }
+
                 return params;
             }
         };
@@ -939,11 +1075,17 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                             if(status.equals("Success")){
                                 getDataDetailPermohonan();
                                 actionPart.setVisibility(View.GONE);
+                                opsiKetLembur.setVisibility(View.GONE);
                                 pDialog.setTitleText("Berhasil Ditolak")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                             } else {
                                 actionPart.setVisibility(View.VISIBLE);
+                                if(keteranganForm.equals("3")){
+                                    opsiKetLembur.setVisibility(View.VISIBLE);
+                                } else {
+                                    opsiKetLembur.setVisibility(View.GONE);
+                                }
                                 pDialog.setTitleText("Gagal Ditolak")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
@@ -997,6 +1139,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
                             if(status.equals("Success")){
                                 actionPart.setVisibility(View.GONE);
+                                opsiKetLembur.setVisibility(View.GONE);
                                 pDialog.setTitleText("Permohonan Berhasil Dibatalkan")
                                         .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
@@ -1015,6 +1158,11 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                             } else {
                                 actionPart.setVisibility(View.VISIBLE);
+                                if(keteranganForm.equals("3")){
+                                    opsiKetLembur.setVisibility(View.VISIBLE);
+                                } else {
+                                    opsiKetLembur.setVisibility(View.GONE);
+                                }
                                 pDialog.setTitleText("Permohonan Gagal Dibatalkan")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
@@ -1046,6 +1194,70 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
         };
 
         requestQueue.add(postRequest);
+
+    }
+
+    private void lemburChoice(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(DetailPermohonanFingerscanActivity.this).inflate(R.layout.layout_opsi_lembur, bottomSheet, false));
+        lemburBTN = findViewById(R.id.lembur_btn);
+        tidakLemburBTN = findViewById(R.id.tidak_lembur_btn);
+        markStatusLembur = findViewById(R.id.mark_status_lembur);
+        markStatusTidakLembur = findViewById(R.id.mark_status_tidak_lembur);
+
+        if (ketLemburStatus.equals("1")){
+            lemburBTN.setBackground(ContextCompat.getDrawable(DetailPermohonanFingerscanActivity.this, R.drawable.shape_option_choice));
+            tidakLemburBTN.setBackground(ContextCompat.getDrawable(DetailPermohonanFingerscanActivity.this, R.drawable.shape_option));
+            markStatusLembur.setVisibility(View.VISIBLE);
+            markStatusTidakLembur.setVisibility(View.GONE);
+        } else if (ketLemburStatus.equals("0")){
+            lemburBTN.setBackground(ContextCompat.getDrawable(DetailPermohonanFingerscanActivity.this, R.drawable.shape_option));
+            tidakLemburBTN.setBackground(ContextCompat.getDrawable(DetailPermohonanFingerscanActivity.this, R.drawable.shape_option_choice));
+            markStatusLembur.setVisibility(View.GONE);
+            markStatusTidakLembur.setVisibility(View.VISIBLE);
+        } else {
+            lemburBTN.setBackground(ContextCompat.getDrawable(DetailPermohonanFingerscanActivity.this, R.drawable.shape_option));
+            tidakLemburBTN.setBackground(ContextCompat.getDrawable(DetailPermohonanFingerscanActivity.this, R.drawable.shape_option));
+            markStatusLembur.setVisibility(View.GONE);
+            markStatusTidakLembur.setVisibility(View.GONE);
+        }
+
+        lemburBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                markStatusLembur.setVisibility(View.VISIBLE);
+                markStatusTidakLembur.setVisibility(View.GONE);
+                lemburBTN.setBackground(ContextCompat.getDrawable(DetailPermohonanFingerscanActivity.this, R.drawable.shape_option_choice));
+                tidakLemburBTN.setBackground(ContextCompat.getDrawable(DetailPermohonanFingerscanActivity.this, R.drawable.shape_option));
+                ketLemburStatus = "1";
+                ketLemburChoiceTV.setText("Lembur");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        tidakLemburBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                markStatusLembur.setVisibility(View.GONE);
+                markStatusTidakLembur.setVisibility(View.VISIBLE);
+                tidakLemburBTN.setBackground(ContextCompat.getDrawable(DetailPermohonanFingerscanActivity.this, R.drawable.shape_option_choice));
+                lemburBTN.setBackground(ContextCompat.getDrawable(DetailPermohonanFingerscanActivity.this, R.drawable.shape_option));
+                ketLemburStatus = "0";
+                ketLemburChoiceTV.setText("Tidak Lembur");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
 
     }
 

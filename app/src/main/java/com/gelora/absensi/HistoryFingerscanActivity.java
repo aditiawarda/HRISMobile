@@ -24,16 +24,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.gelora.absensi.adapter.AdapterKelebihanJam;
-import com.gelora.absensi.adapter.AdapterPulangCepat;
-import com.gelora.absensi.model.DataKelebihanJam;
-import com.gelora.absensi.model.DataPulangCepat;
+import com.gelora.absensi.adapter.AdapterDataHistoryFingerscan;
+import com.gelora.absensi.model.DataHistoryFinger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.kal.rackmonthpicker.RackMonthPicker;
 import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
 import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
-import com.shasin.notificationbanner.Banner;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -46,63 +43,71 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class DetailKelebihanJamActivity extends AppCompatActivity {
+public class HistoryFingerscanActivity extends AppCompatActivity {
 
-    LinearLayout attantionPart, monthBTN, emptyDataKelebihanJam, loadingKelebihanJamPart, backBTN, homeBTN;
-    ImageView bulanLoading, kelebihanJamLoading, loadingDataKelebihanJam;
-    TextView messageKelebihanJam, dataBulan, dataTahun, dataKelebihanJam, nameUserTV;
+    LinearLayout backBTN, homeBTN, monthBTN, attantionPart, loadingDataPart, emptyDataPart;
+    TextView nameUserTV, dataBulan, dataTahun, dataFinger;
+    ImageView bulanLoading, fingerLoading, loadingData;
+    String bulanPilih;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
-    String bulanPilih;
-    View rootview;
 
-    private RecyclerView dataKelebihanJamRV;
-    private DataKelebihanJam[] dataKelebihanJams;
-    private AdapterKelebihanJam adapterKelebihanJam;
+    private RecyclerView dataRV;
+    private DataHistoryFinger[] dataFingers;
+    private AdapterDataHistoryFingerscan adapterDataFinger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_kelebihan_jam);
+        setContentView(R.layout.activity_history_fingerscan);
 
         sharedPrefManager = new SharedPrefManager(this);
-        rootview = findViewById(android.R.id.content);
+        refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         homeBTN = findViewById(R.id.home_btn);
+        nameUserTV = findViewById(R.id.name_of_user_tv);
+        monthBTN = findViewById(R.id.month_btn);
         dataBulan = findViewById(R.id.bulan_data);
         dataTahun = findViewById(R.id.tahun_data);
-        refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
-        nameUserTV = findViewById(R.id.name_of_user_tv_detail_kelebihan_jam);
         bulanLoading = findViewById(R.id.bulan_loading);
-        kelebihanJamLoading = findViewById(R.id.data_kelebihan_jam_loading);
-        dataKelebihanJam = findViewById(R.id.data_kelebihan_jam_detail);
-        loadingDataKelebihanJam = findViewById(R.id.loading_data_kelebihan_jam);
-        loadingKelebihanJamPart = findViewById(R.id.loading_data_part_kelebihan_jam);
-        emptyDataKelebihanJam = findViewById(R.id.no_data_part_kelebihan_jam);
-        monthBTN = findViewById(R.id.month_btn);
-        attantionPart = findViewById(R.id.attantion_part_kelebihan_jam);
-        messageKelebihanJam = findViewById(R.id.message_kelebihan_jam);
+        fingerLoading = findViewById(R.id.finger_loading);
+        dataFinger = findViewById(R.id.data_finger);
+        attantionPart = findViewById(R.id.attantion_part_finger);
+        loadingDataPart = findViewById(R.id.loading_data_part);
+        loadingData = findViewById(R.id.loading_data);
+        emptyDataPart = findViewById(R.id.no_data_part);
 
-        bulanPilih = getIntent().getExtras().getString("bulan");
+        dataRV = findViewById(R.id.data_rv);
 
-        dataKelebihanJamRV = findViewById(R.id.data_kelebihan_jam_rv);
+        dataRV.setLayoutManager(new LinearLayoutManager(this));
+        dataRV.setHasFixedSize(true);
+        dataRV.setNestedScrollingEnabled(false);
+        dataRV.setItemAnimator(new DefaultItemAnimator());
 
-        dataKelebihanJamRV.setLayoutManager(new LinearLayoutManager(this));
-        dataKelebihanJamRV.setHasFixedSize(true);
-        dataKelebihanJamRV.setNestedScrollingEnabled(false);
-        dataKelebihanJamRV.setItemAnimator(new DefaultItemAnimator());
+        bulanPilih = getBulanTahun();
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_dots)
                 .into(bulanLoading);
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.loading_dots)
-                .into(kelebihanJamLoading);
-
-        Glide.with(getApplicationContext())
                 .load(R.drawable.loading)
-                .into(loadingDataKelebihanJam);
+                .into(loadingData);
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        homeBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HistoryFingerscanActivity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -112,12 +117,12 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
                 dataBulan.setVisibility(View.GONE);
                 dataTahun.setVisibility(View.GONE);
 
-                kelebihanJamLoading.setVisibility(View.VISIBLE);
-                dataKelebihanJam.setVisibility(View.GONE);
+                fingerLoading.setVisibility(View.VISIBLE);
+                dataFinger.setVisibility(View.GONE);
 
-                dataKelebihanJamRV.setVisibility(View.GONE);
-                loadingKelebihanJamPart.setVisibility(View.VISIBLE);
-                emptyDataKelebihanJam.setVisibility(View.GONE);
+                dataRV.setVisibility(View.GONE);
+                loadingDataPart.setVisibility(View.VISIBLE);
+                emptyDataPart.setVisibility(View.GONE);
 
                 attantionPart.setVisibility(View.GONE);
 
@@ -125,7 +130,7 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-                        getDetailKelebihanJam();
+                        getDataPermohonan();
                     }
                 }, 800);
             }
@@ -134,7 +139,7 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
         monthBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new RackMonthPicker(DetailKelebihanJamActivity.this)
+                new RackMonthPicker(HistoryFingerscanActivity.this)
                         .setLocale(Locale.ENGLISH)
                         .setPositiveButton(new DateMonthDialogListener() {
                             @Override
@@ -167,19 +172,19 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
                                 dataBulan.setVisibility(View.GONE);
                                 dataTahun.setVisibility(View.GONE);
 
-                                kelebihanJamLoading.setVisibility(View.VISIBLE);
-                                dataKelebihanJam.setVisibility(View.GONE);
+                                fingerLoading.setVisibility(View.VISIBLE);
+                                dataFinger.setVisibility(View.GONE);
 
-                                dataKelebihanJamRV.setVisibility(View.GONE);
-                                loadingKelebihanJamPart.setVisibility(View.VISIBLE);
-                                emptyDataKelebihanJam.setVisibility(View.GONE);
+                                dataRV.setVisibility(View.GONE);
+                                loadingDataPart.setVisibility(View.VISIBLE);
+                                emptyDataPart.setVisibility(View.GONE);
 
                                 attantionPart.setVisibility(View.GONE);
 
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        getDetailKelebihanJam();
+                                        getDataPermohonan();
                                     }
                                 }, 500);
 
@@ -194,29 +199,14 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
             }
         });
 
-        backBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailKelebihanJamActivity.this, MapsActivity.class);
-                startActivity(intent);
-            }
-        });
-
         nameUserTV.setText(sharedPrefManager.getSpNama().toUpperCase());
-        getDetailKelebihanJam();
+        getDataPermohonan();
 
     }
 
-    private void getDetailKelebihanJam() {
+    private void getDataPermohonan() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/total_kelebihan_jam";
+        final String url = "https://geloraaksara.co.id/absen-online/api/total_permohonan_finger";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -227,8 +217,8 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
                             Log.d("Success.Response", response.toString());
                             data = new JSONObject(response);
                             String status = data.getString("status");
-                            if (status.equals("Success")) {
-                                String kelebihan_jam = data.getString("kelebihan_jam");
+                            if (status.equals("Success")){
+                                String fingerscan = data.getString("fingerscan");
 
                                 String bulan = data.getString("bulan");
                                 String tahun = data.getString("tahun");
@@ -240,27 +230,27 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
                                 dataTahun.setVisibility(View.VISIBLE);
                                 bulanLoading.setVisibility(View.GONE);
 
-                                dataKelebihanJam.setText(kelebihan_jam);
+                                dataFinger.setText(fingerscan);
 
-                                kelebihanJamLoading.setVisibility(View.GONE);
-                                dataKelebihanJam.setVisibility(View.VISIBLE);
+                                fingerLoading.setVisibility(View.GONE);
+                                dataFinger.setVisibility(View.VISIBLE);
 
-                                if (kelebihan_jam.equals("0")) {
+                                if (fingerscan.equals("0")){
                                     attantionPart.setVisibility(View.GONE);
-                                    emptyDataKelebihanJam.setVisibility(View.VISIBLE);
-                                    dataKelebihanJamRV.setVisibility(View.GONE);
-                                    loadingKelebihanJamPart.setVisibility(View.GONE);
+                                    emptyDataPart.setVisibility(View.VISIBLE);
+                                    loadingDataPart.setVisibility(View.GONE);
+                                    dataRV.setVisibility(View.GONE);
                                 } else {
                                     attantionPart.setVisibility(View.VISIBLE);
-                                    messageKelebihanJam.setText("Di bulan "+bulan+" "+tahun+" terdapat "+kelebihan_jam+" data kelebihan jam, jika terdapat kekeliruan data harap segera hubungi bagian HRD atau gunakan prosedur fingerscan/form keterangan tidak absen.");
-                                    dataKelebihanJamRV.setVisibility(View.VISIBLE);
-                                    loadingKelebihanJamPart.setVisibility(View.GONE);
-                                    String data_kelebihan_jam = data.getString("data");
+                                    emptyDataPart.setVisibility(View.GONE);
+                                    loadingDataPart.setVisibility(View.GONE);
+                                    dataRV.setVisibility(View.VISIBLE);
+                                    String data_finger = data.getString("data");
                                     GsonBuilder builder = new GsonBuilder();
                                     Gson gson = builder.create();
-                                    dataKelebihanJams = gson.fromJson(data_kelebihan_jam, DataKelebihanJam[].class);
-                                    adapterKelebihanJam = new AdapterKelebihanJam(dataKelebihanJams, DetailKelebihanJamActivity.this);
-                                    dataKelebihanJamRV.setAdapter(adapterKelebihanJam);
+                                    dataFingers = gson.fromJson(data_finger, DataHistoryFinger[].class);
+                                    adapterDataFinger = new AdapterDataHistoryFingerscan(dataFingers,HistoryFingerscanActivity.this);
+                                    dataRV.setAdapter(adapterDataFinger);
                                 }
 
                             }
@@ -270,7 +260,8 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
                         }
                     }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener()
+                {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
@@ -278,10 +269,12 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
                         connectionFailed();
                     }
                 }
-        ) {
+        )
+        {
             @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", sharedPrefManager.getSpNik());
                 params.put("bulan", bulanPilih);
                 return params;
@@ -293,7 +286,7 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        CookieBar.build(DetailKelebihanJamActivity.this)
+        CookieBar.build(HistoryFingerscanActivity.this)
                 .setTitle("Perhatian")
                 .setMessage("Koneksi anda terputus!")
                 .setTitleColor(R.color.colorPrimaryDark)
@@ -302,7 +295,6 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
-
     }
 
     private String getBulanTahun() {

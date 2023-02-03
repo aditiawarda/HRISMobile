@@ -8,6 +8,7 @@ public class ListPermohonanFingerscan {
     private String NmKaryawan;
     private String avatar;
     private String KdDept;
+    private String NmHeadDept;
     private String keterangan;
     private String tanggal;
     private String status_approve;
@@ -101,5 +102,13 @@ public class ListPermohonanFingerscan {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getNmHeadDept() {
+        return NmHeadDept;
+    }
+
+    public void setNmHeadDept(String nmHeadDept) {
+        NmHeadDept = nmHeadDept;
     }
 }

@@ -304,6 +304,12 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
             pageTitle.setText("KEHADIRAN BAGIAN");
         }
 
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+            homeBTN.setVisibility(View.GONE);
+        } else {
+            homeBTN.setVisibility(View.VISIBLE);
+        }
+
         getKehadiranBagian();
         getCurrentDay();
 

@@ -226,6 +226,12 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
             attantionDesc.setText("Fitur ini dibuat khusus untuk Kepala Bagian/Supervisor agar dapat memantau kehadiran karyawan di bagiannya masing-masing.");
         }
 
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+            homeBTN.setVisibility(View.GONE);
+        } else {
+            homeBTN.setVisibility(View.VISIBLE);
+        }
+
         dateChoiceForHistory = getDate();
         getCurrentDay();
 

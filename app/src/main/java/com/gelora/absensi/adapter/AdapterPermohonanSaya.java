@@ -82,13 +82,17 @@ public class AdapterPermohonanSaya extends RecyclerView.Adapter<AdapterPermohona
                     statusPermohonan = "Permohonan Ditolak HRD";
                 } else if (listPermohonanIzin.getStatus_approve_hrd().equals("0")) {
                     if(sharedPrefManager.getSpIdJabatan().equals("10")){
-                        statusPermohonan = "Menunggu Persetujuan HRD";
+                        statusPermohonan = "Permohonan Disetujui Direksi";
                     } else {
-                        statusPermohonan = "Permohonan Disetujui Supervisor";
+                        statusPermohonan = "Permohonan Disetujui Atasan";
                     }
                 }
             } else if (listPermohonanIzin.getStatus_approve().equals("2")){
-                statusPermohonan = "Permohonan Ditolak Supervisor";
+                if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                    statusPermohonan = "Permohonan Ditolak Direksi";
+                } else {
+                    statusPermohonan = "Permohonan Ditolak Atasan";
+                }
             }
         } else if(tipe_pengajuan.equals("2")) {
             if(listPermohonanIzin.getStatus_approve().equals("0")){

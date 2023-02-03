@@ -88,19 +88,11 @@ public class AdapterPermohonanFingerSaya extends RecyclerView.Adapter<AdapterPer
                 if(sharedPrefManager.getSpIdJabatan().equals("10")){
                     statusPermohonan = "Menunggu Persetujuan HRD";
                 } else {
-                    if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")) {
-                        statusPermohonan = "Permohonan Disetujui Atasan";
-                    } else {
-                        statusPermohonan = "Permohonan Disetujui Kepala Bagian";
-                    }
+                    statusPermohonan = "Permohonan Disetujui Atasan";
                 }
             }
         } else if (listPermohonanFingerscan.getStatus_approve().equals("2")){
-            if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")) {
-                statusPermohonan = "Permohonan Ditolak Atasan";
-            } else {
-                statusPermohonan = "Permohonan Ditolak Kepala Bagian";
-            }
+            statusPermohonan = "Permohonan Ditolak Atasan";
         }
 
         myViewHolder.statusPermohonanTV.setText(statusPermohonan);
