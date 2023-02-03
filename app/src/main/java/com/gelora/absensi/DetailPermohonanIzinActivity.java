@@ -1073,13 +1073,8 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         rejectedMark.setVisibility(View.GONE);
                                         appoveStatusHRD.setVisibility(View.GONE);
 
-                                        if(sharedPrefManager.getSpIdJabatan().equals("10")){
-                                            cancelPermohonanBTN.setVisibility(View.VISIBLE);
-                                            editPermohonanBTN.setVisibility(View.VISIBLE);
-                                        } else {
-                                            cancelPermohonanBTN.setVisibility(View.GONE);
-                                            editPermohonanBTN.setVisibility(View.GONE);
-                                        }
+                                        cancelPermohonanBTN.setVisibility(View.GONE);
+                                        editPermohonanBTN.setVisibility(View.GONE);
 
                                     }
 
@@ -1103,19 +1098,8 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                     rejectedMark.setVisibility(View.GONE);
                                     supervisorTV.setVisibility(View.GONE);
 
-                                    if(sharedPrefManager.getSpIdJabatan().equals("10")){
-                                        String status_approve_hrd = detail.getString("status_approve_hrd");
-                                        if(status_approve_hrd.equals("0")){
-                                            cancelPermohonanBTN.setVisibility(View.VISIBLE);
-                                            editPermohonanBTN.setVisibility(View.VISIBLE);
-                                        } else {
-                                            cancelPermohonanBTN.setVisibility(View.GONE);
-                                            editPermohonanBTN.setVisibility(View.GONE);
-                                        }
-                                    } else {
-                                        cancelPermohonanBTN.setVisibility(View.VISIBLE);
-                                        editPermohonanBTN.setVisibility(View.VISIBLE);
-                                    }
+                                    cancelPermohonanBTN.setVisibility(View.VISIBLE);
+                                    editPermohonanBTN.setVisibility(View.VISIBLE);
 
                                 }
 

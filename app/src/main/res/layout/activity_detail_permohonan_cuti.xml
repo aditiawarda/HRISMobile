@@ -654,6 +654,7 @@
                                                         android:id="@+id/alasan_cuti_tv"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
+                                                        android:lineSpacingExtra="2.5dp"
                                                         android:text="......................................................."
                                                         android:textColor="#515151"
                                                         android:textSize="8dp" />
@@ -732,6 +733,7 @@
                                                         android:id="@+id/alamat_tv"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
+                                                        android:lineSpacingExtra="2dp"
                                                         android:text="......................................................."
                                                         android:textColor="#515151"
                                                         android:textSize="8dp" />
