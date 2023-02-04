@@ -186,7 +186,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
 
         if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
             optionPart.setVisibility(View.VISIBLE);
-        } else if (sharedPrefManager.getSpIdJabatan().equals("8")) {
+        } else if (sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")) {
             float scale = getResources().getDisplayMetrics().density;
             int side = (int) (17*scale + 0.5f);
             int top = (int) (85*scale + 0.5f);
