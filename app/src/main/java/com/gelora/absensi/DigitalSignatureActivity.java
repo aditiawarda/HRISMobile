@@ -187,7 +187,21 @@ public class DigitalSignatureActivity extends AppCompatActivity {
                                 Bitmap bitmap = getBitmapFromView(mSignaturePad);
                                 bitmapFixSize = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
 
-                                uploadDigitalSignature();
+                                if(mSignaturePad.isEmpty()){
+                                    new KAlertDialog(DigitalSignatureActivity.this, KAlertDialog.ERROR_TYPE)
+                                            .setTitleText("Perhatian")
+                                            .setContentText("Tanda tangan belum terisi!")
+                                            .setConfirmText("    OK    ")
+                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                @Override
+                                                public void onClick(KAlertDialog sDialog) {
+                                                    sDialog.dismiss();
+                                                }
+                                            })
+                                            .show();
+                                } else {
+                                    uploadDigitalSignature();
+                                }
                             }
                         })
                         .show();
@@ -222,7 +236,11 @@ public class DigitalSignatureActivity extends AppCompatActivity {
         if (kodeString.equals("form")){
             homeBTN.setVisibility(View.GONE);
         } else {
-            homeBTN.setVisibility(View.VISIBLE);
+            if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+                homeBTN.setVisibility(View.GONE);
+            } else {
+                homeBTN.setVisibility(View.VISIBLE);
+            }
         }
 
         checkSignature();

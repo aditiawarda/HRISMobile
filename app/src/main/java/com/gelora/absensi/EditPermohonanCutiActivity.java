@@ -89,7 +89,7 @@ import java.util.UUID;
 
 public class EditPermohonanCutiActivity extends AppCompatActivity {
 
-    LinearLayout removeLampiranBTN, submitBTN, loadingDataPart, noDataPart, startAttantionPart, penggantiSelamaCutiBTN, tipeCutiBTN, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, backBTN, dariTanggalPicker, sampaiTanggalPicker;
+    LinearLayout infoCutiPart, removeLampiranBTN, submitBTN, loadingDataPart, noDataPart, startAttantionPart, penggantiSelamaCutiBTN, tipeCutiBTN, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, backBTN, dariTanggalPicker, sampaiTanggalPicker;
     TextView notejumlahHari, jumlahHariTV, labelUnggahTV, statusUploadTV, noHpTV, alamatSelamaCutiTV, penggantiSelamaCutiTV, jenisCutiTV, tipeCutiTV, sampaiTanggalTV, dariTanggalTV, totalCutiDiambilTV, tahunCutiDiambilTV, sisaCutiTV, namaKaryawanTV, jabatanKaryawanTV, detailKaryawanTV, tglMulaiKerjaTV, nikKaryawanTV, statusKaryawanTV;
     EditText alasanTV, keywordKaryawanPengganti;
     ImageView loadingGif;
@@ -154,6 +154,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         jumlahHariTV = findViewById(R.id.jumlah_hari_tv);
         notejumlahHari = findViewById(R.id.note_jumlah_hari);
         submitBTN = findViewById(R.id.submit_btn);
+        infoCutiPart = findViewById(R.id.info_cuti_part);
 
         idRecord = getIntent().getExtras().getString("id_record");
 
@@ -2608,6 +2609,13 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                                 String catatan2 = detail.getString("catatan2");
                                 String lampiran = detail.getString("lampiran");
                                 String jumlah_hari = data.getString("jumlah_hari");
+                                String info_sisa_cuti = data.getString("info_sisa_cuti");
+
+                                if(info_sisa_cuti.equals("1")){
+                                    infoCutiPart.setVisibility(View.VISIBLE);
+                                } else {
+                                    infoCutiPart.setVisibility(View.GONE);
+                                }
 
                                 idCuti   = jenis_cuti;
                                 descCuti = jenis_cuti_deskripsi;

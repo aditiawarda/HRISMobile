@@ -139,7 +139,7 @@
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="7dp"
                                                     android:layout_weight=".35"
-                                                    android:text="TANGGAL"
+                                                    android:text="TANGGAL BUAT"
                                                     android:textColor="#515151"
                                                     android:textSize="11dp" />
 

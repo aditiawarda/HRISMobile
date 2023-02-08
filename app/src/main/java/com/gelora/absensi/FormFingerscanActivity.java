@@ -9,11 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.TimePickerDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -26,6 +28,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -46,7 +50,6 @@ import com.gelora.absensi.model.TitikAbsensi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.takisoft.datetimepicker.DatePickerDialog;
-import com.takisoft.datetimepicker.TimePickerDialog;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -63,7 +66,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refreshLayout;
     LinearLayout formPart, successPart, viewBTN, goToHome, goToDasboard;
-    LinearLayout backBTN, homeBTN, dateBTN, submitBTN, detailKeterangan1, detailKeterangan3, detailKeterangan6;
+    LinearLayout closeBTN, okBTN, backBTN, homeBTN, dateBTN, submitBTN, detailKeterangan1, detailKeterangan3, detailKeterangan6;
     TextView namaTV, nikTV, detailTV, datePilihTV, labelDetail;
     EditText alasanED;
     SharedPrefManager sharedPrefManager;
@@ -88,6 +91,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
     //Kategori 6
     LinearLayout statusAbsensiBTNK6, shiftAbsensiBTNK6;
     TextView statusAbsensiPilihK6, shiftAbsensiPilihK6;
+
+    LinearLayout timepickerBackground, timepickerDialog;
+    TimePicker timepicker;
 
     private RecyclerView statusAbsenRV;
     private StatusAbsen[] statusAbsens;
@@ -431,56 +437,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                             .show();
                 } else {
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                        Calendar cal = Calendar.getInstance();
-
-                        @SuppressLint({"DefaultLocale", "SetTextI18n"})
-                        TimePickerDialog tpd = new TimePickerDialog(FormFingerscanActivity.this, (view1, hourOfDay, minute) -> {
-                            jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
-
-                            if(tanggalPulang.equals(getDate())){
-                                @SuppressLint("SimpleDateFormat")
-                                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-                                Date time = null;
-                                Date time2 = null;
-                                try {
-                                    time = sdf.parse(String.valueOf(jamPulang));
-                                    time2 = sdf.parse(getTime());
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                                long pilih = time.getTime();
-                                long sekarang = time2.getTime();
-
-                                if (pilih<=sekarang){
-                                    jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
-                                    jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
-                                } else {
-                                    jamPulang = "";
-                                    jamPulangPilihK1.setText("Pilih kembali !");
-
-                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                            .setTitleText("Perhatian")
-                                            .setContentText("Jam pulang tidak dapat lebih besar dari jam saat ini. Harap ulangi!")
-                                            .setConfirmText("    OK    ")
-                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                @Override
-                                                public void onClick(KAlertDialog sDialog) {
-                                                    sDialog.dismiss();
-                                                }
-                                            })
-                                            .show();
-                                }
-                            } else {
-                                jamPulangPilihK1.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
-                                jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
-                            }
-
-                        },
-                                cal.get(java.util.Calendar.HOUR_OF_DAY),
-                                cal.get(java.util.Calendar.MINUTE),
-                                android.text.format.DateFormat.is24HourFormat(FormFingerscanActivity.this));
-                        tpd.show();
-
+                      jamPulangPicker();
                     } else {
                         int h = Integer.parseInt(getTimeH());
                         int m = Integer.parseInt(getTimeM());
@@ -528,9 +485,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
                             }
 
                         },
-                                h,
-                                m,
-                                android.text.format.DateFormat.is24HourFormat(FormFingerscanActivity.this));
+                        h,
+                        m,
+                        android.text.format.DateFormat.is24HourFormat(FormFingerscanActivity.this));
                         tpd.show();
 
                     }
@@ -602,56 +559,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                             .show();
                 } else {
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                        Calendar cal = Calendar.getInstance();
-
-                        @SuppressLint({"DefaultLocale", "SetTextI18n"})
-                        TimePickerDialog tpd = new TimePickerDialog(FormFingerscanActivity.this, (view1, hourOfDay, minute) -> {
-                            jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
-
-                            if(tanggalPulang.equals(getDate())){
-                                @SuppressLint("SimpleDateFormat")
-                                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-                                Date time = null;
-                                Date time2 = null;
-                                try {
-                                    time = sdf.parse(String.valueOf(jamPulang));
-                                    time2 = sdf.parse(getTime());
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                                long pilih = time.getTime();
-                                long sekarang = time2.getTime();
-
-                                if (pilih<=sekarang){
-                                    jamPulangPilihK3.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
-                                    jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
-                                } else {
-                                    jamPulang = "";
-                                    jamPulangPilihK3.setText("Pilih kembali !");
-
-                                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                                            .setTitleText("Perhatian")
-                                            .setContentText("Jam pulang tidak dapat lebih besar dari jam saat ini. Harap ulangi!")
-                                            .setConfirmText("    OK    ")
-                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                @Override
-                                                public void onClick(KAlertDialog sDialog) {
-                                                    sDialog.dismiss();
-                                                }
-                                            })
-                                            .show();
-                                }
-                            } else {
-                                jamPulangPilihK3.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00");
-                                jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
-                            }
-
-                        },
-                                cal.get(java.util.Calendar.HOUR_OF_DAY),
-                                cal.get(java.util.Calendar.MINUTE),
-                                android.text.format.DateFormat.is24HourFormat(FormFingerscanActivity.this));
-                        tpd.show();
-
+                        jamPulangPicker();
                     }
                     else {
                         int h = Integer.parseInt(getTimeH());
@@ -711,6 +619,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
                     }
                 }
+
             }
         });
         titikBTNK3.setOnClickListener(new View.OnClickListener() {
@@ -4659,6 +4568,92 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     }
 
+    private void jamPulangPicker(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_time_picker, bottomSheet, false));
+        timepicker = findViewById(R.id.timepicker);
+        closeBTN = findViewById(R.id.close_btn);
+        okBTN = findViewById(R.id.ok_btn);
+        timepicker.setIs24HourView(true);
+        timepicker.isInEditMode();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int h = Integer.parseInt(getTimeH());
+            int m = Integer.parseInt(getTimeM());
+            timepicker.setHour(h);
+            timepicker.setMinute(m);
+
+            closeBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    bottomSheet.dismissSheet();
+                }
+            });
+
+            okBTN.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onClick(View v) {
+                    if(String.valueOf(timepicker.getHour()).length()==1){
+                        if(String.valueOf(timepicker.getMinute()).length()==1){
+                            checkJam("0"+String.valueOf(timepicker.getHour())+":0"+String.valueOf(timepicker.getMinute())+":00");
+                        } else {
+                            checkJam("0"+String.valueOf(timepicker.getHour())+":"+String.valueOf(timepicker.getMinute())+":00");
+                        }
+                    } else {
+                        if(String.valueOf(timepicker.getMinute()).length()==1){
+                            checkJam(String.valueOf(timepicker.getHour())+":0"+String.valueOf(timepicker.getMinute())+":00");
+                        } else {
+                            checkJam(String.valueOf(timepicker.getHour())+":"+String.valueOf(timepicker.getMinute())+":00");
+                        }
+                    }
+                    bottomSheet.dismissSheet();
+                }
+            });
+
+        }
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void checkJam(String jamPulangPilih){
+        if(tanggalPulang.equals(getDate())) {
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+            Date time = null;
+            Date time2 = null;
+            try {
+                time = sdf.parse(String.valueOf(jamPulangPilih));
+                time2 = sdf.parse(getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            long pilih = time.getTime();
+            long sekarang = time2.getTime();
+
+            if (pilih <= sekarang) {
+                jamPulangPilihK3.setText(jamPulangPilih);
+                jamPulang = jamPulangPilih;
+            } else {
+                jamPulang = "";
+                jamPulangPilihK3.setText("Pilih kembali !");
+
+                new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Jam pulang tidak dapat lebih besar dari jam saat ini. Harap ulangi!")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+
+        }
+
+    }
+
     private void getStatusAbsenBagian() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/status_absen_bagian_form_finger";
@@ -4673,7 +4668,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                             JSONObject data = new JSONObject(response);
                             String status_absen = data.getString("data");
 
-                            GsonBuilder builder =new GsonBuilder();
+                            GsonBuilder builder = new GsonBuilder();
                             Gson gson = builder.create();
                             statusAbsens = gson.fromJson(status_absen, StatusAbsen[].class);
                             adapterStatusAbsen = new AdapterStatusAbsenFinger(statusAbsens,FormFingerscanActivity.this);

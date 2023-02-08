@@ -84,7 +84,7 @@ import java.util.UUID;
 
 public class FormPermohonanCutiActivity extends AppCompatActivity {
 
-    LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, viewBTN, goToHome, goToDasboard, successPart, formPart, backBTN, homeBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, submitBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
+    LinearLayout infoCutiPart, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, viewBTN, goToHome, goToDasboard, successPart, formPart, backBTN, homeBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, submitBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
     SwipeRefreshLayout refreshLayout;
     TextView notejumlahHari, jumlahHariTV, messageSuccessTV, statusUploadTV, labelUnggahTV, tipeCutiTV, namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
     String lampiranWajibAtauTidak = "", uploadStatus = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", dateChoiceMulai = "", kategoriCuti = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
@@ -158,6 +158,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         messageSuccessTV = findViewById(R.id.message_tv);
         jumlahHariTV = findViewById(R.id.jumlah_hari_tv);
         notejumlahHari = findViewById(R.id.note_jumlah_hari);
+        infoCutiPart = findViewById(R.id.info_cuti_part);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -2659,6 +2660,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                                 String sisa_cuti = data.getString("sisa_cuti");
                                 String cuti_ambil = data.getString("cuti_ambil");
                                 String lampiran_cuti_kusus = data.getString("lampiran_cuti_kusus");
+                                String info_sisa_cuti = data.getString("info_sisa_cuti");
 
                                 lampiranWajibAtauTidak = lampiran_cuti_kusus;
                                 jabatanKaryawan.setText(jabatan);
@@ -2670,6 +2672,13 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                                 tahunCutiTelah.setText(getDateY());
                                 totalCutiTelah.setText(cuti_ambil+" Hari");
                                 totalCutiDiambil = cuti_ambil;
+
+                                if(info_sisa_cuti.equals("1")){
+                                    infoCutiPart.setVisibility(View.VISIBLE);
+                                } else {
+                                    infoCutiPart.setVisibility(View.GONE);
+                                }
+
                             }
 
                         } catch (JSONException e) {
