@@ -3923,9 +3923,9 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                 statusLampiran = "0";
             }
 
-            if(tipeCuti.equals("1")){
+            if(tipeCuti.equals("1") && uploadStatus.equals("1")){
                 removeLampiranBTN.setVisibility(View.VISIBLE);
-            } else if(tipeCuti.equals("2")){
+            } else {
                 removeLampiranBTN.setVisibility(View.GONE);
             }
 

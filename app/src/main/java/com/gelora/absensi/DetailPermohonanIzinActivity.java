@@ -992,7 +992,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                                         .into(ttdPemohon);
 
-                                String shortName = nama_karyawan;
+                                String shortName = nama_karyawan+" ";
                                 if(shortName.contains(" ")){
                                     shortName = shortName.substring(0, shortName.indexOf(" "));
                                     pemohonTV.setText(shortName.toUpperCase());
@@ -1017,7 +1017,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
                                     tanggalApproveTV.setText(timestamp_approve.substring(8,10)+"/"+timestamp_approve.substring(5,7)+"/"+timestamp_approve.substring(2,4));
 
-                                    String shortName2 = approver;
+                                    String shortName2 = approver+" ";
                                     if(shortName2.contains(" ")){
                                         shortName2 = shortName2.substring(0, shortName2.indexOf(" "));
                                         supervisorTV.setText(shortName2.toUpperCase());
@@ -1087,7 +1087,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
                                     String approver = detail.getString("approver");
 
-                                    String shortName2 = approver;
+                                    String shortName2 = approver+" ";
                                     if(shortName2.contains(" ")){
                                         shortName2 = shortName2.substring(0, shortName2.indexOf(" "));
                                         supervisorTV.setText(shortName2.toUpperCase());
@@ -1108,17 +1108,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                 } else {
                                     if (nik_karyawan.equals(sharedPrefManager.getSpNik())){
                                         actionRead();
-                                        if(sharedPrefManager.getSpIdJabatan().equals("10")){
-                                            if(status_approve.equals("1")){
-                                                actionPart.setVisibility(View.GONE);
-                                            } else if (status_approve.equals("2")){
-                                                actionPart.setVisibility(View.GONE);
-                                            } else {
-                                                actionPart.setVisibility(View.VISIBLE);
-                                            }
-                                        } else {
-                                            actionPart.setVisibility(View.GONE);
-                                        }
+                                        actionPart.setVisibility(View.GONE);
                                     } else {
                                         cancelPermohonanBTN.setVisibility(View.GONE);
                                         editPermohonanBTN.setVisibility(View.GONE);

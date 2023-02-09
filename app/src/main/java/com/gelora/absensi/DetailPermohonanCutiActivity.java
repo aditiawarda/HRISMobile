@@ -619,6 +619,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 String catatan1 = detail.getString("catatan1");
                                 String catatan2 = detail.getString("catatan2");
                                 String lampiran = detail.getString("lampiran");
+                                String info_sisa_cuti = data.getString("info_sisa_cuti");
 
                                 if(!catatan1.equals("null") && !catatan1.equals("") && !catatan1.equals(null)){
                                     noted1TV.setText(catatan1+"  ");
@@ -664,7 +665,13 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                                 nikTV.setText(NIK);
                                 statusKaryawanTV.setText(status_karyawan);
-                                sisaCutiTV.setText(sisa_cuti_sementara+" Hari");
+
+                                if(info_sisa_cuti.equals("1")){
+                                    sisaCutiTV.setText(sisa_cuti_sementara+" Hari");
+                                } else {
+                                    sisaCutiTV.setText("..........");
+                                }
+
                                 tahunCutiAmbilTV.setText("Tahun  "+tahun_cuti_telah_diambil);
                                 totalCutiAmbilTV.setText("Total  "+total_cuti_telah_diambil+"  Hari");
                                 tahunCutiTV.setText("Tahun  "+tanggal_mulai.substring(0,4));
@@ -1369,7 +1376,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                 params.put("timestamp_approve", getTimeStamp());
                 params.put("updated_at", getTimeStamp());
 
-                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")){
+                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpIdJabatan().equals("4") && sharedPrefManager.getSpNik().equals("1309131210"))){
                     if(!nikApprover.equals("null") && nikApprover.equals(sharedPrefManager.getSpNik())){
                         params.put("action", "kadep");
                     } else {
@@ -1444,7 +1451,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                 params.put("timestamp_approve", getTimeStamp());
                 params.put("updated_at", getTimeStamp());
 
-                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")){
+                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpIdJabatan().equals("4") && sharedPrefManager.getSpNik().equals("1309131210"))){
                     if(!nikApprover.equals("null") && nikApprover.equals(sharedPrefManager.getSpNik())){
                         params.put("action", "kadep");
                     } else {
@@ -1452,6 +1459,8 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                     }
                 } else if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){
                     params.put("action", "kadep");
+                } else if(sharedPrefManager.getSpIdJabatan().equals("8")){
+                    params.put("action", "direksi");
                 }
 
                 params.put("catatan", catatanAtasanTV.getText().toString());

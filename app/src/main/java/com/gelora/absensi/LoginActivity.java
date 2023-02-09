@@ -524,8 +524,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //requestQueue.add(jsonObjectRequest);
-
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(this);
             requestQueue.add(jsonObjectRequest);

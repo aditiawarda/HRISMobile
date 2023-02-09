@@ -184,7 +184,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
             }
         });
 
-        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
+        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpIdJabatan().equals("4") && sharedPrefManager.getSpNik().equals("1309131210"))){
             optionPart.setVisibility(View.VISIBLE);
         } else if (sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")) {
             float scale = getResources().getDisplayMetrics().density;
