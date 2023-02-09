@@ -23,7 +23,6 @@
                     android:id="@id/scrollView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/shape_head_user"
                     tools:ignore="MissingConstraints">
 
                     <LinearLayout
@@ -57,11 +56,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginLeft="7dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="NIK :"
                                         android:textColor="#696969"
-                                        android:text="NIK :"/>
+                                        android:textSize="12dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -87,11 +86,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginLeft="7dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Bagian :"
                                         android:textColor="#696969"
-                                        android:text="Bagian :"/>
+                                        android:textSize="12dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -117,11 +116,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginLeft="7dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Departemen :"
                                         android:textColor="#696969"
-                                        android:text="Departemen :"/>
+                                        android:textSize="12dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -147,11 +146,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginLeft="7dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Tanggal Bergabung :"
                                         android:textColor="#696969"
-                                        android:text="Tanggal Bergabung :"/>
+                                        android:textSize="12dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -177,11 +176,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginLeft="7dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Masa Kerja :"
                                         android:textColor="#696969"
-                                        android:text="Masa Kerja :"/>
+                                        android:textSize="12dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -207,113 +206,113 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginLeft="7dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Email :"
                                         android:textColor="#696969"
-                                        android:text="Email :"/>
+                                        android:textSize="12dp" />
 
                                     <EditText
                                         android:id="@+id/email_tv"
                                         android:layout_width="match_parent"
-                                        android:gravity="center|left"
                                         android:layout_height="40dp"
-                                        android:paddingTop="10dp"
-                                        android:paddingBottom="10dp"
-                                        android:paddingLeft="20dp"
-                                        android:paddingRight="20dp"
-                                        android:inputType="textEmailAddress"
                                         android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_input_form"
                                         android:drawablePadding="10dp"
-                                        android:textColor="#595959"
+                                        android:gravity="center|left"
                                         android:hint=""
-                                        android:textSize="14dp"
+                                        android:inputType="textEmailAddress"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="10dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="10dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
                                         android:textColorHint="#FF3D3D"
-                                        android:textColorHighlight="#FFE1BC"/>
+                                        android:textSize="14dp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginLeft="7dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="No HP :"
                                         android:textColor="#696969"
-                                        android:text="No HP :"/>
+                                        android:textSize="12dp" />
 
                                     <EditText
                                         android:id="@+id/no_hp_tv"
                                         android:layout_width="match_parent"
-                                        android:gravity="center|left"
                                         android:layout_height="40dp"
-                                        android:paddingTop="10dp"
-                                        android:paddingBottom="10dp"
-                                        android:paddingLeft="20dp"
-                                        android:paddingRight="20dp"
-                                        android:inputType="phone"
                                         android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_input_form"
                                         android:drawablePadding="10dp"
-                                        android:textColor="#595959"
+                                        android:gravity="center|left"
                                         android:hint=""
-                                        android:textSize="14dp"
+                                        android:inputType="phone"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="10dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="10dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
                                         android:textColorHint="#FF3D3D"
-                                        android:textColorHighlight="#FFE1BC"/>
+                                        android:textSize="14dp" />
 
                                     <LinearLayout
-                                        android:visibility="gone"
                                         android:id="@+id/submit_btn"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="15dp"
+                                        android:background="@drawable/shape_btn"
+                                        android:gravity="center"
                                         android:paddingTop="12dp"
                                         android:paddingBottom="12dp"
-                                        android:background="@drawable/shape_btn"
-                                        android:gravity="center">
+                                        android:visibility="gone">
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textStyle="bold"
                                             android:drawablePadding="7dp"
-                                            android:textSize="13dp"
                                             android:drawableTint="@color/white"
+                                            android:text="SIMPAN"
                                             android:textColor="@color/white"
-                                            android:text="SIMPAN"/>
+                                            android:textSize="13dp"
+                                            android:textStyle="bold" />
 
                                     </LinearLayout>
 
                                     <LinearLayout
-                                        android:visibility="gone"
                                         android:id="@+id/lengkap_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="15dp"
+                                        android:background="@drawable/shape_lengkap"
                                         android:gravity="center|left"
                                         android:orientation="horizontal"
-                                        android:layout_marginTop="15dp"
                                         android:paddingLeft="15dp"
+                                        android:paddingTop="10dp"
                                         android:paddingRight="16dp"
                                         android:paddingBottom="10dp"
-                                        android:paddingTop="10dp"
-                                        android:background="@drawable/shape_lengkap" >
+                                        android:visibility="gone">
 
                                         <LinearLayout
-                                            android:background="@drawable/success_2"
                                             android:layout_width="24dp"
-                                            android:layout_height="24dp"/>
+                                            android:layout_height="24dp"
+                                            android:background="@drawable/success_2" />
 
                                         <LinearLayout
-                                            android:layout_marginLeft="10dp"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginLeft="10dp"
                                             android:orientation="vertical">
 
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="13dp"
+                                                android:text="Terima kasih, data anda telah lengkap."
                                                 android:textColor="@color/white"
-                                                android:text="Terima kasih, data anda telah lengkap."/>
+                                                android:textSize="13dp" />
 
                                         </LinearLayout>
 
