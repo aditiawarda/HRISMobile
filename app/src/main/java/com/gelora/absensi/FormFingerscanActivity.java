@@ -4650,6 +4650,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
                         .show();
             }
 
+        } else {
+            jamPulangPilihK3.setText(jamPulangPilih);
+            jamPulang = jamPulangPilih;
         }
 
     }
