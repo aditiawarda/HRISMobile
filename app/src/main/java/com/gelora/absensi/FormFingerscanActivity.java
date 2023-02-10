@@ -420,6 +420,26 @@ public class FormFingerscanActivity extends AppCompatActivity {
                 }
             }
         });
+        tglPulangBTNK1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(dateChoiceMasuk.equals("")){
+                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap tentukan tanggal masuk terlebih dahulu!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    datePickerPulang();
+                }
+            }
+        });
         jamPulangBTNK1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -491,26 +511,6 @@ public class FormFingerscanActivity extends AppCompatActivity {
                         tpd.show();
 
                     }
-                }
-            }
-        });
-        tglPulangBTNK1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(dateChoiceMasuk.equals("")){
-                    new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Harap tentukan tanggal masuk terlebih dahulu!")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
-                } else {
-                    datePickerPulang();
                 }
             }
         });
@@ -4299,21 +4299,27 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
                         if(kategoriKeterangan.equals("1")){
                             datePulangPilihK1.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                            jamPulangPilihK1.setText("");
                         } else if(kategoriKeterangan.equals("3")){
                             tglPulangPilihK3.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                            jamPulangPilihK3.setText("");
                         }
 
                         tanggalPulang = dateChoicePulang;
+                        jamPulang = "";
 
                     } else {
                         if(kategoriKeterangan.equals("1")){
                             datePulangPilihK1.setText("Pilih Kembali !");
+                            jamPulangPilihK1.setText("");
                         } else if(kategoriKeterangan.equals("3")){
                             tglPulangPilihK3.setText("Pilih Kembali !");
+                            jamPulangPilihK3.setText("");
                         }
 
                         dateChoicePulang = "";
                         tanggalPulang = "0000-00-00";
+                        jamPulang = "";
 
                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -4331,12 +4337,15 @@ public class FormFingerscanActivity extends AppCompatActivity {
                 } else {
                     if(kategoriKeterangan.equals("1")){
                         datePulangPilihK1.setText("Pilih Kembali !");
+                        jamPulangPilihK1.setText("");
                     } else if(kategoriKeterangan.equals("3")){
                         tglPulangPilihK3.setText("Pilih Kembali !");
+                        jamPulangPilihK3.setText("");
                     }
 
                     dateChoicePulang = "";
                     tanggalPulang = "0000-00-00";
+                    jamPulang = "";
 
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
@@ -4467,21 +4476,27 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
                         if(kategoriKeterangan.equals("1")){
                             datePulangPilihK1.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                            jamPulangPilihK1.setText("");
                         } else if(kategoriKeterangan.equals("3")){
                             tglPulangPilihK3.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                            jamPulangPilihK3.setText("");
                         }
 
                         tanggalPulang = dateChoicePulang;
+                        jamPulang = "";
 
                     } else {
                         if(kategoriKeterangan.equals("1")){
                             datePulangPilihK1.setText("Pilih Kembali !");
+                            jamPulangPilihK1.setText("");
                         } else if(kategoriKeterangan.equals("3")){
                             tglPulangPilihK3.setText("Pilih Kembali !");
+                            jamPulangPilihK3.setText("");
                         }
 
                         dateChoicePulang = "";
                         tanggalPulang = "0000-00-00";
+                        jamPulang = "";
 
                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -4499,12 +4514,15 @@ public class FormFingerscanActivity extends AppCompatActivity {
                 } else {
                     if(kategoriKeterangan.equals("1")){
                         datePulangPilihK1.setText("Pilih Kembali !");
+                        jamPulangPilihK1.setText("");
                     } else if(kategoriKeterangan.equals("3")){
                         tglPulangPilihK3.setText("Pilih Kembali !");
+                        jamPulangPilihK3.setText("");
                     }
 
                     dateChoicePulang = "";
                     tanggalPulang = "0000-00-00";
+                    jamPulang = "";
 
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
@@ -4631,11 +4649,21 @@ public class FormFingerscanActivity extends AppCompatActivity {
             long sekarang = time2.getTime();
 
             if (pilih <= sekarang) {
-                jamPulangPilihK3.setText(jamPulangPilih);
+                if(kategoriKeterangan.equals("1")){
+                    jamPulangPilihK1.setText(jamPulangPilih);
+                } else if(kategoriKeterangan.equals("3")){
+                    jamPulangPilihK3.setText(jamPulangPilih);
+                }
+
                 jamPulang = jamPulangPilih;
             } else {
                 jamPulang = "";
-                jamPulangPilihK3.setText("Pilih kembali !");
+
+                if(kategoriKeterangan.equals("1")){
+                    jamPulangPilihK1.setText("Pilih kembali !");
+                } else if(kategoriKeterangan.equals("3")){
+                    jamPulangPilihK3.setText("Pilih kembali !");
+                }
 
                 new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                         .setTitleText("Perhatian")
@@ -4651,7 +4679,12 @@ public class FormFingerscanActivity extends AppCompatActivity {
             }
 
         } else {
-            jamPulangPilihK3.setText(jamPulangPilih);
+            if(kategoriKeterangan.equals("1")){
+                jamPulangPilihK1.setText(jamPulangPilih);
+            } else if(kategoriKeterangan.equals("3")){
+                jamPulangPilihK3.setText(jamPulangPilih);
+            }
+
             jamPulang = jamPulangPilih;
         }
 
