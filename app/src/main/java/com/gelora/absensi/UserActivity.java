@@ -1192,8 +1192,6 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        // Banner.make(rootview, UserActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
-
         CookieBar.build(UserActivity.this)
                 .setTitle("Perhatian")
                 .setMessage("Koneksi anda terputus!")

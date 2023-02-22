@@ -54,7 +54,7 @@ import java.util.Map;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    LinearLayout noConnectPart, loadingPart, noDataPart, attantionPart, actionBar, filterDateBTN, backBTN, homeBTN, filterDateChoiceBTN, changeFilterDateBTN, filterDateChoice;
+    LinearLayout noConnectPart, loadingPart, noDataPart, attantionPart, actionBar, filterDateBTN, backBTN, filterDateChoiceBTN, changeFilterDateBTN, filterDateChoice;
     TextView shiftName, shiftTime, nameOfUser, dateCheckinTV, dateCheckoutTV, filterDateChoiceTV, dateLastAbsenTV, timeCheckinLastAbsenTV, timeCheckoutLastAbsenTV, checkinPointLastAbsenTV, checkoutPointLastAbsenTV;
     SharedPrefManager sharedPrefManager;
     BottomSheetLayout bottomSheet;
@@ -75,7 +75,6 @@ public class HistoryActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         actionBar = findViewById(R.id.action_bar);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         filterDateBTN = findViewById(R.id.filter_date_btn);
         filterDateChoiceBTN = findViewById(R.id.filter_date_choice_btn);
         changeFilterDateBTN = findViewById(R.id.change_filter_date_btn);
@@ -137,14 +136,6 @@ public class HistoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HistoryActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 

@@ -44,7 +44,7 @@ import java.util.Map;
 
 public class HistoryCutiIzinActivity extends AppCompatActivity {
 
-    LinearLayout loadingDataPartPenambahanCuti, noDataPartPenambahanCuti, attantionPart, backBTN, homeBTN, loadingDataPartCutiBersama, loadingDataPartCuti, loadingDataPartIzin, noDataPartCutiBersama, noDataPartCuti, noDataPartIzin, dataDiambilPart, dataSisaPart;
+    LinearLayout loadingDataPartPenambahanCuti, noDataPartPenambahanCuti, attantionPart, backBTN, loadingDataPartCutiBersama, loadingDataPartCuti, loadingDataPartIzin, noDataPartCutiBersama, noDataPartCuti, noDataPartIzin, dataDiambilPart, dataSisaPart;
     TextView totalDataPenambahanCuti, hakCutiTV, totalDataCutiBersama, totalDataCuti, totalDataIzin, nameUserTV, periodeData, dataDiambilTV, dataSisaTV;
     RelativeLayout periodeDataPart;
     SharedPrefManager sharedPrefManager;
@@ -78,7 +78,6 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         nameUserTV = findViewById(R.id.name_of_user_tv);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         diambilLoading = findViewById(R.id.sisa_loading);
         sisaLoading = findViewById(R.id.diambil_loading);
         periodeLoading = findViewById(R.id.periode_loading);
@@ -209,14 +208,6 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HistoryCutiIzinActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 

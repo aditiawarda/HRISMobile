@@ -66,7 +66,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refreshLayout;
     LinearLayout formPart, successPart, viewBTN, goToHome, goToDasboard;
-    LinearLayout closeBTN, okBTN, backBTN, homeBTN, dateBTN, submitBTN, detailKeterangan1, detailKeterangan3, detailKeterangan6;
+    LinearLayout closeBTN, okBTN, backBTN, dateBTN, submitBTN, detailKeterangan1, detailKeterangan3, detailKeterangan6;
     TextView namaTV, nikTV, detailTV, datePilihTV, labelDetail;
     EditText alasanED;
     SharedPrefManager sharedPrefManager;
@@ -121,7 +121,6 @@ public class FormFingerscanActivity extends AppCompatActivity {
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         namaTV = findViewById(R.id.nama_karyawan_tv);
         nikTV = findViewById(R.id.nik_karyawan_tv);
         detailTV = findViewById(R.id.detail_karyawan_tv);
@@ -247,14 +246,6 @@ public class FormFingerscanActivity extends AppCompatActivity {
             }
         });
 
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FormFingerscanActivity.this, MapsActivity.class);
-                startActivity(intent);
-            }
-        });
-
         viewBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -268,7 +259,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
         goToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FormFingerscanActivity.this, MapsActivity.class);
+                Intent intent = new Intent(FormFingerscanActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
             }

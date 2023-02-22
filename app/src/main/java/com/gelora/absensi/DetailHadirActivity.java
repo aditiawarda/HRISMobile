@@ -48,7 +48,7 @@ import java.util.Map;
 
 public class DetailHadirActivity extends AppCompatActivity {
 
-    LinearLayout attantionPart, monthBTN, emptyDataHadir, loadingHadirPart, backBTN, homeBTN;
+    LinearLayout attantionPart, monthBTN, emptyDataHadir, loadingHadirPart, backBTN;
     ImageView bulanLoading, hadirLoading, loadingDataHadir;
     TextView messageHadir, dataBulan, dataTahun, dataHadir, nameUserTV;
     SharedPrefManager sharedPrefManager;
@@ -68,7 +68,6 @@ public class DetailHadirActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         dataBulan = findViewById(R.id.bulan_data);
         dataTahun = findViewById(R.id.tahun_data);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
@@ -198,14 +197,6 @@ public class DetailHadirActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailHadirActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 

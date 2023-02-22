@@ -46,7 +46,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
     private AdapterPermohonanFingerSaya adapterPermohonanFingerSaya;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
-    LinearLayout backBTN, homeBTN;
+    LinearLayout backBTN;
     LinearLayout mainPart, optionPart, countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
     ImageView loadingImage,loadingImage2;
     View rootview;
@@ -63,7 +63,6 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
         dataNotifikasi2RV = findViewById(R.id.data_notifikasi_2_rv);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         noDataPart = findViewById(R.id.no_data_part);
         noDataPart2 = findViewById(R.id.no_data_part_2);
         loadingDataPart = findViewById(R.id.loading_data_part);
@@ -123,14 +122,6 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListNotifikasiFingerscanActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -204,12 +195,6 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
             optionPart.setVisibility(View.GONE);
             permohonanMasukPart.setVisibility(View.GONE);
             permohonanSayaPart.setVisibility(View.VISIBLE);
-        }
-
-        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
-            homeBTN.setVisibility(View.GONE);
-        } else {
-            homeBTN.setVisibility(View.VISIBLE);
         }
 
         getData();

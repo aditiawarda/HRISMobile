@@ -78,7 +78,7 @@ import java.util.UUID;
 
 public class DigitalSignatureActivity extends AppCompatActivity {
 
-    LinearLayout redPen, bluePen, blackPen, cancelBTN, loadingPart, showSignaturePart, creatSignaturePart, changeBTN, backBTN, homeBTN, saveBTN, removeBTN;
+    LinearLayout redPen, bluePen, blackPen, cancelBTN, loadingPart, showSignaturePart, creatSignaturePart, changeBTN, backBTN, saveBTN, removeBTN;
     SignaturePad mSignaturePad;
     SharedPrefManager sharedPrefManager;
     Bitmap bitmapFixSize;
@@ -97,7 +97,6 @@ public class DigitalSignatureActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         saveBTN = findViewById(R.id.save_btn);
         changeBTN = findViewById(R.id.change_btn);
         removeBTN = findViewById(R.id.remove_btn);
@@ -154,14 +153,6 @@ public class DigitalSignatureActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DigitalSignatureActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -233,31 +224,61 @@ public class DigitalSignatureActivity extends AppCompatActivity {
             }
         });
 
-        if (kodeString.equals("form")){
-            homeBTN.setVisibility(View.GONE);
-        } else {
-            if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
-                homeBTN.setVisibility(View.GONE);
-            } else {
-                homeBTN.setVisibility(View.VISIBLE);
-            }
-        }
-
         checkSignature();
 
     }
 
     private Bitmap getBitmapFromView(View view) {
-        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(returnedBitmap);
-        Drawable bgDrawable = view.getBackground();
-        if (bgDrawable!=null) {
-            bgDrawable.draw(canvas);
+        if(view.getWidth()==0){
+            if(view.getHeight()==0){
+                Bitmap returnedBitmap = Bitmap.createBitmap(300, 300,Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(returnedBitmap);
+                Drawable bgDrawable = view.getBackground();
+                if (bgDrawable!=null) {
+                    bgDrawable.draw(canvas);
+                } else {
+                    canvas.drawColor(Color.WHITE);
+                }
+                view.draw(canvas);
+                return returnedBitmap;
+            } else {
+                Bitmap returnedBitmap = Bitmap.createBitmap(view.getHeight(), view.getHeight(),Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(returnedBitmap);
+                Drawable bgDrawable = view.getBackground();
+                if (bgDrawable!=null) {
+                    bgDrawable.draw(canvas);
+                } else {
+                    canvas.drawColor(Color.WHITE);
+                }
+                view.draw(canvas);
+                return returnedBitmap;
+            }
         } else {
-            canvas.drawColor(Color.WHITE);
+            if(view.getHeight()==0){
+                Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getWidth(),Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(returnedBitmap);
+                Drawable bgDrawable = view.getBackground();
+                if (bgDrawable!=null) {
+                    bgDrawable.draw(canvas);
+                } else {
+                    canvas.drawColor(Color.WHITE);
+                }
+                view.draw(canvas);
+                return returnedBitmap;
+            } else {
+                Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(returnedBitmap);
+                Drawable bgDrawable = view.getBackground();
+                if (bgDrawable!=null) {
+                    bgDrawable.draw(canvas);
+                } else {
+                    canvas.drawColor(Color.WHITE);
+                }
+                view.draw(canvas);
+                return returnedBitmap;
+            }
         }
-        view.draw(canvas);
-        return returnedBitmap;
+
     }
 
     public void uploadDigitalSignature() {

@@ -48,7 +48,7 @@ import java.util.Map;
 
 public class DetailPulangCepatActivity extends AppCompatActivity {
 
-    LinearLayout attantionPart, monthBTN, emptyDataPulangCepat, loadingPulangCepatPart, backBTN, homeBTN;
+    LinearLayout attantionPart, monthBTN, emptyDataPulangCepat, loadingPulangCepatPart, backBTN;
     ImageView bulanLoading, pulangCepatLoading, loadingDataPulangCepat;
     TextView messagePulangCepat, dataBulan, dataTahun, dataPulangCepat, nameUserTV;
     SharedPrefManager sharedPrefManager;
@@ -68,7 +68,6 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         dataBulan = findViewById(R.id.bulan_data);
         dataTahun = findViewById(R.id.tahun_data);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
@@ -198,14 +197,6 @@ public class DetailPulangCepatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailPulangCepatActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 

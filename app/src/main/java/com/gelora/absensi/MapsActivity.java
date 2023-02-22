@@ -1,7 +1,6 @@
 package com.gelora.absensi;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -15,8 +14,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,14 +21,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -40,17 +33,13 @@ import android.os.Looper;
 import android.os.ResultReceiver;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.provider.Settings;
-import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -63,9 +52,14 @@ import com.android.volley.toolbox.Volley;
 import com.application.isradeleon.notify.Notify;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gauravbhola.ripplepulsebackground.RipplePulseLayout;
+import com.gelora.absensi.adapter.AdapterDataAbsensi;
+import com.gelora.absensi.adapter.AdapterDataHadir;
 import com.gelora.absensi.adapter.AdapterShiftAbsen;
 import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.model.DataHadir;
+import com.gelora.absensi.model.DataRecordAbsensi;
 import com.gelora.absensi.model.ShiftAbsen;
 import com.gelora.absensi.model.StatusAbsen;
 import com.gelora.absensi.support.Preferences;
@@ -74,7 +68,6 @@ import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.location.FusedLocationProviderApi;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -88,11 +81,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -101,14 +92,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mahfa.dnswitch.DayNightSwitch;
 import com.mahfa.dnswitch.DayNightSwitchListener;
-import com.shasin.notificationbanner.Banner;
-import com.skyfishjy.library.RippleBackground;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 import com.suke.widget.SwitchButton;
 
-import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -122,13 +107,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import android.provider.Settings.Secure;
 
 import static android.service.controls.ControlsProviderService.TAG;
-import static android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
+
+import net.cachapa.expandablelayout.ExpandableLayout;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -137,9 +122,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng userPoint;
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
-    ImageView reminderImage, weatherIconPart, onlineGif, warningGif, notificationWarning;
-    TextView markTitleShift, markTitleStatus, notePoint, descStatusPart, layoffDesc, descStart, notifMasukTV, reminderDecs, reminderCelebrateTV, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, celebrateName, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, ucapanTV, detailAbsenTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, indicatorAbsen, hTime, mTime, sTime, absenPoint, dateTV, userTV, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout markerNotification, pantauBTN, reminderCongrat, markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, dataCuacaPart, cuacaBTN, celebratePart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, pointPart, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    ImageView weatherIconPart, onlineGif, warningGif, notificationWarning;
+    TextView userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
+    LinearLayout backBTN, reminderCongrat, markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -151,9 +136,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     KAlertDialog pDialog;
     ResultReceiver resultReceiver;
     SwitchButton switchZoom;
-    ProgressBar loadingCuaca;
     Vibrator vibrate;
-    RippleBackground rippleIndicator;
+    RipplePulseLayout mRipplePulseLayoutInside;
+    RipplePulseLayout mRipplePulseLayoutOutside;
+
     ProgressBar loadingProgressBar;
 
     private RecyclerView statusAbsenRV;
@@ -175,6 +161,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     RequestQueue requestQueue;
     String appVersion = "1.6.8";
+    private StatusBarColorManager mStatusBarColorManager;
+
+    private RecyclerView dataAbsensiRV;
+    private DataRecordAbsensi[] dataAbsensis;
+    private AdapterDataAbsensi adapterDataAbsensi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,24 +191,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             checkinTimeZone = getTimeZone();
         }
 
-        resultReceiver = new AddressResultReceiver(new Handler());
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
 
         rootview = findViewById(android.R.id.content);
+        backBTN = findViewById(R.id.back_btn);
         onlineGif = findViewById(R.id.img_online);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
-        indicatorAbsen = findViewById(R.id.indicator_absen_tv);
         hTime = findViewById(R.id.h_time);
         mTime = findViewById(R.id.m_time);
         sTime = findViewById(R.id.s_time);
+        userTV = findViewById(R.id.name_of_user);
         absenPoint = findViewById(R.id.abesen_point_tv);
-        pointPart = findViewById(R.id.point_part);
         statusAbsenBTN = findViewById(R.id.status_absen_btn);
         shiftBTN = findViewById(R.id.shift_btn);
-        dateTV = findViewById(R.id.date_tv);
-        userTV = findViewById(R.id.user_tv);
         actionBTN = findViewById(R.id.action_btn);
         actionTV = findViewById(R.id.action_tv);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
@@ -236,6 +224,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         checkinPointTV = findViewById(R.id.checkin_point_tv);
         checkoutPointTV = findViewById(R.id.checkout_point_tv);
         detailAbsenTV = findViewById(R.id.detail_absen_tv);
+        dateCurrentAbsensiTV = findViewById(R.id.date_absen_tv);
         attantionPart = findViewById(R.id.attantion_part);
         layoffPart = findViewById(R.id.layoff_part);
         izinPart = findViewById(R.id.izin_part);
@@ -245,46 +234,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         connectionSuccess = findViewById(R.id.connection_success);
         connectionFailed = findViewById(R.id.connection_failed);
         dayNightSwitch = findViewById(R.id.day_night_switch);
-        ucapanTV = findViewById(R.id.ucapan_tv);
         warningPart = findViewById(R.id.warning_part);
         dateCheckinTV = findViewById(R.id.date_checkin_tv);
         dateCheckoutTV = findViewById(R.id.date_checkout_tv);
-        celebratePart = findViewById(R.id.celebrate_part);
-        celebrateName = findViewById(R.id.celebrate_name);
-        cuacaBTN = findViewById(R.id.info_cuaca_btn);
         skeletonLayout = findViewById(R.id.skeleton_layout);
         izinDesc = findViewById(R.id.izin_desc);
         openSessionBTN = findViewById(R.id.open_session_btn);
         switchZoom = findViewById(R.id.switch_zoom);
         markerWarningAbsensi = findViewById(R.id.marker_warning);
         notificationWarning = findViewById(R.id.warning_gif_absen);
-        reminderCongrat = findViewById(R.id.reminder_congrat);
-        reminderDecs = findViewById(R.id.reminder_desc);
-        reminderCelebrateTV = findViewById(R.id.reminder_celebrate);
-        pantauBTN = findViewById(R.id.pantau_btn);
-        markerNotification = findViewById(R.id.marker_notification);
-        notifMasukTV = findViewById(R.id.jumlah_notif_masuk);
-        reminderImage = findViewById(R.id.reminder_image);
         descStart = findViewById(R.id.desc_start);
         layoffDesc = findViewById(R.id.layoff_desc);
         descStatusPart = findViewById(R.id.desc_status_part);
-        notePoint = findViewById(R.id.note_point);
         markTitleStatus = findViewById(R.id.mark_title_status);
         markTitleShift = findViewById(R.id.mark_title_shift);
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
         requestQueue = Volley.newRequestQueue(getBaseContext());
         vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        rippleIndicator = (RippleBackground)findViewById(R.id.ripple_indicator);
+        mRipplePulseLayoutInside = findViewById(R.id.layout_ripplepulse);
+        mRipplePulseLayoutOutside = findViewById(R.id.layout_ripplepulse_2);
+
+        dataAbsensiRV = findViewById(R.id.data_absensi_rv);
+
+        dataAbsensiRV.setLayoutManager(new LinearLayoutManager(this));
+        dataAbsensiRV.setHasFixedSize(true);
+        dataAbsensiRV.setNestedScrollingEnabled(false);
+        dataAbsensiRV.setItemAnimator(new DefaultItemAnimator());
+
+        mStatusBarColorManager = new StatusBarColorManager(this);
+        mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
 
         loadingProgressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#A6441F"),android.graphics.PorterDuff.Mode.MULTIPLY);
 
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
             Typeface typeface = ResourcesCompat.getFont(MapsActivity.this, R.font.roboto);
-            userTV.setTypeface(typeface);
-            dateTV.setTypeface(typeface);
-            reminderDecs.setTypeface(typeface);
-            reminderDecs.setTypeface(typeface);
-            celebrateName.setTypeface(typeface);
             dateCheckinTV.setTypeface(typeface);
             dateCheckoutTV.setTypeface(typeface);
             timeCheckinTV.setTypeface(typeface);
@@ -294,12 +277,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             descStart.setTypeface(typeface);
             layoffDesc.setTypeface(typeface);
             descStatusPart.setTypeface(typeface);
-            notePoint.setTypeface(typeface);
             markTitleStatus.setTypeface(typeface);
             markTitleShift.setTypeface(typeface);
         }
-
-        rippleIndicator.startRippleAnimation();
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.icon_none)
@@ -308,6 +288,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Glide.with(getApplicationContext())
                 .load(R.drawable.ic_warning_notification_gif_main)
                 .into(notificationWarning);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.warning_circle_gif)
+                .into(warningGif);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(statusAbsenBroad, new IntentFilter("status_absen_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(shiftAbsenBroad, new IntentFilter("shift_absen_broad"));
@@ -323,6 +307,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         refreshData();
                     }
                 }, 1000);
+            }
+        });
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
@@ -452,35 +443,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        cuacaBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                infoCuaca();
-            }
-        });
-
-        pantauBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                statusLooping = "off";
-                Intent intent = new Intent(MapsActivity.this, MonitoringAbsensiBagianActivity.class);
-                startActivity(intent);
-            }
-        });
-
         userBTNPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 statusLooping = "off";
                 Intent intent = new Intent(MapsActivity.this, UserActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        dateTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCalender();
             }
         });
 
@@ -519,21 +487,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        userTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MapsActivity.this, UserActivity.class);
-                startActivity(intent);
-            }
-        });
+        getDataAbsensi();
 
         checkLogin();
         getCurrentDay();
         timeLive();
-        dateLive();
         checkIzin();
         checkWarning();
-        checkNotification();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
 
@@ -552,7 +512,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setPadding(0,0,0,12);
+        mMap.setPadding(0,0,0,0);
         permissionLoc();
     }
 
@@ -560,7 +520,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void userPosition() {
         // Get last known recent location using new Google Play Services SDK (v11+)
         FusedLocationProviderClient locationClient = LocationServices.getFusedLocationProviderClient(this);
-
         locationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
@@ -611,7 +570,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             checkTime();
             getCurrentDay();
-            dateLive();
 
         } else {
             gpsEnableAction();
@@ -621,7 +579,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             userPoint = new LatLng(userLat, userLong);
             if (zoomAction.equals("0")){
                 // User position camera
-                float zoomLevel = 18.0f; //This goes up to 21
+                float zoomLevel = 17.8f; //This goes up to 21
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
                 mMap.getUiSettings().setCompassEnabled(false);
             }
@@ -710,36 +668,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             String status = data.getString("status");
 
                             if (status.equals("didalam radius")){
+                                mRipplePulseLayoutInside.startRippleAnimation();
+                                mRipplePulseLayoutOutside.stopRippleAnimation();
                                 insideRadius();
-                                indicatorAbsen.setText("DI DALAM JANGKAUAN");
-                                indicatorAbsen.setTextColor(Color.parseColor("#309A35"));
 
                                 absenPoint.setText(point);
-                                absenPoint.setTextColor(Color.parseColor("#B15735"));
-                                pointPart.setBackground(ContextCompat.getDrawable(MapsActivity.this, R.drawable.shape_point_2));
-                                pointPart.setOnClickListener(null);
+                                absenPoint.setTextColor(Color.parseColor("#309A35"));
                                 radiusZone = "inside";
 
                             } else {
+                                mRipplePulseLayoutOutside.startRippleAnimation();
+                                mRipplePulseLayoutInside.stopRippleAnimation();
                                 outsideRadius();
-                                indicatorAbsen.setText("DI LUAR JANGKAUAN");
-                                indicatorAbsen.setTextColor(Color.parseColor("#B83633"));
 
-                                absenPoint.setText("REFRESH");
-                                absenPoint.setTextColor(Color.WHITE);
-                                pointPart.setBackground(ContextCompat.getDrawable(MapsActivity.this, R.drawable.shape_second_btn));
-                                pointPart.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        loadingLayout.setVisibility(View.VISIBLE);
-                                        new Handler().postDelayed(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                refreshData();
-                                            }
-                                        }, 1500);
-                                    }
-                                });
+                                absenPoint.setText("DI LUAR JANGKAUAN");
+                                absenPoint.setTextColor(Color.parseColor("#B83633"));
                                 radiusZone = "outside";
                             }
 
@@ -945,13 +888,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void insideRadius() {
         Glide.with(getApplicationContext())
-                .load(R.drawable.online_gif)
+                .load(R.drawable.shape_in_radius)
                 .into(onlineGif);
     }
 
     private void outsideRadius() {
         Glide.with(getApplicationContext())
-                .load(R.drawable.offline_gif)
+                .load(R.drawable.shape_out_radius)
                 .into(onlineGif);
     }
 
@@ -1027,18 +970,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             startActivity(intent);
             finish();
         } else {
-            if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
-                Intent intent = new Intent(this, UserActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                shortName = sharedPrefManager.getSpNama();
-                if(shortName.contains(" ")){
-                    shortName = shortName.substring(0, shortName.indexOf(" "));
-                    System.out.println(shortName);
-                }
-                userTV.setText("Halo, "+shortName);
-            }
+            userTV.setText(sharedPrefManager.getSpNama().toUpperCase());
         }
     }
 
@@ -1246,52 +1178,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         }
     };
-
-    @SuppressLint("SetTextI18n")
-    private void dateLive(){
-        switch (getDateM()) {
-            case "01":
-                dateTV.setText(currentDay + ", " + String.valueOf(Integer.parseInt(getDateD())) + " Januari " + getDateY());
-                break;
-            case "02":
-                dateTV.setText(currentDay + ", " + String.valueOf(Integer.parseInt(getDateD())) + " Februari " + getDateY());
-                break;
-            case "03":
-                dateTV.setText(currentDay + ", " + String.valueOf(Integer.parseInt(getDateD())) + " Maret " + getDateY());
-                break;
-            case "04":
-                dateTV.setText(currentDay + ", " + String.valueOf(Integer.parseInt(getDateD())) + " April " + getDateY());
-                break;
-            case "05":
-                dateTV.setText(currentDay + ", " + String.valueOf(Integer.parseInt(getDateD())) + " Mei " + getDateY());
-                break;
-            case "06":
-                dateTV.setText(currentDay + ", " + String.valueOf(Integer.parseInt(getDateD())) + " Juni " + getDateY());
-                break;
-            case "07":
-                dateTV.setText(currentDay + ", " + String.valueOf(Integer.parseInt(getDateD())) + " Juli " + getDateY());
-                break;
-            case "08":
-                dateTV.setText(currentDay + ", " + String.valueOf(Integer.parseInt(getDateD())) + " Agustus " + getDateY());
-                break;
-            case "09":
-                dateTV.setText(currentDay + ", " + String.valueOf(Integer.parseInt(getDateD())) + " September " + getDateY());
-                break;
-            case "10":
-                dateTV.setText(currentDay + ", " + String.valueOf(Integer.parseInt(getDateD())) + " Oktober " + getDateY());
-                break;
-            case "11":
-                dateTV.setText(currentDay + ", " + String.valueOf(Integer.parseInt(getDateD())) + " November " + getDateY());
-                break;
-            case "12":
-                dateTV.setText(currentDay + ", " + String.valueOf(Integer.parseInt(getDateD())) + " Desember " + getDateY());
-                break;
-            default:
-                dateTV.setText("Not found!");
-                break;
-        }
-
-    }
 
     private void getCurrentDay() {
         Calendar calendar = Calendar.getInstance();
@@ -1904,51 +1790,65 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String dayDate = input_date.substring(8,10);
                                 String yearDate = input_date.substring(0,4);
                                 String bulanValue = input_date.substring(5,7);
-                                String bulanName;
+                                String bulanName, bulanNameCurrent;
 
                                 switch (bulanValue) {
                                     case "01":
                                         bulanName = "Januari";
+                                        bulanNameCurrent = "JAN";
                                         break;
                                     case "02":
                                         bulanName = "Februari";
+                                        bulanNameCurrent = "FEB";
                                         break;
                                     case "03":
                                         bulanName = "Maret";
+                                        bulanNameCurrent = "MAR";
                                         break;
                                     case "04":
                                         bulanName = "April";
+                                        bulanNameCurrent = "APR";
                                         break;
                                     case "05":
                                         bulanName = "Mei";
+                                        bulanNameCurrent = "MEI";
                                         break;
                                     case "06":
                                         bulanName = "Juni";
+                                        bulanNameCurrent = "JUN";
                                         break;
                                     case "07":
                                         bulanName = "Juli";
+                                        bulanNameCurrent = "JUL";
                                         break;
                                     case "08":
                                         bulanName = "Agustus";
+                                        bulanNameCurrent = "AGU";
                                         break;
                                     case "09":
                                         bulanName = "September";
+                                        bulanNameCurrent = "SEP";
                                         break;
                                     case "10":
                                         bulanName = "Oktober";
+                                        bulanNameCurrent = "OKT";
                                         break;
                                     case "11":
                                         bulanName = "November";
+                                        bulanNameCurrent = "NOV";
                                         break;
                                     case "12":
                                         bulanName = "Desember";
+                                        bulanNameCurrent = "DES";
                                         break;
                                     default:
                                         bulanName = "Not found";
+                                        bulanNameCurrent = "Not found";
                                         break;
                                 }
 
                                 dateCheckinTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                                dateCurrentAbsensiTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanNameCurrent+" "+yearDate);
 
                                 timeCheckinTV.setText(time_checkin+" "+timezone_masuk);
                                 idStatusAbsen = id_status;
@@ -3613,10 +3513,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         checkLogin();
         getCurrentDay();
         timeLive();
-        dateLive();
         checkIzin();
         checkWarning();
-        checkNotification();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
         idShiftAbsen = "";
@@ -3629,10 +3527,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         checkLogin();
         getCurrentDay();
         timeLive();
-        dateLive();
         checkIzin();
         checkWarning();
-        checkNotification();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
         idShiftAbsen = "";
@@ -3643,12 +3539,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(mMap != null){
             mMap.clear();
             userPosition();
-            //startLocationUpdates();
             getLocation();
 
             if (userPoint!=null){
-                // User position camera
-                float zoomLevel = 18.0f; //This goes up to 21
+                float zoomLevel = 17.8f; //This goes up to 21
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
                 mMap.getUiSettings().setCompassEnabled(false);
             }
@@ -3949,10 +3843,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                             skeletonLayout.setVisibility(View.GONE);
                                             warningPart.setVisibility(View.VISIBLE);
 
-                                            Glide.with(getApplicationContext())
-                                                    .load(R.drawable.warning_circle_gif)
-                                                    .into(warningGif);
-
                                             statusAction = "checkin";
                                             idShiftAbsen = "";
 
@@ -4160,9 +4050,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                 skeletonLayout.setVisibility(View.GONE);
 
                                                 warningPart.setVisibility(View.VISIBLE);
-                                                Glide.with(getApplicationContext())
-                                                        .load(R.drawable.warning_circle_gif)
-                                                        .into(warningGif);
 
                                                 statusAction = "checkin";
                                                 idShiftAbsen = "";
@@ -4243,7 +4130,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         dateCheckoutTV.setText("---- - -- - --");
                                         timeCheckoutTV.setText("-- : -- : -- ---");
                                         statusAction = "checkout";
-                                        ucapanTV.setText("\"Selamat dan SUMAngat Bekerja!\"");
                                         inputAbsenPart.setVisibility(View.GONE);
                                         recordAbsenPart.setVisibility(View.VISIBLE);
                                         attantionPart.setVisibility(View.GONE);
@@ -4316,7 +4202,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                             dateCheckoutTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
                                             timeCheckoutTV.setText(time_checkout+" "+timezone_pulang);
-                                            ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini\"");
                                             statusAction = "history";
                                             actionButton();
                                         }
@@ -4379,7 +4264,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                         dateCheckoutTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
                                         timeCheckoutTV.setText(time_checkout+" "+timezone_pulang);
-                                        ucapanTV.setText("\"Terima kasih telah masuk kerja hari ini\"");
                                         statusAction = "history";
                                         actionButton();
 
@@ -4508,7 +4392,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } else {
             mMap.clear();
             userPosition();
-            //startLocationUpdates();
             getLocation();
 
             // Maps style
@@ -4597,32 +4480,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         connectionFailed.setVisibility(View.VISIBLE);
         connectionSuccess.setVisibility(View.GONE);
         skeletonLayout.setVisibility(View.GONE);
-        //Banner.make(rootview, MapsActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
 
         connectionStatus = "failed";
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.icon_none)
+                .load(R.drawable.shape_waiting_point)
                 .into(onlineGif);
 
-        indicatorAbsen.setText("TERPUTUS");
-        indicatorAbsen.setTextColor(Color.parseColor("#575757"));
+        absenPoint.setText("TERPUTUS");
+        absenPoint.setTextColor(Color.parseColor("#575757"));
 
-        absenPoint.setText("REFRESH");
-        absenPoint.setTextColor(Color.WHITE);
-        pointPart.setBackground(ContextCompat.getDrawable(MapsActivity.this, R.drawable.shape_second_btn));
-        pointPart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadingLayout.setVisibility(View.VISIBLE);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        refreshData();
-                    }
-                }, 1500);
-            }
-        });
+        mRipplePulseLayoutOutside.stopRippleAnimation();
+        mRipplePulseLayoutInside.stopRippleAnimation();
+
+//        pointPart.setBackground(ContextCompat.getDrawable(MapsActivity.this, R.drawable.shape_second_btn));
+//        pointPart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                loadingLayout.setVisibility(View.VISIBLE);
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        refreshData();
+//                    }
+//                }, 1500);
+//            }
+//        });
 
         if (!statusAction.equals("history")){
             actionBTN.setOnClickListener(null);
@@ -4634,7 +4517,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onRestart() {
         super.onRestart();
-        //refreshData();
     }
 
     private void openCalender(){
@@ -4869,19 +4751,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             if (status.equals("Success")){
                                 statusLibur = "aktif";
-                                if(libur.equals("Libur Minggu")){
-                                    celebratePart.setVisibility(View.GONE);
-                                } else {
-                                    if (tanggal.equals(getDate())){
-                                        celebratePart.setVisibility(View.VISIBLE);
-                                        celebrateName.setText(libur);
-                                    } else {
-                                        celebratePart.setVisibility(View.GONE);
-                                    }
-                                }
                             } else {
                                 statusLibur = "nonaktif";
-                                celebratePart.setVisibility(View.GONE);
                             }
 
                         } catch (JSONException e) {
@@ -4919,422 +4790,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    @SuppressLint("SetTextI18n")
-    private void infoCuaca(){
-        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_info_cuaca, bottomSheet, false));
-        currentAddress = findViewById(R.id.current_address);
-        dataCuacaPart = findViewById(R.id.data_cuaca_part);
-        weatherIconPart = findViewById(R.id.weather_icon_part);
-        mainWeatherPart = findViewById(R.id.main_weather_part);
-        tempWeatherPart = findViewById(R.id.weather_temp_part);
-        feelLikeTempPart = findViewById(R.id.feels_like_temp_part);
-        currentDatePart = findViewById(R.id.current_date_part);
-        closeBTNPart = findViewById(R.id.close_btn_part);
-        loadingCuaca = findViewById(R.id.loading_cuaca);
-
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
-            Typeface typeface = ResourcesCompat.getFont(MapsActivity.this, R.font.roboto);
-            currentDatePart.setTypeface(typeface);
-            feelLikeTempPart.setTypeface(typeface);
-            currentAddress.setTypeface(typeface);
-            mainWeatherPart.setTypeface(typeface);
-            tempWeatherPart.setTypeface(typeface);
-        }
-
-        switch (getDateM()) {
-            case "01":
-                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Januari " + getDateY());
-                break;
-            case "02":
-                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Februari " + getDateY());
-                break;
-            case "03":
-                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Maret " + getDateY());
-                break;
-            case "04":
-                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " April " + getDateY());
-                break;
-            case "05":
-                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Mei " + getDateY());
-                break;
-            case "06":
-                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Juni " + getDateY());
-                break;
-            case "07":
-                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Juli " + getDateY());
-                break;
-            case "08":
-                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Agustus " + getDateY());
-                break;
-            case "09":
-                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " September " + getDateY());
-                break;
-            case "10":
-                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Oktober " + getDateY());
-                break;
-            case "11":
-                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " November " + getDateY());
-                break;
-            case "12":
-                currentDatePart.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Desember " + getDateY());
-                break;
-            default:
-                currentDatePart.setText("Not found!");
-                break;
-        }
-
-        closeBTNPart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheet.dismissSheet();
-            }
-        });
-
-        getApiKeyWeather();
-
-    }
-
-    private void getApiKeyWeather() {
-        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_api_key_weather";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
-                        try {
-                            String api_key = response.getString("api_key");
-                            getCurrentLocation(api_key);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-
-        requestQueue.add(request);
-
-    }
-
-    private void getCurrentLocation(String weather_key) {
-        //progressBar.setVisibility(View.VISIBLE);
-        LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000);
-        locationRequest.setFastestInterval(3000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        LocationServices.getFusedLocationProviderClient(MapsActivity.this)
-                .requestLocationUpdates(locationRequest, new LocationCallback() {
-
-                    @Override
-                    public void onLocationResult(LocationResult locationResult) {
-                        super.onLocationResult(locationResult);
-                        LocationServices.getFusedLocationProviderClient(getApplicationContext())
-                                .removeLocationUpdates(this);
-                        if (locationResult != null && locationResult.getLocations().size() > 0) {
-                            int latestlocIndex = locationResult.getLocations().size() - 1;
-                            double lati = locationResult.getLocations().get(latestlocIndex).getLatitude();
-                            double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
-
-                            getCurrentWeather(weather_key, String.valueOf(lati), String.valueOf(longi));
-                            Location location = new Location("providerNA");
-                            location.setLongitude(longi);
-                            location.setLatitude(lati);
-                            fetchaddressfromlocation(location);
-
-                        }
-                    }
-                }, Looper.getMainLooper());
-
-    }
-
-    private class AddressResultReceiver extends ResultReceiver {
-        public AddressResultReceiver(Handler handler) {
-            super(handler);
-        }
-
-        @SuppressLint("SetTextI18n")
-        @Override
-        protected void onReceiveResult(int resultCode, Bundle resultData) {
-            super.onReceiveResult(resultCode, resultData);
-            if (resultCode == Constants.SUCCESS_RESULT) {
-                if(resultData.getString(Constants.LOCAITY)!=null){
-                    if(resultData.getString(Constants.DISTRICT)!=null){
-                        if(resultData.getString(Constants.STATE)!=null){
-                            if(resultData.getString(Constants.POST_CODE)!=null){
-                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
-                            } else {
-                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE));
-                            }
-                        } else {
-                            if(resultData.getString(Constants.POST_CODE)!=null){
-                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.POST_CODE));
-                            } else {
-                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.DISTRICT));
-                            }
-                        }
-                    } else {
-                        if(resultData.getString(Constants.STATE)!=null){
-                            if(resultData.getString(Constants.POST_CODE)!=null){
-                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
-                            } else {
-                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.STATE));
-                            }
-                        } else {
-                            if(resultData.getString(Constants.POST_CODE)!=null){
-                                currentAddress.setText(resultData.getString(Constants.LOCAITY)+", "+resultData.getString(Constants.POST_CODE));
-                            } else {
-                                currentAddress.setText(resultData.getString(Constants.LOCAITY));
-                            }
-                        }
-                    }
-                } else {
-                    if(resultData.getString(Constants.DISTRICT)!=null){
-                        if(resultData.getString(Constants.STATE)!=null){
-                            if(resultData.getString(Constants.POST_CODE)!=null){
-                                currentAddress.setText(resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
-                            } else {
-                                currentAddress.setText(resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.STATE));
-                            }
-                        } else {
-                            if(resultData.getString(Constants.POST_CODE)!=null){
-                                currentAddress.setText(resultData.getString(Constants.DISTRICT)+", "+resultData.getString(Constants.POST_CODE));
-                            } else {
-                                currentAddress.setText(resultData.getString(Constants.DISTRICT));
-                            }
-                        }
-                    } else {
-                        if(resultData.getString(Constants.STATE)!=null){
-                            if(resultData.getString(Constants.POST_CODE)!=null){
-                                currentAddress.setText(resultData.getString(Constants.STATE)+", "+resultData.getString(Constants.POST_CODE));
-                            } else {
-                                currentAddress.setText(resultData.getString(Constants.STATE));
-                            }
-                        } else {
-                            if(resultData.getString(Constants.POST_CODE)!=null){
-                                currentAddress.setText(resultData.getString(Constants.POST_CODE));
-                            } else {
-                                currentAddress.setText("Lokasi tidak ditemukan");
-                            }
-                        }
-                    }
-                }
-            } else {
-                currentAddress.setText(resultData.getString(Constants.NO_ADDRESS));
-            }
-        }
-
-    }
-
-    private void fetchaddressfromlocation(Location location) {
-        Intent intent = new Intent(this, FetchAddressIntentServices.class);
-        intent.putExtra(Constants.RECEVIER, resultReceiver);
-        intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);
-        startService(intent);
-    }
-
-    private void getCurrentWeather(String api_key, String lat, String lon) {
-        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
-        final String url = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid="+api_key;
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
-                        dataCuacaPart.setVisibility(View.VISIBLE);
-                        JSONArray data = null;
-                        try {
-                            data = response.getJSONArray("weather");
-                            JSONObject suhu = response.getJSONObject("main");
-                            String name = response.getString("name");
-                            String temp = suhu.getString("temp");
-                            String feels_like = suhu.getString("feels_like");
-                            float f = Float.parseFloat(temp);
-                            float f2 = Float.parseFloat(feels_like);
-                            tempWeatherPart.setText(String.valueOf(Math.round(convertFromKelvinToCelsius(f)))+"°");
-                            feelLikeTempPart.setText("Terasa seperti "+String.valueOf(Math.round(convertFromKelvinToCelsius(f2)))+"°");
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject weather = data.getJSONObject(i);
-                                String main = weather.getString("main");
-                                String description = weather.getString("description");
-                                String icon = weather.getString("icon");
-                                String desc_idn = "";
-
-                                //Thunderstorm
-                                if (description.equals("thunderstorm with light rain")){
-                                    desc_idn = "Badai petir disertai hujan ringan";
-                                } else if (description.equals("thunderstorm with rain")){
-                                    desc_idn = "Badai petir dengan hujan";
-                                } else if (description.equals("thunderstorm with heavy rain")){
-                                    desc_idn = "Badai petir dengan hujan lebat";
-                                } else if (description.equals("thunderstorm")){
-                                    desc_idn = "Badai petir";
-                                } else if (description.equals("light thunderstorm")){
-                                    desc_idn = "Badai petir";
-                                } else if (description.equals("heavy thunderstorm")){
-                                    desc_idn = "Badai petir";
-                                } else if (description.equals("ragged thunderstorm")){
-                                    desc_idn = "Badai petir";
-                                } else if (description.equals("thunderstorm with light drizzle")){
-                                    desc_idn = "Badai petir dengan gerimis";
-                                } else if (description.equals("thunderstorm with drizzle")){
-                                    desc_idn = "Badai petir dengan gerimis";
-                                } else if (description.equals("thunderstorm with heavy drizzle")){
-                                    desc_idn = "Badai petir dengan hujan";
-                                }
-
-                                //Drizzle
-                                else if (description.equals("light intensity drizzle")){
-                                    desc_idn = "Gerimis";
-                                } else if (description.equals("drizzle")){
-                                    desc_idn = "Gerimis";
-                                } else if (description.equals("heavy intensity drizzle")){
-                                    desc_idn = "Gerimis";
-                                } else if (description.equals("light intensity drizzle rain")){
-                                    desc_idn = "Gerimis";
-                                } else if (description.equals("drizzle rain")){
-                                    desc_idn = "Gerimis";
-                                } else if (description.equals("heavy intensity drizzle rain")){
-                                    desc_idn = "Hujan";
-                                } else if (description.equals("shower rain and drizzle")){
-                                    desc_idn = "Hujan";
-                                } else if (description.equals("heavy shower rain and drizzle")){
-                                    desc_idn = "Hujan";
-                                } else if (description.equals("shower drizzle")){
-                                    desc_idn = "Gerimis";
-                                }
-
-                                //Rain
-                                else if (description.equals("light rain")){
-                                    desc_idn = "Gerimis";
-                                } else if (description.equals("moderate rain")){
-                                    desc_idn = "Hujan";
-                                } else if (description.equals("heavy intensity rain")){
-                                    desc_idn = "Hujan deras";
-                                } else if (description.equals("very heavy rain")){
-                                    desc_idn = "Hujan deras";
-                                } else if (description.equals("extreme rain")){
-                                    desc_idn = "Hujan ekstrim";
-                                } else if (description.equals("freezing rain")){
-                                    desc_idn = "Hujan";
-                                } else if (description.equals("light intensity shower rain")){
-                                    desc_idn = "Hujan ringan";
-                                } else if (description.equals("shower rain")){
-                                    desc_idn = "Hujan";
-                                } else if (description.equals("heavy intensity shower rain")){
-                                    desc_idn = "Hujan deras";
-                                } else if (description.equals("ragged shower rain")){
-                                    desc_idn = "Hujan deras";
-                                }
-
-                                //Snow
-                                else if (description.equals("light snow")){
-                                    desc_idn = "Salju ringan";
-                                } else if (description.equals("snow")){
-                                    desc_idn = "Salju";
-                                } else if (description.equals("heavy snow")){
-                                    desc_idn = "Salju tebal";
-                                } else if (description.equals("sleet")){
-                                    desc_idn = "Hujan es";
-                                } else if (description.equals("light shower sleet")){
-                                    desc_idn = "Hujan es ringan";
-                                } else if (description.equals("shower sleet")){
-                                    desc_idn = "Hujan es";
-                                } else if (description.equals("light rain and snow")){
-                                    desc_idn = "Hujan ringan dan salju";
-                                } else if (description.equals("rain and snow")){
-                                    desc_idn = "Hujan salju";
-                                } else if (description.equals("light shower snow")){
-                                    desc_idn = "Hujan salju ringan";
-                                } else if (description.equals("shower snow")){
-                                    desc_idn = "Hujan salju";
-                                } else if (description.equals("heavy shower snow")){
-                                    desc_idn = "Hujan salju lebat";
-                                }
-
-                                //Atmosphere
-                                else if (description.equals("mist")){
-                                    desc_idn = "Berkabut";
-                                } else if (description.equals("smoke")){
-                                    desc_idn = "Kabut asap";
-                                } else if (description.equals("haze")){
-                                    desc_idn = "Berkabut";
-                                } else if (description.equals("sand/ dust whirls")){
-                                    desc_idn = "Badai pasir/debu";
-                                } else if (description.equals("fog")){
-                                    desc_idn = "Berkabut";
-                                } else if (description.equals("sand")){
-                                    desc_idn = "Berpasir";
-                                } else if (description.equals("dust")){
-                                    desc_idn = "Berdebu";
-                                } else if (description.equals("volcanic ash")){
-                                    desc_idn = "Abu vulkanik";
-                                } else if (description.equals("squalls")){
-                                    desc_idn = "Badai";
-                                } else if (description.equals("tornado")) {
-                                    desc_idn = "Angin topan";
-                                }
-
-                                //Clear
-                                else if (description.equals("clear sky")){
-                                    desc_idn = "Langit cerah";
-                                }
-
-                                //Clouds
-                                else if (description.equals("few clouds")){
-                                    desc_idn = "Sebagian berawan";
-                                } else if (description.equals("scattered clouds")){
-                                    desc_idn = "Berawan";
-                                } else if (description.equals("broken clouds")){
-                                    desc_idn = "Berawan";
-                                } else if (description.equals("overcast clouds")){
-                                    desc_idn = "Awan mendung";
-                                }
-
-                                mainWeatherPart.setText(desc_idn);
-                                loadingCuaca.setVisibility(View.GONE);
-                                weatherIconPart.setVisibility(View.VISIBLE);
-                                String url = "https://geloraaksara.co.id/absen-online/upload/weather_icon/"+icon+".png";
-
-                                Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
-                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                        .into(weatherIconPart);
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                dataCuacaPart.setVisibility(View.GONE);
-                connectionFailed();
-            }
-        });
-
-        requestQueue.add(request);
-
-    }
-
     private void checkWarning() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/warning_absen";
@@ -5352,11 +4807,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 String alpa = data.getString("alpa");
                                 String terlambat = data.getString("terlambat");
                                 String tidak_checkout = data.getString("tidak_checkout");
-                                String cuaca_button = data.getString("cuaca_button");
                                 String fake_time = data.getString("faketime_check");
                                 String devmod_check = data.getString("devmod_check");
                                 String join_reminder = data.getString("join_reminder");
-                                String monitoring = data.getString("monitoring");
                                 String cegat_device = data.getString("cegat_device");
                                 String fitur_pengumuman = data.getString("fitur_pengumuman");
                                 String pengumuman_date = data.getString("pengumuman_date");
@@ -5383,81 +4836,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_JABATAN, id_jabatan);
                                 }
 
-                                if(fitur_pengumuman.equals("0")){
-                                    if (sharedPrefManager.getSpNik().length()==10){
-                                        String tgl_masuk = data.getString("tgl_masuk");
-                                        String tglBulanMasuk = tgl_masuk.substring(5,10);
-                                        String tahunMasuk = tgl_masuk.substring(0,4);
-
-                                        if(tglBulanMasuk.equals(getDayMonth())) {
-                                            int masaKerja = Integer.parseInt(getDateY()) - Integer.parseInt(tahunMasuk);
-                                            reminderDecs.setText("Hari ini tepat "+String.valueOf(masaKerja)+" tahun anda bekerja di PT. Gelora Aksara Pratama");
-                                            reminderCelebrateTV.setText("Selamat Merayakan "+String.valueOf(masaKerja)+" Tahun Masa Kerja.");
-                                            if (join_reminder.equals("1")){
-                                                reminderCongrat.setVisibility(View.VISIBLE);
-                                                Picasso.get().load(R.drawable.suma_good).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                        .into(reminderImage);
-                                            } else {
-                                                reminderCongrat.setVisibility(View.GONE);
-                                            }
-                                        } else {
-                                            reminderCongrat.setVisibility(View.GONE);
-                                        }
-                                    }
-                                } else if(fitur_pengumuman.equals("1")) {
-
-                                    if(pengumuman_date.equals(getDate())){
-                                        reminderCongrat.setVisibility(View.VISIBLE);
-                                        Picasso.get().load(R.drawable.pengumuman_ic).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                .into(reminderImage);
-                                        reminderDecs.setText(pengumuman_title);
-                                        reminderCelebrateTV.setText(pengumuman_desc);
-                                    } else {
-                                        if (sharedPrefManager.getSpNik().length()==10){
-                                            String tgl_masuk = data.getString("tgl_masuk");
-                                            String tglBulanMasuk = tgl_masuk.substring(5,10);
-                                            String tahunMasuk = tgl_masuk.substring(0,4);
-
-                                            if(tglBulanMasuk.equals(getDayMonth())) {
-                                                int masaKerja = Integer.parseInt(getDateY()) - Integer.parseInt(tahunMasuk);
-                                                reminderDecs.setText("Hari ini tepat "+String.valueOf(masaKerja)+" tahun anda bekerja di PT. Gelora Aksara Pratama");
-                                                reminderCelebrateTV.setText("Selamat Merayakan "+String.valueOf(masaKerja)+" Tahun Masa Kerja.");
-                                                if (join_reminder.equals("1")){
-                                                    reminderCongrat.setVisibility(View.VISIBLE);
-                                                    Picasso.get().load(R.drawable.suma_good).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                            .into(reminderImage);
-                                                } else {
-                                                    reminderCongrat.setVisibility(View.GONE);
-                                                }
-                                            } else {
-                                                reminderCongrat.setVisibility(View.GONE);
-                                            }
-                                        }
-                                    }
-
-                                }
-
                                 fakeTimeCheck = fake_time;
                                 devModCheck = devmod_check;
-
-                                if (cuaca_button.equals("1")){
-                                    cuacaBTN.setVisibility(View.VISIBLE);
-                                } else {
-                                    cuacaBTN.setVisibility(View.GONE);
-                                }
-
-                                if (monitoring.equals("1")){
-                                    if (sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")){
-                                        pantauBTN.setVisibility(View.VISIBLE);
-                                    } else {
-                                        pantauBTN.setVisibility(View.GONE);
-                                    }
-                                } else {
-                                    pantauBTN.setVisibility(View.GONE);
-                                }
 
                                 if((cek_email.equals("")||cek_email==null||cek_email.equals("null")) && (cek_nohp.equals("")||cek_nohp==null||cek_nohp.equals("null"))){
                                     markerWarningAbsensi.setVisibility(View.VISIBLE);
@@ -5475,6 +4855,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 if(cegat_device.equals("1")){
                                     deviceIdFunction();
                                 }
+
+                                getDataAbsensi();
 
                             }
 
@@ -5596,160 +4978,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    private void checkNotification() {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/check_notification";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        JSONObject data = null;
-                        try {
-                            Log.d("Success.Response", response.toString());
-                            data = new JSONObject(response);
-                            String status = data.getString("status");
-                            if (status.equals("Success")){
-                                String count = data.getString("count");
-                                String message_yet = data.getString("message_yet");
-                                String count_finger = data.getString("count_finger");
-
-                                if (count.equals("0") && message_yet.equals("0") && count_finger.equals("0")){
-                                    markerNotification.setVisibility(View.GONE);
-                                } else if (!count.equals("0") && message_yet.equals("0") && count_finger.equals("0")) {
-                                    String visibility = data.getString("visibility");
-                                    if (visibility.equals("0")){
-                                        markerNotification.setVisibility(View.GONE);
-                                    } else if (visibility.equals("1")){
-                                        notifMasukTV.setText(count);
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    }
-                                } else if (count.equals("0") && !message_yet.equals("0") && count_finger.equals("0")) {
-                                    String visibility2 = data.getString("visibility2");
-                                    if (visibility2.equals("0")){
-                                        markerNotification.setVisibility(View.GONE);
-                                    } else if (visibility2.equals("1")){
-                                        notifMasukTV.setText(message_yet);
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    }
-                                } else if (count.equals("0") && message_yet.equals("0") && !count_finger.equals("0")) {
-                                    String visibility3 = data.getString("visibility3");
-                                    if (visibility3.equals("0")){
-                                        markerNotification.setVisibility(View.GONE);
-                                    } else if (visibility3.equals("1")){
-                                        notifMasukTV.setText(count_finger);
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    }
-                                } else if (!count.equals("0") && !message_yet.equals("0") && count_finger.equals("0")) {
-                                    String visibility = data.getString("visibility");
-                                    String visibility2 = data.getString("visibility2");
-                                    if (visibility.equals("0") && visibility2.equals("0")) {
-                                        markerNotification.setVisibility(View.GONE);
-                                    } else if (visibility.equals("1") && visibility2.equals("0")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt("0")));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    } else if (visibility.equals("0") && visibility2.equals("1")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt("0") + Integer.parseInt(message_yet)));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    } else if (visibility.equals("1") && visibility2.equals("1")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt(message_yet)));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    }
-                                } else if (!count.equals("0") && message_yet.equals("0") && !count_finger.equals("0")) {
-                                    String visibility = data.getString("visibility");
-                                    String visibility3 = data.getString("visibility3");
-                                    if (visibility.equals("0") && visibility3.equals("0")) {
-                                        markerNotification.setVisibility(View.GONE);
-                                    } else if (visibility.equals("1") && visibility3.equals("0")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt("0")));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    } else if (visibility.equals("0") && visibility3.equals("1")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt("0") + Integer.parseInt(count_finger)));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    } else if (visibility.equals("1") && visibility3.equals("1")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt(count_finger)));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    }
-                                } else if (count.equals("0") && !message_yet.equals("0") && !count_finger.equals("0")) {
-                                    String visibility2 = data.getString("visibility2");
-                                    String visibility3 = data.getString("visibility3");
-                                    if (visibility2.equals("0") && visibility3.equals("0")) {
-                                        markerNotification.setVisibility(View.GONE);
-                                    } else if (visibility2.equals("1") && visibility3.equals("0")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(message_yet) + Integer.parseInt("0")));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    } else if (visibility2.equals("0") && visibility3.equals("1")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt("0") + Integer.parseInt(count_finger)));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    } else if (visibility2.equals("1") && visibility3.equals("1")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(message_yet) + Integer.parseInt(count_finger)));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    }
-                                } else if (!count.equals("0") && !message_yet.equals("0") && !count_finger.equals("0")) {
-                                    String visibility = data.getString("visibility");
-                                    String visibility2 = data.getString("visibility2");
-                                    String visibility3 = data.getString("visibility3");
-                                    if (visibility.equals("0") && visibility2.equals("0") && visibility3.equals("0")) {
-                                        markerNotification.setVisibility(View.GONE);
-                                    } else if (visibility.equals("1") && visibility2.equals("0") && visibility3.equals("0")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt("0") + Integer.parseInt("0")));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    } else if (visibility.equals("0") && visibility2.equals("1") && visibility3.equals("0")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt("0") + Integer.parseInt(message_yet) + Integer.parseInt("0")));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    } else if (visibility.equals("0") && visibility2.equals("0") && visibility3.equals("1")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt("0") + Integer.parseInt("0") + Integer.parseInt(count_finger)));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    } else if (visibility.equals("1") && visibility2.equals("1") && visibility3.equals("0")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt(message_yet) + Integer.parseInt("0")));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    } else if (visibility.equals("0") && visibility2.equals("1") && visibility3.equals("1")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt("0") + Integer.parseInt(message_yet) + Integer.parseInt(count_finger)));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    } else if (visibility.equals("1") && visibility2.equals("0") && visibility3.equals("1")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt("0") + Integer.parseInt(count_finger)));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    } else if (visibility.equals("1") && visibility2.equals("1") && visibility3.equals("1")){
-                                        notifMasukTV.setText(String.valueOf(Integer.parseInt(count) + Integer.parseInt(message_yet) + Integer.parseInt(count_finger)));
-                                        markerNotification.setVisibility(View.VISIBLE);
-                                    }
-                                }
-
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", error.toString());
-                        bottomSheet.dismissSheet();
-                        connectionFailed();
-                    }
-                }
-        )
-        {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("id_departemen", sharedPrefManager.getSpIdHeadDept());
-                params.put("id_bagian", sharedPrefManager.getSpIdDept());
-                params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
-                params.put("NIK", sharedPrefManager.getSpNik());
-                return params;
-            }
-        };
-
-        requestQueue.add(postRequest);
-
-    }
-
     private void checkTime() {
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/server_time";
@@ -5839,6 +5067,55 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("time_zone", getTimeZone());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void getDataAbsensi() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/data_record_absensi";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")) {
+                                dataAbsensiRV.setVisibility(View.VISIBLE);
+                                String data_hadir = data.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                dataAbsensis = gson.fromJson(data_hadir, DataRecordAbsensi[].class);
+                                adapterDataAbsensi = new AdapterDataAbsensi(dataAbsensis, MapsActivity.this);
+                                dataAbsensiRV.setAdapter(adapterDataAbsensi);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
                 return params;
             }
         };

@@ -50,7 +50,7 @@ import java.util.Map;
 
 public class DetailTidakHadirActivity extends AppCompatActivity {
 
-    LinearLayout attantionPart,attantionPartIzin, markerWarningAlpha, monthBTN, emptyDataIzin, emptyDataAlpa, loadingIzinPart, loadingAlpaPart, backBTN, homeBTN;
+    LinearLayout attantionPart,attantionPartIzin, markerWarningAlpha, monthBTN, emptyDataIzin, emptyDataAlpa, loadingIzinPart, loadingAlpaPart, backBTN;
     ImageView notificationWarningAlphaDetail, bulanLoading, tidakHadirLoading, loadingDataIzin, loadingDataAlpa;
     TextView messageAlpha, messageIzin, dataTotalIzin, dataTotalAlpa, dataBulan, dataTahun, dataTidakHadir, nameUserTV;
     SharedPrefManager sharedPrefManager;
@@ -74,7 +74,6 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         dataBulan = findViewById(R.id.bulan_data);
         dataTahun = findViewById(R.id.tahun_data);
         dataTidakHadir = findViewById(R.id.data_tidak_hadir);
@@ -245,14 +244,6 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailTidakHadirActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 

@@ -72,7 +72,7 @@ import java.util.UUID;
 
 public class FormPermohonanIzinActivity extends AppCompatActivity {
 
-    LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadFilePart, markStatusSakit, markStatusIzin, izinBTN, sakitBTN, tipeChoiceBTN, viewBTN, goToHome, goToDasboard, formPart, successPart, submitBTN, backBTN, homeBTN, dateMulaiPicker, dateAkhirPicker;
+    LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadFilePart, markStatusSakit, markStatusIzin, izinBTN, sakitBTN, tipeChoiceBTN, viewBTN, goToHome, goToDasboard, formPart, successPart, submitBTN, backBTN, dateMulaiPicker, dateAkhirPicker;
     TextView jumlahHariTV, messageSuccessTV, labelUnggahTV, statusUploadTV, tipeChoiceTV, mulaiDateTV, akhirDateTV, namaTV, nikTV, detailTV;
     String permohonanTerkirim = "0", uploadStatus = "", idIzin = "", tipeIzin = "", dateChoiceMulai = "", dateChoiceAkhir = "", alasanIzin = "";
     SharedPrefManager sharedPrefManager;
@@ -97,7 +97,6 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         dateMulaiPicker = findViewById(R.id.mulai_date);
         dateAkhirPicker = findViewById(R.id.akhir_date);
         mulaiDateTV = findViewById(R.id.mulai_date_pilih);
@@ -126,6 +125,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         messageSuccessTV = findViewById(R.id.message_tv);
         jumlahHariTV = findViewById(R.id.jumlah_hari_tv);
 
+        alasanED.clearFocus();
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
                 .into(successGif);
@@ -187,7 +187,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         goToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FormPermohonanIzinActivity.this, MapsActivity.class);
+                Intent intent = new Intent(FormPermohonanIzinActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -199,14 +199,6 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                 Intent intent = new Intent(FormPermohonanIzinActivity.this, UserActivity.class);
                 startActivity(intent);
                 finish();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FormPermohonanIzinActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 

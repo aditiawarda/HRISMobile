@@ -45,7 +45,7 @@ import java.util.Map;
 
 public class HistoryFingerscanActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, homeBTN, monthBTN, attantionPart, loadingDataPart, emptyDataPart;
+    LinearLayout backBTN, monthBTN, attantionPart, loadingDataPart, emptyDataPart;
     TextView nameUserTV, dataBulan, dataTahun, dataFinger;
     ImageView bulanLoading, fingerLoading, loadingData;
     String bulanPilih;
@@ -64,7 +64,6 @@ public class HistoryFingerscanActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         nameUserTV = findViewById(R.id.name_of_user_tv);
         monthBTN = findViewById(R.id.month_btn);
         dataBulan = findViewById(R.id.bulan_data);
@@ -98,14 +97,6 @@ public class HistoryFingerscanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HistoryFingerscanActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 

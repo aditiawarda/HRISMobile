@@ -66,14 +66,14 @@ public class ListChatMateActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         noDataPart = findViewById(R.id.no_data_part);
         loadingPart = findViewById(R.id.loading_data_part);
-        loadingImage = findViewById(R.id.loading_data_img);
+        loadingImage = findViewById(R.id.loading_data);
         newChatBTN = findViewById(R.id.new_chat_btn);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(endChat,
                 new IntentFilter("end_chat"));
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.loading)
+                .load(R.drawable.loading_sgn_digital)
                 .into(loadingImage);
 
         listChatRV.setLayoutManager(new LinearLayoutManager(this));

@@ -146,37 +146,6 @@ public class UserDetailActivity extends AppCompatActivity {
                 }
             }
 
-            // if (tahun == 0){
-            //    if(bulan == 0){
-            //        if(hari == 0){
-            //            masaKerjaTV.setText(String.valueOf(1)+" Hari");
-            //        } else {
-            //            masaKerjaTV.setText(String.valueOf(hari)+" Hari");
-            //        }
-            //    } else {
-            //        if(hari == 0){
-            //            masaKerjaTV.setText(String.valueOf(bulan)+" Bulan");
-            //        } else {
-            //            masaKerjaTV.setText(String.valueOf(bulan)+" Bulan "+String.valueOf(hari)+" Hari");
-            //        }
-            //    }
-            // }
-            // else {
-            //    if(bulan == 0){
-            //        if(hari == 0){
-            //            masaKerjaTV.setText(String.valueOf(tahun)+" Tahun");
-            //        } else {
-            //            masaKerjaTV.setText(String.valueOf(tahun)+" Tahun "+String.valueOf(bulan)+" Bulan "+String.valueOf(hari)+" Hari");
-            //        }
-            //    } else {
-            //        if(hari == 0){
-            //            masaKerjaTV.setText(String.valueOf(tahun)+" Tahun "+String.valueOf(bulan)+" Bulan");
-            //        } else {
-            //            masaKerjaTV.setText(String.valueOf(tahun)+" Tahun "+String.valueOf(bulan)+" Bulan "+String.valueOf(hari)+" Hari");
-            //        }
-            //    }
-            // }
-
         }
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);

@@ -84,7 +84,7 @@ import java.util.UUID;
 
 public class FormPermohonanCutiActivity extends AppCompatActivity {
 
-    LinearLayout infoCutiPart, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, viewBTN, goToHome, goToDasboard, successPart, formPart, backBTN, homeBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, submitBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
+    LinearLayout infoCutiPart, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, viewBTN, goToHome, goToDasboard, successPart, formPart, backBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, submitBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
     SwipeRefreshLayout refreshLayout;
     TextView notejumlahHari, jumlahHariTV, messageSuccessTV, statusUploadTV, labelUnggahTV, tipeCutiTV, namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
     String lampiranWajibAtauTidak = "", uploadStatus = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", dateChoiceMulai = "", kategoriCuti = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
@@ -120,7 +120,6 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         namaKaryawan = findViewById(R.id.nama_karyawan_tv);
         jabatanKaryawan = findViewById(R.id.jabatan_karyawan_tv);
         bagianKaryawan = findViewById(R.id.bagian_karyawan_tv);
@@ -225,14 +224,6 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
             }
         });
 
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FormPermohonanCutiActivity.this, MapsActivity.class);
-                startActivity(intent);
-            }
-        });
-
         viewBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -246,7 +237,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         goToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FormPermohonanCutiActivity.this, MapsActivity.class);
+                Intent intent = new Intent(FormPermohonanCutiActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
             }

@@ -42,7 +42,7 @@ public class CovidActivity extends AppCompatActivity {
 
     TextView vaksin1Add, vaksin2Add, dateVaksin, vaksin1, vaksin2, dateData, confirmTV, healtTV, deadTV, penambahanConfirm, penambahanHealt, penambahanDead, activeCase;
     SwipeRefreshLayout refreshLayout;
-    LinearLayout actionBar, backBTN, homeBTN;
+    LinearLayout actionBar, backBTN;
     View rootview;
     ImageView vaksin1AddLoading, vaksin2AddLoading, vaksin1Loading, vaksin2Loading, confirmCovidLoading, healtCovidLoading, deadCovidLoading, addConfirmLoading, addHealtLoading, addDeadLoading, activeCaseLoading;
 
@@ -53,7 +53,6 @@ public class CovidActivity extends AppCompatActivity {
 
         rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         confirmTV = findViewById(R.id.confirm_covid);
         healtTV = findViewById(R.id.healt_covid);
         deadTV = findViewById(R.id.dead_covid);
@@ -167,14 +166,6 @@ public class CovidActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CovidActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 

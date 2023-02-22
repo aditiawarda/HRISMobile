@@ -48,7 +48,7 @@ import java.util.Map;
 
 public class DetailTidakCheckoutActivity extends AppCompatActivity {
 
-    LinearLayout attantionPart, markerWarningNocheckout, monthBTN, emptyDataNoCheckout, loadingNoCheckoutPart, backBTN, homeBTN;
+    LinearLayout attantionPart, markerWarningNocheckout, monthBTN, emptyDataNoCheckout, loadingNoCheckoutPart, backBTN;
     ImageView notificationWarningNoCheckoutDetail, bulanLoading, noCheckoutLoading, loadingDataNoCheckout;
     TextView messageNoCheckout, dataBulan, dataTahun, dataNoCheckout, nameUserTV;
     SharedPrefManager sharedPrefManager;
@@ -68,7 +68,6 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         dataBulan = findViewById(R.id.bulan_data);
         dataTahun = findViewById(R.id.tahun_data);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
@@ -210,14 +209,6 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailTidakCheckoutActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 

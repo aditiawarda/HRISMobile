@@ -45,7 +45,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
     private AdapterPermohonanIzin adapterPermohonanIzin;
     private AdapterPermohonanSaya adapterPermohonanSaya;
     SharedPrefManager sharedPrefManager;
-    LinearLayout mainPart, optionPart, countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2, backBTN, homeBTN;
+    LinearLayout mainPart, optionPart, countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2, backBTN;
     ImageView loadingImage,loadingImage2;
     SwipeRefreshLayout refreshLayout;
     View rootview;
@@ -61,7 +61,6 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         dataNotifikasiRV = findViewById(R.id.data_notifikasi_rv);
         dataNotifikasi2RV = findViewById(R.id.data_notifikasi_2_rv);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         noDataPart = findViewById(R.id.no_data_part);
         noDataPart2 = findViewById(R.id.no_data_part_2);
@@ -122,14 +121,6 @@ public class ListNotifikasiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListNotifikasiActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -203,12 +194,6 @@ public class ListNotifikasiActivity extends AppCompatActivity {
             optionPart.setVisibility(View.GONE);
             permohonanMasukPart.setVisibility(View.GONE);
             permohonanSayaPart.setVisibility(View.VISIBLE);
-        }
-
-        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
-            homeBTN.setVisibility(View.GONE);
-        } else {
-            homeBTN.setVisibility(View.VISIBLE);
         }
 
         getData();

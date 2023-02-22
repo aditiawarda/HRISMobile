@@ -47,7 +47,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
     TextView lampiranTV, noted2TV, noted1TV, tglApprover1, tglApprover2, tglApproverHRD, namaApprover1, namaApproverHRD, namaApprover2, namaKaryawanTV, namaPemohonTV, jabatanTV, bagianTV, mulaiBergabungTV, nikTV, statusKaryawanTV, tipeCutiTV, alamatTV, noHpTV, karyawanPenggantiTV, sisaCutiTV, alasanCutiTV, tahunCutiAmbilTV, totalCutiAmbilTV, tahunCutiTV, tglMulaiCutiTV, tglSelesaiCutiTV, totalCutiTV, tglPengajuanTV;
     String nikApprover = "", nikPemohon = "", statusKondisi = "0", idIzinRecord, kode;
-    LinearLayout editPermohonanBTN, cancelPermohonanBTN, batalWakiliBTN, wakiliBTN, downloadBTN, viewLampiranBTN, backBTN, homeBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
+    LinearLayout editPermohonanBTN, cancelPermohonanBTN, batalWakiliBTN, wakiliBTN, downloadBTN, viewLampiranBTN, backBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdApprover1, ttdApprover2, ttdApproverHRD;
     KAlertDialog pDialog;
@@ -67,7 +67,6 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         namaKaryawanTV = findViewById(R.id.nama_tv);
         jabatanTV = findViewById(R.id.jabatan_tv);
         bagianTV = findViewById(R.id.bagian_tv);
@@ -137,14 +136,6 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailPermohonanCutiActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -426,12 +417,6 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
             }
         });
-
-        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
-            homeBTN.setVisibility(View.GONE);
-        } else {
-            homeBTN.setVisibility(View.VISIBLE);
-        }
 
         getDataDetailPermohonan();
 

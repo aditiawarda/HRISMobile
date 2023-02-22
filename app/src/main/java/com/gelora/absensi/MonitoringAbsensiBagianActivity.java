@@ -66,7 +66,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
     ImageView dataTidakHadirLoading, dataHadirLoading, loadingDataKehadiranBagian, loadingDataKetidakhadiranBagian;
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheet;
-    LinearLayout attantionPart, seacrhKaryawanBTN, indikatorHadirBTN, indikatorTidakHadirBTN, hadirBTN, tidakHadirBTN, hadirPart, tidakHadirPart, backBTN, homeBTN, loadingDataKehadiranPart, loadingDataKetidakhadiranPart, choiceDateBTN, choiceBagianBTN, noDataHadirBagian, noDataTidakHadirBagian;
+    LinearLayout attantionPart, seacrhKaryawanBTN, indikatorHadirBTN, indikatorTidakHadirBTN, hadirBTN, tidakHadirBTN, hadirPart, tidakHadirPart, backBTN, loadingDataKehadiranPart, loadingDataKetidakhadiranPart, choiceDateBTN, choiceBagianBTN, noDataHadirBagian, noDataTidakHadirBagian;
     View rootview;
 
     private RecyclerView dataKehadiranBagianRV, dataKeTidakhadiranBagianRV;
@@ -98,7 +98,6 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         dataTidakHadirLoading = findViewById(R.id.monitor_data_tidak_hadir_loading);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         loadingDataKehadiranPart = findViewById(R.id.loading_data_kehadiran_bagian_part);
         loadingDataKehadiranBagian = findViewById(R.id.loading_data_kehadiran_bagian);
         choiceDateBTN = findViewById(R.id.choice_date);
@@ -202,14 +201,6 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
             }
         });
 
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MonitoringAbsensiBagianActivity.this, MapsActivity.class);
-                startActivity(intent);
-            }
-        });
-
         seacrhKaryawanBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -302,12 +293,6 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         } else if (sharedPrefManager.getSpIdJabatan().equals("11")) {
             choiceBagianBTN.setVisibility(View.GONE);
             pageTitle.setText("KEHADIRAN BAGIAN");
-        }
-
-        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
-            homeBTN.setVisibility(View.GONE);
-        } else {
-            homeBTN.setVisibility(View.VISIBLE);
         }
 
         getKehadiranBagian();

@@ -50,7 +50,7 @@ import java.util.Map;
 
 public class DetailTerlambatActivity extends AppCompatActivity {
 
-    LinearLayout attantionPart, markerWarningLate, monthBTN, emptyDataLate, loadingLatePart, backBTN, homeBTN;
+    LinearLayout attantionPart, markerWarningLate, monthBTN, emptyDataLate, loadingLatePart, backBTN;
     ImageView notificationWarningLateDetail, bulanLoading, lateLoading, loadingDataLate;
     TextView messageLate, dataBulan, dataTahun, dataLate, nameUserTV;
     SharedPrefManager sharedPrefManager;
@@ -70,7 +70,6 @@ public class DetailTerlambatActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         dataBulan = findViewById(R.id.bulan_data);
         dataTahun = findViewById(R.id.tahun_data);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
@@ -208,14 +207,6 @@ public class DetailTerlambatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailTerlambatActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 

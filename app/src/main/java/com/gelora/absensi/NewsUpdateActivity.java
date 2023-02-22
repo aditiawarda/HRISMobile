@@ -74,7 +74,7 @@ public class NewsUpdateActivity extends AppCompatActivity {
         homeBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NewsUpdateActivity.this, MapsActivity.class);
+                Intent intent = new Intent(NewsUpdateActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });

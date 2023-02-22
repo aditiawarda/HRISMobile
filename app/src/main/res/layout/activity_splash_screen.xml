@@ -5,16 +5,16 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SplashScreen"
-    android:background="#FFBB65">
+    android:background="#FFE2DA">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="-165dp"
-        android:layout_marginTop="-150dp"
-        android:layout_marginRight="-165dp"
-        android:layout_marginBottom="145dp"
-        android:background="@drawable/shape_splash_screen" />
+        android:layout_marginLeft="-3dp"
+        android:layout_marginTop="-3dp"
+        android:layout_marginRight="-3dp"
+        android:layout_marginBottom="37dp"
+        android:background="@drawable/shape_bar_chat" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_to_refresh_layout"
@@ -37,9 +37,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
                     android:gravity="bottom|center"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -55,12 +54,12 @@
                             android:textStyle="italic"
                             android:textColor="#696969"
                             android:text="Powered by : "
-                            android:textSize="11dp"/>
+                            android:textSize="10dp"/>
 
                         <ImageView
                             android:foregroundGravity="center"
-                            android:layout_width="150dp"
-                            android:layout_height="50dp"
+                            android:layout_width="132dp"
+                            android:layout_height="35dp"
                             android:layout_marginStart="5dp"
                             android:src="@drawable/logogap" />
 
@@ -81,18 +80,18 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <ImageView
-            android:foregroundGravity="center"
-            android:layout_width="270dp"
-            android:layout_height="80dp"
-            android:src="@drawable/glogo_3" />
+<!--        <ImageView-->
+<!--            android:foregroundGravity="center"-->
+<!--            android:layout_width="81dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:scaleType="fitXY"-->
+<!--            android:src="@drawable/glogo_3" />-->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
-            android:textSize="19dp"
-            android:textStyle="bold"
+            android:textSize="22dp"
             android:textColor="@color/white"
             android:text="HRIS MOBILE"/>
 
@@ -100,8 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="-3dp"
-            android:textSize="10dp"
-            android:textStyle="bold"
+            android:textSize="15dp"
             android:textColor="@color/white"
             android:text="G    E    L    O    R    A"/>
 
@@ -150,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="13dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="#FFE2DA"
                 android:text="REFRESH"/>
 
         </LinearLayout>

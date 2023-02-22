@@ -8,14 +8,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_rect_white"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_marginBottom="6dp"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="@drawable/shape_skeleton"
-            android:orientation="vertical"/>
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/shape_skeleton"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:background="@drawable/shape_skeleton"
+                android:orientation="vertical"/>
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,29 +45,22 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_marginRight="3dp"
+                android:layout_marginRight="5dp"
                 android:layout_width="0dp"
                 android:layout_weight=".50"
-                android:layout_height="78dp"
+                android:layout_height="67dp"
                 android:background="@drawable/shape_skeleton"
                 android:orientation="vertical"/>
 
             <LinearLayout
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="5dp"
                 android:layout_width="0dp"
                 android:layout_weight=".50"
-                android:layout_height="78dp"
+                android:layout_height="67dp"
                 android:background="@drawable/shape_skeleton"
                 android:orientation="vertical"/>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="6dp"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="@drawable/shape_skeleton"
-            android:orientation="vertical"/>
 
     </LinearLayout>
 

@@ -49,7 +49,7 @@ import java.util.Map;
 
 public class DetailLayoffActivity extends AppCompatActivity {
 
-    LinearLayout attantionPart, monthBTN, emptyDataLayoff, loadingLayoffPart, backBTN, homeBTN;
+    LinearLayout attantionPart, monthBTN, emptyDataLayoff, loadingLayoffPart, backBTN;
     ImageView bulanLoading, layoffLoading, loadingDataLayoff;
     TextView messageLayoff, dataBulan, dataTahun, dataLayoff, nameUserTV;
     SharedPrefManager sharedPrefManager;
@@ -69,7 +69,6 @@ public class DetailLayoffActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         rootview = findViewById(android.R.id.content);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         dataBulan = findViewById(R.id.bulan_data);
         dataTahun = findViewById(R.id.tahun_data);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
@@ -199,14 +198,6 @@ public class DetailLayoffActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailLayoffActivity.this, MapsActivity.class);
-                startActivity(intent);
             }
         });
 

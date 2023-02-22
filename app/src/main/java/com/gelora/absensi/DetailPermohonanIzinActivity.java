@@ -70,7 +70,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     TextView approverHrdTV, notedTV, appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, tanggalApproveTV, tanggalApproveHRDTV, supervisorTV, hrdTV;
     String uriImage, uriImage2, idIzinRecord, statusKondisi = "0", kode, title;
-    LinearLayout editPermohonanBTN, cancelPermohonanBTN, pdfBTN, viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, homeBTN, approvedBTN, rejectedBTN, actionPart;
+    LinearLayout editPermohonanBTN, cancelPermohonanBTN, pdfBTN, viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, approvedBTN, rejectedBTN, actionPart;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdSupervisor, ttdHRD, qrDocument;
     KAlertDialog pDialog;
@@ -95,7 +95,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         idPermohonanTV = findViewById(R.id.id_permohonan);
         backBTN = findViewById(R.id.back_btn);
-        homeBTN = findViewById(R.id.home_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         approvedBTN = findViewById(R.id.appoved_btn);
         rejectedBTN = findViewById(R.id.rejected_btn);
@@ -287,14 +286,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
             }
         });
 
-        homeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailPermohonanIzinActivity.this, MapsActivity.class);
-                startActivity(intent);
-            }
-        });
-
         approvedBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -434,12 +425,6 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         });
 
         idPermohonanTV.setText(idIzinRecord);
-
-        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
-            homeBTN.setVisibility(View.GONE);
-        } else {
-            homeBTN.setVisibility(View.VISIBLE);
-        }
 
         getDataDetailPermohonan();
 
