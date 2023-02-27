@@ -122,9 +122,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng userPoint;
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
-    ImageView weatherIconPart, onlineGif, warningGif, notificationWarning;
-    TextView userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout backBTN, reminderCongrat, markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    ImageView loadingDataRecord, weatherIconPart, onlineGif, warningGif, notificationWarning;
+    TextView titleRecordTV, userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
+    LinearLayout noDataPart, loadingRecordPart, backBTN, reminderCongrat, markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -253,6 +253,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         mRipplePulseLayoutInside = findViewById(R.id.layout_ripplepulse);
         mRipplePulseLayoutOutside = findViewById(R.id.layout_ripplepulse_2);
+        loadingDataRecord = findViewById(R.id.loading_data);
+        loadingRecordPart = findViewById(R.id.loading_data_part);
+        noDataPart = findViewById(R.id.no_data_part);
+        titleRecordTV = findViewById(R.id.title_record_tv);
 
         dataAbsensiRV = findViewById(R.id.data_absensi_rv);
 
@@ -260,6 +264,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         dataAbsensiRV.setHasFixedSize(true);
         dataAbsensiRV.setNestedScrollingEnabled(false);
         dataAbsensiRV.setItemAnimator(new DefaultItemAnimator());
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(loadingDataRecord);
 
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
@@ -4488,24 +4496,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .into(onlineGif);
 
         absenPoint.setText("TERPUTUS");
-        absenPoint.setTextColor(Color.parseColor("#575757"));
+        absenPoint.setTextColor(Color.parseColor("#919191"));
 
         mRipplePulseLayoutOutside.stopRippleAnimation();
         mRipplePulseLayoutInside.stopRippleAnimation();
-
-//        pointPart.setBackground(ContextCompat.getDrawable(MapsActivity.this, R.drawable.shape_second_btn));
-//        pointPart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                loadingLayout.setVisibility(View.VISIBLE);
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        refreshData();
-//                    }
-//                }, 1500);
-//            }
-//        });
 
         if (!statusAction.equals("history")){
             actionBTN.setOnClickListener(null);
@@ -5089,13 +5083,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
-                                dataAbsensiRV.setVisibility(View.VISIBLE);
-                                String data_hadir = data.getString("data");
-                                GsonBuilder builder = new GsonBuilder();
-                                Gson gson = builder.create();
-                                dataAbsensis = gson.fromJson(data_hadir, DataRecordAbsensi[].class);
-                                adapterDataAbsensi = new AdapterDataAbsensi(dataAbsensis, MapsActivity.this);
-                                dataAbsensiRV.setAdapter(adapterDataAbsensi);
+                                String jumlah_data = data.getString("jumlah_data");
+                                if(Integer.parseInt(jumlah_data)>0){
+                                    titleRecordTV.setText("Data record absensi "+jumlah_data+" hari terakhir");
+                                    titleRecordTV.setVisibility(View.VISIBLE);
+                                    loadingRecordPart.setVisibility(View.GONE);
+                                    dataAbsensiRV.setVisibility(View.VISIBLE);
+                                    noDataPart.setVisibility(View.GONE);
+                                    String data_hadir = data.getString("data");
+                                    GsonBuilder builder = new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    dataAbsensis = gson.fromJson(data_hadir, DataRecordAbsensi[].class);
+                                    adapterDataAbsensi = new AdapterDataAbsensi(dataAbsensis, MapsActivity.this);
+                                    dataAbsensiRV.setAdapter(adapterDataAbsensi);
+                                } else {
+                                    titleRecordTV.setVisibility(View.GONE);
+                                    loadingRecordPart.setVisibility(View.GONE);
+                                    dataAbsensiRV.setVisibility(View.GONE);
+                                    noDataPart.setVisibility(View.VISIBLE);
+                                }
                             }
 
                         } catch (JSONException e) {

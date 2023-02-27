@@ -8,12 +8,15 @@ public class DataRecordAbsensi {
     private String tanggal_masuk;    // Hadir
     private String tanggal_pulang;   // Hadir
     private String jam_masuk;        // Hadir
+    private String status_terlambat; // Hadir
+    private String waktu_terlambat;  // Hadir
     private String timezone_masuk;   // Hadir
     private String jam_pulang;       // Hadir
     private String timezone_pulang;  // Hadir
     private String checkin_point;    // Hadir
     private String checkout_point;   // Hadir
     private String status_pulang;    // Hadir
+    private String kelebihan_jam;    // Hadir
     private String jam_shift;        // Hadir
     private String shift;            // Hadir
     private String tipe_izin;        // Izin/Cuti
@@ -146,5 +149,29 @@ public class DataRecordAbsensi {
 
     public void setTipe_izin(String tipe_izin) {
         this.tipe_izin = tipe_izin;
+    }
+
+    public String getStatus_terlambat() {
+        return status_terlambat;
+    }
+
+    public void setStatus_terlambat(String status_terlambat) {
+        this.status_terlambat = status_terlambat;
+    }
+
+    public String getWaktu_terlambat() {
+        return waktu_terlambat;
+    }
+
+    public void setWaktu_terlambat(String waktu_terlambat) {
+        this.waktu_terlambat = waktu_terlambat;
+    }
+
+    public String getKelebihan_jam() {
+        return kelebihan_jam;
+    }
+
+    public void setKelebihan_jam(String kelebihan_jam) {
+        this.kelebihan_jam = kelebihan_jam;
     }
 }

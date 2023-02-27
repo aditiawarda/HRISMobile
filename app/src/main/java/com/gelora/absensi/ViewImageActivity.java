@@ -80,6 +80,11 @@ public class ViewImageActivity extends AppCompatActivity {
             Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .into(mainImage);
+        } else if (kode.equals("pengumuman")){
+            titlePageTV.setText("PENGUMUMAN");
+            Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .into(mainImage);
         }
 
         backBTN.setOnClickListener(new View.OnClickListener() {

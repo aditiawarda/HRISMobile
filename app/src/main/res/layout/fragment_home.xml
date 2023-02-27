@@ -17,7 +17,7 @@
             android:layout_height="match_parent">
 
             <RelativeLayout
-                android:background="#FBFBFB"
+                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -755,7 +755,6 @@
                                 android:layout_marginTop="40dp"
                                 android:layout_marginRight="-5dp"
                                 android:layout_marginBottom="-5dp"
-                                android:background="@drawable/shape_bg_home"
                                 android:orientation="vertical"
                                 android:paddingLeft="24dp"
                                 android:paddingTop="85dp"
@@ -765,9 +764,9 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:orientation="horizontal"
                                     android:paddingLeft="5dp"
-                                    android:paddingRight="5dp"
-                                    android:orientation="horizontal">
+                                    android:paddingRight="5dp">
 
                                     <TextView
                                         android:layout_width="0dp"
@@ -801,26 +800,29 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="15dp"
-                                    android:paddingBottom="75dp"
-                                    android:orientation="vertical">
+                                    android:orientation="vertical"
+                                    android:paddingBottom="75dp">
 
                                     <androidx.recyclerview.widget.RecyclerView
                                         android:id="@+id/list_pengumuman_rv"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:orientation="vertical"
-                                        android:visibility="gone">
-                                    </androidx.recyclerview.widget.RecyclerView>
+                                        android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
 
                                     <LinearLayout
                                         android:id="@+id/no_data_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
+                                        android:layout_marginLeft="2dp"
+                                        android:layout_marginRight="2dp"
+                                        android:background="@drawable/rounded_rect_white"
                                         android:gravity="center"
                                         android:orientation="vertical"
                                         android:paddingLeft="20dp"
+                                        android:paddingTop="5dp"
                                         android:paddingRight="20dp"
-                                        android:paddingBottom="35dp"
+                                        android:paddingBottom="30dp"
                                         android:visibility="gone">
 
                                         <TextView
@@ -857,12 +859,15 @@
                                         android:id="@+id/loading_data_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
+                                        android:layout_marginLeft="2dp"
+                                        android:layout_marginRight="2dp"
+                                        android:background="@drawable/rounded_rect_white"
                                         android:gravity="center"
                                         android:orientation="vertical"
                                         android:paddingLeft="20dp"
-                                        android:paddingTop="25dp"
+                                        android:paddingTop="30dp"
                                         android:paddingRight="20dp"
-                                        android:paddingBottom="35dp">
+                                        android:paddingBottom="30dp">
 
                                         <ImageView
                                             android:id="@+id/loading_data"
@@ -1164,25 +1169,6 @@
             </RelativeLayout>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-        <com.flipboard.bottomsheet.BottomSheetLayout
-            android:id="@+id/bottom_sheet_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal|center_vertical" />
-
-            </LinearLayout>
-
-        </com.flipboard.bottomsheet.BottomSheetLayout>
 
     </RelativeLayout>
 

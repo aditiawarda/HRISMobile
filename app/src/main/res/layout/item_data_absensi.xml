@@ -25,117 +25,298 @@
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             tools:ignore="DisableBaselineAlignment">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_bg_record_checkin"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight=".50"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/date_checkin"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="17dp"
-                    android:layout_marginRight="17dp"
-                    android:layout_marginBottom="3dp"
-                    android:gravity="left"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:text="---- - -- - --"
-                    android:textColor="#818181"
-                    android:textSize="9dp" />
+                    android:background="@drawable/shape_bg_record_checkin_item"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginRight="3.5dp"
+                    android:layout_weight=".50"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/time_checkin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="17dp"
-                    android:layout_marginRight="17dp"
-                    android:layout_marginBottom="3dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:gravity="left"
-                    android:singleLine="true"
-                    android:text="-- : -- : -- ---"
-                    android:textColor="#555555"
-                    android:textSize="12dp" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/checkin_point"
-                    android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="5dp"
+                            android:layout_marginLeft="11dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/shape_ornament_checkin_item"
+                            android:orientation="vertical"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/date_checkin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="17dp"
+                                android:layout_marginRight="17dp"
+                                android:layout_marginBottom="3dp"
+                                android:gravity="left"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="---- - -- - --"
+                                android:textColor="#818181"
+                                android:textSize="9dp" />
+
+                            <TextView
+                                android:id="@+id/time_checkin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="17dp"
+                                android:layout_marginRight="17dp"
+                                android:layout_marginBottom="3dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:gravity="left"
+                                android:singleLine="true"
+                                android:text="-- : -- : -- ---"
+                                android:textColor="#555555"
+                                android:textSize="11dp" />
+
+                            <TextView
+                                android:id="@+id/checkin_point"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="17dp"
+                                android:layout_marginRight="17dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="-"
+                                android:textColor="#818181"
+                                android:textSize="9dp" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="17dp"
-                    android:layout_marginRight="17dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:text="-"
-                    android:textColor="#818181"
-                    android:textSize="9dp" />
+                    android:layout_marginLeft="3.5dp"
+                    android:background="@drawable/shape_bg_record_checkout_item"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_weight=".50"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_alignParentRight="true"
+                            android:layout_width="5dp"
+                            android:layout_marginRight="11dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/shape_ornament_checkout_item"
+                            android:orientation="vertical"/>
+
+                        <LinearLayout
+                            android:layout_alignParentRight="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/date_checkout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="17dp"
+                                android:layout_marginRight="17dp"
+                                android:layout_marginBottom="3dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:gravity="right"
+                                android:text="---- - -- - --"
+                                android:textColor="#818181"
+                                android:textSize="9dp" />
+
+                            <TextView
+                                android:id="@+id/time_checkout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="17dp"
+                                android:layout_marginRight="17dp"
+                                android:layout_marginBottom="3dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:gravity="right"
+                                android:singleLine="true"
+                                android:text="-- : -- : -- ---"
+                                android:textColor="#555555"
+                                android:textSize="11dp" />
+
+                            <TextView
+                                android:id="@+id/checkout_point"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="17dp"
+                                android:layout_marginRight="17dp"
+                                android:gravity="right"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="-"
+                                android:textColor="#818181"
+                                android:textSize="9dp" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:id="@+id/part_terlambat"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/shape_bg_record_alpha"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/shape_bg_record_checkout"
+                android:orientation="vertical"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:layout_weight=".50"
-                android:orientation="vertical">
+                tools:ignore="DisableBaselineAlignment"
+                android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/date_checkout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="17dp"
                     android:layout_marginRight="17dp"
-                    android:layout_marginBottom="3dp"
+                    android:text="Keterlambatan"
                     android:ellipsize="end"
-                    android:gravity="right"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="---- - -- - --"
-                    android:textColor="#818181"
-                    android:textSize="9dp" />
+                    android:textColor="#E18482"
+                    android:textSize="8dp" />
 
                 <TextView
-                    android:id="@+id/time_checkout"
+                    android:id="@+id/terlambat_time_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="17dp"
                     android:layout_marginRight="17dp"
-                    android:layout_marginBottom="3dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:gravity="right"
                     android:singleLine="true"
-                    android:text="-- : -- : -- ---"
-                    android:textColor="#555555"
-                    android:textSize="12dp" />
+                    android:text=""
+                    android:textColor="#DC6664"
+                    android:textSize="11dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/part_overtime"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/shape_bg_record_diliburkan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                tools:ignore="DisableBaselineAlignment"
+                android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/checkout_point"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="17dp"
                     android:layout_marginRight="17dp"
-                    android:gravity="right"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="-"
-                    android:textColor="#818181"
-                    android:textSize="9dp" />
+                    android:text="Kelebihan Jam"
+                    android:textColor="#529BDA"
+                    android:textSize="8dp" />
+
+                <TextView
+                    android:id="@+id/overtime_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginRight="17dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#378AD3"
+                    android:textSize="11dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/part_pulang_cepat"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/shape_bg_record_libur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                tools:ignore="DisableBaselineAlignment"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginRight="17dp"
+                    android:text="Pulang lebih awal"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#CC8D3E"
+                    android:textSize="11dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/part_no_checkout"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/shape_bg_record_alpha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                tools:ignore="DisableBaselineAlignment"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginRight="17dp"
+                    android:text="Tidak melakukan checkout"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#DC6664"
+                    android:textSize="11dp" />
 
             </LinearLayout>
 
@@ -298,48 +479,48 @@
                 android:paddingTop="18dp"
                 android:paddingBottom="18dp">
 
-                <TextView
-                    android:id="@+id/tgl_absensi_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:gravity="left"
-                    android:maxLines="2"
-                    android:paddingBottom="2dp"
-                    android:text=""
-                    android:textColor="#515151"
-                    android:textSize="12dp"/>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="100dp"
-                    android:gravity="right|center"
+                    android:gravity="left|center"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/higlight_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:paddingTop="1dp"
-                        android:singleLine="true"
-                        android:text=""
-                        android:textColor="#9C9C9C"
-                        android:textSize="12dp" />
 
                     <LinearLayout
                         android:id="@+id/warning_mark"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:layout_marginLeft="7dp"
                         android:layout_marginTop="1dp"
+                        android:layout_marginRight="7dp"
                         android:background="@drawable/warning_mark_absensi"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tgl_absensi_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="left"
+                        android:maxLines="2"
+                        android:text=""
+                        android:textColor="#515151"
+                        android:textSize="12dp" />
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/higlight_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:maxLines="1"
+                    android:paddingTop="1dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#9C9C9C"
+                    android:textSize="12dp" />
 
             </RelativeLayout>
 

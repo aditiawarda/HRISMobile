@@ -21,10 +21,11 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="90dp"
                 android:layout_height="20dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/shape_skeleton"
                 android:orientation="vertical" />
 
@@ -32,7 +33,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="5dp"
-                android:layout_width="100dp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="90dp"
                 android:layout_height="20dp"
                 android:background="@drawable/shape_skeleton"
                 android:orientation="vertical"/>

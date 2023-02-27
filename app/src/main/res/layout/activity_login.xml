@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFBB65"
+    android:background="@color/colorPrimaryDark"
     tools:context=".LoginActivity">
 
     <RelativeLayout
@@ -20,59 +20,36 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:gravity="center|bottom"
-                    android:layout_height="0dp"
-                    android:paddingBottom="10dp"
-                    android:layout_weight=".25">
+                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:layout_gravity="center"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_marginBottom="5dp"
-                        android:src="@drawable/glogo_3" />
-
-                    <TextView
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="17dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="HRIS MOBILE"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="-3dp"
-                        android:textSize="10dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="G    E    L    O    R    A"/>
+                    <LinearLayout
+                        android:layout_width="150dp"
+                        android:layout_height="85dp"
+                        android:background="@drawable/hris_logo_ss" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight=".75">
+                    android:layout_height="wrap_content">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/shape_body_login"
+                            android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:paddingTop="50dp">
+                            android:layout_marginBottom="50dp"
+                            android:paddingTop="40dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"

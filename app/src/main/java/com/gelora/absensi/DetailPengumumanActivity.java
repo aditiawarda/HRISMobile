@@ -3,6 +3,7 @@ package com.gelora.absensi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -57,6 +58,17 @@ public class DetailPengumumanActivity extends AppCompatActivity {
             imagePart.setVisibility(View.VISIBLE);
             Glide.with(getApplicationContext())
                     .load(image).into(imagePengumuman);
+
+            imagePart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(DetailPengumumanActivity.this, ViewImageActivity.class);
+                    intent.putExtra("url", image);
+                    intent.putExtra("kode", "pengumuman");
+                    startActivity(intent);
+                }
+            });
+
         }
 
         titleTV.setText(title.toUpperCase());

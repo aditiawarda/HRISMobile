@@ -166,6 +166,54 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
 
             myViewHolder.dateCheckin.setText(String.valueOf(Integer.parseInt(dayDateCheckin))+" "+bulanNameCheckin+" "+yearDateCheckin);
 
+            if (String.valueOf(dataAbsensi.getTimezone_masuk()).equals("null")){
+                myViewHolder.timeCheckin.setText(dataAbsensi.getJam_masuk());
+            } else {
+                myViewHolder.timeCheckin.setText(dataAbsensi.getJam_masuk()+" "+dataAbsensi.getTimezone_masuk());
+            }
+
+            if (myViewHolder.checkinPoint.getText().toString().equals("")){
+                myViewHolder.checkinPoint.setText(sharedPrefManager.getSpNama());
+            } else {
+                myViewHolder.checkinPoint.setText(dataAbsensi.getCheckin_point());
+            }
+
+            if(dataAbsensi.getStatus_terlambat().equals("2")){
+                myViewHolder.partTerlambat.setVisibility(View.VISIBLE);
+                myViewHolder.warningMark.setVisibility(View.VISIBLE);
+
+                if(!dataAbsensi.getWaktu_terlambat().substring(0, 2).equals("00")){ // 01:01:01
+                    if (!dataAbsensi.getWaktu_terlambat().substring(3, 5).equals("00")){ // 01:01:01
+                        if(!dataAbsensi.getWaktu_terlambat().substring(6,8).equals("00")){
+                            myViewHolder.terlambatTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getWaktu_terlambat().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataAbsensi.getWaktu_terlambat().substring(3,5)))+" menit "+String.valueOf(Integer.parseInt(dataAbsensi.getWaktu_terlambat().substring(6,8)))+" detik");
+                        } else {
+                            myViewHolder.terlambatTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getWaktu_terlambat().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataAbsensi.getWaktu_terlambat().substring(3,5)))+" menit");
+                        }
+                    } else { // 01:00:01
+                        if(!dataAbsensi.getWaktu_terlambat().substring(6,8).equals("00")){
+                            myViewHolder.terlambatTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getWaktu_terlambat().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataAbsensi.getWaktu_terlambat().substring(6,8)))+" detik");
+                        } else {
+                            myViewHolder.terlambatTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getWaktu_terlambat().substring(0,2)))+" jam");
+                        }
+                    }
+                } else { // 00:01:01
+                    if (!dataAbsensi.getWaktu_terlambat().substring(3, 5).equals("00")){ // 00:01:01
+                        if(!dataAbsensi.getWaktu_terlambat().substring(6,8).equals("00")){
+                            myViewHolder.terlambatTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getWaktu_terlambat().substring(3,5)))+" menit "+String.valueOf(Integer.parseInt(dataAbsensi.getWaktu_terlambat().substring(6,8)))+" detik");
+                        } else {
+                            myViewHolder.terlambatTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getWaktu_terlambat().substring(3,5)))+" menit");
+                        }
+                    } else { // 00:00:01
+                        if(!dataAbsensi.getWaktu_terlambat().substring(6,8).equals("00")){
+                            myViewHolder.terlambatTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getWaktu_terlambat().substring(6,8)))+" detik");
+                        }
+                    }
+                }
+
+            } else if(dataAbsensi.getStatus_terlambat().equals("1")){
+                myViewHolder.partTerlambat.setVisibility(View.GONE);
+            }
+
             if (dataAbsensi.getStatus_pulang().equals("0")){
                 myViewHolder.dateCheckout.setText("---- - -- - --");
             } else {
@@ -219,12 +267,6 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
                 myViewHolder.dateCheckout.setText(String.valueOf(Integer.parseInt(dayDateCheckout))+" "+bulanNameCheckout+" "+yearDateCheckout);
             }
 
-            if (String.valueOf(dataAbsensi.getTimezone_masuk()).equals("null")){
-                myViewHolder.timeCheckin.setText(dataAbsensi.getJam_masuk());
-            } else {
-                myViewHolder.timeCheckin.setText(dataAbsensi.getJam_masuk()+" "+dataAbsensi.getTimezone_masuk());
-            }
-
             if (dataAbsensi.getStatus_pulang().equals("0")){
                 myViewHolder.timeCheckout.setText("-- : -- : -- ---");
             } else {
@@ -235,17 +277,60 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
                 }
             }
 
-            if (myViewHolder.checkinPoint.getText().toString().equals("")){
-                myViewHolder.checkinPoint.setText(sharedPrefManager.getSpNama());
-            } else {
-                myViewHolder.checkinPoint.setText(dataAbsensi.getCheckin_point());
-            }
-
             if (dataAbsensi.getStatus_pulang().equals("0")){
                 myViewHolder.checkoutPoint.setText("-");
             } else {
                 myViewHolder.checkoutPoint.setText(dataAbsensi.getCheckout_point());
             }
+
+            if(dataAbsensi.getStatus_pulang().equals("3")) {
+                myViewHolder.partPulangCepat.setVisibility(View.GONE);
+                myViewHolder.partOvertime.setVisibility(View.VISIBLE);
+                myViewHolder.partNoCheckout.setVisibility(View.GONE);
+
+                if(!dataAbsensi.getKelebihan_jam().substring(0, 2).equals("00")){ // 01:01:01
+                    if (!dataAbsensi.getKelebihan_jam().substring(3, 5).equals("00")){ // 01:01:01
+                        if(!dataAbsensi.getKelebihan_jam().substring(6,8).equals("00")){
+                            myViewHolder.overTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getKelebihan_jam().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataAbsensi.getKelebihan_jam().substring(3,5)))+" menit "+String.valueOf(Integer.parseInt(dataAbsensi.getKelebihan_jam().substring(6,8)))+" detik");
+                        } else {
+                            myViewHolder.overTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getKelebihan_jam().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataAbsensi.getKelebihan_jam().substring(3,5)))+" menit");
+                        }
+                    } else { // 01:00:01
+                        if(!dataAbsensi.getKelebihan_jam().substring(6,8).equals("00")){
+                            myViewHolder.overTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getKelebihan_jam().substring(0,2)))+" jam "+String.valueOf(Integer.parseInt(dataAbsensi.getKelebihan_jam().substring(6,8)))+" detik");
+                        } else {
+                            myViewHolder.overTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getKelebihan_jam().substring(0,2)))+" jam");
+                        }
+                    }
+                } else { // 00:01:01
+                    if (!dataAbsensi.getKelebihan_jam().substring(3, 5).equals("00")){ // 00:01:01
+                        if(!dataAbsensi.getKelebihan_jam().substring(6,8).equals("00")){
+                            myViewHolder.overTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getKelebihan_jam().substring(3,5)))+" menit "+String.valueOf(Integer.parseInt(dataAbsensi.getKelebihan_jam().substring(6,8)))+" detik");
+                        } else {
+                            myViewHolder.overTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getKelebihan_jam().substring(3,5)))+" menit");
+                        }
+                    } else { // 00:00:01
+                        if(!dataAbsensi.getKelebihan_jam().substring(6,8).equals("00")){
+                            myViewHolder.overTime.setText(String.valueOf(Integer.parseInt(dataAbsensi.getKelebihan_jam().substring(6,8)))+" detik");
+                        }
+                    }
+                }
+
+            } else if(dataAbsensi.getStatus_pulang().equals("2")){
+                myViewHolder.partPulangCepat.setVisibility(View.VISIBLE);
+                myViewHolder.partOvertime.setVisibility(View.GONE);
+                myViewHolder.partNoCheckout.setVisibility(View.GONE);
+            } else if(dataAbsensi.getStatus_pulang().equals("1")){
+                myViewHolder.partPulangCepat.setVisibility(View.GONE);
+                myViewHolder.partOvertime.setVisibility(View.GONE);
+                myViewHolder.partNoCheckout.setVisibility(View.GONE);
+            } else if(dataAbsensi.getStatus_pulang().equals("0")){
+                myViewHolder.partPulangCepat.setVisibility(View.GONE);
+                myViewHolder.partOvertime.setVisibility(View.GONE);
+                myViewHolder.partNoCheckout.setVisibility(View.VISIBLE);
+                myViewHolder.warningMark.setVisibility(View.VISIBLE);
+            }
+
         } else if(dataAbsensi.getKet_kehadiran().equals("Diliburkan")){
             myViewHolder.partHadir.setVisibility(View.GONE);
             myViewHolder.partDiliburkan.setVisibility(View.VISIBLE);
@@ -333,8 +418,8 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView dalamRangkaTV, alasanTV, dateAbsensi, higlightTV, dateCheckin, dateCheckout, timeCheckin, timeCheckout, checkinPoint, checkoutPoint;
-        LinearLayout warningMark, partHadir, partDiliburkan, partIzin, partLibur, partMinggu, partAlpha, expandBTN;
+        TextView overTime, terlambatTime, dalamRangkaTV, alasanTV, dateAbsensi, higlightTV, dateCheckin, dateCheckout, timeCheckin, timeCheckout, checkinPoint, checkoutPoint;
+        LinearLayout partTerlambat, partOvertime, partPulangCepat, partNoCheckout, warningMark, partHadir, partDiliburkan, partIzin, partLibur, partMinggu, partAlpha, expandBTN;
         ExpandableLayout expandableLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -344,6 +429,13 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
             partLibur = itemView.findViewById(R.id.part_libur);
             partMinggu = itemView.findViewById(R.id.part_minggu);
             partAlpha = itemView.findViewById(R.id.part_alpha);
+
+            partTerlambat = itemView.findViewById(R.id.part_terlambat);
+            terlambatTime = itemView.findViewById(R.id.terlambat_time_tv);
+            partOvertime = itemView.findViewById(R.id.part_overtime);
+            overTime = itemView.findViewById(R.id.overtime_tv);
+            partPulangCepat = itemView.findViewById(R.id.part_pulang_cepat);
+            partNoCheckout = itemView.findViewById(R.id.part_no_checkout);
 
             dateAbsensi = itemView.findViewById(R.id.tgl_absensi_tv);
             higlightTV = itemView.findViewById(R.id.higlight_tv);

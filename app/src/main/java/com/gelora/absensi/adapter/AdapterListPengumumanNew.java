@@ -121,7 +121,11 @@ public class AdapterListPengumumanNew extends RecyclerView.Adapter<AdapterListPe
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetailPengumumanActivity.class);
-                intent.putExtra("image", String.valueOf(dataPengumumanNew.getPengumuman_image()));
+                if(String.valueOf(dataPengumumanNew.getPengumuman_image()).equals("")||String.valueOf(dataPengumumanNew.getPengumuman_image()).equals("null")||dataPengumumanNew.getPengumuman_image()==null){
+                    intent.putExtra("image", String.valueOf(dataPengumumanNew.getPengumuman_image()));
+                } else {
+                    intent.putExtra("image", "https://geloraaksara.co.id/absen-online/assets/img/pengumuman/"+String.valueOf(dataPengumumanNew.getPengumuman_image()));
+                }
                 intent.putExtra("title", String.valueOf(dataPengumumanNew.getPengumuman_title()));
                 intent.putExtra("deskripsi", String.valueOf(dataPengumumanNew.getPengumuman_desc()));
                 intent.putExtra("date", String.valueOf(dataPengumumanNew.getPengumuman_date()));
