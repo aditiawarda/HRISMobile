@@ -1038,7 +1038,7 @@
                                 android:orientation="vertical">
 
                                 <LinearLayout
-                                    android:visibility="gone"
+
                                     android:id="@+id/sisa_cuti_btn"
                                     android:layout_marginBottom="20dp"
                                     android:layout_width="match_parent"
@@ -1654,7 +1654,6 @@
                                     android:maxLines="1"
                                     android:textColor="#BDBDBD"
                                     android:text=" IT PT. Gelora Aksara Pratama"/>
-
 
                             </LinearLayout>
 

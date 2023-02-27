@@ -81,11 +81,11 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
         mainPart = findViewById(R.id.main_part);
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.loading)
+                .load(R.drawable.loading_sgn_digital)
                 .into(loadingImage);
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.loading)
+                .load(R.drawable.loading_sgn_digital)
                 .into(loadingImage2);
 
         dataNotifikasiRV.setLayoutManager(new LinearLayoutManager(this));

@@ -122,9 +122,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng userPoint;
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
-    ImageView loadingDataRecord, weatherIconPart, onlineGif, warningGif, notificationWarning;
+    ImageView loadingDataRecord, weatherIconPart, onlineGif, warningGif;
     TextView titleRecordTV, userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout noDataPart, loadingRecordPart, backBTN, reminderCongrat, markerWarningAbsensi, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    LinearLayout noDataPart, loadingRecordPart, backBTN, reminderCongrat, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -241,8 +241,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         izinDesc = findViewById(R.id.izin_desc);
         openSessionBTN = findViewById(R.id.open_session_btn);
         switchZoom = findViewById(R.id.switch_zoom);
-        markerWarningAbsensi = findViewById(R.id.marker_warning);
-        notificationWarning = findViewById(R.id.warning_gif_absen);
         descStart = findViewById(R.id.desc_start);
         layoffDesc = findViewById(R.id.layoff_desc);
         descStatusPart = findViewById(R.id.desc_status_part);
@@ -292,10 +290,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Glide.with(getApplicationContext())
                 .load(R.drawable.icon_none)
                 .into(onlineGif);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.ic_warning_notification_gif_main)
-                .into(notificationWarning);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.warning_circle_gif)
@@ -494,8 +488,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 shiftAbsen();
             }
         });
-
-        getDataAbsensi();
 
         checkLogin();
         getCurrentDay();
@@ -4513,220 +4505,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onRestart();
     }
 
-    private void openCalender(){
-        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_calender, bottomSheet, false));
-        monthTV = findViewById(R.id.month_calender);
-        yearTV = findViewById(R.id.year_calender);
-        closeBTN = findViewById(R.id.close_btn);
-        prevBTN = findViewById(R.id.prevBTN);
-        nextBTN = findViewById(R.id.nextBTN);
-        eventCalender = findViewById(R.id.event_calender);
-        compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
-
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.N) {
-            Typeface typeface = ResourcesCompat.getFont(MapsActivity.this, R.font.roboto);
-            eventCalender.setTypeface(typeface);
-        }
-
-        // Set first day of week to Monday, defaults to Monday so calling setFirstDayOfWeek is not necessary
-        // Use constants provided by Java Calendar class
-        compactCalendarView.setFirstDayOfWeek(Calendar.MONDAY);
-
-        String month = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(4,7);
-
-        int maxLengthYear = Integer.parseInt(String.valueOf(String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).length()));
-        int minLengthYear = maxLengthYear - 4;
-
-        String year = String.valueOf(compactCalendarView.getFirstDayOfCurrentMonth()).substring(minLengthYear,maxLengthYear);
-        String bulanName;
-        switch (month) {
-            case "Jan":
-                bulanName = "Januari";
-                break;
-            case "Feb":
-                bulanName = "Februari";
-                break;
-            case "Mar":
-                bulanName = "Maret";
-                break;
-            case "Apr":
-                bulanName = "April";
-                break;
-            case "May":
-                bulanName = "Mei";
-                break;
-            case "Jun":
-                bulanName = "Juni";
-                break;
-            case "Jul":
-                bulanName = "Juli";
-                break;
-            case "Aug":
-                bulanName = "Agustus";
-                break;
-            case "Sep":
-                bulanName = "September";
-                break;
-            case "Oct":
-                bulanName = "Oktober";
-                break;
-            case "Nov":
-                bulanName = "November";
-                break;
-            case "Dec":
-                bulanName = "Desember";
-                break;
-            default:
-                bulanName = "Not found!";
-                break;
-        }
-
-        monthTV.setText(bulanName);
-        yearTV.setText(year);
-
-        // Add event 1 on Sun, 07 Jun 2015 18:20:51 GMT
-        getEventCalender();
-
-        // define a listener to receive callbacks when certain events happen.
-        compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
-            @SuppressLint("InlinedApi")
-            @Override
-            public void onDayClick(Date dateClicked) {
-                List<Event> events = compactCalendarView.getEvents(dateClicked);
-                Log.d(TAG, "Day was clicked: " + dateClicked + " with events " + events);
-                if(events.size()<=0){
-                    eventCalender.setText("");
-                } else {
-                    eventCalender.setText(String.valueOf(events.get(0).getData()));
-                }
-            }
-
-            @SuppressLint("InlinedApi")
-            @Override
-            public void onMonthScroll(Date firstDayOfNewMonth) {
-                Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
-                String month = String.valueOf(firstDayOfNewMonth).substring(4,7);
-                int maxLengthYear = Integer.parseInt(String.valueOf(String.valueOf(firstDayOfNewMonth).length()));
-                int minLengthYear = maxLengthYear - 4;
-
-                String year = String.valueOf(firstDayOfNewMonth).substring(minLengthYear,maxLengthYear);
-                String bulanName;
-                switch (month) {
-                    case "Jan":
-                        bulanName = "Januari";
-                        break;
-                    case "Feb":
-                        bulanName = "Februari";
-                        break;
-                    case "Mar":
-                        bulanName = "Maret";
-                        break;
-                    case "Apr":
-                        bulanName = "April";
-                        break;
-                    case "May":
-                        bulanName = "Mei";
-                        break;
-                    case "Jun":
-                        bulanName = "Juni";
-                        break;
-                    case "Jul":
-                        bulanName = "Juli";
-                        break;
-                    case "Aug":
-                        bulanName = "Agustus";
-                        break;
-                    case "Sep":
-                        bulanName = "September";
-                        break;
-                    case "Oct":
-                        bulanName = "Oktober";
-                        break;
-                    case "Nov":
-                        bulanName = "November";
-                        break;
-                    case "Dec":
-                        bulanName = "Desember";
-                        break;
-                    default:
-                        bulanName = "Not found!";
-                        break;
-                }
-
-                monthTV.setText(bulanName);
-                yearTV.setText(year);
-                eventCalender.setText("");
-
-            }
-        });
-
-        closeBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheet.dismissSheet();
-            }
-        });
-
-        prevBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                compactCalendarView.scrollLeft();
-            }
-        });
-
-        nextBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                compactCalendarView.scrollRight();
-            }
-        });
-
-    }
-
-    private void getEventCalender() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
-        final String url = "https://geloraaksara.co.id/absen-online/api/holiday";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
-                        try {
-
-                            JSONArray data = response.getJSONArray("data");
-
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject event = data.getJSONObject(i);
-                                String nama = event.getString("nama");
-                                String tanggal = event.getString("tanggal");
-
-                                @SuppressLint("SimpleDateFormat")
-                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                                Date date = sdf.parse(tanggal);
-                                long millis = date.getTime();
-                                Event ev1 = new Event(Color.RED, millis, nama);
-                                compactCalendarView.addEvent(ev1);
-                            }
-
-                        } catch (JSONException | ParseException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                connectionFailed();
-            }
-        });
-
-        requestQueue.add(request);
-
-        request.setRetryPolicy(new DefaultRetryPolicy(0,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-    }
 
     private void checkLibur(String date) {
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -4786,7 +4564,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void checkWarning() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/warning_absen";
+        final String url = "https://geloraaksara.co.id/absen-online/api/absensi_page_personalization";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -4798,20 +4576,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
-                                String alpa = data.getString("alpa");
-                                String terlambat = data.getString("terlambat");
-                                String tidak_checkout = data.getString("tidak_checkout");
                                 String fake_time = data.getString("faketime_check");
                                 String devmod_check = data.getString("devmod_check");
-                                String join_reminder = data.getString("join_reminder");
                                 String cegat_device = data.getString("cegat_device");
-                                String fitur_pengumuman = data.getString("fitur_pengumuman");
-                                String pengumuman_date = data.getString("pengumuman_date");
-                                String pengumuman_title = data.getString("pengumuman_title");
-                                String pengumuman_desc = data.getString("pengumuman_desc");
-                                String cek_email = data.getString("cek_email");
-                                String cek_nohp = data.getString("cek_nohp");
-
                                 String id_cab = data.getString("id_cab");
                                 String id_dept = data.getString("id_dept");
                                 String id_bagian = data.getString("id_bagian");
@@ -4832,19 +4599,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                 fakeTimeCheck = fake_time;
                                 devModCheck = devmod_check;
-
-                                if((cek_email.equals("")||cek_email==null||cek_email.equals("null")) && (cek_nohp.equals("")||cek_nohp==null||cek_nohp.equals("null"))){
-                                    markerWarningAbsensi.setVisibility(View.VISIBLE);
-                                } else {
-                                    int alpaNumb = Integer.parseInt(alpa);
-                                    int lateNumb = Integer.parseInt(terlambat);
-                                    int noCheckoutNumb = Integer.parseInt(tidak_checkout);
-                                    if (alpaNumb > 0 || lateNumb > 0 || noCheckoutNumb > 0){
-                                        markerWarningAbsensi.setVisibility(View.VISIBLE);
-                                    } else {
-                                        markerWarningAbsensi.setVisibility(View.GONE);
-                                    }
-                                }
 
                                 if(cegat_device.equals("1")){
                                     deviceIdFunction();

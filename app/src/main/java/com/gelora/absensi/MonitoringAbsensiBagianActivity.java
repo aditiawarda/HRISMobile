@@ -135,11 +135,11 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                 .into(dataTidakHadirLoading);
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.loading)
+                .load(R.drawable.loading_sgn_digital)
                 .into(loadingDataKehadiranBagian);
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.loading)
+                .load(R.drawable.loading_sgn_digital)
                 .into(loadingDataKetidakhadiranBagian);
 
         dataKehadiranBagianRV = findViewById(R.id.data_kehadiran_bagian_rv);

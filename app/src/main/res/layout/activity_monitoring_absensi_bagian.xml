@@ -510,44 +510,43 @@
                                 </androidx.recyclerview.widget.RecyclerView>
 
                                 <LinearLayout
-                                    android:visibility="gone"
                                     android:id="@+id/no_data_hadir_bagian"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:paddingBottom="20dp"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
                                     android:paddingLeft="20dp"
                                     android:paddingRight="20dp"
-                                    android:paddingTop="20dp"
-                                    android:orientation="vertical"
-                                    android:gravity="center">
+                                    android:paddingTop="60dp"
+                                    android:paddingBottom="35dp"
+                                    android:visibility="gone">
 
                                     <TextView
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginTop="20dp"
+                                        android:layout_width="85dp"
+                                        android:layout_height="85dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:background="@drawable/empty_image"
                                         android:textAlignment="center"
-                                        android:layout_marginBottom="10dp"
                                         android:textSize="12dp"
-                                        android:textStyle="bold"
-                                        android:background="@drawable/ic_baseline_no_data"/>
+                                        android:textStyle="bold" />
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="-8dp"
+                                        android:text="Data tidak tersedia"
                                         android:textAlignment="center"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold"
-                                        android:textColor="#7C7C7C"
-                                        android:text="Data tidak tersedia"/>
+                                        android:textColor="#E1BB8A"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:text="Data kehadiran tidak tersedia"
                                         android:textAlignment="center"
-                                        android:textSize="11dp"
-                                        android:layout_marginTop="7dp"
-                                        android:textColor="#7C7C7C"
-                                        android:text="Data kehadiran tidak tersedia."/>
+                                        android:textColor="#ECC28D"
+                                        android:textSize="10dp" />
 
                                 </LinearLayout>
 
@@ -555,37 +554,37 @@
                                     android:id="@+id/loading_data_kehadiran_bagian_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:paddingBottom="20dp"
-                                    android:paddingLeft="20dp"
-                                    android:paddingRight="20dp"
-                                    android:paddingTop="20dp"
+                                    android:gravity="center"
                                     android:orientation="vertical"
-                                    android:gravity="center">
+                                    android:paddingLeft="20dp"
+                                    android:paddingTop="60dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingBottom="35dp">
 
                                     <ImageView
                                         android:id="@+id/loading_data_kehadiran_bagian"
-                                        android:layout_width="68dp"
-                                        android:layout_height="68dp"
+                                        android:layout_width="80dp"
+                                        android:layout_height="80dp"
                                         android:layout_marginBottom="5dp"
-                                        app:srcCompat="@drawable/loading" />
+                                        app:srcCompat="@drawable/loading_sgn_digital" />
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="-8dp"
+                                        android:text="Memuat data"
                                         android:textAlignment="center"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold"
-                                        android:textColor="#7C7C7C"
-                                        android:text="Memuat data"/>
+                                        android:textColor="#E1BB8A"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:text="Tunggu beberapa saat"
                                         android:textAlignment="center"
-                                        android:textSize="11dp"
-                                        android:layout_marginTop="5dp"
-                                        android:textColor="#7C7C7C"
-                                        android:text="Tunggu beberapa saat"/>
+                                        android:textColor="#ECC28D"
+                                        android:textSize="10dp" />
 
                                 </LinearLayout>
 
@@ -657,44 +656,43 @@
                                 </androidx.recyclerview.widget.RecyclerView>
 
                                 <LinearLayout
-                                    android:visibility="gone"
                                     android:id="@+id/no_data_tidak_hadir_bagian"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:paddingBottom="20dp"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
                                     android:paddingLeft="20dp"
                                     android:paddingRight="20dp"
-                                    android:paddingTop="20dp"
-                                    android:orientation="vertical"
-                                    android:gravity="center">
+                                    android:paddingTop="60dp"
+                                    android:paddingBottom="35dp"
+                                    android:visibility="gone">
 
                                     <TextView
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginTop="20dp"
+                                        android:layout_width="85dp"
+                                        android:layout_height="85dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:background="@drawable/empty_image"
                                         android:textAlignment="center"
-                                        android:layout_marginBottom="10dp"
                                         android:textSize="12dp"
-                                        android:textStyle="bold"
-                                        android:background="@drawable/ic_baseline_no_data"/>
+                                        android:textStyle="bold" />
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="-8dp"
+                                        android:text="Data tidak tersedia"
                                         android:textAlignment="center"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold"
-                                        android:textColor="#7C7C7C"
-                                        android:text="Data tidak tersedia"/>
+                                        android:textColor="#E1BB8A"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:text="Data ketidakhadiran tidak tersedia"
                                         android:textAlignment="center"
-                                        android:textSize="11dp"
-                                        android:layout_marginTop="7dp"
-                                        android:textColor="#7C7C7C"
-                                        android:text="Data ketidakhadiran tidak tersedia."/>
+                                        android:textColor="#ECC28D"
+                                        android:textSize="10dp" />
 
                                 </LinearLayout>
 
@@ -702,37 +700,37 @@
                                     android:id="@+id/loading_data_ketidakhadiran_bagian_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:paddingBottom="20dp"
-                                    android:paddingLeft="20dp"
-                                    android:paddingRight="20dp"
-                                    android:paddingTop="20dp"
+                                    android:gravity="center"
                                     android:orientation="vertical"
-                                    android:gravity="center">
+                                    android:paddingLeft="20dp"
+                                    android:paddingTop="60dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingBottom="35dp">
 
                                     <ImageView
                                         android:id="@+id/loading_data_ketidakhadiran_bagian"
-                                        android:layout_width="68dp"
-                                        android:layout_height="68dp"
+                                        android:layout_width="80dp"
+                                        android:layout_height="80dp"
                                         android:layout_marginBottom="5dp"
-                                        app:srcCompat="@drawable/loading" />
+                                        app:srcCompat="@drawable/loading_sgn_digital" />
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="-8dp"
+                                        android:text="Memuat data"
                                         android:textAlignment="center"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold"
-                                        android:textColor="#7C7C7C"
-                                        android:text="Memuat data"/>
+                                        android:textColor="#E1BB8A"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:text="Tunggu beberapa saat"
                                         android:textAlignment="center"
-                                        android:textSize="11dp"
-                                        android:layout_marginTop="5dp"
-                                        android:textColor="#7C7C7C"
-                                        android:text="Tunggu beberapa saat"/>
+                                        android:textColor="#ECC28D"
+                                        android:textSize="10dp" />
 
                                 </LinearLayout>
 

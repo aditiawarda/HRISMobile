@@ -101,7 +101,7 @@ public class DetailLayoffActivity extends AppCompatActivity {
                 .into(layoffLoading);
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.loading)
+                .load(R.drawable.loading_sgn_digital)
                 .into(loadingDataLayoff);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);

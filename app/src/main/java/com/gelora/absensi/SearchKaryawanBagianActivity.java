@@ -112,7 +112,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(bagianBroad, new IntentFilter("bagian_broad"));
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.loading)
+                .load(R.drawable.loading_sgn_digital)
                 .into(loadingData);
 
         showSoftKeyboard(keywordUserED);

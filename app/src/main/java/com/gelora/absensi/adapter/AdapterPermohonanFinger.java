@@ -95,11 +95,11 @@ public class AdapterPermohonanFinger extends RecyclerView.Adapter<AdapterPermoho
         if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){ // Kadep Askadep
             myViewHolder.nikKaryawanTV.setText(listPermohonanFingerscan.getNIK()+" | "+listPermohonanFingerscan.getKdDept());
         } else if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||(sharedPrefManager.getSpIdJabatan().equals("4")&&sharedPrefManager.getSpNik().equals("1309131210"))) { // Kabag Supervisor
-            if(sharedPrefManager.getSpNik().equals("0056010793")){ // Bu Sorta
-                myViewHolder.nikKaryawanTV.setText(listPermohonanFingerscan.getNIK()+" | "+listPermohonanFingerscan.getKdDept());
-            } else {
+            // if(sharedPrefManager.getSpNik().equals("0056010793")){ // Bu Sorta
+            //     myViewHolder.nikKaryawanTV.setText(listPermohonanFingerscan.getNIK()+" | "+listPermohonanFingerscan.getKdDept());
+            // } else {
                 myViewHolder.nikKaryawanTV.setText("NIK "+listPermohonanFingerscan.getNIK());
-            }
+            // }
         } else if(sharedPrefManager.getSpIdJabatan().equals("8")){ //Direksi
             myViewHolder.nikKaryawanTV.setText(listPermohonanFingerscan.getNIK()+" | "+listPermohonanFingerscan.getNmHeadDept());
         }

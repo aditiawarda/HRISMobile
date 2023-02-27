@@ -791,7 +791,7 @@
                                         android:maxLines="1"
                                         android:singleLine="true"
                                         android:text="Lihat Semua"
-                                        android:textColor="#2FBEFF"
+                                        android:textColor="#1895CD"
                                         android:textSize="13dp" />
 
                                 </LinearLayout>

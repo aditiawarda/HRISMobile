@@ -71,7 +71,7 @@
                                     android:singleLine="true"
                                     android:text="Info"
                                     android:textColor="@color/white"
-                                    android:textSize="17dp" />
+                                    android:textSize="14dp" />
 
                                 <TextView
                                     android:id="@+id/date_tv"
@@ -83,7 +83,7 @@
                                     android:singleLine="true"
                                     android:text=""
                                     android:textColor="@color/white"
-                                    android:textSize="15dp" />
+                                    android:textSize="12dp" />
 
                             </LinearLayout>
 
@@ -171,6 +171,31 @@
 
                                         </LinearLayout>
 
+                                        <LinearLayout
+                                            android:visibility="gone"
+                                            android:layout_alignParentRight="true"
+                                            android:id="@+id/count_notification_izin"
+                                            android:layout_marginRight="12dp"
+                                            android:layout_marginTop="11dp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:paddingRight="4dp"
+                                            android:paddingLeft="4dp"
+                                            android:paddingBottom="1dp"
+                                            android:gravity="center"
+                                            android:background="@drawable/shape_notification_mark">
+
+                                            <TextView
+                                                android:id="@+id/count_notif_izin_tv"
+                                                android:gravity="center"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp"
+                                                android:text="0"/>
+
+                                        </LinearLayout>
+
                                     </RelativeLayout>
 
                                 </LinearLayout>
@@ -248,6 +273,31 @@
                                                 android:text="Fingerscan"
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="14dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:visibility="gone"
+                                            android:layout_alignParentRight="true"
+                                            android:id="@+id/count_notification_finger"
+                                            android:layout_marginRight="12dp"
+                                            android:layout_marginTop="11dp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:paddingRight="4dp"
+                                            android:paddingLeft="4dp"
+                                            android:paddingBottom="1dp"
+                                            android:gravity="center"
+                                            android:background="@drawable/shape_notification_mark">
+
+                                            <TextView
+                                                android:id="@+id/count_notif_finger_tv"
+                                                android:gravity="center"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp"
+                                                android:text="0"/>
 
                                         </LinearLayout>
 
@@ -852,6 +902,187 @@
                                     </LinearLayout>
 
                                 </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/sisa_cuti_btn"
+                                android:layout_marginBottom="15dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="85dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@drawable/shape_pulang_cepat"
+                                android:gravity="center">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <LinearLayout
+                                        android:layout_width="60dp"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/shape_background_cuti_part"
+                                        android:gravity="right|center"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:paddingRight="18dp"
+                                        android:gravity="right|center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_tidak_hadir"
+                                            android:gravity="center"
+                                            android:layout_width="85dp"
+                                            android:layout_height="55dp"
+                                            android:orientation="horizontal">
+
+                                            <LinearLayout
+                                                android:visibility="gone"
+                                                android:id="@+id/sisa_cuti_data"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="center"
+                                                android:orientation="horizontal">
+
+                                                <TextView
+                                                    android:id="@+id/sisa_cuti_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="30dp"
+                                                    android:textStyle="bold"
+                                                    android:layout_marginRight="8dp"
+                                                    android:text="0"/>
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="10dp"
+                                                    android:textStyle="bold"
+                                                    android:text="Hari"/>
+
+                                            </LinearLayout>
+
+                                            <ImageView
+                                                android:id="@+id/sisa_cuti_loading"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="30dp"
+                                                app:srcCompat="@drawable/loading_dots" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center|left"
+                                        android:orientation="vertical"
+                                        android:paddingLeft="25dp"
+                                        android:paddingRight="10dp">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Sisa cuti"
+                                            android:textColor="@color/white"
+                                            android:textSize="18dp" />
+
+                                        <TextView
+                                            android:id="@+id/date_update_sisa_cuti_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Per tanggal 00/00/0000"
+                                            android:textColor="@color/white"
+                                            android:textSize="11dp" />
+
+                                        <TextView
+                                            android:id="@+id/periode_update_sisa_cuti_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Periode 00/00/0000  s.d. 00/00/0000"
+                                            android:textColor="@color/white"
+                                            android:textSize="9dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/monitoring_staff_btn"
+                                android:layout_marginBottom="15dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="13dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@drawable/shape_monitoring"
+                                android:gravity="center">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="bottom|right">
+
+                                        <TextView
+                                            android:layout_marginBottom="-5dp"
+                                            android:layout_width="100dp"
+                                            android:layout_marginRight="5dp"
+                                            android:layout_height="68dp"
+                                            android:textStyle="bold"
+                                            android:background="@drawable/staff_img"
+                                            android:text=""/>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="13dp"
+                                        android:gravity="center|left"
+                                        android:orientation="vertical"
+                                        android:paddingLeft="25dp"
+                                        android:paddingRight="10dp">
+
+                                        <TextView
+                                            android:id="@+id/title_pantau"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Pantau kehadiran*"
+                                            android:textColor="@color/white"
+                                            android:textSize="18dp" />
+
+                                        <TextView
+                                            android:id="@+id/bagian_name_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="@color/white"
+                                            android:textSize="12dp" />
+
+                                        <TextView
+                                            android:id="@+id/note_pantau"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="10dp"
+                                            android:text="*Fitur khusus"
+                                            android:textColor="@color/white"
+                                            android:textSize="9dp"
+                                            android:textStyle="italic" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
 
                             </LinearLayout>
 

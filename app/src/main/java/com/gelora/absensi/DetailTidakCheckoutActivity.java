@@ -102,7 +102,7 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
                 .into(noCheckoutLoading);
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.loading)
+                .load(R.drawable.loading_sgn_digital)
                 .into(loadingDataNoCheckout);
 
         Glide.with(getApplicationContext())

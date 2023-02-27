@@ -101,7 +101,7 @@ public class HistoryActivity extends AppCompatActivity {
         nameOfUser.setText(sharedPrefManager.getSpNama().toUpperCase());
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.loading)
+                .load(R.drawable.loading_sgn_digital)
                 .into(loadingData);
 
         historyAbsenRV = findViewById(R.id.history_absen_rv);

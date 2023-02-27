@@ -11,6 +11,8 @@ import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -22,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
 import com.gauravk.bubblenavigation.BubbleToggleView;
 import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
@@ -45,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
     SharedPrefAbsen sharedPrefAbsen;
     BubbleToggleView m_item_shop;
     BubbleNavigationLinearView bubbleNavigation;
+    ImageView notifMarkInfo;
     Vibrator vibrate;
 
     ViewPager viewPager;
@@ -64,6 +68,7 @@ public class HomeActivity extends AppCompatActivity {
         sharedPrefAbsen = new SharedPrefAbsen(this);
         bubbleNavigation = findViewById(R.id.equal_navigation_bar);
         viewPager = findViewById(R.id.viewPager);
+        notifMarkInfo = findViewById(R.id.notif_mark);
         vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -93,6 +98,10 @@ public class HomeActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(position, true);
             }
         });
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.mark_notif_info)
+                .into(notifMarkInfo);
 
         checkLogin();
 
@@ -145,6 +154,8 @@ public class HomeActivity extends AppCompatActivity {
 
                                 }
 
+                            } else {
+                                checkNotification();
                             }
 
                         } catch (JSONException e) {
@@ -199,6 +210,77 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
         finishAffinity();
+    }
+
+    private void checkNotification() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/check_notification_info";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Success")){
+                                String count = data.getString("count_izin");
+                                String count_finger = data.getString("count_finger");
+                                String alpa = data.getString("alpa");
+                                String terlambat = data.getString("terlambat");
+                                String tidak_checkout = data.getString("tidak_checkout");
+
+                                if (count.equals("0") && count_finger.equals("0")){
+                                    int alpaNumb = Integer.parseInt(alpa);
+                                    int lateNumb = Integer.parseInt(terlambat);
+                                    int noCheckoutNumb = Integer.parseInt(tidak_checkout);
+                                    if (alpaNumb > 0 || lateNumb > 0 || noCheckoutNumb > 0){
+                                        notifMarkInfo.setVisibility(View.VISIBLE);
+                                    } else {
+                                        notifMarkInfo.setVisibility(View.GONE);
+                                    }
+                                } else if (!count.equals("0") && count_finger.equals("0")) {
+                                    notifMarkInfo.setVisibility(View.VISIBLE);
+                                } else if (count.equals("0") && !count_finger.equals("0")) {
+                                    notifMarkInfo.setVisibility(View.VISIBLE);
+                                } else if (!count.equals("0") && !count_finger.equals("0")) {
+                                    notifMarkInfo.setVisibility(View.VISIBLE);
+                                }
+
+                            } else {
+                                notifMarkInfo.setVisibility(View.GONE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
     }
 
     private void connectionFailed(){

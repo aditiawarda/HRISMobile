@@ -104,7 +104,7 @@ public class DetailTerlambatActivity extends AppCompatActivity {
                 .into(lateLoading);
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.loading)
+                .load(R.drawable.loading_sgn_digital)
                 .into(loadingDataLate);
 
         Glide.with(getApplicationContext())

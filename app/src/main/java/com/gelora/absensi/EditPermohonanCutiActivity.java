@@ -3765,7 +3765,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         loadingGif = findViewById(R.id.loading_data);
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.loading)
+                .load(R.drawable.loading_sgn_digital)
                 .into(loadingGif);
 
         karyawanPenggantiRV.setLayoutManager(new LinearLayoutManager(this));

@@ -38,8 +38,11 @@ import com.gelora.absensi.DetailTidakCheckoutActivity;
 import com.gelora.absensi.DetailTidakHadirActivity;
 import com.gelora.absensi.FaqActivity;
 import com.gelora.absensi.HistoryActivity;
+import com.gelora.absensi.HistoryCutiIzinActivity;
+import com.gelora.absensi.HomeActivity;
 import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.ListNotifikasiFingerscanActivity;
+import com.gelora.absensi.MonitoringAbsensiBagianActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.UserActivity;
@@ -54,7 +57,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -66,13 +71,13 @@ import java.util.Map;
  */
 public class FragmentInfo extends Fragment {
 
-    TextView dateNowTV;
+    TextView dateNowTV, countNotifFingerTV, countNotifIzinTV;
     ExpandableLayout aboutAppField, privacyPolicyField, contactServiceField;
-    LinearLayout faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
-    TextView historyBTN, countNotifFingerTV, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    LinearLayout countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
+    TextView historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     ImageView notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     SwipeRefreshLayout refreshLayout;
-    String selectMonth = "";
+    String selectMonth = "", statusFiturIzinCuti = "1", statusFiturFinger = "1", currentDay = "";
     Context mContext;
     Activity mActivity;
     SharedPrefManager sharedPrefManager;
@@ -131,6 +136,19 @@ public class FragmentInfo extends Fragment {
         contactServiceField = view.findViewById(R.id.contact_service_field);
         connectBTN = view.findViewById(R.id.connect_btn);
         faqBTN = view.findViewById(R.id.faq_btn);
+        monitoringStaffBTN = view.findViewById(R.id.monitoring_staff_btn);
+        titlePantau = view.findViewById(R.id.title_pantau);
+        notePantau = view.findViewById(R.id.note_pantau);
+        sisaCutiBTN = view.findViewById(R.id.sisa_cuti_btn);
+        dateUpdateSisaCutiTV = view.findViewById(R.id.date_update_sisa_cuti_tv);
+        periodeUpdateSisaCutiTV = view.findViewById(R.id.periode_update_sisa_cuti_tv);
+        sisaCutiTV = view.findViewById(R.id.sisa_cuti_tv);
+        sisaCutiData = view.findViewById(R.id.sisa_cuti_data);
+        sisaCutiLoading = view.findViewById(R.id.sisa_cuti_loading);
+        countNotificationIzin = view.findViewById(R.id.count_notification_izin);
+        countNotificationFinger = view.findViewById(R.id.count_notification_finger);
+        countNotifIzinTV = view.findViewById(R.id.count_notif_izin_tv);
+        countNotifFingerTV = view.findViewById(R.id.count_notif_finger_tv);
 
         selectMonth = getBulanTahun();
         dateNowTV.setText(getDate().substring(8,10)+"/"+getDate().substring(5,7)+"/"+getDate().substring(0,4));
@@ -169,11 +187,19 @@ public class FragmentInfo extends Fragment {
 
         Glide.with(mContext)
                 .load(R.drawable.ic_warning_notification_gif)
+                .into(notificationWarningLate);
+
+        Glide.with(mContext)
+                .load(R.drawable.ic_warning_notification_gif)
                 .into(notificationWarningNocheckout);
 
         Glide.with(mContext)
                 .load(R.drawable.ic_warning_notification_gif)
                 .into(notificationWarningAlpha);
+
+        Glide.with(mContext)
+                .load(R.drawable.loading_dots)
+                .into(sisaCutiLoading);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -210,11 +236,15 @@ public class FragmentInfo extends Fragment {
                 markerWarningLate.setVisibility(View.GONE);
                 markerWarningNoCheckout.setVisibility(View.GONE);
 
+                sisaCutiData.setVisibility(View.GONE);
+                sisaCutiLoading.setVisibility(View.VISIBLE);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-                        getDataHadir();
+                        getPersonalization();
+                        getCurrentDay();
                     }
                 }, 1000);
             }
@@ -308,7 +338,7 @@ public class FragmentInfo extends Fragment {
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        getDataHadir();
+                                        getDataAbsensi();
                                     }
                                 }, 100);
 
@@ -386,6 +416,22 @@ public class FragmentInfo extends Fragment {
             }
         });
 
+        sisaCutiBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, HistoryCutiIzinActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        monitoringStaffBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, MonitoringAbsensiBagianActivity.class);
+                startActivity(intent);
+            }
+        });
+
         aboutCompanyBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -442,19 +488,19 @@ public class FragmentInfo extends Fragment {
                 Intent intent = new Intent(mContext, FaqActivity.class);
                 intent.putExtra("status_karyawan", sharedPrefManager.getSpStatusKaryawan());
                 intent.putExtra("tanggal_bergabung", sharedPrefManager.getSpTglBergabung());
-                intent.putExtra("status_fitur", "1");
-                intent.putExtra("status_finger", "1");
-                startActivity(intent);
+                intent.putExtra("status_fitur", statusFiturFinger);
+                intent.putExtra("status_finger", statusFiturIzinCuti);
                 startActivity(intent);
             }
         });
 
-        getDataHadir();
+        getPersonalization();
+        getCurrentDay();
 
         return view;
     }
 
-    private void getDataHadir() {
+    private void getDataAbsensi() {
         RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/total_hadir";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -472,6 +518,7 @@ public class FragmentInfo extends Fragment {
                                 String tahun = data.getString("tahun");
                                 String hadir = data.getString("jumlah_hadir");
                                 String tidak_hadir = data.getString("jumlah_tidak_hadir");
+                                String alpa = data.getString("alpa");
                                 String terlambat = data.getString("terlambat");
                                 String tidak_checkout = data.getString("tidak_checkout");
                                 String layoff = data.getString("layoff");
@@ -519,6 +566,27 @@ public class FragmentInfo extends Fragment {
                                     }
                                 }, 100);
 
+                                int alpaNumb = Integer.parseInt(alpa);
+                                int lateNumb = Integer.parseInt(terlambat);
+                                int noCheckoutNumb = Integer.parseInt(tidak_checkout);
+
+                                if(noCheckoutNumb > 0) {
+                                    markerWarningNoCheckout.setVisibility(View.VISIBLE);
+                                } else {
+                                    markerWarningNoCheckout.setVisibility(View.GONE);
+                                }
+
+                                if (alpaNumb > 0){
+                                    markerWarningAlpha.setVisibility(View.VISIBLE);
+                                } else {
+                                    markerWarningAlpha.setVisibility(View.GONE);
+                                }
+
+                                if(lateNumb > 0){
+                                    markerWarningLate.setVisibility(View.VISIBLE);
+                                } else {
+                                    markerWarningLate.setVisibility(View.GONE);
+                                }
 
                             } else {
                                 bulanLoading.setVisibility(View.GONE);
@@ -569,6 +637,198 @@ public class FragmentInfo extends Fragment {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", sharedPrefManager.getSpNik());
                 params.put("bulan", selectMonth);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void getPersonalization() {
+        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        final String url = "https://geloraaksara.co.id/absen-online/api/personalization";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                String fitur_izin = data.getString("fitur_izin");
+                                String fitur_finger = data.getString("fitur_finger");
+                                String monitoring = data.getString("monitoring");
+                                String sisa_cuti_info = data.getString("sisa_cuti_info");
+                                String sisa_cuti = data.getString("sisa_cuti");
+                                String periode_mulai = data.getString("periode_mulai");
+                                String periode_akhir = data.getString("periode_akhir");
+
+                                statusFiturIzinCuti = fitur_izin;
+                                statusFiturFinger = fitur_finger;
+
+                                if (monitoring.equals("1")) {
+                                    if (sharedPrefManager.getSpIdJabatan().equals("10")) {
+                                        monitoringStaffBTN.setVisibility(View.VISIBLE);
+                                        titlePantau.setText("Pantau kehadiran departemen*");
+                                        notePantau.setText("*Fitur khusus Kepala Departemen");
+                                    } else if (sharedPrefManager.getSpIdJabatan().equals("3")){
+                                        monitoringStaffBTN.setVisibility(View.VISIBLE);
+                                        titlePantau.setText("Pantau kehadiran departemen*");
+                                        notePantau.setText("*Fitur khusus Ka.Dept & Ast.Ka.Dept");
+                                    } else if (sharedPrefManager.getSpIdJabatan().equals("11")){
+                                        monitoringStaffBTN.setVisibility(View.VISIBLE);
+                                        titlePantau.setText("Pantau kehadiran bagian*");
+                                        notePantau.setText("*Fitur khusus Kepala Bagian");
+                                    } else {
+                                        monitoringStaffBTN.setVisibility(View.GONE);
+                                    }
+                                } else {
+                                    monitoringStaffBTN.setVisibility(View.GONE);
+                                }
+
+                                if(sisa_cuti_info.equals("1")){
+                                    if(sharedPrefManager.getSpStatusKaryawan().equals("Tetap")){
+                                        sisaCutiBTN.setVisibility(View.VISIBLE);
+                                        sisaCutiTV.setText(sisa_cuti);
+                                        periodeUpdateSisaCutiTV.setText("Periode "+periode_mulai.substring(8,10)+"/"+periode_mulai.substring(5,7)+"/"+periode_mulai.substring(0,4)+"  s.d. "+periode_akhir.substring(8,10)+"/"+periode_akhir.substring(5,7)+"/"+periode_akhir.substring(0,4));
+                                        sisaCutiData.setVisibility(View.VISIBLE);
+                                        sisaCutiLoading.setVisibility(View.GONE);
+
+                                    } else if(sharedPrefManager.getSpStatusKaryawan().equals("Kontrak")){
+                                        String tanggalMulaiBekerja = sharedPrefManager.getSpTglBergabung();
+                                        String tanggalSekarang = getDate();
+
+                                        @SuppressLint("SimpleDateFormat")
+                                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                                        Date date1 = null;
+                                        Date date2 = null;
+                                        try {
+                                            date1 = format.parse(tanggalSekarang);
+                                            date2 = format.parse(tanggalMulaiBekerja);
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
+                                        }
+                                        long waktu1 = date1.getTime();
+                                        long waktu2 = date2.getTime();
+                                        long selisih_waktu = waktu1 - waktu2;
+                                        long diffDays = selisih_waktu / (24 * 60 * 60 * 1000);
+                                        long diffMonths = (selisih_waktu / (24 * 60 * 60 * 1000)) / 30;
+                                        long diffYears =  ((selisih_waktu / (24 * 60 * 60 * 1000)) / 30) / 12;
+
+                                        if(diffMonths >= 12){
+                                            sisaCutiBTN.setVisibility(View.VISIBLE);
+                                            sisaCutiTV.setText(sisa_cuti);
+                                            periodeUpdateSisaCutiTV.setText("Periode "+periode_mulai.substring(8,10)+"/"+periode_mulai.substring(5,7)+"/"+periode_mulai.substring(0,4)+"  s.d. "+periode_akhir.substring(8,10)+"/"+periode_akhir.substring(5,7)+"/"+periode_akhir.substring(0,4));
+                                            sisaCutiData.setVisibility(View.VISIBLE);
+                                            sisaCutiLoading.setVisibility(View.GONE);
+                                        } else {
+                                            sisaCutiBTN.setVisibility(View.GONE);
+                                        }
+                                    }
+                                } else {
+                                    sisaCutiBTN.setVisibility(View.GONE);
+                                }
+
+                            }
+
+                            checkNotification();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void checkNotification() {
+        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        final String url = "https://geloraaksara.co.id/absen-online/api/check_notification_info";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Success")){
+                                String count = data.getString("count_izin");
+                                String count_finger = data.getString("count_finger");
+
+                                countNotifIzinTV.setText(count);
+                                countNotifFingerTV.setText(count_finger);
+
+                                if (count.equals("0") && count_finger.equals("0")){
+                                    countNotificationIzin.setVisibility(View.GONE);
+                                    countNotificationFinger.setVisibility(View.GONE);
+                                } else if (!count.equals("0") && count_finger.equals("0")) {
+                                    countNotificationIzin.setVisibility(View.VISIBLE);
+                                    countNotificationFinger.setVisibility(View.GONE);
+                                } else if (count.equals("0") && !count_finger.equals("0")) {
+                                    countNotificationIzin.setVisibility(View.GONE);
+                                    countNotificationFinger.setVisibility(View.VISIBLE);
+                                } else if (!count.equals("0") && !count_finger.equals("0")) {
+                                    countNotificationIzin.setVisibility(View.VISIBLE);
+                                    countNotificationFinger.setVisibility(View.VISIBLE);
+                                }
+
+                            } else {
+                                countNotificationIzin.setVisibility(View.GONE);
+                                countNotificationFinger.setVisibility(View.GONE);
+                            }
+
+                            getDataAbsensi();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
                 return params;
             }
         };
@@ -638,6 +898,124 @@ public class FragmentInfo extends Fragment {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    private String getDateY() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateM() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateD() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private void getCurrentDay() {
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+        switch (day) {
+            case Calendar.SUNDAY:
+                currentDay = "Minggu";
+                break;
+            case Calendar.MONDAY:
+                currentDay = "Senin";
+                break;
+            case Calendar.TUESDAY:
+                currentDay = "Selasa";
+                break;
+            case Calendar.WEDNESDAY:
+                currentDay = "Rabu";
+                break;
+            case Calendar.THURSDAY:
+                currentDay = "Kamis";
+                break;
+            case Calendar.FRIDAY:
+                currentDay = "Jumat";
+                break;
+            case Calendar.SATURDAY:
+                currentDay = "Sabtu";
+                break;
+        }
+
+        dateLive();
+
+    }
+
+    private void dateLive(){
+        switch (getDateM()) {
+            case "01":
+                dateNowTV.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Januari " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Januari " + getDateY());
+                break;
+            case "02":
+                dateNowTV.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Februari " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Februari " + getDateY());
+                break;
+            case "03":
+                dateNowTV.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Maret " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Maret " + getDateY());
+                break;
+            case "04":
+                dateNowTV.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " April " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " April " + getDateY());
+                break;
+            case "05":
+                dateNowTV.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Mei " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Mei " + getDateY());
+                break;
+            case "06":
+                dateNowTV.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Juni " + getDateY());
+                dateUpdateSisaCutiTV.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Juni " + getDateY());
+                break;
+            case "07":
+                dateNowTV.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Juli " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Juli " + getDateY());
+                break;
+            case "08":
+                dateNowTV.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Agustus " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Agustus " + getDateY());
+                break;
+            case "09":
+                dateNowTV.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " September " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " September " + getDateY());
+                break;
+            case "10":
+                dateNowTV.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Oktober " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Oktober " + getDateY());
+                break;
+            case "11":
+                dateNowTV.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " November " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " November " + getDateY());
+                break;
+            case "12":
+                dateNowTV.setText(currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Desember " + getDateY());
+                dateUpdateSisaCutiTV.setText("Per "+currentDay+", "+String.valueOf(Integer.parseInt(getDateD()))+ " Desember " + getDateY());
+                break;
+            default:
+                dateNowTV.setText("Not found!");
+                dateUpdateSisaCutiTV.setText("Not found!");
+                break;
+        }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDataAbsensi();
+        getPersonalization();
     }
 
 }
