@@ -46,8 +46,8 @@ public class HomeActivity extends AppCompatActivity {
 
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    BubbleToggleView m_item_shop;
-    BubbleNavigationLinearView bubbleNavigation;
+    BubbleToggleView mItemHome, mItemInfo, mItemProfile;
+    BubbleNavigationLinearView bubbleNavigation, bubbleNavigationNonGap;
     ImageView notifMarkInfo;
     Vibrator vibrate;
 
@@ -62,48 +62,88 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
-        bubbleNavigation = findViewById(R.id.equal_navigation_bar);
-        viewPager = findViewById(R.id.viewPager);
-        notifMarkInfo = findViewById(R.id.notif_mark);
-        vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new FragmentHome());
-        viewPagerAdapter.addFragment(new FragmentInfo());
-        viewPagerAdapter.addFragment(new FragmentProfile());
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")) {
+            setContentView(R.layout.activity_home_non_gap);
 
-        deviceID = String.valueOf(Settings.Secure.getString(HomeActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID)).toUpperCase();
+            bubbleNavigationNonGap = findViewById(R.id.equal_navigation_bar_non_gap);
+            viewPager = findViewById(R.id.viewPager);
+            vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-        viewPager.setAdapter(viewPagerAdapter);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-            }
-            @Override
-            public void onPageSelected(int i) {
-                bubbleNavigation.setCurrentActiveItem(i);
-            }
-            @Override
-            public void onPageScrollStateChanged(int i) {
-            }
-        });
+            viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+            viewPagerAdapter.addFragment(new FragmentInfo());
+            viewPagerAdapter.addFragment(new FragmentProfile());
 
-        bubbleNavigation.setNavigationChangeListener(new BubbleNavigationChangeListener() {
-            @Override
-            public void onNavigationChanged(View view, int position) {
-                viewPager.setCurrentItem(position, true);
-            }
-        });
+            deviceID = String.valueOf(Settings.Secure.getString(HomeActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID)).toUpperCase();
 
-        Glide.with(getApplicationContext())
-                .load(R.drawable.mark_notif_info)
-                .into(notifMarkInfo);
+            viewPager.setAdapter(viewPagerAdapter);
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int i, float v, int i1) {
+                }
+                @Override
+                public void onPageSelected(int i) {
+                    bubbleNavigationNonGap.setCurrentActiveItem(i);
+                }
+                @Override
+                public void onPageScrollStateChanged(int i) {
+                }
+            });
 
-        checkLogin();
+            bubbleNavigationNonGap.setNavigationChangeListener(new BubbleNavigationChangeListener() {
+                @Override
+                public void onNavigationChanged(View view, int position) {
+                    viewPager.setCurrentItem(position, true);
+                }
+            });
+
+            checkLogin();
+
+        } else {
+            setContentView(R.layout.activity_home);
+
+            bubbleNavigation = findViewById(R.id.equal_navigation_bar);
+            viewPager = findViewById(R.id.viewPager);
+            notifMarkInfo = findViewById(R.id.notif_mark);
+            vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+            viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+            viewPagerAdapter.addFragment(new FragmentHome());
+            viewPagerAdapter.addFragment(new FragmentInfo());
+            viewPagerAdapter.addFragment(new FragmentProfile());
+
+            deviceID = String.valueOf(Settings.Secure.getString(HomeActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID)).toUpperCase();
+
+            viewPager.setAdapter(viewPagerAdapter);
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int i, float v, int i1) {
+                }
+                @Override
+                public void onPageSelected(int i) {
+                    bubbleNavigation.setCurrentActiveItem(i);
+                }
+                @Override
+                public void onPageScrollStateChanged(int i) {
+                }
+            });
+
+            bubbleNavigation.setNavigationChangeListener(new BubbleNavigationChangeListener() {
+                @Override
+                public void onNavigationChanged(View view, int position) {
+                    viewPager.setCurrentItem(position, true);
+                }
+            });
+
+            Glide.with(getApplicationContext())
+                    .load(R.drawable.mark_notif_info)
+                    .into(notifMarkInfo);
+
+            checkLogin();
+
+        }
 
     }
 
@@ -155,7 +195,11 @@ public class HomeActivity extends AppCompatActivity {
                                 }
 
                             } else {
-                                checkNotification();
+                                if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+                                    // Nothing else
+                                } else {
+                                    checkNotification();
+                                }
                             }
 
                         } catch (JSONException e) {
@@ -204,6 +248,7 @@ public class HomeActivity extends AppCompatActivity {
         sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_AKTIF, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_HALAMAN, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_TGL_BERGABUNG, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_KARYAWAN, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         Preferences.clearLoggedInUser(HomeActivity.this);
         Intent intent = new Intent(HomeActivity.this, LoginActivity.class);

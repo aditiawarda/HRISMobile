@@ -124,7 +124,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     SwipeRefreshLayout refreshLayout;
     ImageView loadingDataRecord, weatherIconPart, onlineGif, warningGif;
     TextView titleRecordTV, userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout noDataPart, loadingRecordPart, backBTN, reminderCongrat, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    LinearLayout calendarBTN, noDataPart, loadingRecordPart, backBTN, reminderCongrat, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -228,7 +228,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         attantionPart = findViewById(R.id.attantion_part);
         layoffPart = findViewById(R.id.layoff_part);
         izinPart = findViewById(R.id.izin_part);
-        userBTNPart = findViewById(R.id.user_btn_part);
+        calendarBTN = findViewById(R.id.calendar_btn);
         loadingLayout = findViewById(R.id.layout_loding);
         warningGif = findViewById(R.id.warning_gif);
         connectionSuccess = findViewById(R.id.connection_success);
@@ -445,11 +445,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        userBTNPart.setOnClickListener(new View.OnClickListener() {
+        calendarBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 statusLooping = "off";
-                Intent intent = new Intent(MapsActivity.this, UserActivity.class);
+                Intent intent = new Intent(MapsActivity.this, CalendarPageActivity.class);
                 startActivity(intent);
             }
         });

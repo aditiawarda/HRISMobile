@@ -149,7 +149,7 @@
                                     android:layout_height="match_parent">
 
                                     <LinearLayout
-                                        android:id="@+id/user_btn_part"
+                                        android:id="@+id/calendar_btn"
                                         android:layout_width="31dp"
                                         android:layout_height="31dp"
                                         android:layout_alignParentRight="true"
@@ -1156,7 +1156,7 @@
                                         android:maxLines="1"
                                         android:singleLine="true"
                                         android:text="Data record absensi 30 hari terakhir"
-                                        android:textColor="#DCDCDC"
+                                        android:textColor="#CACACA"
                                         android:visibility="gone"
                                         android:textSize="12dp" />
 

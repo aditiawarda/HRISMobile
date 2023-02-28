@@ -71,9 +71,9 @@ import java.util.Map;
  */
 public class FragmentInfo extends Fragment {
 
-    TextView dateNowTV, countNotifFingerTV, countNotifIzinTV;
+    TextView titlePage, dateNowTV, countNotifFingerTV, countNotifIzinTV;
     ExpandableLayout aboutAppField, privacyPolicyField, contactServiceField;
-    LinearLayout countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
+    LinearLayout dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
     TextView historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     ImageView notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     SwipeRefreshLayout refreshLayout;
@@ -92,6 +92,7 @@ public class FragmentInfo extends Fragment {
 
         sharedPrefManager = new SharedPrefManager(mContext);
         refreshLayout = view.findViewById(R.id.swipe_to_refresh_layout);
+        titlePage = view.findViewById(R.id.title_page);
         dateNowTV = view.findViewById(R.id.date_tv);
         permohonanCutiBTN = view.findViewById(R.id.permohonan_cuti_btn);
         permohonanFingerBTN = view.findViewById(R.id.permohonan_finger_btn);
@@ -149,6 +150,7 @@ public class FragmentInfo extends Fragment {
         countNotificationFinger = view.findViewById(R.id.count_notification_finger);
         countNotifIzinTV = view.findViewById(R.id.count_notif_izin_tv);
         countNotifFingerTV = view.findViewById(R.id.count_notif_finger_tv);
+        dasboardStatistikAbsen = view.findViewById(R.id.dasboard_statistik_absen);
 
         selectMonth = getBulanTahun();
         dateNowTV.setText(getDate().substring(8,10)+"/"+getDate().substring(5,7)+"/"+getDate().substring(0,4));
@@ -493,6 +495,16 @@ public class FragmentInfo extends Fragment {
                 startActivity(intent);
             }
         });
+
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+            titlePage.setText("HRIS Mobile");
+            dasboardStatistikAbsen.setVisibility(View.GONE);
+            faqBTN.setVisibility(View.GONE);
+        } else {
+            titlePage.setText("Info");
+            dasboardStatistikAbsen.setVisibility(View.VISIBLE);
+            faqBTN.setVisibility(View.VISIBLE);
+        }
 
         getPersonalization();
         getCurrentDay();

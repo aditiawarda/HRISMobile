@@ -386,6 +386,7 @@ public class LoginActivity extends AppCompatActivity {
                         String statusUser = jsonArray.getString("StatusUser");
                         String statusAktif = jsonArray.getString("status_aktif");
                         String tglBergabung = jsonArray.getString("tanggal_bergabung");
+                        String statusKaryawan = jsonArray.getString("status_karyawan");
 
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK, nikUser);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, namaUser);
@@ -396,6 +397,7 @@ public class LoginActivity extends AppCompatActivity {
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_USER, statusUser);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_AKTIF, statusAktif);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_TGL_BERGABUNG, tglBergabung);
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_KARYAWAN, statusKaryawan);
                         sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_HALAMAN, "1");
 

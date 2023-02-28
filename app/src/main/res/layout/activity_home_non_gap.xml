@@ -32,7 +32,7 @@
     </RelativeLayout>
 
     <com.gauravk.bubblenavigation.BubbleNavigationLinearView
-        android:id="@+id/equal_navigation_bar"
+        android:id="@+id/equal_navigation_bar_non_gap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -48,17 +48,6 @@
         tools:ignore="UnusedAttribute">
 
         <com.gauravk.bubblenavigation.BubbleToggleView
-            android:id="@+id/m_item_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:bt_colorActive="#0092C7"
-            app:bt_colorInactive="@color/default_inactive"
-            app:bt_icon="@drawable/icon_home_main"
-            app:bt_shape="@drawable/home_background_stroke"
-            app:bt_title="@string/home" />
-
-        <com.gauravk.bubblenavigation.BubbleToggleView
             android:id="@+id/m_item_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,17 +56,7 @@
             app:bt_colorInactive="@color/default_inactive"
             app:bt_icon="@drawable/icon_feed_main"
             app:bt_shape="@drawable/feed_background_stroke"
-            app:bt_title="@string/info" >
-
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/notif_mark"
-                android:layout_width="11dp"
-                android:layout_height="11dp"
-                android:layout_marginLeft="-12dp"
-                android:src="@drawable/mark_notif_info" />
-
-        </com.gauravk.bubblenavigation.BubbleToggleView>
+            app:bt_title="@string/info" />
 
         <com.gauravk.bubblenavigation.BubbleToggleView
             android:id="@+id/m_item_profile"
