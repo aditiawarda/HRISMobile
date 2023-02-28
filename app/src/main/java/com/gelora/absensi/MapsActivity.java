@@ -315,7 +315,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                statusLooping = "off";
                 onBackPressed();
+                finish();
             }
         });
 

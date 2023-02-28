@@ -161,6 +161,7 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="-10dp"
+                                        android:layout_marginRight="3dp"
                                         android:layout_weight=".90"
                                         android:lineSpacingExtra="2dp"
                                         android:textColor="@color/text_color"
@@ -190,6 +191,7 @@
                                         android:layout_marginLeft="-10dp"
                                         android:layout_weight=".90"
                                         android:lineSpacingExtra="2dp"
+                                        android:layout_marginRight="3dp"
                                         android:textColor="@color/text_color"
                                         android:text="Kepala Sekolah SMA 5 Jakarta tahun 1952 dan turut membangun IKIP."
                                         android:textSize="14dp" />
@@ -217,6 +219,7 @@
                                         android:layout_marginLeft="-10dp"
                                         android:layout_weight=".90"
                                         android:lineSpacingExtra="2dp"
+                                        android:layout_marginRight="3dp"
                                         android:textColor="@color/text_color"
                                         android:text="Direktur Utama Balai Pustaka tahun 1959 - 1964."
                                         android:textSize="14dp" />
@@ -244,6 +247,7 @@
                                         android:layout_marginLeft="-10dp"
                                         android:layout_weight=".90"
                                         android:lineSpacingExtra="2dp"
+                                        android:layout_marginRight="3dp"
                                         android:textColor="@color/text_color"
                                         android:text="Ketua Umum IKAPI Pusat periode 1960 - 1968."
                                         android:textSize="14dp" />
@@ -271,6 +275,7 @@
                                         android:layout_marginLeft="-10dp"
                                         android:layout_weight=".90"
                                         android:lineSpacingExtra="2dp"
+                                        android:layout_marginRight="3dp"
                                         android:textColor="@color/text_color"
                                         android:text="Sekjen Depdikbud 1965 - 1967."
                                         android:textSize="14dp" />
@@ -298,6 +303,7 @@
                                         android:layout_marginLeft="-10dp"
                                         android:layout_weight=".90"
                                         android:lineSpacingExtra="2dp"
+                                        android:layout_marginRight="3dp"
                                         android:textColor="@color/text_color"
                                         android:text="Rektor Universitas Kristen Indonesia (UKI) 1968 - 1972."
                                         android:textSize="14dp" />

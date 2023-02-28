@@ -768,31 +768,44 @@
                                     android:paddingLeft="5dp"
                                     android:paddingRight="5dp">
 
-                                    <TextView
+                                    <LinearLayout
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight=".50"
-                                        android:ellipsize="end"
-                                        android:gravity="left"
-                                        android:maxLines="1"
-                                        android:singleLine="true"
-                                        android:text="Pengumuman"
-                                        android:textColor="#E37146"
-                                        android:textSize="13dp"
-                                        android:textStyle="bold" />
+                                        android:layout_weight=".50">
 
-                                    <TextView
-                                        android:id="@+id/pengumuman_selengkapnya_btn"
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:ellipsize="end"
+                                            android:gravity="left"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Pengumuman"
+                                            android:textColor="#E37146"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight=".50"
-                                        android:ellipsize="end"
                                         android:gravity="right"
-                                        android:maxLines="1"
-                                        android:singleLine="true"
-                                        android:text="Lihat Semua"
-                                        android:textColor="#1895CD"
-                                        android:textSize="13dp" />
+                                        android:layout_weight=".50">
+
+                                        <TextView
+                                            android:id="@+id/pengumuman_selengkapnya_btn"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:ellipsize="end"
+                                            android:gravity="right"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Lihat Semua"
+                                            android:textColor="#1895CD"
+                                            android:textSize="13dp" />
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
 

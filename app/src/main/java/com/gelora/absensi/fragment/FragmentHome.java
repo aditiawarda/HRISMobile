@@ -42,6 +42,7 @@ import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.CalendarPageActivity;
 import com.gelora.absensi.ChatSplashScreenActivity;
+import com.gelora.absensi.ComingSoonActivity;
 import com.gelora.absensi.DetailCuacaActivity;
 import com.gelora.absensi.DetailPengumumanActivity;
 import com.gelora.absensi.DigitalCardActivity;
@@ -284,11 +285,8 @@ public class FragmentHome extends Fragment {
         menuLemburBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
-                        .setTitleText("Coming Soon")
-                        .setContentText("Menu akan segera tersedia")
-                        .setConfirmText("    OK    ")
-                        .show();
+                Intent intent = new Intent(mContext, ComingSoonActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -520,6 +520,7 @@
                                 android:layout_marginBottom="5dp">
 
                                 <LinearLayout
+                                    android:id="@+id/info_pekerjaan_btn"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="12dp"
@@ -591,6 +592,7 @@
                                 android:layout_marginBottom="5dp">
 
                                 <LinearLayout
+                                    android:id="@+id/info_kontak_darurat_btn"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="12dp"
@@ -662,6 +664,7 @@
                                 android:layout_marginBottom="10dp">
 
                                 <LinearLayout
+                                    android:id="@+id/info_keluarga_btn"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="12dp"
@@ -733,6 +736,7 @@
                                 android:layout_marginBottom="5dp">
 
                                 <LinearLayout
+                                    android:id="@+id/info_pendidikan_dan_pengalaman_btn"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="12dp"
@@ -804,6 +808,7 @@
                                 android:layout_marginBottom="5dp">
 
                                 <LinearLayout
+                                    android:id="@+id/info_payroll_btn"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="12dp"

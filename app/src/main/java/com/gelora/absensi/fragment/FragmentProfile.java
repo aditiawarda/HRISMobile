@@ -37,6 +37,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.gelora.absensi.ComingSoonActivity;
 import com.gelora.absensi.DetailPengumumanActivity;
 import com.gelora.absensi.LoginActivity;
 import com.gelora.absensi.R;
@@ -80,7 +81,7 @@ import java.util.UUID;
 public class FragmentProfile extends Fragment {
 
     LinearLayout removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
-    LinearLayout infoPersonalBTN;
+    LinearLayout infoPersonalBTN, infoPekerjaanBTN, infoKontakDaruratBTN, infoKeluargaBTN, infoPendidikanDanPengalamanBTN, infoPayrollBTN;
     TextView nameOfUser, positionOfUser;
     ImageView avatarUser;
     SwipeRefreshLayout refreshLayout;
@@ -123,6 +124,11 @@ public class FragmentProfile extends Fragment {
         updateAvatarBTN = view.findViewById(R.id.update_avatar_btn);
         removeAvatarBTN = view.findViewById(R.id.hapus_avatar_btn);
         infoPersonalBTN = view.findViewById(R.id.info_personal_btn);
+        infoPekerjaanBTN = view.findViewById(R.id.info_pekerjaan_btn);
+        infoPayrollBTN = view.findViewById(R.id.info_payroll_btn);
+        infoPendidikanDanPengalamanBTN = view.findViewById(R.id.info_pendidikan_dan_pengalaman_btn);
+        infoKeluargaBTN = view.findViewById(R.id.info_keluarga_btn);
+        infoKontakDaruratBTN = view.findViewById(R.id.info_kontak_darurat_btn);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -146,6 +152,46 @@ public class FragmentProfile extends Fragment {
                 } else {
                     avatarSetting.expand();
                 }
+            }
+        });
+
+        infoPekerjaanBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ComingSoonActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        infoKontakDaruratBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ComingSoonActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        infoKeluargaBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ComingSoonActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        infoPendidikanDanPengalamanBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ComingSoonActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        infoPayrollBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ComingSoonActivity.class);
+                startActivity(intent);
             }
         });
 
