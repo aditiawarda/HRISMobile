@@ -445,7 +445,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
                                                 if(kode.equals("form")){
-                                                    Intent intent = new Intent(DetailPermohonanCutiActivity.this, UserActivity.class);
+                                                    Intent intent = new Intent(DetailPermohonanCutiActivity.this, HomeActivity.class);
                                                     startActivity(intent);
                                                     finish();
                                                 } else {

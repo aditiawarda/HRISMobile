@@ -475,7 +475,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
                                                 if(kode.equals("form")){
-                                                    Intent intent = new Intent(DetailPermohonanIzinActivity.this, UserActivity.class);
+                                                    Intent intent = new Intent(DetailPermohonanIzinActivity.this, HomeActivity.class);
                                                     startActivity(intent);
                                                     finish();
                                                 } else {

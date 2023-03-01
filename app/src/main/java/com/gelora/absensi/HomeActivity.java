@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.provider.Settings;
@@ -54,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
 
-    String warningPerangkat = "", deviceID = "";
+    String warningPerangkat = "", deviceID = "", beforeLayout = "0", nowLayout = "0", temp = "0";
     KAlertDialog pDialog;
     private final int i = -1;
 
@@ -124,6 +125,14 @@ public class HomeActivity extends AppCompatActivity {
                 @Override
                 public void onPageSelected(int i) {
                     bubbleNavigation.setCurrentActiveItem(i);
+                    beforeLayout = temp;
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            nowLayout = String.valueOf(i);
+                            temp = nowLayout;
+                        }
+                    }, 50);
                 }
                 @Override
                 public void onPageScrollStateChanged(int i) {
@@ -356,7 +365,20 @@ public class HomeActivity extends AppCompatActivity {
         if (warningPerangkat.equals("aktif")){
             logoutFunction();
         } else {
-            super.onBackPressed();
+            if(nowLayout.equals("0")){
+                super.onBackPressed();
+            } else {
+                if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")) {
+                    viewPager.setCurrentItem(Integer.parseInt(beforeLayout), true);
+                } else {
+                    if(nowLayout.equals("2") && beforeLayout.equals("1")){
+                        temp = "0";
+                        viewPager.setCurrentItem(Integer.parseInt(beforeLayout), true);
+                    } else {
+                        viewPager.setCurrentItem(Integer.parseInt(beforeLayout), true);
+                    }
+                }
+            }
         }
     }
 

@@ -84,7 +84,7 @@ import java.util.UUID;
 
 public class FormPermohonanCutiActivity extends AppCompatActivity {
 
-    LinearLayout infoCutiPart, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, viewBTN, goToHome, goToDasboard, successPart, formPart, backBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, submitBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
+    LinearLayout infoCutiPart, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, viewBTN, successPart, formPart, backBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, submitBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
     SwipeRefreshLayout refreshLayout;
     TextView notejumlahHari, jumlahHariTV, messageSuccessTV, statusUploadTV, labelUnggahTV, tipeCutiTV, namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
     String lampiranWajibAtauTidak = "", uploadStatus = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", dateChoiceMulai = "", kategoriCuti = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
@@ -144,8 +144,6 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         successPart = findViewById(R.id.success_submit_cuti);
         successGif = findViewById(R.id.success_gif);
         formPart = findViewById(R.id.form_part_cuti);
-        goToDasboard = findViewById(R.id.go_to_user);
-        goToHome = findViewById(R.id.go_to_home);
         viewBTN = findViewById(R.id.view_permohonan_btn);
         tipeCutiTV = findViewById(R.id.tipe_cuti_tv);
         uploadBTN = findViewById(R.id.upload_btn);
@@ -231,24 +229,6 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 intent.putExtra("kode", "form");
                 intent.putExtra("id_izin", idIzin);
                 startActivity(intent);
-            }
-        });
-
-        goToHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FormPermohonanCutiActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        goToDasboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FormPermohonanCutiActivity.this, UserActivity.class);
-                startActivity(intent);
-                finish();
             }
         });
 

@@ -65,7 +65,7 @@ import java.util.Map;
 public class FormFingerscanActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refreshLayout;
-    LinearLayout formPart, successPart, viewBTN, goToHome, goToDasboard;
+    LinearLayout formPart, successPart, viewBTN;
     LinearLayout closeBTN, okBTN, backBTN, dateBTN, submitBTN, detailKeterangan1, detailKeterangan3, detailKeterangan6;
     TextView namaTV, nikTV, detailTV, datePilihTV, labelDetail;
     EditText alasanED;
@@ -115,8 +115,6 @@ public class FormFingerscanActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
-        goToDasboard = findViewById(R.id.go_to_user);
-        goToHome = findViewById(R.id.go_to_home);
         viewBTN = findViewById(R.id.view_permohonan_btn);
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
@@ -253,24 +251,6 @@ public class FormFingerscanActivity extends AppCompatActivity {
                 intent.putExtra("kode", "form");
                 intent.putExtra("id_permohonan", idPermohonan);
                 startActivity(intent);
-            }
-        });
-
-        goToHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FormFingerscanActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        goToDasboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FormFingerscanActivity.this, UserActivity.class);
-                startActivity(intent);
-                finish();
             }
         });
 

@@ -72,7 +72,7 @@ import java.util.UUID;
 
 public class FormPermohonanIzinActivity extends AppCompatActivity {
 
-    LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadFilePart, markStatusSakit, markStatusIzin, izinBTN, sakitBTN, tipeChoiceBTN, viewBTN, goToHome, goToDasboard, formPart, successPart, submitBTN, backBTN, dateMulaiPicker, dateAkhirPicker;
+    LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadFilePart, markStatusSakit, markStatusIzin, izinBTN, sakitBTN, tipeChoiceBTN, viewBTN, formPart, successPart, submitBTN, backBTN, dateMulaiPicker, dateAkhirPicker;
     TextView jumlahHariTV, messageSuccessTV, labelUnggahTV, statusUploadTV, tipeChoiceTV, mulaiDateTV, akhirDateTV, namaTV, nikTV, detailTV;
     String permohonanTerkirim = "0", uploadStatus = "", idIzin = "", tipeIzin = "", dateChoiceMulai = "", dateChoiceAkhir = "", alasanIzin = "";
     SharedPrefManager sharedPrefManager;
@@ -110,8 +110,6 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         successGif = findViewById(R.id.success_gif);
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
-        goToDasboard = findViewById(R.id.go_to_user);
-        goToHome = findViewById(R.id.go_to_home);
         viewBTN = findViewById(R.id.view_permohonan_btn);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         tipeChoiceBTN = findViewById(R.id.tipe_choice_btn);
@@ -181,24 +179,6 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                 intent.putExtra("kode", "form");
                 intent.putExtra("id_izin", idIzin);
                 startActivity(intent);
-            }
-        });
-
-        goToHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FormPermohonanIzinActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        goToDasboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FormPermohonanIzinActivity.this, UserActivity.class);
-                startActivity(intent);
-                finish();
             }
         });
 

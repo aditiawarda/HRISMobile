@@ -1116,7 +1116,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
                                                 if(kode.equals("form")){
-                                                    Intent intent = new Intent(DetailPermohonanFingerscanActivity.this, UserActivity.class);
+                                                    Intent intent = new Intent(DetailPermohonanFingerscanActivity.this, HomeActivity.class);
                                                     startActivity(intent);
                                                     finish();
                                                 } else {

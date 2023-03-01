@@ -39,6 +39,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.ComingSoonActivity;
 import com.gelora.absensi.DetailPengumumanActivity;
+import com.gelora.absensi.InfoPekerjaanActivity;
+import com.gelora.absensi.InfoPersonalActivity;
 import com.gelora.absensi.LoginActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
@@ -155,10 +157,18 @@ public class FragmentProfile extends Fragment {
             }
         });
 
+        infoPersonalBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, InfoPersonalActivity.class);
+                startActivity(intent);
+            }
+        });
+
         infoPekerjaanBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ComingSoonActivity.class);
+                Intent intent = new Intent(mContext, InfoPekerjaanActivity.class);
                 startActivity(intent);
             }
         });
@@ -423,18 +433,18 @@ public class FragmentProfile extends Fragment {
                                     }
                                 }
 
-                                infoPersonalBTN.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent intent = new Intent(mContext, UserDetailActivity.class);
-                                        intent.putExtra("avatar", avatar);
-                                        intent.putExtra("jabatan", jabatan);
-                                        intent.putExtra("bagian", bagian);
-                                        intent.putExtra("departemen", department);
-                                        intent.putExtra("tanggal_bergabung", tanggal_masuk);
-                                        startActivity(intent);
-                                    }
-                                });
+//                                infoPersonalBTN.setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        Intent intent = new Intent(mContext, UserDetailActivity.class);
+//                                        intent.putExtra("avatar", avatar);
+//                                        intent.putExtra("jabatan", jabatan);
+//                                        intent.putExtra("bagian", bagian);
+//                                        intent.putExtra("departemen", department);
+//                                        intent.putExtra("tanggal_bergabung", tanggal_masuk);
+//                                        startActivity(intent);
+//                                    }
+//                                });
 
                                 positionOfUser.setText(jabatan+" | "+bagian+" | "+department);
 
