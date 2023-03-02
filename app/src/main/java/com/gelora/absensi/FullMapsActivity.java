@@ -231,7 +231,7 @@ public class FullMapsActivity extends FragmentActivity implements OnMapReadyCall
                                 String latitude = location.getString("latitude");
                                 String longitude = location.getString("longitude");
                                 String radius = location.getString("radius");
-                                String locationName = location.getString("nama_lokasi");
+                                String locationName = location.getString("nama");
 
                                 LatLng pointAbsen = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
                                 CircleOptions circleOptions = new CircleOptions();
