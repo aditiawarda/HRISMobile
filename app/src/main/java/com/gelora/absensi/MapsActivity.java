@@ -54,18 +54,15 @@ import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gauravbhola.ripplepulsebackground.RipplePulseLayout;
 import com.gelora.absensi.adapter.AdapterDataAbsensi;
-import com.gelora.absensi.adapter.AdapterDataHadir;
 import com.gelora.absensi.adapter.AdapterShiftAbsen;
 import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.DataHadir;
 import com.gelora.absensi.model.DataRecordAbsensi;
 import com.gelora.absensi.model.ShiftAbsen;
 import com.gelora.absensi.model.StatusAbsen;
 import com.gelora.absensi.support.Preferences;
 import com.gelora.absensi.support.StatusBarColorManager;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
-import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -106,25 +103,21 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import android.provider.Settings.Secure;
 
 import static android.service.controls.ControlsProviderService.TAG;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
-import net.cachapa.expandablelayout.ExpandableLayout;
-
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    //private StatusBarColorManager mStatusBarColorManager;
     private GoogleMap mMap;
     private LatLng userPoint;
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
     ImageView loadingDataRecord, weatherIconPart, onlineGif, warningGif;
     TextView viewMoreBTN, titleRecordTV, userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout viewMorePart, calendarBTN, noDataPart, loadingRecordPart, backBTN, reminderCongrat, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    LinearLayout viewMorePart, mapBTN, noDataPart, loadingRecordPart, backBTN, reminderCongrat, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -228,7 +221,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         attantionPart = findViewById(R.id.attantion_part);
         layoffPart = findViewById(R.id.layoff_part);
         izinPart = findViewById(R.id.izin_part);
-        calendarBTN = findViewById(R.id.calendar_btn);
+        mapBTN = findViewById(R.id.map_btn);
         loadingLayout = findViewById(R.id.layout_loding);
         warningGif = findViewById(R.id.warning_gif);
         connectionSuccess = findViewById(R.id.connection_success);
@@ -449,11 +442,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        calendarBTN.setOnClickListener(new View.OnClickListener() {
+        mapBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 statusLooping = "off";
-                Intent intent = new Intent(MapsActivity.this, CalendarPageActivity.class);
+                Intent intent = new Intent(MapsActivity.this, FullMapsActivity.class);
                 startActivity(intent);
             }
         });
