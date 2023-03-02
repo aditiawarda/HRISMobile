@@ -51,6 +51,7 @@ import com.gelora.absensi.FetchAddressIntentServices;
 import com.gelora.absensi.FormFingerscanActivity;
 import com.gelora.absensi.FormPermohonanCutiActivity;
 import com.gelora.absensi.FormPermohonanIzinActivity;
+import com.gelora.absensi.InfoPersonalActivity;
 import com.gelora.absensi.ListAllPengumumanActivity;
 import com.gelora.absensi.LoginActivity;
 import com.gelora.absensi.MapsActivity;
@@ -92,10 +93,10 @@ import java.util.Map;
 
 public class FragmentHome extends Fragment {
 
-    LinearLayout cutiPart, pengaduanPart, congratLinearPart, pengumumanLinearPart, reminderCongrat, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
-    TextView reminderCelebrateTV2, reminderDecs2, reminderCelebrateTV, reminderDecs, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
+    LinearLayout bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
+    TextView highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
-    ImageView avatarUser, weatherIcon, loadingData, reminderImage;
+    ImageView avatarUser, weatherIcon, loadingData;
     RelativeLayout dataCuaca, dataCuacaEmpty;
 
     BottomSheetLayout bottomSheet;
@@ -169,14 +170,16 @@ public class FragmentHome extends Fragment {
         noDataPart = view.findViewById(R.id.no_data_part);
         pengumumanSelengkapnyaBTN = view.findViewById(R.id.pengumuman_selengkapnya_btn);
         chatBTN = view.findViewById(R.id.chat_btn);
-        reminderCongrat = view.findViewById(R.id.reminder_congrat);
-        reminderDecs = view.findViewById(R.id.reminder_desc);
-        reminderCelebrateTV = view.findViewById(R.id.reminder_celebrate);
-        reminderDecs2 = view.findViewById(R.id.reminder_desc_2);
-        reminderCelebrateTV2 = view.findViewById(R.id.reminder_celebrate_2);
-        reminderImage = view.findViewById(R.id.reminder_image);
-        congratLinearPart = view.findViewById(R.id.congrat_linear_part);
-        pengumumanLinearPart = view.findViewById(R.id.pengumuman_linear_part);
+
+        ulangTahunPart = view.findViewById(R.id.ulang_tahun_part);
+        congratTahunanPart = view.findViewById(R.id.congrat_tahunan);
+        bannerPengumumanPart = view.findViewById(R.id.banner_pengumuman);
+
+        ulangTahunCelebrate = view.findViewById(R.id.ulang_tahun_celebrate);
+        congratCelebrate = view.findViewById(R.id.congrat_celebrate);
+        judulPengumuman = view.findViewById(R.id.judul_pengumuman);
+        highlightPengumuman = view.findViewById(R.id.highlight_pengumuman);
+
         cutiPart = view.findViewById(R.id.cuti_part);
         pengaduanPart = view.findViewById(R.id.pengaduan_part);
 
@@ -390,22 +393,14 @@ public class FragmentHome extends Fragment {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
+                                String tanggal_lahir = data.getString("tanggal_lahir");
                                 String tanggal_masuk = data.getString("tanggal_masuk");
                                 String status_karyawan = data.getString("status_karyawan");
-                                String sisa_cuti = data.getString("sisa_cuti");
-                                String periode_mulai = data.getString("periode_mulai");
-                                String periode_akhir = data.getString("periode_akhir");
                                 String department = data.getString("departemen");
                                 String bagian = data.getString("bagian");
                                 String jabatan = data.getString("jabatan");
                                 String avatar = data.getString("avatar");
                                 String weather_key = data.getString("weather_key");
-                                String info_covid = data.getString("info_covid");
-                                String logout_part = data.getString("logout_part");
-                                String web_btn = data.getString("web_btn");
-                                String warning_email = data.getString("warning_email");
-                                String email_karyawan = data.getString("email_karyawan");
-                                String nohp_karyawan = data.getString("nohp_karyawan");
                                 String fitur_pengumuman = data.getString("fitur_pengumuman");
                                 String join_reminder = data.getString("join_reminder");
                                 String pengumuman_date = data.getString("pengumuman_date");
@@ -453,12 +448,7 @@ public class FragmentHome extends Fragment {
                                 detailUserBTN.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        Intent intent = new Intent(mContext, UserDetailActivity.class);
-                                        intent.putExtra("avatar", avatar);
-                                        intent.putExtra("jabatan", jabatan);
-                                        intent.putExtra("bagian", bagian);
-                                        intent.putExtra("departemen", department);
-                                        intent.putExtra("tanggal_bergabung", tanggal_masuk);
+                                        Intent intent = new Intent(mContext, InfoPersonalActivity.class);
                                         startActivity(intent);
                                     }
                                 });
@@ -466,12 +456,7 @@ public class FragmentHome extends Fragment {
                                 nameOfUser.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        Intent intent = new Intent(mContext, UserDetailActivity.class);
-                                        intent.putExtra("avatar", avatar);
-                                        intent.putExtra("jabatan", jabatan);
-                                        intent.putExtra("bagian", bagian);
-                                        intent.putExtra("departemen", department);
-                                        intent.putExtra("tanggal_bergabung", tanggal_masuk);
+                                        Intent intent = new Intent(mContext, InfoPersonalActivity.class);
                                         startActivity(intent);
                                     }
                                 });
@@ -479,58 +464,81 @@ public class FragmentHome extends Fragment {
                                 sharedPrefManager.saveSPString(SharedPrefManager.SP_TGL_BERGABUNG, tanggal_masuk);
                                 positionOfUser.setText(jabatan+" | "+bagian+" | "+department);
 
-                                if(fitur_pengumuman.equals("0")){
-                                    congratLinearPart.setVisibility(View.VISIBLE);
-                                    pengumumanLinearPart.setVisibility(View.GONE);
-                                    if (!tanggal_masuk.equals("")||!tanggal_masuk.equals("null")){
-                                        String tglBulanMasuk = tanggal_masuk.substring(5,10);
-                                        String tahunMasuk = tanggal_masuk.substring(0,4);
-
-                                        if(tglBulanMasuk.equals(getDayMonth())) {
-                                            int masaKerja = Integer.parseInt(getDateY()) - Integer.parseInt(tahunMasuk);
-                                            reminderDecs.setText("Hari ini tepat "+String.valueOf(masaKerja)+" tahun anda bekerja di PT. Gelora Aksara Pratama");
-                                            reminderCelebrateTV.setText("Selamat Merayakan "+String.valueOf(masaKerja)+" Tahun Masa Kerja.");
-                                            if (join_reminder.equals("1")){
-                                                reminderCongrat.setVisibility(View.VISIBLE);
-                                                Picasso.get().load(R.drawable.suma_good).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                        .into(reminderImage);
-                                                CommonConfetti.rainingConfetti(mainParent, colors).stream(3500);
-                                                reminderCongrat.setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        if(refeatConfeti.equals("1")){
-                                                            CommonConfetti.rainingConfetti(mainParent, colors).stream(3000);
-                                                            refeatConfeti = "0";
-                                                            new Handler().postDelayed(new Runnable() {
-                                                                @Override
-                                                                public void run() {
-                                                                    refeatConfeti = "1";
-                                                                }
-                                                            }, 3000);
+                                // Ulang tahun
+                                if (!tanggal_lahir.equals("")&&!tanggal_lahir.equals("null")) {
+                                    String tglBulanLahir = tanggal_lahir.substring(5, 10);
+                                    String tahunLahir = tanggal_lahir.substring(0, 4);
+                                    if (tglBulanLahir.equals(getDayMonth())) {
+                                        ulangTahunPart.setVisibility(View.VISIBLE);
+                                        int usia = Integer.parseInt(getDateY()) - Integer.parseInt(tahunLahir);
+                                        ulangTahunCelebrate.setText("Selamat Merayakan Ulang Tahun ke " + String.valueOf(usia) + " Tahun.");
+                                        CommonConfetti.rainingConfetti(mainParent, colors).stream(3500);
+                                        ulangTahunPart.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                if (refeatConfeti.equals("1")) {
+                                                    CommonConfetti.rainingConfetti(mainParent, colors).stream(3000);
+                                                    refeatConfeti = "0";
+                                                    new Handler().postDelayed(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            refeatConfeti = "1";
                                                         }
-                                                    }
-                                                });
-
-                                            } else {
-                                                reminderCongrat.setVisibility(View.GONE);
+                                                    }, 3000);
+                                                }
                                             }
-                                        } else {
-                                            reminderCongrat.setVisibility(View.GONE);
-                                        }
+                                        });
+                                    } else {
+                                        ulangTahunPart.setVisibility(View.GONE);
                                     }
+                                } else {
+                                    ulangTahunPart.setVisibility(View.GONE);
+                                }
+
+                                // Perayaan tanggal masuk
+                                if (!tanggal_masuk.equals("")&&!tanggal_masuk.equals("null")) {
+                                    String tglBulanMasuk = tanggal_masuk.substring(5, 10);
+                                    String tahunMasuk = tanggal_masuk.substring(0, 4);
+                                    if (tglBulanMasuk.equals(getDayMonth())) {
+                                        int masaKerja = Integer.parseInt(getDateY()) - Integer.parseInt(tahunMasuk);
+                                        congratCelebrate.setText("Selamat Merayakan " + String.valueOf(masaKerja) + " Tahun Masa Kerja.");
+                                        if (join_reminder.equals("1")) {
+                                            congratTahunanPart.setVisibility(View.VISIBLE);
+                                            CommonConfetti.rainingConfetti(mainParent, colors).stream(3500);
+                                            congratTahunanPart.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    if (refeatConfeti.equals("1")) {
+                                                        CommonConfetti.rainingConfetti(mainParent, colors).stream(3000);
+                                                        refeatConfeti = "0";
+                                                        new Handler().postDelayed(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                refeatConfeti = "1";
+                                                            }
+                                                        }, 3000);
+                                                    }
+                                                }
+                                            });
+                                        } else {
+                                            congratTahunanPart.setVisibility(View.GONE);
+                                        }
+                                    } else {
+                                        congratTahunanPart.setVisibility(View.GONE);
+                                    }
+                                } else {
+                                    congratTahunanPart.setVisibility(View.GONE);
+                                }
+
+                                // Pengumuman
+                                if(fitur_pengumuman.equals("0")){
+                                    bannerPengumumanPart.setVisibility(View.GONE);
                                 } else if(fitur_pengumuman.equals("1")) {
                                     if(pengumuman_date.equals(getDate())){
-                                        congratLinearPart.setVisibility(View.GONE);
-                                        pengumumanLinearPart.setVisibility(View.VISIBLE);
-                                        reminderCongrat.setVisibility(View.VISIBLE);
-                                        Picasso.get().load(R.drawable.pengumuman_ic).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                .into(reminderImage);
-                                        reminderDecs2.setText(pengumuman_title.toUpperCase());
-                                        reminderCelebrateTV2.setText(pengumuman_desc);
-
-                                        reminderCongrat.setOnClickListener(new View.OnClickListener() {
+                                        bannerPengumumanPart.setVisibility(View.VISIBLE);
+                                        judulPengumuman.setText(pengumuman_title.toUpperCase());
+                                        highlightPengumuman.setText(pengumuman_desc);
+                                        bannerPengumumanPart.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
                                                 Intent intent = new Intent(mContext, DetailPengumumanActivity.class);
@@ -544,47 +552,8 @@ public class FragmentHome extends Fragment {
                                         });
 
                                     } else {
-                                        congratLinearPart.setVisibility(View.VISIBLE);
-                                        pengumumanLinearPart.setVisibility(View.GONE);
-                                        if (!tanggal_masuk.equals("")||!tanggal_masuk.equals("null")){
-                                            String tglBulanMasuk = tanggal_masuk.substring(5,10);
-                                            String tahunMasuk = tanggal_masuk.substring(0,4);
-
-                                            if(tglBulanMasuk.equals(getDayMonth())) {
-                                                int masaKerja = Integer.parseInt(getDateY()) - Integer.parseInt(tahunMasuk);
-                                                reminderDecs.setText("Hari ini tepat "+String.valueOf(masaKerja)+" tahun anda bekerja di PT. Gelora Aksara Pratama");
-                                                reminderCelebrateTV.setText("Selamat Merayakan "+String.valueOf(masaKerja)+" Tahun Masa Kerja.");
-                                                if (join_reminder.equals("1")){
-                                                    reminderCongrat.setVisibility(View.VISIBLE);
-                                                    Picasso.get().load(R.drawable.suma_good).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                            .into(reminderImage);
-                                                    CommonConfetti.rainingConfetti(mainParent, colors).stream(3500);
-                                                    reminderCongrat.setOnClickListener(new View.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(View v) {
-                                                            if(refeatConfeti.equals("1")){
-                                                                CommonConfetti.rainingConfetti(mainParent, colors).stream(3000);
-                                                                refeatConfeti = "0";
-                                                                new Handler().postDelayed(new Runnable() {
-                                                                    @Override
-                                                                    public void run() {
-                                                                        refeatConfeti = "1";
-                                                                    }
-                                                                }, 3000);
-                                                            }
-                                                        }
-                                                    });
-
-                                                } else {
-                                                    reminderCongrat.setVisibility(View.GONE);
-                                                }
-                                            } else {
-                                                reminderCongrat.setVisibility(View.GONE);
-                                            }
-                                        }
+                                        bannerPengumumanPart.setVisibility(View.GONE);
                                     }
-
                                 }
 
 

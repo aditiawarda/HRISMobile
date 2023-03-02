@@ -128,7 +128,55 @@ public class InfoPersonalActivity extends AppCompatActivity {
                                 if(tanggal_lahir.equals("")||tanggal_lahir.equals("null")){
                                     tanggalLAhirTV.setText("-");
                                 } else {
-                                    tanggalLAhirTV.setText(tanggal_lahir);
+                                    String dayDate = tanggal_lahir.substring(8,10);
+                                    String yearDate = tanggal_lahir.substring(0,4);;
+                                    String bulanValue = tanggal_lahir.substring(5,7);
+                                    String bulanName;
+
+                                    switch (bulanValue) {
+                                        case "01":
+                                            bulanName = "Jan";
+                                            break;
+                                        case "02":
+                                            bulanName = "Feb";
+                                            break;
+                                        case "03":
+                                            bulanName = "Mar";
+                                            break;
+                                        case "04":
+                                            bulanName = "Apr";
+                                            break;
+                                        case "05":
+                                            bulanName = "Mei";
+                                            break;
+                                        case "06":
+                                            bulanName = "Jun";
+                                            break;
+                                        case "07":
+                                            bulanName = "Jul";
+                                            break;
+                                        case "08":
+                                            bulanName = "Agu";
+                                            break;
+                                        case "09":
+                                            bulanName = "Sep";
+                                            break;
+                                        case "10":
+                                            bulanName = "Okt";
+                                            break;
+                                        case "11":
+                                            bulanName = "Nov";
+                                            break;
+                                        case "12":
+                                            bulanName = "Des";
+                                            break;
+                                        default:
+                                            bulanName = "Not found!";
+                                            break;
+                                    }
+
+                                    tanggalLAhirTV.setText(dayDate+" "+bulanName+" "+yearDate);
+
                                 }
 
                                 if(handphone.equals("")||handphone.equals("null")){

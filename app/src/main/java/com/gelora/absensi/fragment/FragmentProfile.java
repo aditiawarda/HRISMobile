@@ -35,6 +35,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.ComingSoonActivity;
@@ -82,7 +83,7 @@ import java.util.UUID;
  */
 public class FragmentProfile extends Fragment {
 
-    LinearLayout removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
+    LinearLayout updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
     LinearLayout infoPersonalBTN, infoPekerjaanBTN, infoKontakDaruratBTN, infoKeluargaBTN, infoPendidikanDanPengalamanBTN, infoPayrollBTN;
     TextView nameOfUser, positionOfUser;
     ImageView avatarUser;
@@ -131,6 +132,7 @@ public class FragmentProfile extends Fragment {
         infoPendidikanDanPengalamanBTN = view.findViewById(R.id.info_pendidikan_dan_pengalaman_btn);
         infoKeluargaBTN = view.findViewById(R.id.info_keluarga_btn);
         infoKontakDaruratBTN = view.findViewById(R.id.info_kontak_darurat_btn);
+        updateAppBTN = view.findViewById(R.id.update_app_btn);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -433,20 +435,15 @@ public class FragmentProfile extends Fragment {
                                     }
                                 }
 
-//                                infoPersonalBTN.setOnClickListener(new View.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(View v) {
-//                                        Intent intent = new Intent(mContext, UserDetailActivity.class);
-//                                        intent.putExtra("avatar", avatar);
-//                                        intent.putExtra("jabatan", jabatan);
-//                                        intent.putExtra("bagian", bagian);
-//                                        intent.putExtra("departemen", department);
-//                                        intent.putExtra("tanggal_bergabung", tanggal_masuk);
-//                                        startActivity(intent);
-//                                    }
-//                                });
-
                                 positionOfUser.setText(jabatan+" | "+bagian+" | "+department);
+
+                                if(logout_part.equals("1")){
+                                    logoutPart.setVisibility(View.VISIBLE);
+                                } else {
+                                    logoutPart.setVisibility(View.GONE);
+                                }
+
+                                checkVersion();
 
                             }
 
@@ -479,6 +476,53 @@ public class FragmentProfile extends Fragment {
         };
 
         requestQueue.add(postRequest);
+
+    }
+
+    private void checkVersion() {
+        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        final String url = "https://geloraaksara.co.id/absen-online/api/version_app";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            String version = response.getString("version");
+                            String btn_update = response.getString("btn_update");
+
+                            if (status.equals("Success")){
+                                String currentVersion = "1.6.9"; //harus disesuaikan
+                                if (!currentVersion.equals(version) && btn_update.equals("1")){
+                                    updateAppBTN.setVisibility(View.VISIBLE);
+                                    updateAppBTN.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.gelora.absensi"));
+                                            startActivity(webIntent);
+                                        }
+                                    });
+                                } else {
+                                    updateAppBTN.setVisibility(View.GONE);
+                                }
+                            } else {
+                                updateAppBTN.setVisibility(View.GONE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                connectionFailed();
+            }
+        });
+
+        requestQueue.add(request);
 
     }
 
@@ -821,6 +865,12 @@ public class FragmentProfile extends Fragment {
         startActivity(intent);
         mActivity.finish();
         mActivity.finishAffinity();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        avatarSetting.collapse();
     }
 
 }

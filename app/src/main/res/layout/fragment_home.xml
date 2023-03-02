@@ -252,13 +252,127 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp">
 
                             <LinearLayout
-                                android:id="@+id/reminder_congrat"
+                                android:id="@+id/ulang_tahun_part"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_birthday"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="20dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="15dp"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="50dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="7dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="50dp"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/birthday_ic" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="6dp"
+                                    android:layout_marginBottom="9dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Happy Birthday,"
+                                        android:textColor="@color/white"
+                                        android:textSize="10dp" />
+
+                                    <TextView
+                                        android:id="@+id/ulang_tahun_celebrate"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif"
+                                        android:lineSpacingExtra="1dp"
+                                        android:text="Selamat Merayakan Ulang Tahun ke "
+                                        android:textColor="@color/white"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/congrat_tahunan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_tahunan"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="20dp"
+                                android:paddingTop="5dp"
+                                android:paddingRight="15dp"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="50dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="7dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="50dp"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/suma_good" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="6dp"
+                                    android:layout_marginBottom="9dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Salam SUMA-ngat!"
+                                        android:textColor="@color/white"
+                                        android:textSize="10dp" />
+
+                                    <TextView
+                                        android:id="@+id/congrat_celebrate"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif"
+                                        android:lineSpacingExtra="1dp"
+                                        android:text="Selamat Merayakan 3 Tahun Masa Kerja"
+                                        android:textColor="@color/white"
+                                        android:textSize="12dp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/banner_pengumuman"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/shape_congrat"
@@ -277,60 +391,26 @@
                                     android:orientation="vertical">
 
                                     <ImageView
-                                        android:id="@+id/reminder_image"
                                         android:layout_width="match_parent"
                                         android:layout_height="50dp"
                                         android:scaleType="fitXY"
-                                        android:src="@drawable/suma_good" />
+                                        android:src="@drawable/pengumuman_ic" />
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:id="@+id/congrat_linear_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="6dp"
                                     android:layout_marginBottom="9dp"
-                                    android:orientation="vertical"
-                                    android:visibility="gone">
+                                    android:orientation="vertical">
 
                                     <TextView
-                                        android:id="@+id/reminder_desc"
+                                        android:id="@+id/judul_pengumuman"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text=""
-                                        android:textColor="@color/white"
-                                        android:textSize="10dp" />
-
-                                    <TextView
-                                        android:id="@+id/reminder_celebrate"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif"
-                                        android:lineSpacingExtra="1dp"
-                                        android:text=""
-                                        android:textColor="@color/white"
-                                        android:textSize="12dp"
-                                        android:textStyle="bold" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/pengumuman_linear_part"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="6dp"
-                                    android:layout_marginBottom="9dp"
-                                    android:orientation="vertical"
-                                    android:visibility="gone">
-
-                                    <TextView
-                                        android:id="@+id/reminder_desc_2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text=""
+                                        android:text="Judul Pengumuman"
                                         android:textStyle="bold"
                                         android:ellipsize="end"
                                         android:maxLines="1"
@@ -339,7 +419,7 @@
                                         android:textSize="12dp" />
 
                                     <TextView
-                                        android:id="@+id/reminder_celebrate_2"
+                                        android:id="@+id/highlight_pengumuman"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="sans-serif"
@@ -347,7 +427,7 @@
                                         android:ellipsize="end"
                                         android:maxLines="1"
                                         android:singleLine="true"
-                                        android:text=""
+                                        android:text="Highligt Pengumuman"
                                         android:textColor="@color/white"
                                         android:textSize="10dp" />
 

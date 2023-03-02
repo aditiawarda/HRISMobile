@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -21,11 +22,16 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.adapter.AdapterDataLayoff;
+import com.gelora.absensi.model.DataLayoff;
 import com.gelora.absensi.support.StatusBarColorManager;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
@@ -37,14 +43,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CalendarPageActivity extends AppCompatActivity {
 
     CompactCalendarView compactCalendarView;
     private StatusBarColorManager mStatusBarColorManager;
-    TextView eventCalender, yearTV, monthTV, dayDateTV, monthDateTV, yearDateTV;
-    LinearLayout prevBTN, nextBTN, backBTN;
+    TextView eventCalender, yearTV, monthTV, dayDateTV, monthDateTV, yearDateTV, celebrateTV;
+    LinearLayout prevBTN, nextBTN, backBTN, peringatanPart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,8 @@ public class CalendarPageActivity extends AppCompatActivity {
         monthDateTV = findViewById(R.id.month_date);
         yearDateTV = findViewById(R.id.year_date);
         backBTN = findViewById(R.id.back_btn);
+        peringatanPart = findViewById(R.id.peringatan_part);
+        celebrateTV = findViewById(R.id.celebrate_tv);
 
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
@@ -276,6 +286,8 @@ public class CalendarPageActivity extends AppCompatActivity {
             }
         });
 
+        getPeringatan();
+
     }
 
     private void getEventCalender() {
@@ -302,7 +314,6 @@ public class CalendarPageActivity extends AppCompatActivity {
                                 compactCalendarView.addEvent(ev1);
                             }
 
-
                         } catch (JSONException | ParseException e) {
                             e.printStackTrace();
                         }
@@ -323,6 +334,52 @@ public class CalendarPageActivity extends AppCompatActivity {
 
     }
 
+    private void getPeringatan() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cek_kalender";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")) {
+                                String peringatan = data.getString("peringatan");
+                                peringatanPart.setVisibility(View.VISIBLE);
+                                celebrateTV.setText(peringatan);
+                            } else {
+                                peringatanPart.setVisibility(View.GONE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("tanggal", getDate());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
     private void connectionFailed(){
         CookieBar.build(CalendarPageActivity.this)
                 .setTitle("Perhatian")
@@ -333,6 +390,13 @@ public class CalendarPageActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    private String getDate() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     private String getDateD() {

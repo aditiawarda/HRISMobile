@@ -339,7 +339,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="17dp"
                 android:layout_marginRight="17dp"
-                android:text="Diliburkan/Lay Off"
+                android:text="Diliburkan/Layoff"
                 android:textColor="#378AD3"
                 android:textSize="12dp" />
 

@@ -123,8 +123,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
     ImageView loadingDataRecord, weatherIconPart, onlineGif, warningGif;
-    TextView titleRecordTV, userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout calendarBTN, noDataPart, loadingRecordPart, backBTN, reminderCongrat, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    TextView viewMoreBTN, titleRecordTV, userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
+    LinearLayout viewMorePart, calendarBTN, noDataPart, loadingRecordPart, backBTN, reminderCongrat, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -160,7 +160,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "1.6.8";
+    String appVersion = "1.6.9";
     private StatusBarColorManager mStatusBarColorManager;
 
     private RecyclerView dataAbsensiRV;
@@ -255,6 +255,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         loadingRecordPart = findViewById(R.id.loading_data_part);
         noDataPart = findViewById(R.id.no_data_part);
         titleRecordTV = findViewById(R.id.title_record_tv);
+        viewMorePart = findViewById(R.id.view_more_part);
+        viewMoreBTN = findViewById(R.id.view_more_btn);
 
         dataAbsensiRV = findViewById(R.id.data_absensi_rv);
 
@@ -452,6 +454,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 statusLooping = "off";
                 Intent intent = new Intent(MapsActivity.this, CalendarPageActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        viewMoreBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                statusLooping = "off";
+                Intent intent = new Intent(MapsActivity.this, RecordAbsensiActivity.class);
                 startActivity(intent);
             }
         });
@@ -4852,11 +4863,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     dataAbsensis = gson.fromJson(data_hadir, DataRecordAbsensi[].class);
                                     adapterDataAbsensi = new AdapterDataAbsensi(dataAbsensis, MapsActivity.this);
                                     dataAbsensiRV.setAdapter(adapterDataAbsensi);
+                                    viewMorePart.setVisibility(View.VISIBLE);
                                 } else {
                                     titleRecordTV.setVisibility(View.GONE);
                                     loadingRecordPart.setVisibility(View.GONE);
                                     dataAbsensiRV.setVisibility(View.GONE);
                                     noDataPart.setVisibility(View.VISIBLE);
+                                    viewMorePart.setVisibility(View.GONE);
                                 }
                             }
 

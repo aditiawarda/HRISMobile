@@ -1156,7 +1156,7 @@
                                         android:maxLines="1"
                                         android:singleLine="true"
                                         android:text="Data record absensi 30 hari terakhir"
-                                        android:textColor="#CACACA"
+                                        android:textColor="#B8B8B8"
                                         android:visibility="gone"
                                         android:textSize="12dp" />
 
@@ -1246,6 +1246,29 @@
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
                                         android:textSize="10dp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/view_more_part"
+                                    android:layout_marginTop="25dp"
+                                    android:layout_marginBottom="25dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="bottom|center"
+                                    android:visibility="gone"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/view_more_btn"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:textSize="14dp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:textColor="#1AB4FF"
+                                        android:text="Lihat Data Lainnya"/>
 
                                 </LinearLayout>
 

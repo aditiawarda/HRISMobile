@@ -59,14 +59,44 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/peringatan_part"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Memperingati"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/celebrate_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hari Raya Nyepi"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:orientation="vertical">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -74,43 +104,43 @@
 
                 <LinearLayout
                     android:id="@+id/back_btn"
-                    android:layout_marginTop="17dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_width="33dp"
                     android:layout_height="33dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="17dp"
                     android:gravity="center">
 
                     <TextView
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_marginRight="1.5dp"
-                        android:background="@drawable/ic_baseline_chevron_back"/>
+                        android:background="@drawable/ic_baseline_chevron_back" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:background="@drawable/shape_body_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="30dp"
-                android:orientation="vertical">
+                android:background="@drawable/shape_body_main"
+                android:orientation="vertical"
+                android:paddingBottom="30dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:paddingTop="13dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="13dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:paddingTop="15dp"
-                        android:paddingBottom="10dp"
-                        android:orientation="horizontal">
+                        android:paddingBottom="10dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -158,22 +188,22 @@
                                 <com.github.sundeepk.compactcalendarview.CompactCalendarView
                                     android:id="@+id/compactcalendar_view"
                                     android:layout_width="fill_parent"
-                                    android:paddingRight="10dp"
-                                    android:layout_marginRight="35dp"
-                                    android:layout_marginLeft="35dp"
-                                    android:paddingLeft="10dp"
                                     android:layout_height="250dp"
-                                    app:compactCalendarTargetHeight="250dp"
-                                    app:compactCalendarTextSize="12sp"
+                                    android:layout_marginLeft="35dp"
+                                    android:layout_marginRight="35dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
                                     app:compactCalendarBackgroundColor="#00FFFFFF"
-                                    app:compactCalendarOtherMonthDaysTextColor="#CCCCCC"
+                                    app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimaryDark"
+                                    app:compactCalendarCurrentDayTextColor="@color/white"
                                     app:compactCalendarCurrentSelectedDayBackgroundColor="#FFAA3F"
                                     app:compactCalendarCurrentSelectedDayTextColor="@color/white"
                                     app:compactCalendarDisplayOtherMonthDays="true"
+                                    app:compactCalendarMultiEventIndicatorColor="#fff"
+                                    app:compactCalendarOtherMonthDaysTextColor="#CCCCCC"
+                                    app:compactCalendarTargetHeight="250dp"
                                     app:compactCalendarTextColor="#004580"
-                                    app:compactCalendarCurrentDayTextColor="@color/white"
-                                    app:compactCalendarCurrentDayBackgroundColor="@color/colorPrimaryDark"
-                                    app:compactCalendarMultiEventIndicatorColor="#fff" />
+                                    app:compactCalendarTextSize="12sp" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -230,25 +260,25 @@
                             </RelativeLayout>
 
                             <LinearLayout
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginTop="10dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="#5BD5A390"/>
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginRight="20dp"
+                                android:background="#5BD5A390" />
 
                             <TextView
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginTop="10dp"
                                 android:id="@+id/event_calender"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="13dp"
-                                android:fontFamily="sans-serif"
-                                android:textColor="@color/colorPrimaryDark"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginRight="20dp"
                                 android:layout_marginBottom="5dp"
-                                android:text=""/>
+                                android:fontFamily="sans-serif"
+                                android:text=""
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="13dp" />
 
                         </LinearLayout>
 

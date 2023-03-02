@@ -873,7 +873,39 @@
 
                             </LinearLayout>
 
-                            <!-- Field -->
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/update_app_btn"
+                            android:layout_marginBottom="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:paddingRight="15dp"
+                            android:paddingLeft="15dp"
+                            android:background="@drawable/shape_third_btn"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:textStyle="bold"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/new_label" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="#CF811F"
+                                android:textSize="13dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="Update Aplikasi Sekarang!"/>
 
                         </LinearLayout>
 
@@ -927,6 +959,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:layout_marginTop="20dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="bottom|center"
