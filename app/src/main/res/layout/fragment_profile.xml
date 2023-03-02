@@ -418,13 +418,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:paddingLeft="25dp"
                             android:paddingTop="20dp"
                             android:paddingBottom="18dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:paddingLeft="25dp"
+                                android:paddingRight="25dp"
                                 android:layout_marginBottom="10dp">
 
                                 <TextView
@@ -444,16 +445,18 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_marginBottom="5dp">
+                                android:orientation="vertical">
 
                                 <LinearLayout
                                     android:id="@+id/info_personal_btn"
+                                    android:background="@drawable/shape_btn_effect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="12dp"
-                                    android:paddingBottom="12dp"
+                                    android:paddingBottom="10dp"
                                     android:paddingRight="25dp"
+                                    android:paddingLeft="25dp"
+                                    android:layout_marginBottom="3dp"
                                     android:orientation="horizontal">
 
                                     <LinearLayout
@@ -469,6 +472,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="30dp"
+                                            android:layout_marginTop="1dp"
                                             android:layout_marginLeft="25dp"
                                             android:gravity="left|center"
                                             android:orientation="horizontal">
@@ -517,15 +521,18 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:layout_marginBottom="5dp">
+                                android:layout_marginTop="3dp">
 
                                 <LinearLayout
                                     android:id="@+id/info_pekerjaan_btn"
+                                    android:background="@drawable/shape_btn_effect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="12dp"
-                                    android:paddingBottom="12dp"
+                                    android:paddingBottom="10dp"
                                     android:paddingRight="25dp"
+                                    android:paddingLeft="25dp"
+                                    android:layout_marginBottom="3dp"
                                     android:orientation="horizontal">
 
                                     <LinearLayout
@@ -541,6 +548,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="30dp"
+                                            android:layout_marginTop="1dp"
                                             android:layout_marginLeft="25dp"
                                             android:gravity="left|center"
                                             android:orientation="horizontal">
@@ -589,15 +597,18 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:layout_marginBottom="5dp">
+                                android:layout_marginTop="3dp">
 
                                 <LinearLayout
                                     android:id="@+id/info_kontak_darurat_btn"
+                                    android:background="@drawable/shape_btn_effect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="12dp"
-                                    android:paddingBottom="12dp"
+                                    android:paddingBottom="10dp"
                                     android:paddingRight="25dp"
+                                    android:paddingLeft="25dp"
+                                    android:layout_marginBottom="3dp"
                                     android:orientation="horizontal">
 
                                     <LinearLayout
@@ -613,6 +624,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="30dp"
+                                            android:layout_marginTop="1dp"
                                             android:layout_marginLeft="25dp"
                                             android:gravity="left|center"
                                             android:orientation="horizontal">
@@ -661,15 +673,18 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:layout_marginBottom="10dp">
+                                android:layout_marginTop="3dp">
 
                                 <LinearLayout
                                     android:id="@+id/info_keluarga_btn"
+                                    android:background="@drawable/shape_btn_effect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="12dp"
                                     android:paddingBottom="12dp"
                                     android:paddingRight="25dp"
+                                    android:paddingLeft="25dp"
+                                    android:layout_marginBottom="3dp"
                                     android:orientation="horizontal">
 
                                     <LinearLayout
@@ -733,15 +748,18 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:layout_marginBottom="5dp">
+                                android:layout_marginTop="3dp">
 
                                 <LinearLayout
                                     android:id="@+id/info_pendidikan_dan_pengalaman_btn"
+                                    android:background="@drawable/shape_btn_effect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="12dp"
-                                    android:paddingBottom="12dp"
+                                    android:paddingBottom="10dp"
                                     android:paddingRight="25dp"
+                                    android:paddingLeft="25dp"
+                                    android:layout_marginBottom="3dp"
                                     android:orientation="horizontal">
 
                                     <LinearLayout
@@ -757,6 +775,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="30dp"
+                                            android:layout_marginTop="1dp"
                                             android:layout_marginLeft="25dp"
                                             android:gravity="left|center"
                                             android:orientation="horizontal">
@@ -805,15 +824,18 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:layout_marginBottom="5dp">
+                                android:layout_marginTop="3dp">
 
                                 <LinearLayout
                                     android:id="@+id/info_payroll_btn"
+                                    android:background="@drawable/shape_btn_effect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingTop="12dp"
-                                    android:paddingBottom="12dp"
+                                    android:paddingBottom="10dp"
                                     android:paddingRight="25dp"
+                                    android:paddingLeft="25dp"
+                                    android:layout_marginBottom="3dp"
                                     android:orientation="horizontal">
 
                                     <LinearLayout
@@ -830,6 +852,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="30dp"
                                             android:layout_marginLeft="25dp"
+                                            android:layout_marginTop="1dp"
                                             android:gravity="left|center"
                                             android:orientation="horizontal">
 

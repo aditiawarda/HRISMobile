@@ -262,55 +262,103 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/shape_birthday"
-                                android:orientation="horizontal"
                                 android:layout_marginTop="20dp"
                                 android:paddingTop="5dp"
-                                android:paddingRight="15dp"
+                                android:paddingRight="5dp"
                                 android:visibility="gone">
 
-                                <LinearLayout
-                                    android:layout_width="50dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginRight="7dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="50dp"
-                                        android:scaleType="fitXY"
-                                        android:src="@drawable/birthday_ic" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="6dp"
-                                    android:layout_marginBottom="9dp"
-                                    android:orientation="vertical">
+                                    android:layout_height="match_parent">
 
-                                    <TextView
+                                    <LinearLayout
+                                        android:orientation="horizontal"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Happy Birthday,"
-                                        android:textColor="@color/white"
-                                        android:textSize="10dp" />
+                                        android:layout_height="wrap_content">
 
-                                    <TextView
-                                        android:id="@+id/ulang_tahun_celebrate"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif"
-                                        android:lineSpacingExtra="1dp"
-                                        android:text="Selamat Merayakan Ulang Tahun ke "
-                                        android:textColor="@color/white"
-                                        android:textSize="12dp"
-                                        android:textStyle="bold" />
+                                        <LinearLayout
+                                            android:layout_width="50dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginRight="7dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
 
-                                </LinearLayout>
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="50dp"
+                                                android:scaleType="fitXY"
+                                                android:src="@drawable/birthday_ic" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="6dp"
+                                            android:layout_marginBottom="9dp"
+                                            android:layout_marginRight="35dp"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:id="@+id/ulang_tahun_to"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="Happy Birthday,"
+                                                android:textColor="@color/white"
+                                                android:textSize="10dp" />
+
+                                            <TextView
+                                                android:id="@+id/ulang_tahun_celebrate"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="sans-serif"
+                                                android:lineSpacingExtra="1dp"
+                                                android:text="Selamat Merayakan Ulang Tahun ke "
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp"
+                                                android:textStyle="bold" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:visibility="gone"
+                                        android:id="@+id/play_part"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginRight="6dp"
+                                        android:layout_marginTop="-5dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/ic_baseline_play"
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"/>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:visibility="gone"
+                                        android:id="@+id/pause_part"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginRight="6dp"
+                                        android:layout_marginTop="-5dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/ic_baseline_pause"
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"/>
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
 
                             </LinearLayout>
 
@@ -376,62 +424,89 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/shape_congrat"
-                                android:orientation="horizontal"
                                 android:layout_marginTop="20dp"
                                 android:paddingTop="5dp"
-                                android:paddingRight="15dp"
+                                android:paddingRight="5dp"
                                 android:visibility="gone">
 
-                                <LinearLayout
-                                    android:layout_width="50dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginRight="7dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="50dp"
-                                        android:scaleType="fitXY"
-                                        android:src="@drawable/pengumuman_ic" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="6dp"
-                                    android:layout_marginBottom="9dp"
-                                    android:orientation="vertical">
+                                    android:layout_height="match_parent">
 
-                                    <TextView
-                                        android:id="@+id/judul_pengumuman"
+                                    <LinearLayout
+                                        android:orientation="horizontal"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Judul Pengumuman"
-                                        android:textStyle="bold"
-                                        android:ellipsize="end"
-                                        android:maxLines="1"
-                                        android:singleLine="true"
-                                        android:textColor="@color/white"
-                                        android:textSize="12dp" />
+                                        android:layout_height="wrap_content">
 
-                                    <TextView
-                                        android:id="@+id/highlight_pengumuman"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="sans-serif"
-                                        android:lineSpacingExtra="1dp"
-                                        android:ellipsize="end"
-                                        android:maxLines="1"
-                                        android:singleLine="true"
-                                        android:text="Highligt Pengumuman"
-                                        android:textColor="@color/white"
-                                        android:textSize="10dp" />
+                                        <LinearLayout
+                                            android:layout_width="50dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginRight="7dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
 
-                                </LinearLayout>
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="50dp"
+                                                android:scaleType="fitXY"
+                                                android:src="@drawable/pengumuman_ic" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="6dp"
+                                            android:layout_marginBottom="9dp"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:id="@+id/judul_pengumuman"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="Judul Pengumuman"
+                                                android:textStyle="bold"
+                                                android:ellipsize="end"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp" />
+
+                                            <TextView
+                                                android:id="@+id/highlight_pengumuman"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="sans-serif"
+                                                android:lineSpacingExtra="1dp"
+                                                android:ellipsize="end"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Highligt Pengumuman"
+                                                android:textColor="@color/white"
+                                                android:textSize="10dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginRight="6dp"
+                                        android:layout_marginTop="-5dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/ic_baseline_arrow_right_pengumuman"
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"/>
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
 
                             </LinearLayout>
 
@@ -800,7 +875,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_lembur" />
+                                                android:src="@drawable/icon_lembur_soon" />
 
                                         </LinearLayout>
 

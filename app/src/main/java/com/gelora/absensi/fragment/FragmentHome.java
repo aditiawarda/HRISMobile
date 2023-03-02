@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.location.Location;
+import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -38,6 +40,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.application.isradeleon.notify.Notify;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.CalendarPageActivity;
@@ -56,6 +59,7 @@ import com.gelora.absensi.ListAllPengumumanActivity;
 import com.gelora.absensi.LoginActivity;
 import com.gelora.absensi.MapsActivity;
 import com.gelora.absensi.R;
+import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.UserActivity;
 import com.gelora.absensi.UserDetailActivity;
@@ -93,16 +97,18 @@ import java.util.Map;
 
 public class FragmentHome extends Fragment {
 
-    LinearLayout bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
-    TextView highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
+    LinearLayout pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
+    TextView ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
     ImageView avatarUser, weatherIcon, loadingData;
     RelativeLayout dataCuaca, dataCuacaEmpty;
 
+    MediaPlayer musicUlangTahun;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
+    SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
-    String currentDay = "", refeatConfeti = "1", locationNow = "";
+    String currentDay = "", refeatConfeti = "1", locationNow = "" , musicPlay = "off";
     ResultReceiver resultReceiver;
     Context mContext;
     Activity mActivity;
@@ -135,6 +141,7 @@ public class FragmentHome extends Fragment {
         colors = new int[] { color1, color2, color3, color4, color5, color6, color7 };
 
         sharedPrefManager = new SharedPrefManager(mContext);
+        sharedPrefAbsen = new SharedPrefAbsen(mContext);
         bottomSheet = view.findViewById(R.id.bottom_sheet_layout);
         mainParent = view.findViewById(R.id.main_parent);
         refreshLayout = view.findViewById(R.id.swipe_to_refresh_layout);
@@ -170,6 +177,9 @@ public class FragmentHome extends Fragment {
         noDataPart = view.findViewById(R.id.no_data_part);
         pengumumanSelengkapnyaBTN = view.findViewById(R.id.pengumuman_selengkapnya_btn);
         chatBTN = view.findViewById(R.id.chat_btn);
+        playPart = view.findViewById(R.id.play_part);
+        pausePart = view.findViewById(R.id.pause_part);
+        ulangTahunTo = view.findViewById(R.id.ulang_tahun_to);
 
         ulangTahunPart = view.findViewById(R.id.ulang_tahun_part);
         congratTahunanPart = view.findViewById(R.id.congrat_tahunan);
@@ -403,10 +413,10 @@ public class FragmentHome extends Fragment {
                                 String weather_key = data.getString("weather_key");
                                 String fitur_pengumuman = data.getString("fitur_pengumuman");
                                 String join_reminder = data.getString("join_reminder");
+                                String pengumuman_id = data.getString("pengumuman_id");
                                 String pengumuman_date = data.getString("pengumuman_date");
                                 String pengumuman_title = data.getString("pengumuman_title");
                                 String pengumuman_desc = data.getString("pengumuman_desc");
-                                String pengumuman_image = data.getString("pengumuman_image");
                                 String pengumuman_time = data.getString("pengumuman_time");
 
                                 String id_cab = data.getString("id_cab");
@@ -470,12 +480,47 @@ public class FragmentHome extends Fragment {
                                     String tahunLahir = tanggal_lahir.substring(0, 4);
                                     if (tglBulanLahir.equals(getDayMonth())) {
                                         ulangTahunPart.setVisibility(View.VISIBLE);
+                                        String shortName = sharedPrefManager.getSpNama();
+                                        if(shortName.contains(" ")){
+                                            shortName = shortName.substring(0, shortName.indexOf(" "));
+                                            System.out.println(shortName);
+                                        }
                                         int usia = Integer.parseInt(getDateY()) - Integer.parseInt(tahunLahir);
+                                        ulangTahunTo.setText("Happy Birthday " + shortName + ",");
                                         ulangTahunCelebrate.setText("Selamat Merayakan Ulang Tahun ke " + String.valueOf(usia) + " Tahun.");
-                                        CommonConfetti.rainingConfetti(mainParent, colors).stream(3500);
+                                        musicUlangTahun = MediaPlayer.create(mContext, R.raw.ringtone_birthday);
+                                        playPart.setVisibility(View.VISIBLE);
+                                        pausePart.setVisibility(View.GONE);
+                                        //CommonConfetti.rainingConfetti(mainParent, colors).stream(3500);
+
+                                        if(!sharedPrefAbsen.getSpNotifUltah().equals("1")){
+                                            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_ULTAH, "1");
+                                            Notify.build(mContext)
+                                                    .setTitle("HRIS Mobile Gelora")
+                                                    .setContent("Happy Birthday "+shortName+", Selamat Merayakan Ulang Tahun ke " + String.valueOf(usia) + " Tahun.")
+                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                    .setColor(R.color.colorPrimary)
+                                                    .largeCircularIcon()
+                                                    .enableVibration(true)
+                                                    .show();
+                                        }
+
                                         ulangTahunPart.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
+                                                if (musicPlay.equals("off")){
+                                                    playPart.setVisibility(View.GONE);
+                                                    pausePart.setVisibility(View.VISIBLE);
+                                                    musicUlangTahun.start();
+                                                    musicPlay = "on";
+                                                    checkMusic();
+                                                } else {
+                                                    playPart.setVisibility(View.VISIBLE);
+                                                    pausePart.setVisibility(View.GONE);
+                                                    musicUlangTahun.pause();
+                                                    musicPlay = "off";
+                                                }
+
                                                 if (refeatConfeti.equals("1")) {
                                                     CommonConfetti.rainingConfetti(mainParent, colors).stream(3000);
                                                     refeatConfeti = "0";
@@ -490,9 +535,11 @@ public class FragmentHome extends Fragment {
                                         });
                                     } else {
                                         ulangTahunPart.setVisibility(View.GONE);
+                                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_ULTAH, "");
                                     }
                                 } else {
                                     ulangTahunPart.setVisibility(View.GONE);
+                                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_ULTAH, "");
                                 }
 
                                 // Perayaan tanggal masuk
@@ -504,7 +551,7 @@ public class FragmentHome extends Fragment {
                                         congratCelebrate.setText("Selamat Merayakan " + String.valueOf(masaKerja) + " Tahun Masa Kerja.");
                                         if (join_reminder.equals("1")) {
                                             congratTahunanPart.setVisibility(View.VISIBLE);
-                                            CommonConfetti.rainingConfetti(mainParent, colors).stream(3500);
+                                            //CommonConfetti.rainingConfetti(mainParent, colors).stream(3500);
                                             congratTahunanPart.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
@@ -542,11 +589,7 @@ public class FragmentHome extends Fragment {
                                             @Override
                                             public void onClick(View v) {
                                                 Intent intent = new Intent(mContext, DetailPengumumanActivity.class);
-                                                intent.putExtra("image", String.valueOf(pengumuman_image));
-                                                intent.putExtra("title", String.valueOf(pengumuman_title));
-                                                intent.putExtra("deskripsi", String.valueOf(pengumuman_desc));
-                                                intent.putExtra("date", String.valueOf(pengumuman_date));
-                                                intent.putExtra("time", String.valueOf(pengumuman_time));
+                                                intent.putExtra("id_pengumuman", String.valueOf(pengumuman_id));
                                                 mContext.startActivity(intent);
                                             }
                                         });
@@ -1117,6 +1160,22 @@ public class FragmentHome extends Fragment {
                 timeLive();
             }
         }, 1000);
+    }
+
+    private void checkMusic() {
+        if(String.valueOf(musicUlangTahun.isPlaying()).equals("false")){
+            playPart.setVisibility(View.VISIBLE);
+            pausePart.setVisibility(View.GONE);
+            musicUlangTahun.pause();
+            musicPlay = "off";
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    checkMusic();
+                }
+            }, 1000);
+        }
     }
 
     private String getTimeH() {

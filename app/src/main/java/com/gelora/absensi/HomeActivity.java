@@ -259,6 +259,7 @@ public class HomeActivity extends AppCompatActivity {
         sharedPrefManager.saveSPString(SharedPrefManager.SP_TGL_BERGABUNG, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_KARYAWAN, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_ULTAH, "");
         Preferences.clearLoggedInUser(HomeActivity.this);
         Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
         startActivity(intent);

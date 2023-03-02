@@ -19,6 +19,7 @@ public class SharedPrefAbsen {
     public static final String SP_CUTI = "spCuti";
     public static final String SP_KARYAWAN_PENGGANTI = "spKaryawanPengganti";
     public static final String SP_TITIK_ABSENSI = "spTitikAbsensi";
+    public static final String SP_NOTIF_ULTAH = "spNotifUltah";
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -90,6 +91,10 @@ public class SharedPrefAbsen {
 
     public String getSpTitikAbsensi(){
         return sp.getString(SP_ID_TITIK_ABSENSI, "");
+    }
+
+    public String getSpNotifUltah(){
+        return sp.getString(SP_NOTIF_ULTAH, "");
     }
 
 }

@@ -184,7 +184,7 @@
                                             android:paddingLeft="4dp"
                                             android:paddingBottom="1dp"
                                             android:gravity="center"
-                                            android:background="@drawable/shape_notification_mark">
+                                            android:background="@drawable/shape_notification_mark_info">
 
                                             <TextView
                                                 android:id="@+id/count_notif_izin_tv"
@@ -289,7 +289,7 @@
                                             android:paddingLeft="4dp"
                                             android:paddingBottom="1dp"
                                             android:gravity="center"
-                                            android:background="@drawable/shape_notification_mark">
+                                            android:background="@drawable/shape_notification_mark_info">
 
                                             <TextView
                                                 android:id="@+id/count_notif_finger_tv"

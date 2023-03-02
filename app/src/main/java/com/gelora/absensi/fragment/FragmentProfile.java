@@ -85,7 +85,7 @@ public class FragmentProfile extends Fragment {
 
     LinearLayout updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
     LinearLayout infoPersonalBTN, infoPekerjaanBTN, infoKontakDaruratBTN, infoKeluargaBTN, infoPendidikanDanPengalamanBTN, infoPayrollBTN;
-    TextView nameOfUser, positionOfUser;
+    TextView nameOfUser, positionOfUser, descAvailable, descEmpty;
     ImageView avatarUser;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
@@ -133,11 +133,14 @@ public class FragmentProfile extends Fragment {
         infoKeluargaBTN = view.findViewById(R.id.info_keluarga_btn);
         infoKontakDaruratBTN = view.findViewById(R.id.info_kontak_darurat_btn);
         updateAppBTN = view.findViewById(R.id.update_app_btn);
+        descAvailable = view.findViewById(R.id.desc_available);
+        descEmpty = view.findViewById(R.id.desc_empty);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                avatarSetting.collapse();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -271,20 +274,11 @@ public class FragmentProfile extends Fragment {
                                 String bagian = data.getString("bagian");
                                 String jabatan = data.getString("jabatan");
                                 String avatar = data.getString("avatar");
-                                String weather_key = data.getString("weather_key");
-                                String info_covid = data.getString("info_covid");
                                 String logout_part = data.getString("logout_part");
                                 String web_btn = data.getString("web_btn");
                                 String warning_email = data.getString("warning_email");
                                 String email_karyawan = data.getString("email_karyawan");
                                 String nohp_karyawan = data.getString("nohp_karyawan");
-                                String fitur_pengumuman = data.getString("fitur_pengumuman");
-                                String join_reminder = data.getString("join_reminder");
-                                String pengumuman_date = data.getString("pengumuman_date");
-                                String pengumuman_title = data.getString("pengumuman_title");
-                                String pengumuman_desc = data.getString("pengumuman_desc");
-                                String pengumuman_image = data.getString("pengumuman_image");
-                                String pengumuman_time = data.getString("pengumuman_time");
 
                                 String id_cab = data.getString("id_cab");
                                 String id_dept = data.getString("id_dept");
@@ -317,7 +311,12 @@ public class FragmentProfile extends Fragment {
                                     Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                             .into(avatarUser);
-
+                                    String shortName = sharedPrefManager.getSpNama();
+                                    if(shortName.contains(" ")){
+                                        shortName = shortName.substring(0, shortName.indexOf(" "));
+                                        System.out.println(shortName);
+                                    }
+                                    descAvailable.setText("Halo "+shortName+", anda bisa atur foto profil sesuai keinginan anda.");
                                     emptyAvatarPart.setVisibility(View.GONE);
                                     availableAvatarPart.setVisibility(View.VISIBLE);
                                     emptyAvatarBTN.setVisibility(View.GONE);
@@ -392,7 +391,12 @@ public class FragmentProfile extends Fragment {
                                         Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                 .into(avatarUser);
-
+                                        String shortName = sharedPrefManager.getSpNama();
+                                        if(shortName.contains(" ")){
+                                            shortName = shortName.substring(0, shortName.indexOf(" "));
+                                            System.out.println(shortName);
+                                        }
+                                        descEmpty.setText("Halo "+shortName+", anda bisa tambahkan foto profil sesuai keinginan anda.");
                                         emptyAvatarPart.setVisibility(View.VISIBLE);
                                         availableAvatarPart.setVisibility(View.GONE);
                                         emptyAvatarBTN.setVisibility(View.VISIBLE);
@@ -414,7 +418,12 @@ public class FragmentProfile extends Fragment {
                                     } else {
                                         uploadFileImage.setVisibility(View.VISIBLE);
                                         editFileImage.setVisibility(View.GONE);
-
+                                        String shortName = sharedPrefManager.getSpNama();
+                                        if(shortName.contains(" ")){
+                                            shortName = shortName.substring(0, shortName.indexOf(" "));
+                                            System.out.println(shortName);
+                                        }
+                                        descEmpty.setText("Halo "+shortName+", anda bisa tambahkan foto profil sesuai keinginan anda.");
                                         emptyAvatarPart.setVisibility(View.VISIBLE);
                                         availableAvatarPart.setVisibility(View.GONE);
                                         emptyAvatarBTN.setVisibility(View.VISIBLE);
@@ -860,6 +869,7 @@ public class FragmentProfile extends Fragment {
         sharedPrefManager.saveSPString(SharedPrefManager.SP_TGL_BERGABUNG, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_KARYAWAN, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_ULTAH, "");
         Preferences.clearLoggedInUser(mContext);
         Intent intent = new Intent(mContext, LoginActivity.class);
         startActivity(intent);

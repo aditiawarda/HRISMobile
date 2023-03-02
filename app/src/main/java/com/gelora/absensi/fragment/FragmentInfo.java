@@ -207,6 +207,10 @@ public class FragmentInfo extends Fragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                aboutAppField.collapse();
+                privacyPolicyField.collapse();
+                contactServiceField.collapse();
+
                 selectMonth = getBulanTahun();
 
                 bulanLoading.setVisibility(View.VISIBLE);
@@ -1028,6 +1032,9 @@ public class FragmentInfo extends Fragment {
         super.onResume();
         getDataAbsensi();
         getPersonalization();
+        aboutAppField.collapse();
+        privacyPolicyField.collapse();
+        contactServiceField.collapse();
     }
 
 }
