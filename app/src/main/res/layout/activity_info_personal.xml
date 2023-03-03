@@ -38,6 +38,88 @@
                         android:paddingBottom="25dp">
 
                         <LinearLayout
+                            android:id="@+id/empty_warning_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="23dp"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center|left"
+                            android:orientation="horizontal"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="12dp"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:visibility="gone"
+                            android:background="@drawable/shape_warning_empty_data" >
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="25dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginRight="7dp"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="25dp"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/warning_connection_white" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:layout_marginRight="35dp"
+                                        android:layout_marginLeft="5dp"
+                                        android:gravity="center"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="sans-serif"
+                                            android:lineSpacingExtra="1dp"
+                                            android:ellipsize="end"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Harap lengkapi info personal anda"
+                                            android:textColor="@color/white"
+                                            android:textSize="13dp" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_alignParentRight="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center">
+
+                                    <LinearLayout
+                                        android:background="@drawable/ic_baseline_arrow_right_pengumuman"
+                                        android:layout_width="25dp"
+                                        android:layout_height="25dp"/>
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
@@ -54,8 +136,9 @@
 
                             <TextView
                                 android:id="@+id/nama"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginRight="60dp"
                                 android:textColor="#686868"
                                 android:textSize="15dp" />
 
@@ -63,309 +146,575 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1.5dp"
                                 android:layout_marginTop="12dp"
-                                android:layout_marginEnd="30dp"
                                 android:background="#3CCFCFCF" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/email_part"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="53dp"
                             android:layout_marginTop="15dp"
                             android:orientation="vertical"
                             android:paddingLeft="10dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:text="Email"
-                                android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
-
-                            <TextView
-                                android:id="@+id/email"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textColor="#686868"
-                                android:textSize="15dp" />
-
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="12dp"
-                                android:layout_marginEnd="30dp"
-                                android:background="#3CCFCFCF" />
+                                android:layout_height="match_parent">
 
-                                <net.cachapa.expandablelayout.ExpandableLayout
-                                    android:id="@+id/expandable_email"
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    app:el_duration="300"
-                                    app:el_expanded="false">
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Email"
+                                        android:textColor="#8F8F8F"
+                                        android:textSize="10dp" />
+
+                                    <TextView
+                                        android:id="@+id/email"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="60dp"
+                                        android:text=""
+                                        android:textColor="#686868"
+                                        android:textSize="15dp" />
 
                                     <LinearLayout
-                                        android:layout_marginEnd="30dp"
-                                        android:layout_marginTop="-5dp"
-                                        android:background="@drawable/shape_bg_expand_absensi_field"
                                         android:layout_width="match_parent"
-                                        android:layout_height="100dp">
+                                        android:layout_height="1.5dp"
+                                        android:layout_marginTop="12dp"
+                                        android:background="#3CCFCFCF" />
 
-                                    </LinearLayout>
+                                </LinearLayout>
 
-                                </net.cachapa.expandablelayout.ExpandableLayout>
+                                <LinearLayout
+                                    android:id="@+id/warning_email"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone"
+                                    android:gravity="right|center">
 
-                        </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="1dp"
+                                        android:layout_marginRight="30dp"
+                                        android:background="@drawable/warning_mark_absensi"
+                                        android:orientation="horizontal"
+                                        android:visibility="visible" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp">
+                                </LinearLayout>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:text="Jenis Kelamin"
-                                android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
-
-                            <TextView
-                                android:id="@+id/jenis_kelamin"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textColor="#686868"
-                                android:textSize="15dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="12dp"
-                                android:layout_marginEnd="30dp"
-                                android:background="#3CCFCFCF" />
+                            </RelativeLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="53dp"
                             android:layout_marginTop="15dp"
                             android:orientation="vertical"
                             android:paddingLeft="10dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:text="Tempat Lahir"
-                                android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
-
-                            <TextView
-                                android:id="@+id/tempat_lahir"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textColor="#686868"
-                                android:textSize="15dp" />
-
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="12dp"
-                                android:layout_marginEnd="30dp"
-                                android:background="#3CCFCFCF" />
+                                android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Jenis Kelamin"
+                                        android:textColor="#8F8F8F"
+                                        android:textSize="10dp" />
+
+                                    <TextView
+                                        android:id="@+id/jenis_kelamin"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="60dp"
+                                        android:text=""
+                                        android:textColor="#686868"
+                                        android:textSize="15dp" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1.5dp"
+                                        android:layout_marginTop="12dp"
+                                        android:background="#3CCFCFCF" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/warning_gender"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone"
+                                    android:gravity="right|center">
+
+                                    <LinearLayout
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="1dp"
+                                        android:layout_marginRight="30dp"
+                                        android:background="@drawable/warning_mark_absensi"
+                                        android:orientation="horizontal"
+                                        android:visibility="visible" />
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="53dp"
                             android:layout_marginTop="15dp"
                             android:orientation="vertical"
                             android:paddingLeft="10dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:text="Tanggal Lahir"
-                                android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
-
-                            <TextView
-                                android:id="@+id/tanggal_lahir"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textColor="#686868"
-                                android:textSize="15dp" />
-
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="12dp"
-                                android:background="#3CCFCFCF" />
+                                android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Tempat Lahir"
+                                        android:textColor="#8F8F8F"
+                                        android:textSize="10dp" />
+
+                                    <TextView
+                                        android:id="@+id/tempat_lahir"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="60dp"
+                                        android:text=""
+                                        android:textColor="#686868"
+                                        android:textSize="15dp" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1.5dp"
+                                        android:layout_marginTop="12dp"
+                                        android:background="#3CCFCFCF" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/warning_tempat_lahir"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone"
+                                    android:gravity="right|center">
+
+                                    <LinearLayout
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="1dp"
+                                        android:layout_marginRight="30dp"
+                                        android:background="@drawable/warning_mark_absensi"
+                                        android:orientation="horizontal"
+                                        android:visibility="visible" />
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="53dp"
                             android:layout_marginTop="15dp"
                             android:orientation="vertical"
                             android:paddingLeft="10dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:text="No Handphone"
-                                android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
-
-                            <TextView
-                                android:id="@+id/handphone"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textColor="#686868"
-                                android:textSize="15dp" />
-
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="12dp"
-                                android:background="#3CCFCFCF" />
+                                android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Tanggal Lahir"
+                                        android:textColor="#8F8F8F"
+                                        android:textSize="10dp" />
+
+                                    <TextView
+                                        android:id="@+id/tanggal_lahir"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="60dp"
+                                        android:text=""
+                                        android:textColor="#686868"
+                                        android:textSize="15dp" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1.5dp"
+                                        android:layout_marginTop="12dp"
+                                        android:background="#3CCFCFCF" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/warning_tanggal_lahir"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone"
+                                    android:gravity="right|center">
+
+                                    <LinearLayout
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="1dp"
+                                        android:layout_marginRight="30dp"
+                                        android:background="@drawable/warning_mark_absensi"
+                                        android:orientation="horizontal"
+                                        android:visibility="visible" />
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="53dp"
                             android:layout_marginTop="15dp"
                             android:orientation="vertical"
                             android:paddingLeft="10dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:text="Status Pernikahan"
-                                android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
-
-                            <TextView
-                                android:id="@+id/status_pernikahan"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textColor="#686868"
-                                android:textSize="15dp" />
-
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="12dp"
-                                android:background="#3CCFCFCF" />
+                                android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="No Handphone"
+                                        android:textColor="#8F8F8F"
+                                        android:textSize="10dp" />
+
+                                    <TextView
+                                        android:id="@+id/handphone"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="60dp"
+                                        android:text=""
+                                        android:textColor="#686868"
+                                        android:textSize="15dp" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1.5dp"
+                                        android:layout_marginTop="12dp"
+                                        android:background="#3CCFCFCF" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/warning_handphone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone"
+                                    android:gravity="right|center">
+
+                                    <LinearLayout
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="1dp"
+                                        android:layout_marginRight="30dp"
+                                        android:background="@drawable/warning_mark_absensi"
+                                        android:orientation="horizontal"
+                                        android:visibility="visible" />
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="53dp"
                             android:layout_marginTop="15dp"
                             android:orientation="vertical"
                             android:paddingLeft="10dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:text="Agama"
-                                android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
-
-                            <TextView
-                                android:id="@+id/agama"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textColor="#686868"
-                                android:textSize="15dp" />
-
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="12dp"
-                                android:background="#3CCFCFCF" />
+                                android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Status Pernikahan"
+                                        android:textColor="#8F8F8F"
+                                        android:textSize="10dp" />
+
+                                    <TextView
+                                        android:id="@+id/status_pernikahan"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="60dp"
+                                        android:text=""
+                                        android:textColor="#686868"
+                                        android:textSize="15dp" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1.5dp"
+                                        android:layout_marginTop="12dp"
+                                        android:background="#3CCFCFCF" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/warning_status_pernikahan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone"
+                                    android:gravity="right|center">
+
+                                    <LinearLayout
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="1dp"
+                                        android:layout_marginRight="30dp"
+                                        android:background="@drawable/warning_mark_absensi"
+                                        android:orientation="horizontal"
+                                        android:visibility="visible" />
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:visibility="gone"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="53dp"
                             android:layout_marginTop="15dp"
                             android:orientation="vertical"
                             android:paddingLeft="10dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:text="Nomor ID"
-                                android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="3203081712970001"
-                                android:textColor="#686868"
-                                android:textSize="15dp" />
-
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="12dp"
-                                android:background="#3CCFCFCF" />
+                                android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Agama"
+                                        android:textColor="#8F8F8F"
+                                        android:textSize="10dp" />
+
+                                    <TextView
+                                        android:id="@+id/agama"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="60dp"
+                                        android:text=""
+                                        android:textColor="#686868"
+                                        android:textSize="15dp" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1.5dp"
+                                        android:layout_marginTop="12dp"
+                                        android:background="#3CCFCFCF" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/warning_agama"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone"
+                                    android:gravity="right|center">
+
+                                    <LinearLayout
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="1dp"
+                                        android:layout_marginRight="30dp"
+                                        android:background="@drawable/warning_mark_absensi"
+                                        android:orientation="horizontal"
+                                        android:visibility="visible" />
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:visibility="gone"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="53dp"
                             android:layout_marginTop="15dp"
                             android:orientation="vertical"
                             android:paddingLeft="10dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:text="Tipe ID"
-                                android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="KTP"
-                                android:textColor="#686868"
-                                android:textSize="15dp" />
-
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="12dp"
-                                android:background="#3CCFCFCF" />
+                                android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Alamat KTP"
+                                        android:textColor="#8F8F8F"
+                                        android:textSize="10dp" />
+
+                                    <TextView
+                                        android:id="@+id/alamat_ktp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="60dp"
+                                        android:text=""
+                                        android:textColor="#686868"
+                                        android:textSize="15dp" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1.5dp"
+                                        android:layout_marginTop="12dp"
+                                        android:background="#3CCFCFCF" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/warning_alamat_ktp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone"
+                                    android:gravity="right|center">
+
+                                    <LinearLayout
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="1dp"
+                                        android:layout_marginRight="30dp"
+                                        android:background="@drawable/warning_mark_absensi"
+                                        android:orientation="horizontal"
+                                        android:visibility="visible" />
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="53dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="vertical"
+                            android:paddingLeft="10dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Alamat Domisili"
+                                        android:textColor="#8F8F8F"
+                                        android:textSize="10dp" />
+
+                                    <TextView
+                                        android:id="@+id/alamat_domisili"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="60dp"
+                                        android:text=""
+                                        android:textColor="#686868"
+                                        android:textSize="15dp" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1.5dp"
+                                        android:layout_marginTop="12dp"
+                                        android:background="#3CCFCFCF" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/warning_alamat_domisili"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone"
+                                    android:gravity="right|center">
+
+                                    <LinearLayout
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="1dp"
+                                        android:layout_marginRight="30dp"
+                                        android:background="@drawable/warning_mark_absensi"
+                                        android:orientation="horizontal"
+                                        android:visibility="visible" />
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 

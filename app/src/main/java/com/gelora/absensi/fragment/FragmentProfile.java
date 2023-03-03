@@ -78,7 +78,7 @@ import java.util.UUID;
  */
 public class FragmentProfile extends Fragment {
 
-    LinearLayout updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
+    LinearLayout warningInfoPersonal, updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
     LinearLayout infoPersonalBTN, infoPekerjaanBTN, infoKontakDaruratBTN, infoKeluargaBTN, infoPendidikanDanPengalamanBTN, infoPayrollBTN;
     TextView nameOfUser, positionOfUser, descAvailable, descEmpty;
     ImageView avatarUser;
@@ -130,6 +130,7 @@ public class FragmentProfile extends Fragment {
         updateAppBTN = view.findViewById(R.id.update_app_btn);
         descAvailable = view.findViewById(R.id.desc_available);
         descEmpty = view.findViewById(R.id.desc_empty);
+        warningInfoPersonal = view.findViewById(R.id.warning_info_personal);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -270,15 +271,18 @@ public class FragmentProfile extends Fragment {
                                 String jabatan = data.getString("jabatan");
                                 String avatar = data.getString("avatar");
                                 String logout_part = data.getString("logout_part");
-                                String web_btn = data.getString("web_btn");
-                                String warning_email = data.getString("warning_email");
-                                String email_karyawan = data.getString("email_karyawan");
-                                String nohp_karyawan = data.getString("nohp_karyawan");
+                                String info_personal = data.getString("info_personal");
 
                                 String id_cab = data.getString("id_cab");
                                 String id_dept = data.getString("id_dept");
                                 String id_bagian = data.getString("id_bagian");
                                 String id_jabatan = data.getString("id_jabatan");
+
+                                if(info_personal.equals("lengkap")){
+                                    warningInfoPersonal.setVisibility(View.GONE);
+                                } else {
+                                    warningInfoPersonal.setVisibility(View.VISIBLE);
+                                }
 
                                 if(!sharedPrefManager.getSpIdCab().equals(id_cab)){
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_CAB, id_cab);
@@ -876,6 +880,7 @@ public class FragmentProfile extends Fragment {
     public void onResume() {
         super.onResume();
         avatarSetting.collapse();
+        getDataKaryawan();
     }
 
 }

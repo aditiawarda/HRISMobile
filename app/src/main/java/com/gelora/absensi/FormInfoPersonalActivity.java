@@ -1,16 +1,16 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -20,11 +20,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
-
-import net.cachapa.expandablelayout.ExpandableLayout;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -33,41 +28,34 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InfoPersonalActivity extends AppCompatActivity {
+public class FormInfoPersonalActivity extends AppCompatActivity {
 
-    LinearLayout emptyWarningBTN, backBTN, warningEmail, warningGender, warningTempatLahir, warningTanggalLahir, warningHandphone, warningStatusPernikahan, warningAgama, warningAlamatKTP, warningAlamatDomisili;
-    TextView namaTV, emailTV, genderTV, tempatLahirTV, tanggalLAhirTV, hanphoneTV, statusPernikahanTV, agamaTV, alamatKTPTV, alamatDomisiliTV;
+    LinearLayout backBTN;
+    TextView namaTV, genderPilihTV, tanggalLahirPilihTV, statusPernikahanPilihTV;
+    EditText emailED, tempatLahirED, noHanphoneED, agamaED, alamatKTPED, alamatDomisiliED;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
+    Switch emailSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info_personal);
+        setContentView(R.layout.activity_form_info_personal);
 
         sharedPrefManager = new SharedPrefManager(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
-        namaTV = findViewById(R.id.nama);
-        emailTV = findViewById(R.id.email);
-        genderTV = findViewById(R.id.jenis_kelamin);
-        tempatLahirTV = findViewById(R.id.tempat_lahir);
-        tanggalLAhirTV = findViewById(R.id.tanggal_lahir);
-        hanphoneTV = findViewById(R.id.handphone);
-        statusPernikahanTV = findViewById(R.id.status_pernikahan);
-        agamaTV = findViewById(R.id.agama);
-        alamatKTPTV = findViewById(R.id.alamat_ktp);
-        alamatDomisiliTV = findViewById(R.id.alamat_domisili);
-        warningEmail = findViewById(R.id.warning_email);
-        warningGender = findViewById(R.id.warning_gender);
-        warningTempatLahir = findViewById(R.id.warning_tempat_lahir);
-        warningTanggalLahir = findViewById(R.id.warning_tanggal_lahir);
-        warningHandphone = findViewById(R.id.warning_handphone);
-        warningStatusPernikahan = findViewById(R.id.warning_status_pernikahan);
-        warningAgama = findViewById(R.id.warning_agama);
-        warningAlamatKTP = findViewById(R.id.warning_alamat_ktp);
-        warningAlamatDomisili = findViewById(R.id.warning_alamat_domisili);
-        emptyWarningBTN = findViewById(R.id.empty_warning_btn);
+        namaTV = findViewById(R.id.nama_tv);
+        emailED = findViewById(R.id.email_ed);
+        genderPilihTV = findViewById(R.id.gender_pilih_tv);
+        tempatLahirED = findViewById(R.id.tempat_lahir_ed);
+        tanggalLahirPilihTV = findViewById(R.id.tanggal_lahir_pilih_tv);
+        statusPernikahanPilihTV = findViewById(R.id.status_pernikahan_pilih_tv);
+        noHanphoneED = findViewById(R.id.no_hanphone_ed);
+        agamaED = findViewById(R.id.agama_ed);
+        alamatKTPED = findViewById(R.id.alamat_ktp_ed);
+        alamatDomisiliED = findViewById(R.id.alamat_domisili_ed);
+        emailSwitch = findViewById(R.id.alamat_domisili_switch);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -90,11 +78,14 @@ public class InfoPersonalActivity extends AppCompatActivity {
             }
         });
 
-        emptyWarningBTN.setOnClickListener(new View.OnClickListener() {
+        emailSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InfoPersonalActivity.this, FormInfoPersonalActivity.class);
-                startActivity(intent);
+                if (emailSwitch.isChecked()){
+                    alamatDomisiliED.setVisibility(View.GONE);
+                } else {
+                    alamatDomisiliED.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -129,41 +120,29 @@ public class InfoPersonalActivity extends AppCompatActivity {
                                 String alamat_ktp = dataArray.getString("alamat_ktp");
                                 String alamat_domisili = dataArray.getString("alamat_domisili");
 
-                                namaTV.setText(nama);
+                                namaTV.setText(nama.toUpperCase());
 
                                 if(email.equals("")||email.equals("null")){
-                                    emailTV.setText("-");
-                                    warningEmail.setVisibility(View.VISIBLE);
-                                    emptyWarningBTN.setVisibility(View.VISIBLE);
+                                    emailED.setText("");
                                 } else {
-                                    emailTV.setText(email);
-                                    warningEmail.setVisibility(View.GONE);
+                                    emailED.setText(email);
                                 }
 
                                 if(jenis_kelamin.equals("")||jenis_kelamin.equals("null")){
-                                    genderTV.setText("-");
-                                    warningGender.setVisibility(View.VISIBLE);
-                                    emptyWarningBTN.setVisibility(View.VISIBLE);
+                                    genderPilihTV.setText("");
                                 } else {
-                                    genderTV.setText(jenis_kelamin);
-                                    warningGender.setVisibility(View.GONE);
+                                    genderPilihTV.setText(jenis_kelamin);
                                 }
 
                                 if(tempat_lahir.equals("")||tempat_lahir.equals("null")){
-                                    tempatLahirTV.setText("-");
-                                    warningTempatLahir.setVisibility(View.VISIBLE);
-                                    emptyWarningBTN.setVisibility(View.VISIBLE);
+                                    tempatLahirED.setText("");
                                 } else {
-                                    tempatLahirTV.setText(tempat_lahir);
-                                    warningTempatLahir.setVisibility(View.GONE);
+                                    tempatLahirED.setText(tempat_lahir);
                                 }
 
                                 if(tanggal_lahir.equals("")||tanggal_lahir.equals("null")){
-                                    tanggalLAhirTV.setText("-");
-                                    warningTanggalLahir.setVisibility(View.VISIBLE);
-                                    emptyWarningBTN.setVisibility(View.VISIBLE);
+                                    tanggalLahirPilihTV.setText("");
                                 } else {
-                                    warningTanggalLahir.setVisibility(View.GONE);
                                     String dayDate = tanggal_lahir.substring(8,10);
                                     String yearDate = tanggal_lahir.substring(0,4);;
                                     String bulanValue = tanggal_lahir.substring(5,7);
@@ -211,57 +190,42 @@ public class InfoPersonalActivity extends AppCompatActivity {
                                             break;
                                     }
 
-                                    tanggalLAhirTV.setText(dayDate+" "+bulanName+" "+yearDate);
+                                    tanggalLahirPilihTV.setText(dayDate+" "+bulanName+" "+yearDate);
 
                                 }
 
                                 if(handphone.equals("")||handphone.equals("null")){
-                                    hanphoneTV.setText("-");
-                                    warningHandphone.setVisibility(View.VISIBLE);
-                                    emptyWarningBTN.setVisibility(View.VISIBLE);
+                                    noHanphoneED.setText("");
                                 } else {
-                                    hanphoneTV.setText(handphone);
-                                    warningHandphone.setVisibility(View.GONE);
+                                    noHanphoneED.setText(handphone);
                                 }
 
                                 if(status_pernikahan.equals("")||status_pernikahan.equals("null")){
-                                    statusPernikahanTV.setText("-");
-                                    warningStatusPernikahan.setVisibility(View.VISIBLE);
-                                    emptyWarningBTN.setVisibility(View.VISIBLE);
+                                    statusPernikahanPilihTV.setText("");
                                 } else {
-                                    statusPernikahanTV.setText(status_pernikahan);
-                                    warningStatusPernikahan.setVisibility(View.GONE);
+                                    statusPernikahanPilihTV.setText(status_pernikahan);
                                 }
 
                                 if(agama.equals("")||agama.equals("null")){
-                                    agamaTV.setText("-");
-                                    warningAgama.setVisibility(View.VISIBLE);
-                                    emptyWarningBTN.setVisibility(View.VISIBLE);
+                                    agamaED.setText("");
                                 } else {
-                                    agamaTV.setText(agama);
-                                    warningAgama.setVisibility(View.GONE);
+                                    agamaED.setText(agama);
                                 }
 
                                 if(alamat_ktp.equals("")||alamat_ktp.equals("null")){
-                                    alamatKTPTV.setText("-");
-                                    warningAlamatKTP.setVisibility(View.VISIBLE);
-                                    emptyWarningBTN.setVisibility(View.VISIBLE);
+                                    alamatKTPED.setText("");
                                 } else {
-                                    alamatKTPTV.setText(alamat_ktp);
-                                    warningAlamatKTP.setVisibility(View.GONE);
+                                    alamatKTPED.setText(alamat_ktp);
                                 }
 
                                 if(alamat_domisili.equals("")||alamat_domisili.equals("null")){
-                                    alamatDomisiliTV.setText("-");
-                                    warningAlamatDomisili.setVisibility(View.VISIBLE);
-                                    emptyWarningBTN.setVisibility(View.VISIBLE);
+                                    alamatDomisiliED.setText("");
                                 } else {
-                                    alamatDomisiliTV.setText(alamat_domisili);
-                                    warningAlamatDomisili.setVisibility(View.GONE);
+                                    alamatDomisiliED.setText(alamat_domisili);
                                 }
 
                             } else {
-                                new KAlertDialog(InfoPersonalActivity.this, KAlertDialog.ERROR_TYPE)
+                                new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Terjadi kesalahan saat mengakses data")
                                         .setConfirmText("    OK    ")
@@ -272,7 +236,7 @@ public class InfoPersonalActivity extends AppCompatActivity {
                                             }
                                         })
                                         .show();
-                            }
+                          }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -304,7 +268,7 @@ public class InfoPersonalActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        CookieBar.build(InfoPersonalActivity.this)
+        CookieBar.build(FormInfoPersonalActivity.this)
                 .setTitle("Perhatian")
                 .setMessage("Koneksi anda terputus!")
                 .setTitleColor(R.color.colorPrimaryDark)
@@ -313,12 +277,6 @@ public class InfoPersonalActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getData();
     }
 
 }
