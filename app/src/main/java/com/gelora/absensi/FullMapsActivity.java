@@ -1,5 +1,7 @@
 package com.gelora.absensi;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -16,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -44,6 +47,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.mahfa.dnswitch.DayNightSwitch;
+import com.mahfa.dnswitch.DayNightSwitchListener;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
@@ -64,6 +69,9 @@ public class FullMapsActivity extends FragmentActivity implements OnMapReadyCall
     private static final int INITIAL_REQUEST = 1337;
     private static final int LOCATION_REQUEST = INITIAL_REQUEST + 3;
 
+    LinearLayout backBTN, pusatkanBTN;
+    DayNightSwitch dayNightSwitch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,12 +87,45 @@ public class FullMapsActivity extends FragmentActivity implements OnMapReadyCall
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
 
+        backBTN = findViewById(R.id.back_btn);
+        pusatkanBTN = findViewById(R.id.pusatkan_btn);
+        dayNightSwitch = findViewById(R.id.day_night_switch);
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        dayNightSwitch.setListener(new DayNightSwitchListener() {
+            @Override
+            public void onSwitch(boolean is_night) {
+                if (is_night) {
+                    mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json)));
+                } else {
+                    mMap.setMapStyle(null);
+                }
+            }
+        });
+
+        pusatkanBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                float zoomLevel = 17.8f; //This goes up to 21
+                if(userPoint!=null){
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPoint, zoomLevel));
+                    mMap.getUiSettings().setCompassEnabled(false);
+                }
+            }
+        });
+
     }
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setPadding(0,0,0,115);
+        mMap.setPadding(0,0,0,100);
         permissionLoc();
     }
 
@@ -102,13 +143,13 @@ public class FullMapsActivity extends FragmentActivity implements OnMapReadyCall
             int hoursNow = Integer.parseInt(getTimeH());
             if (hoursNow >= 18) {
                 mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json)));
-                // dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
+                 dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
             } else if (hoursNow >= 0 && hoursNow <= 5){
                 mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json)));
-                // dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
+                 dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
             } else {
                 mMap.setMapStyle(null);
-                // dayNightSwitch.setIsNight(false,  mMap.setMapStyle(null));
+                 dayNightSwitch.setIsNight(false,  mMap.setMapStyle(null));
             }
 
         }
@@ -137,13 +178,13 @@ public class FullMapsActivity extends FragmentActivity implements OnMapReadyCall
                         int hoursNow = Integer.parseInt(getTimeH());
                         if (hoursNow >= 18) {
                             mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json)));
-                            // dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
+                             dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
                         } else if (hoursNow >= 0 && hoursNow <= 5){
                             mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json)));
-                            // dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
+                             dayNightSwitch.setIsNight(true,  mMap.setMapStyle(new MapStyleOptions(getResources().getString(R.string.style_json))));
                         } else {
                             mMap.setMapStyle(null);
-                            // dayNightSwitch.setIsNight(false,  mMap.setMapStyle(null));
+                             dayNightSwitch.setIsNight(false,  mMap.setMapStyle(null));
                         }
 
                     }
