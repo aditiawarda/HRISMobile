@@ -607,11 +607,11 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                 String info_sisa_cuti = data.getString("info_sisa_cuti");
 
                                 if(!catatan1.equals("null") && !catatan1.equals("") && !catatan1.equals(null)){
-                                    noted1TV.setText(catatan1+"  ");
+                                    noted1TV.setText(": "+catatan1+"  ");
                                 }
 
                                 if(!catatan2.equals("null") && !catatan2.equals("") && !catatan2.equals(null)){
-                                    noted2TV.setText(catatan2+"  ");
+                                    noted2TV.setText(": "+catatan2+"  ");
                                 }
 
                                 if(!lampiran.equals("null") && !lampiran.equals("") && !lampiran.equals(null)){

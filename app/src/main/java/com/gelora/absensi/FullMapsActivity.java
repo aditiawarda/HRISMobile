@@ -45,6 +45,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,7 +53,6 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 
 public class FullMapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -84,7 +84,7 @@ public class FullMapsActivity extends FragmentActivity implements OnMapReadyCall
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setPadding(0,0,0,0);
+        mMap.setPadding(0,0,0,115);
         permissionLoc();
     }
 
@@ -166,31 +166,20 @@ public class FullMapsActivity extends FragmentActivity implements OnMapReadyCall
         LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
-
         Task<LocationSettingsResponse> result = LocationServices.getSettingsClient(FullMapsActivity.this).checkLocationSettings(builder.build());
-
         result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
             @Override
             public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
                 try {
                     LocationSettingsResponse response = task.getResult(ApiException.class);
-                    // All location settings are satisfied. The client can initialize location
-                    // requests here.
-                    //permissionLoc();
                 } catch (ApiException exception) {
                     switch (exception.getStatusCode()) {
                         case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                            // Location settings are not satisfied. But could be fixed by showing the
-                            // user a dialog.
                             try {
-                                // Cast to a resolvable exception.
                                 ResolvableApiException resolvable = (ResolvableApiException) exception;
-                                // Show the dialog by calling startResolutionForResult(),
-                                // and check the result in onActivityResult().
                                 resolvable.startResolutionForResult(
                                         FullMapsActivity.this,
                                         LocationRequest.PRIORITY_HIGH_ACCURACY);
-
                             } catch (IntentSender.SendIntentException e) {
                                 // Ignore the error.
                             } catch (ClassCastException e) {
@@ -198,8 +187,6 @@ public class FullMapsActivity extends FragmentActivity implements OnMapReadyCall
                             }
                             break;
                         case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                            // Location settings are not satisfied. However, we have no way to fix the
-                            // settings so we won't show the dialog.
                             break;
                     }
                 }
@@ -221,11 +208,7 @@ public class FullMapsActivity extends FragmentActivity implements OnMapReadyCall
                         Log.d("Response", response.toString());
                         try {
 
-                            // connectionFailed.setVisibility(View.GONE);
-                            // connectionSuccess.setVisibility(View.VISIBLE);
-
                             JSONArray data = response.getJSONArray("data");
-
                             for (int i = 0; i < data.length(); i++) {
                                 JSONObject location = data.getJSONObject(i);
                                 String latitude = location.getString("latitude");
@@ -241,7 +224,6 @@ public class FullMapsActivity extends FragmentActivity implements OnMapReadyCall
                                 circleOptions.strokeWidth(3);
                                 circleOptions.strokeColor(Color.parseColor("#E6FB3527"));
                                 mMap.addMarker(new MarkerOptions().position(pointAbsen).title(locationName));
-
                                 mMap.addCircle(circleOptions);
                             }
 
@@ -256,13 +238,25 @@ public class FullMapsActivity extends FragmentActivity implements OnMapReadyCall
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         );
 
         requestQueue.add(getRequest);
 
+    }
+
+    private void connectionFailed(){
+        CookieBar.build(FullMapsActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
     }
 
     private String getTimeH() {

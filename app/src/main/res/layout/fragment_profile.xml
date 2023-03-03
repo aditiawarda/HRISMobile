@@ -76,8 +76,8 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="8dp"
-                                        android:layout_marginRight="85dp"
+                                        android:layout_marginTop="17dp"
+                                        android:layout_marginRight="95dp"
                                         android:gravity="left"
                                         android:orientation="vertical">
 
@@ -88,7 +88,7 @@
                                             android:ellipsize="end"
                                             android:maxLines="1"
                                             android:singleLine="true"
-                                            android:text="Aditia Warda"
+                                            android:text=""
                                             android:textColor="@color/white"
                                             android:textSize="18dp" />
 
@@ -99,9 +99,9 @@
                                             android:ellipsize="end"
                                             android:maxLines="1"
                                             android:singleLine="true"
-                                            android:text="Staff | EDP | RND"
+                                            android:text=""
                                             android:textColor="@color/white"
-                                            android:textSize="13dp" />
+                                            android:textSize="12dp" />
 
                                     </LinearLayout>
 

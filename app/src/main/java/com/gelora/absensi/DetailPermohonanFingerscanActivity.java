@@ -7,6 +7,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -42,9 +43,9 @@ import java.util.Map;
 
 public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
-    String kode, idPermohonan, keteranganForm = "", statusKondisi = "0", ketLemburStatus = "";
+    String file_url, kode, idPermohonan, keteranganForm = "", statusKondisi = "0", ketLemburStatus = "";
     TextView ketLemburChoiceTV, noPermohonan, tanggalTV, nikNamaTV, deptBagianTV, keteranganTV, alasanTV, pemohonTV, tanggalApproveTV, approverTV, jabatanApproverTV, tanggalApproveHRDTV, approverHRDTV;
-    LinearLayout markStatusTidakLembur, markStatusLembur, lemburBTN, tidakLemburBTN, ketLemburBTN, opsiKetLembur, detailKeteranganPart, backBTN, cancelPermohonanBTN, editPermohonanBTN, rejectedMark, acceptedMark, actionPart, approvedBTN, rejectedBTN;
+    LinearLayout downloadBTN, markStatusTidakLembur, markStatusLembur, lemburBTN, tidakLemburBTN, ketLemburBTN, opsiKetLembur, detailKeteranganPart, backBTN, cancelPermohonanBTN, editPermohonanBTN, rejectedMark, acceptedMark, actionPart, approvedBTN, rejectedBTN;
     ImageView ttdPemohon, ttdApprover,ttdApproverHRD;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
@@ -90,6 +91,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
         actionPart = findViewById(R.id.action_part);
         approvedBTN = findViewById(R.id.appoved_btn);
         rejectedBTN = findViewById(R.id.rejected_btn);
+        downloadBTN = findViewById(R.id.download_btn);
 
         detailKeteranganPart = findViewById(R.id.detail_keterangan_part);
         dStatusAbsen = findViewById(R.id.d_status_absen);
@@ -111,6 +113,8 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
         kode = getIntent().getExtras().getString("kode");
         idPermohonan = getIntent().getExtras().getString("id_permohonan");
+
+        file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_finger/"+idPermohonan;
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -207,6 +211,34 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 lemburChoice();
+            }
+        });
+
+        downloadBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailPermohonanFingerscanActivity.this, KAlertDialog.WARNING_TYPE)
+                    .setTitleText("Perhatian")
+                    .setContentText("Unduh File Permohonan?")
+                    .setCancelText("TIDAK")
+                    .setConfirmText("   YA   ")
+                    .showCancelButton(true)
+                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                        }
+                    })
+                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                        @Override
+                        public void onClick(KAlertDialog sDialog) {
+                            sDialog.dismiss();
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
+                            startActivity(browserIntent);
+                        }
+                    })
+                    .show();
+
             }
         });
 
