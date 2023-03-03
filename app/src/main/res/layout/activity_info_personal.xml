@@ -63,11 +63,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1.5dp"
                                 android:layout_marginTop="12dp"
+                                android:layout_marginEnd="30dp"
                                 android:background="#3CCFCFCF" />
 
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/email_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
@@ -94,7 +96,26 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1.5dp"
                                 android:layout_marginTop="12dp"
+                                android:layout_marginEnd="30dp"
                                 android:background="#3CCFCFCF" />
+
+                                <net.cachapa.expandablelayout.ExpandableLayout
+                                    android:id="@+id/expandable_email"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:el_duration="300"
+                                    app:el_expanded="false">
+
+                                    <LinearLayout
+                                        android:layout_marginEnd="30dp"
+                                        android:layout_marginTop="-5dp"
+                                        android:background="@drawable/shape_bg_expand_absensi_field"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="100dp">
+
+                                    </LinearLayout>
+
+                                </net.cachapa.expandablelayout.ExpandableLayout>
 
                         </LinearLayout>
 
@@ -125,6 +146,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1.5dp"
                                 android:layout_marginTop="12dp"
+                                android:layout_marginEnd="30dp"
                                 android:background="#3CCFCFCF" />
 
                         </LinearLayout>
@@ -156,6 +178,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1.5dp"
                                 android:layout_marginTop="12dp"
+                                android:layout_marginEnd="30dp"
                                 android:background="#3CCFCFCF" />
 
                         </LinearLayout>

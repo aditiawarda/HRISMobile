@@ -24,6 +24,8 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import net.cachapa.expandablelayout.ExpandableLayout;
+
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,10 +35,11 @@ import java.util.Map;
 
 public class InfoPersonalActivity extends AppCompatActivity {
 
-    LinearLayout backBTN;
+    LinearLayout backBTN, emailPart;
     TextView namaTV, emailTV, genderTV, tempatLahirTV, tanggalLAhirTV, hanphoneTV, statusPernikahanTV, agamaTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
+    ExpandableLayout expandableEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,8 @@ public class InfoPersonalActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         namaTV = findViewById(R.id.nama);
+        emailPart = findViewById(R.id.email_part);
+        expandableEmail = findViewById(R.id.expandable_email);
         emailTV = findViewById(R.id.email);
         genderTV = findViewById(R.id.jenis_kelamin);
         tempatLahirTV = findViewById(R.id.tempat_lahir);
@@ -73,6 +78,17 @@ public class InfoPersonalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        emailPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(expandableEmail.isExpanded()){
+                    expandableEmail.collapse();
+                } else {
+                    expandableEmail.expand();
+                }
             }
         });
 
