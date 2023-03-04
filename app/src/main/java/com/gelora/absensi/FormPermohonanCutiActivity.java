@@ -100,8 +100,8 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     private KaryawanPengganti[] karyawanPenggantis;
     private AdapterKaryawanPengganti adapterKaryawanPengganti;
     KAlertDialog pDialog;
-    String permohonanTerkirim = "0";
     private int i = -1;
+    String permohonanTerkirim = "0";
     int REQUEST_IMAGE = 100;
     private Uri uri;
     private static final int PICKFILE_RESULT_CODE = 1;

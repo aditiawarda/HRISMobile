@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class InfoPersonalActivity extends AppCompatActivity {
 
-    LinearLayout emptyWarningBTN, backBTN, warningEmail, warningGender, warningTempatLahir, warningTanggalLahir, warningHandphone, warningStatusPernikahan, warningAgama, warningAlamatKTP, warningAlamatDomisili;
+    LinearLayout ubahBTN, emptyWarningBTN, backBTN, warningEmail, warningGender, warningTempatLahir, warningTanggalLahir, warningHandphone, warningStatusPernikahan, warningAgama, warningAlamatKTP, warningAlamatDomisili;
     TextView namaTV, emailTV, genderTV, tempatLahirTV, tanggalLAhirTV, hanphoneTV, statusPernikahanTV, agamaTV, alamatKTPTV, alamatDomisiliTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -68,6 +68,7 @@ public class InfoPersonalActivity extends AppCompatActivity {
         warningAlamatKTP = findViewById(R.id.warning_alamat_ktp);
         warningAlamatDomisili = findViewById(R.id.warning_alamat_domisili);
         emptyWarningBTN = findViewById(R.id.empty_warning_btn);
+        ubahBTN = findViewById(R.id.ubah_btn);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -91,6 +92,14 @@ public class InfoPersonalActivity extends AppCompatActivity {
         });
 
         emptyWarningBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InfoPersonalActivity.this, FormInfoPersonalActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ubahBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(InfoPersonalActivity.this, FormInfoPersonalActivity.class);
@@ -130,6 +139,12 @@ public class InfoPersonalActivity extends AppCompatActivity {
                                 String alamat_domisili = dataArray.getString("alamat_domisili");
 
                                 namaTV.setText(nama);
+
+                                if((!email.equals("")||!email.equals("null"))&&(!jenis_kelamin.equals("")||!jenis_kelamin.equals("null"))&&(!tempat_lahir.equals("")||!tempat_lahir.equals("null"))&&(!tanggal_lahir.equals("")||!tanggal_lahir.equals("null"))&&(!handphone.equals("")||!handphone.equals("null"))&&(!status_pernikahan.equals("")||!status_pernikahan.equals("null"))&&(!agama.equals("")||!agama.equals("null"))&&(!alamat_ktp.equals("")||!alamat_ktp.equals("null"))&&(!alamat_domisili.equals("")||!alamat_domisili.equals("null"))){
+                                    ubahBTN.setVisibility(View.VISIBLE);
+                                } else {
+                                    ubahBTN.setVisibility(View.GONE);
+                                }
 
                                 if(email.equals("")||email.equals("null")){
                                     emailTV.setText("-");
@@ -318,6 +333,7 @@ public class InfoPersonalActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        emptyWarningBTN.setVisibility(View.GONE);
         getData();
     }
 

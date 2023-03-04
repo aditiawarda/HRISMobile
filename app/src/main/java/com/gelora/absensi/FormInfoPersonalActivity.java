@@ -6,6 +6,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,7 +40,7 @@ import java.util.Map;
 
 public class FormInfoPersonalActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, genderBTN, statusPernikahanBTN, maleBTN, femaleBTN, markMale, markFemale, belumMenikahBTN, sudahMenikahBTN, ceraiHidupBTN, ceraiMatiBTN, markBelumMenikah, markSudahMenikah, markCeraiHidup, markCeraiMati;
+    LinearLayout tanggalLAhirBTN, submitBTN, backBTN, genderBTN, statusPernikahanBTN, maleBTN, femaleBTN, markMale, markFemale, belumMenikahBTN, sudahMenikahBTN, ceraiHidupBTN, ceraiMatiBTN, markBelumMenikah, markSudahMenikah, markCeraiHidup, markCeraiMati;
     TextView namaTV, genderPilihTV, tanggalLahirPilihTV, statusPernikahanPilihTV;
     EditText emailED, tempatLahirED, noHanphoneED, agamaED, alamatKTPED, alamatDomisiliED;
     SharedPrefManager sharedPrefManager;
@@ -47,6 +48,8 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
     ExpandableLayout expandableDomisili;
     BottomSheetLayout bottomSheet;
     String genderChoice = "", tanggalLAhir = "", statusPernikahanChoice = "";
+    KAlertDialog pDialog;
+    private int i = -1;
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch emailSwitch;
@@ -73,7 +76,9 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         expandableDomisili = findViewById(R.id.expandable_domisili);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         genderBTN = findViewById(R.id.gender_btn);
+        tanggalLAhirBTN= findViewById(R.id.tanggal_lahir_btn);
         statusPernikahanBTN = findViewById(R.id.status_pernikahan_btn);
+        submitBTN = findViewById(R.id.submit_btn);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -103,6 +108,13 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
             }
         });
 
+        tanggalLAhirBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bornDate();
+            }
+        });
+
         statusPernikahanBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +133,170 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
             }
         });
 
+        submitBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(
+                    emailED.getText().toString().equals("")       ||
+                    genderChoice.equals("")                       ||
+                    tempatLahirED.getText().toString().equals("") ||
+                    tanggalLAhir.equals("")                       ||
+                    tempatLahirED.getText().toString().equals("") ||
+                    noHanphoneED.getText().toString().equals("")  ||
+                    statusPernikahanChoice.equals("")             ||
+                    agamaED.getText().toString().equals("")       ||
+                    alamatKTPED.getText().toString().equals("")
+                ){
+                    new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap isi semua data")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    if(alamatDomisiliED.getText().toString().equals("")){
+                        if(emailSwitch.isChecked()){
+                            new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.WARNING_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Kirim data personal?")
+                                    .setCancelText("TIDAK")
+                                    .setConfirmText("   YA   ")
+                                    .showCancelButton(true)
+                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                            pDialog = new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                            pDialog.show();
+                                            pDialog.setCancelable(false);
+                                            new CountDownTimer(1300, 800) {
+                                                public void onTick(long millisUntilFinished) {
+                                                    i++;
+                                                    switch (i) {
+                                                        case 0:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormInfoPersonalActivity.this, R.color.colorGradien));
+                                                            break;
+                                                        case 1:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormInfoPersonalActivity.this, R.color.colorGradien2));
+                                                            break;
+                                                        case 2:
+                                                        case 6:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormInfoPersonalActivity.this, R.color.colorGradien3));
+                                                            break;
+                                                        case 3:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormInfoPersonalActivity.this, R.color.colorGradien4));
+                                                            break;
+                                                        case 4:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormInfoPersonalActivity.this, R.color.colorGradien5));
+                                                            break;
+                                                        case 5:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormInfoPersonalActivity.this, R.color.colorGradien6));
+                                                            break;
+                                                    }
+                                                }
+                                                public void onFinish() {
+                                                    i = -1;
+                                                    sendData();
+                                                }
+                                            }.start();
+
+                                        }
+                                    })
+                                    .show();
+                        } else {
+                            new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Harap isi semua data")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        }
+                    } else {
+                        new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.WARNING_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Kirim data personal?")
+                                .setCancelText("TIDAK")
+                                .setConfirmText("   YA   ")
+                                .showCancelButton(true)
+                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                        pDialog = new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                        pDialog.show();
+                                        pDialog.setCancelable(false);
+                                        new CountDownTimer(1300, 800) {
+                                            public void onTick(long millisUntilFinished) {
+                                                i++;
+                                                switch (i) {
+                                                    case 0:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormInfoPersonalActivity.this, R.color.colorGradien));
+                                                        break;
+                                                    case 1:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormInfoPersonalActivity.this, R.color.colorGradien2));
+                                                        break;
+                                                    case 2:
+                                                    case 6:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormInfoPersonalActivity.this, R.color.colorGradien3));
+                                                        break;
+                                                    case 3:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormInfoPersonalActivity.this, R.color.colorGradien4));
+                                                        break;
+                                                    case 4:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormInfoPersonalActivity.this, R.color.colorGradien5));
+                                                        break;
+                                                    case 5:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormInfoPersonalActivity.this, R.color.colorGradien6));
+                                                        break;
+                                                }
+                                            }
+                                            public void onFinish() {
+                                                i = -1;
+                                                sendData();
+                                            }
+                                        }.start();
+
+                                    }
+                                })
+                                .show();
+                    }
+                }
+            }
+        });
 
         getData();
 
@@ -181,6 +357,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                                 if(tanggal_lahir.equals("")||tanggal_lahir.equals("null")){
                                     tanggalLahirPilihTV.setText("");
                                 } else {
+                                    tanggalLAhir = tanggal_lahir;
                                     String dayDate = tanggal_lahir.substring(8,10);
                                     String yearDate = tanggal_lahir.substring(0,4);;
                                     String bulanValue = tanggal_lahir.substring(5,7);
@@ -316,7 +493,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
 
     private void sendData() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_info_personal";
+        final String url = "https://geloraaksara.co.id/absen-online/api/update_data_personal";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -329,29 +506,21 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
-                                new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.SUCCESS_TYPE)
-                                        .setTitleText("Berhasil")
+                                pDialog.setTitleText("Berhasil")
                                         .setContentText("Data berhasil terkirim")
                                         .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
-                                                sDialog.dismiss();
+                                                onBackPressed();
                                             }
                                         })
-                                        .show();
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                             } else {
-                                new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.ERROR_TYPE)
-                                        .setTitleText("Perhatian")
+                                pDialog.setTitleText("Gagal Terkirim")
                                         .setContentText("Terjadi kesalahan saat mengirim data")
                                         .setConfirmText("    OK    ")
-                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                            @Override
-                                            public void onClick(KAlertDialog sDialog) {
-                                                sDialog.dismiss();
-                                            }
-                                        })
-                                        .show();
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }
 
                         } catch (JSONException e) {
@@ -374,7 +543,38 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("nik", sharedPrefManager.getSpNik());
+                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("email", emailED.getText().toString());
+
+                if(genderChoice.equals("male")){
+                    params.put("jenis_kelamin", "Laki-laki");
+                } else if(genderChoice.equals("female")){
+                    params.put("jenis_kelamin", "Perempuan");
+                }
+
+                params.put("tempat_lahir", tempatLahirED.getText().toString());
+                params.put("tanggal_lahir", tanggalLAhir);
+                params.put("handphone", noHanphoneED.getText().toString());
+
+                if(statusPernikahanChoice.equals("1")){
+                    params.put("status_pernikahan", "Belum Menikah");
+                } else if(statusPernikahanChoice.equals("2")){
+                    params.put("status_pernikahan", "Sudah Menikah");
+                } else if(statusPernikahanChoice.equals("3")){
+                    params.put("status_pernikahan", "Cerai Hidup");
+                } else if(statusPernikahanChoice.equals("4")){
+                    params.put("status_pernikahan", "Cerai Mati");
+                }
+
+                params.put("agama", agamaED.getText().toString());
+                params.put("alamat_ktp", alamatKTPED.getText().toString());
+
+                if(emailSwitch.isChecked()){
+                    params.put("alamat_domisili", alamatKTPED.getText().toString());
+                } else {
+                    params.put("alamat_domisili", alamatDomisiliED.getText().toString());
+                }
+
                 return params;
             }
         };
@@ -433,8 +633,8 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 markMale.setVisibility(View.GONE);
                 markFemale.setVisibility(View.VISIBLE);
-                maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
-                femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
                 genderChoice = "female";
                 genderPilihTV.setText("Perempuan");
 
@@ -702,6 +902,14 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    public void onBackPressed() {
+        if(bottomSheet.isSheetShowing()){
+            bottomSheet.dismissSheet();
+        } else {
+            super.onBackPressed();
+        }
     }
 
 }
