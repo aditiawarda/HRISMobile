@@ -165,6 +165,11 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                                     genderPilihTV.setText("");
                                 } else {
                                     genderPilihTV.setText(jenis_kelamin);
+                                    if(jenis_kelamin.equals("Laki-laki")){
+                                        genderChoice = "male";
+                                    } else if(jenis_kelamin.equals("Perempuan")){
+                                        genderChoice = "female";
+                                    }
                                 }
 
                                 if(tempat_lahir.equals("")||tempat_lahir.equals("null")){
@@ -237,6 +242,15 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                                     statusPernikahanPilihTV.setText("");
                                 } else {
                                     statusPernikahanPilihTV.setText(status_pernikahan);
+                                    if(status_pernikahan.equals("Belum Menikah")){
+                                        statusPernikahanChoice = "1";
+                                    } else if(status_pernikahan.equals("Sudah Menikah")){
+                                        statusPernikahanChoice = "2";
+                                    } else if(status_pernikahan.equals("Cerai Hidup")){
+                                        statusPernikahanChoice = "3";
+                                    } else if(status_pernikahan.equals("Cerai Mati")){
+                                        statusPernikahanChoice = "4";
+                                    }
                                 }
 
                                 if(agama.equals("")||agama.equals("null")){
@@ -270,6 +284,75 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                                         })
                                         .show();
                           }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("nik", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void sendData() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_info_personal";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText("Berhasil")
+                                        .setContentText("Data berhasil terkirim")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            } else {
+                                new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Terjadi kesalahan saat mengirim data")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
