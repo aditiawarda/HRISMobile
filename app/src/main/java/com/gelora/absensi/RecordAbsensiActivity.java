@@ -124,39 +124,39 @@ public class RecordAbsensiActivity extends AppCompatActivity {
                                 String bulan = "", bulanName = "";
                                 if(month==1){
                                     bulan = "01";
-                                    bulanName = "Jan";
+                                    bulanName = "Januari";
                                 } else if (month==2){
                                     bulan = "02";
-                                    bulanName = "Feb";
+                                    bulanName = "Februari";
                                 } else if (month==3){
                                     bulan = "03";
-                                    bulanName = "Mar";
+                                    bulanName = "Maret";
                                 } else if (month==4){
                                     bulan = "04";
-                                    bulanName = "Apr";
+                                    bulanName = "April";
                                 } else if (month==5){
                                     bulan = "05";
-                                    bulanName = "01";
+                                    bulanName = "Mei";
                                 } else if (month==6){
                                     bulan = "06";
-                                    bulanName = "Jun";
+                                    bulanName = "Juni";
                                 } else if (month==7){
                                     bulan = "07";
-                                    bulanName = "Jul";
+                                    bulanName = "Juli";
                                 } else if (month==8){
                                     bulan = "08";
-                                    bulanName = "Agu";
+                                    bulanName = "Agustus";
                                 } else if (month==9){
                                     bulan = "09";
-                                    bulanName = "Sep";
+                                    bulanName = "September";
                                 } else {
                                     bulan = String.valueOf(month);
                                     if (month==10){
-                                        bulanName = "Okt";
+                                        bulanName = "Oktober";
                                     } else if(month==11){
-                                        bulanName = "Nov";
+                                        bulanName = "November";
                                     } else if(month==12){
-                                        bulanName = "Des";
+                                        bulanName = "Desember";
                                     }
                                 }
                                 selectMonth = String.valueOf(year)+"-"+bulan;
@@ -198,40 +198,40 @@ public class RecordAbsensiActivity extends AppCompatActivity {
 
         switch (bulanValue) {
             case "01":
-                bulanName = "Jan";
+                bulanName = "Januari";
                 break;
             case "02":
-                bulanName = "Feb";
+                bulanName = "Februari";
                 break;
             case "03":
-                bulanName = "Mar";
+                bulanName = "Maret";
                 break;
             case "04":
-                bulanName = "Apr";
+                bulanName = "April";
                 break;
             case "05":
                 bulanName = "Mei";
                 break;
             case "06":
-                bulanName = "Jun";
+                bulanName = "Juni";
                 break;
             case "07":
-                bulanName = "Jul";
+                bulanName = "Juli";
                 break;
             case "08":
-                bulanName = "Agu";
+                bulanName = "Agustus";
                 break;
             case "09":
-                bulanName = "Sep";
+                bulanName = "September";
                 break;
             case "10":
-                bulanName = "Okt";
+                bulanName = "Oktober";
                 break;
             case "11":
-                bulanName = "Nov";
+                bulanName = "November";
                 break;
             case "12":
-                bulanName = "Des";
+                bulanName = "Desember";
                 break;
             default:
                 bulanName = "Not found!";

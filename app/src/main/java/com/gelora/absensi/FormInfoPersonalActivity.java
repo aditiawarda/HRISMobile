@@ -1,12 +1,14 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -19,22 +21,34 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.takisoft.datetimepicker.DatePickerDialog;
+
+import net.cachapa.expandablelayout.ExpandableLayout;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class FormInfoPersonalActivity extends AppCompatActivity {
 
-    LinearLayout backBTN;
+    LinearLayout backBTN, genderBTN, statusPernikahanBTN, maleBTN, femaleBTN, markMale, markFemale, belumMenikahBTN, sudahMenikahBTN, ceraiHidupBTN, ceraiMatiBTN, markBelumMenikah, markSudahMenikah, markCeraiHidup, markCeraiMati;
     TextView namaTV, genderPilihTV, tanggalLahirPilihTV, statusPernikahanPilihTV;
     EditText emailED, tempatLahirED, noHanphoneED, agamaED, alamatKTPED, alamatDomisiliED;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
+    ExpandableLayout expandableDomisili;
+    BottomSheetLayout bottomSheet;
+    String genderChoice = "", tanggalLAhir = "", statusPernikahanChoice = "";
+
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch emailSwitch;
 
     @Override
@@ -56,6 +70,10 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         alamatKTPED = findViewById(R.id.alamat_ktp_ed);
         alamatDomisiliED = findViewById(R.id.alamat_domisili_ed);
         emailSwitch = findViewById(R.id.alamat_domisili_switch);
+        expandableDomisili = findViewById(R.id.expandable_domisili);
+        bottomSheet = findViewById(R.id.bottom_sheet_layout);
+        genderBTN = findViewById(R.id.gender_btn);
+        statusPernikahanBTN = findViewById(R.id.status_pernikahan_btn);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -78,16 +96,31 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
             }
         });
 
+        genderBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                genderChoice();
+            }
+        });
+
+        statusPernikahanBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                statusPernikahanChoice();
+            }
+        });
+
         emailSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (emailSwitch.isChecked()){
-                    alamatDomisiliED.setVisibility(View.GONE);
+                    expandableDomisili.collapse();
                 } else {
-                    alamatDomisiliED.setVisibility(View.VISIBLE);
+                    expandableDomisili.expand();
                 }
             }
         });
+
 
         getData();
 
@@ -265,6 +298,315 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    private void genderChoice(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(FormInfoPersonalActivity.this).inflate(R.layout.layout_gender, bottomSheet, false));
+        maleBTN = findViewById(R.id.male_btn);
+        femaleBTN = findViewById(R.id.female_btn);
+        markMale = findViewById(R.id.mark_male);
+        markFemale = findViewById(R.id.mark_female);
+
+        if (genderChoice.equals("male")){
+            maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+            femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            markMale.setVisibility(View.VISIBLE);
+            markFemale.setVisibility(View.GONE);
+        } else if (genderChoice.equals("female")){
+            maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+            markMale.setVisibility(View.GONE);
+            markFemale.setVisibility(View.VISIBLE);
+        } else {
+            maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            markMale.setVisibility(View.GONE);
+            markFemale.setVisibility(View.GONE);
+        }
+
+        maleBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                markMale.setVisibility(View.VISIBLE);
+                markFemale.setVisibility(View.GONE);
+                maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                genderChoice = "male";
+                genderPilihTV.setText("Laki-Laki");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        femaleBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                markMale.setVisibility(View.GONE);
+                markFemale.setVisibility(View.VISIBLE);
+                maleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                genderChoice = "female";
+                genderPilihTV.setText("Perempuan");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private void bornDate(){
+            int y = Integer.parseInt(getDateY());
+            int m = Integer.parseInt(getDateM());
+            int d = Integer.parseInt(getDateD());
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(FormInfoPersonalActivity.this, (view1, year, month, dayOfMonth) -> {
+
+                tanggalLAhir = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                String dayDate = tanggalLAhir.substring(8,10);
+                String yearDate = tanggalLAhir.substring(0,4);;
+                String bulanValue = tanggalLAhir.substring(5,7);
+                String bulanName;
+
+                switch (bulanValue) {
+                    case "01":
+                        bulanName = "Jan";
+                        break;
+                    case "02":
+                        bulanName = "Feb";
+                        break;
+                    case "03":
+                        bulanName = "Mar";
+                        break;
+                    case "04":
+                        bulanName = "Apr";
+                        break;
+                    case "05":
+                        bulanName = "Mei";
+                        break;
+                    case "06":
+                        bulanName = "Jun";
+                        break;
+                    case "07":
+                        bulanName = "Jul";
+                        break;
+                    case "08":
+                        bulanName = "Agu";
+                        break;
+                    case "09":
+                        bulanName = "Sep";
+                        break;
+                    case "10":
+                        bulanName = "Okt";
+                        break;
+                    case "11":
+                        bulanName = "Nov";
+                        break;
+                    case "12":
+                        bulanName = "Des";
+                        break;
+                    default:
+                        bulanName = "Not found!";
+                        break;
+                }
+
+                tanggalLahirPilihTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+            }, y,m,d);
+            dpd.show();
+
+    }
+
+    private void statusPernikahanChoice(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(FormInfoPersonalActivity.this).inflate(R.layout.layout_status_pernikahan, bottomSheet, false));
+        belumMenikahBTN = findViewById(R.id.belum_menikah_btn);
+        sudahMenikahBTN = findViewById(R.id.sudah_menikah_btn);
+        ceraiHidupBTN = findViewById(R.id.cerai_hidup_btn);
+        ceraiMatiBTN = findViewById(R.id.cerai_mati_btn);
+        markBelumMenikah = findViewById(R.id.mark_belum_menikah);
+        markSudahMenikah = findViewById(R.id.mark_sudah_menikah);
+        markCeraiHidup = findViewById(R.id.mark_cerai_hidup);
+        markCeraiMati = findViewById(R.id.mark_cerai_mati);
+
+        if (statusPernikahanChoice.equals("1")){
+            belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+            sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            markBelumMenikah.setVisibility(View.VISIBLE);
+            markSudahMenikah.setVisibility(View.GONE);
+            markCeraiHidup.setVisibility(View.GONE);
+            markCeraiMati.setVisibility(View.GONE);
+        } else if (statusPernikahanChoice.equals("2")){
+            belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+            ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            markBelumMenikah.setVisibility(View.GONE);
+            markSudahMenikah.setVisibility(View.VISIBLE);
+            markCeraiHidup.setVisibility(View.GONE);
+            markCeraiMati.setVisibility(View.GONE);
+        } else if (statusPernikahanChoice.equals("3")){
+            belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+            ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            markBelumMenikah.setVisibility(View.GONE);
+            markSudahMenikah.setVisibility(View.GONE);
+            markCeraiHidup.setVisibility(View.VISIBLE);
+            markCeraiMati.setVisibility(View.GONE);
+        } else if (statusPernikahanChoice.equals("4")){
+            belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+            markBelumMenikah.setVisibility(View.GONE);
+            markSudahMenikah.setVisibility(View.GONE);
+            markCeraiHidup.setVisibility(View.GONE);
+            markCeraiMati.setVisibility(View.VISIBLE);
+        }
+
+        belumMenikahBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                markBelumMenikah.setVisibility(View.VISIBLE);
+                markSudahMenikah.setVisibility(View.GONE);
+                markCeraiHidup.setVisibility(View.GONE);
+                markCeraiMati.setVisibility(View.GONE);
+
+                statusPernikahanChoice = "1";
+                statusPernikahanPilihTV.setText("Belum Menikah");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        sudahMenikahBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                markBelumMenikah.setVisibility(View.GONE);
+                markSudahMenikah.setVisibility(View.VISIBLE);
+                markCeraiHidup.setVisibility(View.GONE);
+                markCeraiMati.setVisibility(View.GONE);
+
+                statusPernikahanChoice = "2";
+                statusPernikahanPilihTV.setText("Sudah Menikah");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        ceraiHidupBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                markBelumMenikah.setVisibility(View.GONE);
+                markSudahMenikah.setVisibility(View.GONE);
+                markCeraiHidup.setVisibility(View.VISIBLE);
+                markCeraiMati.setVisibility(View.GONE);
+
+                statusPernikahanChoice = "3";
+                statusPernikahanPilihTV.setText("Cerai Hidup");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        ceraiMatiBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                markBelumMenikah.setVisibility(View.GONE);
+                markSudahMenikah.setVisibility(View.GONE);
+                markCeraiHidup.setVisibility(View.GONE);
+                markCeraiMati.setVisibility(View.VISIBLE);
+
+                statusPernikahanChoice = "4";
+                statusPernikahanPilihTV.setText("Cerai Mati");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+    }
+
+    private String getDate() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateD() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateM() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateY() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     private void connectionFailed(){
