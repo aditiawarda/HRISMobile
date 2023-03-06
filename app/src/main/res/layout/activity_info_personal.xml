@@ -593,7 +593,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="53dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:orientation="vertical"
                             android:paddingLeft="10dp">
@@ -636,6 +636,7 @@
                                     android:id="@+id/warning_alamat_ktp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_marginTop="19dp"
                                     android:visibility="gone"
                                     android:gravity="right|center">
 
@@ -656,7 +657,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="53dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="15dp"
                             android:orientation="vertical"
@@ -700,13 +701,13 @@
                                     android:id="@+id/warning_alamat_domisili"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_marginTop="19dp"
                                     android:visibility="gone"
                                     android:gravity="right|center">
 
                                     <LinearLayout
                                         android:layout_width="15dp"
                                         android:layout_height="15dp"
-                                        android:layout_marginTop="1dp"
                                         android:layout_marginRight="30dp"
                                         android:background="@drawable/warning_mark_absensi"
                                         android:orientation="horizontal"
