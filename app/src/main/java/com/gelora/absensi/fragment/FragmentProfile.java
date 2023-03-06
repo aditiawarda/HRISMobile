@@ -869,6 +869,7 @@ public class FragmentProfile extends Fragment {
         sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_KARYAWAN, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_ULTAH, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_PENGUMUMAN, "");
         Preferences.clearLoggedInUser(mContext);
         Intent intent = new Intent(mContext, LoginActivity.class);
         startActivity(intent);

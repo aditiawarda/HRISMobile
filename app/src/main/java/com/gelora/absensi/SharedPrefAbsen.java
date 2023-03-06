@@ -20,6 +20,7 @@ public class SharedPrefAbsen {
     public static final String SP_KARYAWAN_PENGGANTI = "spKaryawanPengganti";
     public static final String SP_TITIK_ABSENSI = "spTitikAbsensi";
     public static final String SP_NOTIF_ULTAH = "spNotifUltah";
+    public static final String SP_NOTIF_PENGUMUMAN = "spNotifPengumuman";
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -95,6 +96,10 @@ public class SharedPrefAbsen {
 
     public String getSpNotifUltah(){
         return sp.getString(SP_NOTIF_ULTAH, "");
+    }
+
+    public String getSpNotifPengumuman(){
+        return sp.getString(SP_NOTIF_PENGUMUMAN, "");
     }
 
 }

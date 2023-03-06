@@ -575,8 +575,25 @@ public class FragmentHome extends Fragment {
                                 // Pengumuman
                                 if(fitur_pengumuman.equals("0")){
                                     bannerPengumumanPart.setVisibility(View.GONE);
+                                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_PENGUMUMAN, "");
                                 } else if(fitur_pengumuman.equals("1")) {
                                     if(pengumuman_date.equals(getDate())){
+
+                                        if(!sharedPrefAbsen.getSpNotifPengumuman().equals("1")){
+                                            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_PENGUMUMAN, "1");
+                                            Intent intent = new Intent(mContext, DetailPengumumanActivity.class);
+                                            intent.putExtra("id_pengumuman", String.valueOf(pengumuman_id));
+                                            Notify.build(mContext)
+                                                    .setTitle("HRIS Mobile Gelora")
+                                                    .setContent(pengumuman_title+" | "+pengumuman_desc)
+                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                    .setColor(R.color.colorPrimary)
+                                                    .largeCircularIcon()
+                                                    .enableVibration(true)
+                                                    .setAction(intent)
+                                                    .show();
+                                        }
+
                                         bannerPengumumanPart.setVisibility(View.VISIBLE);
                                         judulPengumuman.setText(pengumuman_title.toUpperCase());
                                         highlightPengumuman.setText(pengumuman_desc);
@@ -591,6 +608,7 @@ public class FragmentHome extends Fragment {
 
                                     } else {
                                         bannerPengumumanPart.setVisibility(View.GONE);
+                                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_PENGUMUMAN, "");
                                     }
                                 }
 

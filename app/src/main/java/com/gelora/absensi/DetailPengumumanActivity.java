@@ -193,9 +193,9 @@ public class DetailPengumumanActivity extends AppCompatActivity {
                                     String hari_sekarang = getDate().substring(8,10);
                                     int selisih_hari = Integer.parseInt(hari_sekarang) - Integer.parseInt(hari);
                                     if(selisih_hari==0){
-                                        timeTV.setText("Diposting "+"Hari ini, "+pengumuman_time.substring(0,5));
+                                        timeTV.setText("Diposting "+"hari ini, "+pengumuman_time.substring(0,5));
                                     } else if(selisih_hari==1){
-                                        timeTV.setText("Diposting "+"Kemarin, "+pengumuman_time.substring(0,5));
+                                        timeTV.setText("Diposting "+"kemarin, "+pengumuman_time.substring(0,5));
                                     } else {
                                         timeTV.setText("Diposting pada "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
                                     }
