@@ -394,48 +394,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Masuk ke halaman dashboard (Tap pada tombol yang dilingkari merah)."
-                                    android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginBottom="15dp"
-                                android:gravity="center">
-
-                                <ImageView
-                                    android:layout_width="129dp"
-                                    android:layout_height="275dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_izin_1" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight=".10"
-                                    android:text="2."
-                                    android:lineSpacingExtra="2dp"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="-10dp"
-                                    android:layout_weight=".90"
-                                    android:lineSpacingExtra="2dp"
-                                    android:text="Berikut adalah tampilan halaman dashboard, selanjutnya masuk ke menu form izin/sakit."
+                                    android:text="Pilih menu izin pada halaman home."
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp" />
 
@@ -465,7 +424,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight=".10"
-                                    android:text="3."
+                                    android:text="2."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp" />
@@ -476,7 +435,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Berikut adalah tampilan halaman form izin, selanjutnya isi semua data pastikan tidak ada yang terlewat."
+                                    android:text="Berikut adalah tampilan halaman form izin, selanjutnya isi semua data pastikan tidak ada yang terlewat, setelah itu tekan tombol kirim."
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp" />
 
@@ -506,7 +465,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight=".10"
-                                    android:text="4."
+                                    android:text="3."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp" />
@@ -587,48 +546,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Masuk ke halaman dashboard (Tap pada tombol yang dilingkari merah)."
-                                    android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginBottom="15dp"
-                                android:gravity="center">
-
-                                <ImageView
-                                    android:layout_width="129dp"
-                                    android:layout_height="275dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_izin_1" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight=".10"
-                                    android:text="2."
-                                    android:lineSpacingExtra="2dp"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="-10dp"
-                                    android:layout_weight=".90"
-                                    android:lineSpacingExtra="2dp"
-                                    android:text="Berikut adalah tampilan halaman dashboard, selanjutnya masuk ke menu form permohonan cuti."
+                                    android:text="Pilih menu cuti pada halaman home."
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp" />
 
@@ -658,7 +576,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight=".10"
-                                    android:text="3."
+                                    android:text="2."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp" />
@@ -669,7 +587,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Berikut adalah tampilan halaman form permohonan cuti, selanjutnya isi semua data pastikan tidak ada yang terlewat."
+                                    android:text="Berikut adalah tampilan halaman form permohonan cuti, selanjutnya isi semua data pastikan tidak ada yang terlewat, setelah itu tekan tombol kirim."
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp" />
 
@@ -709,7 +627,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight=".10"
-                                    android:text="4."
+                                    android:text="3."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp" />
@@ -791,48 +709,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Masuk ke halaman dashboard (Tap pada tombol yang dilingkari merah)."
-                                    android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginBottom="15dp"
-                                android:gravity="center">
-
-                                <ImageView
-                                    android:layout_width="129dp"
-                                    android:layout_height="275dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_izin_1" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight=".10"
-                                    android:text="2."
-                                    android:lineSpacingExtra="2dp"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="-10dp"
-                                    android:layout_weight=".90"
-                                    android:lineSpacingExtra="2dp"
-                                    android:text="Berikut adalah tampilan halaman dashboard, selanjutnya masuk ke menu form keterangan tidak absen."
+                                    android:text="Pilih menu fingerscan pada halaman home."
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp" />
 
@@ -862,7 +739,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight=".10"
-                                    android:text="3."
+                                    android:text="2."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp" />
@@ -873,7 +750,7 @@
                                     android:layout_marginLeft="-10dp"
                                     android:layout_weight=".90"
                                     android:lineSpacingExtra="2dp"
-                                    android:text="Berikut adalah tampilan halaman form keterangan tidak absen, selanjutnya isi semua data pastikan tidak ada yang terlewat."
+                                    android:text="Berikut adalah tampilan halaman form keterangan tidak absen, selanjutnya isi semua data pastikan tidak ada yang terlewat, setelah itu tekan tombol kirim."
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp" />
 
@@ -903,7 +780,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight=".10"
-                                    android:text="4."
+                                    android:text="3."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
                                     android:textSize="14dp" />
