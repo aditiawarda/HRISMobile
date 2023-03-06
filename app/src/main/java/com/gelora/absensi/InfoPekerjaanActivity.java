@@ -33,7 +33,7 @@ import java.util.Map;
 public class InfoPekerjaanActivity extends AppCompatActivity {
 
     LinearLayout backBTN;
-    TextView nikTV, cabangTV, departemenTV, bagianTV, jabatanTV, statusKaryawanTV, tanggalBergabungTV, masaKerjaTV;
+    TextView nikTV, cabangTV, departemenTV, bagianTV, jabatanTV, statusKaryawanTV, tanggalBergabungTV, masaKerjaTV, golonganKaryawanTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
 
@@ -53,6 +53,7 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
         statusKaryawanTV = findViewById(R.id.status_karyawan);
         tanggalBergabungTV = findViewById(R.id.tanggal_bergabung);
         masaKerjaTV = findViewById(R.id.masa_kerja);
+        golonganKaryawanTV = findViewById(R.id.golongan_karyawan);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -102,6 +103,7 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
                                 String jabatan = dataArray.getString("jabatan");
                                 String status_karyawan = dataArray.getString("status_karyawan");
                                 String tanggal_bergabung = dataArray.getString("tanggal_bergabung");
+                                String golongan_karyawan = dataArray.getString("golongan_karyawan");
 
                                 nikTV.setText(nik);
 
@@ -241,6 +243,12 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
                                         }
                                     }
 
+                                }
+
+                                if(golongan_karyawan.equals("")||golongan_karyawan.equals("null")){
+                                    golonganKaryawanTV.setText("-");
+                                } else {
+                                    golonganKaryawanTV.setText(status_karyawan);
                                 }
 
                             } else {

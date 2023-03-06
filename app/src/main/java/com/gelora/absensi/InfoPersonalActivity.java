@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -140,7 +141,17 @@ public class InfoPersonalActivity extends AppCompatActivity {
 
                                 namaTV.setText(nama);
 
-                                if((!email.equals("")||!email.equals("null"))&&(!jenis_kelamin.equals("")||!jenis_kelamin.equals("null"))&&(!tempat_lahir.equals("")||!tempat_lahir.equals("null"))&&(!tanggal_lahir.equals("")||!tanggal_lahir.equals("null"))&&(!handphone.equals("")||!handphone.equals("null"))&&(!status_pernikahan.equals("")||!status_pernikahan.equals("null"))&&(!agama.equals("")||!agama.equals("null"))&&(!alamat_ktp.equals("")||!alamat_ktp.equals("null"))&&(!alamat_domisili.equals("")||!alamat_domisili.equals("null"))){
+                                if(
+                                   (!email.equals("")            &&!email.equals("null"))            &&
+                                   (!jenis_kelamin.equals("")    &&!jenis_kelamin.equals("null"))    &&
+                                   (!tempat_lahir.equals("")     &&!tempat_lahir.equals("null"))     &&
+                                   (!tanggal_lahir.equals("")    &&!tanggal_lahir.equals("null"))    &&
+                                   (!handphone.equals("")        &&!handphone.equals("null"))        &&
+                                   (!status_pernikahan.equals("")&&!status_pernikahan.equals("null"))&&
+                                   (!agama.equals("")            &&!agama.equals("null"))            &&
+                                   (!alamat_ktp.equals("")       &&!alamat_ktp.equals("null"))       &&
+                                   (!alamat_domisili.equals("")  &&!alamat_domisili.equals("null"))
+                                ){
                                     ubahBTN.setVisibility(View.VISIBLE);
                                 } else {
                                     ubahBTN.setVisibility(View.GONE);

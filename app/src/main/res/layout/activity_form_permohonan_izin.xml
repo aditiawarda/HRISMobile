@@ -569,7 +569,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_marginTop="10dp"
                                     android:layout_height="40dp"
-                                    android:background="@drawable/shape_second_btn"
+                                    android:background="@drawable/shape_success"
                                     android:gravity="center">
 
                                     <TextView

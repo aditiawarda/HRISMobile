@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.takisoft.datetimepicker.DatePickerDialog;
@@ -40,14 +43,15 @@ import java.util.Map;
 
 public class FormInfoPersonalActivity extends AppCompatActivity {
 
-    LinearLayout tanggalLAhirBTN, submitBTN, backBTN, genderBTN, statusPernikahanBTN, maleBTN, femaleBTN, markMale, markFemale, belumMenikahBTN, sudahMenikahBTN, ceraiHidupBTN, ceraiMatiBTN, markBelumMenikah, markSudahMenikah, markCeraiHidup, markCeraiMati;
-    TextView namaTV, genderPilihTV, tanggalLahirPilihTV, statusPernikahanPilihTV;
-    EditText emailED, tempatLahirED, noHanphoneED, agamaED, alamatKTPED, alamatDomisiliED;
+    LinearLayout lainnyaBTN, markLainnya, islamBTN, kristenBTN, hinduBTN, buddhaBTN, katolikBTN, konghuchuBTN, markIslam, markKristen, markHindu, markBuddha, markKatolik, markKonghuchu, backSuccessBTN, formPart, successPart, tanggalLAhirBTN, submitBTN, backBTN, agamaBTN, genderBTN, statusPernikahanBTN, maleBTN, femaleBTN, markMale, markFemale, belumMenikahBTN, sudahMenikahBTN, ceraiHidupBTN, ceraiMatiBTN, markBelumMenikah, markSudahMenikah, markCeraiHidup, markCeraiMati;
+    TextView agamaPilihTV, namaTV, genderPilihTV, tanggalLahirPilihTV, statusPernikahanPilihTV;
+    EditText emailED, tempatLahirED, noHanphoneED, alamatKTPED, alamatDomisiliED;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     ExpandableLayout expandableDomisili;
     BottomSheetLayout bottomSheet;
-    String genderChoice = "", tanggalLAhir = "", statusPernikahanChoice = "";
+    ImageView successGif;
+    String genderChoice = "", tanggalLAhir = "", statusPernikahanChoice = "", agamaChoice = "";
     KAlertDialog pDialog;
     private int i = -1;
 
@@ -62,6 +66,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
+        backSuccessBTN = findViewById(R.id.back_success_btn);
         namaTV = findViewById(R.id.nama_tv);
         emailED = findViewById(R.id.email_ed);
         genderPilihTV = findViewById(R.id.gender_pilih_tv);
@@ -69,16 +74,24 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         tanggalLahirPilihTV = findViewById(R.id.tanggal_lahir_pilih_tv);
         statusPernikahanPilihTV = findViewById(R.id.status_pernikahan_pilih_tv);
         noHanphoneED = findViewById(R.id.no_hanphone_ed);
-        agamaED = findViewById(R.id.agama_ed);
         alamatKTPED = findViewById(R.id.alamat_ktp_ed);
         alamatDomisiliED = findViewById(R.id.alamat_domisili_ed);
         emailSwitch = findViewById(R.id.alamat_domisili_switch);
         expandableDomisili = findViewById(R.id.expandable_domisili);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         genderBTN = findViewById(R.id.gender_btn);
+        agamaBTN = findViewById(R.id.agama_btn);
+        agamaPilihTV = findViewById(R.id.agama_pilih_tv);
         tanggalLAhirBTN= findViewById(R.id.tanggal_lahir_btn);
         statusPernikahanBTN = findViewById(R.id.status_pernikahan_btn);
         submitBTN = findViewById(R.id.submit_btn);
+        formPart = findViewById(R.id.form_part);
+        successPart = findViewById(R.id.success_submit);
+        successGif = findViewById(R.id.success_gif);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.success_ic)
+                .into(successGif);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -95,6 +108,13 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        backSuccessBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -122,6 +142,13 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
             }
         });
 
+        agamaBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                agamaChoice();
+            }
+        });
+
         emailSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,7 +171,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                     tempatLahirED.getText().toString().equals("") ||
                     noHanphoneED.getText().toString().equals("")  ||
                     statusPernikahanChoice.equals("")             ||
-                    agamaED.getText().toString().equals("")       ||
+                    agamaChoice.equals("")                        ||
                     alamatKTPED.getText().toString().equals("")
                 ){
                     new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.ERROR_TYPE)
@@ -341,7 +368,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                                     genderPilihTV.setText("");
                                 } else {
                                     genderPilihTV.setText(jenis_kelamin);
-                                    if(jenis_kelamin.equals("Laki-laki")){
+                                    if(jenis_kelamin.equals("Laki-Laki")){
                                         genderChoice = "male";
                                     } else if(jenis_kelamin.equals("Perempuan")){
                                         genderChoice = "female";
@@ -421,7 +448,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                                     statusPernikahanPilihTV.setText(status_pernikahan);
                                     if(status_pernikahan.equals("Belum Menikah")){
                                         statusPernikahanChoice = "1";
-                                    } else if(status_pernikahan.equals("Sudah Menikah")){
+                                    } else if(status_pernikahan.equals("Menikah")){
                                         statusPernikahanChoice = "2";
                                     } else if(status_pernikahan.equals("Cerai Hidup")){
                                         statusPernikahanChoice = "3";
@@ -431,9 +458,10 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                                 }
 
                                 if(agama.equals("")||agama.equals("null")){
-                                    agamaED.setText("");
+                                    agamaPilihTV.setText("");
                                 } else {
-                                    agamaED.setText(agama);
+                                    agamaChoice = agama;
+                                    agamaPilihTV.setText(agama);
                                 }
 
                                 if(alamat_ktp.equals("")||alamat_ktp.equals("null")){
@@ -506,17 +534,12 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
-                                pDialog.setTitleText("Berhasil")
-                                        .setContentText("Data berhasil terkirim")
-                                        .setConfirmText("    OK    ")
-                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                            @Override
-                                            public void onClick(KAlertDialog sDialog) {
-                                                onBackPressed();
-                                            }
-                                        })
-                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                                pDialog.dismiss();
+                                successPart.setVisibility(View.VISIBLE);
+                                formPart.setVisibility(View.GONE);
                             } else {
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
                                 pDialog.setTitleText("Gagal Terkirim")
                                         .setContentText("Terjadi kesalahan saat mengirim data")
                                         .setConfirmText("    OK    ")
@@ -534,6 +557,8 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
+                        successPart.setVisibility(View.GONE);
+                        formPart.setVisibility(View.VISIBLE);
                         connectionFailed();
                     }
                 }
@@ -547,7 +572,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 params.put("email", emailED.getText().toString());
 
                 if(genderChoice.equals("male")){
-                    params.put("jenis_kelamin", "Laki-laki");
+                    params.put("jenis_kelamin", "Laki-Laki");
                 } else if(genderChoice.equals("female")){
                     params.put("jenis_kelamin", "Perempuan");
                 }
@@ -559,14 +584,14 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 if(statusPernikahanChoice.equals("1")){
                     params.put("status_pernikahan", "Belum Menikah");
                 } else if(statusPernikahanChoice.equals("2")){
-                    params.put("status_pernikahan", "Sudah Menikah");
+                    params.put("status_pernikahan", "Menikah");
                 } else if(statusPernikahanChoice.equals("3")){
                     params.put("status_pernikahan", "Cerai Hidup");
                 } else if(statusPernikahanChoice.equals("4")){
                     params.put("status_pernikahan", "Cerai Mati");
                 }
 
-                params.put("agama", agamaED.getText().toString());
+                params.put("agama", agamaChoice);
                 params.put("alamat_ktp", alamatKTPED.getText().toString());
 
                 if(emailSwitch.isChecked()){
@@ -637,6 +662,349 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
                 genderChoice = "female";
                 genderPilihTV.setText("Perempuan");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+    }
+
+    private void agamaChoice(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(FormInfoPersonalActivity.this).inflate(R.layout.layout_agama, bottomSheet, false));
+        islamBTN = findViewById(R.id.islam_btn);
+        kristenBTN = findViewById(R.id.kristen_btn);
+        hinduBTN = findViewById(R.id.hindu_btn);
+        buddhaBTN = findViewById(R.id.buddha_btn);
+        katolikBTN = findViewById(R.id.katolik_btn);
+        konghuchuBTN = findViewById(R.id.konghuchu_btn);
+        lainnyaBTN = findViewById(R.id.lainnya_btn);
+        markIslam = findViewById(R.id.mark_islam);
+        markKristen = findViewById(R.id.mark_kristen);
+        markHindu = findViewById(R.id.mark_hindu);
+        markBuddha = findViewById(R.id.mark_buddha);
+        markKatolik = findViewById(R.id.mark_katolik);
+        markKonghuchu = findViewById(R.id.mark_konghuchu);
+        markLainnya = findViewById(R.id.mark_lainnya);
+
+        if (agamaChoice.equals("Islam")){
+            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            markIslam.setVisibility(View.VISIBLE);
+            markKristen.setVisibility(View.GONE);
+            markHindu.setVisibility(View.GONE);
+            markBuddha.setVisibility(View.GONE);
+            markKatolik.setVisibility(View.GONE);
+            markKonghuchu.setVisibility(View.GONE);
+            markLainnya.setVisibility(View.GONE);
+        } else if (agamaChoice.equals("Kristen")){
+            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            markIslam.setVisibility(View.GONE);
+            markKristen.setVisibility(View.VISIBLE);
+            markHindu.setVisibility(View.GONE);
+            markBuddha.setVisibility(View.GONE);
+            markKatolik.setVisibility(View.GONE);
+            markKonghuchu.setVisibility(View.GONE);
+            markLainnya.setVisibility(View.GONE);
+        } else if (agamaChoice.equals("Hindu")){
+            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            markIslam.setVisibility(View.GONE);
+            markKristen.setVisibility(View.GONE);
+            markHindu.setVisibility(View.VISIBLE);
+            markBuddha.setVisibility(View.GONE);
+            markKatolik.setVisibility(View.GONE);
+            markKonghuchu.setVisibility(View.GONE);
+            markLainnya.setVisibility(View.GONE);
+        } else if (agamaChoice.equals("Buddha")){
+            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            markIslam.setVisibility(View.GONE);
+            markKristen.setVisibility(View.GONE);
+            markHindu.setVisibility(View.GONE);
+            markBuddha.setVisibility(View.VISIBLE);
+            markKatolik.setVisibility(View.GONE);
+            markKonghuchu.setVisibility(View.GONE);
+            markLainnya.setVisibility(View.GONE);
+        } else if (agamaChoice.equals("Katolik")){
+            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            markIslam.setVisibility(View.GONE);
+            markKristen.setVisibility(View.GONE);
+            markHindu.setVisibility(View.GONE);
+            markBuddha.setVisibility(View.GONE);
+            markKatolik.setVisibility(View.VISIBLE);
+            markKonghuchu.setVisibility(View.GONE);
+            markLainnya.setVisibility(View.GONE);
+        } else if (agamaChoice.equals("Kong Hu Chu")){
+            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            markIslam.setVisibility(View.GONE);
+            markKristen.setVisibility(View.GONE);
+            markHindu.setVisibility(View.GONE);
+            markBuddha.setVisibility(View.GONE);
+            markKatolik.setVisibility(View.GONE);
+            markKonghuchu.setVisibility(View.VISIBLE);
+            markLainnya.setVisibility(View.GONE);
+        } else if (agamaChoice.equals("Lainnya")){
+            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+            markIslam.setVisibility(View.GONE);
+            markKristen.setVisibility(View.GONE);
+            markHindu.setVisibility(View.GONE);
+            markBuddha.setVisibility(View.GONE);
+            markKatolik.setVisibility(View.GONE);
+            markKonghuchu.setVisibility(View.GONE);
+            markLainnya.setVisibility(View.VISIBLE);
+        }
+
+        islamBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                markIslam.setVisibility(View.VISIBLE);
+                markKristen.setVisibility(View.GONE);
+                markHindu.setVisibility(View.GONE);
+                markBuddha.setVisibility(View.GONE);
+                markKatolik.setVisibility(View.GONE);
+                markKonghuchu.setVisibility(View.GONE);
+                markLainnya.setVisibility(View.GONE);
+
+                agamaChoice = "Islam";
+                agamaPilihTV.setText("Islam");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        kristenBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                markIslam.setVisibility(View.GONE);
+                markKristen.setVisibility(View.VISIBLE);
+                markHindu.setVisibility(View.GONE);
+                markBuddha.setVisibility(View.GONE);
+                markKatolik.setVisibility(View.GONE);
+                markKonghuchu.setVisibility(View.GONE);
+                markLainnya.setVisibility(View.GONE);
+
+                agamaChoice = "Kristen";
+                agamaPilihTV.setText("Kristen");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        hinduBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                markIslam.setVisibility(View.GONE);
+                markKristen.setVisibility(View.GONE);
+                markHindu.setVisibility(View.VISIBLE);
+                markBuddha.setVisibility(View.GONE);
+                markKatolik.setVisibility(View.GONE);
+                markKonghuchu.setVisibility(View.GONE);
+                markLainnya.setVisibility(View.GONE);
+
+                agamaChoice = "Hindu";
+                agamaPilihTV.setText("Hindu");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        buddhaBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                markIslam.setVisibility(View.GONE);
+                markKristen.setVisibility(View.GONE);
+                markHindu.setVisibility(View.GONE);
+                markBuddha.setVisibility(View.VISIBLE);
+                markKatolik.setVisibility(View.GONE);
+                markKonghuchu.setVisibility(View.GONE);
+                markLainnya.setVisibility(View.GONE);
+
+                agamaChoice = "Buddha";
+                agamaPilihTV.setText("Buddha");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        katolikBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                markIslam.setVisibility(View.GONE);
+                markKristen.setVisibility(View.GONE);
+                markHindu.setVisibility(View.GONE);
+                markBuddha.setVisibility(View.GONE);
+                markKatolik.setVisibility(View.VISIBLE);
+                markKonghuchu.setVisibility(View.GONE);
+                markLainnya.setVisibility(View.GONE);
+
+                agamaChoice = "Katolik";
+                agamaPilihTV.setText("Katolik");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        konghuchuBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                markIslam.setVisibility(View.GONE);
+                markKristen.setVisibility(View.GONE);
+                markHindu.setVisibility(View.GONE);
+                markBuddha.setVisibility(View.GONE);
+                markKatolik.setVisibility(View.GONE);
+                markKonghuchu.setVisibility(View.VISIBLE);
+                markLainnya.setVisibility(View.GONE);
+
+                agamaChoice = "Kong Hu Chu";
+                agamaPilihTV.setText("Kong Hu Chu");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        lainnyaBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoPersonalActivity.this, R.drawable.shape_option_choice));
+                markIslam.setVisibility(View.GONE);
+                markKristen.setVisibility(View.GONE);
+                markHindu.setVisibility(View.GONE);
+                markBuddha.setVisibility(View.GONE);
+                markKatolik.setVisibility(View.GONE);
+                markKonghuchu.setVisibility(View.GONE);
+                markLainnya.setVisibility(View.VISIBLE);
+
+                agamaChoice = "Lainnya";
+                agamaPilihTV.setText("Lainnya");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -801,7 +1169,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 markCeraiMati.setVisibility(View.GONE);
 
                 statusPernikahanChoice = "2";
-                statusPernikahanPilihTV.setText("Sudah Menikah");
+                statusPernikahanPilihTV.setText("Menikah");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
