@@ -140,7 +140,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="60dp"
                                 android:textColor="#686868"
-                                android:textSize="15dp" />
+                                android:textSize="13dp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -181,7 +181,7 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#686868"
-                                        android:textSize="15dp" />
+                                        android:textSize="13dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -244,7 +244,7 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#686868"
-                                        android:textSize="15dp" />
+                                        android:textSize="13dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -307,7 +307,7 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#686868"
-                                        android:textSize="15dp" />
+                                        android:textSize="13dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -370,7 +370,7 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#686868"
-                                        android:textSize="15dp" />
+                                        android:textSize="13dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -433,7 +433,7 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#686868"
-                                        android:textSize="15dp" />
+                                        android:textSize="13dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -496,7 +496,7 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#686868"
-                                        android:textSize="15dp" />
+                                        android:textSize="13dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -559,7 +559,7 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#686868"
-                                        android:textSize="15dp" />
+                                        android:textSize="13dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -621,8 +621,9 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginRight="60dp"
                                         android:text=""
+                                        android:lineSpacingExtra="2dp"
                                         android:textColor="#686868"
-                                        android:textSize="15dp" />
+                                        android:textSize="13dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -686,8 +687,9 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginRight="60dp"
                                         android:text=""
+                                        android:lineSpacingExtra="2dp"
                                         android:textColor="#686868"
-                                        android:textSize="15dp" />
+                                        android:textSize="13dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
