@@ -831,7 +831,11 @@ public class RegisterActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+"+whatsapp+"&text="));
-                                    startActivity(webIntent);
+                                    try {
+                                        startActivity(webIntent);
+                                    } catch (SecurityException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
 

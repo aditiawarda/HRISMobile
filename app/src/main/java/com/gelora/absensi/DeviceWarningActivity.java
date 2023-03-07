@@ -80,7 +80,11 @@ public class DeviceWarningActivity extends AppCompatActivity {
                             String whatsapp = response.getString("whatsapp");
 
                             Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+"+whatsapp+"&text="));
-                            startActivity(webIntent);
+                            try {
+                                startActivity(webIntent);
+                            } catch (SecurityException e) {
+                                e.printStackTrace();
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
