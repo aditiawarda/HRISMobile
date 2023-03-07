@@ -153,7 +153,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
     RequestQueue requestQueue;
-    String appVersion = "1.7.0";
+    String appVersion = "1.7.1";
     private StatusBarColorManager mStatusBarColorManager;
 
     private RecyclerView dataAbsensiRV;
@@ -1001,7 +1001,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             Gson gson = builder.create();
                             statusAbsens = gson.fromJson(status_absen, StatusAbsen[].class);
                             adapterStatusAbsen = new AdapterStatusAbsen(statusAbsens,MapsActivity.this);
-                            statusAbsenRV.setAdapter(adapterStatusAbsen);
+                            try {
+                                statusAbsenRV.setAdapter(adapterStatusAbsen);
+                            } catch (NullPointerException e) {
+                                e.printStackTrace();
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -1051,7 +1055,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             Gson gson = builder.create();
                             shiftAbsens = gson.fromJson(shift_absen, ShiftAbsen[].class);
                             adapterShiftAbsen = new AdapterShiftAbsen(shiftAbsens,MapsActivity.this);
-                            shifAbsenRV.setAdapter(adapterShiftAbsen);
+                            try {
+                                shifAbsenRV.setAdapter(adapterShiftAbsen);
+                            } catch (NullPointerException e) {
+                                e.printStackTrace();
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();

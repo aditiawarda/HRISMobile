@@ -384,7 +384,7 @@ public class SplashScreen extends AppCompatActivity {
                             String close_btn = response.getString("close_btn");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.7.0";
+                                String currentVersion = "1.7.1";
                                 if (!currentVersion.equals(version) && popup.equals("1")){
 
                                     refreshPart.animate()
@@ -437,8 +437,13 @@ public class SplashScreen extends AppCompatActivity {
                                                             updateLayout.setVisibility(View.GONE);
                                                         }
                                                     });
-                                            Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.gelora.absensi"));
-                                            startActivity(webIntent);
+                                            Intent webIntent = new Intent(Intent.ACTION_VIEW);webIntent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.gelora.absensi"));
+                                            try {
+                                                startActivity(webIntent);
+                                            } catch (SecurityException e) {
+                                                e.printStackTrace();
+                                            }
+
                                             refreshPart.setVisibility(View.GONE);
                                             finish();
                                         }
