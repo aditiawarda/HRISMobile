@@ -162,7 +162,11 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                             public void onClick(KAlertDialog sDialog) {
                                 sDialog.dismiss();
                                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
-                                startActivity(browserIntent);
+                                try {
+                                    startActivity(browserIntent);
+                                } catch (SecurityException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         })
                         .show();
