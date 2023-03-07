@@ -36,6 +36,7 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -3884,7 +3885,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         statusDialog = "0";
                                                     }
                                                 });
-                                                dialodWarning.show();
+                                                try {
+                                                    dialodWarning.show();
+                                                } catch (WindowManager.BadTokenException e){
+                                                    e.printStackTrace();
+                                                }
 
                                                 Notify.build(getApplicationContext())
                                                         .setTitle("HRIS Mobile Gelora")
@@ -3985,7 +3990,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                             statusDialog = "0";
                                                         }
                                                     });
-                                                    dialodWarning.show();
+                                                    try {
+                                                        dialodWarning.show();
+                                                    } catch (WindowManager.BadTokenException e){
+                                                        e.printStackTrace();
+                                                    }
 
                                                     Notify.build(getApplicationContext())
                                                             .setTitle("HRIS Mobile Gelora")
@@ -4092,7 +4101,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                             statusDialog = "0";
                                                         }
                                                     });
-                                                    dialodWarning.show();
+                                                    try {
+                                                        dialodWarning.show();
+                                                    } catch (WindowManager.BadTokenException e){
+                                                        e.printStackTrace();
+                                                    }
 
                                                     Notify.build(getApplicationContext())
                                                             .setTitle("HRIS Mobile Gelora")
