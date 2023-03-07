@@ -20,6 +20,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/shape_bg"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="-2dp"
             android:layout_marginRight="-2dp"
@@ -27,7 +28,8 @@
             android:background="@drawable/shape_bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:orientation="horizontal" />
 
     </RelativeLayout>
 
