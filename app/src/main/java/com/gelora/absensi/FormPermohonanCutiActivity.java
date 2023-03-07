@@ -27,6 +27,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -160,6 +161,9 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
                 .into(successGif);
+
+        alasanTV.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        alamatSelamaCutiTV.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         if(sharedPrefManager.getSpIdJabatan().equals("10")){
             messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada bagian HRD untuk persetujuan.");

@@ -129,10 +129,9 @@
                                     android:gravity="center">
 
                                     <TextView
-                                        android:layout_width="28dp"
-                                        android:layout_height="28dp"
-                                        android:layout_marginRight="1.5dp"
-                                        android:background="@drawable/ic_baseline_chevron_back" />
+                                        android:layout_width="19.5dp"
+                                        android:layout_height="19.5dp"
+                                        android:background="@drawable/ic_baseline_home" />
 
                                 </LinearLayout>
 

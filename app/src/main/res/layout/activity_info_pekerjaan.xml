@@ -388,6 +388,40 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:id="@+id/attantion_part_hadir"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_marginLeft="3dp"
+                            android:background="@drawable/shape_attantion"
+                            android:orientation="vertical"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="15dp"
+                            android:paddingRight="15dp"
+                            android:paddingBottom="17dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Perhatian :"
+                                android:textColor="#C68D46"
+                                android:textSize="11dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/message_hadir"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:lineSpacingExtra="2.5dp"
+                                android:text="Apabila terdapat kekeliruan data atau data belum terupdate, harap segera hubungi bagian HRD."
+                                android:textColor="#C68D46"
+                                android:textSize="12dp" />
+
+                        </LinearLayout>
+
                     </LinearLayout>
 
                 </androidx.core.widget.NestedScrollView>

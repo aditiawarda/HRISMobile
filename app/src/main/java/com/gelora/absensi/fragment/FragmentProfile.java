@@ -78,7 +78,7 @@ import java.util.UUID;
  */
 public class FragmentProfile extends Fragment {
 
-    LinearLayout warningInfoPersonal, updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
+    LinearLayout infoGapPart, warningInfoPersonal, updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
     LinearLayout infoPersonalBTN, infoPekerjaanBTN, infoKontakDaruratBTN, infoKeluargaBTN, infoPendidikanDanPengalamanBTN, infoPayrollBTN;
     TextView nameOfUser, positionOfUser, descAvailable, descEmpty;
     ImageView avatarUser;
@@ -131,6 +131,7 @@ public class FragmentProfile extends Fragment {
         descAvailable = view.findViewById(R.id.desc_available);
         descEmpty = view.findViewById(R.id.desc_empty);
         warningInfoPersonal = view.findViewById(R.id.warning_info_personal);
+        infoGapPart = view.findViewById(R.id.info_gap_part);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -239,6 +240,12 @@ public class FragmentProfile extends Fragment {
                         .show();
             }
         });
+
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")) {
+            infoGapPart.setVisibility(View.GONE);
+        } else {
+            infoGapPart.setVisibility(View.VISIBLE);
+        }
 
         nameOfUser.setText(sharedPrefManager.getSpNama());
         getDataKaryawan();

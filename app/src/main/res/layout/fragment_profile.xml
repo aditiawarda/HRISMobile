@@ -685,236 +685,244 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/info_keluarga_btn"
-                                android:background="@drawable/shape_btn_effect"
+                                android:id="@+id/info_gap_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_marginTop="-3dp">
+                                android:orientation="vertical">
 
                                 <LinearLayout
+                                    android:id="@+id/info_keluarga_btn"
+                                    android:background="@drawable/shape_btn_effect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="12dp"
-                                    android:paddingBottom="12dp"
-                                    android:paddingRight="25dp"
-                                    android:paddingLeft="25dp"
-                                    android:layout_marginBottom="3dp"
-                                    android:layout_marginTop="3dp"
-                                    android:orientation="horizontal">
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="-3dp">
 
                                     <LinearLayout
-                                        android:background="@drawable/profile_menu_4"
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"/>
-
-                                    <RelativeLayout
-                                        android:paddingBottom="3dp"
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="12dp"
+                                        android:paddingBottom="12dp"
+                                        android:paddingRight="25dp"
+                                        android:paddingLeft="25dp"
+                                        android:layout_marginBottom="3dp"
+                                        android:layout_marginTop="3dp"
+                                        android:orientation="horizontal">
 
                                         <LinearLayout
+                                            android:background="@drawable/profile_menu_4"
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"/>
+
+                                        <RelativeLayout
+                                            android:paddingBottom="3dp"
                                             android:layout_width="match_parent"
-                                            android:layout_height="30dp"
-                                            android:layout_marginLeft="25dp"
-                                            android:layout_marginTop="4dp"
-                                            android:gravity="left|center"
-                                            android:orientation="horizontal">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:ellipsize="end"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:gravity="center"
-                                                android:text="Info Keluarga"
-                                                android:textColor="#CF811F"
-                                                android:textSize="13dp" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="30dp"
-                                            android:layout_marginTop="5dp"
-                                            android:gravity="right|center"
-                                            android:orientation="horizontal">
+                                            android:layout_height="match_parent">
 
                                             <LinearLayout
-                                                android:layout_width="25dp"
-                                                android:layout_height="25dp"
-                                                android:background="@drawable/ic_baseline_arrow_right"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="30dp"
+                                                android:layout_marginLeft="25dp"
+                                                android:layout_marginTop="4dp"
+                                                android:gravity="left|center"
+                                                android:orientation="horizontal">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
+                                                    android:gravity="center"
+                                                    android:text="Info Keluarga"
+                                                    android:textColor="#CF811F"
+                                                    android:textSize="13dp" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="30dp"
+                                                android:layout_marginTop="5dp"
                                                 android:gravity="right|center"
-                                                android:orientation="horizontal" />
+                                                android:orientation="horizontal">
 
-                                        </LinearLayout>
+                                                <LinearLayout
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_arrow_right"
+                                                    android:gravity="right|center"
+                                                    android:orientation="horizontal" />
 
-                                    </RelativeLayout>
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_marginLeft="55dp"
+                                        android:layout_height="1.5dp"
+                                        android:background="#F3F3F3"/>
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_marginLeft="55dp"
-                                    android:layout_height="1.5dp"
-                                    android:background="#F3F3F3"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/info_pendidikan_dan_pengalaman_btn"
-                                android:background="@drawable/shape_btn_effect"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_marginTop="-3dp">
-
-                                <LinearLayout
+                                    android:id="@+id/info_pendidikan_dan_pengalaman_btn"
+                                    android:background="@drawable/shape_btn_effect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="12dp"
-                                    android:paddingBottom="10dp"
-                                    android:paddingRight="25dp"
-                                    android:paddingLeft="25dp"
-                                    android:layout_marginBottom="3dp"
-                                    android:layout_marginTop="3dp"
-                                    android:orientation="horizontal">
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="-3dp">
 
                                     <LinearLayout
-                                        android:background="@drawable/profile_menu_5"
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"/>
-
-                                    <RelativeLayout
-                                        android:paddingBottom="3dp"
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="12dp"
+                                        android:paddingBottom="10dp"
+                                        android:paddingRight="25dp"
+                                        android:paddingLeft="25dp"
+                                        android:layout_marginBottom="3dp"
+                                        android:layout_marginTop="3dp"
+                                        android:orientation="horizontal">
 
                                         <LinearLayout
+                                            android:background="@drawable/profile_menu_5"
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"/>
+
+                                        <RelativeLayout
+                                            android:paddingBottom="3dp"
                                             android:layout_width="match_parent"
-                                            android:layout_height="30dp"
-                                            android:layout_marginTop="4dp"
-                                            android:layout_marginLeft="25dp"
-                                            android:gravity="left|center"
-                                            android:orientation="horizontal">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:ellipsize="end"
-                                                android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:text="Info Pendidikan dan Pengalaman"
-                                                android:textColor="#CF811F"
-                                                android:textSize="13dp" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="30dp"
-                                            android:layout_marginTop="5dp"
-                                            android:gravity="right|center"
-                                            android:orientation="horizontal">
+                                            android:layout_height="match_parent">
 
                                             <LinearLayout
-                                                android:layout_width="25dp"
-                                                android:layout_height="25dp"
-                                                android:background="@drawable/ic_baseline_arrow_right"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="30dp"
+                                                android:layout_marginTop="4dp"
+                                                android:layout_marginLeft="25dp"
+                                                android:gravity="left|center"
+                                                android:orientation="horizontal">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:ellipsize="end"
+                                                    android:gravity="center"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
+                                                    android:text="Info Pendidikan dan Pengalaman"
+                                                    android:textColor="#CF811F"
+                                                    android:textSize="13dp" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="30dp"
+                                                android:layout_marginTop="5dp"
                                                 android:gravity="right|center"
-                                                android:orientation="horizontal" />
+                                                android:orientation="horizontal">
 
-                                        </LinearLayout>
+                                                <LinearLayout
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_arrow_right"
+                                                    android:gravity="right|center"
+                                                    android:orientation="horizontal" />
 
-                                    </RelativeLayout>
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_marginLeft="55dp"
+                                        android:layout_height="1.5dp"
+                                        android:background="#F3F3F3"/>
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_marginLeft="55dp"
-                                    android:layout_height="1.5dp"
-                                    android:background="#F3F3F3"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/info_payroll_btn"
-                                android:background="@drawable/shape_btn_effect"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_marginTop="-3dp">
-
-                                <LinearLayout
+                                    android:id="@+id/info_payroll_btn"
+                                    android:background="@drawable/shape_btn_effect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingTop="12dp"
-                                    android:paddingBottom="12dp"
-                                    android:paddingRight="25dp"
-                                    android:paddingLeft="25dp"
-                                    android:layout_marginBottom="3dp"
-                                    android:layout_marginTop="3dp"
-                                    android:orientation="horizontal">
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="-3dp">
 
                                     <LinearLayout
-                                        android:background="@drawable/profile_menu_6"
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"/>
-
-                                    <RelativeLayout
-                                        android:paddingBottom="3dp"
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="wrap_content"
+                                        android:paddingTop="12dp"
+                                        android:paddingBottom="12dp"
+                                        android:paddingRight="25dp"
+                                        android:paddingLeft="25dp"
+                                        android:layout_marginBottom="3dp"
+                                        android:layout_marginTop="3dp"
+                                        android:orientation="horizontal">
 
                                         <LinearLayout
+                                            android:background="@drawable/profile_menu_6"
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"/>
+
+                                        <RelativeLayout
+                                            android:paddingBottom="3dp"
                                             android:layout_width="match_parent"
-                                            android:layout_height="30dp"
-                                            android:layout_marginLeft="25dp"
-                                            android:layout_marginTop="4dp"
-                                            android:gravity="left|center"
-                                            android:orientation="horizontal">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:ellipsize="end"
-                                                android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:text="Info Payroll"
-                                                android:textColor="#CF811F"
-                                                android:textSize="13dp" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="30dp"
-                                            android:layout_marginTop="5dp"
-                                            android:gravity="right|center"
-                                            android:orientation="horizontal">
+                                            android:layout_height="match_parent">
 
                                             <LinearLayout
-                                                android:layout_width="25dp"
-                                                android:layout_height="25dp"
-                                                android:background="@drawable/ic_baseline_arrow_right"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="30dp"
+                                                android:layout_marginLeft="25dp"
+                                                android:layout_marginTop="4dp"
+                                                android:gravity="left|center"
+                                                android:orientation="horizontal">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:ellipsize="end"
+                                                    android:gravity="center"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
+                                                    android:text="Info Payroll"
+                                                    android:textColor="#CF811F"
+                                                    android:textSize="13dp" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="30dp"
+                                                android:layout_marginTop="5dp"
                                                 android:gravity="right|center"
-                                                android:orientation="horizontal" />
+                                                android:orientation="horizontal">
 
-                                        </LinearLayout>
+                                                <LinearLayout
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_arrow_right"
+                                                    android:gravity="right|center"
+                                                    android:orientation="horizontal" />
 
-                                    </RelativeLayout>
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_marginLeft="55dp"
+                                        android:layout_height="1.5dp"
+                                        android:background="#F3F3F3"/>
 
                                 </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_marginLeft="55dp"
-                                    android:layout_height="1.5dp"
-                                    android:background="#F3F3F3"/>
 
                             </LinearLayout>
 

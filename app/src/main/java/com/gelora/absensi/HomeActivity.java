@@ -13,6 +13,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
     BubbleNavigationLinearView bubbleNavigation, bubbleNavigationNonGap;
     ImageView notifMarkInfo;
     Vibrator vibrate;
+    LinearLayout shapeBG;
 
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
@@ -71,6 +73,7 @@ public class HomeActivity extends AppCompatActivity {
 
             bubbleNavigationNonGap = findViewById(R.id.equal_navigation_bar_non_gap);
             viewPager = findViewById(R.id.viewPager);
+            shapeBG = findViewById(R.id.shape_bg);
             vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
             viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -100,6 +103,12 @@ public class HomeActivity extends AppCompatActivity {
                 }
             });
 
+            shapeBG.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                }
+            });
+
             checkLogin();
 
         } else {
@@ -107,6 +116,7 @@ public class HomeActivity extends AppCompatActivity {
 
             bubbleNavigation = findViewById(R.id.equal_navigation_bar);
             viewPager = findViewById(R.id.viewPager);
+            shapeBG = findViewById(R.id.shape_bg);
             notifMarkInfo = findViewById(R.id.notif_mark);
             vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -143,6 +153,12 @@ public class HomeActivity extends AppCompatActivity {
                 @Override
                 public void onNavigationChanged(View view, int position) {
                     viewPager.setCurrentItem(position, true);
+                }
+            });
+
+            shapeBG.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                 }
             });
 

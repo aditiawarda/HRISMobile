@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -116,6 +117,8 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
         file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_cuti/"+idIzinRecord;
+
+        catatanAtasanTV.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -1032,12 +1035,12 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                             wakiliBTN.setVisibility(View.VISIBLE);
                                                         }
                                                     } else {
-                                                        if(sharedPrefManager.getSpNik().equals("0056010793")){
+                                                        // if(sharedPrefManager.getSpNik().equals("0056010793")){
+                                                        //    actionPart.setVisibility(View.GONE);
+                                                        //    wakiliBTN.setVisibility(View.VISIBLE);
+                                                        // } else {
                                                             actionPart.setVisibility(View.GONE);
-                                                            wakiliBTN.setVisibility(View.VISIBLE);
-                                                        } else {
-                                                            actionPart.setVisibility(View.GONE);
-                                                        }
+                                                        // }
                                                     }
                                                 }
 
@@ -1156,12 +1159,12 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                         wakiliBTN.setVisibility(View.VISIBLE);
                                                     }
                                                 } else {
-                                                    if(sharedPrefManager.getSpNik().equals("0056010793")){
+                                                    // if(sharedPrefManager.getSpNik().equals("0056010793")){
+                                                    //     actionPart.setVisibility(View.GONE);
+                                                    //     wakiliBTN.setVisibility(View.VISIBLE);
+                                                    // } else {
                                                         actionPart.setVisibility(View.GONE);
-                                                        wakiliBTN.setVisibility(View.VISIBLE);
-                                                    } else {
-                                                        actionPart.setVisibility(View.GONE);
-                                                    }
+                                                    // }
                                                 }
                                             }
 

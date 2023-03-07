@@ -20,6 +20,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -127,6 +128,8 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
                 .into(successGif);
+
+        alasanED.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         if(sharedPrefManager.getSpIdJabatan().equals("10")){
             messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada bagian HRD untuk persetujuan.");
