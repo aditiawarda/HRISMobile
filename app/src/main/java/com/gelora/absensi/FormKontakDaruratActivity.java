@@ -9,6 +9,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -37,7 +39,7 @@ import java.util.Map;
 
 public class FormKontakDaruratActivity extends AppCompatActivity {
 
-    LinearLayout submitBTN, backBTN, hubunganBTN, hubunganLainnyaPart, formPart, successPart;
+    LinearLayout backSuccessBTN, submitBTN, backBTN, hubunganBTN, hubunganLainnyaPart, formPart, successPart;
     LinearLayout sodaraLakiBTN, sodaraPerempuanBTN, markSodaraLaki, markSodaraPerempuan, ayahBTN, ibuBTN, suamiBTN, istriBTN, anakBTN, lainnyaBTN, markAyah, markIbu, markSuami, markIstri, markAnak, markLainnya;
     SwipeRefreshLayout refreshLayout;
     TextView hubunganPilihTV;
@@ -57,6 +59,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
+        backSuccessBTN = findViewById(R.id.back_success_btn);
         namaED = findViewById(R.id.nama_ed);
         handphoneED = findViewById(R.id.no_hanphone_ed);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
@@ -74,10 +77,15 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 .load(R.drawable.success_ic)
                 .into(successGif);
 
+        namaED.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        hubunganLainnyaED.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
 
                 namaED.setText("");
                 handphoneED.setText("");
@@ -106,9 +114,18 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
             }
         });
 
+        backSuccessBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         hubunganBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 hubunganChoice();
             }
         });
@@ -116,6 +133,8 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 if(namaED.getText().toString().equals("") || handphoneED.equals("") || hubunganPilih.equals("")){
                     new KAlertDialog(FormKontakDaruratActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
@@ -790,6 +809,11 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
             }
         };
 
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                0,
+                -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
         requestQueue.add(postRequest);
 
     }

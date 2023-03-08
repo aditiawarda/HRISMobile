@@ -57,7 +57,12 @@ public class AdapterListKontakDarurat extends RecyclerView.Adapter<AdapterListKo
         final DataKontakDarurat dataKontakDarurat = data[i];
 
         myViewHolder.namaKontak.setText(dataKontakDarurat.getNama_kontak());
-        myViewHolder.hubunganKontak.setText(dataKontakDarurat.getHubungan());
+
+        if(dataKontakDarurat.getHubungan().equals("Lainnya")){
+            myViewHolder.hubunganKontak.setText(dataKontakDarurat.getHubungan_lainnya());
+        } else {
+            myViewHolder.hubunganKontak.setText(dataKontakDarurat.getHubungan());
+        }
 
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override

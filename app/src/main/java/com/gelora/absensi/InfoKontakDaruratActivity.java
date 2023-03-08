@@ -17,6 +17,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -195,66 +196,69 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String id_kontak = intent.getStringExtra("id_kontak");
-
-            new KAlertDialog(InfoKontakDaruratActivity.this, KAlertDialog.WARNING_TYPE)
-                    .setTitleText("Perhatian")
-                    .setContentText("Yakin untuk menghapus kontak?")
-                    .setCancelText("TIDAK")
-                    .setConfirmText("   YA   ")
-                    .showCancelButton(true)
-                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                        }
-                    })
-                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                        @Override
-                        public void onClick(KAlertDialog sDialog) {
-                            sDialog.dismiss();
-                            pDialog = new KAlertDialog(InfoKontakDaruratActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                            pDialog.show();
-                            pDialog.setCancelable(false);
-                            new CountDownTimer(1300, 800) {
-                                public void onTick(long millisUntilFinished) {
-                                    i++;
-                                    switch (i) {
-                                        case 0:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (InfoKontakDaruratActivity.this, R.color.colorGradien));
-                                            break;
-                                        case 1:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (InfoKontakDaruratActivity.this, R.color.colorGradien2));
-                                            break;
-                                        case 2:
-                                        case 6:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (InfoKontakDaruratActivity.this, R.color.colorGradien3));
-                                            break;
-                                        case 3:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (InfoKontakDaruratActivity.this, R.color.colorGradien4));
-                                            break;
-                                        case 4:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (InfoKontakDaruratActivity.this, R.color.colorGradien5));
-                                            break;
-                                        case 5:
-                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                    (InfoKontakDaruratActivity.this, R.color.colorGradien6));
-                                            break;
+            try {
+                new KAlertDialog(InfoKontakDaruratActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Yakin untuk menghapus kontak?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                pDialog = new KAlertDialog(InfoKontakDaruratActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1300, 800) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (InfoKontakDaruratActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (InfoKontakDaruratActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (InfoKontakDaruratActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (InfoKontakDaruratActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (InfoKontakDaruratActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (InfoKontakDaruratActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
                                     }
-                                }
-                                public void onFinish() {
-                                    i = -1;
-                                    deleteKontak(id_kontak);
-                                }
-                            }.start();
+                                    public void onFinish() {
+                                        i = -1;
+                                        deleteKontak(id_kontak);
+                                    }
+                                }.start();
 
-                        }
-                    })
-                    .show();
+                            }
+                        })
+                        .show();
+            } catch (WindowManager.BadTokenException e){
+                e.printStackTrace();
+            }
 
         }
     };
