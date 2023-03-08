@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DetailPengumumanActivity;
@@ -95,6 +96,15 @@ public class AdapterListKontakDarurat extends RecyclerView.Adapter<AdapterListKo
             }
         });
 
+        myViewHolder.hapusBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent("delete_kontak");
+                intent.putExtra("id_kontak",String.valueOf(dataKontakDarurat.getId()));
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+            }
+        });
+
     }
 
     private String getDate() {
@@ -110,7 +120,7 @@ public class AdapterListKontakDarurat extends RecyclerView.Adapter<AdapterListKo
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout kontakBTN, menuBTN, parentPart;
+        LinearLayout kontakBTN, menuBTN, parentPart, editBTN, hapusBTN;
         TextView namaKontak, hubunganKontak, noKontak;
         ExpandableLayout expandableLayout;
         public MyViewHolder(@NonNull View itemView) {
@@ -122,6 +132,8 @@ public class AdapterListKontakDarurat extends RecyclerView.Adapter<AdapterListKo
             noKontak = itemView.findViewById(R.id.no_kontak);
             kontakBTN = itemView.findViewById(R.id.phone_btn);
             menuBTN = itemView.findViewById(R.id.menu_btn);
+            editBTN = itemView.findViewById(R.id.edit_btn);
+            hapusBTN = itemView.findViewById(R.id.hapus_btn);
         }
     }
 

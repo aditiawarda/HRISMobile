@@ -1,0 +1,817 @@
+package com.gelora.absensi;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.kalert.KAlertDialog;
+
+import org.aviran.cookiebar2.CookieBar;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class FormKontakDaruratActivity extends AppCompatActivity {
+
+    LinearLayout submitBTN, backBTN, hubunganBTN, hubunganLainnyaPart, formPart, successPart;
+    LinearLayout sodaraLakiBTN, sodaraPerempuanBTN, markSodaraLaki, markSodaraPerempuan, ayahBTN, ibuBTN, suamiBTN, istriBTN, anakBTN, lainnyaBTN, markAyah, markIbu, markSuami, markIstri, markAnak, markLainnya;
+    SwipeRefreshLayout refreshLayout;
+    TextView hubunganPilihTV;
+    EditText namaED, handphoneED, hubunganLainnyaED;
+    BottomSheetLayout bottomSheet;
+    String hubunganPilih = "";
+    KAlertDialog pDialog;
+    SharedPrefManager sharedPrefManager;
+    ImageView successGif;
+    private int i = -1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_form_kontak_darurat);
+
+        sharedPrefManager = new SharedPrefManager(this);
+        refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
+        backBTN = findViewById(R.id.back_btn);
+        namaED = findViewById(R.id.nama_ed);
+        handphoneED = findViewById(R.id.no_hanphone_ed);
+        bottomSheet = findViewById(R.id.bottom_sheet_layout);
+        hubunganPilihTV = findViewById(R.id.hubungan_pilih_tv);
+        hubunganBTN = findViewById(R.id.hubungan_btn);
+        hubunganLainnyaPart = findViewById(R.id.hubungan_lainnya_part);
+        hubunganLainnyaED = findViewById(R.id.hubungan_lainnya_ed);
+        formPart = findViewById(R.id.form_part);
+        successPart = findViewById(R.id.success_submit);
+        submitBTN = findViewById(R.id.submit_btn);
+
+        successGif = findViewById(R.id.success_gif);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.success_ic)
+                .into(successGif);
+
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                namaED.setText("");
+                handphoneED.setText("");
+                hubunganPilihTV.setText("");
+                hubunganLainnyaED.setText("");
+                hubunganPilih = "";
+                hubunganLainnyaPart.setVisibility(View.GONE);
+
+                namaED.clearFocus();
+                handphoneED.clearFocus();
+
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        hubunganBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hubunganChoice();
+            }
+        });
+
+        submitBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(namaED.getText().toString().equals("") || handphoneED.equals("") || hubunganPilih.equals("")){
+                    new KAlertDialog(FormKontakDaruratActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap isi semua data")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    if (hubunganPilih.equals("Lainnya")) {
+                        if(hubunganLainnyaED.getText().toString().equals("")){
+                            new KAlertDialog(FormKontakDaruratActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Harap isi semua data")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        } else {
+                            new KAlertDialog(FormKontakDaruratActivity.this, KAlertDialog.WARNING_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Simpan data kontak?")
+                                    .setCancelText("TIDAK")
+                                    .setConfirmText("   YA   ")
+                                    .showCancelButton(true)
+                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                            pDialog = new KAlertDialog(FormKontakDaruratActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                            pDialog.show();
+                                            pDialog.setCancelable(false);
+                                            new CountDownTimer(1300, 800) {
+                                                public void onTick(long millisUntilFinished) {
+                                                    i++;
+                                                    switch (i) {
+                                                        case 0:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormKontakDaruratActivity.this, R.color.colorGradien));
+                                                            break;
+                                                        case 1:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormKontakDaruratActivity.this, R.color.colorGradien2));
+                                                            break;
+                                                        case 2:
+                                                        case 6:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormKontakDaruratActivity.this, R.color.colorGradien3));
+                                                            break;
+                                                        case 3:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormKontakDaruratActivity.this, R.color.colorGradien4));
+                                                            break;
+                                                        case 4:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormKontakDaruratActivity.this, R.color.colorGradien5));
+                                                            break;
+                                                        case 5:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormKontakDaruratActivity.this, R.color.colorGradien6));
+                                                            break;
+                                                    }
+                                                }
+                                                public void onFinish() {
+                                                    i = -1;
+                                                    sendData();
+                                                }
+                                            }.start();
+
+                                        }
+                                    })
+                                    .show();
+                        }
+                    } else {
+                        new KAlertDialog(FormKontakDaruratActivity.this, KAlertDialog.WARNING_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Simpan data kontak?")
+                                .setCancelText("TIDAK")
+                                .setConfirmText("   YA   ")
+                                .showCancelButton(true)
+                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                        pDialog = new KAlertDialog(FormKontakDaruratActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                        pDialog.show();
+                                        pDialog.setCancelable(false);
+                                        new CountDownTimer(1300, 800) {
+                                            public void onTick(long millisUntilFinished) {
+                                                i++;
+                                                switch (i) {
+                                                    case 0:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormKontakDaruratActivity.this, R.color.colorGradien));
+                                                        break;
+                                                    case 1:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormKontakDaruratActivity.this, R.color.colorGradien2));
+                                                        break;
+                                                    case 2:
+                                                    case 6:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormKontakDaruratActivity.this, R.color.colorGradien3));
+                                                        break;
+                                                    case 3:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormKontakDaruratActivity.this, R.color.colorGradien4));
+                                                        break;
+                                                    case 4:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormKontakDaruratActivity.this, R.color.colorGradien5));
+                                                        break;
+                                                    case 5:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormKontakDaruratActivity.this, R.color.colorGradien6));
+                                                        break;
+                                                }
+                                            }
+                                            public void onFinish() {
+                                                i = -1;
+                                                sendData();
+                                            }
+                                        }.start();
+
+                                    }
+                                })
+                                .show();
+                    }
+
+                }
+            }
+        });
+
+    }
+
+    private void hubunganChoice(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(FormKontakDaruratActivity.this).inflate(R.layout.layout_hubungan, bottomSheet, false));
+        ayahBTN = findViewById(R.id.ayah_btn);
+        ibuBTN = findViewById(R.id.ibu_btn);
+        suamiBTN = findViewById(R.id.suami_btn);
+        istriBTN = findViewById(R.id.istri_btn);
+        anakBTN = findViewById(R.id.anak_btn);
+        sodaraLakiBTN = findViewById(R.id.sodara_laki_btn);
+        sodaraPerempuanBTN = findViewById(R.id.sodara_perempuan_btn);
+        lainnyaBTN = findViewById(R.id.lainnya_btn);
+        markAyah = findViewById(R.id.mark_ayah);
+        markIbu = findViewById(R.id.mark_ibu);
+        markSuami = findViewById(R.id.mark_suami);
+        markIstri = findViewById(R.id.mark_istri);
+        markAnak = findViewById(R.id.mark_anak);
+        markSodaraLaki = findViewById(R.id.mark_sodara_laki);
+        markSodaraPerempuan = findViewById(R.id.mark_sodara_perempuan);
+        markLainnya = findViewById(R.id.mark_lainnya);
+
+        if (hubunganPilih.equals("Ayah")){
+            ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+            ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            markAyah.setVisibility(View.VISIBLE);
+            markIbu.setVisibility(View.GONE);
+            markSuami.setVisibility(View.GONE);
+            markIstri.setVisibility(View.GONE);
+            markAnak.setVisibility(View.GONE);
+            markSodaraLaki.setVisibility(View.GONE);
+            markSodaraPerempuan.setVisibility(View.GONE);
+            markLainnya.setVisibility(View.GONE);
+
+            hubunganLainnyaPart.setVisibility(View.GONE);
+        } else if (hubunganPilih.equals("Ibu")){
+            ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+            suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            markAyah.setVisibility(View.GONE);
+            markIbu.setVisibility(View.VISIBLE);
+            markSuami.setVisibility(View.GONE);
+            markIstri.setVisibility(View.GONE);
+            markAnak.setVisibility(View.GONE);
+            markSodaraLaki.setVisibility(View.GONE);
+            markSodaraPerempuan.setVisibility(View.GONE);
+            markLainnya.setVisibility(View.GONE);
+
+            hubunganLainnyaPart.setVisibility(View.GONE);
+        } else if (hubunganPilih.equals("Suami")){
+            ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+            istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            markAyah.setVisibility(View.GONE);
+            markIbu.setVisibility(View.GONE);
+            markSuami.setVisibility(View.VISIBLE);
+            markIstri.setVisibility(View.GONE);
+            markAnak.setVisibility(View.GONE);
+            markSodaraLaki.setVisibility(View.GONE);
+            markSodaraPerempuan.setVisibility(View.GONE);
+            markLainnya.setVisibility(View.GONE);
+
+            hubunganLainnyaPart.setVisibility(View.GONE);
+        } else if (hubunganPilih.equals("Istri")){
+            ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+            anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            markAyah.setVisibility(View.GONE);
+            markIbu.setVisibility(View.GONE);
+            markSuami.setVisibility(View.GONE);
+            markIstri.setVisibility(View.VISIBLE);
+            markAnak.setVisibility(View.GONE);
+            markSodaraLaki.setVisibility(View.GONE);
+            markSodaraPerempuan.setVisibility(View.GONE);
+            markLainnya.setVisibility(View.GONE);
+
+            hubunganLainnyaPart.setVisibility(View.GONE);
+        } else if (hubunganPilih.equals("Anak")){
+            ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            markAyah.setVisibility(View.GONE);
+            markIbu.setVisibility(View.GONE);
+            markSuami.setVisibility(View.GONE);
+            markIstri.setVisibility(View.GONE);
+            markAnak.setVisibility(View.VISIBLE);
+            markSodaraLaki.setVisibility(View.GONE);
+            markSodaraPerempuan.setVisibility(View.GONE);
+            markLainnya.setVisibility(View.GONE);
+
+            hubunganLainnyaPart.setVisibility(View.GONE);
+        } else if (hubunganPilih.equals("Sodara Laki-Laki")){
+            ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            markAyah.setVisibility(View.GONE);
+            markIbu.setVisibility(View.GONE);
+            markSuami.setVisibility(View.GONE);
+            markIstri.setVisibility(View.GONE);
+            markAnak.setVisibility(View.GONE);
+            markSodaraLaki.setVisibility(View.VISIBLE);
+            markSodaraPerempuan.setVisibility(View.GONE);
+            markLainnya.setVisibility(View.GONE);
+
+            hubunganLainnyaPart.setVisibility(View.GONE);
+        } else if (hubunganPilih.equals("Sodara Perempuan")){
+            ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            markAyah.setVisibility(View.GONE);
+            markIbu.setVisibility(View.GONE);
+            markSuami.setVisibility(View.GONE);
+            markIstri.setVisibility(View.GONE);
+            markAnak.setVisibility(View.GONE);
+            markSodaraLaki.setVisibility(View.GONE);
+            markSodaraPerempuan.setVisibility(View.VISIBLE);
+            markLainnya.setVisibility(View.GONE);
+
+            hubunganLainnyaPart.setVisibility(View.GONE);
+        } else if (hubunganPilih.equals("Lainnya")){
+            ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+            markAyah.setVisibility(View.GONE);
+            markIbu.setVisibility(View.GONE);
+            markSuami.setVisibility(View.GONE);
+            markIstri.setVisibility(View.GONE);
+            markAnak.setVisibility(View.GONE);
+            markSodaraLaki.setVisibility(View.GONE);
+            markSodaraPerempuan.setVisibility(View.GONE);
+            markLainnya.setVisibility(View.VISIBLE);
+
+            hubunganLainnyaPart.setVisibility(View.VISIBLE);
+        }
+
+        ayahBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+                ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                markAyah.setVisibility(View.VISIBLE);
+                markIbu.setVisibility(View.GONE);
+                markSuami.setVisibility(View.GONE);
+                markIstri.setVisibility(View.GONE);
+                markAnak.setVisibility(View.GONE);
+                markSodaraLaki.setVisibility(View.GONE);
+                markSodaraPerempuan.setVisibility(View.GONE);
+                markLainnya.setVisibility(View.GONE);
+
+                hubunganLainnyaPart.setVisibility(View.GONE);
+
+                hubunganPilih = "Ayah";
+                hubunganPilihTV.setText("Ayah");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        ibuBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+                suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                markAyah.setVisibility(View.GONE);
+                markIbu.setVisibility(View.VISIBLE);
+                markSuami.setVisibility(View.GONE);
+                markIstri.setVisibility(View.GONE);
+                markAnak.setVisibility(View.GONE);
+                markSodaraLaki.setVisibility(View.GONE);
+                markSodaraPerempuan.setVisibility(View.GONE);
+                markLainnya.setVisibility(View.GONE);
+
+                hubunganLainnyaPart.setVisibility(View.GONE);
+
+                hubunganPilih = "Ibu";
+                hubunganPilihTV.setText("Ibu");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        suamiBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+                istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                markAyah.setVisibility(View.GONE);
+                markIbu.setVisibility(View.GONE);
+                markSuami.setVisibility(View.VISIBLE);
+                markIstri.setVisibility(View.GONE);
+                markAnak.setVisibility(View.GONE);
+                markSodaraLaki.setVisibility(View.GONE);
+                markSodaraPerempuan.setVisibility(View.GONE);
+                markLainnya.setVisibility(View.GONE);
+
+                hubunganLainnyaPart.setVisibility(View.GONE);
+
+                hubunganPilih = "Suami";
+                hubunganPilihTV.setText("Suami");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        istriBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+                anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                markAyah.setVisibility(View.GONE);
+                markIbu.setVisibility(View.GONE);
+                markSuami.setVisibility(View.GONE);
+                markIstri.setVisibility(View.VISIBLE);
+                markAnak.setVisibility(View.GONE);
+                markSodaraLaki.setVisibility(View.GONE);
+                markSodaraPerempuan.setVisibility(View.GONE);
+                markLainnya.setVisibility(View.GONE);
+
+                hubunganLainnyaPart.setVisibility(View.GONE);
+
+                hubunganPilih = "Istri";
+                hubunganPilihTV.setText("Istri");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        anakBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                markAyah.setVisibility(View.GONE);
+                markIbu.setVisibility(View.GONE);
+                markSuami.setVisibility(View.GONE);
+                markIstri.setVisibility(View.GONE);
+                markAnak.setVisibility(View.VISIBLE);
+                markSodaraLaki.setVisibility(View.GONE);
+                markSodaraPerempuan.setVisibility(View.GONE);
+                markLainnya.setVisibility(View.GONE);
+
+                hubunganLainnyaPart.setVisibility(View.GONE);
+
+                hubunganPilih = "Anak";
+                hubunganPilihTV.setText("Anak");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        sodaraLakiBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                markAyah.setVisibility(View.GONE);
+                markIbu.setVisibility(View.GONE);
+                markSuami.setVisibility(View.GONE);
+                markIstri.setVisibility(View.GONE);
+                markAnak.setVisibility(View.GONE);
+                markSodaraLaki.setVisibility(View.VISIBLE);
+                markSodaraPerempuan.setVisibility(View.GONE);
+                markLainnya.setVisibility(View.GONE);
+
+                hubunganLainnyaPart.setVisibility(View.GONE);
+
+                hubunganPilih = "Sodara Laki-Laki";
+                hubunganPilihTV.setText("Sodara Laki-Laki");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        sodaraPerempuanBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                markAyah.setVisibility(View.GONE);
+                markIbu.setVisibility(View.GONE);
+                markSuami.setVisibility(View.GONE);
+                markIstri.setVisibility(View.GONE);
+                markAnak.setVisibility(View.GONE);
+                markSodaraLaki.setVisibility(View.GONE);
+                markSodaraPerempuan.setVisibility(View.VISIBLE);
+                markLainnya.setVisibility(View.GONE);
+
+                hubunganLainnyaPart.setVisibility(View.GONE);
+
+                hubunganPilih = "Sodara Perempuan";
+                hubunganPilihTV.setText("Sodara Perempuan");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+        lainnyaBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                istriBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                anakBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
+                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option_choice));
+                markAyah.setVisibility(View.GONE);
+                markIbu.setVisibility(View.GONE);
+                markSuami.setVisibility(View.GONE);
+                markIstri.setVisibility(View.GONE);
+                markAnak.setVisibility(View.GONE);
+                markSodaraLaki.setVisibility(View.GONE);
+                markSodaraPerempuan.setVisibility(View.GONE);
+                markLainnya.setVisibility(View.VISIBLE);
+
+                hubunganLainnyaPart.setVisibility(View.VISIBLE);
+
+                hubunganPilih = "Lainnya";
+                hubunganPilihTV.setText("Lainnya");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+        });
+
+    }
+
+    private void sendData() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/upload_data_kontak";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                pDialog.dismiss();
+                                successPart.setVisibility(View.VISIBLE);
+                                formPart.setVisibility(View.GONE);
+                            } else {
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Tersimpan")
+                                        .setContentText("Terjadi kesalahan saat mengirim data")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        successPart.setVisibility(View.GONE);
+                        formPart.setVisibility(View.VISIBLE);
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("nama_kontak", namaED.getText().toString());
+                params.put("notelp", handphoneED.getText().toString());
+
+                if(hubunganPilih.equals("Lainnya")){
+                    params.put("hubungan", hubunganPilih);
+                    params.put("hubungan_lainnya", hubunganLainnyaED.getText().toString());
+                } else {
+                    params.put("hubungan", hubunganPilih);
+                }
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void connectionFailed(){
+        CookieBar.build(FormKontakDaruratActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
+    }
+
+    public void onBackPressed() {
+        if(bottomSheet.isSheetShowing()){
+            bottomSheet.dismissSheet();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+}

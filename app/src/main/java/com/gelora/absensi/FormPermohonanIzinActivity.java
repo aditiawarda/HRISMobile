@@ -162,6 +162,8 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         statusUploadTV.setText("Unggah Surat Sakit");
                         labelUnggahTV.setText("Unggah");
                         jumlahHariTV.setText("Tentukan Tanggal...");
+                        alasanED.clearFocus();
+
                         getDataKaryawan();
                     }
                 }, 800);

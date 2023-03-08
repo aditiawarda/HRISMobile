@@ -45,8 +45,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".FormKontakDaruratActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".InfoKontakDaruratActivity"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".FormInfoPersonalActivity"
             android:screenOrientation="portrait"

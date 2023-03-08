@@ -7,9 +7,7 @@
     tools:context=".FaqActivity">
 
     <RelativeLayout
-        android:layout_marginRight="-3dp"
-        android:layout_marginLeft="-3dp"
-        android:layout_marginBottom="-3dp"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

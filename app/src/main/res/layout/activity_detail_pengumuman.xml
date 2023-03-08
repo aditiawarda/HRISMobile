@@ -7,10 +7,8 @@
     tools:context=".DetailPengumumanActivity">
 
     <RelativeLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_marginRight="-3dp"
-        android:layout_marginLeft="-3dp"
-        android:layout_marginBottom="-3dp"
         android:layout_height="match_parent">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -26,7 +24,6 @@
                     android:id="@id/scrollView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/shape_head_user"
                     tools:ignore="MissingConstraints">
 
                     <LinearLayout
@@ -34,10 +31,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginBottom="-2dp"
                         android:orientation="vertical"
-                        android:paddingLeft="3dp"
-                        android:paddingTop="60dp"
-                        android:paddingRight="3dp"
-                        android:paddingBottom="3dp">
+                        android:paddingTop="60dp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"

@@ -7,10 +7,8 @@
     tools:context=".FormInfoPersonalActivity">
 
     <RelativeLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_marginRight="-3dp"
-        android:layout_marginLeft="-3dp"
-        android:layout_marginBottom="-3dp"
         android:layout_height="match_parent">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -38,9 +36,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:paddingLeft="23dp"
+                            android:paddingLeft="20dp"
                             android:paddingTop="75dp"
-                            android:paddingRight="23dp"
+                            android:paddingRight="20dp"
                             android:paddingBottom="25dp">
 
                             <LinearLayout

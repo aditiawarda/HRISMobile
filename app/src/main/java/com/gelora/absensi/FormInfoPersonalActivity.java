@@ -200,7 +200,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                             if(emailSwitch.isChecked()){
                                 new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
-                                        .setContentText("Kirim data personal?")
+                                        .setContentText("Simpan data personal?")
                                         .setCancelText("TIDAK")
                                         .setConfirmText("   YA   ")
                                         .showCancelButton(true)
@@ -274,7 +274,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                         else {
                             new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.WARNING_TYPE)
                                     .setTitleText("Perhatian")
-                                    .setContentText("Kirim data personal?")
+                                    .setContentText("Simpan data personal?")
                                     .setCancelText("TIDAK")
                                     .setConfirmText("   YA   ")
                                     .showCancelButton(true)
@@ -568,7 +568,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                             } else {
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
-                                pDialog.setTitleText("Gagal Terkirim")
+                                pDialog.setTitleText("Gagal Tersimpan")
                                         .setContentText("Terjadi kesalahan saat mengirim data")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);

@@ -27,7 +27,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/update_avatar_btn"
+                android:id="@+id/edit_btn"
                 android:layout_width="0dp"
                 android:layout_weight=".50"
                 android:layout_height="36dp"
@@ -50,7 +50,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/hapus_avatar_btn"
+                android:id="@+id/hapus_btn"
                 android:layout_width="0dp"
                 android:layout_weight=".50"
                 android:layout_height="36dp"

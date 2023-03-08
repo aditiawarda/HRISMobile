@@ -29,34 +29,33 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingBottom="3dp"
+                        android:orientation="vertical"
                         android:paddingTop="65dp"
-                        android:orientation="vertical">
+                        android:paddingBottom="3dp">
 
                         <LinearLayout
-                            android:layout_marginBottom="30dp"
-                            android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="30dp"
+                            android:orientation="vertical">
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/list_kontak_rv"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
-                                android:visibility="gone">
-                            </androidx.recyclerview.widget.RecyclerView>
+                                android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
 
                             <LinearLayout
                                 android:id="@+id/no_data_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:paddingBottom="20dp"
-                                android:paddingLeft="20dp"
-                                android:paddingRight="20dp"
-                                android:paddingTop="120dp"
-                                android:orientation="vertical"
                                 android:gravity="center"
+                                android:orientation="vertical"
+                                android:paddingLeft="20dp"
+                                android:paddingTop="120dp"
+                                android:paddingRight="20dp"
+                                android:paddingBottom="20dp"
                                 android:visibility="gone">
 
                                 <TextView
@@ -93,12 +92,12 @@
                                 android:id="@+id/loading_data_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:paddingBottom="20dp"
-                                android:paddingLeft="20dp"
-                                android:paddingRight="20dp"
-                                android:paddingTop="120dp"
+                                android:gravity="center"
                                 android:orientation="vertical"
-                                android:gravity="center">
+                                android:paddingLeft="20dp"
+                                android:paddingTop="120dp"
+                                android:paddingRight="20dp"
+                                android:paddingBottom="20dp">
 
                                 <ImageView
                                     android:id="@+id/loading_data"
@@ -199,12 +198,13 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/new_chat_btn"
+                android:id="@+id/add_btn"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
+                android:visibility="gone"
                 android:background="@drawable/shape_new_chat">
 
                 <TextView
