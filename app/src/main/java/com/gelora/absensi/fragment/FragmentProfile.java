@@ -39,6 +39,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.ComingSoonActivity;
 import com.gelora.absensi.DigitalSignatureActivity;
+import com.gelora.absensi.InfoKontakDaruratActivity;
 import com.gelora.absensi.InfoPekerjaanActivity;
 import com.gelora.absensi.InfoPersonalActivity;
 import com.gelora.absensi.LoginActivity;
@@ -180,7 +181,7 @@ public class FragmentProfile extends Fragment {
         infoKontakDaruratBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ComingSoonActivity.class);
+                Intent intent = new Intent(mContext, InfoKontakDaruratActivity.class);
                 startActivity(intent);
             }
         });

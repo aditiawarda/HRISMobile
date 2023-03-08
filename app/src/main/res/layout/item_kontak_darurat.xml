@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/expandable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="87dp"
+        android:paddingLeft="25dp"
+        android:paddingBottom="15dp"
+        app:el_duration="300"
+        app:el_expanded="false">
+
+        <LinearLayout
+            android:background="@drawable/shape_bg_expand_kontak_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/update_avatar_btn"
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="36dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/shape_second_btn"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="12dp"
+                    android:text="Edit"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hapus_avatar_btn"
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="36dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/shape_logout"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="12dp"
+                    android:textColor="#ED5956"
+                    android:text="Hapus"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </net.cachapa.expandablelayout.ExpandableLayout>
+
+    <LinearLayout
+        android:id="@+id/parent_part"
+        android:background="@drawable/shape_btn_effect"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:orientation="vertical"
+        android:paddingLeft="25dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="17dp">
+
+                <TextView
+                    android:id="@+id/nama_kontak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Nazma Kamilatul Nurhidayah"
+                    android:textColor="#555555"
+                    android:textSize="13.5dp" />
+
+                <TextView
+                    android:id="@+id/hubungan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Pasangan"
+                    android:textColor="#8F8F8F"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/no_kontak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="085721603080"
+                    android:textColor="#8F8F8F"
+                    android:textSize="11.5dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#F3F3F3" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right|center"
+                android:orientation="horizontal"
+                tools:ignore="RtlHardcoded">
+
+                <LinearLayout
+                    android:id="@+id/phone_btn"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/shape_tools_kontak"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:background="@drawable/ic_baseline_phone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_btn"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/shape_tools_kontak"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:background="@drawable/ic_baseline_menu_kontak" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
