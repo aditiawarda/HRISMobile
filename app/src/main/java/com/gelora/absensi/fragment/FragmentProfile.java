@@ -80,7 +80,7 @@ import java.util.UUID;
  */
 public class FragmentProfile extends Fragment {
 
-    LinearLayout nonGapSgnBTN, infoGapPart, warningInfoPersonal, updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
+    LinearLayout nonGapSgnBTN, infoGapPart, warningInfoKontakDarurat, warningInfoPersonal, updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
     LinearLayout infoPersonalBTN, infoPekerjaanBTN, infoKontakDaruratBTN, infoKeluargaBTN, infoPendidikanDanPengalamanBTN, infoPayrollBTN;
     TextView nameOfUser, positionOfUser, descAvailable, descEmpty;
     ImageView avatarUser;
@@ -133,6 +133,7 @@ public class FragmentProfile extends Fragment {
         descAvailable = view.findViewById(R.id.desc_available);
         descEmpty = view.findViewById(R.id.desc_empty);
         warningInfoPersonal = view.findViewById(R.id.warning_info_personal);
+        warningInfoKontakDarurat = view.findViewById(R.id.warning_info_kontak_darurat);
         infoGapPart = view.findViewById(R.id.info_gap_part);
         nonGapSgnBTN = view.findViewById(R.id.non_gap_sgn_btn);
 
@@ -294,6 +295,7 @@ public class FragmentProfile extends Fragment {
                                 String avatar = data.getString("avatar");
                                 String logout_part = data.getString("logout_part");
                                 String info_personal = data.getString("info_personal");
+                                String info_kontak_darurat = data.getString("info_kontak_darurat");
 
                                 String id_cab = data.getString("id_cab");
                                 String id_dept = data.getString("id_dept");
@@ -304,6 +306,12 @@ public class FragmentProfile extends Fragment {
                                     warningInfoPersonal.setVisibility(View.GONE);
                                 } else {
                                     warningInfoPersonal.setVisibility(View.VISIBLE);
+                                }
+
+                                if(info_kontak_darurat.equals("tersedia")){
+                                    warningInfoKontakDarurat.setVisibility(View.GONE);
+                                } else {
+                                    warningInfoKontakDarurat.setVisibility(View.VISIBLE);
                                 }
 
                                 if(!sharedPrefManager.getSpIdCab().equals(id_cab)){
