@@ -642,7 +642,6 @@
                                     <LinearLayout
                                         android:layout_width="15dp"
                                         android:layout_height="15dp"
-                                        android:layout_marginTop="1dp"
                                         android:layout_marginRight="30dp"
                                         android:background="@drawable/warning_mark_absensi"
                                         android:orientation="horizontal"

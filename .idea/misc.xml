@@ -422,7 +422,7 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_image_picker.xml" value="0.15904232578024796" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_info_kontak_darurat.xml" value="0.15" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_info_pekerjaan.xml" value="0.22" />
-        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_info_personal.xml" value="0.2954838709677419" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_info_personal.xml" value="0.14" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_list_all_pengumuman.xml" value="0.22" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_list_chat_mate.xml" value="0.16" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_list_notifikasi.xml" value="0.15904232578024796" />
@@ -442,6 +442,7 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_user.xml" value="0.15904232578024796" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_user_detail.xml" value="0.15904232578024796" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_view_image.xml" value="0.15904232578024796" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/alert_dialog.xml" value="0.1718683197947841" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/fragment_info.xml" value="0.2" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/fragment_one.xml" value="0.13552800342026508" />

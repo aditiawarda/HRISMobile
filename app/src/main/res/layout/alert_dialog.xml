@@ -9,9 +9,9 @@
     android:orientation="vertical"
     android:background="?attr/alertDialogDark"
     android:paddingTop="15dp"
-    android:paddingRight="17dp"
-    android:paddingBottom="17dp"
-    android:paddingLeft="17dp">
+    android:paddingBottom="18dp"
+    android:paddingRight="23dp"
+    android:paddingLeft="23dp">
 
     <ImageView
         android:id="@+id/custom_image"
@@ -127,6 +127,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:lineSpacingExtra="2dp"
         android:textSize="14sp"
         android:fontFamily="@font/roboto"
         android:textColor="?attr/alertDialogContentTextColor"
