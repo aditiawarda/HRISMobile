@@ -3,11 +3,13 @@ package com.gelora.absensi.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,6 +56,7 @@ public class AdapterListKontakDarurat extends RecyclerView.Adapter<AdapterListKo
         final DataKontakDarurat dataKontakDarurat = data[i];
 
         myViewHolder.namaKontak.setText(dataKontakDarurat.getNama_kontak());
+        myViewHolder.hubunganKontak.setText(dataKontakDarurat.getHubungan());
 
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,12 +64,25 @@ public class AdapterListKontakDarurat extends RecyclerView.Adapter<AdapterListKo
             }
         });
 
-        myViewHolder.kontakBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        if(String.valueOf(dataKontakDarurat.getNotelp().substring(0,1)).replace("-", "").equals("0")){
+            myViewHolder.noKontak.setText(dataKontakDarurat.getNotelp().replace("-", ""));
+            myViewHolder.kontakBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", dataKontakDarurat.getNotelp().replace("-", ""), null));
+                    mContext.startActivity(intent);
+                }
+            });
+        } else if(String.valueOf(dataKontakDarurat.getNotelp().substring(0,1)).replace("-", "").equals("+")){
+            myViewHolder.noKontak.setText("0"+dataKontakDarurat.getNotelp().replace("-", "").substring(3,dataKontakDarurat.getNotelp().length()));
+            myViewHolder.kontakBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "0"+dataKontakDarurat.getNotelp().replace("-", "").substring(3,dataKontakDarurat.getNotelp().length()), null));
+                    mContext.startActivity(intent);
+                }
+            });
+        }
 
         myViewHolder.menuBTN.setOnClickListener(new View.OnClickListener() {
             @Override
