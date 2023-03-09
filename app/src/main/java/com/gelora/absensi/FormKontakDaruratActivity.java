@@ -42,15 +42,16 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
     LinearLayout backSuccessBTN, submitBTN, backBTN, hubunganBTN, hubunganLainnyaPart, formPart, successPart;
     LinearLayout sodaraLakiBTN, sodaraPerempuanBTN, markSodaraLaki, markSodaraPerempuan, ayahBTN, ibuBTN, suamiBTN, istriBTN, anakBTN, lainnyaBTN, markAyah, markIbu, markSuami, markIstri, markAnak, markLainnya;
     SwipeRefreshLayout refreshLayout;
-    TextView hubunganPilihTV;
+    TextView hubunganPilihTV, titlePageTV;
     EditText namaED, handphoneED, hubunganLainnyaED;
     BottomSheetLayout bottomSheet;
-    String hubunganPilih = "";
+    String hubunganPilih = "", tipeForm = "", idKontak = "";
     KAlertDialog pDialog;
     SharedPrefManager sharedPrefManager;
     ImageView successGif;
     private int i = -1;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         backSuccessBTN = findViewById(R.id.back_success_btn);
+        titlePageTV = findViewById(R.id.title_page_tv);
         namaED = findViewById(R.id.nama_ed);
         handphoneED = findViewById(R.id.no_hanphone_ed);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
@@ -80,6 +82,15 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
         namaED.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         hubunganLainnyaED.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
+        tipeForm = getIntent().getExtras().getString("tipe");
+
+        if(tipeForm.equals("edit")){
+            idKontak = getIntent().getExtras().getString("id_kontak");
+            titlePageTV.setText("EDIT KONTAK DARURAT");
+        } else {
+            titlePageTV.setText("FORM KONTAK DARURAT");
+        }
+
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -87,16 +98,20 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
 
-                namaED.setText("");
-                handphoneED.setText("");
-                hubunganPilihTV.setText("");
-                hubunganLainnyaED.setText("");
-                hubunganPilih = "";
-                hubunganLainnyaPart.setVisibility(View.GONE);
+                if(tipeForm.equals("edit")){
+                    getData();
+                } else {
+                    namaED.setText("");
+                    handphoneED.setText("");
+                    hubunganPilihTV.setText("");
+                    hubunganLainnyaED.setText("");
+                    hubunganPilih = "";
+                    hubunganLainnyaPart.setVisibility(View.GONE);
+                }
 
                 namaED.clearFocus();
                 handphoneED.clearFocus();
-
+                hubunganLainnyaED.clearFocus();
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -288,6 +303,10 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
             }
         });
 
+        if(tipeForm.equals("edit")){
+            getData();
+        }
+
     }
 
     private void hubunganChoice(){
@@ -404,7 +423,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
             markLainnya.setVisibility(View.GONE);
 
             hubunganLainnyaPart.setVisibility(View.GONE);
-        } else if (hubunganPilih.equals("Sodara Laki-Laki")){
+        } else if (hubunganPilih.equals("Saudara Laki-Laki")){
             ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
             ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
             suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
@@ -423,7 +442,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
             markLainnya.setVisibility(View.GONE);
 
             hubunganLainnyaPart.setVisibility(View.GONE);
-        } else if (hubunganPilih.equals("Sodara Perempuan")){
+        } else if (hubunganPilih.equals("Saudara Perempuan")){
             ayahBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
             ibuBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
             suamiBTN.setBackground(ContextCompat.getDrawable(FormKontakDaruratActivity.this, R.drawable.shape_option));
@@ -661,8 +680,8 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
 
                 hubunganLainnyaPart.setVisibility(View.GONE);
 
-                hubunganPilih = "Sodara Laki-Laki";
-                hubunganPilihTV.setText("Sodara Laki-Laki");
+                hubunganPilih = "Saudara Laki-Laki";
+                hubunganPilihTV.setText("Saudara Laki-Laki");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -696,8 +715,8 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
 
                 hubunganLainnyaPart.setVisibility(View.GONE);
 
-                hubunganPilih = "Sodara Perempuan";
-                hubunganPilihTV.setText("Sodara Perempuan");
+                hubunganPilih = "Saudara Perempuan";
+                hubunganPilihTV.setText("Saudara Perempuan");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -794,6 +813,12 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
+                params.put("tipe", tipeForm);
+
+                if(tipeForm.equals("edit")){
+                    params.put("id_kontak", idKontak);
+                }
+
                 params.put("NIK", sharedPrefManager.getSpNik());
                 params.put("nama_kontak", namaED.getText().toString());
                 params.put("notelp", handphoneED.getText().toString());
@@ -814,6 +839,84 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 -1,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         postRequest.setRetryPolicy(retryPolicy);
+        requestQueue.add(postRequest);
+
+    }
+
+    private void getData() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/data_detail_kontak_edit";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                JSONObject dataArray = data.getJSONObject("data");
+                                String id = dataArray.getString("id");
+                                String NIK = dataArray.getString("NIK");
+                                String notelp = dataArray.getString("notelp");
+                                String nama_kontak = dataArray.getString("nama_kontak");
+                                String hubungan = dataArray.getString("hubungan");
+                                String hubungan_lainnya = dataArray.getString("hubungan_lainnya");
+
+                                namaED.setText(nama_kontak);
+                                handphoneED.setText(notelp);
+
+                                hubunganPilih = hubungan;
+                                hubunganPilihTV.setText(hubungan);
+                                if(hubungan.equals("Lainnya")){
+                                    hubunganLainnyaPart.setVisibility(View.VISIBLE);
+                                    hubunganLainnyaED.setText(hubungan_lainnya);
+                                } else {
+                                    hubunganLainnyaPart.setVisibility(View.GONE);
+                                }
+
+                            } else {
+                                new KAlertDialog(FormKontakDaruratActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Terjadi kesalahan saat mengakses data")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_kontak", idKontak);
+                return params;
+            }
+        };
+
         requestQueue.add(postRequest);
 
     }

@@ -114,6 +114,7 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(InfoKontakDaruratActivity.this, FormKontakDaruratActivity.class);
+                intent.putExtra("tipe","tambah");
                 startActivity(intent);
             }
         });

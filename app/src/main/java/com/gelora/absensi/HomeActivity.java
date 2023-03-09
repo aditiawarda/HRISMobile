@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
 
-    String warningPerangkat = "", deviceID = "", beforeLayout = "0", nowLayout = "0", temp = "0";
+    String notif = "0", warningPerangkat = "", deviceID = "", beforeLayout = "0", nowLayout = "0", temp = "0";
     KAlertDialog pDialog;
     private final int i = -1;
 
@@ -322,9 +322,38 @@ public class HomeActivity extends AppCompatActivity {
                                     if (alpaNumb > 0 || lateNumb > 0 || noCheckoutNumb > 0){
                                         notifMarkInfo.setVisibility(View.VISIBLE);
 
+                                        if(notif.equals("0")){
+                                            notif = "1";
+                                            Notify.build(getApplicationContext())
+                                                    .setTitle("HRIS Mobile Gelora")
+                                                    .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
+                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                    .setColor(R.color.colorPrimary)
+                                                    .largeCircularIcon()
+                                                    .enableVibration(true)
+                                                    .show();
+
+                                            // Vibrate for 500 milliseconds
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                            } else {
+                                                //deprecated in API 26
+                                                vibrate.vibrate(500);
+                                            }
+                                        }
+
+                                    } else {
+                                        notif = "0";
+                                        notifMarkInfo.setVisibility(View.GONE);
+                                    }
+                                } else if (!count.equals("0") && count_finger.equals("0")) {
+                                    notifMarkInfo.setVisibility(View.VISIBLE);
+
+                                    if(notif.equals("0")){
+                                        notif = "1";
                                         Notify.build(getApplicationContext())
                                                 .setTitle("HRIS Mobile Gelora")
-                                                .setContent("Halo "+shortName+", harap periksa kembali data rekap absensi anda")
+                                                .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
                                                 .setSmallIcon(R.drawable.ic_skylight_notification)
                                                 .setColor(R.color.colorPrimary)
                                                 .largeCircularIcon()
@@ -338,68 +367,52 @@ public class HomeActivity extends AppCompatActivity {
                                             //deprecated in API 26
                                             vibrate.vibrate(500);
                                         }
-
-                                    } else {
-                                        notifMarkInfo.setVisibility(View.GONE);
-                                    }
-                                } else if (!count.equals("0") && count_finger.equals("0")) {
-                                    notifMarkInfo.setVisibility(View.VISIBLE);
-
-                                    Notify.build(getApplicationContext())
-                                            .setTitle("HRIS Mobile Gelora")
-                                            .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
-                                            .setSmallIcon(R.drawable.ic_skylight_notification)
-                                            .setColor(R.color.colorPrimary)
-                                            .largeCircularIcon()
-                                            .enableVibration(true)
-                                            .show();
-
-                                    // Vibrate for 500 milliseconds
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                    } else {
-                                        //deprecated in API 26
-                                        vibrate.vibrate(500);
                                     }
 
                                 } else if (count.equals("0") && !count_finger.equals("0")) {
                                     notifMarkInfo.setVisibility(View.VISIBLE);
 
-                                    Notify.build(getApplicationContext())
-                                            .setTitle("HRIS Mobile Gelora")
-                                            .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
-                                            .setSmallIcon(R.drawable.ic_skylight_notification)
-                                            .setColor(R.color.colorPrimary)
-                                            .largeCircularIcon()
-                                            .enableVibration(true)
-                                            .show();
+                                    if(notif.equals("0")){
+                                        notif = "1";
+                                        Notify.build(getApplicationContext())
+                                                .setTitle("HRIS Mobile Gelora")
+                                                .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
+                                                .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                .setColor(R.color.colorPrimary)
+                                                .largeCircularIcon()
+                                                .enableVibration(true)
+                                                .show();
 
-                                    // Vibrate for 500 milliseconds
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                    } else {
-                                        //deprecated in API 26
-                                        vibrate.vibrate(500);
+                                        // Vibrate for 500 milliseconds
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                            vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                        } else {
+                                            //deprecated in API 26
+                                            vibrate.vibrate(500);
+                                        }
                                     }
 
                                 } else if (!count.equals("0") && !count_finger.equals("0")) {
                                     notifMarkInfo.setVisibility(View.VISIBLE);
 
-                                    Notify.build(getApplicationContext())
-                                            .setTitle("HRIS Mobile Gelora")
-                                            .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
-                                            .setSmallIcon(R.drawable.ic_skylight_notification)
-                                            .setColor(R.color.colorPrimary)
-                                            .largeCircularIcon()
-                                            .enableVibration(true)
-                                            .show();
+                                    if(notif.equals("0")){
+                                        notif = "1";
+                                        Notify.build(getApplicationContext())
+                                                .setTitle("HRIS Mobile Gelora")
+                                                .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
+                                                .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                .setColor(R.color.colorPrimary)
+                                                .largeCircularIcon()
+                                                .enableVibration(true)
+                                                .show();
 
-                                    // Vibrate for 500 milliseconds
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                    } else {
-                                        //deprecated in API 26
-                                        vibrate.vibrate(500);
+                                        // Vibrate for 500 milliseconds
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                            vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                        } else {
+                                            //deprecated in API 26
+                                            vibrate.vibrate(500);
+                                        }
                                     }
 
                                 }

@@ -16,8 +16,10 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DetailPengumumanActivity;
+import com.gelora.absensi.FormKontakDaruratActivity;
 import com.gelora.absensi.InfoKontakDaruratActivity;
 import com.gelora.absensi.ListAllPengumumanActivity;
+import com.gelora.absensi.PersonalChatActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
@@ -107,6 +109,16 @@ public class AdapterListKontakDarurat extends RecyclerView.Adapter<AdapterListKo
                 Intent intent = new Intent("delete_kontak");
                 intent.putExtra("id_kontak",String.valueOf(dataKontakDarurat.getId()));
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+            }
+        });
+
+        myViewHolder.editBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, FormKontakDaruratActivity.class);
+                intent.putExtra("tipe","edit");
+                intent.putExtra("id_kontak",dataKontakDarurat.getId());
+                mContext.startActivity(intent);
             }
         });
 
