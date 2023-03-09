@@ -46,7 +46,7 @@ import java.util.Map;
 
 public class InfoKontakDaruratActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, noDataPart, loadingDataPart, addBTN;
+    LinearLayout actionBar, backBTN, noDataPart, loadingDataPart, addBTN;
     ImageView loadingData;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
@@ -70,6 +70,7 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
         loadingData = findViewById(R.id.loading_data);
         noDataPart = findViewById(R.id.no_data_part);
         addBTN = findViewById(R.id.add_btn);
+        actionBar = findViewById(R.id.action_bar);
 
         listKontakRV = findViewById(R.id.list_kontak_rv);
 
@@ -83,6 +84,12 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
                 .into(loadingData);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(deleteKontak, new IntentFilter("delete_kontak"));
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

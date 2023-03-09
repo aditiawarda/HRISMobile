@@ -73,7 +73,7 @@ import java.util.UUID;
 
 public class FormPermohonanIzinActivity extends AppCompatActivity {
 
-    LinearLayout viewUploadBTN, markUpload, uploadBTN, uploadFilePart, markStatusSakit, markStatusIzin, izinBTN, sakitBTN, tipeChoiceBTN, viewBTN, formPart, successPart, submitBTN, backBTN, dateMulaiPicker, dateAkhirPicker;
+    LinearLayout actionBar, viewUploadBTN, markUpload, uploadBTN, uploadFilePart, markStatusSakit, markStatusIzin, izinBTN, sakitBTN, tipeChoiceBTN, viewBTN, formPart, successPart, submitBTN, backBTN, dateMulaiPicker, dateAkhirPicker;
     TextView jumlahHariTV, messageSuccessTV, labelUnggahTV, statusUploadTV, tipeChoiceTV, mulaiDateTV, akhirDateTV, namaTV, nikTV, detailTV;
     String permohonanTerkirim = "0", uploadStatus = "", idIzin = "", tipeIzin = "", dateChoiceMulai = "", dateChoiceAkhir = "", alasanIzin = "";
     SharedPrefManager sharedPrefManager;
@@ -123,6 +123,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         viewUploadBTN = findViewById(R.id.view_btn);
         messageSuccessTV = findViewById(R.id.message_tv);
         jumlahHariTV = findViewById(R.id.jumlah_hari_tv);
+        actionBar = findViewById(R.id.action_bar);
 
         alasanED.clearFocus();
         Glide.with(getApplicationContext())
@@ -136,6 +137,12 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         } else {
             messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada Supervisor untuk persetujuan.");
         }
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

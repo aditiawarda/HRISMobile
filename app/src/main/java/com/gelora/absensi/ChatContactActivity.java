@@ -53,7 +53,7 @@ public class ChatContactActivity extends AppCompatActivity {
     private ContactSearch[] contactSearches;
     private AdapterListContactSearch adapterListContactSearch;
     EditText keywordContact;
-    LinearLayout backBTN, noDataPart, loadingPart;
+    LinearLayout backBTN, noDataPart, loadingPart, actionBar;
     boolean canEnterSpace = false;
 
     @Override
@@ -67,10 +67,17 @@ public class ChatContactActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         noDataPart = findViewById(R.id.no_data_part);
         loadingPart = findViewById(R.id.loading_data_part);
+        actionBar = findViewById(R.id.action_bar);
 
         listContactRV.setLayoutManager(new LinearLayoutManager(this));
         listContactRV.setHasFixedSize(true);
         listContactRV.setItemAnimator(new DefaultItemAnimator());
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override

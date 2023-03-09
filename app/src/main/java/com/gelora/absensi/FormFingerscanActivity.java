@@ -65,7 +65,7 @@ import java.util.Map;
 public class FormFingerscanActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refreshLayout;
-    LinearLayout formPart, successPart, viewBTN;
+    LinearLayout formPart, successPart, viewBTN, actionBar;
     LinearLayout fingerscanHistoryBTN, closeBTN, okBTN, backBTN, dateBTN, submitBTN, detailKeterangan1, detailKeterangan3, detailKeterangan6;
     TextView namaTV, nikTV, detailTV, datePilihTV, labelDetail;
     EditText alasanED;
@@ -140,6 +140,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
         datePilihTV = findViewById(R.id.date_pilih);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         successGif = findViewById(R.id.success_gif);
+        actionBar = findViewById(R.id.action_bar);
 
         //Kategori Keterangan 1
         statusAbsensiBTNK1 = findViewById(R.id.status_absensi_btn_k1);
@@ -180,6 +181,12 @@ public class FormFingerscanActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(statusAbsenBroad, new IntentFilter("status_absen_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(shiftAbsenBroad, new IntentFilter("shift_absen_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(titikAbsenBroad, new IntentFilter("titik_absen_broad"));
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

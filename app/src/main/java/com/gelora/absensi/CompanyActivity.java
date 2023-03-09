@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class CompanyActivity extends AppCompatActivity {
 
-    LinearLayout backBTN;
+    LinearLayout backBTN, actionBar;
     TextView p1;
     SharedPrefManager sharedPrefManager;
 
@@ -21,6 +21,13 @@ public class CompanyActivity extends AppCompatActivity {
 
         sharedPrefManager = new SharedPrefManager(this);
         backBTN = findViewById(R.id.back_btn);
+        actionBar = findViewById(R.id.action_bar);
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override

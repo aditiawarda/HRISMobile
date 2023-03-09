@@ -64,7 +64,7 @@ import java.util.UUID;
 
 public class EditPermohonanIzinActivity extends AppCompatActivity {
 
-    LinearLayout submitBTN, dateMulaiPicker, dateAkhirPicker, viewUploadBTN, markUpload, uploadBTN, backBTN, tipeChoiceBTN, izinBTN, sakitBTN, markStatusSakit, markStatusIzin, uploadFilePart;
+    LinearLayout actionBar, submitBTN, dateMulaiPicker, dateAkhirPicker, viewUploadBTN, markUpload, uploadBTN, backBTN, tipeChoiceBTN, izinBTN, sakitBTN, markStatusSakit, markStatusIzin, uploadFilePart;
     TextView jumlahHariTV, akhirDateTV, mulaiDateTV, namaKaryawanTV, nikKaryawanTV, detailKaryawanTV, tipeChoiceTV, statusUploadTV, labelUnggahTV;
     String uploadGanti = "", permohonanTerkirim = "0", alasanIzin = "", idRecord, tipeIzin = "", uploadStatus = "", dateChoiceMulai = "", dateChoiceAkhir = "";
     EditText alasanED;
@@ -103,11 +103,18 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
         jumlahHariTV = findViewById(R.id.jumlah_hari_tv);
         alasanED = findViewById(R.id.alasan_tv);
         submitBTN = findViewById(R.id.submit_btn);
+        actionBar = findViewById(R.id.action_bar);
 
         tipeChoiceBTN = findViewById(R.id.tipe_choice_btn);
         tipeChoiceTV = findViewById(R.id.tipe_choice_tv);
 
         idRecord = getIntent().getExtras().getString("id_record");
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

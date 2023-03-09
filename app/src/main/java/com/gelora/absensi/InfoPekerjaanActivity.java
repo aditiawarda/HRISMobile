@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class InfoPekerjaanActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, nonGapPart;
+    LinearLayout actionBar, backBTN, nonGapPart;
     TextView nikTV, cabangTV, departemenTV, bagianTV, jabatanTV, statusKaryawanTV, tanggalBergabungTV, masaKerjaTV, golonganKaryawanTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -56,6 +56,13 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
         masaKerjaTV = findViewById(R.id.masa_kerja);
         golonganKaryawanTV = findViewById(R.id.golongan_karyawan);
         nonGapPart = findViewById(R.id.non_gap_part);
+        actionBar = findViewById(R.id.action_bar);
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

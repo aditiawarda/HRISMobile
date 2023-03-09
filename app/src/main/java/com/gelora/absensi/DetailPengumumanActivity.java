@@ -36,7 +36,7 @@ import java.util.Map;
 
 public class DetailPengumumanActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, imagePart;
+    LinearLayout backBTN, imagePart, actionBar;
     TextView titleTV, timeTV, authorTV;
     JustifiedTextView deskripsiTV;
     String id_pengumuman = "";
@@ -57,8 +57,15 @@ public class DetailPengumumanActivity extends AppCompatActivity {
         timeTV = findViewById(R.id.time_tv);
         imagePengumuman = findViewById(R.id.image_pengumuman);
         authorTV = findViewById(R.id.author_tv);
+        actionBar = findViewById(R.id.action_bar);
 
         id_pengumuman = getIntent().getExtras().getString("id_pengumuman");
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

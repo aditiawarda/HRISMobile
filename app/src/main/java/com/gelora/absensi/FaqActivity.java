@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class FaqActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, faq1, faq2, faq3, faq4, faq5;
+    LinearLayout backBTN, faq1, faq2, faq3, faq4, faq5, actionBar;
     String statusKaryawan, tanggalBergabung, statusFitur, statusFinger;
 
     @Override
@@ -30,11 +30,18 @@ public class FaqActivity extends AppCompatActivity {
         faq3 = findViewById(R.id.faq_3);
         faq4 = findViewById(R.id.faq_4);
         faq5 = findViewById(R.id.faq_5);
+        actionBar = findViewById(R.id.action_bar);
 
         statusKaryawan = getIntent().getExtras().getString("status_karyawan");
         tanggalBergabung = getIntent().getExtras().getString("tanggal_bergabung");
         statusFitur = getIntent().getExtras().getString("status_fitur");
         statusFinger = getIntent().getExtras().getString("status_finger");
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override

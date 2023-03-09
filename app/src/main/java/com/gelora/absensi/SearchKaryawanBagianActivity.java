@@ -65,7 +65,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
 
     String dateChoiceForHistory = "", currentDay="", keyWordSearch = "", idBagianChoice = "", kdBagianChoice = "";
     TextView attantionDesc, currentDateTV, bagianChoiceTV;
-    LinearLayout choiceBagianBTN, attantionPart, choiceDateBTN, backBTN, loadingDataPart, emptyDataPart;
+    LinearLayout actionBar, choiceBagianBTN, attantionPart, choiceDateBTN, backBTN, loadingDataPart, emptyDataPart;
     EditText keywordUserED;
     SharedPrefManager sharedPrefManager;
     ImageView loadingData;
@@ -104,6 +104,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
         choiceBagianBTN = findViewById(R.id.choice_bagian);
         bagianChoiceTV = findViewById(R.id.bagian_choice);
         attantionDesc = findViewById(R.id.attantion_desc);
+        actionBar = findViewById(R.id.action_bar);
 
         idBagianChoice = getIntent().getExtras().getString("id_bagian");
         kdBagianChoice = getIntent().getExtras().getString("nama_bagian");
@@ -123,6 +124,12 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
         dataAbsensiKaryawanRV.setHasFixedSize(true);
         dataAbsensiKaryawanRV.setNestedScrollingEnabled(false);
         dataAbsensiKaryawanRV.setItemAnimator(new DefaultItemAnimator());
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

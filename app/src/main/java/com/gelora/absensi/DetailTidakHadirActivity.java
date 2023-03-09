@@ -50,7 +50,7 @@ import java.util.Map;
 
 public class DetailTidakHadirActivity extends AppCompatActivity {
 
-    LinearLayout attantionPart,attantionPartIzin, markerWarningAlpha, monthBTN, emptyDataIzin, emptyDataAlpa, loadingIzinPart, loadingAlpaPart, backBTN;
+    LinearLayout actionBar, attantionPart,attantionPartIzin, markerWarningAlpha, monthBTN, emptyDataIzin, emptyDataAlpa, loadingIzinPart, loadingAlpaPart, backBTN;
     ImageView notificationWarningAlphaDetail, bulanLoading, tidakHadirLoading, loadingDataIzin, loadingDataAlpa;
     TextView messageAlpha, messageIzin, dataTotalIzin, dataTotalAlpa, dataBulan, dataTahun, dataTidakHadir, nameUserTV;
     SharedPrefManager sharedPrefManager;
@@ -96,6 +96,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
         messageAlpha = findViewById(R.id.message_alpha);
         messageIzin = findViewById(R.id.message_izin);
         notificationWarningAlphaDetail = findViewById(R.id.warning_gif_absen_nocheckout_detail);
+        actionBar = findViewById(R.id.action_bar);
 
         bulanPilih = getIntent().getExtras().getString("bulan");
 
@@ -131,6 +132,12 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.ic_warning_notification_gif_main)
                 .into(notificationWarningAlphaDetail);
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

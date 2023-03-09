@@ -45,7 +45,7 @@ import java.util.Map;
 
 public class HistoryFingerscanActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, monthBTN, attantionPart, loadingDataPart, emptyDataPart;
+    LinearLayout actionBar, backBTN, monthBTN, attantionPart, loadingDataPart, emptyDataPart;
     TextView nameUserTV, dataBulan, dataTahun, dataFinger;
     ImageView bulanLoading, fingerLoading, loadingData;
     String bulanPilih;
@@ -75,6 +75,7 @@ public class HistoryFingerscanActivity extends AppCompatActivity {
         loadingDataPart = findViewById(R.id.loading_data_part);
         loadingData = findViewById(R.id.loading_data);
         emptyDataPart = findViewById(R.id.no_data_part);
+        actionBar = findViewById(R.id.action_bar);
 
         dataRV = findViewById(R.id.data_rv);
 
@@ -97,6 +98,12 @@ public class HistoryFingerscanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
             }
         });
 

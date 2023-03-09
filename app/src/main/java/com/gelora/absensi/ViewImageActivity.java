@@ -25,7 +25,7 @@ public class ViewImageActivity extends AppCompatActivity {
     private ScaleGestureDetector scaleGestureDetector;
     private float mScaleFactor = 1.0f;
     private ImageView mainImage;
-    LinearLayout backBTN,loadingPart;
+    LinearLayout actionBar, backBTN,loadingPart;
     TextView titlePageTV;
 
     @SuppressLint("SetTextI18n")
@@ -37,6 +37,7 @@ public class ViewImageActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         titlePageTV = findViewById(R.id.title_page);
         loadingPart = findViewById(R.id.loading_part);
+        actionBar = findViewById(R.id.action_bar);
 
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
@@ -86,6 +87,12 @@ public class ViewImageActivity extends AppCompatActivity {
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .into(mainImage);
         }
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override

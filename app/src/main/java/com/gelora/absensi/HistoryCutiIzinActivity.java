@@ -44,7 +44,7 @@ import java.util.Map;
 
 public class HistoryCutiIzinActivity extends AppCompatActivity {
 
-    LinearLayout loadingDataPartPenambahanCuti, noDataPartPenambahanCuti, attantionPart, backBTN, loadingDataPartCutiBersama, loadingDataPartCuti, loadingDataPartIzin, noDataPartCutiBersama, noDataPartCuti, noDataPartIzin, dataDiambilPart, dataSisaPart;
+    LinearLayout actionBar, loadingDataPartPenambahanCuti, noDataPartPenambahanCuti, attantionPart, backBTN, loadingDataPartCutiBersama, loadingDataPartCuti, loadingDataPartIzin, noDataPartCutiBersama, noDataPartCuti, noDataPartIzin, dataDiambilPart, dataSisaPart;
     TextView totalDataPenambahanCuti, hakCutiTV, totalDataCutiBersama, totalDataCuti, totalDataIzin, nameUserTV, periodeData, dataDiambilTV, dataSisaTV;
     RelativeLayout periodeDataPart;
     SharedPrefManager sharedPrefManager;
@@ -105,6 +105,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         periodeDataPart = findViewById(R.id.periode_data_part);
         hakCutiTV = findViewById(R.id.hak_cuti_tv);
         attantionPart = findViewById(R.id.attantion_part);
+        actionBar = findViewById(R.id.action_bar);
 
         dataHistoryCutiRV = findViewById(R.id.data_cuti_rv);
         dataHistoryIzinRV = findViewById(R.id.data_izin_rv);
@@ -158,6 +159,12 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
                 .into(loadingDataPenambahanCuti);
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

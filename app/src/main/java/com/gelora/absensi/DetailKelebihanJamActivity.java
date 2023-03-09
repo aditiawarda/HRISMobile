@@ -48,7 +48,7 @@ import java.util.Map;
 
 public class DetailKelebihanJamActivity extends AppCompatActivity {
 
-    LinearLayout attantionPart, monthBTN, emptyDataKelebihanJam, loadingKelebihanJamPart, backBTN;
+    LinearLayout actionBar, attantionPart, monthBTN, emptyDataKelebihanJam, loadingKelebihanJamPart, backBTN;
     ImageView bulanLoading, kelebihanJamLoading, loadingDataKelebihanJam;
     TextView messageKelebihanJam, dataBulan, dataTahun, dataKelebihanJam, nameUserTV;
     SharedPrefManager sharedPrefManager;
@@ -81,6 +81,7 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
         monthBTN = findViewById(R.id.month_btn);
         attantionPart = findViewById(R.id.attantion_part_kelebihan_jam);
         messageKelebihanJam = findViewById(R.id.message_kelebihan_jam);
+        actionBar = findViewById(R.id.action_bar);
 
         bulanPilih = getIntent().getExtras().getString("bulan");
 
@@ -102,6 +103,12 @@ public class DetailKelebihanJamActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
                 .into(loadingDataKelebihanJam);
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

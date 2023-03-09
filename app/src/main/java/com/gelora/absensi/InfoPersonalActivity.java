@@ -36,7 +36,7 @@ import java.util.Map;
 
 public class InfoPersonalActivity extends AppCompatActivity {
 
-    LinearLayout ubahBTN, emptyWarningBTN, backBTN, warningEmail, warningGender, warningTempatLahir, warningTanggalLahir, warningHandphone, warningStatusPernikahan, warningAgama, warningAlamatKTP, warningAlamatDomisili;
+    LinearLayout actionBar, ubahBTN, emptyWarningBTN, backBTN, warningEmail, warningGender, warningTempatLahir, warningTanggalLahir, warningHandphone, warningStatusPernikahan, warningAgama, warningAlamatKTP, warningAlamatDomisili;
     TextView namaTV, emailTV, genderTV, tempatLahirTV, tanggalLAhirTV, hanphoneTV, statusPernikahanTV, agamaTV, alamatKTPTV, alamatDomisiliTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -70,6 +70,13 @@ public class InfoPersonalActivity extends AppCompatActivity {
         warningAlamatDomisili = findViewById(R.id.warning_alamat_domisili);
         emptyWarningBTN = findViewById(R.id.empty_warning_btn);
         ubahBTN = findViewById(R.id.ubah_btn);
+        actionBar = findViewById(R.id.action_bar);
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

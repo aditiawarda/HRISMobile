@@ -78,7 +78,7 @@ import java.util.UUID;
 
 public class DigitalSignatureActivity extends AppCompatActivity {
 
-    LinearLayout redPen, bluePen, blackPen, cancelBTN, loadingPart, showSignaturePart, creatSignaturePart, changeBTN, backBTN, saveBTN, removeBTN;
+    LinearLayout actionBar, redPen, bluePen, blackPen, cancelBTN, loadingPart, showSignaturePart, creatSignaturePart, changeBTN, backBTN, saveBTN, removeBTN;
     SignaturePad mSignaturePad;
     SharedPrefManager sharedPrefManager;
     Bitmap bitmapFixSize;
@@ -110,6 +110,7 @@ public class DigitalSignatureActivity extends AppCompatActivity {
         redPen = findViewById(R.id.pen_red);
         bluePen = findViewById(R.id.pen_blue);
         blackPen = findViewById(R.id.pen_black);
+        actionBar = findViewById(R.id.action_bar);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -118,6 +119,12 @@ public class DigitalSignatureActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         kodeString = getIntent().getExtras().getString("kode");
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         redPen.setOnClickListener(new View.OnClickListener() {
             @Override

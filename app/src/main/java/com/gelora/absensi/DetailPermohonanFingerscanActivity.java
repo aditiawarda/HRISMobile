@@ -45,7 +45,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
     String file_url, kode, idPermohonan, keteranganForm = "", statusKondisi = "0", ketLemburStatus = "";
     TextView ketLemburChoiceTV, noPermohonan, tanggalTV, nikNamaTV, deptBagianTV, keteranganTV, alasanTV, pemohonTV, tanggalApproveTV, approverTV, jabatanApproverTV, tanggalApproveHRDTV, approverHRDTV;
-    LinearLayout downloadBTN, markStatusTidakLembur, markStatusLembur, lemburBTN, tidakLemburBTN, ketLemburBTN, opsiKetLembur, detailKeteranganPart, backBTN, cancelPermohonanBTN, editPermohonanBTN, rejectedMark, acceptedMark, actionPart, approvedBTN, rejectedBTN;
+    LinearLayout actionBar, downloadBTN, markStatusTidakLembur, markStatusLembur, lemburBTN, tidakLemburBTN, ketLemburBTN, opsiKetLembur, detailKeteranganPart, backBTN, cancelPermohonanBTN, editPermohonanBTN, rejectedMark, acceptedMark, actionPart, approvedBTN, rejectedBTN;
     ImageView ttdPemohon, ttdApprover,ttdApproverHRD;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
@@ -110,11 +110,18 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
         dTitikAbsenTV = findViewById(R.id.d_titik_absen_tv);
         dKetLembur = findViewById(R.id.d_ket_lembur);
         dKetLemburTV = findViewById(R.id.d_ket_lembur_tv);
+        actionBar = findViewById(R.id.action_bar);
 
         kode = getIntent().getExtras().getString("kode");
         idPermohonan = getIntent().getExtras().getString("id_permohonan");
 
         file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_finger/"+idPermohonan;
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

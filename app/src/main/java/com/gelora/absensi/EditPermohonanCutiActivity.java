@@ -90,7 +90,7 @@ import java.util.UUID;
 
 public class EditPermohonanCutiActivity extends AppCompatActivity {
 
-    LinearLayout infoCutiPart, removeLampiranBTN, submitBTN, loadingDataPart, noDataPart, startAttantionPart, penggantiSelamaCutiBTN, tipeCutiBTN, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, backBTN, dariTanggalPicker, sampaiTanggalPicker;
+    LinearLayout actionBar, infoCutiPart, removeLampiranBTN, submitBTN, loadingDataPart, noDataPart, startAttantionPart, penggantiSelamaCutiBTN, tipeCutiBTN, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, backBTN, dariTanggalPicker, sampaiTanggalPicker;
     TextView notejumlahHari, jumlahHariTV, labelUnggahTV, statusUploadTV, noHpTV, alamatSelamaCutiTV, penggantiSelamaCutiTV, jenisCutiTV, tipeCutiTV, sampaiTanggalTV, dariTanggalTV, totalCutiDiambilTV, tahunCutiDiambilTV, sisaCutiTV, namaKaryawanTV, jabatanKaryawanTV, detailKaryawanTV, tglMulaiKerjaTV, nikKaryawanTV, statusKaryawanTV;
     EditText alasanTV, keywordKaryawanPengganti;
     ImageView loadingGif;
@@ -156,11 +156,18 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         notejumlahHari = findViewById(R.id.note_jumlah_hari);
         submitBTN = findViewById(R.id.submit_btn);
         infoCutiPart = findViewById(R.id.info_cuti_part);
+        actionBar = findViewById(R.id.action_bar);
 
         idRecord = getIntent().getExtras().getString("id_record");
 
         LocalBroadcastManager.getInstance(this).registerReceiver(kategoriCutiBroad, new IntentFilter("kategori_cuti_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(karyawanPenggantiBroad, new IntentFilter("karyawan_pengganti_broad"));
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

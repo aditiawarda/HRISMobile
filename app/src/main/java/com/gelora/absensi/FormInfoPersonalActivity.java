@@ -46,7 +46,7 @@ import java.util.Map;
 
 public class FormInfoPersonalActivity extends AppCompatActivity {
 
-    LinearLayout lainnyaBTN, markLainnya, islamBTN, kristenBTN, hinduBTN, buddhaBTN, katolikBTN, konghuchuBTN, markIslam, markKristen, markHindu, markBuddha, markKatolik, markKonghuchu, backSuccessBTN, formPart, successPart, tanggalLAhirBTN, submitBTN, backBTN, agamaBTN, genderBTN, statusPernikahanBTN, maleBTN, femaleBTN, markMale, markFemale, belumMenikahBTN, sudahMenikahBTN, ceraiHidupBTN, ceraiMatiBTN, markBelumMenikah, markSudahMenikah, markCeraiHidup, markCeraiMati;
+    LinearLayout actionBar, lainnyaBTN, markLainnya, islamBTN, kristenBTN, hinduBTN, buddhaBTN, katolikBTN, konghuchuBTN, markIslam, markKristen, markHindu, markBuddha, markKatolik, markKonghuchu, backSuccessBTN, formPart, successPart, tanggalLAhirBTN, submitBTN, backBTN, agamaBTN, genderBTN, statusPernikahanBTN, maleBTN, femaleBTN, markMale, markFemale, belumMenikahBTN, sudahMenikahBTN, ceraiHidupBTN, ceraiMatiBTN, markBelumMenikah, markSudahMenikah, markCeraiHidup, markCeraiMati;
     TextView agamaPilihTV, namaTV, genderPilihTV, tanggalLahirPilihTV, statusPernikahanPilihTV;
     EditText emailED, tempatLahirED, noHanphoneED, alamatKTPED, alamatDomisiliED;
     SharedPrefManager sharedPrefManager;
@@ -91,12 +91,19 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
         successGif = findViewById(R.id.success_gif);
+        actionBar = findViewById(R.id.action_bar);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
                 .into(successGif);
 
         tempatLahirED.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -46,7 +46,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
     private AdapterPermohonanFingerSaya adapterPermohonanFingerSaya;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
-    LinearLayout backBTN;
+    LinearLayout backBTN, actionBar;
     LinearLayout mainPart, optionPart, countPartIn, countPartMe, permohonanMasukPart, permohonanSayaPart, notifyInBTN, notifySayaBTN, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
     ImageView loadingImage,loadingImage2;
     View rootview;
@@ -79,6 +79,7 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
         countPartMe = findViewById(R.id.count_notification_me);
         optionPart = findViewById(R.id.option_part);
         mainPart = findViewById(R.id.main_part);
+        actionBar = findViewById(R.id.action_bar);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -97,6 +98,12 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
         dataNotifikasi2RV.setHasFixedSize(true);
         dataNotifikasi2RV.setNestedScrollingEnabled(false);
         dataNotifikasi2RV.setItemAnimator(new DefaultItemAnimator());
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

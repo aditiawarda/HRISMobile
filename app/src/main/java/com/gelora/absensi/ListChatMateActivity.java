@@ -50,7 +50,7 @@ public class ListChatMateActivity extends AppCompatActivity {
     private ListChatMate[] listChatMates;
     private AdapterListChatMate adapterListChatMate;
     SharedPrefManager sharedPrefManager;
-    LinearLayout backBTN, noDataPart, loadingPart;
+    LinearLayout backBTN, noDataPart, loadingPart, actionBar;
     ImageView loadingImage;
     LinearLayout newChatBTN;
     KAlertDialog pDialog;
@@ -68,6 +68,7 @@ public class ListChatMateActivity extends AppCompatActivity {
         loadingPart = findViewById(R.id.loading_data_part);
         loadingImage = findViewById(R.id.loading_data);
         newChatBTN = findViewById(R.id.new_chat_btn);
+        actionBar = findViewById(R.id.action_bar);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(endChat,
                 new IntentFilter("end_chat"));
@@ -80,6 +81,12 @@ public class ListChatMateActivity extends AppCompatActivity {
         listChatRV.setHasFixedSize(true);
         listChatRV.setNestedScrollingEnabled(false);
         listChatRV.setItemAnimator(new DefaultItemAnimator());
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override

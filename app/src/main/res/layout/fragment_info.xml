@@ -1307,7 +1307,7 @@
                                                 android:lineSpacingExtra="2dp"
                                                 android:layout_marginBottom="5dp"
                                                 android:textColor="@color/text_color"
-                                                android:text="HRIS Mobile Gelora dibuat untuk membantu pelayannan kepegawaian PT. Gelora Aksara Pratama secara online. Diharapkan aplikasi ini dapat mempermudah karyawan dalam melaksanakan absensi kerja serta pengurusan cuti dan izin."/>
+                                                android:text="HRIS Mobile Gelora dibuat untuk membantu pelayannan kepegawaian PT. Gelora Aksara Pratama secara online. Diharapkan aplikasi ini dapat mempermudah karyawan dalam melaksanakan absensi kerja serta pelayanan kepegawaian lainnya."/>
 
                                             <TextView
                                                 android:layout_width="wrap_content"

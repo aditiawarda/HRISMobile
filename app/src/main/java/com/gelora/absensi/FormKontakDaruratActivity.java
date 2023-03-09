@@ -39,7 +39,7 @@ import java.util.Map;
 
 public class FormKontakDaruratActivity extends AppCompatActivity {
 
-    LinearLayout backSuccessBTN, submitBTN, backBTN, hubunganBTN, hubunganLainnyaPart, formPart, successPart;
+    LinearLayout actionBar, backSuccessBTN, submitBTN, backBTN, hubunganBTN, hubunganLainnyaPart, formPart, successPart;
     LinearLayout sodaraLakiBTN, sodaraPerempuanBTN, markSodaraLaki, markSodaraPerempuan, ayahBTN, ibuBTN, suamiBTN, istriBTN, anakBTN, lainnyaBTN, markAyah, markIbu, markSuami, markIstri, markAnak, markLainnya;
     SwipeRefreshLayout refreshLayout;
     TextView hubunganPilihTV, titlePageTV;
@@ -72,6 +72,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
         submitBTN = findViewById(R.id.submit_btn);
+        actionBar = findViewById(R.id.action_bar);
 
         successGif = findViewById(R.id.success_gif);
 
@@ -90,6 +91,12 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
         } else {
             titlePageTV.setText("FORM KONTAK DARURAT");
         }
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

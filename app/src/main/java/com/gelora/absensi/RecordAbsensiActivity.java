@@ -45,7 +45,7 @@ import java.util.Map;
 
 public class RecordAbsensiActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, loadingRecordPart, noDataPart, bulanBTN;
+    LinearLayout actionBar, backBTN, loadingRecordPart, noDataPart, bulanBTN;
     ImageView loadingDataRecord;
     TextView bulanPilihTV;
     String selectMonth = "";
@@ -69,6 +69,7 @@ public class RecordAbsensiActivity extends AppCompatActivity {
         noDataPart = findViewById(R.id.no_data_part);
         bulanBTN = findViewById(R.id.bulan_btn);
         bulanPilihTV = findViewById(R.id.bulan_pilih);
+        actionBar = findViewById(R.id.action_bar);
 
         dataAbsensiRV = findViewById(R.id.data_absensi_rv);
 
@@ -82,6 +83,12 @@ public class RecordAbsensiActivity extends AppCompatActivity {
                 .into(loadingDataRecord);
 
         selectMonth = getMonth();
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

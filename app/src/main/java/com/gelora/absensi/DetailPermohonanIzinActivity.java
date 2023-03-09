@@ -70,7 +70,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     TextView approverHrdTV, notedTV, appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, tanggalApproveTV, tanggalApproveHRDTV, supervisorTV, hrdTV;
     String uriImage, uriImage2, idIzinRecord, statusKondisi = "0", kode, title;
-    LinearLayout editPermohonanBTN, cancelPermohonanBTN, pdfBTN, viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, approvedBTN, rejectedBTN, actionPart;
+    LinearLayout actionBar, editPermohonanBTN, cancelPermohonanBTN, pdfBTN, viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, approvedBTN, rejectedBTN, actionPart;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdSupervisor, ttdHRD, qrDocument;
     KAlertDialog pDialog;
@@ -128,10 +128,17 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         approverHrdTV = findViewById(R.id.approver_hrd_tv);
         cancelPermohonanBTN = findViewById(R.id.cancel_permohonan_btn);
         editPermohonanBTN = findViewById(R.id.edit_permohonan_btn);
+        actionBar = findViewById(R.id.action_bar);
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
         file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_izin/"+idIzinRecord;
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

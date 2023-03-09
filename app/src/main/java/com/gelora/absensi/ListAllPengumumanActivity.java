@@ -36,7 +36,7 @@ import java.util.Map;
 
 public class ListAllPengumumanActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, noDataPart, loadingDataPart;
+    LinearLayout actionBar, backBTN, noDataPart, loadingDataPart;
     ImageView loadingData;
     SwipeRefreshLayout refreshLayout;
 
@@ -54,6 +54,7 @@ public class ListAllPengumumanActivity extends AppCompatActivity {
         loadingDataPart = findViewById(R.id.loading_data_part);
         loadingData = findViewById(R.id.loading_data);
         noDataPart = findViewById(R.id.no_data_part);
+        actionBar = findViewById(R.id.action_bar);
 
         listPengumumanRV = findViewById(R.id.list_pengumuman_rv);
 
@@ -65,6 +66,12 @@ public class ListAllPengumumanActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
                 .into(loadingData);
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

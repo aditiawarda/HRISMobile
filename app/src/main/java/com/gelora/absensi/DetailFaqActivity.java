@@ -26,7 +26,7 @@ public class DetailFaqActivity extends AppCompatActivity {
 
     String noFAQ;
     TextView titleTV, hubungiIT;
-    LinearLayout backBTN, faq1Detail, faq2Detail, faq3Detail, faq4Detail, faq5Detail;
+    LinearLayout backBTN, faq1Detail, faq2Detail, faq3Detail, faq4Detail, faq5Detail, actionBar;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -42,6 +42,7 @@ public class DetailFaqActivity extends AppCompatActivity {
         faq3Detail = findViewById(R.id.faq_3_detail);
         faq4Detail = findViewById(R.id.faq_4_detail);
         faq5Detail = findViewById(R.id.faq_5_detail);
+        actionBar = findViewById(R.id.action_bar);
 
         noFAQ = getIntent().getExtras().getString("no_faq");
 
@@ -61,6 +62,12 @@ public class DetailFaqActivity extends AppCompatActivity {
             titleTV.setText("CARA PENGISIAN FORM KETERANGAN TIDAK ABSEN");
             faq5Detail.setVisibility(View.VISIBLE);
         }
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override

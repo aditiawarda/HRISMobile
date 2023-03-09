@@ -66,7 +66,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
     ImageView dataTidakHadirLoading, dataHadirLoading, loadingDataKehadiranBagian, loadingDataKetidakhadiranBagian;
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheet;
-    LinearLayout attantionPart, seacrhKaryawanBTN, indikatorHadirBTN, indikatorTidakHadirBTN, hadirBTN, tidakHadirBTN, hadirPart, tidakHadirPart, backBTN, loadingDataKehadiranPart, loadingDataKetidakhadiranPart, choiceDateBTN, choiceBagianBTN, noDataHadirBagian, noDataTidakHadirBagian;
+    LinearLayout actionBar, attantionPart, seacrhKaryawanBTN, indikatorHadirBTN, indikatorTidakHadirBTN, hadirBTN, tidakHadirBTN, hadirPart, tidakHadirPart, backBTN, loadingDataKehadiranPart, loadingDataKetidakhadiranPart, choiceDateBTN, choiceBagianBTN, noDataHadirBagian, noDataTidakHadirBagian;
     View rootview;
 
     private RecyclerView dataKehadiranBagianRV, dataKeTidakhadiranBagianRV;
@@ -121,6 +121,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         titleDataKehadiran = findViewById(R.id.title_data_kehadiran);
         titleDataKetidakhadiran = findViewById(R.id.title_data_ketidakhadiran);
         attantionPart = findViewById(R.id.attantion_part);
+        actionBar = findViewById(R.id.action_bar);
 
         dateChoiceForHistory = getDate();
         idBagianChoice = sharedPrefManager.getSpIdDept();
@@ -156,6 +157,12 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         dataKeTidakhadiranBagianRV.setItemAnimator(new DefaultItemAnimator());
 
         LocalBroadcastManager.getInstance(this).registerReceiver(bagianBroad, new IntentFilter("bagian_broad"));
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

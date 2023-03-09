@@ -73,7 +73,6 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
 
         sharedPrefManager = new SharedPrefManager(this);
-        actionBar = findViewById(R.id.action_bar);
         backBTN = findViewById(R.id.back_btn);
         filterDateBTN = findViewById(R.id.filter_date_btn);
         filterDateChoiceBTN = findViewById(R.id.filter_date_choice_btn);
@@ -98,6 +97,7 @@ public class HistoryActivity extends AppCompatActivity {
         nameOfUser = findViewById(R.id.name_of_user_tv);
         shiftName = findViewById(R.id.shift_name);
         shiftTime = findViewById(R.id.shift_time);
+        actionBar = findViewById(R.id.action_bar);
         nameOfUser.setText(sharedPrefManager.getSpNama().toUpperCase());
 
         Glide.with(getApplicationContext())
@@ -110,6 +110,12 @@ public class HistoryActivity extends AppCompatActivity {
         historyAbsenRV.setHasFixedSize(true);
         historyAbsenRV.setNestedScrollingEnabled(false);
         historyAbsenRV.setItemAnimator(new DefaultItemAnimator());
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
