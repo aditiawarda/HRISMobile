@@ -1061,7 +1061,7 @@
                                     android:id="@+id/alasan_tv"
                                     android:layout_width="match_parent"
                                     android:gravity="top"
-                                    android:inputType="textMultiLine"
+                                    android:inputType="textCapSentences|textMultiLine"
                                     android:layout_height="wrap_content"
                                     android:minHeight="80dp"
                                     android:paddingTop="13dp"

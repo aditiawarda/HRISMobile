@@ -562,7 +562,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
                                     tanggalApproveTV.setText(timestamp_approve.substring(8,10)+"/"+timestamp_approve.substring(5,7)+"/"+timestamp_approve.substring(2,4));
 
-                                    String shortName2 = nama_approver+" ";;
+                                    String shortName2 = nama_approver+" ";
                                     if(shortName2.contains(" ")){
                                         shortName2 = shortName2.substring(0, shortName2.indexOf(" "));
                                         approverTV.setText("( "+shortName2.toUpperCase()+" )");

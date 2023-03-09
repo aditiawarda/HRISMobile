@@ -21,6 +21,9 @@ public class SharedPrefAbsen {
     public static final String SP_TITIK_ABSENSI = "spTitikAbsensi";
     public static final String SP_NOTIF_ULTAH = "spNotifUltah";
     public static final String SP_NOTIF_PENGUMUMAN = "spNotifPengumuman";
+    public static final String SP_NOTIF_JOIN_REMAINDER = "spNotifJoinReminder";
+    public static final String SP_NOTIF_MESSENGER = "spNotifMessenger";
+    public static final String SP_YET_BEFORE_MESSENGER = "spYetBeforeMessenger";
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -100,6 +103,18 @@ public class SharedPrefAbsen {
 
     public String getSpNotifPengumuman(){
         return sp.getString(SP_NOTIF_PENGUMUMAN, "");
+    }
+
+    public String getSpNotifJoinRemainder(){
+        return sp.getString(SP_NOTIF_JOIN_REMAINDER, "");
+    }
+
+    public String getSpYetBeforeMessenger(){
+        return sp.getString(SP_YET_BEFORE_MESSENGER, "");
+    }
+
+    public String getSpNotifMessenger(){
+        return sp.getString(SP_NOTIF_MESSENGER, "");
     }
 
 }

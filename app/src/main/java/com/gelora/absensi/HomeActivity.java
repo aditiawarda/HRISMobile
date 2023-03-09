@@ -26,6 +26,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.application.isradeleon.notify.Notify;
 import com.bumptech.glide.Glide;
 import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
 import com.gauravk.bubblenavigation.BubbleToggleView;
@@ -277,6 +278,9 @@ public class HomeActivity extends AppCompatActivity {
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_ULTAH, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_PENGUMUMAN, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_JOIN_REMAINDER, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_MESSENGER, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_YET_BEFORE_MESSENGER, "");
         Preferences.clearLoggedInUser(HomeActivity.this);
         Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
         startActivity(intent);
@@ -305,21 +309,99 @@ public class HomeActivity extends AppCompatActivity {
                                 String terlambat = data.getString("terlambat");
                                 String tidak_checkout = data.getString("tidak_checkout");
 
+                                String shortName = sharedPrefManager.getSpNama()+" ";
+                                if(shortName.contains(" ")){
+                                    shortName = shortName.substring(0, shortName.indexOf(" "));
+                                    System.out.println(shortName);
+                                }
+
                                 if (count.equals("0") && count_finger.equals("0")){
                                     int alpaNumb = Integer.parseInt(alpa);
                                     int lateNumb = Integer.parseInt(terlambat);
                                     int noCheckoutNumb = Integer.parseInt(tidak_checkout);
                                     if (alpaNumb > 0 || lateNumb > 0 || noCheckoutNumb > 0){
                                         notifMarkInfo.setVisibility(View.VISIBLE);
+
+                                        Notify.build(getApplicationContext())
+                                                .setTitle("HRIS Mobile Gelora")
+                                                .setContent("Halo "+shortName+", harap periksa kembali data rekap absensi anda")
+                                                .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                .setColor(R.color.colorPrimary)
+                                                .largeCircularIcon()
+                                                .enableVibration(true)
+                                                .show();
+
+                                        // Vibrate for 500 milliseconds
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                            vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                        } else {
+                                            //deprecated in API 26
+                                            vibrate.vibrate(500);
+                                        }
+
                                     } else {
                                         notifMarkInfo.setVisibility(View.GONE);
                                     }
                                 } else if (!count.equals("0") && count_finger.equals("0")) {
                                     notifMarkInfo.setVisibility(View.VISIBLE);
+
+                                    Notify.build(getApplicationContext())
+                                            .setTitle("HRIS Mobile Gelora")
+                                            .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
+                                            .setSmallIcon(R.drawable.ic_skylight_notification)
+                                            .setColor(R.color.colorPrimary)
+                                            .largeCircularIcon()
+                                            .enableVibration(true)
+                                            .show();
+
+                                    // Vibrate for 500 milliseconds
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                    } else {
+                                        //deprecated in API 26
+                                        vibrate.vibrate(500);
+                                    }
+
                                 } else if (count.equals("0") && !count_finger.equals("0")) {
                                     notifMarkInfo.setVisibility(View.VISIBLE);
+
+                                    Notify.build(getApplicationContext())
+                                            .setTitle("HRIS Mobile Gelora")
+                                            .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
+                                            .setSmallIcon(R.drawable.ic_skylight_notification)
+                                            .setColor(R.color.colorPrimary)
+                                            .largeCircularIcon()
+                                            .enableVibration(true)
+                                            .show();
+
+                                    // Vibrate for 500 milliseconds
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                    } else {
+                                        //deprecated in API 26
+                                        vibrate.vibrate(500);
+                                    }
+
                                 } else if (!count.equals("0") && !count_finger.equals("0")) {
                                     notifMarkInfo.setVisibility(View.VISIBLE);
+
+                                    Notify.build(getApplicationContext())
+                                            .setTitle("HRIS Mobile Gelora")
+                                            .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
+                                            .setSmallIcon(R.drawable.ic_skylight_notification)
+                                            .setColor(R.color.colorPrimary)
+                                            .largeCircularIcon()
+                                            .enableVibration(true)
+                                            .show();
+
+                                    // Vibrate for 500 milliseconds
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                    } else {
+                                        //deprecated in API 26
+                                        vibrate.vibrate(500);
+                                    }
+
                                 }
 
                             } else {

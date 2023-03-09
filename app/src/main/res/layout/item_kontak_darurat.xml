@@ -102,8 +102,8 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="Nazma Kamilatul Nurhidayah"
-                    android:textColor="#555555"
+                    android:text="Nama Kontak"
+                    android:textColor="#4C4C4C"
                     android:textSize="13.5dp" />
 
                 <TextView
@@ -115,7 +115,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="Pasangan"
+                    android:text="Hubungan"
                     android:textColor="#8F8F8F"
                     android:textSize="10dp" />
 
@@ -127,7 +127,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="085721603080"
+                    android:text="No Kontak"
                     android:textColor="#8F8F8F"
                     android:textSize="11.5dp" />
 

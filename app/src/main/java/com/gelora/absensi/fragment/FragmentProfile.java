@@ -340,7 +340,7 @@ public class FragmentProfile extends Fragment {
                                     Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                             .into(avatarUser);
-                                    String shortName = sharedPrefManager.getSpNama();
+                                    String shortName = sharedPrefManager.getSpNama()+" ";
                                     if(shortName.contains(" ")){
                                         shortName = shortName.substring(0, shortName.indexOf(" "));
                                         System.out.println(shortName);
@@ -420,7 +420,7 @@ public class FragmentProfile extends Fragment {
                                         Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                 .into(avatarUser);
-                                        String shortName = sharedPrefManager.getSpNama();
+                                        String shortName = sharedPrefManager.getSpNama()+" ";
                                         if(shortName.contains(" ")){
                                             shortName = shortName.substring(0, shortName.indexOf(" "));
                                             System.out.println(shortName);
@@ -447,7 +447,7 @@ public class FragmentProfile extends Fragment {
                                     } else {
                                         uploadFileImage.setVisibility(View.VISIBLE);
                                         editFileImage.setVisibility(View.GONE);
-                                        String shortName = sharedPrefManager.getSpNama();
+                                        String shortName = sharedPrefManager.getSpNama()+" ";
                                         if(shortName.contains(" ")){
                                             shortName = shortName.substring(0, shortName.indexOf(" "));
                                             System.out.println(shortName);
@@ -900,6 +900,9 @@ public class FragmentProfile extends Fragment {
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_ULTAH, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_PENGUMUMAN, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_JOIN_REMAINDER, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_MESSENGER, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_YET_BEFORE_MESSENGER, "");
         Preferences.clearLoggedInUser(mContext);
         Intent intent = new Intent(mContext, LoginActivity.class);
         startActivity(intent);

@@ -162,9 +162,6 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 .load(R.drawable.success_ic)
                 .into(successGif);
 
-        alasanTV.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-        alamatSelamaCutiTV.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-
         if(sharedPrefManager.getSpIdJabatan().equals("10")){
             messageSuccessTV.setText("Permohonan anda telah terkirim dan disampaikan kepada bagian HRD untuk persetujuan.");
         } else if(sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){

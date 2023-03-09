@@ -11,10 +11,13 @@ import android.content.res.Resources;
 import android.location.Location;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -118,6 +121,7 @@ public class FragmentHome extends Fragment {
     Context mContext;
     Activity mActivity;
     protected ViewGroup mainParent;
+    Vibrator vibrate;
 
     private RecyclerView listPengumumanNewRV;
     private DataPengumuman[] dataPengumumanNews;
@@ -147,6 +151,7 @@ public class FragmentHome extends Fragment {
 
         sharedPrefManager = new SharedPrefManager(mContext);
         sharedPrefAbsen = new SharedPrefAbsen(mContext);
+        vibrate = (Vibrator) mActivity.getSystemService(Context.VIBRATOR_SERVICE);
         bottomSheet = view.findViewById(R.id.bottom_sheet_layout);
         mainParent = view.findViewById(R.id.main_parent);
         refreshLayout = view.findViewById(R.id.swipe_to_refresh_layout);
@@ -485,7 +490,7 @@ public class FragmentHome extends Fragment {
                                     String tahunLahir = tanggal_lahir.substring(0, 4);
                                     if (tglBulanLahir.equals(getDayMonth())) {
                                         ulangTahunPart.setVisibility(View.VISIBLE);
-                                        String shortName = sharedPrefManager.getSpNama();
+                                        String shortName = sharedPrefManager.getSpNama()+" ";
                                         if(shortName.contains(" ")){
                                             shortName = shortName.substring(0, shortName.indexOf(" "));
                                             System.out.println(shortName);
@@ -508,6 +513,15 @@ public class FragmentHome extends Fragment {
                                                     .largeCircularIcon()
                                                     .enableVibration(true)
                                                     .show();
+
+                                            // Vibrate for 500 milliseconds
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                            } else {
+                                                //deprecated in API 26
+                                                vibrate.vibrate(500);
+                                            }
+
                                         }
 
                                         ulangTahunPart.setOnClickListener(new View.OnClickListener() {
@@ -555,6 +569,25 @@ public class FragmentHome extends Fragment {
                                         int masaKerja = Integer.parseInt(getDateY()) - Integer.parseInt(tahunMasuk);
                                         congratCelebrate.setText("Selamat Merayakan " + String.valueOf(masaKerja) + " Tahun Masa Kerja.");
                                         if (join_reminder.equals("1")) {
+                                            if(!sharedPrefAbsen.getSpNotifJoinRemainder().equals("1")){
+                                                Notify.build(mContext)
+                                                        .setTitle("HRIS Mobile Gelora")
+                                                        .setContent("Selamat Merayakan " + String.valueOf(masaKerja) + " Tahun Masa Kerja di PT. Gelora Aksara Pratama")
+                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                        .setColor(R.color.colorPrimary)
+                                                        .largeCircularIcon()
+                                                        .enableVibration(true)
+                                                        .show();
+
+                                                // Vibrate for 500 milliseconds
+                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                    vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                                } else {
+                                                    //deprecated in API 26
+                                                    vibrate.vibrate(500);
+                                                }
+                                            }
+
                                             congratTahunanPart.setVisibility(View.VISIBLE);
                                             //CommonConfetti.rainingConfetti(mainParent, colors).stream(3500);
                                             congratTahunanPart.setOnClickListener(new View.OnClickListener() {
@@ -574,12 +607,15 @@ public class FragmentHome extends Fragment {
                                             });
                                         } else {
                                             congratTahunanPart.setVisibility(View.GONE);
+                                            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_JOIN_REMAINDER, "");
                                         }
                                     } else {
                                         congratTahunanPart.setVisibility(View.GONE);
+                                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_JOIN_REMAINDER, "");
                                     }
                                 } else {
                                     congratTahunanPart.setVisibility(View.GONE);
+                                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_JOIN_REMAINDER, "");
                                 }
 
                                 // Pengumuman
@@ -602,6 +638,15 @@ public class FragmentHome extends Fragment {
                                                     .enableVibration(true)
                                                     .setAction(intent)
                                                     .show();
+
+                                            // Vibrate for 500 milliseconds
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                            } else {
+                                                //deprecated in API 26
+                                                vibrate.vibrate(500);
+                                            }
+
                                         }
 
                                         bannerPengumumanPart.setVisibility(View.VISIBLE);
@@ -621,7 +666,6 @@ public class FragmentHome extends Fragment {
                                         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_PENGUMUMAN, "");
                                     }
                                 }
-
 
                                 getCurrentLocation(weather_key);
                                 getDataPengumumanNew();
@@ -1176,6 +1220,67 @@ public class FragmentHome extends Fragment {
                                 } else {
                                     countNotificationMessage.setVisibility(View.VISIBLE);
                                     countMessage.setText(String.valueOf(Integer.parseInt(message_count)));
+
+                                    if(!sharedPrefAbsen.getSpNotifMessenger().equals("1")){
+                                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_YET_BEFORE_MESSENGER, message_count);
+                                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_MESSENGER, "1");
+
+                                        String shortName = sharedPrefManager.getSpNama()+" ";
+                                        if(shortName.contains(" ")){
+                                            shortName = shortName.substring(0, shortName.indexOf(" "));
+                                            System.out.println(shortName);
+                                        }
+
+                                        Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
+                                        Notify.build(mContext)
+                                                .setTitle("HRIS Mobile Gelora")
+                                                .setContent("Halo "+shortName+", terdapat "+message_count+" pesan yang belum dibaca di Gelora Messenger")
+                                                .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                .setColor(R.color.colorPrimary)
+                                                .largeCircularIcon()
+                                                .enableVibration(true)
+                                                .setAction(intent)
+                                                .show();
+
+                                        // Vibrate for 500 milliseconds
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                            vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                        } else {
+                                            //deprecated in API 26
+                                            vibrate.vibrate(500);
+                                        }
+                                    } else {
+                                        if(!sharedPrefAbsen.getSpYetBeforeMessenger().equals(message_count)){
+                                            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_YET_BEFORE_MESSENGER, message_count);
+                                            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_MESSENGER, "1");
+
+                                            String shortName = sharedPrefManager.getSpNama()+" ";
+                                            if(shortName.contains(" ")){
+                                                shortName = shortName.substring(0, shortName.indexOf(" "));
+                                                System.out.println(shortName);
+                                            }
+
+                                            Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
+                                            Notify.build(mContext)
+                                                    .setTitle("HRIS Mobile Gelora")
+                                                    .setContent("Halo "+shortName+", terdapat "+message_count+" pesan yang belum dibaca di Gelora Messenger")
+                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                    .setColor(R.color.colorPrimary)
+                                                    .largeCircularIcon()
+                                                    .enableVibration(true)
+                                                    .setAction(intent)
+                                                    .show();
+
+                                            // Vibrate for 500 milliseconds
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                            } else {
+                                                //deprecated in API 26
+                                                vibrate.vibrate(500);
+                                            }
+                                        }
+                                    }
+
                                 }
                             }
 
