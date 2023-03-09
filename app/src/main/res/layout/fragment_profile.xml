@@ -219,7 +219,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:paddingTop="10dp"
+                                android:paddingTop="20dp"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
                                 android:paddingBottom="20dp"
@@ -411,6 +411,12 @@
                                 </LinearLayout>
 
                             </LinearLayout>
+
+                            <LinearLayout
+                                android:background="@drawable/shape_bg_expand_avatar"
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="-5dp"
+                                android:layout_height="25dp"/>
 
                         </net.cachapa.expandablelayout.ExpandableLayout>
 

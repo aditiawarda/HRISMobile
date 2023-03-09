@@ -245,18 +245,22 @@ public class FragmentProfile extends Fragment {
             }
         });
 
-        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")) {
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpIdJabatan().equals("31")||sharedPrefManager.getSpNik().equals("80085")) {
             infoGapPart.setVisibility(View.GONE);
-            nonGapSgnBTN.setVisibility(View.VISIBLE);
 
-            nonGapSgnBTN.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext, DigitalSignatureActivity.class);
-                    intent.putExtra("kode", "home");
-                    startActivity(intent);
-                }
-            });
+            if(sharedPrefManager.getSpIdJabatan().equals("31")){
+                nonGapSgnBTN.setVisibility(View.GONE);
+            } else {
+                nonGapSgnBTN.setVisibility(View.VISIBLE);
+                nonGapSgnBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext, DigitalSignatureActivity.class);
+                        intent.putExtra("kode", "home");
+                        startActivity(intent);
+                    }
+                });
+            }
 
         } else {
             infoGapPart.setVisibility(View.VISIBLE);

@@ -253,8 +253,22 @@ public class FragmentHome extends Fragment {
         menuIzinBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, FormPermohonanIzinActivity.class);
-                startActivity(intent);
+                if(sharedPrefManager.getSpIdJabatan().equals("31")){
+                    new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Khusus PKL, pengajuan izin dapat langsung menghubungi HRD")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+                } else {
+                    Intent intent = new Intent(mContext, FormPermohonanIzinActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -300,8 +314,22 @@ public class FragmentHome extends Fragment {
         menuFingerBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, FormFingerscanActivity.class);
-                startActivity(intent);
+                if(sharedPrefManager.getSpIdJabatan().equals("31")){
+                    new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Khusus PKL, pengajuan fingerscan/keterangan tidak absen dapat langsung menghubungi HRD")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    Intent intent = new Intent(mContext, FormFingerscanActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

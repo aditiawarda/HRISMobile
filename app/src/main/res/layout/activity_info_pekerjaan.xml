@@ -231,158 +231,166 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
+                            android:id="@+id/non_gap_part"
                             android:orientation="vertical"
-                            android:paddingLeft="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:ellipsize="end"
-                                android:gravity="center"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:text="Status Karyawan"
-                                android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
-
-                            <TextView
-                                android:id="@+id/status_karyawan"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:ellipsize="end"
-                                android:gravity="center"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:text=""
-                                android:textColor="#555555"
-                                android:textSize="13dp" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="12dp"
-                                android:background="#3CCFCFCF" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:ellipsize="end"
-                                android:gravity="center"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:text="Tanggal Bergabung"
-                                android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:layout_marginTop="15dp"
+                                android:orientation="vertical"
+                                android:paddingLeft="10dp">
 
-                            <TextView
-                                android:id="@+id/tanggal_bergabung"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:ellipsize="end"
-                                android:gravity="center"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:text=""
-                                android:textColor="#555555"
-                                android:textSize="13dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="Status Karyawan"
+                                    android:textColor="#8F8F8F"
+                                    android:textSize="10dp" />
+
+                                <TextView
+                                    android:id="@+id/status_karyawan"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text=""
+                                    android:textColor="#555555"
+                                    android:textSize="13dp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1.5dp"
+                                    android:layout_marginTop="12dp"
+                                    android:background="#3CCFCFCF" />
+
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="12dp"
-                                android:background="#3CCFCFCF" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:ellipsize="end"
-                                android:gravity="center"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:text="Masa Kerja"
-                                android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:layout_marginTop="15dp"
+                                android:orientation="vertical"
+                                android:paddingLeft="10dp">
 
-                            <TextView
-                                android:id="@+id/masa_kerja"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:ellipsize="end"
-                                android:gravity="center"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:text=""
-                                android:textColor="#555555"
-                                android:textSize="13dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="Tanggal Bergabung"
+                                    android:textColor="#8F8F8F"
+                                    android:textSize="10dp" />
+
+                                <TextView
+                                    android:id="@+id/tanggal_bergabung"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text=""
+                                    android:textColor="#555555"
+                                    android:textSize="13dp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1.5dp"
+                                    android:layout_marginTop="12dp"
+                                    android:background="#3CCFCFCF" />
+
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="12dp"
-                                android:background="#3CCFCFCF" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
-                                android:ellipsize="end"
-                                android:gravity="center"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:text="Golongan Karyawan"
-                                android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:layout_marginTop="15dp"
+                                android:orientation="vertical"
+                                android:paddingLeft="10dp">
 
-                            <TextView
-                                android:id="@+id/golongan_karyawan"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:ellipsize="end"
-                                android:gravity="center"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:text=""
-                                android:textColor="#555555"
-                                android:textSize="13dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="Masa Kerja"
+                                    android:textColor="#8F8F8F"
+                                    android:textSize="10dp" />
+
+                                <TextView
+                                    android:id="@+id/masa_kerja"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text=""
+                                    android:textColor="#555555"
+                                    android:textSize="13dp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1.5dp"
+                                    android:layout_marginTop="12dp"
+                                    android:background="#3CCFCFCF" />
+
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="1.5dp"
-                                android:layout_marginTop="12dp"
-                                android:background="#3CCFCFCF" />
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:orientation="vertical"
+                                android:paddingLeft="10dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="Golongan Karyawan"
+                                    android:textColor="#8F8F8F"
+                                    android:textSize="10dp" />
+
+                                <TextView
+                                    android:id="@+id/golongan_karyawan"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text=""
+                                    android:textColor="#555555"
+                                    android:textSize="13dp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1.5dp"
+                                    android:layout_marginTop="12dp"
+                                    android:background="#3CCFCFCF" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
