@@ -379,4 +379,10 @@ public class DetailKeluargaActivity extends AppCompatActivity {
                 .show();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
+    }
+
 }

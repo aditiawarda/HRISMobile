@@ -587,7 +587,15 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                                 }
 
                                 statusPernikahanPilihTV.setText(status_pernikahan);
-                                statusPernikahanChoice = status_pernikahan;
+                                if(status_pernikahan.equals("Belum Menikah")){
+                                    statusPernikahanChoice = "1";
+                                } else if(status_pernikahan.equals("Menikah")){
+                                    statusPernikahanChoice = "2";
+                                } else if(status_pernikahan.equals("Cerai Hidup")){
+                                    statusPernikahanChoice = "3";
+                                } else if(status_pernikahan.equals("Cerai Mati")){
+                                    statusPernikahanChoice = "4";
+                                }
 
                                 agamaPilihTV.setText(agama);
                                 agamaChoice = agama;
