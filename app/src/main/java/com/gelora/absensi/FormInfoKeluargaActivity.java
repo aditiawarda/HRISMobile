@@ -577,13 +577,13 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                                     genderChoice = "female";
                                 }
 
-                                hubunganPilihTV.setText(hubungan_lainnya);
+                                hubunganPilihTV.setText(hubungan);
+                                hubunganPilih = hubungan;
                                 if(hubungan.equals("Lainnya")){
                                     hubunganLainnyaPart.setVisibility(View.VISIBLE);
                                     hubunganLainnyaED.setText(hubungan_lainnya);
                                 } else {
                                     hubunganLainnyaPart.setVisibility(View.GONE);
-                                    hubunganPilihTV.setText(hubungan);
                                 }
 
                                 statusPernikahanPilihTV.setText(status_pernikahan);
