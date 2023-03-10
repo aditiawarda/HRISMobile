@@ -109,6 +109,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                tempatLahirED.clearFocus();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -136,6 +137,9 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         genderBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                tempatLahirED.clearFocus();
                 genderChoice();
             }
         });
@@ -145,6 +149,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
             public void onClick(View v) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                tempatLahirED.clearFocus();
                 bornDate();
             }
         });
@@ -152,6 +157,9 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         statusPernikahanBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                tempatLahirED.clearFocus();
                 statusPernikahanChoice();
             }
         });
@@ -159,6 +167,9 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         agamaBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                tempatLahirED.clearFocus();
                 agamaChoice();
             }
         });
@@ -166,6 +177,9 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         emailSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                tempatLahirED.clearFocus();
                 if (emailSwitch.isChecked()){
                     expandableDomisili.collapse();
                 } else {
@@ -177,6 +191,9 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                tempatLahirED.clearFocus();
                 if(
                     emailED.getText().toString().equals("")       ||
                     genderChoice.equals("")                       ||
@@ -340,8 +357,6 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                         }
                     }
                     else {
-                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                         new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Format email tidak sesuai!")

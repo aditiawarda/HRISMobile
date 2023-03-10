@@ -195,6 +195,9 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         tipeChoiceBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 tipeChoice();
             }
         });
@@ -202,6 +205,9 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         dateMulaiPicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 dateMulai();
             }
         });
@@ -209,6 +215,9 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         dateAkhirPicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 dateAkhir();
             }
         });
@@ -1128,6 +1137,9 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
     }
 
     private void actionIzin(){
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+        alasanED.clearFocus();
         alasanIzin = alasanED.getText().toString();
         if (!tipeIzin.equals("")){
             if(tipeIzin.equals("5")){

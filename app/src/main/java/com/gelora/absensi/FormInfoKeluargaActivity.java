@@ -177,6 +177,9 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                namaED.clearFocus();
+                tempatLahirED.clearFocus();
+                hubunganLainnyaED.clearFocus();
                 bornDate();
             }
         });
@@ -184,6 +187,11 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         genderBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                namaED.clearFocus();
+                tempatLahirED.clearFocus();
+                hubunganLainnyaED.clearFocus();
                 genderChoice();
             }
         });
@@ -193,6 +201,9 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                namaED.clearFocus();
+                tempatLahirED.clearFocus();
+                hubunganLainnyaED.clearFocus();
                 hubunganChoice();
             }
         });
@@ -200,6 +211,11 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         agamaBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                namaED.clearFocus();
+                tempatLahirED.clearFocus();
+                hubunganLainnyaED.clearFocus();
                 agamaChoice();
             }
         });
@@ -207,6 +223,11 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         statusPernikahanBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                namaED.clearFocus();
+                tempatLahirED.clearFocus();
+                hubunganLainnyaED.clearFocus();
                 statusPernikahanChoice();
             }
         });
@@ -214,6 +235,11 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         statusBekerjaBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                namaED.clearFocus();
+                tempatLahirED.clearFocus();
+                hubunganLainnyaED.clearFocus();
                 statusBekerjaChoice();
             }
         });
@@ -221,6 +247,11 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                namaED.clearFocus();
+                tempatLahirED.clearFocus();
+                hubunganLainnyaED.clearFocus();
                 if(
                         namaED.getText().toString().equals("")        ||
                         tempatLahirED.getText().toString().equals("") ||

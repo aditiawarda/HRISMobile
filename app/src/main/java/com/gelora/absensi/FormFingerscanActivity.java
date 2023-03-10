@@ -22,6 +22,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -273,6 +274,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         dateBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 datePicker();
             }
         });
@@ -280,6 +284,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         keteranganGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 if (keterangan1.isChecked()) {
                     pilihanKeterangan = keterangan1.getText().toString();
                     kategoriKeterangan = "1";
@@ -342,6 +349,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         statusAbsensiBTNK1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 if(currentDay.equals("")){
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                         .setTitleText("Perhatian")
@@ -362,6 +372,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         shiftAbsensiBTNK1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 if(currentDay.equals("")){
                     if(statusAbsensiPilihK1.getText().toString().equals("")){
                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
@@ -410,6 +423,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         tglPulangBTNK1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 if(dateChoiceMasuk.equals("")){
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
@@ -430,6 +446,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         jamPulangBTNK1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 if(datePulangPilihK1.getText().toString().equals("")){
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
@@ -504,6 +523,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         titikBTNK1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 titikAbsen();
             }
         });
@@ -512,6 +534,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         tglPulangBTNK3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 if(dateChoiceMasuk.equals("")){
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
@@ -532,6 +557,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         jamPulangBTNK3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 if(tglPulangPilihK3.getText().toString().equals("")){
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
@@ -612,6 +640,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         titikBTNK3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 titikAbsen();
             }
         });
@@ -620,6 +651,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         statusAbsensiBTNK6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 if(currentDay.equals("")){
                     new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
@@ -640,6 +674,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         shiftAbsensiBTNK6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 if(currentDay.equals("")){
                     if(statusAbsensiPilihK6.getText().toString().equals("")){
                         new KAlertDialog(FormFingerscanActivity.this, KAlertDialog.ERROR_TYPE)
@@ -689,6 +726,9 @@ public class FormFingerscanActivity extends AppCompatActivity {
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
                 if(dateChoiceMasuk.equals("")){
                     if(kategoriKeterangan.equals("")){
                         if(alasanED.getText().toString().equals("")){

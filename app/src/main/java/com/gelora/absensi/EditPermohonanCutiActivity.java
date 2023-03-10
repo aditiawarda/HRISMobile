@@ -195,6 +195,13 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         dariTanggalPicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+
+                alasanTV.clearFocus();
+                alamatSelamaCutiTV.clearFocus();
+                noHpTV.clearFocus();
+
                 dateMulai();
             }
         });
@@ -202,6 +209,13 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         sampaiTanggalPicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+
+                alasanTV.clearFocus();
+                alamatSelamaCutiTV.clearFocus();
+                noHpTV.clearFocus();
+
                 dateAkhir();
             }
         });
@@ -209,6 +223,8 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         tipeCutiBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
 
                 alasanTV.clearFocus();
                 alamatSelamaCutiTV.clearFocus();
@@ -221,6 +237,8 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         penggantiSelamaCutiBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
 
                 alasanTV.clearFocus();
                 alamatSelamaCutiTV.clearFocus();
@@ -253,6 +271,9 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+
                 alasanTV.clearFocus();
                 alamatSelamaCutiTV.clearFocus();
                 noHpTV.clearFocus();

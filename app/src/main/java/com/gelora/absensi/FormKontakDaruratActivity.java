@@ -88,6 +88,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
         if(tipeForm.equals("edit")){
             idKontak = getIntent().getExtras().getString("id_kontak");
             titlePageTV.setText("EDIT KONTAK DARURAT");
+            getData();
         } else {
             titlePageTV.setText("FORM KONTAK DARURAT");
         }
@@ -148,6 +149,9 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
             public void onClick(View v) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                namaED.clearFocus();
+                handphoneED.clearFocus();
+                hubunganLainnyaED.clearFocus();
                 hubunganChoice();
             }
         });
@@ -157,6 +161,9 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
             public void onClick(View v) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                namaED.clearFocus();
+                handphoneED.clearFocus();
+                hubunganLainnyaED.clearFocus();
                 if(namaED.getText().toString().equals("") || handphoneED.equals("") || hubunganPilih.equals("")){
                     new KAlertDialog(FormKontakDaruratActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
@@ -309,10 +316,6 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 }
             }
         });
-
-        if(tipeForm.equals("edit")){
-            getData();
-        }
 
     }
 
