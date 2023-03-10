@@ -569,7 +569,6 @@
                             android:paddingLeft="23dp"
                             android:paddingTop="85dp"
                             android:paddingRight="23dp"
-
                             android:visibility="gone">
 
                             <RelativeLayout
@@ -601,7 +600,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="15dp"
-                                        android:text="Data kontak darurat berhasil tersimpan, dengan ini anda menyatakan semua data yang telah diisi bersifat valid."
+                                        android:text="Data keluarga berhasil tersimpan, dengan ini anda menyatakan semua data yang telah diisi bersifat valid."
                                         android:textAlignment="center"
                                         android:textColor="@color/white"
                                         android:textSize="13dp" />

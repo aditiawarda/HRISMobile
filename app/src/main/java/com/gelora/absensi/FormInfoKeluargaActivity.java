@@ -7,25 +7,44 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.kalert.KAlertDialog;
 import com.takisoft.datetimepicker.DatePickerDialog;
+
+import org.aviran.cookiebar2.CookieBar;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FormInfoKeluargaActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, lainnyaBTN, markLainnya, islamBTN, kristenBTN, hinduBTN, buddhaBTN, katolikBTN, konghuchuBTN, markIslam, markKristen, markHindu, markBuddha, markKatolik, markKonghuchu, backSuccessBTN, formPart, successPart, tanggalLAhirBTN, submitBTN, backBTN, agamaBTN, genderBTN, statusPernikahanBTN, maleBTN, femaleBTN, markMale, markFemale, belumMenikahBTN, sudahMenikahBTN, ceraiHidupBTN, ceraiMatiBTN, markBelumMenikah, markSudahMenikah, markCeraiHidup, markCeraiMati;
+    LinearLayout submitBTN, actionBar, lainnyaBTN, markLainnya, islamBTN, kristenBTN, hinduBTN, buddhaBTN, katolikBTN, konghuchuBTN, markIslam, markKristen, markHindu, markBuddha, markKatolik, markKonghuchu, backSuccessBTN, formPart, successPart, tanggalLAhirBTN, backBTN, agamaBTN, genderBTN, statusPernikahanBTN, maleBTN, femaleBTN, markMale, markFemale, belumMenikahBTN, sudahMenikahBTN, ceraiHidupBTN, ceraiMatiBTN, markBelumMenikah, markSudahMenikah, markCeraiHidup, markCeraiMati;
     TextView titlePageTV, agamaPilihTV, namaTV, genderPilihTV, tanggalLahirPilihTV, statusPernikahanPilihTV;
     LinearLayout hubunganBTN, hubunganLainnyaPart, bekerjaBTN, tidakBekerjaBTN, markBekerja, markTidakBekerja;
     LinearLayout sodaraLakiBTN, sodaraPerempuanBTN, markSodaraLaki, markSodaraPerempuan, ayahBTN, ibuBTN, suamiBTN, istriBTN, anakBTN, markAyah, markIbu, markSuami, markIstri, markAnak;
@@ -35,8 +54,11 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
+    KAlertDialog pDialog;
+    ImageView successGif;
+    private int i = -1;
     String tipeForm = "", idData = "";
-    String statusBekerjaChoice = "", genderChoice = "", tanggalLAhir = "", hubunganPilih = "", statusPernikahanChoice = "", agamaChoice = "";
+    String statusBekerjaChoice = "", genderChoice = "", tanggalLahir = "", hubunganPilih = "", statusPernikahanChoice = "", agamaChoice = "";
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -47,6 +69,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         successPart = findViewById(R.id.success_submit);
+        formPart = findViewById(R.id.form_part);
         submitBTN = findViewById(R.id.submit_btn);
         backBTN = findViewById(R.id.back_btn);
         actionBar = findViewById(R.id.action_bar);
@@ -68,8 +91,12 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         statusBekerjaBTN = findViewById(R.id.status_bekerja_btn);
         statusBekerjaPilihTV = findViewById(R.id.status_bekerja_pilih_tv);
         titlePageTV = findViewById(R.id.title_page_tv);
+        submitBTN = findViewById(R.id.submit_btn);
+        backSuccessBTN= findViewById(R.id.back_success_btn);
+        successGif = findViewById(R.id.success_gif);
 
         namaED.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        tempatLahirED.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         hubunganLainnyaED.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         tipeForm = getIntent().getExtras().getString("tipe");
@@ -77,6 +104,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         if(tipeForm.equals("edit")){
             idData = getIntent().getExtras().getString("id_data");
             titlePageTV.setText("EDIT INFO KELUARGA");
+            getData();
         } else {
             titlePageTV.setText("FORM INFO KELUARGA");
         }
@@ -87,18 +115,22 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
             }
         });
 
+        Glide.with(getApplicationContext())
+                .load(R.drawable.success_ic)
+                .into(successGif);
+
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-//                if(tipeForm.equals("edit")){
-//                    getData();
-//                } else {
+                if(tipeForm.equals("edit")){
+                    getData();
+                } else {
                     namaED.setText("");
                     tempatLahirED.setText("");
                     tanggalLahirPilihTV.setText("");
-                    tanggalLAhir = "";
+                    tanggalLahir = "";
                     genderPilihTV.setText("");
                     genderChoice = "";
                     hubunganPilihTV.setText("");
@@ -111,7 +143,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                     agamaChoice = "";
                     statusBekerjaPilihTV.setText("");
                     statusBekerjaChoice = "";
-//                }
+                }
 
                 namaED.clearFocus();
                 tempatLahirED.clearFocus();
@@ -121,13 +153,19 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-                        //getData();
                     }
                 }, 1000);
             }
         });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        backSuccessBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -180,6 +218,424 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
             }
         });
 
+        submitBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(
+                        namaED.getText().toString().equals("")        ||
+                        tempatLahirED.getText().toString().equals("") ||
+                        tanggalLahir.equals("")                       ||
+                        genderChoice.equals("")                       ||
+                        hubunganPilih.equals("")                      ||
+                        statusPernikahanChoice.equals("")             ||
+                        agamaChoice.equals("")                        ||
+                        statusBekerjaChoice.equals("")
+                ){
+                    new KAlertDialog(FormInfoKeluargaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap isi semua data")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+
+                    if(hubunganPilih.equals("Lainnya")){
+                        if(hubunganLainnyaED.getText().toString().equals("")){
+                            new KAlertDialog(FormInfoKeluargaActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Harap isi semua data")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        } else {
+                            new KAlertDialog(FormInfoKeluargaActivity.this, KAlertDialog.WARNING_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Simpan data keluarga?")
+                                    .setCancelText("TIDAK")
+                                    .setConfirmText("   YA   ")
+                                    .showCancelButton(true)
+                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                            pDialog = new KAlertDialog(FormInfoKeluargaActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                            pDialog.show();
+                                            pDialog.setCancelable(false);
+                                            new CountDownTimer(1300, 800) {
+                                                public void onTick(long millisUntilFinished) {
+                                                    i++;
+                                                    switch (i) {
+                                                        case 0:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormInfoKeluargaActivity.this, R.color.colorGradien));
+                                                            break;
+                                                        case 1:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormInfoKeluargaActivity.this, R.color.colorGradien2));
+                                                            break;
+                                                        case 2:
+                                                        case 6:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormInfoKeluargaActivity.this, R.color.colorGradien3));
+                                                            break;
+                                                        case 3:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormInfoKeluargaActivity.this, R.color.colorGradien4));
+                                                            break;
+                                                        case 4:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormInfoKeluargaActivity.this, R.color.colorGradien5));
+                                                            break;
+                                                        case 5:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormInfoKeluargaActivity.this, R.color.colorGradien6));
+                                                            break;
+                                                    }
+                                                }
+                                                public void onFinish() {
+                                                    i = -1;
+                                                    sendData();
+                                                }
+                                            }.start();
+
+                                        }
+                                    })
+                                    .show();
+                        }
+
+                    }
+                    else {
+                        new KAlertDialog(FormInfoKeluargaActivity.this, KAlertDialog.WARNING_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Simpan data personal?")
+                                .setCancelText("TIDAK")
+                                .setConfirmText("   YA   ")
+                                .showCancelButton(true)
+                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                        pDialog = new KAlertDialog(FormInfoKeluargaActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                        pDialog.show();
+                                        pDialog.setCancelable(false);
+                                        new CountDownTimer(1300, 800) {
+                                            public void onTick(long millisUntilFinished) {
+                                                i++;
+                                                switch (i) {
+                                                    case 0:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormInfoKeluargaActivity.this, R.color.colorGradien));
+                                                        break;
+                                                    case 1:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormInfoKeluargaActivity.this, R.color.colorGradien2));
+                                                        break;
+                                                    case 2:
+                                                    case 6:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormInfoKeluargaActivity.this, R.color.colorGradien3));
+                                                        break;
+                                                    case 3:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormInfoKeluargaActivity.this, R.color.colorGradien4));
+                                                        break;
+                                                    case 4:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormInfoKeluargaActivity.this, R.color.colorGradien5));
+                                                        break;
+                                                    case 5:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormInfoKeluargaActivity.this, R.color.colorGradien6));
+                                                        break;
+                                                }
+                                            }
+                                            public void onFinish() {
+                                                i = -1;
+                                                sendData();
+                                            }
+                                        }.start();
+
+                                    }
+                                })
+                                .show();
+                    }
+
+                }
+            }
+        });
+
+    }
+
+    private void sendData() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/upload_data_keluarga";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                pDialog.dismiss();
+                                successPart.setVisibility(View.VISIBLE);
+                                formPart.setVisibility(View.GONE);
+                            } else {
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Tersimpan")
+                                        .setContentText("Terjadi kesalahan saat mengirim data")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        successPart.setVisibility(View.GONE);
+                        formPart.setVisibility(View.VISIBLE);
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("tipe", tipeForm);
+
+                if(tipeForm.equals("edit")){
+                    params.put("id_data", idData);
+                }
+
+                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("nama", namaED.getText().toString());
+
+                if(hubunganPilih.equals("Lainnya")){
+                    params.put("hubungan", hubunganPilih);
+                    params.put("hubungan_lainnya", hubunganLainnyaED.getText().toString());
+                } else {
+                    params.put("hubungan", hubunganPilih);
+                }
+
+                params.put("tempat_lahir", tempatLahirED.getText().toString());
+                params.put("tanggal_lahir", tanggalLahir);
+
+                if(genderChoice.equals("male")){
+                    params.put("jenis_kelamin", "Laki-Laki");
+                } else if(genderChoice.equals("female")){
+                    params.put("jenis_kelamin", "Perempuan");
+                }
+
+                params.put("agama", agamaChoice);
+
+                if(statusPernikahanChoice.equals("1")){
+                    params.put("status_pernikahan", "Belum Menikah");
+                } else if(statusPernikahanChoice.equals("2")){
+                    params.put("status_pernikahan", "Menikah");
+                } else if(statusPernikahanChoice.equals("3")){
+                    params.put("status_pernikahan", "Cerai Hidup");
+                } else if(statusPernikahanChoice.equals("4")){
+                    params.put("status_pernikahan", "Cerai Mati");
+                }
+
+                params.put("pekerjaan", statusBekerjaChoice);
+
+                return params;
+            }
+        };
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                0,
+                -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
+        requestQueue.add(postRequest);
+
+    }
+
+    private void getData() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/data_detail_keluarga";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                JSONObject dataArray = data.getJSONObject("data");
+                                String id = dataArray.getString("id");
+                                String NIK = dataArray.getString("NIK");
+                                String nama = dataArray.getString("nama");
+                                String hubungan = dataArray.getString("hubungan");
+                                String hubungan_lainnya = dataArray.getString("hubungan_lainnya");
+                                String tempat_lahir = dataArray.getString("tempat_lahir");
+                                String tanggal_lahir = dataArray.getString("tanggal_lahir");
+                                String jenis_kelamin = dataArray.getString("jenis_kelamin");
+                                String agama = dataArray.getString("agama");
+                                String status_pernikahan = dataArray.getString("status_pernikahan");
+                                String pekerjaan = dataArray.getString("pekerjaan");
+
+                                namaED.setText(nama);
+                                tempatLahirED.setText(tempat_lahir);
+
+                                String dayDate = tanggal_lahir.substring(8,10);
+                                String yearDate = tanggal_lahir.substring(0,4);;
+                                String bulanValue = tanggal_lahir.substring(5,7);
+                                String bulanName;
+
+                                switch (bulanValue) {
+                                    case "01":
+                                        bulanName = "Jan";
+                                        break;
+                                    case "02":
+                                        bulanName = "Feb";
+                                        break;
+                                    case "03":
+                                        bulanName = "Mar";
+                                        break;
+                                    case "04":
+                                        bulanName = "Apr";
+                                        break;
+                                    case "05":
+                                        bulanName = "Mei";
+                                        break;
+                                    case "06":
+                                        bulanName = "Jun";
+                                        break;
+                                    case "07":
+                                        bulanName = "Jul";
+                                        break;
+                                    case "08":
+                                        bulanName = "Agu";
+                                        break;
+                                    case "09":
+                                        bulanName = "Sep";
+                                        break;
+                                    case "10":
+                                        bulanName = "Okt";
+                                        break;
+                                    case "11":
+                                        bulanName = "Nov";
+                                        break;
+                                    case "12":
+                                        bulanName = "Des";
+                                        break;
+                                    default:
+                                        bulanName = "Not found!";
+                                        break;
+                                }
+
+                                tanggalLahirPilihTV.setText(dayDate+" "+bulanName+" "+yearDate);
+                                tanggalLahir = tanggal_lahir;
+
+                                genderPilihTV.setText(jenis_kelamin);
+                                if(jenis_kelamin.equals("Laki-Laki")){
+                                    genderChoice = "male";
+                                } else if(jenis_kelamin.equals("Perempuan")){
+                                    genderChoice = "female";
+                                }
+
+                                hubunganPilihTV.setText(hubungan_lainnya);
+                                if(hubungan.equals("Lainnya")){
+                                    hubunganLainnyaPart.setVisibility(View.VISIBLE);
+                                    hubunganLainnyaED.setText(hubungan_lainnya);
+                                } else {
+                                    hubunganLainnyaPart.setVisibility(View.GONE);
+                                    hubunganPilihTV.setText(hubungan);
+                                }
+
+                                statusPernikahanPilihTV.setText(status_pernikahan);
+                                statusPernikahanChoice = status_pernikahan;
+
+                                agamaPilihTV.setText(agama);
+                                agamaChoice = agama;
+
+                                statusBekerjaPilihTV.setText(pekerjaan);
+                                statusBekerjaChoice = pekerjaan;
+
+                            } else {
+                                new KAlertDialog(FormInfoKeluargaActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Terjadi kesalahan saat mengakses data")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_data", idData);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -190,11 +646,11 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         @SuppressLint({"DefaultLocale", "SetTextI18n"})
         DatePickerDialog dpd = new DatePickerDialog(FormInfoKeluargaActivity.this, (view1, year, month, dayOfMonth) -> {
 
-            tanggalLAhir = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+            tanggalLahir = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
-            String dayDate = tanggalLAhir.substring(8,10);
-            String yearDate = tanggalLAhir.substring(0,4);;
-            String bulanValue = tanggalLAhir.substring(5,7);
+            String dayDate = tanggalLahir.substring(8,10);
+            String yearDate = tanggalLahir.substring(0,4);;
+            String bulanValue = tanggalLahir.substring(5,7);
             String bulanName;
 
             switch (bulanValue) {
@@ -1346,6 +1802,18 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    private void connectionFailed(){
+        CookieBar.build(FormInfoKeluargaActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
     }
 
     public void onBackPressed() {

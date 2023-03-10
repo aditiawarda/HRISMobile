@@ -143,6 +143,8 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         tanggalLAhirBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 bornDate();
             }
         });
@@ -180,7 +182,6 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                     genderChoice.equals("")                       ||
                     tempatLahirED.getText().toString().equals("") ||
                     tanggalLAhir.equals("")                       ||
-                    tempatLahirED.getText().toString().equals("") ||
                     noHanphoneED.getText().toString().equals("")  ||
                     statusPernikahanChoice.equals("")             ||
                     agamaChoice.equals("")                        ||

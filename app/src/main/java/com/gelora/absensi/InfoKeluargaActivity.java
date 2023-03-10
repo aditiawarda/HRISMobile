@@ -174,8 +174,7 @@ public class InfoKeluargaActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                //params.put("NIK", sharedPrefManager.getSpNik());
-                params.put("NIK", "0000013");
+                params.put("NIK", sharedPrefManager.getSpNik());
                 return params;
             }
         };
