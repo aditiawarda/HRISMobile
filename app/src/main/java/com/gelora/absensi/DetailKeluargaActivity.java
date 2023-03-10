@@ -102,7 +102,7 @@ public class DetailKeluargaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new KAlertDialog(DetailKeluargaActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Perhatian")
-                        .setContentText("Yakin untuk menghapus kontak?")
+                        .setContentText("Yakin untuk menghapus data keluarga?")
                         .setCancelText("TIDAK")
                         .setConfirmText("   YA   ")
                         .showCancelButton(true)
@@ -182,7 +182,7 @@ public class DetailKeluargaActivity extends AppCompatActivity {
                             if (status.equals("Success")){
                                 statusDelete = "1";
                                 pDialog.setTitleText("Berhasil Dihapus")
-                                        .setContentText("Kontak darurat berhasil dihapus")
+                                        .setContentText("Data keluarga berhasil dihapus")
                                         .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
@@ -194,7 +194,7 @@ public class DetailKeluargaActivity extends AppCompatActivity {
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                             } else {
                                 pDialog.setTitleText("Gagal Dihapus")
-                                        .setContentText("Kontak darurat gagal dihapus")
+                                        .setContentText("Data keluarga gagal dihapus")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }
@@ -212,7 +212,7 @@ public class DetailKeluargaActivity extends AppCompatActivity {
                         Log.d("Error.Response", error.toString());
                         connectionFailed();
                         pDialog.setTitleText("Gagal Dihapus")
-                                .setContentText("Kontak darurat gagal dihapus")
+                                .setContentText("Data keluarga gagal dihapus")
                                 .setConfirmText("    OK    ")
                                 .changeAlertType(KAlertDialog.ERROR_TYPE);
                     }
