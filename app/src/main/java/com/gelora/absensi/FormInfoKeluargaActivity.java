@@ -323,7 +323,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                     else {
                         new KAlertDialog(FormInfoKeluargaActivity.this, KAlertDialog.WARNING_TYPE)
                                 .setTitleText("Perhatian")
-                                .setContentText("Simpan data personal?")
+                                .setContentText("Simpan data keluarga?")
                                 .setCancelText("TIDAK")
                                 .setConfirmText("   YA   ")
                                 .showCancelButton(true)
@@ -703,7 +703,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                     break;
             }
 
-            tanggalLahirPilihTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+            tanggalLahirPilihTV.setText(dayDate+" "+bulanName+" "+yearDate);
 
         }, y,m,d);
         dpd.show();

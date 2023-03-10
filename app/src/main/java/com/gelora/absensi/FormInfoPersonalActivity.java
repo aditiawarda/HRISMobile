@@ -1108,7 +1108,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                         break;
                 }
 
-                tanggalLahirPilihTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+                tanggalLahirPilihTV.setText(dayDate+" "+bulanName+" "+yearDate);
 
             }, y,m,d);
             dpd.show();
