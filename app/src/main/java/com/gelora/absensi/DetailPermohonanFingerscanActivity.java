@@ -44,8 +44,8 @@ import java.util.Map;
 public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
     String file_url, kode, idPermohonan, keteranganForm = "", statusKondisi = "0", ketLemburStatus = "";
-    TextView ketLemburChoiceTV, noPermohonan, tanggalTV, nikNamaTV, deptBagianTV, keteranganTV, alasanTV, pemohonTV, tanggalApproveTV, approverTV, jabatanApproverTV, tanggalApproveHRDTV, approverHRDTV;
-    LinearLayout actionBar, downloadBTN, markStatusTidakLembur, markStatusLembur, lemburBTN, tidakLemburBTN, ketLemburBTN, opsiKetLembur, detailKeteranganPart, backBTN, cancelPermohonanBTN, editPermohonanBTN, rejectedMark, acceptedMark, actionPart, approvedBTN, rejectedBTN;
+    TextView catatanHRDTV, ketLemburChoiceTV, noPermohonan, tanggalTV, nikNamaTV, deptBagianTV, keteranganTV, alasanTV, pemohonTV, tanggalApproveTV, approverTV, jabatanApproverTV, tanggalApproveHRDTV, approverHRDTV;
+    LinearLayout catatanHRDPart, actionBar, downloadBTN, markStatusTidakLembur, markStatusLembur, lemburBTN, tidakLemburBTN, ketLemburBTN, opsiKetLembur, detailKeteranganPart, backBTN, cancelPermohonanBTN, editPermohonanBTN, rejectedMark, acceptedMark, actionPart, approvedBTN, rejectedBTN;
     ImageView ttdPemohon, ttdApprover,ttdApproverHRD;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
@@ -92,6 +92,8 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
         approvedBTN = findViewById(R.id.appoved_btn);
         rejectedBTN = findViewById(R.id.rejected_btn);
         downloadBTN = findViewById(R.id.download_btn);
+        catatanHRDPart = findViewById(R.id.catatan_hrd_part);
+        catatanHRDTV = findViewById(R.id.catatan_hrd_tv);
 
         detailKeteranganPart = findViewById(R.id.detail_keterangan_part);
         dStatusAbsen = findViewById(R.id.d_status_absen);
@@ -608,6 +610,14 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                         editPermohonanBTN.setVisibility(View.GONE);
                                         acceptedMark.setVisibility(View.GONE);
                                         rejectedMark.setVisibility(View.VISIBLE);
+
+                                        String keterangan_penolakan = detail.getString("keterangan_penolakan");
+                                        if(keterangan_penolakan.equals("")||keterangan_penolakan.equals("null")){
+                                            catatanHRDPart.setVisibility(View.GONE);
+                                        } else {
+                                            catatanHRDPart.setVisibility(View.VISIBLE);
+                                            catatanHRDTV.setText(keterangan_penolakan);
+                                        }
 
                                         String nama_approver_hrd = detail.getString("NmApproverHRD");
 
