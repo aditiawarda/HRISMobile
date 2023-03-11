@@ -88,7 +88,7 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
         });
 
         if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpIdJabatan().equals("31")||sharedPrefManager.getSpNik().equals("80085")) {
-           nonGapPart.setVisibility(View.GONE);
+            nonGapPart.setVisibility(View.GONE);
         } else {
             nonGapPart.setVisibility(View.VISIBLE);
         }
