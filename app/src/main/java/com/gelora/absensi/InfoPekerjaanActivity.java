@@ -27,6 +27,8 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -228,32 +230,72 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
                                     long bulan = (diffDays - (tahun * 365)) / 30;
                                     long hari = (diffDays - ((tahun * 365) + (bulan * 30)));
 
-                                    if (tahun == 0){
-                                        if(bulan == 0){
-                                            if(hari == 0){
-                                                masaKerjaTV.setText("-");
+                                    int y = Integer.parseInt(getDateY());
+                                    int m = Integer.parseInt(getDateM());
+                                    int d = Integer.parseInt(getDateD());
+
+                                    LocalDate dob = null;
+                                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                        dob = LocalDate.of(Integer.parseInt(yearDate),  Integer.parseInt(bulanValue), Integer.parseInt(dayDate));
+                                        LocalDate curDate = LocalDate.now();
+                                        Period period = Period.between(dob, curDate);
+                                        if (period.getYears() == 0){
+                                            if(period.getMonths() == 0){
+                                                if(period.getDays() == 0){
+                                                    masaKerjaTV.setText("-");
+                                                } else {
+                                                    masaKerjaTV.setText(String.valueOf(period.getDays())+" Hari");
+                                                }
                                             } else {
-                                                masaKerjaTV.setText(String.valueOf(hari)+" Hari");
+                                                if(period.getDays() == 0){
+                                                    masaKerjaTV.setText(String.valueOf(period.getMonths())+" Bulan");
+                                                } else {
+                                                    masaKerjaTV.setText(String.valueOf(period.getMonths())+" Bulan "+String.valueOf(period.getDays())+" Hari");
+                                                }
                                             }
                                         } else {
-                                            if(hari == 0){
-                                                masaKerjaTV.setText(String.valueOf(bulan)+" Bulan");
+                                            if(period.getMonths() == 0){
+                                                if(period.getDays() == 0){
+                                                    masaKerjaTV.setText(String.valueOf(period.getYears())+" Tahun");
+                                                } else {
+                                                    masaKerjaTV.setText(String.valueOf(period.getYears())+" Tahun "+String.valueOf(period.getDays())+" Hari");
+                                                }
                                             } else {
-                                                masaKerjaTV.setText(String.valueOf(bulan)+" Bulan "+String.valueOf(hari)+" Hari");
+                                                if(period.getDays() == 0){
+                                                    masaKerjaTV.setText(String.valueOf(period.getYears())+" Tahun "+String.valueOf(period.getMonths())+" Bulan");
+                                                } else {
+                                                    masaKerjaTV.setText(String.valueOf(period.getYears())+" Tahun "+String.valueOf(period.getMonths())+" Bulan "+String.valueOf(period.getDays())+" Hari");
+                                                }
                                             }
                                         }
                                     } else {
-                                        if(bulan == 0){
-                                            if(hari == 0){
-                                                masaKerjaTV.setText(String.valueOf(tahun)+" Tahun");
+                                        if (tahun == 0){
+                                            if(bulan == 0){
+                                                if(hari == 0){
+                                                    masaKerjaTV.setText("-");
+                                                } else {
+                                                    masaKerjaTV.setText(String.valueOf(hari)+" Hari");
+                                                }
                                             } else {
-                                                masaKerjaTV.setText(String.valueOf(tahun)+" Tahun "+String.valueOf(hari)+" Hari");
+                                                if(hari == 0){
+                                                    masaKerjaTV.setText(String.valueOf(bulan)+" Bulan");
+                                                } else {
+                                                    masaKerjaTV.setText(String.valueOf(bulan)+" Bulan "+String.valueOf(hari)+" Hari");
+                                                }
                                             }
                                         } else {
-                                            if(hari == 0){
-                                                masaKerjaTV.setText(String.valueOf(tahun)+" Tahun "+String.valueOf(bulan)+" Bulan");
+                                            if(bulan == 0){
+                                                if(hari == 0){
+                                                    masaKerjaTV.setText(String.valueOf(tahun)+" Tahun");
+                                                } else {
+                                                    masaKerjaTV.setText(String.valueOf(tahun)+" Tahun "+String.valueOf(hari)+" Hari");
+                                                }
                                             } else {
-                                                masaKerjaTV.setText(String.valueOf(tahun)+" Tahun "+String.valueOf(bulan)+" Bulan "+String.valueOf(hari)+" Hari");
+                                                if(hari == 0){
+                                                    masaKerjaTV.setText(String.valueOf(tahun)+" Tahun "+String.valueOf(bulan)+" Bulan");
+                                                } else {
+                                                    masaKerjaTV.setText(String.valueOf(tahun)+" Tahun "+String.valueOf(bulan)+" Bulan "+String.valueOf(hari)+" Hari");
+                                                }
                                             }
                                         }
                                     }
@@ -324,6 +366,27 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
     private String getDate() {
         @SuppressLint("SimpleDateFormat")
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateD() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateM() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateY() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
         Date date = new Date();
         return dateFormat.format(date);
     }
