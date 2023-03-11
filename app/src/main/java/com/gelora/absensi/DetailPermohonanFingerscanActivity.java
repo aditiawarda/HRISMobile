@@ -615,8 +615,12 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                         if(keterangan_penolakan.equals("")||keterangan_penolakan.equals("null")){
                                             catatanHRDPart.setVisibility(View.GONE);
                                         } else {
-                                            catatanHRDPart.setVisibility(View.VISIBLE);
-                                            catatanHRDTV.setText(keterangan_penolakan);
+                                            if(keterangan_penolakan.length()==1){
+                                                catatanHRDPart.setVisibility(View.GONE);
+                                            } else {
+                                                catatanHRDPart.setVisibility(View.VISIBLE);
+                                                catatanHRDTV.setText(keterangan_penolakan);
+                                            }
                                         }
 
                                         String nama_approver_hrd = detail.getString("NmApproverHRD");

@@ -68,9 +68,9 @@ import androidmads.library.qrgenearator.QRGEncoder;
 
 public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
-    TextView approverHrdTV, notedTV, appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, tanggalApproveTV, tanggalApproveHRDTV, supervisorTV, hrdTV;
+    TextView catatanHRDTV, approverHrdTV, notedTV, appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, tanggalApproveTV, tanggalApproveHRDTV, supervisorTV, hrdTV;
     String uriImage, uriImage2, idIzinRecord, statusKondisi = "0", kode, title;
-    LinearLayout actionBar, editPermohonanBTN, cancelPermohonanBTN, pdfBTN, viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, approvedBTN, rejectedBTN, actionPart;
+    LinearLayout catatanHRDPart, actionBar, editPermohonanBTN, cancelPermohonanBTN, pdfBTN, viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, approvedBTN, rejectedBTN, actionPart;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdSupervisor, ttdHRD, qrDocument;
     KAlertDialog pDialog;
@@ -129,6 +129,8 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         cancelPermohonanBTN = findViewById(R.id.cancel_permohonan_btn);
         editPermohonanBTN = findViewById(R.id.edit_permohonan_btn);
         actionBar = findViewById(R.id.action_bar);
+        catatanHRDPart = findViewById(R.id.catatan_hrd_part);
+        catatanHRDTV = findViewById(R.id.catatan_hrd_tv);
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
@@ -1057,6 +1059,19 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         rejectedMark.setVisibility(View.VISIBLE);
                                         appoveStatusHRD.setVisibility(View.GONE);
                                         approverHrdTV.setVisibility(View.VISIBLE);
+                                        catatanHRDPart.setVisibility(View.VISIBLE);
+
+                                        String keterangan_penolakan = detail.getString("keterangan_penolakan");
+                                        if(keterangan_penolakan.equals("")||keterangan_penolakan.equals("null")){
+                                            catatanHRDPart.setVisibility(View.GONE);
+                                        } else {
+                                            if(keterangan_penolakan.length()==1){
+                                                catatanHRDPart.setVisibility(View.GONE);
+                                            } else {
+                                                catatanHRDPart.setVisibility(View.VISIBLE);
+                                                catatanHRDTV.setText(keterangan_penolakan);
+                                            }
+                                        }
 
                                         String namaPendek = nama_approver_hrd;
                                         if(namaPendek.contains(" ")){

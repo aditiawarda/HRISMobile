@@ -29,7 +29,7 @@
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/roboto"
-            android:text="Pilih Jenis Kelamin"
+            android:text="Pilih Hubungan"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16dp"
             android:textStyle="bold" />

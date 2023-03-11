@@ -754,6 +754,40 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/catatan_hrd_part"
+                                android:background="@drawable/shape_penolakan_hrd"
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="20dp"
+                                android:paddingLeft="22dp"
+                                android:paddingRight="22dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:textSize="12dp"
+                                    android:layout_marginBottom="6dp"
+                                    android:textColor="#C34F4F"
+                                    android:text="KETERANGAN PENOLAKAN"/>
+
+                                <TextView
+                                    android:id="@+id/catatan_hrd_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="3dp"
+                                    android:lineSpacingExtra="2.5dp"
+                                    android:text=""
+                                    android:textColor="#C34F4F"
+                                    android:textSize="12dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:id="@+id/download_btn"
                                 android:layout_marginBottom="10dp"
                                 android:layout_width="match_parent"

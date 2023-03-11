@@ -46,9 +46,9 @@ import java.util.concurrent.TimeUnit;
 
 public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
-    TextView lampiranTV, noted2TV, noted1TV, tglApprover1, tglApprover2, tglApproverHRD, namaApprover1, namaApproverHRD, namaApprover2, namaKaryawanTV, namaPemohonTV, jabatanTV, bagianTV, mulaiBergabungTV, nikTV, statusKaryawanTV, tipeCutiTV, alamatTV, noHpTV, karyawanPenggantiTV, sisaCutiTV, alasanCutiTV, tahunCutiAmbilTV, totalCutiAmbilTV, tahunCutiTV, tglMulaiCutiTV, tglSelesaiCutiTV, totalCutiTV, tglPengajuanTV;
+    TextView catatanHRDTV, lampiranTV, noted2TV, noted1TV, tglApprover1, tglApprover2, tglApproverHRD, namaApprover1, namaApproverHRD, namaApprover2, namaKaryawanTV, namaPemohonTV, jabatanTV, bagianTV, mulaiBergabungTV, nikTV, statusKaryawanTV, tipeCutiTV, alamatTV, noHpTV, karyawanPenggantiTV, sisaCutiTV, alasanCutiTV, tahunCutiAmbilTV, totalCutiAmbilTV, tahunCutiTV, tglMulaiCutiTV, tglSelesaiCutiTV, totalCutiTV, tglPengajuanTV;
     String nikApprover = "", nikPemohon = "", statusKondisi = "0", idIzinRecord, kode;
-    LinearLayout actionBar, editPermohonanBTN, cancelPermohonanBTN, batalWakiliBTN, wakiliBTN, downloadBTN, viewLampiranBTN, backBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
+    LinearLayout catatanHRDPart, actionBar, editPermohonanBTN, cancelPermohonanBTN, batalWakiliBTN, wakiliBTN, downloadBTN, viewLampiranBTN, backBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdApprover1, ttdApprover2, ttdApproverHRD;
     KAlertDialog pDialog;
@@ -114,6 +114,8 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
         cancelPermohonanBTN = findViewById(R.id.cancel_permohonan_btn);
         editPermohonanBTN = findViewById(R.id.edit_permohonan_btn);
         actionBar = findViewById(R.id.action_bar);
+        catatanHRDPart = findViewById(R.id.catatan_hrd_part);
+        catatanHRDTV = findViewById(R.id.catatan_hrd_tv);
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
@@ -819,6 +821,18 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 actionPart.setVisibility(View.GONE);
                                                 rejectedMark.setVisibility(View.VISIBLE);
 
+                                                String keterangan_penolakan = detail.getString("keterangan_penolakan");
+                                                if(keterangan_penolakan.equals("")||keterangan_penolakan.equals("null")){
+                                                    catatanHRDPart.setVisibility(View.GONE);
+                                                } else {
+                                                    if(keterangan_penolakan.length()==1){
+                                                        catatanHRDPart.setVisibility(View.GONE);
+                                                    } else {
+                                                        catatanHRDPart.setVisibility(View.VISIBLE);
+                                                        catatanHRDTV.setText(keterangan_penolakan);
+                                                    }
+                                                }
+
                                                 String approver_hrd = detail.getString("approver_hrd");
                                                 namaApproverHRD.setText(approver_hrd);
 
@@ -924,6 +938,18 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     cancelPermohonanBTN.setVisibility(View.GONE);
                                                     editPermohonanBTN.setVisibility(View.GONE);
 
+                                                    String keterangan_penolakan = detail.getString("keterangan_penolakan");
+                                                    if(keterangan_penolakan.equals("")||keterangan_penolakan.equals("null")){
+                                                        catatanHRDPart.setVisibility(View.GONE);
+                                                    } else {
+                                                        if(keterangan_penolakan.length()==1){
+                                                            catatanHRDPart.setVisibility(View.GONE);
+                                                        } else {
+                                                            catatanHRDPart.setVisibility(View.VISIBLE);
+                                                            catatanHRDTV.setText(keterangan_penolakan);
+                                                        }
+                                                    }
+
                                                     String approver_hrd = detail.getString("approver_hrd");
                                                     namaApproverHRD.setText(approver_hrd);
 
@@ -1018,6 +1044,18 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                     } else if(status_approve_hrd.equals("2")){
                                                         actionPart.setVisibility(View.GONE);
                                                         rejectedMark.setVisibility(View.VISIBLE);
+
+                                                        String keterangan_penolakan = detail.getString("keterangan_penolakan");
+                                                        if(keterangan_penolakan.equals("")||keterangan_penolakan.equals("null")){
+                                                            catatanHRDPart.setVisibility(View.GONE);
+                                                        } else {
+                                                            if(keterangan_penolakan.length()==1){
+                                                                catatanHRDPart.setVisibility(View.GONE);
+                                                            } else {
+                                                                catatanHRDPart.setVisibility(View.VISIBLE);
+                                                                catatanHRDTV.setText(keterangan_penolakan);
+                                                            }
+                                                        }
 
                                                         String approver_hrd = detail.getString("approver_hrd");
                                                         namaApproverHRD.setText(approver_hrd);
@@ -1142,6 +1180,18 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                                 } else if(status_approve_hrd.equals("2")){
                                                     actionPart.setVisibility(View.GONE);
                                                     rejectedMark.setVisibility(View.VISIBLE);
+
+                                                    String keterangan_penolakan = detail.getString("keterangan_penolakan");
+                                                    if(keterangan_penolakan.equals("")||keterangan_penolakan.equals("null")){
+                                                        catatanHRDPart.setVisibility(View.GONE);
+                                                    } else {
+                                                        if(keterangan_penolakan.length()==1){
+                                                            catatanHRDPart.setVisibility(View.GONE);
+                                                        } else {
+                                                            catatanHRDPart.setVisibility(View.VISIBLE);
+                                                            catatanHRDTV.setText(keterangan_penolakan);
+                                                        }
+                                                    }
 
                                                     String approver_hrd = detail.getString("approver_hrd");
                                                     namaApproverHRD.setText(approver_hrd);
