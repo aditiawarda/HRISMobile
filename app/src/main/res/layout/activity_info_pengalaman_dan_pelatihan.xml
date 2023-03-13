@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListNotifikasiActivity">
+    tools:context=".InfoPengalamanDanPelatihanActivity">
 
     <RelativeLayout
         android:background="@color/white"
@@ -37,18 +37,18 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:paddingLeft="17dp"
-                            android:paddingTop="190dp"
+                            android:paddingTop="280dp"
                             android:paddingRight="17dp"
                             android:paddingBottom="20dp">
 
                             <LinearLayout
-                                android:id="@+id/permohonan_masuk"
+                                android:id="@+id/info_pengalaman"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
                                 <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/data_notifikasi_rv"
+                                    android:id="@+id/data_pengalaman_rv"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:orientation="vertical"
@@ -56,14 +56,14 @@
                                 </androidx.recyclerview.widget.RecyclerView>
 
                                 <LinearLayout
-                                    android:id="@+id/no_data_part"
+                                    android:id="@+id/no_data_pengalaman_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:orientation="vertical"
                                     android:paddingLeft="20dp"
                                     android:paddingRight="20dp"
-                                    android:paddingTop="55dp"
+                                    android:paddingTop="60dp"
                                     android:paddingBottom="35dp"
                                     android:visibility="gone">
 
@@ -89,7 +89,7 @@
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Notifikasi tidak tersedia"
+                                        android:text="Data pengalaman tidak tersedia"
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
                                         android:textSize="10dp" />
@@ -97,7 +97,7 @@
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:id="@+id/loading_data_part"
+                                    android:id="@+id/loading_data_pengalaman_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
@@ -108,7 +108,7 @@
                                     android:paddingBottom="35dp">
 
                                     <ImageView
-                                        android:id="@+id/loading_data_img"
+                                        android:id="@+id/loading_data_pengalaman_img"
                                         android:layout_width="80dp"
                                         android:layout_height="80dp"
                                         android:layout_marginBottom="5dp"
@@ -138,13 +138,13 @@
 
                             <LinearLayout
                                 android:visibility="gone"
-                                android:id="@+id/permohonan_saya"
+                                android:id="@+id/info_pelatihan"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
                                 <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/data_notifikasi_2_rv"
+                                    android:id="@+id/data_pelatihan_rv"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:orientation="vertical"
@@ -152,14 +152,14 @@
                                 </androidx.recyclerview.widget.RecyclerView>
 
                                 <LinearLayout
-                                    android:id="@+id/no_data_part_2"
+                                    android:id="@+id/no_data_pelatihan_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:orientation="vertical"
                                     android:paddingLeft="20dp"
                                     android:paddingRight="20dp"
-                                    android:paddingTop="55dp"
+                                    android:paddingTop="60dp"
                                     android:paddingBottom="35dp"
                                     android:visibility="gone">
 
@@ -185,7 +185,7 @@
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Notifikasi tidak tersedia"
+                                        android:text="Data pelatihan tidak tersedia"
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
                                         android:textSize="10dp" />
@@ -193,7 +193,7 @@
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:id="@+id/loading_data_part_2"
+                                    android:id="@+id/loading_data_pelatihan_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
@@ -204,7 +204,7 @@
                                     android:paddingBottom="35dp">
 
                                     <ImageView
-                                        android:id="@+id/loading_data_img_2"
+                                        android:id="@+id/loading_data_pelatihan_img"
                                         android:layout_width="80dp"
                                         android:layout_height="80dp"
                                         android:layout_marginBottom="5dp"
@@ -286,7 +286,7 @@
                                 android:ellipsize="end"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="NOTIFIKASI IZIN/CUTI"
+                                android:text="INFO PENGALAMAN DAN PELATIHAN"
                                 android:textColor="@color/white"
                                 android:textSize="15dp" />
 
@@ -310,7 +310,7 @@
                             android:paddingRight="20dp">
 
                             <LinearLayout
-                                android:id="@+id/notify_in_btn"
+                                android:id="@+id/pengalaman_btn"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight=".50"
@@ -326,60 +326,21 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:paddingTop="13dp"
-                                        android:paddingBottom="13dp"
                                         android:gravity="center"
-                                        android:orientation="vertical">
+                                        android:orientation="vertical"
+                                        android:paddingTop="15dp"
+                                        android:paddingBottom="15dp">
 
                                         <TextView
-                                            android:layout_width="wrap_content"
+                                            android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:text="Permohonan"
-                                            android:textStyle="bold"
-                                            android:textColor="@color/white"
-                                            android:textSize="12dp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Masuk"
-                                            android:textStyle="bold"
-                                            android:textColor="@color/white"
-                                            android:textSize="15dp" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:gravity="right"
-                                        android:paddingTop="5dp"
-                                        android:paddingRight="5dp"
-                                        android:paddingLeft="5dp"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
-
-                                        <LinearLayout
-                                            android:id="@+id/count_notification_in"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="5dp"
-                                            android:layout_marginTop="1dp"
-                                            android:background="@drawable/shape_notification_mark"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_marginRight="10dp"
                                             android:gravity="center"
-                                            android:paddingLeft="4dp"
-                                            android:paddingRight="4dp"
-                                            android:paddingBottom="1dp"
-                                            android:visibility="gone">
-
-                                            <TextView
-                                                android:id="@+id/count_notif_in_tv"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:gravity="center"
-                                                android:text="0"
-                                                android:textColor="@color/white"
-                                                android:textSize="12dp" />
-
-                                        </LinearLayout>
+                                            android:text="Info Pengalaman"
+                                            android:textColor="@color/white"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold" />
 
                                     </LinearLayout>
 
@@ -388,7 +349,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/notify_out_btn"
+                                android:id="@+id/pelatihan_btn"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight=".50"
@@ -403,66 +364,59 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:paddingTop="13dp"
-                                        android:paddingBottom="13dp"
+                                        android:paddingTop="15dp"
+                                        android:paddingBottom="15dp"
                                         android:gravity="center"
                                         android:orientation="vertical">
 
                                         <TextView
-                                            android:layout_width="wrap_content"
+                                            android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:text="Permohonan"
+                                            android:text="Info Pelatihan"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_marginRight="10dp"
                                             android:textStyle="bold"
-                                            android:textColor="@color/white"
-                                            android:textSize="12dp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Saya"
-                                            android:textStyle="bold"
-                                            android:textColor="@color/white"
-                                            android:textSize="15dp" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:gravity="right"
-                                        android:paddingTop="5dp"
-                                        android:paddingRight="5dp"
-                                        android:paddingLeft="5dp"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
-
-                                        <LinearLayout
-                                            android:id="@+id/count_notification_me"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="5dp"
-                                            android:layout_marginTop="1dp"
-                                            android:background="@drawable/shape_notification_mark"
                                             android:gravity="center"
-                                            android:paddingLeft="4dp"
-                                            android:paddingRight="4dp"
-                                            android:paddingBottom="1dp"
-                                            android:visibility="gone">
-
-                                            <TextView
-                                                android:id="@+id/count_notif_me_tv"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:gravity="center"
-                                                android:text="0"
-                                                android:textColor="@color/white"
-                                                android:textSize="12dp" />
-
-                                        </LinearLayout>
+                                            android:textColor="@color/white"
+                                            android:textSize="13dp" />
 
                                     </LinearLayout>
 
                                 </RelativeLayout>
 
                             </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:background="@drawable/shape_attantion"
+                            android:orientation="vertical"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="15dp"
+                            android:paddingRight="15dp"
+                            android:paddingBottom="17dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Perhatian :"
+                                android:textColor="#C68D46"
+                                android:textSize="11dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:lineSpacingExtra="2.5dp"
+                                android:text="Info di sini adalah informasi pengalaman posisi yang pernah dijabat serta pelatihan yang pernah diikuti selama bekerja di PT. Gelora Aksara Pratama"
+                                android:textColor="#C68D46"
+                                android:textSize="12dp" />
 
                         </LinearLayout>
 

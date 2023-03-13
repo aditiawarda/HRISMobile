@@ -45,6 +45,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".InfoPengalamanDanPelatihanActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".DetailKeluargaActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

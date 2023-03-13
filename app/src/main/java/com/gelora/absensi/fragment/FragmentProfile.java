@@ -42,6 +42,7 @@ import com.gelora.absensi.DigitalSignatureActivity;
 import com.gelora.absensi.InfoKeluargaActivity;
 import com.gelora.absensi.InfoKontakDaruratActivity;
 import com.gelora.absensi.InfoPekerjaanActivity;
+import com.gelora.absensi.InfoPengalamanDanPelatihanActivity;
 import com.gelora.absensi.InfoPersonalActivity;
 import com.gelora.absensi.LoginActivity;
 import com.gelora.absensi.R;
@@ -82,7 +83,7 @@ import java.util.UUID;
 public class FragmentProfile extends Fragment {
 
     LinearLayout nonGapSgnBTN, infoGapPart, warningInfoKontakDarurat, warningInfoPersonal, updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
-    LinearLayout infoPersonalBTN, infoPekerjaanBTN, infoKontakDaruratBTN, infoKeluargaBTN, infoPendidikanDanPengalamanBTN, infoPayrollBTN;
+    LinearLayout infoPersonalBTN, infoPekerjaanBTN, infoKontakDaruratBTN, infoKeluargaBTN, infoPengalamanDanPelatihanBTN, infoPayrollBTN;
     TextView nameOfUser, positionOfUser, descAvailable, descEmpty;
     ImageView avatarUser;
     SwipeRefreshLayout refreshLayout;
@@ -127,7 +128,7 @@ public class FragmentProfile extends Fragment {
         infoPersonalBTN = view.findViewById(R.id.info_personal_btn);
         infoPekerjaanBTN = view.findViewById(R.id.info_pekerjaan_btn);
         infoPayrollBTN = view.findViewById(R.id.info_payroll_btn);
-        infoPendidikanDanPengalamanBTN = view.findViewById(R.id.info_pendidikan_dan_pengalaman_btn);
+        infoPengalamanDanPelatihanBTN = view.findViewById(R.id.info_pendidikan_dan_pengalaman_btn);
         infoKeluargaBTN = view.findViewById(R.id.info_keluarga_btn);
         infoKontakDaruratBTN = view.findViewById(R.id.info_kontak_darurat_btn);
         updateAppBTN = view.findViewById(R.id.update_app_btn);
@@ -196,10 +197,10 @@ public class FragmentProfile extends Fragment {
             }
         });
 
-        infoPendidikanDanPengalamanBTN.setOnClickListener(new View.OnClickListener() {
+        infoPengalamanDanPelatihanBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ComingSoonActivity.class);
+                Intent intent = new Intent(mContext, InfoPengalamanDanPelatihanActivity.class);
                 startActivity(intent);
             }
         });

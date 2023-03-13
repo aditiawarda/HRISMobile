@@ -51,14 +51,14 @@ public class HomeActivity extends AppCompatActivity {
     SharedPrefAbsen sharedPrefAbsen;
     BubbleToggleView mItemHome, mItemInfo, mItemProfile;
     BubbleNavigationLinearView bubbleNavigation, bubbleNavigationNonGap;
-    ImageView notifMarkInfo;
+    ImageView infoMark, profileMark;
     Vibrator vibrate;
     LinearLayout shapeBG;
 
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
 
-    String notif = "0", warningPerangkat = "", deviceID = "", beforeLayout = "0", nowLayout = "0", temp = "0";
+    String profile = "0", notif = "0", warningPerangkat = "", deviceID = "", beforeLayout = "0", nowLayout = "0", temp = "0";
     KAlertDialog pDialog;
     private final int i = -1;
 
@@ -118,7 +118,8 @@ public class HomeActivity extends AppCompatActivity {
             bubbleNavigation = findViewById(R.id.equal_navigation_bar);
             viewPager = findViewById(R.id.viewPager);
             shapeBG = findViewById(R.id.shape_bg);
-            notifMarkInfo = findViewById(R.id.notif_mark);
+            infoMark = findViewById(R.id.info_mark);
+            profileMark = findViewById(R.id.profile_mark);
             vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
             viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -165,7 +166,11 @@ public class HomeActivity extends AppCompatActivity {
 
             Glide.with(getApplicationContext())
                     .load(R.drawable.mark_notif_info)
-                    .into(notifMarkInfo);
+                    .into(infoMark);
+
+            Glide.with(getApplicationContext())
+                    .load(R.drawable.mark_notif_info)
+                    .into(profileMark);
 
             checkLogin();
 
@@ -320,7 +325,7 @@ public class HomeActivity extends AppCompatActivity {
                                     int lateNumb = Integer.parseInt(terlambat);
                                     int noCheckoutNumb = Integer.parseInt(tidak_checkout);
                                     if (alpaNumb > 0 || lateNumb > 0 || noCheckoutNumb > 0){
-                                        notifMarkInfo.setVisibility(View.VISIBLE);
+                                        infoMark.setVisibility(View.VISIBLE);
 
                                         if(notif.equals("0")){
                                             notif = "1";
@@ -344,10 +349,10 @@ public class HomeActivity extends AppCompatActivity {
 
                                     } else {
                                         notif = "0";
-                                        notifMarkInfo.setVisibility(View.GONE);
+                                        infoMark.setVisibility(View.GONE);
                                     }
                                 } else if (!count.equals("0") && count_finger.equals("0")) {
-                                    notifMarkInfo.setVisibility(View.VISIBLE);
+                                    infoMark.setVisibility(View.VISIBLE);
 
                                     if(notif.equals("0")){
                                         notif = "1";
@@ -370,7 +375,7 @@ public class HomeActivity extends AppCompatActivity {
                                     }
 
                                 } else if (count.equals("0") && !count_finger.equals("0")) {
-                                    notifMarkInfo.setVisibility(View.VISIBLE);
+                                    infoMark.setVisibility(View.VISIBLE);
 
                                     if(notif.equals("0")){
                                         notif = "1";
@@ -393,7 +398,7 @@ public class HomeActivity extends AppCompatActivity {
                                     }
 
                                 } else if (!count.equals("0") && !count_finger.equals("0")) {
-                                    notifMarkInfo.setVisibility(View.VISIBLE);
+                                    infoMark.setVisibility(View.VISIBLE);
 
                                     if(notif.equals("0")){
                                         notif = "1";
@@ -418,7 +423,144 @@ public class HomeActivity extends AppCompatActivity {
                                 }
 
                             } else {
-                                notifMarkInfo.setVisibility(View.GONE);
+                                infoMark.setVisibility(View.GONE);
+                            }
+
+                            checkDataUser();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void checkDataUser() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cek_kelengkapan_data_info_user";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            String shortName = sharedPrefManager.getSpNama()+" ";
+                            if(shortName.contains(" ")){
+                                shortName = shortName.substring(0, shortName.indexOf(" "));
+                                System.out.println(shortName);
+                            }
+
+                            if (status.equals("Success")){
+                                String data_personal = data.getString("data_personal");
+                                String data_kontak = data.getString("data_kontak");
+                                if(data_personal.equals("tidak lengkap")){
+                                    if(data_kontak.equals("tidak tersedia")){
+                                        profileMark.setVisibility(View.VISIBLE);
+                                        if(profile.equals("0")){
+                                            profile = "1";
+                                            Intent intent = new Intent(HomeActivity.this, InfoPersonalActivity.class);
+                                            Notify.build(getApplicationContext())
+                                                    .setTitle("HRIS Mobile Gelora")
+                                                    .setContent("Halo "+shortName+", harap lengkapi data personal dan kontak darurat anda")
+                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                    .setColor(R.color.colorPrimary)
+                                                    .largeCircularIcon()
+                                                    .enableVibration(true)
+                                                    .setAction(intent)
+                                                    .show();
+
+                                            // Vibrate for 500 milliseconds
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                            } else {
+                                                //deprecated in API 26
+                                                vibrate.vibrate(500);
+                                            }
+                                        }
+
+                                    } else {
+                                        profileMark.setVisibility(View.VISIBLE);
+
+                                        if(profile.equals("0")){
+                                            profile = "1";
+                                            Intent intent = new Intent(HomeActivity.this, InfoPersonalActivity.class);
+                                            Notify.build(getApplicationContext())
+                                                    .setTitle("HRIS Mobile Gelora")
+                                                    .setContent("Halo "+shortName+", harap lengkapi data personal anda")
+                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                    .setColor(R.color.colorPrimary)
+                                                    .largeCircularIcon()
+                                                    .enableVibration(true)
+                                                    .setAction(intent)
+                                                    .show();
+
+                                            // Vibrate for 500 milliseconds
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                            } else {
+                                                //deprecated in API 26
+                                                vibrate.vibrate(500);
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if(data_kontak.equals("tidak tersedia")){
+                                        profileMark.setVisibility(View.VISIBLE);
+
+                                        if(profile.equals("0")) {
+                                            profile = "1";
+                                            Intent intent = new Intent(HomeActivity.this, InfoKontakDaruratActivity.class);
+                                            Notify.build(getApplicationContext())
+                                                    .setTitle("HRIS Mobile Gelora")
+                                                    .setContent("Halo "+shortName+", harap lengkapi data kontak darurat anda")
+                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                    .setColor(R.color.colorPrimary)
+                                                    .largeCircularIcon()
+                                                    .enableVibration(true)
+                                                    .setAction(intent)
+                                                    .show();
+
+                                            // Vibrate for 500 milliseconds
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                            } else {
+                                                //deprecated in API 26
+                                                vibrate.vibrate(500);
+                                            }
+                                        }
+                                    } else {
+                                        profileMark.setVisibility(View.GONE);
+                                    }
+                                }
+                            } else {
+                                profileMark.setVisibility(View.GONE);
                             }
 
                         } catch (JSONException e) {
