@@ -52,8 +52,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:orientation="vertical"
-                                    android:visibility="gone">
-                                </androidx.recyclerview.widget.RecyclerView>
+                                    android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
 
                                 <LinearLayout
                                     android:id="@+id/no_data_pengalaman_part"
@@ -62,8 +61,8 @@
                                     android:gravity="center"
                                     android:orientation="vertical"
                                     android:paddingLeft="20dp"
-                                    android:paddingRight="20dp"
                                     android:paddingTop="60dp"
+                                    android:paddingRight="20dp"
                                     android:paddingBottom="35dp"
                                     android:visibility="gone">
 
@@ -137,19 +136,18 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:visibility="gone"
                                 android:id="@+id/info_pelatihan"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:visibility="gone">
 
                                 <androidx.recyclerview.widget.RecyclerView
                                     android:id="@+id/data_pelatihan_rv"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:orientation="vertical"
-                                    android:visibility="gone">
-                                </androidx.recyclerview.widget.RecyclerView>
+                                    android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
 
                                 <LinearLayout
                                     android:id="@+id/no_data_pelatihan_part"
@@ -158,8 +156,8 @@
                                     android:gravity="center"
                                     android:orientation="vertical"
                                     android:paddingLeft="20dp"
-                                    android:paddingRight="20dp"
                                     android:paddingTop="60dp"
+                                    android:paddingRight="20dp"
                                     android:paddingBottom="35dp"
                                     android:visibility="gone">
 
@@ -424,6 +422,29 @@
                             android:layout_width="match_parent"
                             android:layout_height="10dp"
                             android:background="#F0F0F0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="bottom|right"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/add_btn"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center"
+                        android:background="@drawable/shape_new_chat">
+
+                        <TextView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@drawable/ic_baseline_new_chat"/>
 
                     </LinearLayout>
 

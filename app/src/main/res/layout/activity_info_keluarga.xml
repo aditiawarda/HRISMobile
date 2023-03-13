@@ -44,8 +44,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
-                                android:visibility="gone">
-                            </androidx.recyclerview.widget.RecyclerView>
+                                android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
 
                             <LinearLayout
                                 android:id="@+id/no_data_part"
