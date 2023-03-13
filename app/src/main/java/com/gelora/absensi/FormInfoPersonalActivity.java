@@ -569,8 +569,18 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
     }
 
     private void sendData() {
+        String noPhone = noHanphoneED.getText().toString().replace("+", "").replace("-", "").replace(" ","");
+        String noHandphone = "";
+
+        if (noPhone.substring(0,2).equals("62")){
+            noHandphone = "0"+noPhone.substring(2,noPhone.length());
+        } else {
+            noHandphone = noPhone;
+        }
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/update_data_personal";
+        String finalNoHandphone = noHandphone;
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
@@ -628,7 +638,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
 
                 params.put("tempat_lahir", tempatLahirED.getText().toString());
                 params.put("tanggal_lahir", tanggalLAhir);
-                params.put("handphone", noHanphoneED.getText().toString());
+                params.put("handphone", finalNoHandphone);
 
                 if(statusPernikahanChoice.equals("1")){
                     params.put("status_pernikahan", "Belum Menikah");

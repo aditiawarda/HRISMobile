@@ -1,14 +1,25 @@
 package com.gelora.absensi;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +29,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -29,23 +41,29 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FormKontakDaruratActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backSuccessBTN, submitBTN, backBTN, hubunganBTN, hubunganLainnyaPart, formPart, successPart;
+    LinearLayout kontakBTN, actionBar, backSuccessBTN, submitBTN, backBTN, hubunganBTN, hubunganLainnyaPart, formPart, successPart;
     LinearLayout sodaraLakiBTN, sodaraPerempuanBTN, markSodaraLaki, markSodaraPerempuan, ayahBTN, ibuBTN, suamiBTN, istriBTN, anakBTN, lainnyaBTN, markAyah, markIbu, markSuami, markIstri, markAnak, markLainnya;
     SwipeRefreshLayout refreshLayout;
-    TextView hubunganPilihTV, titlePageTV;
-    EditText namaED, handphoneED, hubunganLainnyaED;
+    TextView hubunganPilihTV, titlePageTV, kontakPilihTV;
+    EditText namaED, hubunganLainnyaED;
     BottomSheetLayout bottomSheet;
-    String hubunganPilih = "", tipeForm = "", idKontak = "";
+    String hubunganPilih = "", tipeForm = "", idKontak = "", noHandphone = "";
     KAlertDialog pDialog;
     SharedPrefManager sharedPrefManager;
     ImageView successGif;
@@ -63,12 +81,13 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
         backSuccessBTN = findViewById(R.id.back_success_btn);
         titlePageTV = findViewById(R.id.title_page_tv);
         namaED = findViewById(R.id.nama_ed);
-        handphoneED = findViewById(R.id.no_hanphone_ed);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         hubunganPilihTV = findViewById(R.id.hubungan_pilih_tv);
         hubunganBTN = findViewById(R.id.hubungan_btn);
         hubunganLainnyaPart = findViewById(R.id.hubungan_lainnya_part);
         hubunganLainnyaED = findViewById(R.id.hubungan_lainnya_ed);
+        kontakBTN = findViewById(R.id.kontak_btn);
+        kontakPilihTV = findViewById(R.id.kontak_pilih_tv);
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
         submitBTN = findViewById(R.id.submit_btn);
@@ -110,15 +129,15 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                     getData();
                 } else {
                     namaED.setText("");
-                    handphoneED.setText("");
+                    kontakPilihTV.setText("");
                     hubunganPilihTV.setText("");
                     hubunganLainnyaED.setText("");
+                    noHandphone = "";
                     hubunganPilih = "";
                     hubunganLainnyaPart.setVisibility(View.GONE);
                 }
 
                 namaED.clearFocus();
-                handphoneED.clearFocus();
                 hubunganLainnyaED.clearFocus();
 
                 new Handler().postDelayed(new Runnable() {
@@ -144,13 +163,41 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
             }
         });
 
+        kontakBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                namaED.clearFocus();
+                hubunganLainnyaED.clearFocus();
+
+                Dexter.withActivity(FormKontakDaruratActivity.this)
+                        .withPermissions(Manifest.permission.READ_CONTACTS)
+                        .withListener(new MultiplePermissionsListener() {
+                            @Override
+                            public void onPermissionsChecked(MultiplePermissionsReport report) {
+                                if (report.areAllPermissionsGranted()) {
+                                    Intent contactPickerIntent = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+                                    startActivityForResult(contactPickerIntent, 1);
+                                }
+                                if (report.isAnyPermissionPermanentlyDenied()) {
+                                    showSettingsDialog();
+                                }
+                            }
+                            @Override
+                            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                                token.continuePermissionRequest();
+                            }
+                        }).check();
+            }
+        });
+
         hubunganBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 namaED.clearFocus();
-                handphoneED.clearFocus();
                 hubunganLainnyaED.clearFocus();
                 hubunganChoice();
             }
@@ -162,9 +209,8 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 namaED.clearFocus();
-                handphoneED.clearFocus();
                 hubunganLainnyaED.clearFocus();
-                if(namaED.getText().toString().equals("") || handphoneED.equals("") || hubunganPilih.equals("")){
+                if(namaED.getText().toString().equals("") || noHandphone.equals("") || hubunganPilih.equals("")){
                     new KAlertDialog(FormKontakDaruratActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
                             .setContentText("Harap isi semua data")
@@ -317,6 +363,64 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @SuppressLint({"Range", "LongLogTag", "Recycle", "SetTextI18n"})
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case 1:
+                    Cursor cursor = null;
+                    try {
+                        String phoneNo = null;
+                        String name = null;
+
+                        Uri uri = data.getData();
+                        cursor = getContentResolver().query(uri, null, null, null, null);
+                        cursor.moveToFirst();
+                        int phoneIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                        int nameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+                        phoneNo = cursor.getString(phoneIndex);
+                        name = cursor.getString(nameIndex);
+
+                        String noPhone = phoneNo.replace("+", "").replace("-", "").replace(" ","");
+
+                        if (noPhone.substring(0,2).equals("62")){
+                            kontakPilihTV.setText("0"+noPhone.substring(2,noPhone.length()));
+                            noHandphone = "0"+noPhone.substring(2,noPhone.length());
+                        } else {
+                            kontakPilihTV.setText(noPhone);
+                            noHandphone = noPhone;
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+            }
+        } else {
+            Log.e("Failed", "Not able to pick contact");
+        }
+    }
+
+    private void showSettingsDialog() {
+        androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(FormKontakDaruratActivity.this);
+        builder.setTitle(getString(R.string.dialog_permission_title));
+        builder.setMessage(getString(R.string.dialog_permission_message_2));
+        builder.setPositiveButton(getString(R.string.go_to_settings), (dialog, which) -> {
+            dialog.cancel();
+            openSettings();
+        });
+        builder.setNegativeButton(getString(android.R.string.cancel), (dialog, which) -> dialog.cancel());
+        builder.show();
+    }
+
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivity(intent);
     }
 
     private void hubunganChoice(){
@@ -831,7 +935,7 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
 
                 params.put("NIK", sharedPrefManager.getSpNik());
                 params.put("nama_kontak", namaED.getText().toString());
-                params.put("notelp", handphoneED.getText().toString());
+                params.put("notelp", noHandphone);
 
                 if(hubunganPilih.equals("Lainnya")){
                     params.put("hubungan", hubunganPilih);
@@ -877,7 +981,8 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                                 String hubungan_lainnya = dataArray.getString("hubungan_lainnya");
 
                                 namaED.setText(nama_kontak);
-                                handphoneED.setText(notelp);
+                                kontakPilihTV.setText(notelp);
+                                noHandphone = notelp;
 
                                 hubunganPilih = hubungan;
                                 hubunganPilihTV.setText(hubungan);

@@ -72,25 +72,14 @@ public class AdapterListKontakDarurat extends RecyclerView.Adapter<AdapterListKo
             }
         });
 
-        if(String.valueOf(dataKontakDarurat.getNotelp().substring(0,1)).replace("-", "").equals("0")){
-            myViewHolder.noKontak.setText(dataKontakDarurat.getNotelp().replace("-", ""));
-            myViewHolder.kontakBTN.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", dataKontakDarurat.getNotelp().replace("-", ""), null));
-                    mContext.startActivity(intent);
-                }
-            });
-        } else if(String.valueOf(dataKontakDarurat.getNotelp().substring(0,1)).replace("-", "").equals("+")){
-            myViewHolder.noKontak.setText("0"+dataKontakDarurat.getNotelp().replace("-", "").substring(3,dataKontakDarurat.getNotelp().length()));
-            myViewHolder.kontakBTN.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "0"+dataKontakDarurat.getNotelp().replace("-", "").substring(3,dataKontakDarurat.getNotelp().length()), null));
-                    mContext.startActivity(intent);
-                }
-            });
-        }
+        myViewHolder.noKontak.setText(dataKontakDarurat.getNotelp());
+        myViewHolder.kontakBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", dataKontakDarurat.getNotelp(), null));
+                mContext.startActivity(intent);
+            }
+        });
 
         myViewHolder.menuBTN.setOnClickListener(new View.OnClickListener() {
             @Override

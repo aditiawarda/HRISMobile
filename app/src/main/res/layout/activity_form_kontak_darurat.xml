@@ -85,27 +85,58 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="5dp"
-                                    android:text="No Handphone :"
+                                    android:text="Kontak :"
                                     android:textColor="#696969"
                                     android:textSize="12dp" />
 
-                                <EditText
-                                    android:id="@+id/no_hanphone_ed"
+                                <LinearLayout
+                                    android:id="@+id/kontak_btn"
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
-                                    android:background="@drawable/shape_input_form"
-                                    android:drawablePadding="10dp"
-                                    android:gravity="center|left"
-                                    android:hint=""
-                                    android:inputType="phone"
-                                    android:paddingLeft="20dp"
-                                    android:paddingTop="10dp"
-                                    android:paddingRight="20dp"
-                                    android:paddingBottom="10dp"
-                                    android:textColor="#595959"
-                                    android:textColorHighlight="#FFDDB3"
-                                    android:textColorHint="#AAAAAA"
-                                    android:textSize="13dp" />
+                                    android:background="@drawable/shape_feel"
+                                    android:orientation="horizontal"
+                                    android:paddingStart="20dp">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="40dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:gravity="center|left"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:id="@+id/kontak_pilih_tv"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text=""
+                                                android:textColor="#B15735"
+                                                android:textSize="13dp"
+                                                android:textStyle="bold" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="40dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_alignParentRight="true"
+                                            android:background="@drawable/shape_btn"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:background="@drawable/ic_baseline_down" />
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
 
                             </LinearLayout>
 
