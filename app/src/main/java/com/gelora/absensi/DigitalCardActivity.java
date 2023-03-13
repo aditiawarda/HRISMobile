@@ -175,7 +175,7 @@ public class DigitalCardActivity extends AppCompatActivity {
                                                             new KAlertDialog(DigitalCardActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian")
                                                                     .setContentText("Terjadi kesalahan!")
-                                                                    .setConfirmText("    TUTUP    ")
+                                                                    .setConfirmText("TUTUP")
                                                                     .show();
 
                                                             Log.i("TAG", "Oops! Image could not be saved.");
@@ -262,7 +262,7 @@ public class DigitalCardActivity extends AppCompatActivity {
                                                             new KAlertDialog(DigitalCardActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian")
                                                                     .setContentText("Terjadi kesalahan!")
-                                                                    .setConfirmText("    TUTUP    ")
+                                                                    .setConfirmText("TUTUP")
                                                                     .show();
 
                                                             Log.i("TAG", "Oops! Image could not be saved.");
@@ -318,7 +318,7 @@ public class DigitalCardActivity extends AppCompatActivity {
                 new KAlertDialog(DigitalCardActivity.this, KAlertDialog.ERROR_TYPE)
                         .setTitleText("Perhatian")
                         .setContentText("Terjadi kesalahan!")
-                        .setConfirmText("    TUTUP    ")
+                        .setConfirmText("TUTUP")
                         .show();
             } else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

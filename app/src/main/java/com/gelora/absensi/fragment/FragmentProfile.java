@@ -48,6 +48,7 @@ import com.gelora.absensi.LoginActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
+import com.gelora.absensi.SplashScreen;
 import com.gelora.absensi.ViewImageActivity;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.FilePathimage;
@@ -538,7 +539,7 @@ public class FragmentProfile extends Fragment {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.7.1"; //harus disesuaikan
+                                String currentVersion = "1.7.2"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateAppBTN.setVisibility(View.VISIBLE);
                                     updateAppBTN.setOnClickListener(new View.OnClickListener() {
@@ -546,6 +547,22 @@ public class FragmentProfile extends Fragment {
                                         public void onClick(View v) {
                                             Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.gelora.absensi"));
                                             startActivity(webIntent);
+                                            try {
+                                                startActivity(webIntent);
+                                            } catch (SecurityException e) {
+                                                e.printStackTrace();
+                                                new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
+                                                        .setTitleText("Perhatian")
+                                                        .setContentText("Tidak dapat terhubung ke Play Store, anda dapat membuka Play Store secara langsung dan cari HRIS Mobile Gelora di kolom pencarian")
+                                                        .setConfirmText("TUTUP")
+                                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                            @Override
+                                                            public void onClick(KAlertDialog sDialog) {
+                                                                sDialog.dismiss();
+                                                            }
+                                                        })
+                                                        .show();
+                                            }
                                         }
                                     });
                                 } else {

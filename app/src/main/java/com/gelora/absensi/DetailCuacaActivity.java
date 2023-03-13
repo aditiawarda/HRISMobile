@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.StatusBarColorManager;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
@@ -80,7 +81,22 @@ public class DetailCuacaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://openweathermap.org/"));
-                startActivity(webIntent);
+                try {
+                    startActivity(webIntent);
+                } catch (SecurityException e) {
+                    e.printStackTrace();
+                    new KAlertDialog(DetailCuacaActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Tidak dapat terhubung ke web, anda bisa akses secara langsung ke openweathermap.org")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
             }
         });
 

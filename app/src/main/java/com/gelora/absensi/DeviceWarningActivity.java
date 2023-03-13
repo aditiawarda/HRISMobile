@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.gelora.absensi.kalert.KAlertDialog;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -84,6 +85,17 @@ public class DeviceWarningActivity extends AppCompatActivity {
                                 startActivity(webIntent);
                             } catch (SecurityException e) {
                                 e.printStackTrace();
+                                new KAlertDialog(DeviceWarningActivity.this, KAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian IT/EDP")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
                             }
 
                         } catch (JSONException e) {

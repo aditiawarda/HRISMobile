@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -38,11 +40,13 @@ import com.gelora.absensi.DetailTidakHadirActivity;
 import com.gelora.absensi.FaqActivity;
 import com.gelora.absensi.HistoryActivity;
 import com.gelora.absensi.HistoryCutiIzinActivity;
+import com.gelora.absensi.ListChatMateActivity;
 import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.ListNotifikasiFingerscanActivity;
 import com.gelora.absensi.MonitoringAbsensiBagianActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefManager;
+import com.gelora.absensi.kalert.KAlertDialog;
 import com.kal.rackmonthpicker.RackMonthPicker;
 import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
 import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
@@ -872,6 +876,17 @@ public class FragmentInfo extends Fragment {
                                         startActivity(webIntent);
                                     } catch (SecurityException e) {
                                         e.printStackTrace();
+                                        new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian HRD")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
                                     }
                                 }
                             });

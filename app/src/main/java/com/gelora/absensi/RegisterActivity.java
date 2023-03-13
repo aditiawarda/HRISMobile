@@ -470,7 +470,6 @@ public class RegisterActivity extends AppCompatActivity {
                 passwordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
                 repasswordED.setBackground(ContextCompat.getDrawable(RegisterActivity.this, R.drawable.shape_feel_login));
 
-
                 nikED.setError(null);
                 passwordED.setError(null);
                 repasswordED.setError(null);
@@ -835,6 +834,17 @@ public class RegisterActivity extends AppCompatActivity {
                                         startActivity(webIntent);
                                     } catch (SecurityException e) {
                                         e.printStackTrace();
+                                        new KAlertDialog(RegisterActivity.this, KAlertDialog.WARNING_TYPE)
+                                                .setTitleText("Perhatian")
+                                                .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian HRD")
+                                                .setConfirmText("    OK    ")
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .show();
                                     }
                                 }
                             });

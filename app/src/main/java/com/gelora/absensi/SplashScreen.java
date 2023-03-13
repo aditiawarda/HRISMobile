@@ -34,6 +34,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.StatusBarColorManager;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -384,7 +385,7 @@ public class SplashScreen extends AppCompatActivity {
                             String close_btn = response.getString("close_btn");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.7.1";
+                                String currentVersion = "1.7.2";
                                 if (!currentVersion.equals(version) && popup.equals("1")){
 
                                     refreshPart.animate()
@@ -437,15 +438,27 @@ public class SplashScreen extends AppCompatActivity {
                                                             updateLayout.setVisibility(View.GONE);
                                                         }
                                                     });
-                                            Intent webIntent = new Intent(Intent.ACTION_VIEW);webIntent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.gelora.absensi"));
+                                            Intent webIntent = new Intent(Intent.ACTION_VIEW);
+                                            webIntent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.gelora.absensi"));
                                             try {
                                                 startActivity(webIntent);
+                                                refreshPart.setVisibility(View.GONE);
+                                                finish();
                                             } catch (SecurityException e) {
                                                 e.printStackTrace();
+                                                new KAlertDialog(SplashScreen.this, KAlertDialog.WARNING_TYPE)
+                                                        .setTitleText("Perhatian")
+                                                        .setContentText("Tidak dapat terhubung ke Play Store, anda dapat membuka Play Store secara langsung dan cari HRIS Mobile Gelora di kolom pencarian")
+                                                        .setConfirmText("TUTUP")
+                                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                            @Override
+                                                            public void onClick(KAlertDialog sDialog) {
+                                                                sDialog.dismiss();
+                                                                permissionLoc();
+                                                            }
+                                                        })
+                                                        .show();
                                             }
-
-                                            refreshPart.setVisibility(View.GONE);
-                                            finish();
                                         }
                                     });
 
@@ -553,8 +566,6 @@ public class SplashScreen extends AppCompatActivity {
                         .setSwipeToDismiss(false)
                         .setCookiePosition(Gravity.TOP)
                         .show();
-
-                // Banner.make(rootview, SplashScreen.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
 
             }
         });

@@ -345,6 +345,8 @@ public class HomeActivity extends AppCompatActivity {
                                                 //deprecated in API 26
                                                 vibrate.vibrate(500);
                                             }
+                                        } else {
+                                            notif = "0";
                                         }
 
                                     } else {
@@ -372,6 +374,8 @@ public class HomeActivity extends AppCompatActivity {
                                             //deprecated in API 26
                                             vibrate.vibrate(500);
                                         }
+                                    } else {
+                                        notif = "0";
                                     }
 
                                 } else if (count.equals("0") && !count_finger.equals("0")) {
@@ -395,6 +399,8 @@ public class HomeActivity extends AppCompatActivity {
                                             //deprecated in API 26
                                             vibrate.vibrate(500);
                                         }
+                                    } else {
+                                        notif = "0";
                                     }
 
                                 } else if (!count.equals("0") && !count_finger.equals("0")) {
@@ -418,11 +424,14 @@ public class HomeActivity extends AppCompatActivity {
                                             //deprecated in API 26
                                             vibrate.vibrate(500);
                                         }
+                                    } else {
+                                        notif = "0";
                                     }
 
                                 }
 
                             } else {
+                                notif = "0";
                                 infoMark.setVisibility(View.GONE);
                             }
 
@@ -503,6 +512,8 @@ public class HomeActivity extends AppCompatActivity {
                                                 //deprecated in API 26
                                                 vibrate.vibrate(500);
                                             }
+                                        } else {
+                                            profile = "0";
                                         }
 
                                     } else {
@@ -528,6 +539,8 @@ public class HomeActivity extends AppCompatActivity {
                                                 //deprecated in API 26
                                                 vibrate.vibrate(500);
                                             }
+                                        } else {
+                                            profile = "0";
                                         }
                                     }
                                 } else {
@@ -554,12 +567,17 @@ public class HomeActivity extends AppCompatActivity {
                                                 //deprecated in API 26
                                                 vibrate.vibrate(500);
                                             }
+                                        } else {
+                                            profile = "0";
                                         }
+
                                     } else {
+                                        profile = "0";
                                         profileMark.setVisibility(View.GONE);
                                     }
                                 }
                             } else {
+                                profile = "0";
                                 profileMark.setVisibility(View.GONE);
                             }
 
