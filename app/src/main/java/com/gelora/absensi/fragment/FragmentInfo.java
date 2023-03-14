@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
@@ -45,11 +46,13 @@ import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.ListNotifikasiFingerscanActivity;
 import com.gelora.absensi.MonitoringAbsensiBagianActivity;
 import com.gelora.absensi.R;
+import com.gelora.absensi.RecordAbsensiActivity;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.kal.rackmonthpicker.RackMonthPicker;
 import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
 import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
+import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
@@ -284,33 +287,37 @@ public class FragmentInfo extends Fragment {
         selectMonthBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new RackMonthPicker(mContext)
-                        .setLocale(Locale.ENGLISH)
-                        .setPositiveButton(new DateMonthDialogListener() {
+                Calendar now = Calendar.getInstance();
+                MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(mContext,
+                        new MonthPickerDialog.OnDateSetListener() {
+                            @SuppressLint("SetTextI18n")
                             @Override
-                            public void onDateMonth(int month, int startDate, int endDate, int year, String monthLabel) {
-                                String bulan = "";
-                                if(month==1){
+                            public void onDateSet(int month, int year) { // on date set
+                                String bulan = "", bulanName = "";
+                                if(month==0){
                                     bulan = "01";
-                                } else if (month==2){
+                                } else if (month==1){
                                     bulan = "02";
-                                } else if (month==3){
+                                } else if (month==2){
                                     bulan = "03";
-                                } else if (month==4){
+                                } else if (month==3){
                                     bulan = "04";
-                                } else if (month==5){
+                                } else if (month==4){
                                     bulan = "05";
-                                } else if (month==6){
+                                } else if (month==5){
                                     bulan = "06";
-                                } else if (month==7){
+                                } else if (month==6){
                                     bulan = "07";
-                                } else if (month==8){
+                                } else if (month==7){
                                     bulan = "08";
-                                } else if (month==9){
+                                } else if (month==8){
                                     bulan = "09";
-                                } else{
+                                } else if (month==9){
+                                    bulan = "10";
+                                } else {
                                     bulan = String.valueOf(month);
                                 }
+
                                 selectMonth = String.valueOf(year)+"-"+bulan;
 
                                 bulanLoading.setVisibility(View.VISIBLE);
@@ -350,13 +357,15 @@ public class FragmentInfo extends Fragment {
                                 }, 100);
 
                             }
-                        })
-                        .setNegativeButton(new OnCancelMonthDialogListener() {
-                            @Override
-                            public void onCancel(AlertDialog dialog) {
-                                dialog.dismiss();
-                            }
-                        }).show();
+                        }, now.get(Calendar.YEAR), now.get(Calendar.MONTH));
+
+                builder.setMinYear(1952)
+                        .setActivatedYear(now.get(Calendar.YEAR))
+                        .setMaxYear(now.get(Calendar.YEAR))
+                        .setActivatedMonth(now.get(Calendar.MONTH))
+                        .build()
+                        .show();
+
             }
         });
 

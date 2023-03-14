@@ -35,6 +35,7 @@ import com.kal.rackmonthpicker.RackMonthPicker;
 import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
 import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
 import com.shasin.notificationbanner.Banner;
+import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -42,6 +43,7 @@ import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -141,33 +143,37 @@ public class DetailLayoffActivity extends AppCompatActivity {
         monthBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new RackMonthPicker(DetailLayoffActivity.this)
-                        .setLocale(Locale.ENGLISH)
-                        .setPositiveButton(new DateMonthDialogListener() {
+                Calendar now = Calendar.getInstance();
+                MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(DetailLayoffActivity.this,
+                        new MonthPickerDialog.OnDateSetListener() {
+                            @SuppressLint("SetTextI18n")
                             @Override
-                            public void onDateMonth(int month, int startDate, int endDate, int year, String monthLabel) {
-                                String bulan = "";
-                                if(month==1){
+                            public void onDateSet(int month, int year) { // on date set
+                                String bulan = "", bulanName = "";
+                                if(month==0){
                                     bulan = "01";
-                                } else if (month==2){
+                                } else if (month==1){
                                     bulan = "02";
-                                } else if (month==3){
+                                } else if (month==2){
                                     bulan = "03";
-                                } else if (month==4){
+                                } else if (month==3){
                                     bulan = "04";
-                                } else if (month==5){
+                                } else if (month==4){
                                     bulan = "05";
-                                } else if (month==6){
+                                } else if (month==5){
                                     bulan = "06";
-                                } else if (month==7){
+                                } else if (month==6){
                                     bulan = "07";
-                                } else if (month==8){
+                                } else if (month==7){
                                     bulan = "08";
-                                } else if (month==9){
+                                } else if (month==8){
                                     bulan = "09";
-                                } else{
+                                } else if (month==9){
+                                    bulan = "10";
+                                } else {
                                     bulan = String.valueOf(month);
                                 }
+
                                 bulanPilih = String.valueOf(year)+"-"+bulan;
 
                                 bulanLoading.setVisibility(View.VISIBLE);
@@ -191,13 +197,15 @@ public class DetailLayoffActivity extends AppCompatActivity {
                                 }, 500);
 
                             }
-                        })
-                        .setNegativeButton(new OnCancelMonthDialogListener() {
-                            @Override
-                            public void onCancel(AlertDialog dialog) {
-                                dialog.dismiss();
-                            }
-                        }).show();
+                        }, now.get(Calendar.YEAR), now.get(Calendar.MONTH));
+
+                builder.setMinYear(1952)
+                        .setActivatedYear(now.get(Calendar.YEAR))
+                        .setMaxYear(now.get(Calendar.YEAR))
+                        .setActivatedMonth(now.get(Calendar.MONTH))
+                        .build()
+                        .show();
+
             }
         });
 

@@ -1,6 +1,5 @@
 package com.gelora.absensi;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,14 +23,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.gelora.absensi.adapter.AdapterDataAbsensi;
 import com.gelora.absensi.adapter.AdapterDataAbsensiMore;
 import com.gelora.absensi.model.DataRecordAbsensi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.kal.rackmonthpicker.RackMonthPicker;
-import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
-import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
+import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -38,9 +35,9 @@ import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class RecordAbsensiActivity extends AppCompatActivity {
@@ -122,50 +119,52 @@ public class RecordAbsensiActivity extends AppCompatActivity {
         bulanBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new RackMonthPicker(RecordAbsensiActivity.this)
-                        .setLocale(Locale.ENGLISH)
-                        .setPositiveButton(new DateMonthDialogListener() {
+                Calendar now = Calendar.getInstance();
+                MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(RecordAbsensiActivity.this,
+                        new MonthPickerDialog.OnDateSetListener() {
                             @SuppressLint("SetTextI18n")
                             @Override
-                            public void onDateMonth(int month, int startDate, int endDate, int year, String monthLabel) {
+                            public void onDateSet(int month, int year) { // on date set
                                 String bulan = "", bulanName = "";
-                                if(month==1){
+                                if(month==0){
                                     bulan = "01";
                                     bulanName = "Januari";
-                                } else if (month==2){
+                                } else if (month==1){
                                     bulan = "02";
                                     bulanName = "Februari";
-                                } else if (month==3){
+                                } else if (month==2){
                                     bulan = "03";
                                     bulanName = "Maret";
-                                } else if (month==4){
+                                } else if (month==3){
                                     bulan = "04";
                                     bulanName = "April";
-                                } else if (month==5){
+                                } else if (month==4){
                                     bulan = "05";
                                     bulanName = "Mei";
-                                } else if (month==6){
+                                } else if (month==5){
                                     bulan = "06";
                                     bulanName = "Juni";
-                                } else if (month==7){
+                                } else if (month==6){
                                     bulan = "07";
                                     bulanName = "Juli";
-                                } else if (month==8){
+                                } else if (month==7){
                                     bulan = "08";
                                     bulanName = "Agustus";
-                                } else if (month==9){
+                                } else if (month==8){
                                     bulan = "09";
                                     bulanName = "September";
+                                } else if (month==9){
+                                    bulan = "10";
+                                    bulanName = "Oktober";
                                 } else {
                                     bulan = String.valueOf(month);
                                     if (month==10){
-                                        bulanName = "Oktober";
-                                    } else if(month==11){
                                         bulanName = "November";
-                                    } else if(month==12){
+                                    } else if(month==11){
                                         bulanName = "Desember";
                                     }
                                 }
+
                                 selectMonth = String.valueOf(year)+"-"+bulan;
 
                                 loadingRecordPart.setVisibility(View.VISIBLE);
@@ -182,13 +181,13 @@ public class RecordAbsensiActivity extends AppCompatActivity {
                                 }, 100);
 
                             }
-                        })
-                        .setNegativeButton(new OnCancelMonthDialogListener() {
-                            @Override
-                            public void onCancel(AlertDialog dialog) {
-                                dialog.dismiss();
-                            }
-                        }).show();
+                        }, now.get(Calendar.YEAR), now.get(Calendar.MONTH));
+                builder.setMinYear(1952)
+                        .setActivatedYear(now.get(Calendar.YEAR))
+                        .setMaxYear(now.get(Calendar.YEAR))
+                        .setActivatedMonth(now.get(Calendar.MONTH))
+                        .build()
+                        .show();
             }
         });
 

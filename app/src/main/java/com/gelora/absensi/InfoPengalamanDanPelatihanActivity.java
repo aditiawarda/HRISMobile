@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -17,10 +18,11 @@ import com.bumptech.glide.Glide;
 
 public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
 
-    LinearLayout noDataPengalamanPart, noDataPelatihanPart, loadingDataPelatihanPart, backBTN, pengalamanBTN, pelatihanBTN, infoPengalaman, infoPelatihan, loadingDataPengalamanPart;
+    LinearLayout addBTN, noDataPengalamanPart, noDataPelatihanPart, loadingDataPelatihanPart, backBTN, pengalamanBTN, pelatihanBTN, infoPengalaman, infoPelatihan, loadingDataPengalamanPart;
     ImageView loadingDataPelatihanImg, loadingDataPengalamanImg;
     RecyclerView dataPelatihanRV, dataPengalamanRV;
     SwipeRefreshLayout refreshLayout;
+    String posisi = "pengalaman";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
         noDataPelatihanPart = findViewById(R.id.no_data_pelatihan_part);
         loadingDataPengalamanImg = findViewById(R.id.loading_data_pengalaman_img);
         loadingDataPelatihanImg = findViewById(R.id.loading_data_pelatihan_img);
+        addBTN = findViewById(R.id.add_btn);
         dataPengalamanRV = findViewById(R.id.data_pengalaman_rv);
         dataPelatihanRV = findViewById(R.id.data_pelatihan_rv);
 
@@ -90,6 +93,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
         pengalamanBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                posisi = "pengalaman";
                 pengalamanBTN.setBackground(ContextCompat.getDrawable(InfoPengalamanDanPelatihanActivity.this, R.drawable.shape_notify_choice));
                 pelatihanBTN.setBackground(ContextCompat.getDrawable(InfoPengalamanDanPelatihanActivity.this, R.drawable.shape_notify));
                 infoPelatihan.setVisibility(View.GONE);
@@ -114,6 +118,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
         pelatihanBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                posisi = "pelatihan";
                 pelatihanBTN.setBackground(ContextCompat.getDrawable(InfoPengalamanDanPelatihanActivity.this, R.drawable.shape_notify_choice));
                 pengalamanBTN.setBackground(ContextCompat.getDrawable(InfoPengalamanDanPelatihanActivity.this, R.drawable.shape_notify));
                 infoPengalaman.setVisibility(View.GONE);
@@ -132,6 +137,19 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
                     }
                 }, 300);
 
+            }
+        });
+
+        addBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(posisi.equals("pengalaman")){
+                    Intent intent = new Intent(InfoPengalamanDanPelatihanActivity.this, FormInfoPengalamanActivity.class);
+                    startActivity(intent);
+                } else if(posisi.equals("pelatihan")){
+                    Intent intent = new Intent(InfoPengalamanDanPelatihanActivity.this, FormInfoPelatihanActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

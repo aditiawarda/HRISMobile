@@ -446,7 +446,7 @@
                                 android:orientation="vertical"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
-                                android:paddingTop="40dp"
+                                android:paddingTop="35dp"
                                 android:paddingBottom="35dp"
                                 android:visibility="gone">
 
@@ -655,7 +655,7 @@
                                 android:orientation="vertical"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
-                                android:paddingTop="40dp"
+                                android:paddingTop="35dp"
                                 android:paddingBottom="35dp"
                                 android:visibility="gone">
 
@@ -827,7 +827,7 @@
                                 android:orientation="vertical"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
-                                android:paddingTop="40dp"
+                                android:paddingTop="35dp"
                                 android:paddingBottom="35dp"
                                 android:visibility="gone">
 
@@ -999,7 +999,7 @@
                                 android:orientation="vertical"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
-                                android:paddingTop="40dp"
+                                android:paddingTop="35dp"
                                 android:paddingBottom="35dp"
                                 android:visibility="gone">
 
