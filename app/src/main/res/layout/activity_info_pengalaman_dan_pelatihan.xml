@@ -410,7 +410,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="7dp"
                                 android:lineSpacingExtra="2.5dp"
-                                android:text="Info di sini adalah informasi pengalaman posisi yang pernah dijabat serta pelatihan yang pernah diikuti selama bekerja di PT. Gelora Aksara Pratama"
+                                android:text="Info di sini adalah informasi pengalaman posisi yang pernah dijabat serta pelatihan yang pernah diikuti selama bekerja di Erlangga Group"
                                 android:textColor="#C68D46"
                                 android:textSize="12dp" />
 
