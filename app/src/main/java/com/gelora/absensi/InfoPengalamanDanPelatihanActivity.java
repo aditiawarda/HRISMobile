@@ -10,11 +10,31 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.gelora.absensi.adapter.AdapterListKontakDarurat;
+import com.gelora.absensi.adapter.AdapterListPengalaman;
+import com.gelora.absensi.model.DataKontakDarurat;
+import com.gelora.absensi.model.DataPengalaman;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.aviran.cookiebar2.CookieBar;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
 
@@ -23,12 +43,17 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
     RecyclerView dataPelatihanRV, dataPengalamanRV;
     SwipeRefreshLayout refreshLayout;
     String posisi = "pengalaman";
+    SharedPrefManager sharedPrefManager;
+
+    private DataPengalaman[] dataPengalamans;
+    private AdapterListPengalaman adapterListPengalaman;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_pengalaman_dan_pelatihan);
 
+        sharedPrefManager = new SharedPrefManager(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         pengalamanBTN = findViewById(R.id.pengalaman_btn);
@@ -77,7 +102,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-                        // getData();
+                        getData();
                     }
                 }, 1000);
             }
@@ -108,7 +133,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        //getData();
+                        getData();
                     }
                 }, 300);
 
@@ -133,7 +158,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        // getData();
+                        getData();
                     }
                 }, 300);
 
@@ -145,6 +170,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(posisi.equals("pengalaman")){
                     Intent intent = new Intent(InfoPengalamanDanPelatihanActivity.this, FormInfoPengalamanActivity.class);
+                    intent.putExtra("tipe","tambah");
                     startActivity(intent);
                 } else if(posisi.equals("pelatihan")){
                     Intent intent = new Intent(InfoPengalamanDanPelatihanActivity.this, FormInfoPelatihanActivity.class);
@@ -153,5 +179,89 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
             }
         });
 
+        getData();
+
     }
+
+    private void getData() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/list_pengalaman";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                String jumlah = data.getString("jumlah");
+
+                                if (jumlah.equals("0")){
+                                    dataPengalamanRV.setVisibility(View.GONE);
+                                    noDataPengalamanPart.setVisibility(View.VISIBLE);
+                                    loadingDataPengalamanPart.setVisibility(View.GONE);
+                                } else {
+                                    dataPengalamanRV.setVisibility(View.VISIBLE);
+                                    noDataPengalamanPart.setVisibility(View.GONE);
+                                    loadingDataPengalamanPart.setVisibility(View.GONE);
+                                    String data_pengalaman = data.getString("data");
+                                    GsonBuilder builder = new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    dataPengalamans = gson.fromJson(data_pengalaman, DataPengalaman[].class);
+                                    adapterListPengalaman = new AdapterListPengalaman(dataPengalamans, InfoPengalamanDanPelatihanActivity.this);
+                                    dataPengalamanRV.setAdapter(adapterListPengalaman);
+                                }
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void connectionFailed(){
+        CookieBar.build(InfoPengalamanDanPelatihanActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
+    }
+
 }

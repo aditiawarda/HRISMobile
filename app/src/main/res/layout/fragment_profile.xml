@@ -719,6 +719,7 @@
                                 android:id="@+id/info_gap_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="-3dp"
                                 android:orientation="vertical">
 
                                 <LinearLayout
@@ -726,8 +727,7 @@
                                     android:background="@drawable/shape_btn_effect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_marginTop="-3dp">
+                                    android:orientation="vertical">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"

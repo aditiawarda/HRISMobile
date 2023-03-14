@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -59,7 +58,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
     private int i = -1;
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
-    Switch emailSwitch;
+    Switch domisiliSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +78,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
         noHanphoneED = findViewById(R.id.no_hanphone_ed);
         alamatKTPED = findViewById(R.id.alamat_ktp_ed);
         alamatDomisiliED = findViewById(R.id.alamat_domisili_ed);
-        emailSwitch = findViewById(R.id.alamat_domisili_switch);
+        domisiliSwitch = findViewById(R.id.alamat_domisili_switch);
         expandableDomisili = findViewById(R.id.expandable_domisili);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         genderBTN = findViewById(R.id.gender_btn);
@@ -174,13 +173,13 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
             }
         });
 
-        emailSwitch.setOnClickListener(new View.OnClickListener() {
+        domisiliSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 tempatLahirED.clearFocus();
-                if (emailSwitch.isChecked()){
+                if (domisiliSwitch.isChecked()){
                     expandableDomisili.collapse();
                 } else {
                     expandableDomisili.expand();
@@ -220,7 +219,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                     if (emailUser.matches(emailPattern) && emailUser.length() > 0) {
                         if(alamatDomisiliED.getText().toString().equals("")){
-                            if(emailSwitch.isChecked()){
+                            if(domisiliSwitch.isChecked()){
                                 new KAlertDialog(FormInfoPersonalActivity.this, KAlertDialog.WARNING_TYPE)
                                         .setTitleText("Perhatian")
                                         .setContentText("Simpan data personal?")
@@ -520,8 +519,17 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                                 }
 
                                 if(alamat_domisili.equals("")||alamat_domisili.equals("null")){
+                                    domisiliSwitch.setChecked(false);
+                                    expandableDomisili.expand();
                                     alamatDomisiliED.setText("");
                                 } else {
+                                    if(alamat_domisili.equals(alamat_ktp)){
+                                        domisiliSwitch.setChecked(true);
+                                        expandableDomisili.collapse();
+                                    } else {
+                                        domisiliSwitch.setChecked(false);
+                                        expandableDomisili.expand();
+                                    }
                                     alamatDomisiliED.setText(alamat_domisili);
                                 }
 
@@ -653,7 +661,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 params.put("agama", agamaChoice);
                 params.put("alamat_ktp", alamatKTPED.getText().toString());
 
-                if(emailSwitch.isChecked()){
+                if(domisiliSwitch.isChecked()){
                     params.put("alamat_domisili", alamatKTPED.getText().toString());
                 } else {
                     params.put("alamat_domisili", alamatDomisiliED.getText().toString());

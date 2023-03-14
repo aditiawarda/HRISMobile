@@ -56,7 +56,7 @@
                                     android:textSize="12dp" />
 
                                 <EditText
-                                    android:id="@+id/alamat_ktp_ed"
+                                    android:id="@+id/posisi_ed"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/shape_input_form"
@@ -64,12 +64,12 @@
                                     android:gravity="top"
                                     android:hint="Contoh: Asisten Kepala Bagian Cetak Web..."
                                     android:inputType="textCapSentences|textMultiLine"
+                                    android:lineSpacingExtra="3dp"
                                     android:paddingLeft="20dp"
                                     android:paddingTop="13dp"
                                     android:paddingRight="20dp"
                                     android:paddingBottom="13dp"
                                     android:textColor="#595959"
-                                    android:lineSpacingExtra="3dp"
                                     android:textColorHighlight="#FFE1BC"
                                     android:textColorHint="#8C8C8C"
                                     android:textSize="13dp" />
@@ -86,7 +86,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="5dp"
-                                    android:text="Kontak :"
+                                    android:text="Dari Tahun :"
                                     android:textColor="#696969"
                                     android:textSize="12dp" />
 
@@ -111,7 +111,7 @@
                                             android:orientation="vertical">
 
                                             <TextView
-                                                android:id="@+id/kontak_pilih_tv"
+                                                android:id="@+id/dari_tahun_pilih_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:text=""
@@ -131,7 +131,7 @@
                                             <TextView
                                                 android:layout_width="25dp"
                                                 android:layout_height="25dp"
-                                                android:background="@drawable/ic_baseline_person" />
+                                                android:background="@drawable/ic_baseline_date" />
 
                                         </LinearLayout>
 
@@ -151,94 +151,86 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="5dp"
-                                    android:text="Hubungan :"
+                                    android:text="Sampai Tahun :"
                                     android:textColor="#696969"
                                     android:textSize="12dp" />
 
-                                <LinearLayout
-                                    android:id="@+id/hubungan_btn"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="40dp"
-                                    android:background="@drawable/shape_feel"
-                                    android:orientation="horizontal"
-                                    android:paddingStart="20dp">
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="40dp"
-                                            android:layout_marginTop="10dp"
-                                            android:layout_marginBottom="10dp"
-                                            android:gravity="center|left"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:id="@+id/hubungan_pilih_tv"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text=""
-                                                android:textColor="#B15735"
-                                                android:textSize="13dp"
-                                                android:textStyle="bold" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="40dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_alignParentRight="true"
-                                            android:background="@drawable/shape_btn"
-                                            android:gravity="center">
-
-                                            <TextView
-                                                android:layout_width="25dp"
-                                                android:layout_height="25dp"
-                                                android:background="@drawable/ic_baseline_down" />
-
-                                        </LinearLayout>
-
-                                    </RelativeLayout>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/hubungan_lainnya_part"
-                                    android:visibility="gone"
+                                <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:orientation="vertical">
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="right"
+                                    android:text="Masih menjabat?"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textSize="12dp" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="5dp"
-                                        android:text="Hubungan Lainnya :"
-                                        android:textColor="#696969"
-                                        android:textSize="12dp" />
+                                <Switch
+                                    android:id="@+id/tahun_akhir_switch"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="20dp"
+                                    android:checked="false"
+                                    android:textColor="#676767"
+                                    android:textSize="13dp"
+                                    tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-                                    <EditText
-                                        android:id="@+id/hubungan_lainnya_ed"
+                                <net.cachapa.expandablelayout.ExpandableLayout
+                                    android:id="@+id/expandable_tahun_akhir"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:el_duration="300"
+                                    app:el_expanded="true">
+
+                                    <LinearLayout
+                                        android:id="@+id/sampai_tahun_btn"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:background="@drawable/shape_input_form"
-                                        android:drawablePadding="10dp"
-                                        android:gravity="center|left"
-                                        android:hint=""
-                                        android:inputType="text"
-                                        android:paddingLeft="20dp"
-                                        android:paddingTop="10dp"
-                                        android:paddingRight="20dp"
-                                        android:paddingBottom="10dp"
-                                        android:textColor="#595959"
-                                        android:textColorHighlight="#FFDDB3"
-                                        android:textColorHint="#AAAAAA"
-                                        android:textSize="13dp" />
+                                        android:layout_marginTop="15dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp">
 
-                                </LinearLayout>
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:gravity="center|left"
+                                                android:orientation="vertical">
+
+                                                <TextView
+                                                    android:id="@+id/sampai_tahun_pilih_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text=""
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_alignParentRight="true"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_date" />
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                </net.cachapa.expandablelayout.ExpandableLayout>
 
                             </LinearLayout>
 
@@ -265,6 +257,28 @@
 
                             </LinearLayout>
 
+                            <LinearLayout
+                                android:id="@+id/hapus_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_logout"
+                                android:gravity="center"
+                                android:paddingTop="12dp"
+                                android:paddingBottom="12dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="HAPUS"
+                                    android:textColor="#ED5956"
+                                    android:textSize="13dp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -276,7 +290,6 @@
                             android:paddingLeft="23dp"
                             android:paddingTop="85dp"
                             android:paddingRight="23dp"
-
                             android:visibility="gone">
 
                             <RelativeLayout
@@ -308,7 +321,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="15dp"
-                                        android:text="Data kontak darurat berhasil tersimpan, dengan ini anda menyatakan semua data yang telah diisi bersifat valid."
+                                        android:text="Data pengalaman berhasil tersimpan, dengan ini anda menyatakan semua data yang telah diisi bersifat valid."
                                         android:textAlignment="center"
                                         android:textColor="@color/white"
                                         android:textSize="13dp" />
@@ -402,7 +415,7 @@
                                 android:ellipsize="end"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="FORM INFO PENGALAMAN"
+                                android:text="FORM DATA PENGALAMAN"
                                 android:textColor="@color/white"
                                 android:textSize="15dp" />
 

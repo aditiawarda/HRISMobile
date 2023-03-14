@@ -48,10 +48,12 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".FormInfoPelatihanActivity"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".FormInfoPengalamanActivity"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".InfoPengalamanDanPelatihanActivity"
             android:screenOrientation="portrait"
