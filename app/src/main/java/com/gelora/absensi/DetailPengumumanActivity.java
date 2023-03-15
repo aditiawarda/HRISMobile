@@ -5,8 +5,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -142,7 +144,13 @@ public class DetailPengumumanActivity extends AppCompatActivity {
                                 }
 
                                 titleTV.setText(pengumuman_title.toUpperCase());
-                                deskripsiTV.setText(pengumuman_desc);
+                                //deskripsiTV.setText(pengumuman_desc);
+
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                    deskripsiTV.setText(Html.fromHtml(pengumuman_desc, Html.FROM_HTML_MODE_COMPACT));
+                                } else {
+                                    deskripsiTV.setText(Html.fromHtml(pengumuman_desc));
+                                }
 
                                 String input_date = pengumuman_date;
                                 String dayDate = input_date.substring(8,10);

@@ -18,6 +18,7 @@ import android.os.Looper;
 import android.os.ResultReceiver;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -679,7 +680,13 @@ public class FragmentHome extends Fragment {
 
                                         bannerPengumumanPart.setVisibility(View.VISIBLE);
                                         judulPengumuman.setText(pengumuman_title.toUpperCase());
-                                        highlightPengumuman.setText(pengumuman_desc);
+                                        //highlightPengumuman.setText(pengumuman_desc);
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                            highlightPengumuman.setText(Html.fromHtml(pengumuman_desc, Html.FROM_HTML_MODE_COMPACT));
+                                        } else {
+                                            highlightPengumuman.setText(Html.fromHtml(pengumuman_desc));
+                                        }
+
                                         bannerPengumumanPart.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {

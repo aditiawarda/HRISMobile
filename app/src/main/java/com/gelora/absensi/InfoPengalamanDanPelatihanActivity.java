@@ -23,8 +23,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterListKontakDarurat;
+import com.gelora.absensi.adapter.AdapterListPelatihan;
 import com.gelora.absensi.adapter.AdapterListPengalaman;
 import com.gelora.absensi.model.DataKontakDarurat;
+import com.gelora.absensi.model.DataPelatihan;
 import com.gelora.absensi.model.DataPengalaman;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -47,6 +49,8 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
 
     private DataPengalaman[] dataPengalamans;
     private AdapterListPengalaman adapterListPengalaman;
+    private DataPelatihan[] dataPelatihans;
+    private AdapterListPelatihan adapterListPelatihan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +178,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else if(posisi.equals("pelatihan")){
                     Intent intent = new Intent(InfoPengalamanDanPelatihanActivity.this, FormInfoPelatihanActivity.class);
+                    intent.putExtra("tipe","tambah");
                     startActivity(intent);
                 }
             }
@@ -185,7 +190,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
 
     private void getData() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/list_pengalaman";
+        final String url = "https://geloraaksara.co.id/absen-online/api/list_pengalaman_dan_pelatihan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -197,9 +202,10 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
-                                String jumlah = data.getString("jumlah");
+                                String jumlah_pengalaman = data.getString("jumlah_pengalaman");
+                                String jumlah_pelatihan = data.getString("jumlah_pelatihan");
 
-                                if (jumlah.equals("0")){
+                                if (jumlah_pengalaman.equals("0")){
                                     dataPengalamanRV.setVisibility(View.GONE);
                                     noDataPengalamanPart.setVisibility(View.VISIBLE);
                                     loadingDataPengalamanPart.setVisibility(View.GONE);
@@ -207,12 +213,28 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
                                     dataPengalamanRV.setVisibility(View.VISIBLE);
                                     noDataPengalamanPart.setVisibility(View.GONE);
                                     loadingDataPengalamanPart.setVisibility(View.GONE);
-                                    String data_pengalaman = data.getString("data");
+                                    String data_pengalaman = data.getString("data_pengalaman");
                                     GsonBuilder builder = new GsonBuilder();
                                     Gson gson = builder.create();
                                     dataPengalamans = gson.fromJson(data_pengalaman, DataPengalaman[].class);
                                     adapterListPengalaman = new AdapterListPengalaman(dataPengalamans, InfoPengalamanDanPelatihanActivity.this);
                                     dataPengalamanRV.setAdapter(adapterListPengalaman);
+                                }
+
+                                if (jumlah_pelatihan.equals("0")){
+                                    dataPelatihanRV.setVisibility(View.GONE);
+                                    noDataPelatihanPart.setVisibility(View.VISIBLE);
+                                    loadingDataPelatihanPart.setVisibility(View.GONE);
+                                } else {
+                                    dataPelatihanRV.setVisibility(View.VISIBLE);
+                                    noDataPelatihanPart.setVisibility(View.GONE);
+                                    loadingDataPelatihanPart.setVisibility(View.GONE);
+                                    String data_pelatihan = data.getString("data_pelatihan");
+                                    GsonBuilder builder = new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    dataPelatihans = gson.fromJson(data_pelatihan, DataPelatihan[].class);
+                                    adapterListPelatihan = new AdapterListPelatihan(dataPelatihans, InfoPengalamanDanPelatihanActivity.this);
+                                    dataPelatihanRV.setAdapter(adapterListPelatihan);
                                 }
 
                             }

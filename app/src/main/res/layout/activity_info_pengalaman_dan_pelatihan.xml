@@ -43,6 +43,7 @@
                                 android:id="@+id/info_pengalaman"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:paddingBottom="90dp"
                                 android:orientation="vertical">
 
                                 <androidx.recyclerview.widget.RecyclerView
@@ -137,6 +138,7 @@
                                 android:id="@+id/info_pelatihan"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:paddingBottom="90dp"
                                 android:orientation="vertical"
                                 android:visibility="gone">
 
@@ -145,7 +147,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:orientation="vertical"
-                                    android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+                                    android:visibility="gone">
+                                </androidx.recyclerview.widget.RecyclerView>
 
                                 <LinearLayout
                                     android:id="@+id/no_data_pelatihan_part"
@@ -410,7 +413,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="7dp"
                                 android:lineSpacingExtra="2.5dp"
-                                android:text="Info di sini adalah informasi pengalaman posisi yang pernah dijabat serta pelatihan yang pernah diikuti selama bekerja di Erlangga Group"
+                                android:text="Harap isi informasi pengalaman/posisi yang pernah dijabat serta pelatihan yang pernah diikuti selama bekerja di Erlangga Group"
                                 android:textColor="#C68D46"
                                 android:textSize="12dp" />
 
