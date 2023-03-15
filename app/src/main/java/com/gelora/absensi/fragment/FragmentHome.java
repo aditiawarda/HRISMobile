@@ -61,6 +61,7 @@ import com.gelora.absensi.FormPermohonanCutiActivity;
 import com.gelora.absensi.FormPermohonanIzinActivity;
 import com.gelora.absensi.InfoPersonalActivity;
 import com.gelora.absensi.ListAllPengumumanActivity;
+import com.gelora.absensi.LoginActivity;
 import com.gelora.absensi.MapsActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
@@ -1482,7 +1483,22 @@ public class FragmentHome extends Fragment {
                             String whatsapp = response.getString("whatsapp");
 
                             Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+"+whatsapp+"&text="));
-                            startActivity(webIntent);
+                            try {
+                                startActivity(webIntent);
+                            } catch (SecurityException e) {
+                                e.printStackTrace();
+                                new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian HRD")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
