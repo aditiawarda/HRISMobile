@@ -214,7 +214,6 @@ public class DetailTerlambatActivity extends AppCompatActivity {
                         .setActivatedMonth(now.get(Calendar.MONTH))
                         .build()
                         .show();
-
             }
         });
 

@@ -170,7 +170,6 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
                 totalDataCuti.setText("");
                 totalDataCutiBersama.setText("");
                 totalDataIzin.setText("");
