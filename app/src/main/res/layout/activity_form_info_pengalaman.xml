@@ -62,7 +62,7 @@
                                     android:background="@drawable/shape_input_form"
                                     android:drawablePadding="10dp"
                                     android:gravity="top"
-                                    android:hint="Contoh: Asisten Kepala Bagian Cetak Web..."
+                                    android:hint="Contoh: Operator bagian Finishing..."
                                     android:inputType="textCapSentences|textMultiLine"
                                     android:lineSpacingExtra="3dp"
                                     android:paddingLeft="20dp"
@@ -71,7 +71,7 @@
                                     android:paddingBottom="13dp"
                                     android:textColor="#595959"
                                     android:textColorHighlight="#FFE1BC"
-                                    android:textColorHint="#8C8C8C"
+                                    android:textColorHint="#A8A8A8"
                                     android:textSize="13dp" />
 
                             </LinearLayout>

@@ -71,7 +71,7 @@
                                     android:paddingBottom="13dp"
                                     android:textColor="#595959"
                                     android:textColorHighlight="#FFE1BC"
-                                    android:textColorHint="#8C8C8C"
+                                    android:textColorHint="#A8A8A8"
                                     android:textSize="13dp" />
 
                             </LinearLayout>
