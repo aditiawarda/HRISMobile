@@ -1,6 +1,9 @@
 package com.gelora.absensi;
 
+import static android.app.PendingIntent.FLAG_IMMUTABLE;
+
 import android.annotation.SuppressLint;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -494,16 +497,20 @@ public class HomeActivity extends AppCompatActivity {
                                         profileMark.setVisibility(View.VISIBLE);
                                         if(profile.equals("0")){
                                             profile = "1";
-                                            Intent intent = new Intent(HomeActivity.this, InfoPersonalActivity.class);
-                                            Notify.build(getApplicationContext())
-                                                    .setTitle("HRIS Mobile Gelora")
-                                                    .setContent("Halo "+shortName+", harap lengkapi data personal dan kontak darurat anda")
-                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                    .setColor(R.color.colorPrimary)
-                                                    .largeCircularIcon()
-                                                    .enableVibration(true)
-                                                    .setAction(intent)
-                                                    .show();
+                                            try {
+                                                Intent intent = new Intent(HomeActivity.this, InfoPersonalActivity.class);
+                                                Notify.build(getApplicationContext())
+                                                        .setTitle("HRIS Mobile Gelora")
+                                                        .setContent("Halo "+shortName+", harap lengkapi data personal dan kontak darurat anda")
+                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                        .setColor(R.color.colorPrimary)
+                                                        .largeCircularIcon()
+                                                        .enableVibration(true)
+                                                        .setAction(intent)
+                                                        .show();
+                                            } catch (IllegalArgumentException e){
+                                                e.printStackTrace();
+                                            }
 
                                             // Vibrate for 500 milliseconds
                                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -521,16 +528,20 @@ public class HomeActivity extends AppCompatActivity {
 
                                         if(profile.equals("0")){
                                             profile = "1";
-                                            Intent intent = new Intent(HomeActivity.this, InfoPersonalActivity.class);
-                                            Notify.build(getApplicationContext())
-                                                    .setTitle("HRIS Mobile Gelora")
-                                                    .setContent("Halo "+shortName+", harap lengkapi data personal anda")
-                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                    .setColor(R.color.colorPrimary)
-                                                    .largeCircularIcon()
-                                                    .enableVibration(true)
-                                                    .setAction(intent)
-                                                    .show();
+                                            try {
+                                                Intent intent = new Intent(HomeActivity.this, InfoPersonalActivity.class);
+                                                Notify.build(getApplicationContext())
+                                                        .setTitle("HRIS Mobile Gelora")
+                                                        .setContent("Halo "+shortName+", harap lengkapi data personal anda")
+                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                        .setColor(R.color.colorPrimary)
+                                                        .largeCircularIcon()
+                                                        .enableVibration(true)
+                                                        .setAction(intent)
+                                                        .show();
+                                            } catch (IllegalArgumentException e){
+                                                e.printStackTrace();
+                                            }
 
                                             // Vibrate for 500 milliseconds
                                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -549,16 +560,20 @@ public class HomeActivity extends AppCompatActivity {
 
                                         if(profile.equals("0")) {
                                             profile = "1";
-                                            Intent intent = new Intent(HomeActivity.this, InfoKontakDaruratActivity.class);
-                                            Notify.build(getApplicationContext())
-                                                    .setTitle("HRIS Mobile Gelora")
-                                                    .setContent("Halo "+shortName+", harap lengkapi data kontak darurat anda")
-                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                    .setColor(R.color.colorPrimary)
-                                                    .largeCircularIcon()
-                                                    .enableVibration(true)
-                                                    .setAction(intent)
-                                                    .show();
+                                            try {
+                                                Intent intent = new Intent(HomeActivity.this, InfoKontakDaruratActivity.class);
+                                                Notify.build(getApplicationContext())
+                                                        .setTitle("HRIS Mobile Gelora")
+                                                        .setContent("Halo "+shortName+", harap lengkapi data kontak darurat anda")
+                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                        .setColor(R.color.colorPrimary)
+                                                        .largeCircularIcon()
+                                                        .enableVibration(true)
+                                                        .setAction(intent)
+                                                        .show();
+                                            } catch (IllegalArgumentException e){
+                                                e.printStackTrace();
+                                            }
 
                                             // Vibrate for 500 milliseconds
                                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

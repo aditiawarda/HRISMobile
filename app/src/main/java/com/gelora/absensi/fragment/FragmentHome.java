@@ -656,20 +656,23 @@ public class FragmentHome extends Fragment {
                                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_PENGUMUMAN, "");
                                 } else if(fitur_pengumuman.equals("1")) {
                                     if(pengumuman_date.equals(getDate())){
-
                                         if(!sharedPrefAbsen.getSpNotifPengumuman().equals("1")){
                                             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_PENGUMUMAN, "1");
-                                            Intent intent = new Intent(mContext, DetailPengumumanActivity.class);
-                                            intent.putExtra("id_pengumuman", String.valueOf(pengumuman_id));
-                                            Notify.build(mContext)
-                                                    .setTitle("HRIS Mobile Gelora")
-                                                    .setContent(pengumuman_title+" | "+pengumuman_desc)
-                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                    .setColor(R.color.colorPrimary)
-                                                    .largeCircularIcon()
-                                                    .enableVibration(true)
-                                                    .setAction(intent)
-                                                    .show();
+                                            try {
+                                                Intent intent = new Intent(mContext, DetailPengumumanActivity.class);
+                                                intent.putExtra("id_pengumuman", String.valueOf(pengumuman_id));
+                                                Notify.build(mContext)
+                                                        .setTitle("HRIS Mobile Gelora")
+                                                        .setContent(pengumuman_title+" | "+pengumuman_desc)
+                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                        .setColor(R.color.colorPrimary)
+                                                        .largeCircularIcon()
+                                                        .enableVibration(true)
+                                                        .setAction(intent)
+                                                        .show();
+                                            } catch (IllegalArgumentException e){
+                                                e.printStackTrace();
+                                            }
 
                                             // Vibrate for 500 milliseconds
                                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -1269,16 +1272,20 @@ public class FragmentHome extends Fragment {
                                             System.out.println(shortName);
                                         }
 
-                                        Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
-                                        Notify.build(mContext)
-                                                .setTitle("HRIS Mobile Gelora")
-                                                .setContent("Halo "+shortName+", terdapat "+message_count+" pesan yang belum dibaca di Gelora Messenger")
-                                                .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                .setColor(R.color.colorPrimary)
-                                                .largeCircularIcon()
-                                                .enableVibration(true)
-                                                .setAction(intent)
-                                                .show();
+                                        try {
+                                            Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
+                                            Notify.build(mContext)
+                                                    .setTitle("HRIS Mobile Gelora")
+                                                    .setContent("Halo "+shortName+", terdapat "+message_count+" pesan yang belum dibaca di Gelora Messenger")
+                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                    .setColor(R.color.colorPrimary)
+                                                    .largeCircularIcon()
+                                                    .enableVibration(true)
+                                                    .setAction(intent)
+                                                    .show();
+                                        } catch (IllegalArgumentException e){
+                                            e.printStackTrace();
+                                        }
 
                                         // Vibrate for 500 milliseconds
                                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -1298,16 +1305,20 @@ public class FragmentHome extends Fragment {
                                                 System.out.println(shortName);
                                             }
 
-                                            Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
-                                            Notify.build(mContext)
-                                                    .setTitle("HRIS Mobile Gelora")
-                                                    .setContent("Halo "+shortName+", terdapat "+message_count+" pesan yang belum dibaca di Gelora Messenger")
-                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                    .setColor(R.color.colorPrimary)
-                                                    .largeCircularIcon()
-                                                    .enableVibration(true)
-                                                    .setAction(intent)
-                                                    .show();
+                                            try {
+                                                Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
+                                                Notify.build(mContext)
+                                                        .setTitle("HRIS Mobile Gelora")
+                                                        .setContent("Halo "+shortName+", terdapat "+message_count+" pesan yang belum dibaca di Gelora Messenger")
+                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                        .setColor(R.color.colorPrimary)
+                                                        .largeCircularIcon()
+                                                        .enableVibration(true)
+                                                        .setAction(intent)
+                                                        .show();
+                                            } catch (IllegalArgumentException e){
+                                                e.printStackTrace();
+                                            }
 
                                             // Vibrate for 500 milliseconds
                                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
