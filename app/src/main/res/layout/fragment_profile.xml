@@ -76,7 +76,7 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="17dp"
+                                        android:layout_marginTop="10dp"
                                         android:layout_marginRight="95dp"
                                         android:gravity="left"
                                         android:orientation="vertical">
@@ -91,6 +91,17 @@
                                             android:text=""
                                             android:textColor="@color/white"
                                             android:textSize="18dp" />
+
+                                        <TextView
+                                            android:id="@+id/nik_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:ellipsize="end"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text=""
+                                            android:textColor="@color/white"
+                                            android:textSize="10dp" />
 
                                         <TextView
                                             android:id="@+id/position_of_user"

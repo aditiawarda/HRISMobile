@@ -85,7 +85,7 @@ public class FragmentProfile extends Fragment {
 
     LinearLayout nonGapSgnBTN, infoGapPart, warningInfoKontakDarurat, warningInfoPersonal, updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
     LinearLayout infoPersonalBTN, infoPekerjaanBTN, infoKontakDaruratBTN, infoKeluargaBTN, infoPengalamanDanPelatihanBTN, infoPayrollBTN;
-    TextView nameOfUser, positionOfUser, descAvailable, descEmpty;
+    TextView nameOfUser, nikTV, positionOfUser, descAvailable, descEmpty;
     ImageView avatarUser;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
@@ -109,6 +109,7 @@ public class FragmentProfile extends Fragment {
         sharedPrefAbsen = new SharedPrefAbsen(mContext);
         refreshLayout = view.findViewById(R.id.swipe_to_refresh_layout);
         nameOfUser = view.findViewById(R.id.name_of_user);
+        nikTV = view.findViewById(R.id.nik_tv);
         positionOfUser = view.findViewById(R.id.position_of_user);
         avatarUser = view.findViewById(R.id.avatar_user);
         avatarBTN = view.findViewById(R.id.avatar_btn);
@@ -270,6 +271,7 @@ public class FragmentProfile extends Fragment {
         }
 
         nameOfUser.setText(sharedPrefManager.getSpNama());
+        nikTV.setText(sharedPrefManager.getSpNik());
         getDataKaryawan();
 
         return view;

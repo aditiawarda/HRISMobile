@@ -107,7 +107,7 @@ import java.util.Map;
 public class FragmentHome extends Fragment {
 
     LinearLayout pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
-    TextView ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
+    TextView nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
     ImageView avatarUser, weatherIcon, loadingData;
     RelativeLayout dataCuaca, dataCuacaEmpty;
@@ -159,6 +159,7 @@ public class FragmentHome extends Fragment {
         countNotificationMessage = view.findViewById(R.id.count_notification_message);
         countMessage = view.findViewById(R.id.count_message);
         nameOfUser = view.findViewById(R.id.name_of_user);
+        nikTV = view.findViewById(R.id.nik_tv);
         avatarUser = view.findViewById(R.id.avatar_user);
         detailUserBTN = view.findViewById(R.id.detail_user_btn);
         menuAbsensiBTN = view.findViewById(R.id.menu_absensi_btn);
@@ -423,6 +424,7 @@ public class FragmentHome extends Fragment {
         getDataKaryawan();
         getCurrentDay();
         nameOfUser.setText(sharedPrefManager.getSpNama());
+        nikTV.setText(sharedPrefManager.getSpNik());
 
         return view;
     }
