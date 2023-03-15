@@ -141,7 +141,7 @@ public class FormInfoPelatihanActivity extends AppCompatActivity {
                                         }
                                         public void onFinish() {
                                             i = -1;
-                                            // deletePengalaman(idData);
+                                            deletePelatihan(idData);
                                         }
                                     }.start();
 
@@ -151,7 +151,7 @@ public class FormInfoPelatihanActivity extends AppCompatActivity {
                 }
             });
 
-            // getData();
+            getData();
 
         } else {
             titlePage.setText("FORM DATA PELATIHAN");
@@ -163,7 +163,7 @@ public class FormInfoPelatihanActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 if(tipeForm.equals("edit")){
-                    //getData();
+                    getData();
                 } else {
                     namaPelatihanED.setText("");
                     lembagaPelatihanED.setText("");
@@ -393,6 +393,147 @@ public class FormInfoPelatihanActivity extends AppCompatActivity {
                 -1,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         postRequest.setRetryPolicy(retryPolicy);
+        requestQueue.add(postRequest);
+
+    }
+
+    private void deletePelatihan(String id_pelatihan) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/delete_pelatihan";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                pDialog.setTitleText("Berhasil Dihapus")
+                                        .setContentText("Data pelatihan berhasil dihapus")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                onBackPressed();
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            } else {
+                                pDialog.setTitleText("Gagal Dihapus")
+                                        .setContentText("Data pelatihan gagal dihapus")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                        pDialog.setTitleText("Gagal Dihapus")
+                                .setContentText("Data pelatihan gagal dihapus")
+                                .setConfirmText("    OK    ")
+                                .changeAlertType(KAlertDialog.ERROR_TYPE);
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_pelatihan", id_pelatihan);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void getData() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/data_detail_pelatihan";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                JSONObject dataArray = data.getJSONObject("data");
+                                String id = dataArray.getString("id");
+                                String NIK = dataArray.getString("NIK");
+                                String nama_pelatihan = dataArray.getString("nama_pelatihan");
+                                String lembaga_pelatihan = dataArray.getString("lembaga_pelatihan");
+                                String tahun = dataArray.getString("tahun");
+
+                                namaPelatihanED.setText(nama_pelatihan);
+                                lembagaPelatihanED.setText(lembaga_pelatihan);
+                                tahunPilihTV.setText(tahun);
+                                tahunPilih = tahun;
+
+                            } else {
+                                new KAlertDialog(FormInfoPelatihanActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Terjadi kesalahan saat mengakses data")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_pelatihan", idData);
+                return params;
+            }
+        };
+
         requestQueue.add(postRequest);
 
     }
