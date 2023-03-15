@@ -549,7 +549,6 @@ public class FragmentHome extends Fragment {
                                                 //deprecated in API 26
                                                 vibrate.vibrate(500);
                                             }
-
                                         }
 
                                         ulangTahunPart.setOnClickListener(new View.OnClickListener() {
@@ -598,6 +597,7 @@ public class FragmentHome extends Fragment {
                                         congratCelebrate.setText("Selamat Merayakan " + String.valueOf(masaKerja) + " Tahun Masa Kerja.");
                                         if (join_reminder.equals("1")) {
                                             if(!sharedPrefAbsen.getSpNotifJoinRemainder().equals("1")){
+                                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_JOIN_REMAINDER, "1");
                                                 Notify.build(mContext)
                                                         .setTitle("HRIS Mobile Gelora")
                                                         .setContent("Selamat Merayakan " + String.valueOf(masaKerja) + " Tahun Masa Kerja di PT. Gelora Aksara Pratama")
