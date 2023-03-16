@@ -127,7 +127,7 @@
                                         android:textColor="#5C5C5C"
                                         android:textSize="14dp" />
 
-                                    <com.codesgood.views.JustifiedTextView
+                                    <TextView
                                         android:id="@+id/deskripsi_tv"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"

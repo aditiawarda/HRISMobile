@@ -40,7 +40,7 @@ public class DetailPengumumanActivity extends AppCompatActivity {
 
     LinearLayout backBTN, imagePart, actionBar;
     TextView titleTV, timeTV, authorTV;
-    JustifiedTextView deskripsiTV;
+    TextView deskripsiTV;
     String id_pengumuman = "";
     ImageView imagePengumuman;
     SwipeRefreshLayout refreshLayout;
