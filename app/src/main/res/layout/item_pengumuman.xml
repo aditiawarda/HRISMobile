@@ -46,7 +46,7 @@
                     android:id="@+id/title_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="100dp"
+                    android:layout_marginRight="80dp"
                     android:paddingBottom="2dp"
                     android:ellipsize="end"
                     android:maxLines="2"
@@ -62,8 +62,8 @@
                     android:ellipsize="end"
                     android:gravity="right|center"
                     android:maxLines="1"
-                    android:singleLine="true"
                     android:paddingTop="1dp"
+                    android:singleLine="true"
                     android:text=""
                     android:textColor="#9C9C9C"
                     android:textSize="11dp" />

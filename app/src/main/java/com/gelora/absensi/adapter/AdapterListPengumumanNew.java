@@ -59,40 +59,40 @@ public class AdapterListPengumumanNew extends RecyclerView.Adapter<AdapterListPe
 
         switch (bulanValue) {
             case "01":
-                bulanName = "Januari";
+                bulanName = "Jan";
                 break;
             case "02":
-                bulanName = "Februari";
+                bulanName = "Feb";
                 break;
             case "03":
-                bulanName = "Maret";
+                bulanName = "Mar";
                 break;
             case "04":
-                bulanName = "April";
+                bulanName = "Apr";
                 break;
             case "05":
                 bulanName = "Mei";
                 break;
             case "06":
-                bulanName = "Juni";
+                bulanName = "Jun";
                 break;
             case "07":
-                bulanName = "Juli";
+                bulanName = "Jul";
                 break;
             case "08":
-                bulanName = "Agustus";
+                bulanName = "Agu";
                 break;
             case "09":
-                bulanName = "September";
+                bulanName = "Sep";
                 break;
             case "10":
-                bulanName = "Oktober";
+                bulanName = "Okt";
                 break;
             case "11":
-                bulanName = "November";
+                bulanName = "Nov";
                 break;
             case "12":
-                bulanName = "Desember";
+                bulanName = "Des";
                 break;
             default:
                 bulanName = "Not found";
