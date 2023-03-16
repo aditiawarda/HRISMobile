@@ -661,15 +661,30 @@ public class FragmentHome extends Fragment {
                                             try {
                                                 Intent intent = new Intent(mContext, DetailPengumumanActivity.class);
                                                 intent.putExtra("id_pengumuman", String.valueOf(pengumuman_id));
-                                                Notify.build(mContext)
-                                                        .setTitle("HRIS Mobile Gelora")
-                                                        .setContent(pengumuman_title+" | "+pengumuman_desc)
-                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                        .setColor(R.color.colorPrimary)
-                                                        .largeCircularIcon()
-                                                        .enableVibration(true)
-                                                        .setAction(intent)
-                                                        .show();
+
+                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                                    Notify.build(mContext)
+                                                            .setTitle("HRIS Mobile Gelora")
+                                                            .setContent(pengumuman_title+Html.fromHtml("<br>"+pengumuman_desc, Html.FROM_HTML_MODE_COMPACT))
+                                                            .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                            .setColor(R.color.colorPrimary)
+                                                            .largeCircularIcon()
+                                                            .enableVibration(true)
+                                                            .setAction(intent)
+                                                            .show();
+                                                } else {
+                                                    Notify.build(mContext)
+                                                            .setTitle("HRIS Mobile Gelora")
+                                                            .setContent(pengumuman_title+Html.fromHtml("<br>"+pengumuman_desc))
+                                                            .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                            .setColor(R.color.colorPrimary)
+                                                            .largeCircularIcon()
+                                                            .enableVibration(true)
+                                                            .setAction(intent)
+                                                            .show();
+                                                }
+
+
                                             } catch (IllegalArgumentException e){
                                                 e.printStackTrace();
                                             }
