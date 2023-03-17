@@ -57,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
     ImageView infoMark, profileMark;
     Vibrator vibrate;
     LinearLayout shapeBG;
+    RequestQueue requestQueue;
 
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
@@ -71,6 +72,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
+        requestQueue = Volley.newRequestQueue(this);
 
         if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")) {
             setContentView(R.layout.activity_home_non_gap);
@@ -182,7 +184,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void deviceIdFunction() {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/check_device_id";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -297,7 +299,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void checkNotification() {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/check_notification_info";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -470,7 +472,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void checkDataUser() {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/cek_kelengkapan_data_info_user";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -673,6 +675,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        requestQueue = Volley.newRequestQueue(this);
         checkLogin();
     }
 
