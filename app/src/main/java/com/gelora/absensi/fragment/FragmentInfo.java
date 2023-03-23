@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,10 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -41,17 +37,12 @@ import com.gelora.absensi.DetailTidakHadirActivity;
 import com.gelora.absensi.FaqActivity;
 import com.gelora.absensi.HistoryActivity;
 import com.gelora.absensi.HistoryCutiIzinActivity;
-import com.gelora.absensi.ListChatMateActivity;
 import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.ListNotifikasiFingerscanActivity;
 import com.gelora.absensi.MonitoringAbsensiBagianActivity;
 import com.gelora.absensi.R;
-import com.gelora.absensi.RecordAbsensiActivity;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.kal.rackmonthpicker.RackMonthPicker;
-import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
-import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
@@ -85,6 +76,7 @@ public class FragmentInfo extends Fragment {
     Context mContext;
     Activity mActivity;
     SharedPrefManager sharedPrefManager;
+    RequestQueue requestQueue;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -95,6 +87,7 @@ public class FragmentInfo extends Fragment {
         mActivity = getActivity();
 
         sharedPrefManager = new SharedPrefManager(mContext);
+        requestQueue = Volley.newRequestQueue(mContext);
         refreshLayout = view.findViewById(R.id.swipe_to_refresh_layout);
         titlePage = view.findViewById(R.id.title_page);
         dateNowTV = view.findViewById(R.id.date_tv);
@@ -527,7 +520,7 @@ public class FragmentInfo extends Fragment {
     }
 
     private void getDataAbsensi() {
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/total_hadir";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -672,7 +665,7 @@ public class FragmentInfo extends Fragment {
     }
 
     private void getPersonalization() {
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/personalization";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -793,7 +786,7 @@ public class FragmentInfo extends Fragment {
     }
 
     private void checkNotification() {
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/check_notification_info";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -864,7 +857,7 @@ public class FragmentInfo extends Fragment {
     }
 
     private void getContact() {
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_contact";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -1055,6 +1048,7 @@ public class FragmentInfo extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        requestQueue = Volley.newRequestQueue(mContext);
         getDataAbsensi();
         getPersonalization();
         aboutAppField.collapse();

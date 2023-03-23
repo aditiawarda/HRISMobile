@@ -124,6 +124,7 @@ public class FragmentHome extends Fragment {
     Activity mActivity;
     protected ViewGroup mainParent;
     Vibrator vibrate;
+    RequestQueue requestQueue;
 
     private RecyclerView listPengumumanNewRV;
     private DataPengumuman[] dataPengumumanNews;
@@ -153,6 +154,7 @@ public class FragmentHome extends Fragment {
 
         sharedPrefManager = new SharedPrefManager(mContext);
         sharedPrefAbsen = new SharedPrefAbsen(mContext);
+        requestQueue = Volley.newRequestQueue(mContext);
         vibrate = (Vibrator) mActivity.getSystemService(Context.VIBRATOR_SERVICE);
         bottomSheet = view.findViewById(R.id.bottom_sheet_layout);
         mainParent = view.findViewById(R.id.main_parent);
@@ -431,7 +433,7 @@ public class FragmentHome extends Fragment {
     }
 
     private void getDataKaryawan() {
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -830,7 +832,7 @@ public class FragmentHome extends Fragment {
     }
 
     private void getDataPengumumanNew() {
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/list_data_pengumuman_new";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -1003,7 +1005,7 @@ public class FragmentHome extends Fragment {
     }
 
     private void getCurrentWeather(String api_key, String lat, String lon) {
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid="+api_key;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -1257,7 +1259,7 @@ public class FragmentHome extends Fragment {
     }
 
     private void getCountMessageYet() {
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_message_yet_read";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -1495,7 +1497,7 @@ public class FragmentHome extends Fragment {
     }
 
     private void getContact() {
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_contact";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -1567,6 +1569,7 @@ public class FragmentHome extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        requestQueue = Volley.newRequestQueue(mContext);
         getDataKaryawan();
     }
 

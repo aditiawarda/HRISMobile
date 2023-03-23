@@ -94,6 +94,7 @@ public class FragmentProfile extends Fragment {
     ExpandableLayout avatarSetting;
     Context mContext;
     Activity mActivity;
+    RequestQueue requestQueue;
     int REQUEST_IMAGE = 100;
     private Uri uri;
     private int i = -1;
@@ -107,6 +108,7 @@ public class FragmentProfile extends Fragment {
 
         sharedPrefManager = new SharedPrefManager(mContext);
         sharedPrefAbsen = new SharedPrefAbsen(mContext);
+        requestQueue = Volley.newRequestQueue(mContext);
         refreshLayout = view.findViewById(R.id.swipe_to_refresh_layout);
         nameOfUser = view.findViewById(R.id.name_of_user);
         nikTV = view.findViewById(R.id.nik_tv);
@@ -278,7 +280,7 @@ public class FragmentProfile extends Fragment {
     }
 
     private void getDataKaryawan() {
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -526,7 +528,7 @@ public class FragmentProfile extends Fragment {
     }
 
     private void checkVersion() {
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/version_app";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -540,7 +542,7 @@ public class FragmentProfile extends Fragment {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.7.7"; //harus disesuaikan
+                                String currentVersion = "1.7.8"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateAppBTN.setVisibility(View.VISIBLE);
                                     updateAppBTN.setOnClickListener(new View.OnClickListener() {
@@ -807,7 +809,7 @@ public class FragmentProfile extends Fragment {
     }
 
     private void removePic() {
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/remove_pic";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -937,6 +939,7 @@ public class FragmentProfile extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        requestQueue = Volley.newRequestQueue(mContext);
         avatarSetting.collapse();
         getDataKaryawan();
     }
