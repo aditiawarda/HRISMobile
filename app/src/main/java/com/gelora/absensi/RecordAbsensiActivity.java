@@ -91,7 +91,6 @@ public class RecordAbsensiActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
                 selectMonth = getMonth();
 
                 loadingRecordPart.setVisibility(View.VISIBLE);
