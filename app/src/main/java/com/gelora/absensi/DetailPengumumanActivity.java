@@ -1,6 +1,7 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
@@ -38,12 +39,13 @@ import java.util.Map;
 
 public class DetailPengumumanActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, imagePart, actionBar;
+    LinearLayout backBTN, imagePart, actionBar, viewBTN;
     TextView titleTV, timeTV, authorTV;
     TextView deskripsiTV;
     String id_pengumuman = "";
     ImageView imagePengumuman;
     SwipeRefreshLayout refreshLayout;
+    CardView imageView;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -53,6 +55,8 @@ public class DetailPengumumanActivity extends AppCompatActivity {
 
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
+        viewBTN = findViewById(R.id.view_btn);
+        imageView = findViewById(R.id.image_view);
         imagePart = findViewById(R.id.image_part);
         titleTV = findViewById(R.id.title_tv);
         deskripsiTV = findViewById(R.id.deskripsi_tv);
@@ -131,7 +135,17 @@ public class DetailPengumumanActivity extends AppCompatActivity {
                                     Glide.with(getApplicationContext())
                                             .load("https://geloraaksara.co.id/absen-online/assets/img/pengumuman/"+pengumuman_image).into(imagePengumuman);
 
-                                    imagePart.setOnClickListener(new View.OnClickListener() {
+                                    imageView.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(DetailPengumumanActivity.this, ViewImageActivity.class);
+                                            intent.putExtra("url", "https://geloraaksara.co.id/absen-online/assets/img/pengumuman/"+pengumuman_image);
+                                            intent.putExtra("kode", "pengumuman");
+                                            startActivity(intent);
+                                        }
+                                    });
+
+                                    viewBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
                                             Intent intent = new Intent(DetailPengumumanActivity.this, ViewImageActivity.class);
