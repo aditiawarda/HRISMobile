@@ -67,8 +67,8 @@
                                                 android:layout_marginLeft="20dp"
                                                 android:layout_marginTop="20dp"
                                                 android:layout_marginRight="20dp"
-                                                android:layout_marginBottom="20dp"
-                                                app:cardElevation="8dp"
+                                                android:layout_marginBottom="10dp"
+                                                app:cardElevation="5dp"
                                                 android:outlineSpotShadowColor="#85000000"
                                                 app:cardCornerRadius="6dp"
                                                 tools:ignore="TooDeepLayout,UnusedAttribute">
@@ -109,7 +109,7 @@
 
                                             <LinearLayout
                                                 android:id="@+id/view_btn"
-                                                android:layout_marginBottom="30dp"
+                                                android:layout_marginBottom="20dp"
                                                 android:layout_marginRight="30dp"
                                                 android:layout_width="33dp"
                                                 android:layout_height="33dp"
@@ -134,6 +134,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="22dp"
                                     android:layout_marginRight="22dp"
+                                    android:layout_marginTop="20dp"
                                     android:orientation="vertical"
                                     android:paddingBottom="30dp">
 
