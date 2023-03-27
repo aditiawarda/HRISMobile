@@ -75,6 +75,12 @@ public class AdapterListPelatihan extends RecyclerView.Adapter<AdapterListPelati
             }
         });
 
+        if(dataPengalaman.getStatus_action().equals("1")){
+            myViewHolder.editBTN.setVisibility(View.VISIBLE);
+        } else if(dataPengalaman.getStatus_action().equals("0")) {
+            myViewHolder.editBTN.setVisibility(View.GONE);
+        }
+
     }
 
     private String getDate() {

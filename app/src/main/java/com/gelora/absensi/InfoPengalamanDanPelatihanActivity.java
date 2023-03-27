@@ -204,6 +204,7 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
                             if (status.equals("Success")){
                                 String jumlah_pengalaman = data.getString("jumlah_pengalaman");
                                 String jumlah_pelatihan = data.getString("jumlah_pelatihan");
+                                String action = data.getString("action");
 
                                 if (jumlah_pengalaman.equals("0")){
                                     dataPengalamanRV.setVisibility(View.GONE);
@@ -235,6 +236,12 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
                                     dataPelatihans = gson.fromJson(data_pelatihan, DataPelatihan[].class);
                                     adapterListPelatihan = new AdapterListPelatihan(dataPelatihans, InfoPengalamanDanPelatihanActivity.this);
                                     dataPelatihanRV.setAdapter(adapterListPelatihan);
+                                }
+
+                                if(action.equals("1")){
+                                    addBTN.setVisibility(View.VISIBLE);
+                                } else {
+                                    addBTN.setVisibility(View.GONE);
                                 }
 
                             }

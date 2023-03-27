@@ -34,7 +34,7 @@ public class DetailKeluargaActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refreshLayout;
     String idData = "", statusDelete = "";
-    LinearLayout actionBar, backBTN, editBTN, hapusBTN;
+    LinearLayout actionBar, backBTN, editBTN, hapusBTN, actionPart;
     TextView namaTV, tempatLahirTV, tanggalLahirTV, jenisKelaminTV, hubunganTV, statusPenikahanTV, agamaTV, statusBekerjaTV;
     KAlertDialog pDialog;
     private int i = -1;
@@ -57,6 +57,7 @@ public class DetailKeluargaActivity extends AppCompatActivity {
         agamaTV = findViewById(R.id.agama);
         statusBekerjaTV = findViewById(R.id.status_bekerja);
         actionBar = findViewById(R.id.action_bar);
+        actionPart = findViewById(R.id.action_part);
         editBTN = findViewById(R.id.edit_btn);
         hapusBTN = findViewById(R.id.hapus_btn);
 
@@ -246,6 +247,7 @@ public class DetailKeluargaActivity extends AppCompatActivity {
                             Log.d("Success.Response", response.toString());
                             data = new JSONObject(response);
                             String status = data.getString("status");
+                            String action = data.getString("action");
                             if (status.equals("Success")){
                                 JSONObject dataArray = data.getJSONObject("data");
                                 String id = dataArray.getString("id");
@@ -323,6 +325,12 @@ public class DetailKeluargaActivity extends AppCompatActivity {
                                 agamaTV.setText(agama);
                                 statusPenikahanTV.setText(status_pernikahan);
                                 statusBekerjaTV.setText(pekerjaan);
+
+                                if(action.equals("1")){
+                                    actionPart.setVisibility(View.VISIBLE);
+                                } else {
+                                    actionPart.setVisibility(View.GONE);
+                                }
 
                             } else {
                                 new KAlertDialog(DetailKeluargaActivity.this, KAlertDialog.ERROR_TYPE)

@@ -8,6 +8,7 @@ public class DataPelatihan {
     private String nama_pelatihan;
     private String lembaga_pelatihan;
     private String tahun;
+    private String status_action;
 
     public String getId() {
         return id;
@@ -49,4 +50,11 @@ public class DataPelatihan {
         this.tahun = tahun;
     }
 
+    public String getStatus_action() {
+        return status_action;
+    }
+
+    public void setStatus_action(String status_action) {
+        this.status_action = status_action;
+    }
 }

@@ -2,6 +2,7 @@ package com.gelora.absensi;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -14,6 +15,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -572,8 +577,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             userLat = location.getLatitude();
             userLong = location.getLongitude();
 
-            // userLat = -6.3280459;
-            // userLong = 106.8768529;
+            // userLat = -6.321576067831295;
+            // userLong = 106.8705141561883;
 
             checkTime();
             getCurrentDay();
@@ -1286,23 +1291,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         long sec = (selisih_waktu / 1000) % 60;
 
         if (statusLibur.equals("aktif")){
-            Notify.build(getApplicationContext())
-                    .setTitle("HRIS Mobile Gelora")
-                    .setContent("Anda lembur di hari libur. Selamat bekerja dan utamakan keselamatan")
-                    .setSmallIcon(R.drawable.ic_skylight_notification)
-                    .setColor(R.color.colorPrimary)
-                    .largeCircularIcon()
-                    .enableVibration(true)
-                    .show();
-
-            // Vibrate for 500 milliseconds
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-            } else {
-                //deprecated in API 26
-                vibrate.vibrate(500);
-            }
-
+            warningNotifLembur();
         } else {
             if (waktu1>waktu2+60000){
                 String lateDesc = "";
@@ -1335,22 +1324,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                 }
 
-                Notify.build(getApplicationContext())
-                        .setTitle("HRIS Mobile Gelora")
-                        .setContent("Anda terlambat "+lateDesc+", segera gunakan prosedur fingerscan/form keterangan tidak absen")
-                        .setSmallIcon(R.drawable.ic_skylight_notification)
-                        .setColor(R.color.colorPrimary)
-                        .largeCircularIcon()
-                        .enableVibration(true)
-                        .show();
-
-                // Vibrate for 500 milliseconds
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                } else {
-                    //deprecated in API 26
-                    vibrate.vibrate(500);
-                }
+                warningNotifTerlambat(lateDesc);
 
             }
         }
@@ -3894,22 +3868,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                     e.printStackTrace();
                                                 }
 
-                                                Notify.build(getApplicationContext())
-                                                        .setTitle("HRIS Mobile Gelora")
-                                                        .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan/form keterangan tidak absen untuk mengoreksi jam pulang. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
-                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                        .setColor(R.color.colorPrimary)
-                                                        .largeCircularIcon()
-                                                        .enableVibration(true)
-                                                        .show();
-
-                                                // Vibrate for 500 milliseconds
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                    vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                                } else {
-                                                    //deprecated in API 26
-                                                    vibrate.vibrate(500);
-                                                }
+                                                warningNotifTidakCheckout();
 
                                             }
 
@@ -3999,22 +3958,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         e.printStackTrace();
                                                     }
 
-                                                    Notify.build(getApplicationContext())
-                                                            .setTitle("HRIS Mobile Gelora")
-                                                            .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan/form keterangan tidak absen untuk mengoreksi jam pulang. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
-                                                            .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                            .setColor(R.color.colorPrimary)
-                                                            .largeCircularIcon()
-                                                            .enableVibration(true)
-                                                            .show();
-
-                                                    // Vibrate for 500 milliseconds
-                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                                    } else {
-                                                        //deprecated in API 26
-                                                        vibrate.vibrate(500);
-                                                    }
+                                                    warningNotifTidakCheckout();
 
                                                 }
 
@@ -4110,22 +4054,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                         e.printStackTrace();
                                                     }
 
-                                                    Notify.build(getApplicationContext())
-                                                            .setTitle("HRIS Mobile Gelora")
-                                                            .setContent("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0")
-                                                            .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                            .setColor(R.color.colorPrimary)
-                                                            .largeCircularIcon()
-                                                            .enableVibration(true)
-                                                            .show();
-
-                                                    // Vibrate for 500 milliseconds
-                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                                    } else {
-                                                        //deprecated in API 26
-                                                        vibrate.vibrate(500);
-                                                    }
+                                                    warningNotifTidakCheckout();
 
                                                 }
 
@@ -4916,6 +4845,118 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         };
 
         requestQueue.add(postRequest);
+
+    }
+
+    private void warningNotifTerlambat(String waktu) {
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "warning_terlambat";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            @SuppressLint("WrongConstant")
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_skylight_notification)
+                .setColor(Color.parseColor("#A6441F"))
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setContentTitle("HRIS Mobile Gelora")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Anda terlambat "+waktu+", segera gunakan prosedur fingerscan/form keterangan tidak absen"))
+                .setContentText("Anda terlambat "+waktu+", segera gunakan prosedur fingerscan/form keterangan tidak absen");
+
+        Intent notificationIntent = new Intent(this, DetailTerlambatActivity.class);
+        notificationIntent.putExtra("bulan", getBulanTahun());
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        } else {
+            @SuppressLint("UnspecifiedImmutableFlag")
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        }
+
+    }
+
+    private void warningNotifTidakCheckout() {
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "warning_tidak_checkout";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            @SuppressLint("WrongConstant")
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_skylight_notification)
+                .setColor(Color.parseColor("#A6441F"))
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setContentTitle("HRIS Mobile Gelora")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0"))
+                .setContentText("Sebelumnya anda tidak melakukan checkout, segera gunakan prosedur fingerscan untuk mengoreksi jam pulang, dan serahkan ke bagian HRD. Jika tidak dilakukan koreksi, maka jam kerja akan terhitung 0");
+
+        Intent notificationIntent = new Intent(this, DetailTidakCheckoutActivity.class);
+        notificationIntent.putExtra("bulan", getBulanTahun());
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        } else {
+            @SuppressLint("UnspecifiedImmutableFlag")
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        }
+
+    }
+
+    private void warningNotifLembur() {
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "warning_lembur";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            @SuppressLint("WrongConstant")
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_skylight_notification)
+                .setColor(Color.parseColor("#A6441F"))
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setContentTitle("HRIS Mobile Gelora")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Anda lembur di hari libur. Selamat bekerja dan utamakan keselamatan"))
+                .setContentText("Anda lembur di hari libur. Selamat bekerja dan utamakan keselamatan");
+
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1, notificationBuilder.build());
 
     }
 

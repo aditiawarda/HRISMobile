@@ -8,6 +8,7 @@ public class DataPengalaman {
     private String deskripsi_posisi;
     private String dari_tahun;
     private String sampai_tahun;
+    private String status_action;
 
     public String getId() {
         return id;
@@ -49,4 +50,11 @@ public class DataPengalaman {
         this.sampai_tahun = sampai_tahun;
     }
 
+    public String getStatus_action() {
+        return status_action;
+    }
+
+    public void setStatus_action(String status_action) {
+        this.status_action = status_action;
+    }
 }

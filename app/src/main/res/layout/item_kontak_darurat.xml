@@ -152,7 +152,7 @@
                     android:id="@+id/phone_btn"
                     android:layout_width="33dp"
                     android:layout_height="33dp"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginRight="20dp"
                     android:background="@drawable/shape_tools_kontak"
                     android:gravity="center">
 
@@ -168,6 +168,7 @@
                     android:layout_width="33dp"
                     android:layout_height="33dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginLeft="-5dp"
                     android:background="@drawable/shape_tools_kontak"
                     android:gravity="center">
 

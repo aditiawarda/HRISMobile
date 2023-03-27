@@ -135,6 +135,13 @@ public class InfoKeluargaActivity extends AppCompatActivity {
                             String status = data.getString("status");
                             if (status.equals("Success")){
                                 String jumlah = data.getString("jumlah");
+                                String action = data.getString("action");
+
+                                if(action.equals("1")){
+                                    addBTN.setVisibility(View.VISIBLE);
+                                } else {
+                                    addBTN.setVisibility(View.GONE);
+                                }
 
                                 if (jumlah.equals("0")){
                                     listKeluargaRV.setVisibility(View.GONE);

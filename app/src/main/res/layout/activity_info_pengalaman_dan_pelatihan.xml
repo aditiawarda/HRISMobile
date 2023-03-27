@@ -440,6 +440,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginBottom="20dp"
                         android:gravity="center"
+                        android:visibility="gone"
                         android:background="@drawable/shape_new_chat">
 
                         <TextView

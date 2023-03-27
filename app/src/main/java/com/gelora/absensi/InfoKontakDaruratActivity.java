@@ -145,6 +145,7 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
                             String status = data.getString("status");
                             if (status.equals("Success")){
                                 String jumlah = data.getString("jumlah");
+                                String action = data.getString("action");
 
                                 if (jumlah.equals("0")){
                                     addBTN.setVisibility(View.VISIBLE);
@@ -155,7 +156,11 @@ public class InfoKontakDaruratActivity extends AppCompatActivity {
                                     if(Integer.parseInt(jumlah)>=3){
                                         addBTN.setVisibility(View.GONE);
                                     } else {
-                                        addBTN.setVisibility(View.VISIBLE);
+                                        if(action.equals("1")){
+                                            addBTN.setVisibility(View.VISIBLE);
+                                        } else {
+                                            addBTN.setVisibility(View.GONE);
+                                        }
                                     }
 
                                     listKontakRV.setVisibility(View.VISIBLE);
