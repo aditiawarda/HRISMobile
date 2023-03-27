@@ -3,11 +3,16 @@ package com.gelora.absensi.fragment;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.location.Location;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -32,6 +37,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -59,6 +65,8 @@ import com.gelora.absensi.FetchAddressIntentServices;
 import com.gelora.absensi.FormFingerscanActivity;
 import com.gelora.absensi.FormPermohonanCutiActivity;
 import com.gelora.absensi.FormPermohonanIzinActivity;
+import com.gelora.absensi.HomeActivity;
+import com.gelora.absensi.InfoKontakDaruratActivity;
 import com.gelora.absensi.InfoPersonalActivity;
 import com.gelora.absensi.ListAllPengumumanActivity;
 import com.gelora.absensi.LoginActivity;
@@ -535,26 +543,10 @@ public class FragmentHome extends Fragment {
                                         musicUlangTahun = MediaPlayer.create(mContext, R.raw.ringtone_birthday);
                                         playPart.setVisibility(View.VISIBLE);
                                         pausePart.setVisibility(View.GONE);
-                                        //CommonConfetti.rainingConfetti(mainParent, colors).stream(3500);
 
                                         if(!sharedPrefAbsen.getSpNotifUltah().equals("1")){
                                             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_ULTAH, "1");
-                                            Notify.build(mContext)
-                                                    .setTitle("HRIS Mobile Gelora")
-                                                    .setContent("Happy Birthday "+shortName+", Selamat Merayakan Ulang Tahun ke " + String.valueOf(usia) + " Tahun.")
-                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                    .setColor(R.color.colorPrimary)
-                                                    .largeCircularIcon()
-                                                    .enableVibration(true)
-                                                    .show();
-
-                                            // Vibrate for 500 milliseconds
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                            } else {
-                                                //deprecated in API 26
-                                                vibrate.vibrate(500);
-                                            }
+                                            getNotifBirthday(String.valueOf(usia));
                                         }
 
                                         ulangTahunPart.setOnClickListener(new View.OnClickListener() {
@@ -604,26 +596,10 @@ public class FragmentHome extends Fragment {
                                         if (join_reminder.equals("1")) {
                                             if(!sharedPrefAbsen.getSpNotifJoinRemainder().equals("1")){
                                                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_JOIN_REMAINDER, "1");
-                                                Notify.build(mContext)
-                                                        .setTitle("HRIS Mobile Gelora")
-                                                        .setContent("Selamat Merayakan " + String.valueOf(masaKerja) + " Tahun Masa Kerja di PT. Gelora Aksara Pratama")
-                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                        .setColor(R.color.colorPrimary)
-                                                        .largeCircularIcon()
-                                                        .enableVibration(true)
-                                                        .show();
-
-                                                // Vibrate for 500 milliseconds
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                    vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                                } else {
-                                                    //deprecated in API 26
-                                                    vibrate.vibrate(500);
-                                                }
+                                                getNotifMasaKerja(String.valueOf(masaKerja));
                                             }
 
                                             congratTahunanPart.setVisibility(View.VISIBLE);
-                                            //CommonConfetti.rainingConfetti(mainParent, colors).stream(3500);
                                             congratTahunanPart.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
@@ -660,55 +636,12 @@ public class FragmentHome extends Fragment {
                                     if(pengumuman_date.equals(getDate())){
                                         if(!sharedPrefAbsen.getSpNotifPengumuman().equals("1")){
                                             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_PENGUMUMAN, "1");
-                                            try {
-                                                Intent intent = new Intent(mContext, DetailPengumumanActivity.class);
-                                                intent.putExtra("id_pengumuman", String.valueOf(pengumuman_id));
-
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                                    Notify.build(mContext)
-                                                            .setTitle("HRIS Mobile Gelora")
-                                                            .setContent(pengumuman_title+Html.fromHtml("<br>"+pengumuman_desc, Html.FROM_HTML_MODE_COMPACT))
-                                                            .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                            .setColor(R.color.colorPrimary)
-                                                            .largeCircularIcon()
-                                                            .enableVibration(true)
-                                                            .setAction(intent)
-                                                            .show();
-                                                } else {
-                                                    Notify.build(mContext)
-                                                            .setTitle("HRIS Mobile Gelora")
-                                                            .setContent(pengumuman_title+Html.fromHtml("<br>"+pengumuman_desc))
-                                                            .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                            .setColor(R.color.colorPrimary)
-                                                            .largeCircularIcon()
-                                                            .enableVibration(true)
-                                                            .setAction(intent)
-                                                            .show();
-                                                }
-
-
-                                            } catch (IllegalArgumentException e){
-                                                e.printStackTrace();
-                                            }
-
-                                            // Vibrate for 500 milliseconds
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                            } else {
-                                                //deprecated in API 26
-                                                vibrate.vibrate(500);
-                                            }
-
+                                            getNotifPengumuman(pengumuman_id, pengumuman_title);
                                         }
 
                                         bannerPengumumanPart.setVisibility(View.VISIBLE);
                                         judulPengumuman.setText(pengumuman_title.toUpperCase());
-                                        //highlightPengumuman.setText(pengumuman_desc);
-                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                            highlightPengumuman.setText(Html.fromHtml(pengumuman_desc, Html.FROM_HTML_MODE_COMPACT));
-                                        } else {
-                                            highlightPengumuman.setText(Html.fromHtml(pengumuman_desc));
-                                        }
+                                        highlightPengumuman.setText("Klik untuk melihat informasi selengkapnya...");
 
                                         bannerPengumumanPart.setOnClickListener(new View.OnClickListener() {
                                             @Override
@@ -1551,6 +1484,148 @@ public class FragmentHome extends Fragment {
         });
 
         requestQueue.add(request);
+
+    }
+
+    private void getNotifMasaKerja(String lama) {
+        String shortName = sharedPrefManager.getSpNama()+" ";
+        if(shortName.contains(" ")){
+            shortName = shortName.substring(0, shortName.indexOf(" "));
+            System.out.println(shortName);
+        }
+
+        NotificationManager notificationManager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "notif_masa_kerja";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            @SuppressLint("WrongConstant")
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_skylight_notification)
+                .setColor(Color.parseColor("#A6441F"))
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setContentTitle("HRIS Mobile Gelora")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Selamat Merayakan " + lama + " Tahun Masa Kerja di PT. Gelora Aksara Pratama"))
+                .setContentText("Selamat Merayakan " + lama + " Tahun Masa Kerja di PT. Gelora Aksara Pratama");
+
+        Intent notificationIntent = new Intent(mContext, HomeActivity.class);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        } else {
+            @SuppressLint("UnspecifiedImmutableFlag")
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        }
+
+    }
+
+    private void getNotifBirthday(String age) {
+        String shortName = sharedPrefManager.getSpNama()+" ";
+        if(shortName.contains(" ")){
+            shortName = shortName.substring(0, shortName.indexOf(" "));
+            System.out.println(shortName);
+        }
+
+        NotificationManager notificationManager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "notif_birthday";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            @SuppressLint("WrongConstant")
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_skylight_notification)
+                .setColor(Color.parseColor("#A6441F"))
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setContentTitle("HRIS Mobile Gelora")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Happy Birthday "+shortName+", Selamat Merayakan Ulang Tahun ke " + age + " Tahun."))
+                .setContentText("Happy Birthday "+shortName+", Selamat Merayakan Ulang Tahun ke " + age + " Tahun.");
+
+        Intent notificationIntent = new Intent(mContext, HomeActivity.class);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        } else {
+            @SuppressLint("UnspecifiedImmutableFlag")
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        }
+
+    }
+
+    private void getNotifPengumuman(String id, String title) {
+        String shortName = sharedPrefManager.getSpNama()+" ";
+        if(shortName.contains(" ")){
+            shortName = shortName.substring(0, shortName.indexOf(" "));
+            System.out.println(shortName);
+        }
+
+        NotificationManager notificationManager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "notif_pengumuman";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            @SuppressLint("WrongConstant")
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_skylight_notification)
+                .setColor(Color.parseColor("#A6441F"))
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setContentTitle("HRIS Mobile Gelora")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(title+"\nKlik untuk melihat informasi selengkapnya..."))
+                .setContentText(title);
+
+        Intent notificationIntent = new Intent(mContext, DetailPengumumanActivity.class);
+        notificationIntent.putExtra("id_pengumuman", id);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        } else {
+            @SuppressLint("UnspecifiedImmutableFlag")
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        }
 
     }
 

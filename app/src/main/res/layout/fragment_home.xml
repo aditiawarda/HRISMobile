@@ -493,7 +493,6 @@
                                                 android:lineSpacingExtra="1dp"
                                                 android:ellipsize="end"
                                                 android:maxLines="1"
-                                                android:singleLine="true"
                                                 android:text="Highligt Pengumuman"
                                                 android:textColor="@color/white"
                                                 android:textSize="10dp" />

@@ -74,9 +74,9 @@
             <ImageView
                 android:visibility="gone"
                 android:id="@+id/info_mark"
-                android:layout_width="11dp"
-                android:layout_height="11dp"
-                android:layout_marginLeft="-12dp"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="-10dp"
                 android:src="@drawable/mark_notif_info" />
 
         </com.gauravk.bubblenavigation.BubbleToggleView>
@@ -95,9 +95,9 @@
             <ImageView
                 android:visibility="gone"
                 android:id="@+id/profile_mark"
-                android:layout_width="11dp"
-                android:layout_height="11dp"
-                android:layout_marginLeft="-12dp"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="-9dp"
                 android:src="@drawable/mark_notif_info" />
 
         </com.gauravk.bubblenavigation.BubbleToggleView>

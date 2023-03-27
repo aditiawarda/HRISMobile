@@ -1,9 +1,14 @@
 package com.gelora.absensi;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,8 +19,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -113,7 +122,8 @@ public class HomeActivity extends AppCompatActivity {
 
             checkLogin();
 
-        } else {
+        }
+        else {
             setContentView(R.layout.activity_home);
 
             bubbleNavigation = findViewById(R.id.equal_navigation_bar);
@@ -330,22 +340,7 @@ public class HomeActivity extends AppCompatActivity {
 
                                         if(notif.equals("0")){
                                             notif = "1";
-                                            Notify.build(getApplicationContext())
-                                                    .setTitle("HRIS Mobile Gelora")
-                                                    .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
-                                                    .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                    .setColor(R.color.colorPrimary)
-                                                    .largeCircularIcon()
-                                                    .enableVibration(true)
-                                                    .show();
-
-                                            // Vibrate for 500 milliseconds
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                            } else {
-                                                //deprecated in API 26
-                                                vibrate.vibrate(500);
-                                            }
+                                            warningNotifInfo();
                                         } else {
                                             notif = "0";
                                         }
@@ -359,22 +354,7 @@ public class HomeActivity extends AppCompatActivity {
 
                                     if(notif.equals("0")){
                                         notif = "1";
-                                        Notify.build(getApplicationContext())
-                                                .setTitle("HRIS Mobile Gelora")
-                                                .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
-                                                .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                .setColor(R.color.colorPrimary)
-                                                .largeCircularIcon()
-                                                .enableVibration(true)
-                                                .show();
-
-                                        // Vibrate for 500 milliseconds
-                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                            vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                        } else {
-                                            //deprecated in API 26
-                                            vibrate.vibrate(500);
-                                        }
+                                        warningNotifInfo();
                                     } else {
                                         notif = "0";
                                     }
@@ -384,22 +364,7 @@ public class HomeActivity extends AppCompatActivity {
 
                                     if(notif.equals("0")){
                                         notif = "1";
-                                        Notify.build(getApplicationContext())
-                                                .setTitle("HRIS Mobile Gelora")
-                                                .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
-                                                .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                .setColor(R.color.colorPrimary)
-                                                .largeCircularIcon()
-                                                .enableVibration(true)
-                                                .show();
-
-                                        // Vibrate for 500 milliseconds
-                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                            vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                        } else {
-                                            //deprecated in API 26
-                                            vibrate.vibrate(500);
-                                        }
+                                        warningNotifInfo();
                                     } else {
                                         notif = "0";
                                     }
@@ -409,22 +374,7 @@ public class HomeActivity extends AppCompatActivity {
 
                                     if(notif.equals("0")){
                                         notif = "1";
-                                        Notify.build(getApplicationContext())
-                                                .setTitle("HRIS Mobile Gelora")
-                                                .setContent("Halo "+shortName+", terdapat notifikasi yang belum anda lihat")
-                                                .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                .setColor(R.color.colorPrimary)
-                                                .largeCircularIcon()
-                                                .enableVibration(true)
-                                                .show();
-
-                                        // Vibrate for 500 milliseconds
-                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                            vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                        } else {
-                                            //deprecated in API 26
-                                            vibrate.vibrate(500);
-                                        }
+                                        warningNotifInfo();
                                     } else {
                                         notif = "0";
                                     }
@@ -481,12 +431,6 @@ public class HomeActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
 
-                            String shortName = sharedPrefManager.getSpNama()+" ";
-                            if(shortName.contains(" ")){
-                                shortName = shortName.substring(0, shortName.indexOf(" "));
-                                System.out.println(shortName);
-                            }
-
                             if (status.equals("Success")){
                                 String data_personal = data.getString("data_personal");
                                 String data_kontak = data.getString("data_kontak");
@@ -495,28 +439,7 @@ public class HomeActivity extends AppCompatActivity {
                                         profileMark.setVisibility(View.VISIBLE);
                                         if(profile.equals("0")){
                                             profile = "1";
-                                            try {
-                                                Intent intent = new Intent(HomeActivity.this, InfoPersonalActivity.class);
-                                                Notify.build(getApplicationContext())
-                                                        .setTitle("HRIS Mobile Gelora")
-                                                        .setContent("Halo "+shortName+", harap lengkapi data personal dan kontak darurat anda")
-                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                        .setColor(R.color.colorPrimary)
-                                                        .largeCircularIcon()
-                                                        .enableVibration(true)
-                                                        .setAction(intent)
-                                                        .show();
-                                            } catch (IllegalArgumentException e){
-                                                e.printStackTrace();
-                                            }
-
-                                            // Vibrate for 500 milliseconds
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                            } else {
-                                                //deprecated in API 26
-                                                vibrate.vibrate(500);
-                                            }
+                                            warningNotifInfoPersonal();
                                         } else {
                                             profile = "0";
                                         }
@@ -526,28 +449,7 @@ public class HomeActivity extends AppCompatActivity {
 
                                         if(profile.equals("0")){
                                             profile = "1";
-                                            try {
-                                                Intent intent = new Intent(HomeActivity.this, InfoPersonalActivity.class);
-                                                Notify.build(getApplicationContext())
-                                                        .setTitle("HRIS Mobile Gelora")
-                                                        .setContent("Halo "+shortName+", harap lengkapi data personal anda")
-                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                        .setColor(R.color.colorPrimary)
-                                                        .largeCircularIcon()
-                                                        .enableVibration(true)
-                                                        .setAction(intent)
-                                                        .show();
-                                            } catch (IllegalArgumentException e){
-                                                e.printStackTrace();
-                                            }
-
-                                            // Vibrate for 500 milliseconds
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                            } else {
-                                                //deprecated in API 26
-                                                vibrate.vibrate(500);
-                                            }
+                                            warningNotifInfoPersonal();
                                         } else {
                                             profile = "0";
                                         }
@@ -558,28 +460,7 @@ public class HomeActivity extends AppCompatActivity {
 
                                         if(profile.equals("0")) {
                                             profile = "1";
-                                            try {
-                                                Intent intent = new Intent(HomeActivity.this, InfoKontakDaruratActivity.class);
-                                                Notify.build(getApplicationContext())
-                                                        .setTitle("HRIS Mobile Gelora")
-                                                        .setContent("Halo "+shortName+", harap lengkapi data kontak darurat anda")
-                                                        .setSmallIcon(R.drawable.ic_skylight_notification)
-                                                        .setColor(R.color.colorPrimary)
-                                                        .largeCircularIcon()
-                                                        .enableVibration(true)
-                                                        .setAction(intent)
-                                                        .show();
-                                            } catch (IllegalArgumentException e){
-                                                e.printStackTrace();
-                                            }
-
-                                            // Vibrate for 500 milliseconds
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                                            } else {
-                                                //deprecated in API 26
-                                                vibrate.vibrate(500);
-                                            }
+                                            warningNotifKontakDarurat();
                                         } else {
                                             profile = "0";
                                         }
@@ -666,6 +547,133 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    private void warningNotifInfo() {
+        String shortName = sharedPrefManager.getSpNama()+" ";
+        if(shortName.contains(" ")){
+            shortName = shortName.substring(0, shortName.indexOf(" "));
+            System.out.println(shortName);
+        }
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "warning_kontak_darurat";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            @SuppressLint("WrongConstant")
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_skylight_notification)
+                .setColor(Color.parseColor("#A6441F"))
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setContentTitle("HRIS Mobile Gelora")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Halo "+shortName+", terdapat notifikasi/warning yang belum anda lihat, cek dihalaman info sekarang"))
+                .setContentText("Halo "+shortName+", terdapat notifikasi/warning yang belum anda lihat, cek dihalaman info sekarang");
+
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1, notificationBuilder.build());
+    }
+
+    private void warningNotifKontakDarurat() {
+        String shortName = sharedPrefManager.getSpNama()+" ";
+        if(shortName.contains(" ")){
+            shortName = shortName.substring(0, shortName.indexOf(" "));
+            System.out.println(shortName);
+        }
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "warning_kontak_darurat";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            @SuppressLint("WrongConstant")
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_skylight_notification)
+                .setColor(Color.parseColor("#A6441F"))
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setContentTitle("HRIS Mobile Gelora")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Halo "+shortName+", harap lengkapi data kontak darurat anda"))
+                .setContentText("Halo "+shortName+", harap lengkapi data kontak darurat anda");
+
+        Intent notificationIntent = new Intent(this, InfoKontakDaruratActivity.class);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        } else {
+            @SuppressLint("UnspecifiedImmutableFlag")
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        }
+
+    }
+
+    private void warningNotifInfoPersonal() {
+        String shortName = sharedPrefManager.getSpNama()+" ";
+        if(shortName.contains(" ")){
+            shortName = shortName.substring(0, shortName.indexOf(" "));
+            System.out.println(shortName);
+        }
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "warning_info_personal";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            @SuppressLint("WrongConstant")
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_skylight_notification)
+                .setColor(Color.parseColor("#A6441F"))
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setContentTitle("HRIS Mobile Gelora")
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Halo "+shortName+", harap lengkapi data personal anda"))
+                .setContentText("Halo "+shortName+", harap lengkapi data personal anda");
+
+        Intent notificationIntent = new Intent(this, InfoPersonalActivity.class);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_MUTABLE);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        } else {
+            @SuppressLint("UnspecifiedImmutableFlag")
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationBuilder.setContentIntent(pendingIntent);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notificationBuilder.build());
+        }
+
     }
 
     @Override
