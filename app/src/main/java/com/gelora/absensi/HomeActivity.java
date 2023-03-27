@@ -324,6 +324,7 @@ public class HomeActivity extends AppCompatActivity {
                                 String alpa = data.getString("alpa");
                                 String terlambat = data.getString("terlambat");
                                 String tidak_checkout = data.getString("tidak_checkout");
+                                String status_notif = data.getString("status_notif");
 
                                 String shortName = sharedPrefManager.getSpNama()+" ";
                                 if(shortName.contains(" ")){
@@ -339,8 +340,12 @@ public class HomeActivity extends AppCompatActivity {
                                         infoMark.setVisibility(View.VISIBLE);
 
                                         if(notif.equals("0")){
-                                            notif = "1";
-                                            warningNotifInfo();
+                                            if(status_notif.equals("1")){
+                                                notif = "1";
+                                                warningNotifInfo();
+                                            } else {
+                                                notif = "0";
+                                            }
                                         } else {
                                             notif = "0";
                                         }
@@ -353,8 +358,12 @@ public class HomeActivity extends AppCompatActivity {
                                     infoMark.setVisibility(View.VISIBLE);
 
                                     if(notif.equals("0")){
-                                        notif = "1";
-                                        warningNotifInfo();
+                                        if(status_notif.equals("1")){
+                                            notif = "1";
+                                            warningNotifInfo();
+                                        } else {
+                                            notif = "0";
+                                        }
                                     } else {
                                         notif = "0";
                                     }
@@ -363,8 +372,12 @@ public class HomeActivity extends AppCompatActivity {
                                     infoMark.setVisibility(View.VISIBLE);
 
                                     if(notif.equals("0")){
-                                        notif = "1";
-                                        warningNotifInfo();
+                                        if(status_notif.equals("1")){
+                                            notif = "1";
+                                            warningNotifInfo();
+                                        } else {
+                                            notif = "0";
+                                        }
                                     } else {
                                         notif = "0";
                                     }
@@ -373,8 +386,12 @@ public class HomeActivity extends AppCompatActivity {
                                     infoMark.setVisibility(View.VISIBLE);
 
                                     if(notif.equals("0")){
-                                        notif = "1";
-                                        warningNotifInfo();
+                                        if(status_notif.equals("1")){
+                                            notif = "1";
+                                            warningNotifInfo();
+                                        } else {
+                                            notif = "0";
+                                        }
                                     } else {
                                         notif = "0";
                                     }
@@ -434,12 +451,18 @@ public class HomeActivity extends AppCompatActivity {
                             if (status.equals("Success")){
                                 String data_personal = data.getString("data_personal");
                                 String data_kontak = data.getString("data_kontak");
+                                String notif_personal = data.getString("notif_personal");
+                                String notif_kontak = data.getString("notif_kontak");
                                 if(data_personal.equals("tidak lengkap")){
                                     if(data_kontak.equals("tidak tersedia")){
                                         profileMark.setVisibility(View.VISIBLE);
                                         if(profile.equals("0")){
-                                            profile = "1";
-                                            warningNotifInfoPersonal();
+                                            if(notif_personal.equals("1")){
+                                                profile = "1";
+                                                warningNotifInfoPersonal();
+                                            } else {
+                                                profile = "0";
+                                            }
                                         } else {
                                             profile = "0";
                                         }
@@ -448,8 +471,12 @@ public class HomeActivity extends AppCompatActivity {
                                         profileMark.setVisibility(View.VISIBLE);
 
                                         if(profile.equals("0")){
-                                            profile = "1";
-                                            warningNotifInfoPersonal();
+                                            if(notif_personal.equals("1")){
+                                                profile = "1";
+                                                warningNotifInfoPersonal();
+                                            } else {
+                                                profile = "0";
+                                            }
                                         } else {
                                             profile = "0";
                                         }
@@ -457,10 +484,13 @@ public class HomeActivity extends AppCompatActivity {
                                 } else {
                                     if(data_kontak.equals("tidak tersedia")){
                                         profileMark.setVisibility(View.VISIBLE);
-
                                         if(profile.equals("0")) {
-                                            profile = "1";
-                                            warningNotifKontakDarurat();
+                                            if(notif_kontak.equals("1")){
+                                                profile = "1";
+                                                warningNotifKontakDarurat();
+                                            } else {
+                                                profile = "0";
+                                            }
                                         } else {
                                             profile = "0";
                                         }
