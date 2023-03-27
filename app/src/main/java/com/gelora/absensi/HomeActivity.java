@@ -557,7 +557,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        String NOTIFICATION_CHANNEL_ID = "warning_kontak_darurat";
+        String NOTIFICATION_CHANNEL_ID = "warning_notif_info";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             @SuppressLint("WrongConstant")
             NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
@@ -575,8 +575,8 @@ public class HomeActivity extends AppCompatActivity {
                 .setColor(Color.parseColor("#A6441F"))
                 .setPriority(Notification.PRIORITY_DEFAULT)
                 .setContentTitle("HRIS Mobile Gelora")
-                .setStyle(new NotificationCompat.BigTextStyle().bigText("Halo "+shortName+", terdapat notifikasi/warning yang belum anda lihat, cek dihalaman info sekarang"))
-                .setContentText("Halo "+shortName+", terdapat notifikasi/warning yang belum anda lihat, cek dihalaman info sekarang");
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("Halo "+shortName+", terdapat notifikasi/warning yang belum anda lihat, cek di halaman info sekarang"))
+                .setContentText("Halo "+shortName+", terdapat notifikasi/warning yang belum anda lihat, cek di halaman info sekarang");
 
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1, notificationBuilder.build());
