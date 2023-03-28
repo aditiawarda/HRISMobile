@@ -66,6 +66,7 @@ import com.gelora.absensi.FormFingerscanActivity;
 import com.gelora.absensi.FormPermohonanCutiActivity;
 import com.gelora.absensi.FormPermohonanIzinActivity;
 import com.gelora.absensi.HomeActivity;
+import com.gelora.absensi.HumanResourceActivity;
 import com.gelora.absensi.InfoKontakDaruratActivity;
 import com.gelora.absensi.InfoPersonalActivity;
 import com.gelora.absensi.ListAllPengumumanActivity;
@@ -379,7 +380,8 @@ public class FragmentHome extends Fragment {
         menuSdmBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "tes", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, HumanResourceActivity.class);
+                startActivity(intent);
             }
         });
 
