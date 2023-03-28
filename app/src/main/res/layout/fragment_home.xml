@@ -761,32 +761,78 @@
                                         android:orientation="vertical">
 
                                         <LinearLayout
-                                            android:id="@+id/menu_card_btn"
+                                            android:id="@+id/card_part"
                                             android:layout_width="match_parent"
-                                            android:layout_height="65dp"
-                                            android:background="@drawable/shape_menu_3"
-                                            android:orientation="vertical"
-                                            android:padding="10dp">
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
 
-                                            <ImageView
+                                            <LinearLayout
+                                                android:id="@+id/menu_card_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_3"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_id_card" />
+
+                                            </LinearLayout>
+
+                                            <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_id_card" />
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="ID Card"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
 
                                         </LinearLayout>
 
-                                        <TextView
+                                        <LinearLayout
+                                            android:id="@+id/sdm_part"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginTop="3dp"
-                                            android:ellipsize="end"
-                                            android:gravity="center"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="ID Card"
-                                            android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:visibility="visible"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_sdm_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_3"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_sdm" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="SDM"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 

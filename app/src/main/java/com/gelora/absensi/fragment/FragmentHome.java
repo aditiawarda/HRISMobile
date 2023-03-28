@@ -115,7 +115,7 @@ import java.util.Map;
 
 public class FragmentHome extends Fragment {
 
-    LinearLayout pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
+    LinearLayout menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
     TextView nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
     ImageView avatarUser, weatherIcon, loadingData;
@@ -183,6 +183,7 @@ public class FragmentHome extends Fragment {
         menuSignatureBTN = view.findViewById(R.id.menu_signature_btn);
         menuCardBTN = view.findViewById(R.id.menu_card_btn);
         menuCalendarBTN = view.findViewById(R.id.menu_calendar_btn);
+        menuSdmBTN = view.findViewById(R.id.menu_sdm_btn);
         dataCuaca = view.findViewById(R.id.data_cuaca);
         dataCuacaEmpty = view.findViewById(R.id.data_cuaca_empty);
         hTime = view.findViewById(R.id.h_time);
@@ -203,6 +204,8 @@ public class FragmentHome extends Fragment {
         playPart = view.findViewById(R.id.play_part);
         pausePart = view.findViewById(R.id.pause_part);
         ulangTahunTo = view.findViewById(R.id.ulang_tahun_to);
+        sdmPart = view.findViewById(R.id.sdm_part);
+        cardPart = view.findViewById(R.id.card_part);
 
         ulangTahunPart = view.findViewById(R.id.ulang_tahun_part);
         congratTahunanPart = view.findViewById(R.id.congrat_tahunan);
@@ -373,6 +376,13 @@ public class FragmentHome extends Fragment {
             }
         });
 
+        menuSdmBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "tes", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         menuCalendarBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -388,6 +398,16 @@ public class FragmentHome extends Fragment {
                 startActivity(intent);
             }
         });
+
+        getDataKaryawan();
+        getCurrentDay();
+        nameOfUser.setText(sharedPrefManager.getSpNama());
+        nikTV.setText(sharedPrefManager.getSpNik());
+
+        return view;
+    }
+
+    private void getDataKaryawan() {
 
         if(sharedPrefManager.getSpStatusKaryawan().equals("Tetap")||sharedPrefManager.getSpStatusKaryawan().equals("Kontrak")){
             if(sharedPrefManager.getSpStatusKaryawan().equals("Tetap")){
@@ -432,15 +452,14 @@ public class FragmentHome extends Fragment {
             pengaduanPart.setVisibility(View.VISIBLE);
         }
 
-        getDataKaryawan();
-        getCurrentDay();
-        nameOfUser.setText(sharedPrefManager.getSpNama());
-        nikTV.setText(sharedPrefManager.getSpNik());
+        if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")){
+            cardPart.setVisibility(View.GONE);
+            sdmPart.setVisibility(View.VISIBLE);
+        } else {
+            cardPart.setVisibility(View.VISIBLE);
+            sdmPart.setVisibility(View.GONE);
+        }
 
-        return view;
-    }
-
-    private void getDataKaryawan() {
         //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,

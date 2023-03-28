@@ -38,6 +38,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.ComingSoonActivity;
+import com.gelora.absensi.DigitalCardActivity;
 import com.gelora.absensi.DigitalSignatureActivity;
 import com.gelora.absensi.InfoKeluargaActivity;
 import com.gelora.absensi.InfoKontakDaruratActivity;
@@ -83,7 +84,7 @@ import java.util.UUID;
  */
 public class FragmentProfile extends Fragment {
 
-    LinearLayout nonGapSgnBTN, infoGapPart, warningInfoKontakDarurat, warningInfoPersonal, updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
+    LinearLayout idCardBTN, nonGapSgnBTN, infoGapPart, warningInfoKontakDarurat, warningInfoPersonal, updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
     LinearLayout infoPersonalBTN, infoPekerjaanBTN, infoKontakDaruratBTN, infoKeluargaBTN, infoPengalamanDanPelatihanBTN, infoPayrollBTN;
     TextView nameOfUser, nikTV, positionOfUser, descAvailable, descEmpty;
     ImageView avatarUser;
@@ -141,6 +142,7 @@ public class FragmentProfile extends Fragment {
         warningInfoKontakDarurat = view.findViewById(R.id.warning_info_kontak_darurat);
         infoGapPart = view.findViewById(R.id.info_gap_part);
         nonGapSgnBTN = view.findViewById(R.id.non_gap_sgn_btn);
+        idCardBTN = view.findViewById(R.id.id_card_btn);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -216,6 +218,16 @@ public class FragmentProfile extends Fragment {
             }
         });
 
+        idCardBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DigitalCardActivity.class);
+                intent.putExtra("nama", sharedPrefManager.getSpNama());
+                intent.putExtra("nik", sharedPrefManager.getSpNik());
+                startActivity(intent);
+            }
+        });
+
         logoutBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -250,9 +262,17 @@ public class FragmentProfile extends Fragment {
             }
         });
 
+        nameOfUser.setText(sharedPrefManager.getSpNama());
+        nikTV.setText(sharedPrefManager.getSpNik());
+        getDataKaryawan();
+
+        return view;
+    }
+
+    private void getDataKaryawan() {
+
         if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpIdJabatan().equals("31")||sharedPrefManager.getSpNik().equals("80085")) {
             infoGapPart.setVisibility(View.GONE);
-
             if(sharedPrefManager.getSpIdJabatan().equals("31")){
                 nonGapSgnBTN.setVisibility(View.GONE);
             } else {
@@ -266,20 +286,17 @@ public class FragmentProfile extends Fragment {
                     }
                 });
             }
-
         } else {
             infoGapPart.setVisibility(View.VISIBLE);
             nonGapSgnBTN.setVisibility(View.GONE);
         }
 
-        nameOfUser.setText(sharedPrefManager.getSpNama());
-        nikTV.setText(sharedPrefManager.getSpNik());
-        getDataKaryawan();
+        if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")){
+            idCardBTN.setVisibility(View.VISIBLE);
+        } else {
+            idCardBTN.setVisibility(View.GONE);
+        }
 
-        return view;
-    }
-
-    private void getDataKaryawan() {
         //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
