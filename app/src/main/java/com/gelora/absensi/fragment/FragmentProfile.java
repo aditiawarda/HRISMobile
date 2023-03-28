@@ -270,7 +270,6 @@ public class FragmentProfile extends Fragment {
     }
 
     private void getDataKaryawan() {
-
         if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpIdJabatan().equals("31")||sharedPrefManager.getSpNik().equals("80085")) {
             infoGapPart.setVisibility(View.GONE);
             if(sharedPrefManager.getSpIdJabatan().equals("31")){
