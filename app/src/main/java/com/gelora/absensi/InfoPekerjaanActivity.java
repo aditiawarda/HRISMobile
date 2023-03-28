@@ -305,7 +305,7 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
                                 if(golongan_karyawan.equals("")||golongan_karyawan.equals("null")){
                                     golonganKaryawanTV.setText("-");
                                 } else {
-                                    golonganKaryawanTV.setText(status_karyawan);
+                                    golonganKaryawanTV.setText(golongan_karyawan);
                                 }
 
                             } else {

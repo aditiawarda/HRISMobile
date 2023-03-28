@@ -81,7 +81,7 @@
                                                 android:ellipsize="end"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:text="PENILAIAN SDM"
+                                                android:text="SDM"
                                                 android:textColor="@color/white"
                                                 android:textSize="15dp" />
 
@@ -165,7 +165,7 @@
                                                 android:gravity="center"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:text="Permohonan"
+                                                android:text="Formulir"
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="11dp" />
 
@@ -176,7 +176,7 @@
                                                 android:gravity="center"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:text="Izin/Cuti"
+                                                android:text="Penilaian SDM"
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="14dp" />
 
