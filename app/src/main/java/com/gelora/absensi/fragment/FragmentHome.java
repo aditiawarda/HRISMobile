@@ -303,8 +303,8 @@ public class FragmentHome extends Fragment {
                 new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Perhatian")
                         .setContentText("Anda akan terhubung dengan Bagian HRD")
-                        .setCancelText("       BATAL       ")
-                        .setConfirmText("HUBUNGKAN")
+                        .setCancelText("    BATAL    ")
+                        .setConfirmText("  LANJUT  ")
                         .showCancelButton(true)
                         .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override

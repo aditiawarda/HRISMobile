@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,6 +42,7 @@ import java.util.Map;
 public class HumanResourceActivity extends AppCompatActivity {
 
     LinearLayout backBTN, formSdmBTN, penilaianSdmBTN, loadingRecordPart, noDataPart;
+    TextView titleSDM;
     ImageView loadingDataRecord;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -48,6 +51,7 @@ public class HumanResourceActivity extends AppCompatActivity {
     private HumanResource[] humanResources;
     private AdapterListSDM adapterListSDM;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,7 @@ public class HumanResourceActivity extends AppCompatActivity {
         loadingDataRecord = findViewById(R.id.loading_data);
         loadingRecordPart = findViewById(R.id.loading_data_part);
         noDataPart = findViewById(R.id.no_data_part);
+        titleSDM = findViewById(R.id.title_sdm);
 
         dataListKaryawanRV = findViewById(R.id.data_absensi_rv);
 
@@ -119,6 +124,13 @@ public class HumanResourceActivity extends AppCompatActivity {
     }
 
     private void getData() {
+
+        if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")){
+            titleSDM.setText("List SDM Bagian");
+        } else if(sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")) {
+            titleSDM.setText("List SDM Departemen");
+        }
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/list_sdm";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,

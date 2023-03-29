@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.HumanResourceActivity;
 import com.gelora.absensi.R;
+import com.gelora.absensi.ResumeKaryawanActivity;
 import com.gelora.absensi.ViewImageActivity;
 import com.gelora.absensi.model.HumanResource;
 import com.squareup.picasso.MemoryPolicy;
@@ -83,7 +84,9 @@ public class AdapterListSDM extends RecyclerView.Adapter<AdapterListSDM.MyViewHo
         myViewHolder.parrentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Tes", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, ResumeKaryawanActivity.class);
+                intent.putExtra("NIK",humanResource.getNIK());
+                mContext.startActivity(intent);
             }
         });
 
