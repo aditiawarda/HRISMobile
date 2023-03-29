@@ -81,10 +81,12 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
         if(listPermohonanIzin.getAvatar()!=null){
             Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/"+listPermohonanIzin.getAvatar()).networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .resize(80, 80)
                     .into(myViewHolder.profileImage);
         } else {
             Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/default_profile.jpg").networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .resize(80, 80)
                     .into(myViewHolder.profileImage);
         }
 

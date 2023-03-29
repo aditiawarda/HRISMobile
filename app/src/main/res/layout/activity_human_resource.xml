@@ -101,218 +101,363 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="100dp"
-                                android:orientation="horizontal"
-                                android:paddingLeft="20dp"
-                                android:paddingRight="20dp">
+                                android:orientation="vertical">
 
                                 <LinearLayout
-                                    android:id="@+id/permohonan_cuti_btn"
-                                    android:layout_width="0dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginRight="7dp"
-                                    android:layout_weight=".50"
-                                    android:background="@drawable/shape_menu_info"
-                                    android:orientation="vertical">
+                                    android:layout_marginTop="100dp"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp">
 
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                    <LinearLayout
+                                        android:id="@+id/form_sdm_btn"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="7dp"
+                                        android:layout_weight=".50"
+                                        android:background="@drawable/shape_menu_info"
+                                        android:orientation="vertical">
 
-                                        <LinearLayout
+                                        <RelativeLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:layout_alignParentBottom="true"
-                                            android:layout_alignParentRight="true"
-                                            android:gravity="right">
+                                            android:layout_height="match_parent">
 
                                             <LinearLayout
-                                                android:layout_width="50dp"
-                                                android:layout_height="40dp"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_alignParentBottom="true"
+                                                android:layout_alignParentRight="true"
+                                                android:gravity="right">
+
+                                                <LinearLayout
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="40dp"
+                                                    android:layout_marginLeft="10dp"
+                                                    android:layout_marginRight="10dp"
+                                                    android:layout_marginBottom="-20dp"
+                                                    android:background="@drawable/shape_ornament_1" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="70dp"
+                                                android:layout_height="50dp"
                                                 android:layout_marginLeft="10dp"
-                                                android:layout_marginRight="10dp"
-                                                android:layout_marginBottom="-20dp"
+                                                android:layout_marginTop="-20dp"
                                                 android:background="@drawable/shape_ornament_1" />
 
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="70dp"
-                                            android:layout_height="50dp"
-                                            android:layout_marginLeft="10dp"
-                                            android:layout_marginTop="-20dp"
-                                            android:background="@drawable/shape_ornament_1" />
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="vertical"
-                                            android:paddingLeft="15dp"
-                                            android:paddingTop="20dp"
-                                            android:paddingRight="15dp"
-                                            android:paddingBottom="20dp">
-
-                                            <ImageView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="90dp"
-                                                android:scaleType="fitCenter"
-                                                android:src="@drawable/permohonan_izin_ic" />
-
-                                            <TextView
+                                            <LinearLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:ellipsize="end"
-                                                android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:text="Formulir"
-                                                android:textColor="@color/colorPrimaryDark"
-                                                android:textSize="11dp" />
+                                                android:orientation="vertical"
+                                                android:paddingLeft="15dp"
+                                                android:paddingTop="20dp"
+                                                android:paddingRight="15dp"
+                                                android:paddingBottom="28dp">
 
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:ellipsize="end"
-                                                android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:text="Penilaian SDM"
-                                                android:textColor="@color/colorPrimaryDark"
-                                                android:textSize="14dp" />
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="90dp"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/form_sdm_ic" />
 
-                                        </LinearLayout>
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:ellipsize="end"
+                                                    android:gravity="center"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
+                                                    android:text="Formulir SDM"
+                                                    android:textColor="@color/colorPrimaryDark"
+                                                    android:textSize="14dp" />
 
-                                        <LinearLayout
-                                            android:visibility="gone"
-                                            android:layout_alignParentRight="true"
-                                            android:id="@+id/count_notification_izin"
-                                            android:layout_marginRight="12dp"
-                                            android:layout_marginTop="11dp"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:paddingRight="4dp"
-                                            android:paddingLeft="4dp"
-                                            android:paddingBottom="1dp"
-                                            android:gravity="center"
-                                            android:background="@drawable/shape_notification_mark_info">
+                                            </LinearLayout>
 
-                                            <TextView
-                                                android:id="@+id/count_notif_izin_tv"
-                                                android:gravity="center"
+                                            <LinearLayout
+                                                android:visibility="gone"
+                                                android:layout_alignParentRight="true"
+                                                android:id="@+id/count_notification_izin"
+                                                android:layout_marginRight="12dp"
+                                                android:layout_marginTop="11dp"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textColor="@color/white"
-                                                android:textSize="12dp"
-                                                android:text="0"/>
+                                                android:paddingRight="4dp"
+                                                android:paddingLeft="4dp"
+                                                android:paddingBottom="1dp"
+                                                android:gravity="center"
+                                                android:background="@drawable/shape_notification_mark_info">
 
-                                        </LinearLayout>
+                                                <TextView
+                                                    android:id="@+id/count_notif_izin_tv"
+                                                    android:gravity="center"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="12dp"
+                                                    android:text="0"/>
 
-                                    </RelativeLayout>
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/penilaian_sdm_btn"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="7dp"
+                                        android:layout_weight=".50"
+                                        android:background="@drawable/shape_menu_info"
+                                        android:orientation="vertical">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_alignParentBottom="true"
+                                                android:layout_alignParentRight="true"
+                                                android:gravity="right">
+
+                                                <LinearLayout
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="40dp"
+                                                    android:layout_marginLeft="10dp"
+                                                    android:layout_marginRight="10dp"
+                                                    android:layout_marginBottom="-20dp"
+                                                    android:background="@drawable/shape_ornament_1" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="70dp"
+                                                android:layout_height="50dp"
+                                                android:layout_marginLeft="10dp"
+                                                android:layout_marginTop="-20dp"
+                                                android:background="@drawable/shape_ornament_1" />
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:paddingLeft="15dp"
+                                                android:paddingTop="20dp"
+                                                android:paddingRight="15dp"
+                                                android:paddingBottom="28dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="90dp"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/penilaian_sdm_ic" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:ellipsize="end"
+                                                    android:gravity="center"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
+                                                    android:text="Penilaian SDM"
+                                                    android:textColor="@color/colorPrimaryDark"
+                                                    android:textSize="14dp" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:visibility="gone"
+                                                android:layout_alignParentRight="true"
+                                                android:id="@+id/count_notification_finger"
+                                                android:layout_marginRight="12dp"
+                                                android:layout_marginTop="11dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:paddingRight="4dp"
+                                                android:paddingLeft="4dp"
+                                                android:paddingBottom="1dp"
+                                                android:gravity="center"
+                                                android:background="@drawable/shape_notification_mark_info">
+
+                                                <TextView
+                                                    android:id="@+id/count_notif_finger_tv"
+                                                    android:gravity="center"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="12dp"
+                                                    android:text="0"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:id="@+id/permohonan_finger_btn"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="7dp"
-                                    android:layout_weight=".50"
-                                    android:background="@drawable/shape_menu_info"
-                                    android:orientation="vertical">
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp">
 
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight=".50">
 
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:layout_alignParentBottom="true"
-                                            android:layout_alignParentRight="true"
-                                            android:gravity="right">
-
-                                            <LinearLayout
-                                                android:layout_width="50dp"
-                                                android:layout_height="40dp"
-                                                android:layout_marginLeft="10dp"
-                                                android:layout_marginRight="10dp"
-                                                android:layout_marginBottom="-20dp"
-                                                android:background="@drawable/shape_ornament_1" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="70dp"
-                                            android:layout_height="50dp"
-                                            android:layout_marginLeft="10dp"
-                                            android:layout_marginTop="-20dp"
-                                            android:background="@drawable/shape_ornament_1" />
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="vertical"
-                                            android:paddingLeft="15dp"
-                                            android:paddingTop="20dp"
-                                            android:paddingRight="15dp"
-                                            android:paddingBottom="20dp">
-
-                                            <ImageView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="90dp"
-                                                android:scaleType="fitCenter"
-                                                android:src="@drawable/permohonan_finger_ic" />
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:ellipsize="end"
-                                                android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:text="Permohonan"
-                                                android:textColor="@color/colorPrimaryDark"
-                                                android:textSize="11dp" />
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:ellipsize="end"
-                                                android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:text="Fingerscan"
-                                                android:textColor="@color/colorPrimaryDark"
-                                                android:textSize="14dp" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:visibility="gone"
-                                            android:layout_alignParentRight="true"
-                                            android:id="@+id/count_notification_finger"
-                                            android:layout_marginRight="12dp"
-                                            android:layout_marginTop="11dp"
+                                        <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:paddingRight="4dp"
-                                            android:paddingLeft="4dp"
-                                            android:paddingBottom="1dp"
-                                            android:gravity="center"
-                                            android:background="@drawable/shape_notification_mark_info">
+                                            android:ellipsize="end"
+                                            android:gravity="left"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="List SDM"
+                                            android:textColor="#E37146"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold" />
 
-                                            <TextView
-                                                android:id="@+id/count_notif_finger_tv"
-                                                android:gravity="center"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:textColor="@color/white"
-                                                android:textSize="12dp"
-                                                android:text="0"/>
+                                    </LinearLayout>
 
-                                        </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="right"
+                                        android:layout_weight=".50">
 
-                                    </RelativeLayout>
+                                        <TextView
+                                            android:id="@+id/pengumuman_selengkapnya_btn"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:ellipsize="end"
+                                            android:gravity="right"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Selengkapnya"
+                                            android:textColor="#1895CD"
+                                            android:textSize="13dp" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="15dp"
+                                    android:paddingBottom="20dp"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp"
+                                    android:orientation="vertical">
+
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/data_absensi_rv"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical"
+                                        android:visibility="gone">
+                                    </androidx.recyclerview.widget.RecyclerView>
+
+                                    <LinearLayout
+                                        android:id="@+id/loading_data_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="60dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="35dp">
+
+                                        <ImageView
+                                            android:id="@+id/loading_data"
+                                            android:layout_width="80dp"
+                                            android:layout_height="80dp"
+                                            android:layout_marginBottom="5dp"
+                                            app:srcCompat="@drawable/loading_sgn_digital" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="-8dp"
+                                            android:text="Memuat data"
+                                            android:textAlignment="center"
+                                            android:textColor="#E1BB8A"
+                                            android:textSize="12dp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Tunggu beberapa saat"
+                                            android:textAlignment="center"
+                                            android:textColor="#ECC28D"
+                                            android:textSize="10dp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/no_data_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingTop="55dp"
+                                        android:paddingBottom="35dp"
+                                        android:visibility="gone">
+
+                                        <TextView
+                                            android:layout_width="85dp"
+                                            android:layout_height="85dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:background="@drawable/empty_image"
+                                            android:textAlignment="center"
+                                            android:textSize="12dp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="-8dp"
+                                            android:text="Data tidak tersedia"
+                                            android:textAlignment="center"
+                                            android:textColor="#E1BB8A"
+                                            android:textSize="12dp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Record Absensi tidak tersedia"
+                                            android:textAlignment="center"
+                                            android:textColor="#ECC28D"
+                                            android:textSize="10dp" />
+
+                                    </LinearLayout>
+
+<!--                                    <include layout="@layout/item_karyawan_list" />-->
+<!--                                    <include layout="@layout/item_karyawan_list" />-->
+<!--                                    <include layout="@layout/item_karyawan_list" />-->
+<!--                                    <include layout="@layout/item_karyawan_list" />-->
+<!--                                    <include layout="@layout/item_karyawan_list" />-->
+<!--                                    <include layout="@layout/item_karyawan_list" />-->
+<!--                                    <include layout="@layout/item_karyawan_list" />-->
+<!--                                    <include layout="@layout/item_karyawan_list" />-->
+<!--                                    <include layout="@layout/item_karyawan_list" />-->
+<!--                                    <include layout="@layout/item_karyawan_list" />-->
 
                                 </LinearLayout>
 
