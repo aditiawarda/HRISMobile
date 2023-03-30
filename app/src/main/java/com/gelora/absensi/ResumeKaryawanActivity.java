@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -19,6 +20,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -33,10 +37,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ResumeKaryawanActivity extends AppCompatActivity {
 
     TextView namaTV, emailTV, genderTV, tempatLahirTV, tanggalLAhirTV, hanphoneTV, statusPernikahanTV, agamaTV, alamatKTPTV, alamatDomisiliTV;
     TextView hubunganKontakTV, namaKontakDaruratTV, kontakDaruratTV, nikTV, cabangTV, departemenTV, bagianTV, jabatanTV, statusKaryawanTV, tanggalBergabungTV, masaKerjaTV, golonganKaryawanTV;
+    CircleImageView profileImage;
     LinearLayout backBTN, actionBar;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -51,6 +58,7 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         actionBar = findViewById(R.id.action_bar);
         backBTN = findViewById(R.id.back_btn);
+        profileImage = findViewById(R.id.profile_image);
         namaTV = findViewById(R.id.nama);
         emailTV = findViewById(R.id.email);
         genderTV = findViewById(R.id.jenis_kelamin);
@@ -123,6 +131,7 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                             String status = data.getString("status");
                             if (status.equals("Success")){
                                 JSONObject dataArray = data.getJSONObject("data");
+                                String avatar = dataArray.getString("avatar");
                                 String nama = dataArray.getString("nama");
                                 String email = dataArray.getString("email");
                                 String jenis_kelamin = dataArray.getString("jenis_kelamin");
@@ -145,6 +154,32 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                 String notelp = dataArray.getString("notelp");
                                 String hubungan = dataArray.getString("hubungan");
                                 String hubungan_lainnya = dataArray.getString("hubungan_lainnya");
+
+                                if(avatar!=null && !avatar.equals("") && !avatar.equals("null")){
+                                    Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar).networkPolicy(NetworkPolicy.NO_CACHE)
+                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                            .resize(800, 800)
+                                            .into(profileImage);
+                                } else {
+                                    Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/default_profile.jpg").networkPolicy(NetworkPolicy.NO_CACHE)
+                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                            .resize(800, 800)
+                                            .into(profileImage);
+                                }
+
+                                profileImage.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(ResumeKaryawanActivity.this, ViewImageActivity.class);
+                                        if(avatar!=null && !avatar.equals("")){
+                                            intent.putExtra("url","https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar);
+                                        } else {
+                                            intent.putExtra("url","https://geloraaksara.co.id/absen-online/upload/avatar/default_profile.jpg");
+                                        }
+                                        intent.putExtra("kode","profile");
+                                        startActivity(intent);
+                                    }
+                                });
 
                                 namaTV.setText(nama);
 
