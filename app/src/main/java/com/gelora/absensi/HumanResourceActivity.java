@@ -42,7 +42,7 @@ import java.util.Map;
 public class HumanResourceActivity extends AppCompatActivity {
 
     LinearLayout backBTN, formSdmBTN, penilaianSdmBTN, loadingRecordPart, noDataPart;
-    TextView titleSDM;
+    TextView titleSDM, pengumumanSelengkapnyaBTN;
     ImageView loadingDataRecord;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -66,6 +66,7 @@ public class HumanResourceActivity extends AppCompatActivity {
         loadingRecordPart = findViewById(R.id.loading_data_part);
         noDataPart = findViewById(R.id.no_data_part);
         titleSDM = findViewById(R.id.title_sdm);
+        pengumumanSelengkapnyaBTN = findViewById(R.id.pengumuman_selengkapnya_btn);
 
         dataListKaryawanRV = findViewById(R.id.data_absensi_rv);
 
@@ -119,10 +120,19 @@ public class HumanResourceActivity extends AppCompatActivity {
             }
         });
 
+        pengumumanSelengkapnyaBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HumanResourceActivity.this, SearchSdmActivity.class);
+                startActivity(intent);
+            }
+        });
+
         getData();
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void getData() {
 
         if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")){

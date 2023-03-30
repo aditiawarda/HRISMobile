@@ -47,6 +47,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".SearchSdmActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".ResumeKaryawanActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
