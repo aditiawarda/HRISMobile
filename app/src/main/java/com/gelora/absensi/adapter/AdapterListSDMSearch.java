@@ -11,6 +11,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.HumanResourceActivity;
@@ -61,6 +62,9 @@ public class AdapterListSDMSearch extends RecyclerView.Adapter<AdapterListSDMSea
         myViewHolder.parrentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intentClose = new Intent("close_keyboard");
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(intentClose);
+
                 Intent intent = new Intent(mContext, ResumeKaryawanActivity.class);
                 intent.putExtra("NIK",humanResource.getNIK());
                 mContext.startActivity(intent);

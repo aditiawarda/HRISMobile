@@ -110,7 +110,7 @@
                                     android:paddingTop="9dp"
                                     android:paddingBottom="10dp"
                                     android:paddingRight="20dp"
-                                    android:hint="Ketik nama karyawan..."
+                                    android:hint="Ketik nama karyawan/NIK..."
                                     android:imeOptions="actionSearch"
                                     android:inputType="text"
                                     android:textColor="@color/colorPrimaryDark"

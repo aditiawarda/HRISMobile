@@ -112,6 +112,7 @@ public class SearchSdmActivity extends AppCompatActivity {
 
         showSoftKeyboard(keywordUserED);
         LocalBroadcastManager.getInstance(this).registerReceiver(bagianBroad, new IntentFilter("bagian_broad"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(closeKeyboard, new IntentFilter("close_keyboard"));
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,6 +216,15 @@ public class SearchSdmActivity extends AppCompatActivity {
         checkUser();
 
     }
+
+    public BroadcastReceiver closeKeyboard = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    };
 
     public BroadcastReceiver bagianBroad = new BroadcastReceiver() {
         @SuppressLint("SetTextI18n")
