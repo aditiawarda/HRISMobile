@@ -134,6 +134,7 @@ public class InfoPersonalActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
+                                String button_update = data.getString("button_update");
                                 JSONObject dataArray = data.getJSONObject("data");
                                 String nama = dataArray.getString("nama");
                                 String email = dataArray.getString("email");
@@ -159,7 +160,11 @@ public class InfoPersonalActivity extends AppCompatActivity {
                                    (!alamat_ktp.equals("")       &&!alamat_ktp.equals("null"))       &&
                                    (!alamat_domisili.equals("")  &&!alamat_domisili.equals("null"))
                                 ){
-                                    ubahBTN.setVisibility(View.VISIBLE);
+                                    if(button_update.equals("1")){
+                                        ubahBTN.setVisibility(View.VISIBLE);
+                                    } else {
+                                        ubahBTN.setVisibility(View.GONE);
+                                    }
                                 } else {
                                     ubahBTN.setVisibility(View.GONE);
                                 }
