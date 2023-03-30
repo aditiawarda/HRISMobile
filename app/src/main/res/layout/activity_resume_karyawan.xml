@@ -33,28 +33,65 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="100dp"
+                            android:layout_height="200dp"
+                            android:layout_marginTop="67dp"
+                            android:background="@drawable/bg_resume"
                             android:gravity="center"
                             android:orientation="vertical">
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right">
+
+                                <LinearLayout
+                                    android:id="@+id/phone_btn"
+                                    android:layout_width="33dp"
+                                    android:layout_height="33dp"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="25dp"
+                                    android:background="@drawable/shape_back_2"
+                                    android:gravity="center">
+
+                                    <LinearLayout
+                                        android:layout_width="23dp"
+                                        android:layout_height="23dp"
+                                        android:background="@drawable/ic_baseline_phone_2" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
                             <RelativeLayout
                                 android:layout_width="100dp"
-                                android:layout_height="100dp">
+                                android:layout_height="100dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="25dp">
 
                                 <de.hdodenhof.circleimageview.CircleImageView
                                     android:layout_width="100dp"
                                     android:layout_height="100dp"
                                     android:src="@drawable/default_profile"
-                                    app:civ_border_color="#BDBDBD"
+                                    app:civ_border_color="#FFF3E5"
                                     app:civ_border_width="1dp" />
+
+                                <LinearLayout
+                                    android:gravity="center"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp">
+
+                                    <ProgressBar
+                                        android:layout_width="35dp"
+                                        android:layout_height="35dp"
+                                        android:indeterminateTint="@color/colorPrimaryDark" />
+
+                                </LinearLayout>
 
                                 <de.hdodenhof.circleimageview.CircleImageView
                                     android:id="@+id/profile_image"
                                     android:layout_width="100dp"
                                     android:layout_height="100dp"
-                                    android:src="@drawable/default_profile"
-                                    app:civ_border_color="#BDBDBD"
+                                    app:civ_border_color="#FFF3E5"
                                     app:civ_border_width="1dp" />
 
                             </RelativeLayout>
@@ -855,52 +892,84 @@
                             android:paddingLeft="20dp"
                             android:paddingBottom="30dp">
 
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:orientation="vertical"
-                                android:paddingLeft="10dp">
+                                android:layout_height="match_parent">
 
-                                <TextView
-                                    android:id="@+id/nama_kontak_darurat_tv"
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="5dp"
-                                    android:ellipsize="end"
-                                    android:gravity="center"
-                                    android:maxLines="1"
-                                    android:singleLine="true"
-                                    android:text="Nama Kontak"
-                                    android:textColor="#8F8F8F"
-                                    android:textSize="12dp" />
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginRight="75dp"
+                                    android:orientation="vertical"
+                                    android:paddingLeft="10dp">
 
-                                <TextView
-                                    android:id="@+id/hubungan_kontak_tv"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="5dp"
-                                    android:ellipsize="end"
-                                    android:gravity="center"
-                                    android:maxLines="1"
-                                    android:singleLine="true"
-                                    android:text=""
-                                    android:textColor="#8F8F8F"
-                                    android:textSize="10dp" />
+                                    <TextView
+                                        android:id="@+id/nama_kontak_darurat_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:ellipsize="end"
+                                        android:gravity="center"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="Nama Kontak"
+                                        android:textColor="#8F8F8F"
+                                        android:textSize="12dp" />
 
-                                <TextView
-                                    android:id="@+id/kontak_darurat_tv"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:ellipsize="end"
-                                    android:gravity="center"
-                                    android:maxLines="1"
-                                    android:singleLine="true"
-                                    android:text=""
-                                    android:textColor="#686868"
-                                    android:textSize="13dp" />
+                                    <TextView
+                                        android:id="@+id/hubungan_kontak_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:ellipsize="end"
+                                        android:gravity="center"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text=""
+                                        android:textColor="#8F8F8F"
+                                        android:textSize="10dp" />
 
-                            </LinearLayout>
+                                    <TextView
+                                        android:id="@+id/kontak_darurat_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:gravity="center"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text=""
+                                        android:textColor="#686868"
+                                        android:textSize="13dp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/phone_kontak_part"
+                                    android:layout_width="match_parent"
+                                    android:gravity="right"
+                                    android:visibility="gone"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:id="@+id/phone_kontak_btn"
+                                        android:layout_width="33dp"
+                                        android:layout_height="33dp"
+                                        android:layout_marginTop="30dp"
+                                        android:layout_marginRight="25dp"
+                                        android:background="@drawable/shape_tools_kontak"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:layout_width="23dp"
+                                            android:layout_height="23dp"
+                                            android:background="@drawable/ic_baseline_phone" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 

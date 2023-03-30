@@ -5,6 +5,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -44,7 +45,7 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
     TextView namaTV, emailTV, genderTV, tempatLahirTV, tanggalLAhirTV, hanphoneTV, statusPernikahanTV, agamaTV, alamatKTPTV, alamatDomisiliTV;
     TextView hubunganKontakTV, namaKontakDaruratTV, kontakDaruratTV, nikTV, cabangTV, departemenTV, bagianTV, jabatanTV, statusKaryawanTV, tanggalBergabungTV, masaKerjaTV, golonganKaryawanTV;
     CircleImageView profileImage;
-    LinearLayout backBTN, actionBar;
+    LinearLayout backBTN, actionBar, phoneBTN, phoneKontakPart, phoneDaruratBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     String nikResumer = "";
@@ -81,6 +82,9 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
         namaKontakDaruratTV = findViewById(R.id.nama_kontak_darurat_tv);
         kontakDaruratTV = findViewById(R.id.kontak_darurat_tv);
         hubunganKontakTV = findViewById(R.id.hubungan_kontak_tv);
+        phoneBTN = findViewById(R.id.phone_btn);
+        phoneKontakPart = findViewById(R.id.phone_kontak_part);
+        phoneDaruratBTN = findViewById(R.id.phone_kontak_btn);
 
         nikResumer = getIntent().getExtras().getString("NIK");
 
@@ -166,6 +170,14 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                             .resize(800, 800)
                                             .into(profileImage);
                                 }
+
+                                phoneBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", handphone, null));
+                                        startActivity(intent);
+                                    }
+                                });
 
                                 profileImage.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -474,12 +486,23 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                 if(nama_kontak.equals("")||nama_kontak.equals("null")){
                                     namaKontakDaruratTV.setText("-");
                                     kontakDaruratTV.setText("-");
+                                    phoneKontakPart.setVisibility(View.GONE);
                                 } else {
                                     namaKontakDaruratTV.setText(nama_kontak);
                                     if(notelp.equals("")||notelp.equals("null")){
                                         kontakDaruratTV.setText("-");
                                     } else {
                                         kontakDaruratTV.setText(notelp);
+                                        phoneKontakPart.setVisibility(View.VISIBLE);
+
+                                        phoneDaruratBTN.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", notelp, null));
+                                                startActivity(intent);
+                                            }
+                                        });
+
                                     }
                                 }
 
