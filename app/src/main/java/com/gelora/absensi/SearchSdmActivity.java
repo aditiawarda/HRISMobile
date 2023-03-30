@@ -153,6 +153,8 @@ public class SearchSdmActivity extends AppCompatActivity {
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                 onBackPressed();
             }
         });
@@ -162,7 +164,6 @@ public class SearchSdmActivity extends AppCompatActivity {
             public void onClick(View v) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-
                 choiceBagian();
             }
         });
