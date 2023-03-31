@@ -42,11 +42,11 @@ public class InfoPengalamanDanPelatihanActivity extends AppCompatActivity {
 
     LinearLayout addBTN, noDataPengalamanPart, noDataPelatihanPart, loadingDataPelatihanPart, backBTN, pengalamanBTN, pelatihanBTN, infoPengalaman, infoPelatihan, loadingDataPengalamanPart;
     ImageView loadingDataPelatihanImg, loadingDataPengalamanImg;
-    RecyclerView dataPelatihanRV, dataPengalamanRV;
     SwipeRefreshLayout refreshLayout;
     String posisi = "pengalaman";
     SharedPrefManager sharedPrefManager;
 
+    RecyclerView dataPelatihanRV, dataPengalamanRV;
     private DataPengalaman[] dataPengalamans;
     private AdapterListPengalaman adapterListPengalaman;
     private DataPelatihan[] dataPelatihans;

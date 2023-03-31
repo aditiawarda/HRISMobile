@@ -854,7 +854,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="10dp"
                             android:layout_marginTop="12dp"
-                            android:layout_marginBottom="23dp"
+                            android:layout_marginBottom="15dp"
                             android:background="#3CCFCFCF" />
 
                         <LinearLayout
@@ -886,11 +886,38 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/part_empty_kontak_darurat"
+                            android:background="@drawable/shape_bg_record_libur"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_marginLeft="28dp"
+                            android:layout_marginRight="28dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="17dp"
+                            android:visibility="gone"
+                            tools:ignore="DisableBaselineAlignment">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="17dp"
+                                android:layout_marginRight="17dp"
+                                android:text="Data tidak tersedia"
+                                android:textColor="#CC8D3E"
+                                android:textSize="12dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/part_available_kontak_darurat"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
                             android:paddingLeft="20dp"
-                            android:paddingBottom="30dp">
+                            android:paddingBottom="10dp">
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -970,6 +997,160 @@
                                 </LinearLayout>
 
                             </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="23dp"
+                            android:background="#3CCFCFCF" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:gravity="left"
+                                android:maxLines="1"
+                                android:paddingLeft="28dp"
+                                android:paddingRight="28dp"
+                                android:singleLine="true"
+                                android:text="Info Pengalaman"
+                                android:textColor="#E37146"
+                                android:textSize="13dp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1.5dp"
+                                android:layout_marginTop="18dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="#9AECC0B0" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginBottom="10dp">
+
+                            <LinearLayout
+                                android:id="@+id/part_empty_pengalaman"
+                                android:background="@drawable/shape_bg_record_libur"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_marginLeft="28dp"
+                                android:layout_marginRight="28dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:visibility="visible"
+                                tools:ignore="DisableBaselineAlignment">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="17dp"
+                                    android:layout_marginRight="17dp"
+                                    android:text="Data tidak tersedia"
+                                    android:textColor="#CC8D3E"
+                                    android:textSize="12dp" />
+
+                            </LinearLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:visibility="gone"
+                                android:id="@+id/data_pengalaman_rv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                            </androidx.recyclerview.widget.RecyclerView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="23dp"
+                            android:background="#3CCFCFCF" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:gravity="left"
+                                android:maxLines="1"
+                                android:paddingLeft="28dp"
+                                android:paddingRight="28dp"
+                                android:singleLine="true"
+                                android:text="Info Pelatihan"
+                                android:textColor="#E37146"
+                                android:textSize="13dp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1.5dp"
+                                android:layout_marginTop="18dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="#9AECC0B0" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginBottom="23dp">
+
+                            <LinearLayout
+                                android:id="@+id/part_empty_pelatihan"
+                                android:background="@drawable/shape_bg_record_libur"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_marginLeft="28dp"
+                                android:layout_marginRight="28dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:visibility="visible"
+                                tools:ignore="DisableBaselineAlignment">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="17dp"
+                                    android:layout_marginRight="17dp"
+                                    android:text="Data tidak tersedia"
+                                    android:textColor="#CC8D3E"
+                                    android:textSize="12dp" />
+
+                            </LinearLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:visibility="gone"
+                                android:id="@+id/data_pelatihan_rv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                            </androidx.recyclerview.widget.RecyclerView>
 
                         </LinearLayout>
 

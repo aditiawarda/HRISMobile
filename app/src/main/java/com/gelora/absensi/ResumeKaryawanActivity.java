@@ -1,6 +1,9 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
@@ -22,7 +25,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.gelora.absensi.adapter.AdapterListPelatihan;
+import com.gelora.absensi.adapter.AdapterListPelatihanResume;
+import com.gelora.absensi.adapter.AdapterListPengalaman;
+import com.gelora.absensi.adapter.AdapterListPengalamanResume;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.model.DataPelatihan;
+import com.gelora.absensi.model.DataPengalaman;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -47,10 +58,16 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
     TextView namaTV, emailTV, genderTV, tempatLahirTV, tanggalLAhirTV, hanphoneTV, statusPernikahanTV, agamaTV, alamatKTPTV, alamatDomisiliTV;
     TextView hubunganKontakTV, namaKontakDaruratTV, kontakDaruratTV, nikTV, cabangTV, departemenTV, bagianTV, jabatanTV, statusKaryawanTV, tanggalBergabungTV, masaKerjaTV, golonganKaryawanTV;
     CircleImageView profileImage;
-    LinearLayout backBTN, actionBar, phoneBTN, phoneKontakPart, phoneDaruratBTN;
+    LinearLayout partEmptyPelatihan, partEmptyPengalaman, partEmptyKontakDarurat, partAvailableKontakDarurat, backBTN, actionBar, phoneBTN, phoneKontakPart, phoneDaruratBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     String nikResumer = "";
+
+    RecyclerView dataPelatihanRV, dataPengalamanRV;
+    private DataPengalaman[] dataPengalamans;
+    private AdapterListPengalamanResume adapterListPengalaman;
+    private DataPelatihan[] dataPelatihans;
+    private AdapterListPelatihanResume adapterListPelatihan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +104,22 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
         phoneBTN = findViewById(R.id.phone_btn);
         phoneKontakPart = findViewById(R.id.phone_kontak_part);
         phoneDaruratBTN = findViewById(R.id.phone_kontak_btn);
+        partEmptyKontakDarurat = findViewById(R.id.part_empty_kontak_darurat);
+        partAvailableKontakDarurat = findViewById(R.id.part_available_kontak_darurat);
+        partEmptyPengalaman = findViewById(R.id.part_empty_pengalaman);
+        dataPengalamanRV = findViewById(R.id.data_pengalaman_rv);
+        partEmptyPelatihan = findViewById(R.id.part_empty_pelatihan);
+        dataPelatihanRV = findViewById(R.id.data_pelatihan_rv);
+
+        dataPengalamanRV.setLayoutManager(new LinearLayoutManager(this));
+        dataPengalamanRV.setHasFixedSize(true);
+        dataPengalamanRV.setNestedScrollingEnabled(false);
+        dataPengalamanRV.setItemAnimator(new DefaultItemAnimator());
+
+        dataPelatihanRV.setLayoutManager(new LinearLayoutManager(this));
+        dataPelatihanRV.setHasFixedSize(true);
+        dataPelatihanRV.setNestedScrollingEnabled(false);
+        dataPelatihanRV.setItemAnimator(new DefaultItemAnimator());
 
         nikResumer = getIntent().getExtras().getString("NIK");
 
@@ -489,7 +522,11 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                     namaKontakDaruratTV.setText("-");
                                     kontakDaruratTV.setText("-");
                                     phoneKontakPart.setVisibility(View.GONE);
+                                    partEmptyKontakDarurat.setVisibility(View.VISIBLE);
+                                    partAvailableKontakDarurat.setVisibility(View.GONE);
                                 } else {
+                                    partEmptyKontakDarurat.setVisibility(View.GONE);
+                                    partAvailableKontakDarurat.setVisibility(View.VISIBLE);
                                     namaKontakDaruratTV.setText(nama_kontak);
                                     if(notelp.equals("")||notelp.equals("null")){
                                         kontakDaruratTV.setText("-");
@@ -518,6 +555,37 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                     }
                                 } else {
                                     hubunganKontakTV.setText(hubungan);
+                                }
+
+                                String jumlah_pengalaman = data.getString("jumlah_pengalaman");
+                                String jumlah_pelatihan = data.getString("jumlah_pelatihan");
+
+                                if (jumlah_pengalaman.equals("0")){
+                                    dataPengalamanRV.setVisibility(View.GONE);
+                                    partEmptyPengalaman.setVisibility(View.VISIBLE);
+                                } else {
+                                    dataPengalamanRV.setVisibility(View.VISIBLE);
+                                    partEmptyPengalaman.setVisibility(View.GONE);
+                                    String data_pengalaman = data.getString("data_pengalaman");
+                                    GsonBuilder builder = new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    dataPengalamans = gson.fromJson(data_pengalaman, DataPengalaman[].class);
+                                    adapterListPengalaman = new AdapterListPengalamanResume(dataPengalamans, ResumeKaryawanActivity.this);
+                                    dataPengalamanRV.setAdapter(adapterListPengalaman);
+                                }
+
+                                if (jumlah_pelatihan.equals("0")){
+                                    dataPelatihanRV.setVisibility(View.GONE);
+                                    partEmptyPelatihan.setVisibility(View.VISIBLE);
+                                } else {
+                                    dataPelatihanRV.setVisibility(View.VISIBLE);
+                                    partEmptyPelatihan.setVisibility(View.GONE);
+                                    String data_pelatihan = data.getString("data_pelatihan");
+                                    GsonBuilder builder = new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    dataPelatihans = gson.fromJson(data_pelatihan, DataPelatihan[].class);
+                                    adapterListPelatihan = new AdapterListPelatihanResume(dataPelatihans, ResumeKaryawanActivity.this);
+                                    dataPelatihanRV.setAdapter(adapterListPelatihan);
                                 }
 
                             } else {
