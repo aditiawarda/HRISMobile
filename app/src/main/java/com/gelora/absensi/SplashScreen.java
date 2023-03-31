@@ -385,7 +385,7 @@ public class SplashScreen extends AppCompatActivity {
                             String close_btn = response.getString("close_btn");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.8.0";
+                                String currentVersion = "1.8.1";
                                 if (!currentVersion.equals(version) && popup.equals("1")){
 
                                     refreshPart.animate()
