@@ -37,6 +37,7 @@ import com.gelora.absensi.DetailTidakHadirActivity;
 import com.gelora.absensi.FaqActivity;
 import com.gelora.absensi.HistoryActivity;
 import com.gelora.absensi.HistoryCutiIzinActivity;
+import com.gelora.absensi.HumanResourceActivity;
 import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.ListNotifikasiFingerscanActivity;
 import com.gelora.absensi.MonitoringAbsensiBagianActivity;
@@ -68,8 +69,8 @@ public class FragmentInfo extends Fragment {
 
     TextView titlePage, dateNowTV, countNotifFingerTV, countNotifIzinTV;
     ExpandableLayout aboutAppField, privacyPolicyField, contactServiceField;
-    LinearLayout dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
-    TextView historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
+    LinearLayout sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
+    TextView bagianNameTVSDM, historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     ImageView notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     SwipeRefreshLayout refreshLayout;
     String selectMonth = "", statusFiturIzinCuti = "1", statusFiturFinger = "1", currentDay = "";
@@ -148,6 +149,9 @@ public class FragmentInfo extends Fragment {
         countNotifIzinTV = view.findViewById(R.id.count_notif_izin_tv);
         countNotifFingerTV = view.findViewById(R.id.count_notif_finger_tv);
         dasboardStatistikAbsen = view.findViewById(R.id.dasboard_statistik_absen);
+        bagianNameTV = view.findViewById(R.id.bagian_name_tv);
+        bagianNameTVSDM = view.findViewById(R.id.bagian_name_tv_sdm);
+        sdmBTN = view.findViewById(R.id.sdm_btn);
 
         selectMonth = getBulanTahun();
         dateNowTV.setText(getDate().substring(8,10)+"/"+getDate().substring(5,7)+"/"+getDate().substring(0,4));
@@ -441,6 +445,14 @@ public class FragmentInfo extends Fragment {
             }
         });
 
+        sdmBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, HumanResourceActivity.class);
+                startActivity(intent);
+            }
+        });
+
         aboutCompanyBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -665,10 +677,18 @@ public class FragmentInfo extends Fragment {
     }
 
     private void getPersonalization() {
+
+        if(sharedPrefManager.getSpNik().equals("80085")){
+            sdmBTN.setVisibility(View.VISIBLE);
+        } else {
+            sdmBTN.setVisibility(View.GONE);
+        }
+
         //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/personalization";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
                         // response
@@ -685,6 +705,8 @@ public class FragmentInfo extends Fragment {
                                 String sisa_cuti = data.getString("sisa_cuti");
                                 String periode_mulai = data.getString("periode_mulai");
                                 String periode_akhir = data.getString("periode_akhir");
+                                String bagian = data.getString("bagian");
+                                String departemen = data.getString("departemen");
 
                                 statusFiturIzinCuti = fitur_izin;
                                 statusFiturFinger = fitur_finger;
@@ -694,14 +716,20 @@ public class FragmentInfo extends Fragment {
                                         monitoringStaffBTN.setVisibility(View.VISIBLE);
                                         titlePantau.setText("Pantau kehadiran departemen*");
                                         notePantau.setText("*Fitur khusus Kepala Departemen");
+                                        bagianNameTV.setText(departemen);
+                                        bagianNameTVSDM.setText(departemen);
                                     } else if (sharedPrefManager.getSpIdJabatan().equals("3")){
                                         monitoringStaffBTN.setVisibility(View.VISIBLE);
                                         titlePantau.setText("Pantau kehadiran departemen*");
                                         notePantau.setText("*Fitur khusus Ka.Dept & Ast.Ka.Dept");
+                                        bagianNameTV.setText(departemen);
+                                        bagianNameTVSDM.setText(departemen);
                                     } else if (sharedPrefManager.getSpIdJabatan().equals("11")){
                                         monitoringStaffBTN.setVisibility(View.VISIBLE);
                                         titlePantau.setText("Pantau kehadiran bagian*");
                                         notePantau.setText("*Fitur khusus Kepala Bagian");
+                                        bagianNameTV.setText(bagian);
+                                        bagianNameTVSDM.setText(bagian);
                                     } else {
                                         monitoringStaffBTN.setVisibility(View.GONE);
                                     }

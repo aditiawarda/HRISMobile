@@ -8,7 +8,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -24,11 +23,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.gelora.absensi.adapter.AdapterDataAbsensiMore;
 import com.gelora.absensi.adapter.AdapterListSDM;
-import com.gelora.absensi.model.DataRecordAbsensi;
 import com.gelora.absensi.model.HumanResource;
-import com.gelora.absensi.support.StatusBarColorManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -41,8 +37,8 @@ import java.util.Map;
 
 public class HumanResourceActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, formSdmBTN, penilaianSdmBTN, loadingRecordPart, noDataPart;
-    TextView titleSDM, pengumumanSelengkapnyaBTN;
+    LinearLayout searchOtherPart, backBTN, formSdmBTN, penilaianSdmBTN, loadingDataPart, noDataPart;
+    TextView titleSDM, dataSelengkapnyaBTN, searchOtherBTN;
     ImageView loadingDataRecord;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -63,10 +59,12 @@ public class HumanResourceActivity extends AppCompatActivity {
         formSdmBTN = findViewById(R.id.form_sdm_btn);
         penilaianSdmBTN = findViewById(R.id.penilaian_sdm_btn);
         loadingDataRecord = findViewById(R.id.loading_data);
-        loadingRecordPart = findViewById(R.id.loading_data_part);
+        loadingDataPart = findViewById(R.id.loading_data_part);
         noDataPart = findViewById(R.id.no_data_part);
         titleSDM = findViewById(R.id.title_sdm);
-        pengumumanSelengkapnyaBTN = findViewById(R.id.pengumuman_selengkapnya_btn);
+        dataSelengkapnyaBTN = findViewById(R.id.pengumuman_selengkapnya_btn);
+        searchOtherPart = findViewById(R.id.search_other_part);
+        searchOtherBTN = findViewById(R.id.search_other_btn);
 
         dataListKaryawanRV = findViewById(R.id.data_absensi_rv);
 
@@ -83,7 +81,7 @@ public class HumanResourceActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                loadingRecordPart.setVisibility(View.VISIBLE);
+                loadingDataPart.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
                 dataListKaryawanRV.setVisibility(View.GONE);
 
@@ -120,7 +118,15 @@ public class HumanResourceActivity extends AppCompatActivity {
             }
         });
 
-        pengumumanSelengkapnyaBTN.setOnClickListener(new View.OnClickListener() {
+        dataSelengkapnyaBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HumanResourceActivity.this, SearchSdmActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        searchOtherBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HumanResourceActivity.this, SearchSdmActivity.class);
@@ -156,9 +162,10 @@ public class HumanResourceActivity extends AppCompatActivity {
                             if (status.equals("Success")) {
                                 String jumlah_data = data.getString("jumlah");
                                 if(Integer.parseInt(jumlah_data)>0){
-                                    loadingRecordPart.setVisibility(View.GONE);
+                                    loadingDataPart.setVisibility(View.GONE);
                                     dataListKaryawanRV.setVisibility(View.VISIBLE);
                                     noDataPart.setVisibility(View.GONE);
+                                    searchOtherPart.setVisibility(View.VISIBLE);
                                     String data_karyawan = data.getString("data");
                                     GsonBuilder builder = new GsonBuilder();
                                     Gson gson = builder.create();
@@ -166,9 +173,10 @@ public class HumanResourceActivity extends AppCompatActivity {
                                     adapterListSDM = new AdapterListSDM(humanResources, HumanResourceActivity.this);
                                     dataListKaryawanRV.setAdapter(adapterListSDM);
                                 } else {
-                                    loadingRecordPart.setVisibility(View.GONE);
+                                    loadingDataPart.setVisibility(View.GONE);
                                     dataListKaryawanRV.setVisibility(View.GONE);
                                     noDataPart.setVisibility(View.VISIBLE);
+                                    searchOtherPart.setVisibility(View.GONE);
                                 }
                             }
 
