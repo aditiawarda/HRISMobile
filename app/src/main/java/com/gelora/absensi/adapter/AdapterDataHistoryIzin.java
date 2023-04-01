@@ -50,11 +50,19 @@ public class AdapterDataHistoryIzin extends RecyclerView.Adapter<AdapterDataHist
         myViewHolder.deskripsiHistoryTV.setText(dataHistoryIzin.getDeskripsi_izin());
         myViewHolder.dateRangeTV.setText(startDate.substring(8,10)+"/"+startDate.substring(5,7)+"/"+startDate.substring(0,4)+"  s.d. "+finishDate.substring(8,10)+"/"+finishDate.substring(5,7)+"/"+finishDate.substring(0,4));
 
-        if(dataHistoryIzin.getKeterangan().equals("-") || dataHistoryIzin.getKeterangan().equals(".") || dataHistoryIzin.getKeterangan().equals(" ") || dataHistoryIzin.getKeterangan()==null){
+        if(dataHistoryIzin.getKeterangan()==null){
             myViewHolder.alasanAtauKeteranganTV.setVisibility(View.GONE);
         } else {
-            myViewHolder.alasanAtauKeteranganTV.setVisibility(View.VISIBLE);
-            myViewHolder.alasanAtauKeteranganTV.setText(dataHistoryIzin.getKeterangan());
+            if(dataHistoryIzin.getKeterangan().length()==1){
+                myViewHolder.alasanAtauKeteranganTV.setVisibility(View.GONE);
+            } else {
+                if(dataHistoryIzin.getKeterangan().equals("null")){
+                    myViewHolder.alasanAtauKeteranganTV.setVisibility(View.GONE);
+                } else {
+                    myViewHolder.alasanAtauKeteranganTV.setVisibility(View.VISIBLE);
+                    myViewHolder.alasanAtauKeteranganTV.setText(dataHistoryIzin.getKeterangan());
+                }
+            }
         }
 
         if(tipePengajuan.equals("1")){
