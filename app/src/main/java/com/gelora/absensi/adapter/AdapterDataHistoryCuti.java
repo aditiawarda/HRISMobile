@@ -56,11 +56,19 @@ public class AdapterDataHistoryCuti extends RecyclerView.Adapter<AdapterDataHist
         myViewHolder.deskripsiHistoryTV.setText(dataHistoryCuti.getDeskripsi_izin());
         myViewHolder.dateRangeTV.setText(startDate.substring(8,10)+"/"+startDate.substring(5,7)+"/"+startDate.substring(0,4)+"  s.d. "+finishDate.substring(8,10)+"/"+finishDate.substring(5,7)+"/"+finishDate.substring(0,4));
 
-        if(dataHistoryCuti.getAlasan_cuti()==null || dataHistoryCuti.getAlasan_cuti().length()==1){
+        if(dataHistoryCuti.getAlasan_cuti()==null){
             myViewHolder.alasanAtauKeteranganTV.setVisibility(View.GONE);
         } else {
-            myViewHolder.alasanAtauKeteranganTV.setVisibility(View.VISIBLE);
-            myViewHolder.alasanAtauKeteranganTV.setText(dataHistoryCuti.getAlasan_cuti());
+             if(dataHistoryCuti.getAlasan_cuti().length()==1){
+                 myViewHolder.alasanAtauKeteranganTV.setVisibility(View.GONE);
+             } else {
+                 if(dataHistoryCuti.getAlasan_cuti().equals("null")){
+                     myViewHolder.alasanAtauKeteranganTV.setVisibility(View.GONE);
+                 } else {
+                     myViewHolder.alasanAtauKeteranganTV.setVisibility(View.VISIBLE);
+                     myViewHolder.alasanAtauKeteranganTV.setText(dataHistoryCuti.getAlasan_cuti());
+                 }
+             }
         }
 
         if(tipePengajuan.equals("2")){
