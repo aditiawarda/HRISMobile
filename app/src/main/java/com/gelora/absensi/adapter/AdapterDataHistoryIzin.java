@@ -96,5 +96,4 @@ public class AdapterDataHistoryIzin extends RecyclerView.Adapter<AdapterDataHist
         }
     }
 
-
 }
