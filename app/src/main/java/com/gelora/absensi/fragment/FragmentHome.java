@@ -59,6 +59,7 @@ import com.gelora.absensi.ChatSplashScreenActivity;
 import com.gelora.absensi.ComingSoonActivity;
 import com.gelora.absensi.DetailCuacaActivity;
 import com.gelora.absensi.DetailPengumumanActivity;
+import com.gelora.absensi.DetailPenilaianKaryawanActivity;
 import com.gelora.absensi.DigitalCardActivity;
 import com.gelora.absensi.DigitalSignatureActivity;
 import com.gelora.absensi.FetchAddressIntentServices;
@@ -380,7 +381,7 @@ public class FragmentHome extends Fragment {
         menuSdmBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, HumanResourceActivity.class);
+                Intent intent = new Intent(mContext, DetailPenilaianKaryawanActivity.class);
                 startActivity(intent);
             }
         });
