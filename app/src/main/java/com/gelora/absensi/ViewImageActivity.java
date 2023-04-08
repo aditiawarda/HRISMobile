@@ -24,7 +24,7 @@ import java.io.File;
 
 public class ViewImageActivity extends AppCompatActivity {
 
-    private ScaleGestureDetector scaleGestureDetector;
+    // private ScaleGestureDetector scaleGestureDetector;
     // private float mScaleFactor = 1.0f;
     private ImageView mainImage;
     LinearLayout actionBar, backBTN,loadingPart;
