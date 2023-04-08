@@ -79,6 +79,7 @@ import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.adapter.AdapterListPengumumanNew;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataPengumuman;
+import com.gelora.absensi.model.HumanResource;
 import com.github.jinatonic.confetti.CommonConfetti;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -381,7 +382,7 @@ public class FragmentHome extends Fragment {
         menuSdmBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, DetailPenilaianKaryawanActivity.class);
+                Intent intent = new Intent(mContext, HumanResourceActivity.class);
                 startActivity(intent);
             }
         });

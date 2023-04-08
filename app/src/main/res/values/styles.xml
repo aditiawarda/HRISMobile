@@ -48,5 +48,24 @@
         <item name="android:fontFamily">@font/roboto</item>
     </style>
 
+    <style name="timePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorControlActivated">@color/color6</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/colorAccent2</item>
+        <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="datePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="MonthPickerDialogStyle" >
+        <item name="monthBgSelectedColor">@color/colorAccent</item>
+        <item name="headerBgColor">@color/colorAccent</item>
+        <item name="headerFontColorSelected">#fff</item>
+        <item name="headerFontColorNormal">#85FFFFFF</item>
+        <item name="headerTitleColor">#fff</item>
+        <item name="dialogActionButtonColor">@color/colorAccent</item>
+    </style>
 
 </resources>

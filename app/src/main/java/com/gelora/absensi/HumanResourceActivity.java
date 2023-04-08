@@ -113,7 +113,7 @@ public class HumanResourceActivity extends AppCompatActivity {
         penilaianSdmBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HumanResourceActivity.this, FormPenilaianKaryawanActivity.class);
+                Intent intent = new Intent(HumanResourceActivity.this, ComingSoonActivity.class);
                 startActivity(intent);
             }
         });

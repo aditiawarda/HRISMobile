@@ -175,7 +175,7 @@ public class HistoryActivity extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             Calendar cal = Calendar.getInstance();
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
-            DatePickerDialog dpd = new DatePickerDialog(HistoryActivity.this, (view1, year, month, dayOfMonth) -> {
+            DatePickerDialog dpd = new DatePickerDialog(HistoryActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
                 filterDateBTN.setVisibility(View.GONE);
                 filterDateChoice.setVisibility(View.VISIBLE);
 
@@ -279,7 +279,7 @@ public class HistoryActivity extends AppCompatActivity {
             int m = Integer.parseInt(getDateM());
             int d = Integer.parseInt(getDateD());
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
-            DatePickerDialog dpd = new DatePickerDialog(HistoryActivity.this, (view1, year, month, dayOfMonth) -> {
+            DatePickerDialog dpd = new DatePickerDialog(HistoryActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
                 filterDateBTN.setVisibility(View.GONE);
                 filterDateChoice.setVisibility(View.VISIBLE);
 

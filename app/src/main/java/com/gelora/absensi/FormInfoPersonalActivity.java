@@ -1090,7 +1090,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
             int m = Integer.parseInt(getDateM());
             int d = Integer.parseInt(getDateD());
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
-            DatePickerDialog dpd = new DatePickerDialog(FormInfoPersonalActivity.this, (view1, year, month, dayOfMonth) -> {
+            DatePickerDialog dpd = new DatePickerDialog(FormInfoPersonalActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
                 tanggalLAhir = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 

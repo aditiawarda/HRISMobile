@@ -522,7 +522,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
-            DatePickerDialog dpd = new DatePickerDialog(EditPermohonanIzinActivity.this, (view1, year, month, dayOfMonth) -> {
+            DatePickerDialog dpd = new DatePickerDialog(EditPermohonanIzinActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
                 dateChoiceMulai = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
@@ -728,7 +728,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
             int m = Integer.parseInt(getDateM());
             int d = Integer.parseInt(getDateD());
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
-            DatePickerDialog dpd = new DatePickerDialog(EditPermohonanIzinActivity.this, (view1, year, month, dayOfMonth) -> {
+            DatePickerDialog dpd = new DatePickerDialog(EditPermohonanIzinActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
                 dateChoiceMulai = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
@@ -938,7 +938,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
-            DatePickerDialog dpd = new DatePickerDialog(EditPermohonanIzinActivity.this, (view1, year, month, dayOfMonth) -> {
+            DatePickerDialog dpd = new DatePickerDialog(EditPermohonanIzinActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
                 dateChoiceAkhir = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
@@ -1144,7 +1144,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
             int m = Integer.parseInt(getDateM());
             int d = Integer.parseInt(getDateD());
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
-            DatePickerDialog dpd = new DatePickerDialog(EditPermohonanIzinActivity.this, (view1, year, month, dayOfMonth) -> {
+            DatePickerDialog dpd = new DatePickerDialog(EditPermohonanIzinActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
                 dateChoiceAkhir = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 

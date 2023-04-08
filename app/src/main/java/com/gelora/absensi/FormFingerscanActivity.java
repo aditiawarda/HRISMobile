@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -469,7 +470,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                         int m = Integer.parseInt(getTimeM());
 
                         @SuppressLint({"DefaultLocale", "SetTextI18n"})
-                        TimePickerDialog tpd = new TimePickerDialog(FormFingerscanActivity.this, (view1, hourOfDay, minute) -> {
+                        TimePickerDialog tpd = new TimePickerDialog(FormFingerscanActivity.this, R.style.timePickerStyle, (view1, hourOfDay, minute) -> {
                             jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
 
                             if(tanggalPulang.equals(getDate())){
@@ -581,7 +582,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                         int m = Integer.parseInt(getTimeM());
 
                         @SuppressLint({"DefaultLocale", "SetTextI18n"})
-                        TimePickerDialog tpd = new TimePickerDialog(FormFingerscanActivity.this, (view1, hourOfDay, minute) -> {
+                        TimePickerDialog tpd = new TimePickerDialog(FormFingerscanActivity.this, R.style.timePickerStyle, (view1, hourOfDay, minute) -> {
                             jamPulang = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute) + ":00";
 
                             if(tanggalPulang.equals(getDate())){
@@ -3954,7 +3955,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             Calendar cal = Calendar.getInstance();
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
-            DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, (view1, year, month, dayOfMonth) -> {
+            DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
                 dateChoiceMasuk = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
@@ -4203,7 +4204,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
             int m = Integer.parseInt(getDateM());
             int d = Integer.parseInt(getDateD());
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
-            DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, (view1, year, month, dayOfMonth) -> {
+            DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
                 dateChoiceMasuk = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
@@ -4457,7 +4458,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             Calendar cal = Calendar.getInstance();
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
-            DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, (view1, year, month, dayOfMonth) -> {
+            DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
                 dateChoicePulang = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
@@ -4634,8 +4635,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
             int m = Integer.parseInt(getDateM());
             int d = Integer.parseInt(getDateD());
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
-            DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, (view1, year, month, dayOfMonth) -> {
-
+            DatePickerDialog dpd = new DatePickerDialog(FormFingerscanActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
                 dateChoicePulang = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -4841,16 +4841,31 @@ public class FormFingerscanActivity extends AppCompatActivity {
     }
 
     private void titikAbsen(){
-        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_titik_absen, bottomSheet, false));
-        titikAbsenRV = findViewById(R.id.titik_absen_rv);
+        try {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_titik_absen, bottomSheet, false));
+                titikAbsenRV = findViewById(R.id.titik_absen_rv);
 
-        titikAbsenRV.setLayoutManager(new LinearLayoutManager(this));
-        titikAbsenRV.setHasFixedSize(true);
-        titikAbsenRV.setNestedScrollingEnabled(false);
-        titikAbsenRV.setItemAnimator(new DefaultItemAnimator());
+                titikAbsenRV.setLayoutManager(new LinearLayoutManager(this));
+                titikAbsenRV.setHasFixedSize(true);
+                titikAbsenRV.setNestedScrollingEnabled(false);
+                titikAbsenRV.setItemAnimator(new DefaultItemAnimator());
 
-        getTitikAbsensi();
+                getTitikAbsensi();
+            } else {
+                bottomSheet.showWithSheetView(LayoutInflater.from(this).inflate(R.layout.layout_titik_absen, bottomSheet, false));
+                titikAbsenRV = findViewById(R.id.titik_absen_rv);
 
+                titikAbsenRV.setLayoutManager(new LinearLayoutManager(this));
+                titikAbsenRV.setHasFixedSize(true);
+                titikAbsenRV.setNestedScrollingEnabled(false);
+                titikAbsenRV.setItemAnimator(new DefaultItemAnimator());
+
+                getTitikAbsensi();
+            }
+        } catch (InflateException e){
+            e.printStackTrace();
+        }
     }
 
     private void jamPulangPicker(){
