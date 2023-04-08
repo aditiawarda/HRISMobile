@@ -107,11 +107,11 @@ public class ViewImageActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        scaleGestureDetector.onTouchEvent(motionEvent);
-        return true;
-    }
+   // @Override
+   // public boolean onTouchEvent(MotionEvent motionEvent) {
+   //     scaleGestureDetector.onTouchEvent(motionEvent);
+   //     return true;
+   // }
 
    // private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
    //     @Override

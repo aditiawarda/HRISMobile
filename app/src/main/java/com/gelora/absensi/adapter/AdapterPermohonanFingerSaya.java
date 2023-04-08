@@ -98,55 +98,59 @@ public class AdapterPermohonanFingerSaya extends RecyclerView.Adapter<AdapterPer
         myViewHolder.statusPermohonanTV.setText(statusPermohonan);
         myViewHolder.deskrisiPermohonan.setText(desc_finger);
 
-        String input_date_mulai = listPermohonanFingerscan.getTanggal();
-        String dayDateMulai = input_date_mulai.substring(8,10);
-        String yearDateMulai = input_date_mulai.substring(0,4);
-        String bulanValueMulai = input_date_mulai.substring(5,7);
-        String bulanNameMulai;
+        if(listPermohonanFingerscan.getTanggal()!=null){
+            String input_date_mulai = listPermohonanFingerscan.getTanggal();
+            String dayDateMulai = input_date_mulai.substring(8,10);
+            String yearDateMulai = input_date_mulai.substring(0,4);
+            String bulanValueMulai = input_date_mulai.substring(5,7);
+            String bulanNameMulai;
 
-        switch (bulanValueMulai) {
-            case "01":
-                bulanNameMulai = "Januari";
-                break;
-            case "02":
-                bulanNameMulai = "Februari";
-                break;
-            case "03":
-                bulanNameMulai = "Maret";
-                break;
-            case "04":
-                bulanNameMulai = "April";
-                break;
-            case "05":
-                bulanNameMulai = "Mei";
-                break;
-            case "06":
-                bulanNameMulai = "Juni";
-                break;
-            case "07":
-                bulanNameMulai = "Juli";
-                break;
-            case "08":
-                bulanNameMulai = "Agustus";
-                break;
-            case "09":
-                bulanNameMulai = "September";
-                break;
-            case "10":
-                bulanNameMulai = "Oktober";
-                break;
-            case "11":
-                bulanNameMulai = "November";
-                break;
-            case "12":
-                bulanNameMulai = "Desember";
-                break;
-            default:
-                bulanNameMulai = "Not found";
-                break;
+            switch (bulanValueMulai) {
+                case "01":
+                    bulanNameMulai = "Januari";
+                    break;
+                case "02":
+                    bulanNameMulai = "Februari";
+                    break;
+                case "03":
+                    bulanNameMulai = "Maret";
+                    break;
+                case "04":
+                    bulanNameMulai = "April";
+                    break;
+                case "05":
+                    bulanNameMulai = "Mei";
+                    break;
+                case "06":
+                    bulanNameMulai = "Juni";
+                    break;
+                case "07":
+                    bulanNameMulai = "Juli";
+                    break;
+                case "08":
+                    bulanNameMulai = "Agustus";
+                    break;
+                case "09":
+                    bulanNameMulai = "September";
+                    break;
+                case "10":
+                    bulanNameMulai = "Oktober";
+                    break;
+                case "11":
+                    bulanNameMulai = "November";
+                    break;
+                case "12":
+                    bulanNameMulai = "Desember";
+                    break;
+                default:
+                    bulanNameMulai = "Not found";
+                    break;
+            }
+
+            myViewHolder.detailTanggalIzinTV.setText(String.valueOf(Integer.parseInt(dayDateMulai))+" "+bulanNameMulai+" "+yearDateMulai);
+        } else {
+            myViewHolder.detailTanggalIzinTV.setText("-");
         }
-
-        myViewHolder.detailTanggalIzinTV.setText(String.valueOf(Integer.parseInt(dayDateMulai))+" "+bulanNameMulai+" "+yearDateMulai);
 
         String input_date = listPermohonanFingerscan.getUpdate_at().substring(0,10);
         String dayDate = input_date.substring(8,10);
