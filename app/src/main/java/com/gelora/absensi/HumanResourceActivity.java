@@ -81,6 +81,7 @@ public class HumanResourceActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                searchOtherBTN.setVisibility(View.GONE);
                 loadingDataPart.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
                 dataListKaryawanRV.setVisibility(View.GONE);
@@ -156,6 +157,7 @@ public class HumanResourceActivity extends AppCompatActivity {
                         // response
                         JSONObject data = null;
                         try {
+                            searchOtherBTN.setVisibility(View.VISIBLE);
                             Log.d("Success.Response", response.toString());
                             data = new JSONObject(response);
                             String status = data.getString("status");
