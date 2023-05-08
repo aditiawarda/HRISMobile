@@ -44,7 +44,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="15dp"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -106,431 +106,2527 @@
 
                             </LinearLayout>
 
+                            <!-- 1 -->
                             <LinearLayout
+                                android:id="@+id/part_fp_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="25dp"
+                                android:paddingBottom="23dp"
                                 android:orientation="vertical">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Jenis Kelamin :"
-                                    android:textColor="#696969"
-                                    android:textSize="12dp" />
-
                                 <LinearLayout
-                                    android:id="@+id/gender_btn"
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
-                                    android:background="@drawable/shape_feel"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
                                     android:orientation="horizontal"
-                                    android:paddingStart="20dp">
+                                    android:gravity="center|left">
 
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="11dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="11dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
 
-                                        <LinearLayout
+                                        <TextView
                                             android:layout_width="wrap_content"
-                                            android:layout_height="40dp"
-                                            android:layout_marginTop="10dp"
-                                            android:layout_marginBottom="10dp"
-                                            android:gravity="center|left"
-                                            android:orientation="vertical">
+                                            android:layout_height="wrap_content"
+                                            android:text="1"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
 
-                                            <TextView
-                                                android:id="@+id/gender_pilih_tv"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text=""
-                                                android:textColor="#B15735"
-                                                android:textSize="13dp"
-                                                android:textStyle="bold" />
+                                    </LinearLayout>
 
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="40dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_alignParentRight="true"
-                                            android:background="@drawable/shape_btn"
-                                            android:gravity="center">
-
-                                            <TextView
-                                                android:layout_width="25dp"
-                                                android:layout_height="25dp"
-                                                android:background="@drawable/ic_baseline_down" />
-
-                                        </LinearLayout>
-
-                                    </RelativeLayout>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Pengetahuan Teknis dan Keterampilan kerja"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
 
                                 </LinearLayout>
 
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Tempat Lahir :"
-                                    android:textColor="#696969"
-                                    android:textSize="12dp" />
-
-                                <EditText
-                                    android:id="@+id/tempat_lahir_ed"
+                                <RadioGroup
+                                    android:id="@+id/rgf_1"
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
-                                    android:background="@drawable/shape_input_form"
-                                    android:drawablePadding="10dp"
-                                    android:gravity="center|left"
-                                    android:hint="Ketik Kota Lahir..."
-                                    android:inputType="text"
-                                    android:paddingLeft="20dp"
-                                    android:paddingTop="10dp"
-                                    android:paddingRight="20dp"
-                                    android:paddingBottom="10dp"
-                                    android:textColor="#595959"
-                                    android:textColorHighlight="#FFE1BC"
-                                    android:textColorHint="#DA6F46"
-                                    android:textSize="13dp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Tanggal Lahir :"
-                                    android:textColor="#696969"
-                                    android:textSize="12dp" />
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
 
-                                <LinearLayout
-                                    android:id="@+id/tanggal_lahir_btn"
+                                    <RadioButton
+                                        android:id="@+id/rgf_1_rating_5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_1_rating_4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_1_rating_3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_1_rating_2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_1_rating_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
-                                    android:background="@drawable/shape_feel"
-                                    android:orientation="horizontal"
-                                    android:paddingStart="20dp">
+                                    android:layout_height="wrap_content">
 
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
 
                                         <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="40dp"
-                                            android:layout_marginTop="10dp"
-                                            android:layout_marginBottom="10dp"
-                                            android:gravity="center|left"
-                                            android:orientation="vertical">
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
 
                                             <TextView
-                                                android:id="@+id/tanggal_lahir_pilih_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text=""
-                                                android:textColor="#B15735"
-                                                android:textSize="13dp"
-                                                android:textStyle="bold" />
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
 
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:layout_width="40dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_alignParentRight="true"
-                                            android:background="@drawable/shape_btn"
-                                            android:gravity="center">
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
 
                                             <TextView
-                                                android:layout_width="25dp"
-                                                android:layout_height="25dp"
-                                                android:background="@drawable/ic_baseline_date" />
-
-                                        </LinearLayout>
-
-                                    </RelativeLayout>
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="No Handphone :"
-                                    android:textColor="#696969"
-                                    android:textSize="12dp" />
-
-                                <EditText
-                                    android:id="@+id/no_hanphone_ed"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="40dp"
-                                    android:background="@drawable/shape_input_form"
-                                    android:drawablePadding="10dp"
-                                    android:gravity="center|left"
-                                    android:hint=""
-                                    android:inputType="phone"
-                                    android:paddingLeft="20dp"
-                                    android:paddingTop="10dp"
-                                    android:paddingRight="20dp"
-                                    android:paddingBottom="10dp"
-                                    android:textColor="#595959"
-                                    android:textColorHighlight="#FFDDB3"
-                                    android:textColorHint="#AAAAAA"
-                                    android:textSize="13dp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Status Pernikahan :"
-                                    android:textColor="#696969"
-                                    android:textSize="12dp" />
-
-                                <LinearLayout
-                                    android:id="@+id/status_pernikahan_btn"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="40dp"
-                                    android:background="@drawable/shape_feel"
-                                    android:orientation="horizontal"
-                                    android:paddingStart="20dp">
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="40dp"
-                                            android:layout_marginTop="10dp"
-                                            android:layout_marginBottom="10dp"
-                                            android:gravity="center|left"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:id="@+id/status_pernikahan_pilih_tv"
+                                                android:id="@+id/rgf_1_nilai"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text=""
-                                                android:textColor="#B15735"
-                                                android:textSize="13dp"
-                                                android:textStyle="bold" />
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
 
                                         </LinearLayout>
 
-                                        <LinearLayout
-                                            android:layout_width="40dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_alignParentRight="true"
-                                            android:background="@drawable/shape_btn"
-                                            android:gravity="center">
+                                    </LinearLayout>
 
-                                            <TextView
-                                                android:layout_width="25dp"
-                                                android:layout_height="25dp"
-                                                android:background="@drawable/ic_baseline_down" />
-
-                                        </LinearLayout>
-
-                                    </RelativeLayout>
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Agama :"
-                                    android:textColor="#696969"
-                                    android:textSize="12dp" />
-
-                                <LinearLayout
-                                    android:id="@+id/agama_btn"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="40dp"
-                                    android:background="@drawable/shape_feel"
-                                    android:orientation="horizontal"
-                                    android:paddingStart="20dp">
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="40dp"
-                                            android:layout_marginTop="10dp"
-                                            android:layout_marginBottom="10dp"
-                                            android:gravity="center|left"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:id="@+id/agama_pilih_tv"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text=""
-                                                android:textColor="#B15735"
-                                                android:textSize="13dp"
-                                                android:textStyle="bold" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="40dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_alignParentRight="true"
-                                            android:background="@drawable/shape_btn"
-                                            android:gravity="center">
-
-                                            <TextView
-                                                android:layout_width="25dp"
-                                                android:layout_height="25dp"
-                                                android:background="@drawable/ic_baseline_down" />
-
-                                        </LinearLayout>
-
-                                    </RelativeLayout>
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Alamat KTP :"
-                                    android:textColor="#696969"
-                                    android:textSize="12dp" />
-
-                                <EditText
-                                    android:id="@+id/alamat_ktp_ed"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/shape_input_form"
-                                    android:drawablePadding="10dp"
-                                    android:gravity="top"
-                                    android:hint=""
-                                    android:inputType="textCapSentences|textMultiLine"
-                                    android:minHeight="80dp"
-                                    android:paddingLeft="20dp"
-                                    android:paddingTop="13dp"
-                                    android:paddingRight="20dp"
-                                    android:paddingBottom="13dp"
-                                    android:textColor="#595959"
-                                    android:lineSpacingExtra="3dp"
-                                    android:textColorHighlight="#FFE1BC"
-                                    android:textColorHint="#595959"
-                                    android:textSize="13dp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Alamat Domisili :"
-                                    android:textColor="#696969"
-                                    android:textSize="12dp" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="5dp"
-                                    android:gravity="right"
-                                    android:text="Sama dengan alamat KTP?"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="12dp" />
-
-                                <Switch
-                                    android:id="@+id/alamat_domisili_switch"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="20dp"
-                                    android:checked="false"
-                                    android:textColor="#676767"
-                                    android:textSize="13dp"
-                                    tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-                                <net.cachapa.expandablelayout.ExpandableLayout
-                                    android:id="@+id/expandable_domisili"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    app:el_duration="300"
-                                    app:el_expanded="true">
-
-                                    <EditText
-                                        android:id="@+id/alamat_domisili_ed"
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="13dp"
-                                        android:background="@drawable/shape_input_form"
-                                        android:drawablePadding="10dp"
-                                        android:gravity="top"
-                                        android:hint=""
-                                        android:inputType="textCapSentences|textMultiLine"
-                                        android:minHeight="80dp"
-                                        android:paddingLeft="20dp"
-                                        android:paddingTop="13dp"
-                                        android:paddingRight="20dp"
-                                        android:paddingBottom="13dp"
-                                        android:textColor="#595959"
-                                        android:lineSpacingExtra="3dp"
-                                        android:textColorHighlight="#FFE1BC"
-                                        android:textColorHint="#595959"
-                                        android:textSize="13dp" />
+                                        android:orientation="vertical">
 
-                                </net.cachapa.expandablelayout.ExpandableLayout>
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 10  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <!-- 2 -->
+                            <LinearLayout
+                                android:id="@+id/part_fp_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="11dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="11dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="2"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Kualitas kerja"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:id="@+id/rgf_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_2_rating_5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_2_rating_4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_2_rating_3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_2_rating_2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_2_rating_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:id="@+id/rgf_2_nilai"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 10  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <!-- 3 -->
+                            <LinearLayout
+                                android:id="@+id/part_fp_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="11dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="11dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="3"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Kuantitas &amp; produktifitas kerja"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:id="@+id/rgf_3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_3_rating_5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_3_rating_4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_3_rating_3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_3_rating_2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_3_rating_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:id="@+id/rgf_3_nilai"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 10  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <!-- 4 -->
+                            <LinearLayout
+                                android:id="@+id/part_fp_4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="11dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="11dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="4"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Hubungan dan kerjasama dalam pekerjaan"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:id="@+id/rgf_4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_4_rating_5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_4_rating_4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_4_rating_3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_4_rating_2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_4_rating_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:id="@+id/rgf_4_nilai"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 5  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <!-- 5 -->
+                            <LinearLayout
+                                android:id="@+id/part_fp_5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="11dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="11dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="5"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Inisiatif dalam pekerjaan"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:id="@+id/rgf_5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_5_rating_5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_5_rating_4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_5_rating_3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_5_rating_2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_5_rating_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:id="@+id/rgf_5_nilai"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 5  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <!-- 6 -->
+                            <LinearLayout
+                                android:id="@+id/part_fp_6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="11dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="11dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="6"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Kepatuhan pada peraturan / disiplin"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:id="@+id/rgf_6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_6_rating_5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_6_rating_4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_6_rating_3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_6_rating_2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_6_rating_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:id="@+id/rgf_6_nilai"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 5  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <!-- 7 -->
+                            <LinearLayout
+                                android:id="@+id/part_fp_7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="11dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="11dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="7"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Tanggung jawab pada pekerjaan"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:id="@+id/rgf_7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_7_rating_5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_7_rating_4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_7_rating_3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_7_rating_2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_7_rating_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:id="@+id/rgf_7_nilai"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 10  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <!-- 8 -->
+                            <LinearLayout
+                                android:id="@+id/part_fp_8"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="11dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="11dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="8"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Kepedulian pada 5 R &amp; keselamayan kerja"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:id="@+id/rgf_8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_8_rating_5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_8_rating_4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_8_rating_3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_8_rating_2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_8_rating_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:id="@+id/rgf_8_nilai"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 5  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <!-- 9 -->
+                            <LinearLayout
+                                android:id="@+id/part_fp_9"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="11dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="11dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="9"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Motivasi kerja"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:id="@+id/rgf_9"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_9_rating_5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_9_rating_4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_9_rating_3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_9_rating_2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_9_rating_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:id="@+id/rgf_9_nilai"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 5  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <!-- 10 -->
+                            <LinearLayout
+                                android:id="@+id/part_fp_10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="7dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="8dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="10"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Antusias dan kemampuan menerima pembelajaran"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:id="@+id/rgf_10"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_10_rating_5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_10_rating_4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_10_rating_3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_10_rating_2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_10_rating_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:id="@+id/rgf_10_nilai"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 5  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <!-- 11 -->
+                            <LinearLayout
+                                android:id="@+id/part_fp_11"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="7dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="8dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="11"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Leadership"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:id="@+id/rgf_11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_11_rating_5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_11_rating_4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_11_rating_3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_11_rating_2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rgf_11_rating_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:id="@+id/rgf_11_nilai"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 10  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <!-- 12 -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="7dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="8dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="12"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Kemampuan Analisa / problem solving"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 10  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <!-- 13 -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="7dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="8dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="13"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Kerajinan/kerapihan"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 5  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <!-- 14 -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="20dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingLeft="7dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="8dp"
+                                        android:paddingBottom="6dp"
+                                        android:layout_marginRight="8dp"
+                                        android:background="@drawable/shape_number">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="14"
+                                            android:textColor="#FFFFFF"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Kepribadian"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="5"/>
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="4"/>
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="3"/>
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="2"/>
+
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:textSize="13dp"
+                                        android:textColor="#4A4A4A"
+                                        android:text="1"/>
+
+                                </RadioGroup>
+
+                                <RelativeLayout
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:gravity="center">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai_label"
+                                            android:paddingRight="10dp"
+                                            android:paddingLeft="10dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="15dp"
+                                            android:gravity="center"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="NILAI"
+                                                android:textColor="#FFFFFF"
+                                                android:textSize="9dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_nilai"
+                                            android:paddingRight="8dp"
+                                            android:paddingLeft="8dp"
+                                            android:paddingTop="5dp"
+                                            android:paddingBottom="5dp"
+                                            android:layout_marginTop="-12dp"
+                                            android:layout_width="match_parent"
+                                            android:gravity="center"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#020202"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Bobot : 5  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
 
                             </LinearLayout>
 
