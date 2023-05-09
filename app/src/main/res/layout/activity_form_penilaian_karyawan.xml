@@ -56,7 +56,7 @@
                                     android:textSize="12dp" />
 
                                 <LinearLayout
-                                    android:id="@+id/pengganti_selama_cuti_part"
+                                    android:id="@+id/pilih_karyawan_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
                                     android:paddingStart="20dp"
@@ -76,7 +76,7 @@
                                             android:gravity="center|left">
 
                                             <TextView
-                                                android:id="@+id/pengganti_selama_cuti_tv"
+                                                android:id="@+id/nama_karyawan_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:textColor="#B15735"

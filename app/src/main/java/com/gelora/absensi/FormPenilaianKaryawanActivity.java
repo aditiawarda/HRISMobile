@@ -1,25 +1,65 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.adapter.AdapterKaryawanPengganti;
+import com.gelora.absensi.adapter.AdapterKaryawanPenilaian;
+import com.gelora.absensi.model.KaryawanPengganti;
+import com.gelora.absensi.model.KaryawanPenilaian;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.aviran.cookiebar2.CookieBar;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class FormPenilaianKaryawanActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, actionBar;
+    LinearLayout backBTN, actionBar, pilihKaryawanPart, startAttantionPart, loadingDataPart, noDataPart;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
+    BottomSheetLayout bottomSheet;
+    TextView namaKaryawanTV;
+    EditText keywordKaryawan;
+    ImageView loadingGif;
+    private RecyclerView karyawanRV;
+    private KaryawanPenilaian[] karyawans;
+    private AdapterKaryawanPenilaian adapterKaryawan;
 
     RadioGroup fP1;
     RadioButton fP1_1, fP1_2, fP1_3, fP1_4, fP1_5;
@@ -118,6 +158,8 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         actionBar = findViewById(R.id.action_bar);
+        bottomSheet = findViewById(R.id.bottom_sheet_layout);
+        pilihKaryawanPart = findViewById(R.id.pilih_karyawan_part);
 
         fP1 = findViewById(R.id.rgf_1);
         fP1_1 = findViewById(R.id.rgf_1_rating_1);
@@ -259,6 +301,13 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        pilihKaryawanPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pilihKaryawan();
             }
         });
 
@@ -602,6 +651,159 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
         } else if(totalNilai > 400 && totalNilai <= 500){
             fp_predikat.setText("BS");
         }
+    }
+
+    private void pilihKaryawan(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(FormPenilaianKaryawanActivity.this).inflate(R.layout.layout_karyawan_form_penilaian, bottomSheet, false));
+        keywordKaryawan = findViewById(R.id.keyword_user_ed);
+
+        karyawanRV = findViewById(R.id.karyawan_rv);
+        startAttantionPart = findViewById(R.id.attantion_data_part);
+        noDataPart = findViewById(R.id.no_data_part);
+        loadingDataPart = findViewById(R.id.loading_data_part);
+        loadingGif = findViewById(R.id.loading_data);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(loadingGif);
+
+        karyawanRV.setLayoutManager(new LinearLayoutManager(this));
+        karyawanRV.setHasFixedSize(true);
+        karyawanRV.setNestedScrollingEnabled(false);
+        karyawanRV.setItemAnimator(new DefaultItemAnimator());
+
+        keywordKaryawan.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String keyWordSearch = keywordKaryawan.getText().toString();
+
+                startAttantionPart.setVisibility(View.GONE);
+                loadingDataPart.setVisibility(View.VISIBLE);
+                noDataPart.setVisibility(View.GONE);
+                karyawanRV.setVisibility(View.GONE);
+
+                if(!keyWordSearch.equals("")){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getDataKaryawan(keyWordSearch);
+                        }
+                    }, 500);
+                }
+            }
+
+        });
+
+        keywordKaryawan.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    String keyWordSearch = keywordKaryawan.getText().toString();
+                    getDataKaryawan(keyWordSearch);
+
+                    InputMethodManager imm = (InputMethodManager) FormPenilaianKaryawanActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    View view = FormPenilaianKaryawanActivity.this.getCurrentFocus();
+                    if (view == null) {
+                        view = new View(FormPenilaianKaryawanActivity.this);
+                    }
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+    }
+
+    private void getDataKaryawan(String keyword) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_pengganti";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")) {
+
+                                startAttantionPart.setVisibility(View.GONE);
+                                loadingDataPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.GONE);
+                                karyawanRV.setVisibility(View.VISIBLE);
+
+                                String data_list = data.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                karyawans = gson.fromJson(data_list, KaryawanPenilaian[].class);
+                                adapterKaryawan = new AdapterKaryawanPenilaian(karyawans, FormPenilaianKaryawanActivity.this);
+                                karyawanRV.setAdapter(adapterKaryawan);
+                            } else {
+                                startAttantionPart.setVisibility(View.GONE);
+                                loadingDataPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.VISIBLE);
+                                karyawanRV.setVisibility(View.GONE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+
+                        startAttantionPart.setVisibility(View.GONE);
+                        loadingDataPart.setVisibility(View.GONE);
+                        noDataPart.setVisibility(View.VISIBLE);
+                        karyawanRV.setVisibility(View.GONE);
+
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                params.put("nik", sharedPrefManager.getSpNik());
+                params.put("keyword_karyawan", keyword);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void connectionFailed(){
+        CookieBar.build(FormPenilaianKaryawanActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
+
     }
 
 }
