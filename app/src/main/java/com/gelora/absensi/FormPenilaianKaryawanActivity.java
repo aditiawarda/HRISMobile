@@ -1050,7 +1050,6 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
     }
 
     private void checkSignature(){
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
