@@ -22,6 +22,8 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
 
+        String id_penilaian = getIntent().getExtras().getString("id_penilaian");
+
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

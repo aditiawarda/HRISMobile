@@ -773,7 +773,6 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                 if(!nikKaryawan.equals("")){
                     if(nilaiFP1 != 0 && nilaiFP2 != 0 && nilaiFP3 != 0 && nilaiFP4 != 0 && nilaiFP5 != 0 && nilaiFP6 != 0 && nilaiFP7 != 0 && nilaiFP8 != 0 && nilaiFP9 != 0 && nilaiFP10 != 0 && nilaiFP12 != 0 && nilaiFP13 != 0 && nilaiFP14 != 0){
                         listRating = "1."+String.valueOf(rating1)+"-"+"3."+String.valueOf(rating2)+"-"+"5."+String.valueOf(rating3)+"-"+"7."+String.valueOf(rating4)+"-"+"9."+String.valueOf(rating5)+"-"+"11."+String.valueOf(rating6)+"-"+"13."+String.valueOf(rating7)+"-"+"15."+String.valueOf(rating8)+"-"+"17."+String.valueOf(rating9)+"-"+"19."+String.valueOf(rating10)+"-"+"21."+String.valueOf(rating11)+"-"+"23."+String.valueOf(rating12)+"-"+"25."+String.valueOf(rating13)+"-"+"27."+String.valueOf(rating14);
-                        Toast.makeText(FormPenilaianKaryawanActivity.this, listRating, Toast.LENGTH_SHORT).show();
 
                         new KAlertDialog(FormPenilaianKaryawanActivity.this, KAlertDialog.WARNING_TYPE)
                                 .setTitleText("Perhatian")

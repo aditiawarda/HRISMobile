@@ -24,8 +24,6 @@ import java.io.File;
 
 public class ViewImageActivity extends AppCompatActivity {
 
-    // private ScaleGestureDetector scaleGestureDetector;
-    // private float mScaleFactor = 1.0f;
     private ImageView mainImage;
     LinearLayout actionBar, backBTN,loadingPart;
     TextView titlePageTV;
@@ -42,8 +40,6 @@ public class ViewImageActivity extends AppCompatActivity {
         loadingPart = findViewById(R.id.loading_part);
         actionBar = findViewById(R.id.action_bar);
         photoView = findViewById(R.id.photo_view);
-
-        // scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
         String url = getIntent().getExtras().getString("url");
         String kode = getIntent().getExtras().getString("kode");
