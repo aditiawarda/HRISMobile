@@ -49,7 +49,7 @@ public class AdapterKaryawanPenilaian extends RecyclerView.Adapter<AdapterKaryaw
         myViewHolder.karyawanNik.setText(karyawan.getNIK());
         myViewHolder.karyawanDesc.setText(karyawan.getJabatan()+" | "+karyawan.getBagian()+" | "+karyawan.getDepartemen());
 
-        if (sharedPrefAbsen.getSpIdKaryawanPengganti().equals(karyawan.getNIK())) {
+        if (sharedPrefAbsen.getSpIdKaryawanPenilaian().equals(karyawan.getNIK())) {
             myViewHolder.markStatus.setVisibility(View.VISIBLE);
             myViewHolder.parentPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_option_choice));
         } else {

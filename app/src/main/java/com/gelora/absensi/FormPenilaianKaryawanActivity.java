@@ -1,6 +1,7 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,7 +9,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -25,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,6 +41,7 @@ import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterKaryawanPengganti;
 import com.gelora.absensi.adapter.AdapterKaryawanPenilaian;
+import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.KaryawanPengganti;
 import com.gelora.absensi.model.KaryawanPenilaian;
 import com.google.gson.Gson;
@@ -50,8 +56,9 @@ import java.util.Map;
 
 public class FormPenilaianKaryawanActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, actionBar, pilihKaryawanPart, startAttantionPart, loadingDataPart, noDataPart;
+    LinearLayout backBTN, actionBar, pilihKaryawanPart, startAttantionPart, loadingDataPart, noDataPart, submitBTN;
     SharedPrefManager sharedPrefManager;
+    SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheet;
     TextView namaKaryawanTV;
@@ -60,6 +67,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
     private RecyclerView karyawanRV;
     private KaryawanPenilaian[] karyawans;
     private AdapterKaryawanPenilaian adapterKaryawan;
+    String nikKaryawan = "", namaKaryawan = "";
 
     RadioGroup fP1;
     RadioButton fP1_1, fP1_2, fP1_3, fP1_4, fP1_5;
@@ -155,11 +163,14 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form_penilaian_karyawan);
 
         sharedPrefManager = new SharedPrefManager(this);
+        sharedPrefAbsen = new SharedPrefAbsen(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         actionBar = findViewById(R.id.action_bar);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         pilihKaryawanPart = findViewById(R.id.pilih_karyawan_part);
+        namaKaryawanTV = findViewById(R.id.nama_karyawan_tv);
+        submitBTN = findViewById(R.id.submit_btn);
 
         fP1 = findViewById(R.id.rgf_1);
         fP1_1 = findViewById(R.id.rgf_1_rating_1);
@@ -276,6 +287,8 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
         fp_total_nilai = findViewById(R.id.fp_total_nilai);
         fp_predikat = findViewById(R.id.fp_predikat);
 
+        LocalBroadcastManager.getInstance(this).registerReceiver(karyawanBroad, new IntentFilter("karyawan_broad"));
+
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -287,11 +300,30 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
 
+                nikKaryawan = "";
+                namaKaryawan = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PENILAIAN, "");
+                namaKaryawanTV.setText("");
+                fP1.clearCheck();
+                fP2.clearCheck();
+                fP3.clearCheck();
+                fP4.clearCheck();
+                fP5.clearCheck();
+                fP6.clearCheck();
+                fP6.clearCheck();
+                fP7.clearCheck();
+                fP8.clearCheck();
+                fP9.clearCheck();
+                fP10.clearCheck();
+                fP11.clearCheck();
+                fP12.clearCheck();
+                fP13.clearCheck();
+                fP14.clearCheck();
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-
                     }
                 }, 1000);
             }
@@ -633,6 +665,42 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
             }
         });
 
+        submitBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!nikKaryawan.equals("")){
+                    if(nilaiFP1 != 0 && nilaiFP2 != 0 && nilaiFP3 != 0 && nilaiFP4 != 0 && nilaiFP5 != 0 && nilaiFP6 != 0 && nilaiFP7 != 0 && nilaiFP8 != 0 && nilaiFP9 != 0 && nilaiFP10 != 0 && nilaiFP12 != 0 && nilaiFP13 != 0 && nilaiFP14 != 0){
+                        Toast.makeText(FormPenilaianKaryawanActivity.this, "Gow", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new KAlertDialog(FormPenilaianKaryawanActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi semua penilaian!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                } else {
+                    new KAlertDialog(FormPenilaianKaryawanActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap pilih SDM/Karyawan terlebih dahulu!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();}
+            }
+        });
+
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PENILAIAN, "");
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -652,6 +720,31 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
             fp_predikat.setText("BS");
         }
     }
+
+    public BroadcastReceiver karyawanBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            nikKaryawan = intent.getStringExtra("nik_karyawan");
+            namaKaryawan = intent.getStringExtra("nama_karyawan");
+
+            namaKaryawanTV.setText(namaKaryawan.toUpperCase());
+
+            InputMethodManager imm = (InputMethodManager) FormPenilaianKaryawanActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            View view = FormPenilaianKaryawanActivity.this.getCurrentFocus();
+            if (view == null) {
+                view = new View(FormPenilaianKaryawanActivity.this);
+            }
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                }
+            }, 300);
+        }
+    };
 
     private void pilihKaryawan(){
         bottomSheet.showWithSheetView(LayoutInflater.from(FormPenilaianKaryawanActivity.this).inflate(R.layout.layout_karyawan_form_penilaian, bottomSheet, false));
@@ -726,7 +819,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
 
     private void getDataKaryawan(String keyword) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_pengganti";
+        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_penilaian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

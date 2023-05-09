@@ -71,6 +71,10 @@ public class SharedPrefAbsen {
         return sp.getString(SP_ID_KARYAWAN_PENGGANTI, "");
     }
 
+    public String getSpIdKaryawanPenilaian(){
+        return sp.getString(SP_ID_KARYAWAN_PENILAIAN, "");
+    }
+
     public String getSpIdTitikAbsensi(){
         return sp.getString(SP_ID_TITIK_ABSENSI, "");
     }
