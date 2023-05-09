@@ -59,7 +59,7 @@ import java.util.Map;
 
 public class FormPenilaianKaryawanActivity extends AppCompatActivity {
 
-    LinearLayout successPart, formPart, backBTN, actionBar, pilihKaryawanPart, startAttantionPart, loadingDataPart, noDataPart, submitBTN;
+    LinearLayout viewBTN, successPart, formPart, backBTN, actionBar, pilihKaryawanPart, startAttantionPart, loadingDataPart, noDataPart, submitBTN;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -197,6 +197,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
         messageTV = findViewById(R.id.message_tv);
+        viewBTN = findViewById(R.id.view_btn);
 
         fP1 = findViewById(R.id.rgf_1);
         fP1_1 = findViewById(R.id.rgf_1_rating_1);
@@ -1148,6 +1149,16 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                                 successPart.setVisibility(View.VISIBLE);
                                 formPart.setVisibility(View.GONE);
                                 messageTV.setText("Penilaian SDM atas nama "+namaKaryawan+" dengan NIK "+nikKaryawan+" telah berhasil.");
+
+                                viewBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(FormPenilaianKaryawanActivity.this, DetailPenilaianKaryawanActivity.class);
+                                        intent.putExtra("id_penilaian", String.valueOf(id));
+                                        startActivity(intent);
+                                    }
+                                });
+
                             } else if (status.equals("Available")){
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
