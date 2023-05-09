@@ -3,6 +3,7 @@ package com.gelora.absensi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -85,6 +86,28 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
     TextView fP11_nilai;
     int bobotFP11 = 10;
     int nilaiFP11 = 0;
+
+    RadioGroup fP12;
+    RadioButton fP12_1, fP12_2, fP12_3, fP12_4, fP12_5;
+    TextView fP12_nilai;
+    int bobotFP12 = 10;
+    int nilaiFP12 = 0;
+
+    RadioGroup fP13;
+    RadioButton fP13_1, fP13_2, fP13_3, fP13_4, fP13_5;
+    TextView fP13_nilai;
+    int bobotFP13 = 5;
+    int nilaiFP13 = 0;
+
+    RadioGroup fP14;
+    RadioButton fP14_1, fP14_2, fP14_3, fP14_4, fP14_5;
+    TextView fP14_nilai;
+    int bobotFP14 = 5;
+    int nilaiFP14 = 0;
+
+    TextView fp_total_nilai;
+    TextView fp_predikat;
+    int totalNilai = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +207,33 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
         fP11_5 = findViewById(R.id.rgf_11_rating_5);
         fP11_nilai = findViewById(R.id.rgf_11_nilai);
 
+        fP12 = findViewById(R.id.rgf_12);
+        fP12_1 = findViewById(R.id.rgf_12_rating_1);
+        fP12_2 = findViewById(R.id.rgf_12_rating_2);
+        fP12_3 = findViewById(R.id.rgf_12_rating_3);
+        fP12_4 = findViewById(R.id.rgf_12_rating_4);
+        fP12_5 = findViewById(R.id.rgf_12_rating_5);
+        fP12_nilai = findViewById(R.id.rgf_12_nilai);
+
+        fP13 = findViewById(R.id.rgf_13);
+        fP13_1 = findViewById(R.id.rgf_13_rating_1);
+        fP13_2 = findViewById(R.id.rgf_13_rating_2);
+        fP13_3 = findViewById(R.id.rgf_13_rating_3);
+        fP13_4 = findViewById(R.id.rgf_13_rating_4);
+        fP13_5 = findViewById(R.id.rgf_13_rating_5);
+        fP13_nilai = findViewById(R.id.rgf_13_nilai);
+
+        fP14 = findViewById(R.id.rgf_14);
+        fP14_1 = findViewById(R.id.rgf_14_rating_1);
+        fP14_2 = findViewById(R.id.rgf_14_rating_2);
+        fP14_3 = findViewById(R.id.rgf_14_rating_3);
+        fP14_4 = findViewById(R.id.rgf_14_rating_4);
+        fP14_5 = findViewById(R.id.rgf_14_rating_5);
+        fP14_nilai = findViewById(R.id.rgf_14_nilai);
+
+        fp_total_nilai = findViewById(R.id.fp_total_nilai);
+        fp_predikat = findViewById(R.id.fp_predikat);
+
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -231,6 +281,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                     fP1_nilai.setText(String.valueOf(bobotFP1 * 5));
                     nilaiFP1 = bobotFP1 * 5;
                 }
+                totalNilai();
             }
         });
 
@@ -253,6 +304,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                     fP2_nilai.setText(String.valueOf(bobotFP2 * 5));
                     nilaiFP2 = bobotFP2 * 5;
                 }
+                totalNilai();
             }
         });
 
@@ -275,6 +327,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                     fP3_nilai.setText(String.valueOf(bobotFP3 * 5));
                     nilaiFP3 = bobotFP3 * 5;
                 }
+                totalNilai();
             }
         });
 
@@ -297,6 +350,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                     fP4_nilai.setText(String.valueOf(bobotFP4 * 5));
                     nilaiFP4 = bobotFP4 * 5;
                 }
+                totalNilai();
             }
         });
 
@@ -319,6 +373,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                     fP5_nilai.setText(String.valueOf(bobotFP5 * 5));
                     nilaiFP5 = bobotFP5 * 5;
                 }
+                totalNilai();
             }
         });
 
@@ -341,6 +396,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                     fP6_nilai.setText(String.valueOf(bobotFP6 * 5));
                     nilaiFP6 = bobotFP6 * 5;
                 }
+                totalNilai();
             }
         });
 
@@ -363,6 +419,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                     fP7_nilai.setText(String.valueOf(bobotFP7 * 5));
                     nilaiFP7 = bobotFP7 * 5;
                 }
+                totalNilai();
             }
         });
 
@@ -385,6 +442,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                     fP8_nilai.setText(String.valueOf(bobotFP8 * 5));
                     nilaiFP8 = bobotFP8 * 5;
                 }
+                totalNilai();
             }
         });
 
@@ -407,6 +465,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                     fP9_nilai.setText(String.valueOf(bobotFP9 * 5));
                     nilaiFP9 = bobotFP9 * 5;
                 }
+                totalNilai();
             }
         });
 
@@ -429,6 +488,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                     fP10_nilai.setText(String.valueOf(bobotFP10 * 5));
                     nilaiFP10 = bobotFP10 * 5;
                 }
+                totalNilai();
             }
         });
 
@@ -451,9 +511,97 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                     fP11_nilai.setText(String.valueOf(bobotFP11 * 5));
                     nilaiFP11 = bobotFP11 * 5;
                 }
+                totalNilai();
             }
         });
 
+        fP12.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (fP12_1.isChecked()) {
+                    fP12_nilai.setText(String.valueOf(bobotFP12 * 1));
+                    nilaiFP12 = bobotFP12 * 1;
+                } else if (fP12_2.isChecked()) {
+                    fP12_nilai.setText(String.valueOf(bobotFP12 * 2));
+                    nilaiFP12 = bobotFP12 * 2;
+                } else if (fP12_3.isChecked()) {
+                    fP12_nilai.setText(String.valueOf(bobotFP12 * 3));
+                    nilaiFP12 = bobotFP12 * 3;
+                } else if (fP12_4.isChecked()) {
+                    fP12_nilai.setText(String.valueOf(bobotFP12 * 4));
+                    nilaiFP12 = bobotFP12 * 4;
+                } else if (fP12_5.isChecked()) {
+                    fP12_nilai.setText(String.valueOf(bobotFP12 * 5));
+                    nilaiFP12 = bobotFP12 * 5;
+                }
+                totalNilai();
+            }
+        });
+
+        fP13.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (fP13_1.isChecked()) {
+                    fP13_nilai.setText(String.valueOf(bobotFP13 * 1));
+                    nilaiFP13 = bobotFP13 * 1;
+                } else if (fP13_2.isChecked()) {
+                    fP13_nilai.setText(String.valueOf(bobotFP13 * 2));
+                    nilaiFP13 = bobotFP13 * 2;
+                } else if (fP13_3.isChecked()) {
+                    fP13_nilai.setText(String.valueOf(bobotFP13 * 3));
+                    nilaiFP13 = bobotFP13 * 3;
+                } else if (fP13_4.isChecked()) {
+                    fP13_nilai.setText(String.valueOf(bobotFP13 * 4));
+                    nilaiFP13 = bobotFP13 * 4;
+                } else if (fP13_5.isChecked()) {
+                    fP13_nilai.setText(String.valueOf(bobotFP13 * 5));
+                    nilaiFP13 = bobotFP13 * 5;
+                }
+                totalNilai();
+            }
+        });
+
+        fP14.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (fP14_1.isChecked()) {
+                    fP14_nilai.setText(String.valueOf(bobotFP14 * 1));
+                    nilaiFP14 = bobotFP14 * 1;
+                } else if (fP14_2.isChecked()) {
+                    fP14_nilai.setText(String.valueOf(bobotFP14 * 2));
+                    nilaiFP14 = bobotFP14 * 2;
+                } else if (fP14_3.isChecked()) {
+                    fP14_nilai.setText(String.valueOf(bobotFP14 * 3));
+                    nilaiFP14 = bobotFP14 * 3;
+                } else if (fP14_4.isChecked()) {
+                    fP14_nilai.setText(String.valueOf(bobotFP14 * 4));
+                    nilaiFP14 = bobotFP14 * 4;
+                } else if (fP14_5.isChecked()) {
+                    fP14_nilai.setText(String.valueOf(bobotFP14 * 5));
+                    nilaiFP14 = bobotFP14 * 5;
+                }
+                totalNilai();
+            }
+        });
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void totalNilai(){
+        totalNilai = nilaiFP1 + nilaiFP2 + nilaiFP3 + nilaiFP4 + nilaiFP5 + nilaiFP6 + nilaiFP7 + nilaiFP8 + nilaiFP9 + nilaiFP10 + nilaiFP11 + nilaiFP12 + nilaiFP13 + nilaiFP14;
+        fp_total_nilai.setText(String.valueOf(totalNilai));
+
+        if(totalNilai <= 100){
+            fp_predikat.setText("KS");
+        } else if(totalNilai > 100 && totalNilai <= 200){
+            fp_predikat.setText("K");
+        } else if(totalNilai > 200 && totalNilai <= 300){
+            fp_predikat.setText("C");
+        } else if(totalNilai > 300 && totalNilai <= 400){
+            fp_predikat.setText("B");
+        } else if(totalNilai > 400 && totalNilai <= 500){
+            fp_predikat.setText("BS");
+        }
     }
 
 }

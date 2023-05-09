@@ -2110,6 +2110,7 @@
 
                             <!-- 12 -->
                             <LinearLayout
+                                android:id="@+id/part_fp_12"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/shape_pengumuman"
@@ -2155,12 +2156,14 @@
                                 </LinearLayout>
 
                                 <RadioGroup
+                                    android:id="@+id/rgf_12"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:orientation="horizontal">
 
                                     <RadioButton
+                                        android:id="@+id/rgf_12_rating_5"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2170,6 +2173,7 @@
                                         android:text="5"/>
 
                                     <RadioButton
+                                        android:id="@+id/rgf_12_rating_4"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2179,6 +2183,7 @@
                                         android:text="4"/>
 
                                     <RadioButton
+                                        android:id="@+id/rgf_12_rating_3"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2188,6 +2193,7 @@
                                         android:text="3"/>
 
                                     <RadioButton
+                                        android:id="@+id/rgf_12_rating_2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2197,6 +2203,7 @@
                                         android:text="2"/>
 
                                     <RadioButton
+                                        android:id="@+id/rgf_12_rating_1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2251,6 +2258,7 @@
                                             android:layout_height="wrap_content">
 
                                             <TextView
+                                                android:id="@+id/rgf_12_nilai"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
@@ -2284,6 +2292,7 @@
 
                             <!-- 13 -->
                             <LinearLayout
+                                android:id="@+id/part_fp_13"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/shape_pengumuman"
@@ -2329,12 +2338,14 @@
                                 </LinearLayout>
 
                                 <RadioGroup
+                                    android:id="@+id/rgf_13"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:orientation="horizontal">
 
                                     <RadioButton
+                                        android:id="@+id/rgf_13_rating_5"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2344,6 +2355,7 @@
                                         android:text="5"/>
 
                                     <RadioButton
+                                        android:id="@+id/rgf_13_rating_4"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2353,6 +2365,7 @@
                                         android:text="4"/>
 
                                     <RadioButton
+                                        android:id="@+id/rgf_13_rating_3"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2362,6 +2375,7 @@
                                         android:text="3"/>
 
                                     <RadioButton
+                                        android:id="@+id/rgf_13_rating_2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2371,6 +2385,7 @@
                                         android:text="2"/>
 
                                     <RadioButton
+                                        android:id="@+id/rgf_13_rating_1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2425,6 +2440,7 @@
                                             android:layout_height="wrap_content">
 
                                             <TextView
+                                                android:id="@+id/rgf_13_nilai"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
@@ -2458,6 +2474,7 @@
 
                             <!-- 14 -->
                             <LinearLayout
+                                android:id="@+id/part_fp_14"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/shape_pengumuman"
@@ -2503,12 +2520,14 @@
                                 </LinearLayout>
 
                                 <RadioGroup
+                                    android:id="@+id/rgf_14"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:orientation="horizontal">
 
                                     <RadioButton
+                                        android:id="@+id/rgf_14_rating_5"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2518,6 +2537,7 @@
                                         android:text="5"/>
 
                                     <RadioButton
+                                        android:id="@+id/rgf_14_rating_4"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2527,6 +2547,7 @@
                                         android:text="4"/>
 
                                     <RadioButton
+                                        android:id="@+id/rgf_14_rating_3"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2536,6 +2557,7 @@
                                         android:text="3"/>
 
                                     <RadioButton
+                                        android:id="@+id/rgf_14_rating_2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2545,6 +2567,7 @@
                                         android:text="2"/>
 
                                     <RadioButton
+                                        android:id="@+id/rgf_14_rating_1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
@@ -2599,6 +2622,7 @@
                                             android:layout_height="wrap_content">
 
                                             <TextView
+                                                android:id="@+id/rgf_14_nilai"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
@@ -2630,11 +2654,474 @@
 
                             </LinearLayout>
 
+                            <!-- Total -->
+                            <LinearLayout
+                                android:id="@+id/part_fp_total"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="10dp"
+                                android:paddingTop="25dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="right">
+
+                                        <LinearLayout
+                                            android:layout_width="80dp"
+                                            android:layout_height="60dp"
+                                            android:layout_marginRight="10dp"
+                                            android:orientation="vertical"
+                                            android:gravity="center">
+
+                                            <LinearLayout
+                                                android:background="@drawable/shape_nilai_label"
+                                                android:paddingRight="10dp"
+                                                android:paddingLeft="10dp"
+                                                android:paddingTop="5dp"
+                                                android:paddingBottom="15dp"
+                                                android:gravity="center"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="TOTAL NILAI"
+                                                    android:textColor="#FFFFFF"
+                                                    android:textSize="10dp" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:background="@drawable/shape_nilai"
+                                                android:paddingRight="8dp"
+                                                android:paddingLeft="8dp"
+                                                android:paddingTop="5dp"
+                                                android:paddingBottom="5dp"
+                                                android:layout_marginTop="-12dp"
+                                                android:layout_width="match_parent"
+                                                android:gravity="center"
+                                                android:layout_height="match_parent">
+
+                                                <TextView
+                                                    android:id="@+id/fp_total_nilai"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="0"
+                                                    android:textColor="#020202"
+                                                    android:textSize="15dp" />
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="40dp"
+                                            android:layout_height="60dp"
+                                            android:orientation="vertical"
+                                            android:gravity="center">
+
+                                            <LinearLayout
+                                                android:background="@drawable/shape_nilai"
+                                                android:paddingRight="8dp"
+                                                android:paddingLeft="8dp"
+                                                android:paddingTop="5dp"
+                                                android:paddingBottom="5dp"
+                                                android:layout_width="match_parent"
+                                                android:gravity="center"
+                                                android:layout_height="match_parent">
+
+                                                <TextView
+                                                    android:id="@+id/fp_predikat"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textStyle="bold"
+                                                    android:text="-"
+                                                    android:textColor="#020202"
+                                                    android:textSize="16dp" />
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:text="HASIL PENILAIAN"
+                                            android:textStyle="bold"
+                                            android:textColor="@color/colorPrimaryDark"
+                                            android:textSize="15dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:textStyle="italic"
+                                            android:text="Total Bobot : 100  "
+                                            android:textColor="#494949"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:layout_marginTop="15dp"
+                                    android:layout_width="match_parent"
+                                    android:background="#41838383"
+                                    android:layout_height="1dp"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:paddingTop="22dp"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp">
+
+                                    <TableLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:stretchColumns="0,1,2,3,4">
+
+                                        <TableRow
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="#000000">
+
+                                            <TextView
+                                                android:layout_weight=".54"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="SKALA PENILAIAN"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_marginRight="0.5dp"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:textStyle="bold"
+                                                android:gravity="center" />
+
+                                        </TableRow>
+
+                                        <TableRow
+                                            android:layout_marginTop="-0.5dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="#000000">
+
+                                            <TextView
+                                                android:layout_weight="2"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="Baik sekali"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="0"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                            <TextView
+                                                android:layout_weight="1"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="BS"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="0"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                            <TextView
+                                                android:layout_weight="1.5"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="401 - 500"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginRight="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="0"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                        </TableRow>
+
+                                        <TableRow
+                                            android:layout_marginTop="-0.5dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="#000000">
+
+                                            <TextView
+                                                android:layout_weight="2"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="Baik"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="0"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                            <TextView
+                                                android:layout_weight="1"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="B"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="1"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                            <TextView
+                                                android:layout_weight="1.5"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="301 - 400"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginRight="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="2"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                        </TableRow>
+
+                                        <TableRow
+                                            android:layout_marginTop="-0.5dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="#000000">
+
+                                            <TextView
+                                                android:layout_weight="2"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="Cukup"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="0"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                            <TextView
+                                                android:layout_weight="1"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="C"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="0"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                            <TextView
+                                                android:layout_weight="1.5"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="201 - 300"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginRight="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="0"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                        </TableRow>
+
+                                        <TableRow
+                                            android:layout_marginTop="-0.5dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="#000000">
+
+                                            <TextView
+                                                android:layout_weight="2"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="Kurang"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="0"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                            <TextView
+                                                android:layout_weight="1"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="K"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="0"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                            <TextView
+                                                android:layout_weight="1.5"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="101 - 200"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginRight="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="0"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                        </TableRow>
+
+                                        <TableRow
+                                            android:layout_marginTop="-0.5dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="#000000">
+
+                                            <TextView
+                                                android:layout_weight="2"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="Kurang sekali"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="0"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                            <TextView
+                                                android:layout_weight="1"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="KS"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="0"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                            <TextView
+                                                android:layout_weight="1.5"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="s.d. 100"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:layout_marginRight="0.5dp"
+                                                android:layout_marginLeft="0.5dp"
+                                                android:layout_column="0"
+                                                android:background="#FFFFFF"
+                                                android:paddingRight="3dp"
+                                                android:paddingLeft="3dp"
+                                                android:gravity="center" />
+
+                                        </TableRow>
+
+                                    </TableLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
                             <LinearLayout
                                 android:id="@+id/submit_btn"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
+                                android:layout_marginTop="5dp"
                                 android:layout_marginBottom="20dp"
                                 android:background="@drawable/shape_btn"
                                 android:gravity="center"
@@ -2646,7 +3133,7 @@
                                     android:layout_height="wrap_content"
                                     android:drawablePadding="7dp"
                                     android:drawableTint="@color/white"
-                                    android:text="SIMPAN"
+                                    android:text="SUBMIT"
                                     android:textColor="@color/white"
                                     android:textSize="13dp"
                                     android:textStyle="bold" />
