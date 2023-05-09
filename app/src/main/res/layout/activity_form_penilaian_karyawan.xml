@@ -3421,7 +3421,7 @@
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Update Data Berhasil"
+                                        android:text="Penilaan SDM Selesai"
                                         android:textAlignment="center"
                                         android:textColor="@color/white"
                                         android:textSize="15dp"
@@ -3432,7 +3432,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="15dp"
-                                        android:text="Update info personal berhasil tersimpan, dengan ini anda menyatakan semua data yang telah diisi bersifat valid."
+                                        android:text="Penilaian atas nama - dengan NIK - telah berhasil."
                                         android:textAlignment="center"
                                         android:textColor="@color/white"
                                         android:textSize="13dp" />
@@ -3466,10 +3466,10 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Kembali"
-                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
                                     android:textSize="13dp"
-                                    android:textStyle="bold" />
+                                    android:textColor="@color/white"
+                                    android:text="LIHAT HASIL PENILAIAN"/>
 
                             </LinearLayout>
 
