@@ -121,7 +121,7 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="Aditia Wardani"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -151,7 +151,7 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="RND/EDP"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -193,7 +193,7 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="Staff"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -223,7 +223,7 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="15 Mar 2021"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -399,11 +399,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_1"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -416,11 +417,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_1"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -489,11 +491,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_2"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -506,11 +509,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_2"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -579,11 +583,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_3"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -596,11 +601,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_3"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -669,11 +675,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_4"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -686,11 +693,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_4"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -759,11 +767,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_5"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -776,11 +785,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_5"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -849,11 +859,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_6"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -866,11 +877,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_6"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -939,11 +951,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_7"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -956,11 +969,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_7"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1029,11 +1043,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_8"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1046,11 +1061,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_8"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1119,11 +1135,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_9"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1136,11 +1153,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_9"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1209,11 +1227,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_10"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1226,11 +1245,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_10"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1299,11 +1319,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_11"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1316,11 +1337,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_11"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1389,11 +1411,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_12"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1406,11 +1429,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_12"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1479,11 +1503,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_13"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1496,11 +1521,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_13"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1569,11 +1595,12 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/rate_14"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="3"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1586,11 +1613,12 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/nilai_14"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1681,7 +1709,7 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="30"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
