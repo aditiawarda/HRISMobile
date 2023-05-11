@@ -173,6 +173,10 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
     int nilaiFP14 = 0;
     int rating14 = 0;
 
+    RadioGroup kelulusan_option;
+    RadioButton ko_lulus, ko_tidak_lulus;
+    String statusKelulusan = "";
+
     TextView fp_total_nilai;
     TextView fp_predikat;
     int totalNilai = 0;
@@ -314,6 +318,10 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
         fp_total_nilai = findViewById(R.id.fp_total_nilai);
         fp_predikat = findViewById(R.id.fp_predikat);
 
+        kelulusan_option = findViewById(R.id.kelulusan_option);
+        ko_lulus = findViewById(R.id.ko_lulus);
+        ko_tidak_lulus = findViewById(R.id.ko_tidak_lulus);
+
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
                 .into(successGif);
@@ -334,6 +342,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                 listRating = "";
                 nikKaryawan = "";
                 namaKaryawan = "";
+                statusKelulusan = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PENILAIAN, "");
                 namaKaryawanTV.setText("");
                 fP1.clearCheck();
@@ -351,6 +360,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                 fP12.clearCheck();
                 fP13.clearCheck();
                 fP14.clearCheck();
+                kelulusan_option.clearCheck();
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -767,73 +777,96 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
             }
         });
 
+        kelulusan_option.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (ko_lulus.isChecked()) {
+                    statusKelulusan = "1";
+                } else if (ko_tidak_lulus.isChecked()) {
+                    statusKelulusan = "2";
+                }
+            }
+        });
+
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!nikKaryawan.equals("")){
                     if(nilaiFP1 != 0 && nilaiFP2 != 0 && nilaiFP3 != 0 && nilaiFP4 != 0 && nilaiFP5 != 0 && nilaiFP6 != 0 && nilaiFP7 != 0 && nilaiFP8 != 0 && nilaiFP9 != 0 && nilaiFP10 != 0 && nilaiFP12 != 0 && nilaiFP13 != 0 && nilaiFP14 != 0){
                         listRating = "1."+String.valueOf(rating1)+"-"+"3."+String.valueOf(rating2)+"-"+"5."+String.valueOf(rating3)+"-"+"7."+String.valueOf(rating4)+"-"+"9."+String.valueOf(rating5)+"-"+"11."+String.valueOf(rating6)+"-"+"13."+String.valueOf(rating7)+"-"+"15."+String.valueOf(rating8)+"-"+"17."+String.valueOf(rating9)+"-"+"19."+String.valueOf(rating10)+"-"+"21."+String.valueOf(rating11)+"-"+"23."+String.valueOf(rating12)+"-"+"25."+String.valueOf(rating13)+"-"+"27."+String.valueOf(rating14);
-
-                        new KAlertDialog(FormPenilaianKaryawanActivity.this, KAlertDialog.WARNING_TYPE)
-                                .setTitleText("Perhatian")
-                                .setContentText("Submit penilaian sekarang?")
-                                .setCancelText("TIDAK")
-                                .setConfirmText("   YA   ")
-                                .showCancelButton(true)
-                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                    @Override
-                                    public void onClick(KAlertDialog sDialog) {
-                                        sDialog.dismiss();
-                                    }
-                                })
-                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                    @Override
-                                    public void onClick(KAlertDialog sDialog) {
-                                        sDialog.dismiss();
-                                        pDialog = new KAlertDialog(FormPenilaianKaryawanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                        pDialog.show();
-                                        pDialog.setCancelable(false);
-                                        new CountDownTimer(1300, 800) {
-                                            public void onTick(long millisUntilFinished) {
-                                                i++;
-                                                switch (i) {
-                                                    case 0:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormPenilaianKaryawanActivity.this, R.color.colorGradien));
-                                                        break;
-                                                    case 1:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormPenilaianKaryawanActivity.this, R.color.colorGradien2));
-                                                        break;
-                                                    case 2:
-                                                    case 6:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormPenilaianKaryawanActivity.this, R.color.colorGradien3));
-                                                        break;
-                                                    case 3:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormPenilaianKaryawanActivity.this, R.color.colorGradien4));
-                                                        break;
-                                                    case 4:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormPenilaianKaryawanActivity.this, R.color.colorGradien5));
-                                                        break;
-                                                    case 5:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormPenilaianKaryawanActivity.this, R.color.colorGradien6));
-                                                        break;
+                        if(!statusKelulusan.equals("")){
+                            new KAlertDialog(FormPenilaianKaryawanActivity.this, KAlertDialog.WARNING_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Submit penilaian sekarang?")
+                                    .setCancelText("TIDAK")
+                                    .setConfirmText("   YA   ")
+                                    .showCancelButton(true)
+                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                            pDialog = new KAlertDialog(FormPenilaianKaryawanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                            pDialog.show();
+                                            pDialog.setCancelable(false);
+                                            new CountDownTimer(1300, 800) {
+                                                public void onTick(long millisUntilFinished) {
+                                                    i++;
+                                                    switch (i) {
+                                                        case 0:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormPenilaianKaryawanActivity.this, R.color.colorGradien));
+                                                            break;
+                                                        case 1:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormPenilaianKaryawanActivity.this, R.color.colorGradien2));
+                                                            break;
+                                                        case 2:
+                                                        case 6:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormPenilaianKaryawanActivity.this, R.color.colorGradien3));
+                                                            break;
+                                                        case 3:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormPenilaianKaryawanActivity.this, R.color.colorGradien4));
+                                                            break;
+                                                        case 4:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormPenilaianKaryawanActivity.this, R.color.colorGradien5));
+                                                            break;
+                                                        case 5:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormPenilaianKaryawanActivity.this, R.color.colorGradien6));
+                                                            break;
+                                                    }
                                                 }
-                                            }
-                                            public void onFinish() {
-                                                i = -1;
-                                                checkSignature();
-                                            }
-                                        }.start();
+                                                public void onFinish() {
+                                                    i = -1;
+                                                    checkSignature();
+                                                }
+                                            }.start();
 
-                                    }
-                                })
-                                .show();
-
+                                        }
+                                    })
+                                    .show();
+                        } else {
+                            new KAlertDialog(FormPenilaianKaryawanActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Harap tentukan kelulusan!")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        }
                     } else {
                         new KAlertDialog(FormPenilaianKaryawanActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -1199,7 +1232,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", nikKaryawan);
                 params.put("approver_kabag", sharedPrefManager.getSpNik());
-                params.put("status", "1");
+                params.put("status", statusKelulusan);
                 params.put("no_frm", "FRM.HRD.01.04/ rev-1");
                 params.put("list_rating", listRating);
 
