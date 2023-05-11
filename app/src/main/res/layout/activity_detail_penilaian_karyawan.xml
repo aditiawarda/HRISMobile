@@ -117,6 +117,7 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/kar_nama"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -146,6 +147,7 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/kar_depbag"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -187,6 +189,7 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/kar_jabatan"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -216,6 +219,7 @@
                                                 android:layout_column="2" />
 
                                             <TextView
+                                                android:id="@+id/kar_tglmasuk"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
