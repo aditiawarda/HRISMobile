@@ -48,7 +48,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".DataPenilaianSdmActivity"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".DetailPenilaianKaryawanActivity"
             android:screenOrientation="portrait"
