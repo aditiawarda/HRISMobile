@@ -70,8 +70,7 @@
                                         android:textStyle="bold"
                                         android:gravity="center"
                                         android:ellipsize="end"
-                                        android:maxLines="1"
-                                        android:singleLine="true"
+                                        android:maxLines="2"
                                         android:textSize="9dp"
                                         android:textColor="#515151"
                                         android:text="@string/penilaian_karyawan"/>
@@ -1047,7 +1046,7 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="Kepedulian pada 5 R &amp; keselamayan kerja"
+                                                android:text="Kepedulian pada 5 R &amp; keselamatan kerja"
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
