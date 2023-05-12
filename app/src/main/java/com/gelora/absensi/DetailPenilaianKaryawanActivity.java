@@ -295,11 +295,11 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                 }
 
                                 if(status_kelulusan.equals("1")){
-                                    markLulus.setText(" ✓ ");
+                                    markLulus.setText("✓");
                                     markTidakLulus.setText("");
                                 } else if(status_kelulusan.equals("2")){
                                     markLulus.setText("");
-                                    markTidakLulus.setText(" ✓ ");
+                                    markTidakLulus.setText("✓");
                                 }
 
                                 namaPenilai.setText(nama_approver_kabag);
