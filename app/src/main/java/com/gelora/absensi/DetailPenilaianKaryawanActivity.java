@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,6 +18,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
@@ -36,7 +40,8 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
     TextView bobot1, bobot2, bobot3, bobot4, bobot5, bobot6, bobot7, bobot8, bobot9, bobot10, bobot11, bobot12, bobot13, bobot14;
     TextView rat1, rat2, rat3, rat4, rat5, rat6, rat7, rat8, rat9, rat10, rat11, rat12, rat13, rat14;
     TextView nilai1, nilai2, nilai3, nilai4, nilai5, nilai6, nilai7, nilai8, nilai9, nilai10, nilai11, nilai12, nilai13, nilai14;
-    TextView totalBobotTV, totalNilaiTV, predikatTV, markLulus, markTidakLulus, namaPenilai, tglPenilai;
+    TextView totalBobotTV, totalNilaiTV, predikatTV, markLulus, markTidakLulus, namaPenilai, tglPenilai, namaAtasanPenilai, tglAtasanPenilai, catatanHRDTV;
+    ImageView ttdPenilai, ttdAtasanPenilai;
     String idPenilaian = "";
     int totalBobot = 0, totalNilai = 0;
 
@@ -106,6 +111,11 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
         markTidakLulus = findViewById(R.id.mark_tidak_lulus);
         namaPenilai = findViewById(R.id.nama_penilai);
         tglPenilai = findViewById(R.id.tgl_penilai);
+        ttdPenilai = findViewById(R.id.ttd_penilai);
+        namaAtasanPenilai = findViewById(R.id.nama_atasan_penilai);
+        tglAtasanPenilai = findViewById(R.id.tgl_atasan_penilai);
+        ttdAtasanPenilai = findViewById(R.id.ttd_atasan_penilai);
+        catatanHRDTV = findViewById(R.id.catatan_hrd_tv);
 
         idPenilaian = getIntent().getExtras().getString("id_penilaian");
 
@@ -146,6 +156,10 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                 String nama_approver_kabag = dataArray.getString("nama_approver_kabag");
                                 String tgl_approve_kabag = dataArray.getString("tgl_approve_kabag");
                                 String ttd_approver_kabag = dataArray.getString("ttd_approver_kabag");
+                                String nama_approver_kadept = dataArray.getString("nama_approver_kadept");
+                                String tgl_approve_kadept = dataArray.getString("tgl_approve_kadept");
+                                String ttd_approver_kadept = dataArray.getString("ttd_approver_kadept");
+                                String catatan_hrd = dataArray.getString("catatan_hrd");
 
                                 karNama.setText(nama_karyawan);
                                 karJabatan.setText(jabatan);
@@ -293,6 +307,30 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                 String yearDatePenilai = tgl_approve_kabag.substring(0, 10).substring(0,4);
                                 String monthDatePenilai = tgl_approve_kabag.substring(0, 10).substring(5,7);
                                 tglPenilai.setText(dayDatePenilai+"/"+monthDatePenilai+"/"+yearDatePenilai);
+                                String url_ttd_penilai = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_approver_kabag;
+
+                                Picasso.get().load(url_ttd_penilai).networkPolicy(NetworkPolicy.NO_CACHE)
+                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                        .into(ttdPenilai);
+
+                                if(!nama_approver_kadept.equals("") && !nama_approver_kadept.equals("null") && nama_approver_kadept!=null){
+                                    namaAtasanPenilai.setText(nama_approver_kadept);
+                                    String dayDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(8,10);
+                                    String yearDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(0,4);
+                                    String monthDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(5,7);
+                                    tglAtasanPenilai.setText(dayDatePenilai+"/"+monthDatePenilai+"/"+yearDatePenilai);
+                                    String url_ttd_atasan_penilai = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_approver_kadept;
+
+                                    Picasso.get().load(url_ttd_atasan_penilai).networkPolicy(NetworkPolicy.NO_CACHE)
+                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                            .into(ttdAtasanPenilai);
+                                }
+
+                                if(!catatan_hrd.equals("") && !catatan_hrd.equals("nulll") && catatan_hrd!=null){
+                                    catatanHRDTV.setText(catatan_hrd+"   ");
+                                } else {
+                                    catatanHRDTV.setText("");
+                                }
 
                             } else {
                                 new KAlertDialog(DetailPenilaianKaryawanActivity.this, KAlertDialog.ERROR_TYPE)

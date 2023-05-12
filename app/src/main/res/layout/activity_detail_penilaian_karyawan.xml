@@ -1692,7 +1692,7 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="100"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -2274,7 +2274,7 @@
                                                     android:id="@+id/predikat_tv"
                                                     android:layout_height="match_parent"
                                                     android:layout_width="match_parent"
-                                                    android:text="A"
+                                                    android:text=""
                                                     android:textSize="25dp"
                                                     android:textStyle="bold"
                                                     android:layout_marginTop="0.5dp"
@@ -2578,21 +2578,26 @@
                                                         android:paddingBottom="1.5dp"
                                                         android:gravity="left" />
 
-                                                    <TextView
+                                                    <LinearLayout
                                                         android:layout_weight=".60"
                                                         android:layout_width="0dp"
                                                         android:layout_height="match_parent"
-                                                        android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text=" "
-                                                        android:textSize="7dp"
                                                         android:layout_marginTop="0.5dp"
                                                         android:layout_marginBottom="0.5dp"
                                                         android:layout_marginLeft="0.5dp"
                                                         android:layout_marginRight="-1.5dp"
                                                         android:background="#FFFFFF"
                                                         android:paddingLeft="3dp"
-                                                        android:paddingRight="3dp"
-                                                        android:gravity="left" />
+                                                        android:paddingRight="3dp" >
+
+                                                        <ImageView
+                                                            android:id="@+id/ttd_penilai"
+                                                            android:scaleType="fitXY"
+                                                            android:layout_marginRight="4dp"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="18dp" />
+
+                                                    </LinearLayout>
 
                                                 </TableRow>
 
@@ -2724,21 +2729,26 @@
                                                         android:paddingBottom="1.5dp"
                                                         android:gravity="left" />
 
-                                                    <TextView
+                                                    <LinearLayout
                                                         android:layout_weight=".60"
                                                         android:layout_width="0dp"
                                                         android:layout_height="match_parent"
-                                                        android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text=" "
-                                                        android:textSize="7dp"
                                                         android:layout_marginTop="0.5dp"
                                                         android:layout_marginBottom="0.5dp"
                                                         android:layout_marginLeft="0.5dp"
                                                         android:layout_marginRight="-1.5dp"
                                                         android:background="#FFFFFF"
                                                         android:paddingLeft="3dp"
-                                                        android:paddingRight="3dp"
-                                                        android:gravity="left" />
+                                                        android:paddingRight="3dp" >
+
+                                                        <ImageView
+                                                            android:id="@+id/ttd_atasan_penilai"
+                                                            android:scaleType="fitXY"
+                                                            android:layout_marginRight="4dp"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="18dp" />
+
+                                                    </LinearLayout>
 
                                                 </TableRow>
 
@@ -2763,6 +2773,7 @@
                                                         android:gravity="left" />
 
                                                     <TextView
+                                                        android:id="@+id/nama_atasan_penilai"
                                                         android:layout_weight=".60"
                                                         android:layout_width="0dp"
                                                         android:layout_height="match_parent"
@@ -2801,6 +2812,7 @@
                                                         android:gravity="left" />
 
                                                     <TextView
+                                                        android:id="@+id/tgl_atasan_penilai"
                                                         android:layout_weight=".60"
                                                         android:layout_width="0dp"
                                                         android:layout_height="match_parent"
@@ -2854,11 +2866,13 @@
                                             android:layout_height="0dp">
 
                                             <TextView
+                                                android:id="@+id/catatan_hrd_tv"
                                                 android:layout_weight=".100"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text=" "
+                                                android:text=""
                                                 android:textSize="7dp"
+                                                android:textStyle="italic"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
                                                 android:background="#FFFFFF"
@@ -2939,40 +2953,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Lihat Lampiran"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:visibility="gone"
-                                android:id="@+id/catatan_hrd_part"
-                                android:background="@drawable/shape_penolakan_hrd"
-                                android:layout_width="match_parent"
-                                android:orientation="vertical"
-                                android:paddingTop="20dp"
-                                android:paddingBottom="20dp"
-                                android:paddingLeft="22dp"
-                                android:paddingRight="22dp"
-                                android:layout_marginBottom="10dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textStyle="bold"
-                                    android:textSize="12dp"
-                                    android:layout_marginBottom="6dp"
-                                    android:textColor="#C34F4F"
-                                    android:text="KETERANGAN PENOLAKAN"/>
-
-                                <TextView
-                                    android:id="@+id/catatan_hrd_tv"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="3dp"
-                                    android:lineSpacingExtra="2.5dp"
-                                    android:text=""
-                                    android:textColor="#C34F4F"
-                                    android:textSize="12dp" />
 
                             </LinearLayout>
 
