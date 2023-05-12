@@ -384,11 +384,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_1"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="10"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -476,11 +477,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_2"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="10"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -568,11 +570,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_3"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="10"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -660,11 +663,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_4"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="5"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -752,11 +756,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_5"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="5"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -844,11 +849,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_6"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="5"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -936,11 +942,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_7"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="10"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1028,11 +1035,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_8"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="5"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1120,11 +1128,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_9"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="5"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1212,11 +1221,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_10"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="5"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1304,11 +1314,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_11"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="10"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1396,11 +1407,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_12"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="10"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1488,11 +1500,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_13"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="5"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1580,11 +1593,12 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bobot_14"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
-                                                android:text="5"
+                                                android:text=""
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
                                                 android:layout_marginBottom="0.5dp"
@@ -1673,6 +1687,7 @@
                                                 android:gravity="center" />
 
                                             <TextView
+                                                android:id="@+id/total_bobot"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
@@ -1705,6 +1720,7 @@
                                                 android:layout_column="3" />
 
                                             <TextView
+                                                android:id="@+id/total_nilai"
                                                 android:layout_weight="1"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
@@ -2255,6 +2271,7 @@
                                                 android:orientation="vertical">
 
                                                 <TextView
+                                                    android:id="@+id/predikat_tv"
                                                     android:layout_height="match_parent"
                                                     android:layout_width="match_parent"
                                                     android:text="A"
@@ -2402,11 +2419,12 @@
                                                         android:gravity="left" />
 
                                                     <TextView
+                                                        android:id="@+id/mark_lulus"
                                                         android:layout_weight=".10"
                                                         android:layout_width="0dp"
                                                         android:layout_height="match_parent"
                                                         android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text=" ✓ "
+                                                        android:text=""
                                                         android:textSize="7dp"
                                                         android:layout_marginTop="0.5dp"
                                                         android:layout_marginBottom="0.5dp"
@@ -2442,11 +2460,12 @@
                                                         android:gravity="left" />
 
                                                     <TextView
+                                                        android:id="@+id/mark_tidak_lulus"
                                                         android:layout_weight=".10"
                                                         android:layout_width="0dp"
                                                         android:layout_height="match_parent"
                                                         android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text="  "
+                                                        android:text=""
                                                         android:textSize="7dp"
                                                         android:layout_marginTop="0.5dp"
                                                         android:layout_marginBottom="0.5dp"
@@ -2599,6 +2618,7 @@
                                                         android:gravity="left" />
 
                                                     <TextView
+                                                        android:id="@+id/nama_penilai"
                                                         android:layout_weight=".60"
                                                         android:layout_width="0dp"
                                                         android:layout_height="match_parent"
@@ -2638,6 +2658,7 @@
                                                         android:gravity="left" />
 
                                                     <TextView
+                                                        android:id="@+id/tgl_penilai"
                                                         android:layout_weight=".60"
                                                         android:layout_width="0dp"
                                                         android:layout_height="match_parent"
@@ -2673,7 +2694,7 @@
                                                         android:layout_width="0dp"
                                                         android:layout_height="match_parent"
                                                         android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text="Penilai"
+                                                        android:text="Atasan Penilai"
                                                         android:textSize="7dp"
                                                         android:layout_marginTop="0.5dp"
                                                         android:background="#FFFFFF"
