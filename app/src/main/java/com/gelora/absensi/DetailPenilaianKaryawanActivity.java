@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,7 +34,7 @@ import java.util.Map;
 
 public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
 
-    LinearLayout backBTN;
+    LinearLayout backBTN, downloadBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
 
@@ -44,6 +46,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
     ImageView ttdPenilai, ttdAtasanPenilai;
     String idPenilaian = "";
     int totalBobot = 0, totalNilai = 0;
+    String file_url = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,13 +119,47 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
         tglAtasanPenilai = findViewById(R.id.tgl_atasan_penilai);
         ttdAtasanPenilai = findViewById(R.id.ttd_atasan_penilai);
         catatanHRDTV = findViewById(R.id.catatan_hrd_tv);
+        downloadBTN = findViewById(R.id.download_btn);
 
         idPenilaian = getIntent().getExtras().getString("id_penilaian");
+        file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_cuti/"+idPenilaian;
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        downloadBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailPenilaianKaryawanActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Unduh File?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
+                                try {
+                                    startActivity(browserIntent);
+                                } catch (SecurityException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        })
+                        .show();
+
             }
         });
 

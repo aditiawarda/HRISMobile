@@ -903,7 +903,6 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
     public void totalNilai(){
         totalNilai = nilaiFP1 + nilaiFP2 + nilaiFP3 + nilaiFP4 + nilaiFP5 + nilaiFP6 + nilaiFP7 + nilaiFP8 + nilaiFP9 + nilaiFP10 + nilaiFP11 + nilaiFP12 + nilaiFP13 + nilaiFP14;
         fp_total_nilai.setText(String.valueOf(totalNilai));
-
         if(totalNilai <= 100){
             fp_predikat.setText("KS");
         } else if(totalNilai > 100 && totalNilai <= 200){
