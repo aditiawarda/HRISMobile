@@ -146,6 +146,8 @@ public class HumanResourceActivity extends AppCompatActivity {
             titleSDM.setText("List SDM Bagian");
         } else if(sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")) {
             titleSDM.setText("List SDM Departemen");
+        } else {
+            titleSDM.setText("List SDM Bagian");
         }
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);

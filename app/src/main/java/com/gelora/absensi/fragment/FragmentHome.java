@@ -456,7 +456,7 @@ public class FragmentHome extends Fragment {
             pengaduanPart.setVisibility(View.VISIBLE);
         }
 
-        if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")){
+        if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpNik().equals("3186150321")){
             cardPart.setVisibility(View.GONE);
             sdmPart.setVisibility(View.VISIBLE);
         } else {
