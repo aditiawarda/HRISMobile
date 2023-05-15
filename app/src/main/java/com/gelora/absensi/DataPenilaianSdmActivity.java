@@ -8,6 +8,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -67,6 +68,24 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
                 .into(loadingData);
+
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                dataPenilaianSDMRV.setVisibility(View.GONE);
+                loadingDataPart.setVisibility(View.VISIBLE);
+                noDataPart.setVisibility(View.GONE);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                        getData();
+                    }
+                }, 800);
+            }
+        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +170,21 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadingDataPart.setVisibility(View.VISIBLE);
+        noDataPart.setVisibility(View.GONE);
+        dataPenilaianSDMRV.setVisibility(View.GONE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.setRefreshing(false);
+                getData();
+            }
+        }, 500);
     }
 
 }
