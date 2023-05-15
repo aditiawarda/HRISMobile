@@ -326,7 +326,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                             .into(ttdAtasanPenilai);
                                 }
 
-                                if(!catatan_hrd.equals("") && !catatan_hrd.equals("nulll") && catatan_hrd!=null){
+                                if(!catatan_hrd.equals("") && !catatan_hrd.equals("null") && catatan_hrd!=null){
                                     catatanHRDTV.setText(catatan_hrd+"   ");
                                 } else {
                                     catatanHRDTV.setText("");
