@@ -1063,14 +1063,15 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="15dp"
                                     android:orientation="vertical"
-                                    android:paddingBottom="90dp">
+                                    android:paddingBottom="80dp">
 
                                     <androidx.recyclerview.widget.RecyclerView
                                         android:id="@+id/list_pengumuman_rv"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:orientation="vertical"
-                                        android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+                                        android:visibility="gone">
+                                    </androidx.recyclerview.widget.RecyclerView>
 
                                     <LinearLayout
                                         android:id="@+id/no_data_part"

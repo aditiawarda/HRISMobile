@@ -125,8 +125,8 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
                             Log.d("Success.Response", response.toString());
                             data = new JSONObject(response);
                             String status = data.getString("status");
-                            String jumlah = data.getString("jumlah");
                             if (status.equals("Success")) {
+                                String jumlah = data.getString("jumlah");
                                 if(Integer.parseInt(jumlah)>0){
                                     countWaitingBTN.setVisibility(View.VISIBLE);
                                     countWaitingTV.setText(jumlah);

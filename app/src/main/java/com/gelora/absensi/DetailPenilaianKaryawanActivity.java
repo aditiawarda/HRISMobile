@@ -130,7 +130,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
         confirmBTN = findViewById(R.id.confirm_btn);
 
         idPenilaian = getIntent().getExtras().getString("id_penilaian");
-        file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_cuti/"+idPenilaian;
+        file_url = "https://geloraaksara.co.id/absen-online/absen/download_pdf_penilaian_karyawan/"+idPenilaian;
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

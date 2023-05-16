@@ -119,7 +119,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
-        file_url = "https://geloraaksara.co.id/absen-online/backend/pdf_penilaian_karyawan/"+idIzinRecord;
+        file_url = "https://geloraaksara.co.id/absen-online/backend/pdf_form_cuti/"+idIzinRecord;
 
         catatanAtasanTV.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
