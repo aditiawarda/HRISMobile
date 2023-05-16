@@ -118,8 +118,8 @@ import java.util.Map;
 
 public class FragmentHome extends Fragment {
 
-    LinearLayout menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
-    TextView nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
+    LinearLayout countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
+    TextView countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
     ImageView avatarUser, weatherIcon, loadingData;
     RelativeLayout dataCuaca, dataCuacaEmpty;
@@ -209,6 +209,8 @@ public class FragmentHome extends Fragment {
         ulangTahunTo = view.findViewById(R.id.ulang_tahun_to);
         sdmPart = view.findViewById(R.id.sdm_part);
         cardPart = view.findViewById(R.id.card_part);
+        countNotificationPenilaian = view.findViewById(R.id.count_notification_penilaian);
+        countNotifPenilaianTV = view.findViewById(R.id.count_notif_penilaian_tv);
 
         ulangTahunPart = view.findViewById(R.id.ulang_tahun_part);
         congratTahunanPart = view.findViewById(R.id.congrat_tahunan);
@@ -684,6 +686,10 @@ public class FragmentHome extends Fragment {
                                 getCurrentLocation(weather_key);
                                 getDataPengumumanNew();
 
+                                if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                                    getWaitingConfirm();
+                                }
+
                             }
 
                         } catch (JSONException e) {
@@ -1118,7 +1124,6 @@ public class FragmentHome extends Fragment {
                                 } else if (description.equals("overcast clouds")){
                                     desc_idn = "Awan mendung";
                                 }
-
 
                                 mainWeather.setText(desc_idn);
                                 loadingProgressBarCuaca.setVisibility(View.GONE);
@@ -1650,6 +1655,58 @@ public class FragmentHome extends Fragment {
             notificationManager.notify(1, notificationBuilder.build());
         }
 
+    }
+
+    private void getWaitingConfirm(){
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_waiting_penilaian_sdm";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")) {
+                                String jumlah_data = data.getString("jumlah");
+                                if(Integer.parseInt(jumlah_data)>0){
+                                    countNotificationPenilaian.setVisibility(View.VISIBLE);
+                                    countNotifPenilaianTV.setText(jumlah_data);
+                                } else {
+                                    countNotificationPenilaian.setVisibility(View.GONE);
+                                    countNotifPenilaianTV.setText("");
+                                }
+                            } else {
+                                countNotificationPenilaian.setVisibility(View.GONE);
+                                countNotifPenilaianTV.setText("");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("nik", sharedPrefManager.getSpNik());
+                params.put("id_departemen", sharedPrefManager.getSpIdHeadDept());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
     }
 
     private void connectionFailed(){

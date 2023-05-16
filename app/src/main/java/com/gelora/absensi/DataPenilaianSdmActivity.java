@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -37,10 +38,11 @@ import java.util.Map;
 
 public class DataPenilaianSdmActivity extends AppCompatActivity {
 
-    LinearLayout addBTN, backBTN, loadingDataPart, noDataPart;
+    LinearLayout addBTN, backBTN, loadingDataPart, noDataPart, countWaitingBTN;
     ImageView loadingData;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
+    TextView countWaitingTV;
 
     private RecyclerView dataPenilaianSDMRV;
     private DataPenilaianSDM[] dataPenilaianSDMS;
@@ -59,6 +61,8 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
         loadingDataPart = findViewById(R.id.loading_data_part);
         loadingData = findViewById(R.id.loading_data);
         noDataPart = findViewById(R.id.no_data_part);
+        countWaitingBTN = findViewById(R.id.count_waiting_btn);
+        countWaitingTV = findViewById(R.id.count_waiting_tv);
 
         dataPenilaianSDMRV.setLayoutManager(new LinearLayoutManager(this));
         dataPenilaianSDMRV.setHasFixedSize(true);
@@ -121,7 +125,15 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
                             Log.d("Success.Response", response.toString());
                             data = new JSONObject(response);
                             String status = data.getString("status");
+                            String jumlah = data.getString("jumlah");
                             if (status.equals("Success")) {
+                                if(Integer.parseInt(jumlah)>0){
+                                    countWaitingBTN.setVisibility(View.VISIBLE);
+                                    countWaitingTV.setText(jumlah);
+                                } else {
+                                    countWaitingBTN.setVisibility(View.GONE);
+                                    countWaitingTV.setText("");
+                                }
                                 noDataPart.setVisibility(View.GONE);
                                 loadingDataPart.setVisibility(View.GONE);
                                 dataPenilaianSDMRV.setVisibility(View.VISIBLE);

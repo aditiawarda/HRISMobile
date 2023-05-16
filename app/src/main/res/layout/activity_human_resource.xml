@@ -273,7 +273,7 @@
                                             <LinearLayout
                                                 android:visibility="gone"
                                                 android:layout_alignParentRight="true"
-                                                android:id="@+id/count_notification_finger"
+                                                android:id="@+id/count_notification_penilaian"
                                                 android:layout_marginRight="12dp"
                                                 android:layout_marginTop="11dp"
                                                 android:layout_width="wrap_content"
@@ -285,7 +285,7 @@
                                                 android:background="@drawable/shape_notification_mark_info">
 
                                                 <TextView
-                                                    android:id="@+id/count_notif_finger_tv"
+                                                    android:id="@+id/count_notif_penilaian_tv"
                                                     android:gravity="center"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
