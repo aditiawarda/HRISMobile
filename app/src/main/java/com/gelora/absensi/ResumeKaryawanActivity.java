@@ -197,6 +197,13 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
 
                                 if(!status_karyawan.equals("Tetap")){
                                     penilaianBTN.setVisibility(View.VISIBLE);
+                                    penilaianBTN.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(ResumeKaryawanActivity.this, FormPenilaianKaryawanActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
                                 } else {
                                     penilaianBTN.setVisibility(View.GONE);
                                 }
