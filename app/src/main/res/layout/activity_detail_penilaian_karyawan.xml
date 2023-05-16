@@ -3050,28 +3050,6 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:visibility="gone"
-                                android:id="@+id/print_pdf"
-                                android:layout_marginBottom="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:background="@drawable/shape_third_btn"
-                                android:gravity="center">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textStyle="bold"
-                                    android:gravity="center"
-                                    android:textSize="13dp"
-                                    android:drawablePadding="7dp"
-                                    android:drawableLeft="@drawable/ic_baseline_pdf"
-                                    android:textColor="#CF811F"
-                                    android:text="Lihat PDF"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
                                 android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
@@ -3167,83 +3145,25 @@
                             <LinearLayout
                                 android:visibility="gone"
                                 android:id="@+id/action_part"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:orientation="vertical"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="12dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:textColor="#696969"
-                                    android:text="Catatan : "/>
-
-                                <EditText
-                                    android:id="@+id/catatan_tv"
-                                    android:layout_width="match_parent"
-                                    android:gravity="top"
-                                    android:layout_height="wrap_content"
-                                    android:minHeight="60dp"
-                                    android:paddingTop="13dp"
-                                    android:paddingBottom="13dp"
-                                    android:paddingLeft="20dp"
-                                    android:paddingRight="20dp"
-                                    android:scrollbars="vertical"
-                                    android:maxLength="255"
-                                    android:layout_marginBottom="10dp"
-                                    android:background="@drawable/shape_input_form_2"
-                                    android:drawablePadding="10dp"
-                                    android:textColor="#595959"
-                                    android:hint="Ketik catatan bila diperlukan..."
-                                    android:textSize="14dp"
-                                    android:textColorHint="#A1A1A1"
-                                    android:textColorHighlight="#FFE1BC"/>
-
                                 <LinearLayout
+                                    android:id="@+id/confirm_btn"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:orientation="horizontal">
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/shape_btn_approved"
+                                    android:gravity="center">
 
-                                    <LinearLayout
-                                        android:id="@+id/rejected_btn"
-                                        android:layout_width="0dp"
-                                        android:layout_weight=".50"
-                                        android:layout_marginRight="5dp"
-                                        android:layout_height="40dp"
-                                        android:background="@drawable/shape_btn_rejected"
-                                        android:gravity="center">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:textStyle="bold"
-                                            android:textSize="13dp"
-                                            android:textColor="@color/white"
-                                            android:text="TOLAK"/>
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:id="@+id/appoved_btn"
-                                        android:layout_width="0dp"
-                                        android:layout_weight=".50"
-                                        android:layout_marginLeft="5dp"
-                                        android:layout_height="40dp"
-                                        android:background="@drawable/shape_btn_approved"
-                                        android:gravity="center">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:textStyle="bold"
-                                            android:textSize="13dp"
-                                            android:textColor="@color/white"
-                                            android:text="SETUJUI"/>
-
-                                    </LinearLayout>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:textSize="13dp"
+                                        android:textColor="@color/white"
+                                        android:text="KONFIRMASI"/>
 
                                 </LinearLayout>
 

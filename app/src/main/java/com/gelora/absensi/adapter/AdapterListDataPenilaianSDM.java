@@ -20,6 +20,7 @@ import com.gelora.absensi.FormPenilaianKaryawanActivity;
 import com.gelora.absensi.HumanResourceActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.ResumeKaryawanActivity;
+import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataPenilaianSDM;
 import com.gelora.absensi.model.HumanResource;
 import com.squareup.picasso.MemoryPolicy;
@@ -32,6 +33,7 @@ public class AdapterListDataPenilaianSDM extends RecyclerView.Adapter<AdapterLis
 
     private DataPenilaianSDM[] data;
     private Context mContext;
+    SharedPrefManager sharedPrefManager;
 
     public AdapterListDataPenilaianSDM(DataPenilaianSDM[] data, DataPenilaianSdmActivity context) {
         this.data = data;
@@ -41,6 +43,7 @@ public class AdapterListDataPenilaianSDM extends RecyclerView.Adapter<AdapterLis
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        sharedPrefManager = new SharedPrefManager(mContext);
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_karyawan_list_penilaian,viewGroup,false);
         return new MyViewHolder(view);
     }
@@ -121,6 +124,17 @@ public class AdapterListDataPenilaianSDM extends RecyclerView.Adapter<AdapterLis
             }
         });
 
+        if (dataPenilaianSDM.getApprover_kadept()!=null && !dataPenilaianSDM.getApprover_kadept().equals("null") && !dataPenilaianSDM.getApprover_kadept().equals("")){
+            myViewHolder.waitingMark.setVisibility(View.GONE);
+        } else {
+            myViewHolder.waitingMark.setVisibility(View.VISIBLE);
+            if(sharedPrefManager.getSpNik().equals("3186150321")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||(sharedPrefManager.getSpIdJabatan().equals("4")&&sharedPrefManager.getSpNik().equals("1309131210"))){
+                myViewHolder.waitingMarkTV.setText("Menunggu Konfirmasi Atasan");
+            } else {
+                myViewHolder.waitingMarkTV.setText("Menunggu Konfirmasi");
+            }
+        }
+
     }
 
     @Override
@@ -129,8 +143,8 @@ public class AdapterListDataPenilaianSDM extends RecyclerView.Adapter<AdapterLis
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout parrentPart;
-        TextView namaTV, nikTV, detailTV, predikatTV, tanggalBuatTV;
+        LinearLayout parrentPart, waitingMark;
+        TextView namaTV, nikTV, detailTV, predikatTV, tanggalBuatTV, waitingMarkTV;
         CircleImageView profileImage;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -141,6 +155,8 @@ public class AdapterListDataPenilaianSDM extends RecyclerView.Adapter<AdapterLis
             predikatTV = itemView.findViewById(R.id.predikat);
             profileImage = itemView.findViewById(R.id.profile_image);
             tanggalBuatTV = itemView.findViewById(R.id.tanggal_buat_tv);
+            waitingMark = itemView.findViewById(R.id.waiting_mark);
+            waitingMarkTV = itemView.findViewById(R.id.waiting_mark_tv);
         }
     }
 }

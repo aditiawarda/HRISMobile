@@ -1,18 +1,21 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,7 +38,7 @@ import java.util.Map;
 
 public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, downloadBTN;
+    LinearLayout backBTN, downloadBTN, actionPart, confirmBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
 
@@ -48,6 +51,8 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
     String idPenilaian = "";
     int totalBobot = 0, totalNilai = 0;
     String file_url = "";
+    KAlertDialog pDialog;
+    private int i = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +126,8 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
         ttdAtasanPenilai = findViewById(R.id.ttd_atasan_penilai);
         catatanHRDTV = findViewById(R.id.catatan_hrd_tv);
         downloadBTN = findViewById(R.id.download_btn);
+        actionPart = findViewById(R.id.action_part);
+        confirmBTN = findViewById(R.id.confirm_btn);
 
         idPenilaian = getIntent().getExtras().getString("id_penilaian");
         file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_cuti/"+idPenilaian;
@@ -174,7 +181,73 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                             }
                         })
                         .show();
+            }
+        });
 
+        confirmBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailPenilaianKaryawanActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Konfirmasi?")
+                        .setContentText("Yakin untuk dikonfirmasi sekarang?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+
+                                pDialog = new KAlertDialog(DetailPenilaianKaryawanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1000, 500) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+
+                                    public void onFinish() {
+                                        i = -1;
+                                        checkSignature();
+                                    }
+                                }.start();
+
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -366,16 +439,19 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                         .into(ttdPenilai);
 
                                 if(!nama_approver_kadept.equals("") && !nama_approver_kadept.equals("null") && nama_approver_kadept!=null){
+                                    actionPart.setVisibility(View.GONE);
                                     namaAtasanPenilai.setText(nama_approver_kadept);
                                     String dayDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(8,10);
                                     String yearDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(0,4);
                                     String monthDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(5,7);
-                                    tglAtasanPenilai.setText(dayDatePenilai+"/"+monthDatePenilai+"/"+yearDatePenilai);
+                                    tglAtasanPenilai.setText(dayDateAtasanPenilai+"/"+monthDateAtasanPenilai+"/"+yearDateAtasanPenilai);
                                     String url_ttd_atasan_penilai = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_approver_kadept;
 
                                     Picasso.get().load(url_ttd_atasan_penilai).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                             .into(ttdAtasanPenilai);
+                                } else {
+                                    actionPart.setVisibility(View.VISIBLE);
                                 }
 
                                 if(!catatan_hrd.equals("") && !catatan_hrd.equals("null") && catatan_hrd!=null){
@@ -419,6 +495,134 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("id_penilaian", idPenilaian);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void checkSignature(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Available")){
+                                String signature = data.getString("data");
+                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                updateConfirm();
+                            } else {
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")
+                                        .setCancelText(" BATAL ")
+                                        .setConfirmText("LANJUT")
+                                        .showCancelButton(true)
+                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                Intent intent = new Intent(DetailPenilaianKaryawanActivity.this, DigitalSignatureActivity.class);
+                                                intent.putExtra("kode", "form");
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.WARNING_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void updateConfirm(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/update_confirm_penilaian_sdm";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                getData();
+                                actionPart.setVisibility(View.GONE);
+                                pDialog.setTitleText("Berhasil Dikonfirmasi")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            } else {
+                                actionPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Dikonfirmasi")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("id", idPenilaian);
                 return params;
             }
         };

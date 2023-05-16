@@ -51,11 +51,11 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
     LinearLayout catatanHRDPart, actionBar, editPermohonanBTN, cancelPermohonanBTN, batalWakiliBTN, wakiliBTN, downloadBTN, viewLampiranBTN, backBTN, actionPart, approvedBTN, rejectedBTN, rejectedMark, acceptedMark;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdApprover1, ttdApprover2, ttdApproverHRD;
-    KAlertDialog pDialog;
     EditText catatanAtasanTV;
     Bitmap bitmap;
     SharedPrefManager sharedPrefManager;
     View rootview;
+    KAlertDialog pDialog;
     private int i = -1;
     String file_url = "";
 

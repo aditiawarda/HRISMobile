@@ -52,7 +52,7 @@ public class AdapterPermohonanFinger extends RecyclerView.Adapter<AdapterPermoho
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         sharedPrefAbsen = new SharedPrefAbsen(mContext);
-        sharedPrefManager= new SharedPrefManager(mContext);
+        sharedPrefManager = new SharedPrefManager(mContext);
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_permohonan_finger,viewGroup,false);
         return new MyViewHolder(view);
     }
