@@ -67,20 +67,6 @@ public class AdapterListSDM extends RecyclerView.Adapter<AdapterListSDM.MyViewHo
         myViewHolder.jabatanTV.setText(humanResource.getJabatan());
         myViewHolder.detailTV.setText(humanResource.getBagian()+" | "+humanResource.getDepartemen());
 
-//        myViewHolder.profileImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(mContext, ViewImageActivity.class);
-//                if(humanResource.getAvatar()!=null){
-//                    intent.putExtra("url","https://geloraaksara.co.id/absen-online/upload/avatar/"+humanResource.getAvatar());
-//                } else {
-//                    intent.putExtra("url","https://geloraaksara.co.id/absen-online/upload/avatar/default_profile.jpg");
-//                }
-//                intent.putExtra("kode","profile");
-//                mContext.startActivity(intent);
-//            }
-//        });
-
         myViewHolder.parrentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

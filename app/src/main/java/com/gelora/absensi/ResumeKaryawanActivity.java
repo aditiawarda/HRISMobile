@@ -58,7 +58,7 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
     TextView namaTV, emailTV, genderTV, tempatLahirTV, tanggalLAhirTV, hanphoneTV, statusPernikahanTV, agamaTV, alamatKTPTV, alamatDomisiliTV;
     TextView hubunganKontakTV, namaKontakDaruratTV, kontakDaruratTV, nikTV, cabangTV, departemenTV, bagianTV, jabatanTV, statusKaryawanTV, tanggalBergabungTV, masaKerjaTV, golonganKaryawanTV;
     CircleImageView profileImage;
-    LinearLayout partEmptyPelatihan, partEmptyPengalaman, partEmptyKontakDarurat, partAvailableKontakDarurat, backBTN, actionBar, phoneBTN, phoneKontakPart, phoneDaruratBTN;
+    LinearLayout penilaianBTN, partEmptyPelatihan, partEmptyPengalaman, partEmptyKontakDarurat, partAvailableKontakDarurat, backBTN, actionBar, phoneBTN, phoneKontakPart, phoneDaruratBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     String nikResumer = "";
@@ -110,6 +110,7 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
         dataPengalamanRV = findViewById(R.id.data_pengalaman_rv);
         partEmptyPelatihan = findViewById(R.id.part_empty_pelatihan);
         dataPelatihanRV = findViewById(R.id.data_pelatihan_rv);
+        penilaianBTN = findViewById(R.id.penilaian_btn);
 
         dataPengalamanRV.setLayoutManager(new LinearLayoutManager(this));
         dataPengalamanRV.setHasFixedSize(true);
@@ -193,6 +194,12 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                 String notelp = dataArray.getString("notelp");
                                 String hubungan = dataArray.getString("hubungan");
                                 String hubungan_lainnya = dataArray.getString("hubungan_lainnya");
+
+                                if(!status_karyawan.equals("Tetap")){
+                                    penilaianBTN.setVisibility(View.VISIBLE);
+                                } else {
+                                    penilaianBTN.setVisibility(View.GONE);
+                                }
 
                                 if(avatar!=null && !avatar.equals("") && !avatar.equals("null")){
                                     Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar).networkPolicy(NetworkPolicy.NO_CACHE)
