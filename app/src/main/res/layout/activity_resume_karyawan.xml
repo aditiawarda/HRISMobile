@@ -52,7 +52,7 @@
                                         android:id="@+id/phone_btn"
                                         android:layout_width="33dp"
                                         android:layout_height="33dp"
-                                        android:layout_marginTop="20dp"
+                                        android:layout_marginTop="10dp"
                                         android:layout_marginRight="25dp"
                                         android:background="@drawable/shape_back_2"
                                         android:gravity="center">
