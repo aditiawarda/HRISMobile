@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -123,6 +124,20 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
 
         idPenilaian = getIntent().getExtras().getString("id_penilaian");
         file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_cuti/"+idPenilaian;
+
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override

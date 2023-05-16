@@ -328,6 +328,17 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
 
         LocalBroadcastManager.getInstance(this).registerReceiver(karyawanBroad, new IntentFilter("karyawan_broad"));
 
+        nikKaryawan = getIntent().getExtras().getString("nik_karyawan");
+        namaKaryawan = getIntent().getExtras().getString("nama_karyawan");
+
+        if(!nikKaryawan.equals("") && !namaKaryawan.equals("")){
+            namaKaryawanTV.setText(namaKaryawan);
+        } else {
+            nikKaryawan = "";
+            namaKaryawan = "";
+            namaKaryawanTV.setText("");
+        }
+
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -340,11 +351,19 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
             public void onRefresh() {
 
                 listRating = "";
-                nikKaryawan = "";
-                namaKaryawan = "";
+
+                nikKaryawan = getIntent().getExtras().getString("nik_karyawan");
+                namaKaryawan = getIntent().getExtras().getString("nama_karyawan");
+                if(!nikKaryawan.equals("") && !namaKaryawan.equals("")){
+                    namaKaryawanTV.setText(namaKaryawan);
+                } else {
+                    nikKaryawan = "";
+                    namaKaryawan = "";
+                    namaKaryawanTV.setText("");
+                }
+
                 statusKelulusan = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PENILAIAN, "");
-                namaKaryawanTV.setText("");
                 fP1.clearCheck();
                 fP2.clearCheck();
                 fP3.clearCheck();

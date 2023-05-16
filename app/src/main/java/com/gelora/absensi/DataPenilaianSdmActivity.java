@@ -98,6 +98,8 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DataPenilaianSdmActivity.this, FormPenilaianKaryawanActivity.class);
+                intent.putExtra("nik_karyawan", "");
+                intent.putExtra("nama_karyawan", "");
                 startActivity(intent);
             }
         });
@@ -151,7 +153,10 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
+                params.put("nik", sharedPrefManager.getSpNik());
+                params.put("id_departemen", sharedPrefManager.getSpIdHeadDept());
                 params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
                 return params;
             }
         };

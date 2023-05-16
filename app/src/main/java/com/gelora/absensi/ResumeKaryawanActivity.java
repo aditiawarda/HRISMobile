@@ -201,6 +201,8 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(View v) {
                                             Intent intent = new Intent(ResumeKaryawanActivity.this, FormPenilaianKaryawanActivity.class);
+                                            intent.putExtra("nik_karyawan", nik);
+                                            intent.putExtra("nama_karyawan", nama);
                                             startActivity(intent);
                                         }
                                     });
