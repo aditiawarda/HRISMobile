@@ -61,8 +61,7 @@
                                     android:textSize="15dp" />
 
                                 <LinearLayout
-                                    android:id="@+id/chat_btn"
-                                    android:orientation="vertical"
+                                    android:orientation="horizontal"
                                     android:layout_marginLeft="11dp"
                                     android:layout_alignParentRight="true"
                                     android:layout_width="wrap_content"
@@ -73,15 +72,60 @@
                                         android:layout_height="wrap_content">
 
                                         <LinearLayout
+
                                             android:layout_width="33dp"
                                             android:layout_height="33dp"
-                                            android:gravity="center"
-                                            android:background="@drawable/shape_back_2">
+                                            android:layout_marginRight="10dp"
+                                            android:background="@drawable/shape_back_2"
+                                            android:gravity="center">
 
                                             <TextView
                                                 android:layout_width="23dp"
                                                 android:layout_height="23dp"
-                                                android:background="@drawable/g_messenger_logo"/>
+                                                android:background="@drawable/ic_baseline_notifications_icon" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:visibility="gone"
+
+                                            android:layout_marginLeft="23dp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:paddingRight="4dp"
+                                            android:paddingLeft="4dp"
+                                            android:paddingBottom="1dp"
+                                            android:gravity="center"
+                                            android:background="@drawable/shape_notification_mark">
+
+                                            <TextView
+
+                                                android:gravity="center"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/white"
+                                                android:textSize="10dp"
+                                                android:text="0"/>
+
+                                        </LinearLayout>
+
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+
+                                        <LinearLayout
+                                            android:id="@+id/chat_btn"
+                                            android:layout_width="33dp"
+                                            android:layout_height="33dp"
+                                            android:background="@drawable/shape_back_2"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="23dp"
+                                                android:layout_height="23dp"
+                                                android:background="@drawable/g_messenger_logo" />
 
                                         </LinearLayout>
 
