@@ -192,6 +192,87 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    private void activeCheck() {
+        final String url = "https://geloraaksara.co.id/absen-online/api/check_active_user";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Tidak Aktif")){
+                                warningPerangkat = "aktif";
+
+                                if(pDialog==null){
+                                    pDialog = new KAlertDialog(HomeActivity.this, KAlertDialog.WARNING_TYPE)
+                                            .setTitleText("Perhatian")
+                                            .setContentText("AKUN ANDA SUDAH TIDAK AKTIF, HARAP HUBUNGI HRD JIKA TERJADI KESALAHAN!")
+                                            .setConfirmText("KELUAR");
+                                    pDialog.setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                            logoutFunction();
+                                        }
+                                    });
+                                    pDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                        @Override
+                                        public void onDismiss(DialogInterface dialog) {
+                                            dialog.dismiss();
+                                            logoutFunction();
+                                        }
+                                    });
+                                    pDialog.show();
+
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                    } else {
+                                        vibrate.vibrate(500);
+                                    }
+                                }
+
+                            } else {
+                                deviceIdFunction();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("device_id_user", deviceID);
+                return params;
+            }
+        };
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
+
+        requestQueue.add(postRequest);
+
+    }
+
     private void deviceIdFunction() {
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/check_device_id";
@@ -570,7 +651,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-            deviceIdFunction();
+            activeCheck();
         }
     }
 

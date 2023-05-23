@@ -49,7 +49,6 @@ import com.gelora.absensi.LoginActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
-import com.gelora.absensi.SplashScreen;
 import com.gelora.absensi.ViewImageActivity;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.FilePathimage;
@@ -76,7 +75,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
 
 /**
  * A simple {@link Fragment} subclass.
