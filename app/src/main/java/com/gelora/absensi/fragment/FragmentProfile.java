@@ -162,10 +162,12 @@ public class FragmentProfile extends Fragment {
         avatarBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(avatarSetting.isExpanded()){
-                    avatarSetting.collapse();
-                } else {
-                    avatarSetting.expand();
+                if(!positionOfUser.getText().toString().equals("Memuat data...")){
+                    if(avatarSetting.isExpanded()){
+                        avatarSetting.collapse();
+                    } else {
+                        avatarSetting.expand();
+                    }
                 }
             }
         });
