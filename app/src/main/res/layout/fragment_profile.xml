@@ -88,7 +88,7 @@
                                             android:ellipsize="end"
                                             android:maxLines="1"
                                             android:singleLine="true"
-                                            android:text=""
+                                            android:text="Memuat data..."
                                             android:textColor="@color/white"
                                             android:textSize="18dp" />
 
@@ -99,7 +99,7 @@
                                             android:ellipsize="end"
                                             android:maxLines="1"
                                             android:singleLine="true"
-                                            android:text=""
+                                            android:text="Memuat data..."
                                             android:textColor="@color/white"
                                             android:textSize="10dp" />
 
@@ -110,7 +110,7 @@
                                             android:ellipsize="end"
                                             android:maxLines="1"
                                             android:singleLine="true"
-                                            android:text=""
+                                            android:text="Memuat data..."
                                             android:textColor="@color/white"
                                             android:textSize="12dp" />
 
