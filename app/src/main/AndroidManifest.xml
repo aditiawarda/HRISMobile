@@ -47,6 +47,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".PersonalNotificationActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".DataPenilaianSdmActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

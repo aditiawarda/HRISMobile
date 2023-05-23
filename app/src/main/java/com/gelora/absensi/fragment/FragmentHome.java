@@ -73,6 +73,7 @@ import com.gelora.absensi.InfoPersonalActivity;
 import com.gelora.absensi.ListAllPengumumanActivity;
 import com.gelora.absensi.LoginActivity;
 import com.gelora.absensi.MapsActivity;
+import com.gelora.absensi.PersonalNotificationActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
@@ -118,7 +119,7 @@ import java.util.Map;
 
 public class FragmentHome extends Fragment {
 
-    LinearLayout countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
+    LinearLayout personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
     TextView countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
     ImageView avatarUser, weatherIcon, loadingData;
@@ -211,6 +212,7 @@ public class FragmentHome extends Fragment {
         cardPart = view.findViewById(R.id.card_part);
         countNotificationPenilaian = view.findViewById(R.id.count_notification_penilaian);
         countNotifPenilaianTV = view.findViewById(R.id.count_notif_penilaian_tv);
+        personalNotifBTN = view.findViewById(R.id.personal_notif_btn);
 
         ulangTahunPart = view.findViewById(R.id.ulang_tahun_part);
         congratTahunanPart = view.findViewById(R.id.congrat_tahunan);
@@ -259,6 +261,14 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        personalNotifBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PersonalNotificationActivity.class);
                 startActivity(intent);
             }
         });
