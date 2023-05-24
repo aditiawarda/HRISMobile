@@ -125,8 +125,7 @@ public class HomeActivity extends AppCompatActivity {
 
             checkLogin();
 
-        }
-        else {
+        } else {
             setContentView(R.layout.activity_home);
 
             bubbleNavigation = findViewById(R.id.equal_navigation_bar);
