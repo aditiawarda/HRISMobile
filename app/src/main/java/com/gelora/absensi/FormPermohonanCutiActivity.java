@@ -88,7 +88,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     LinearLayout actionBar, infoCutiPart, viewUploadBTN, markUpload, uploadBTN, uploadLampiranPart, viewBTN, successPart, formPart, backBTN, dariTanggalPicker, sampaiTanggalPicker, tipeCutiBTN, submitBTN, loadingDataPart, penggantiSelamaCutiBTN, startAttantionPart, noDataPart;
     SwipeRefreshLayout refreshLayout;
     TextView notejumlahHari, jumlahHariTV, messageSuccessTV, statusUploadTV, labelUnggahTV, tipeCutiTV, namaKaryawan, nikKaryawan, jabatanKaryawan, bagianKaryawan, penggantiSelamaCutiTV, tanggalMulaiBekerja, statuskaryawan, kategoriCutiPilihTV, sisaCuti, tahunCutiTelah, totalCutiTelah, dariTanggalTV, sampaiTanggalTV;
-    String lampiranWajibAtauTidak = "", uploadStatus = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", dateChoiceMulai = "", kategoriCuti = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
+    String lampiranWajibAtauTidak = "", uploadStatus = "", statusLampiran = "", tipeCuti = "", sisaCutiSementara = "", totalCutiDiambil = "", tahunCutiDiambil = "", idIzin = "", hp = "", alamat = "", alasanCuti = "", pengganti = "", dateChoiceMulai = "", kategoriCuti = "", dateChoiceAkhir = "", idCuti = "", kodeCuti = "", descCuti = "", nikKaryawanPengganti, namaKaryawanPenganti;
     ImageView loadingGif, successGif;
     EditText keywordKaryawanPengganti, alasanTV, alamatSelamaCutiTV, noHpTV;
     SharedPrefManager sharedPrefManager;
@@ -1392,7 +1392,8 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                             }
                         }
                     }
-                } else {
+                }
+                else {
                     if(dateChoiceAkhir.equals("")){
                         if(kategoriCutiPilihTV.getText().toString().equals("")){
                             if(alasanTV.getText().toString().equals("")){
@@ -2654,6 +2655,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                                 String cuti_ambil = data.getString("cuti_ambil");
                                 String lampiran_cuti_kusus = data.getString("lampiran_cuti_kusus");
                                 String info_sisa_cuti = data.getString("info_sisa_cuti");
+                                String tahun_periode = data.getString("tahun_periode");
 
                                 lampiranWajibAtauTidak = lampiran_cuti_kusus;
                                 jabatanKaryawan.setText(jabatan);
@@ -2662,9 +2664,10 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                                 statuskaryawan.setText(status_karyawan);
                                 sisaCuti.setText(sisa_cuti+" Hari");
                                 sisaCutiSementara = sisa_cuti;
-                                tahunCutiTelah.setText(getDateY());
+                                tahunCutiTelah.setText(tahun_periode);
                                 totalCutiTelah.setText(cuti_ambil+" Hari");
                                 totalCutiDiambil = cuti_ambil;
+                                tahunCutiDiambil = tahun_periode;
 
                                 if(info_sisa_cuti.equals("1")){
                                     infoCutiPart.setVisibility(View.VISIBLE);
@@ -2852,7 +2855,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                 Map<String, String>  params = new HashMap<String, String>();
 
                 params.put("sisa_cuti_sementara", sisaCutiSementara);
-                params.put("tahun_cuti_diambil", getDateY());
+                params.put("tahun_cuti_diambil", tahunCutiDiambil);
                 params.put("total_cuti_diambil", totalCutiDiambil);
                 params.put("alasan_cuti", alasanTV.getText().toString());
                 params.put("pengganti", nikKaryawanPengganti);

@@ -11,6 +11,7 @@ public class DataPersonalNotification {
     private String tanggal_mulai;
     private String tanggal_akhir;
     private String created_at;
+    private String status_read;
 
     public String getId_record() {
         return id_record;
@@ -76,4 +77,11 @@ public class DataPersonalNotification {
         this.created_at = created_at;
     }
 
+    public String getStatus_read() {
+        return status_read;
+    }
+
+    public void setStatus_read(String status_read) {
+        this.status_read = status_read;
+    }
 }
