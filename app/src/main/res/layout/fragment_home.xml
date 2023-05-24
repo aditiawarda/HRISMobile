@@ -72,7 +72,6 @@
                                         android:layout_height="wrap_content">
 
                                         <LinearLayout
-                                            android:visibility="gone"
                                             android:id="@+id/personal_notif_btn"
                                             android:layout_width="33dp"
                                             android:layout_height="33dp"
