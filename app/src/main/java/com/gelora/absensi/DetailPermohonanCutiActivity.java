@@ -1242,6 +1242,12 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                                     }
                                 }
 
+                                if (kode.equals("delegation")) {
+                                    actionPart.setVisibility(View.GONE);
+                                    cancelPermohonanBTN.setVisibility(View.GONE);
+                                    editPermohonanBTN.setVisibility(View.GONE);
+                                }
+
                             }
 
                         } catch (JSONException e) {

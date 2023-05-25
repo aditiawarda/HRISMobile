@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.DetailPermohonanCutiActivity;
 import com.gelora.absensi.DetailPermohonanIzinActivity;
 import com.gelora.absensi.ListNotifikasiActivity;
@@ -24,10 +31,15 @@ import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataPersonalNotification;
 import com.gelora.absensi.model.ListPermohonanIzin;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AdapterPersonalNotification extends RecyclerView.Adapter<AdapterPersonalNotification.MyViewHolder> {
 
@@ -250,10 +262,11 @@ public class AdapterPersonalNotification extends RecyclerView.Adapter<AdapterPer
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                    Intent intent = new Intent(mContext, DetailPermohonanCutiActivity.class);
-//                    intent.putExtra("kode", "notif");
-//                    intent.putExtra("id_izin",dataPersonalNotification.getId_record());
-//                    mContext.startActivity(intent);
+                actionRead(dataPersonalNotification.getId_record());
+                Intent intent = new Intent(mContext, DetailPermohonanCutiActivity.class);
+                intent.putExtra("kode", "delegation");
+                intent.putExtra("id_izin",dataPersonalNotification.getId_record());
+                mContext.startActivity(intent);
             }
 
         });
@@ -278,5 +291,44 @@ public class AdapterPersonalNotification extends RecyclerView.Adapter<AdapterPer
         }
     }
 
+    private void actionRead(String id) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        final String url = "https://geloraaksara.co.id/absen-online/api/read_notif_personal";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response);
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_izin_record", id);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
 
 }

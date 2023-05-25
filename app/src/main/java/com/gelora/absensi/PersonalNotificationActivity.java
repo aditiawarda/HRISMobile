@@ -81,11 +81,13 @@ public class PersonalNotificationActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getData();
+                noDataPart.setVisibility(View.GONE);
+                loadingDataPart.setVisibility(View.VISIBLE);
+                dataNotifikasiPersonalRV.setVisibility(View.GONE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        refreshLayout.setRefreshing(false);
+                        getData();
                     }
                 }, 1000);
             }
@@ -103,6 +105,7 @@ public class PersonalNotificationActivity extends AppCompatActivity {
     }
 
     private void getData() {
+        refreshLayout.setRefreshing(false);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/delegation_notifications";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
