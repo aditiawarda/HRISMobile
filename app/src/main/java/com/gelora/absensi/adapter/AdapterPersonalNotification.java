@@ -250,10 +250,10 @@ public class AdapterPersonalNotification extends RecyclerView.Adapter<AdapterPer
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent intent = new Intent(mContext, DetailPermohonanCutiActivity.class);
-                    intent.putExtra("kode", "notif");
-                    intent.putExtra("id_izin",dataPersonalNotification.getId_record());
-                    mContext.startActivity(intent);
+//                    Intent intent = new Intent(mContext, DetailPermohonanCutiActivity.class);
+//                    intent.putExtra("kode", "notif");
+//                    intent.putExtra("id_izin",dataPersonalNotification.getId_record());
+//                    mContext.startActivity(intent);
             }
 
         });

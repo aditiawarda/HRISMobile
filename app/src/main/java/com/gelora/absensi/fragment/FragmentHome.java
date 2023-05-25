@@ -113,8 +113,8 @@ import java.util.Map;
 
 public class FragmentHome extends Fragment {
 
-    LinearLayout personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
-    TextView countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
+    LinearLayout countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
+    TextView countNotificationPersonalTV, countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
     ImageView avatarUser, weatherIcon, loadingData;
     RelativeLayout dataCuaca, dataCuacaEmpty;
@@ -207,6 +207,8 @@ public class FragmentHome extends Fragment {
         countNotificationPenilaian = view.findViewById(R.id.count_notification_penilaian);
         countNotifPenilaianTV = view.findViewById(R.id.count_notif_penilaian_tv);
         personalNotifBTN = view.findViewById(R.id.personal_notif_btn);
+        countNotificationPersonalPart = view.findViewById(R.id.count_notification_personal);
+        countNotificationPersonalTV = view.findViewById(R.id.count_personal);
 
         ulangTahunPart = view.findViewById(R.id.ulang_tahun_part);
         congratTahunanPart = view.findViewById(R.id.congrat_tahunan);
@@ -689,6 +691,7 @@ public class FragmentHome extends Fragment {
 
                                 getCurrentLocation(weather_key);
                                 getDataPengumumanNew();
+                                getCountPersonalNotif();
 
                                 if(sharedPrefManager.getSpIdJabatan().equals("10")){
                                     getWaitingConfirm();
@@ -1706,6 +1709,57 @@ public class FragmentHome extends Fragment {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("nik", sharedPrefManager.getSpNik());
                 params.put("id_departemen", sharedPrefManager.getSpIdHeadDept());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+    }
+
+    private void getCountPersonalNotif(){
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/count_notif_yet_read";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")) {
+                                String jumlah_data = data.getString("jumlah");
+                                if(Integer.parseInt(jumlah_data)>0){
+                                    countNotificationPersonalPart.setVisibility(View.VISIBLE);
+                                    countNotificationPersonalTV.setText(jumlah_data);
+                                } else {
+                                    countNotificationPersonalPart.setVisibility(View.GONE);
+                                    countNotificationPersonalTV.setText("");
+                                }
+                            } else {
+                                countNotificationPersonalPart.setVisibility(View.GONE);
+                                countNotificationPersonalTV.setText("");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
                 return params;
             }
         };
