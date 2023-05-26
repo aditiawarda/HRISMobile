@@ -111,6 +111,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import android.provider.Settings.Secure;
+import android.widget.Toast;
 
 import static android.service.controls.ControlsProviderService.TAG;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
@@ -1453,16 +1454,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         postRequest.setRetryPolicy(retryPolicy);
 
-        // postRequest.setRetryPolicy(new DefaultRetryPolicy(0,
-        //        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-        //        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
         requestQueue.add(postRequest);
 
     }
 
     private void checkIzin(){
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/check_izin";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
