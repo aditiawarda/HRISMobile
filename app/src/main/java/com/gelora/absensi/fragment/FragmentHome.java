@@ -1734,6 +1734,34 @@ public class FragmentHome extends Fragment {
                                 if(Integer.parseInt(jumlah_data)>0){
                                     countNotificationPersonalPart.setVisibility(View.VISIBLE);
                                     countNotificationPersonalTV.setText(jumlah_data);
+                                    String shortName = sharedPrefManager.getSpNama()+" ";
+                                    if(shortName.contains(" ")){
+                                        shortName = shortName.substring(0, shortName.indexOf(" "));
+                                        System.out.println(shortName);
+                                    }
+
+                                    try {
+                                        Intent intent = new Intent(mContext, PersonalNotificationActivity.class);
+                                        Notify.build(mContext)
+                                                .setTitle("HRIS Mobile Gelora")
+                                                .setContent("Halo "+shortName+", terdapat "+jumlah_data+" notifikasi personal yang belum dilihat")
+                                                .setSmallIcon(R.drawable.ic_skylight_notification)
+                                                .setColor(R.color.colorPrimary)
+                                                .largeCircularIcon()
+                                                .enableVibration(true)
+                                                .setAction(intent)
+                                                .show();
+                                    } catch (IllegalArgumentException e){
+                                        e.printStackTrace();
+                                    }
+
+                                    // Vibrate for 500 milliseconds
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        vibrate.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                                    } else {
+                                        //deprecated in API 26
+                                        vibrate.vibrate(500);
+                                    }
                                 } else {
                                     countNotificationPersonalPart.setVisibility(View.GONE);
                                     countNotificationPersonalTV.setText("");

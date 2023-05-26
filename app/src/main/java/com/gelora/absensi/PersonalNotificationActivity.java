@@ -180,4 +180,18 @@ public class PersonalNotificationActivity extends AppCompatActivity {
                 .show();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        noDataPart.setVisibility(View.GONE);
+        loadingDataPart.setVisibility(View.VISIBLE);
+        dataNotifikasiPersonalRV.setVisibility(View.GONE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getData();
+            }
+        }, 500);
+    }
+
 }
