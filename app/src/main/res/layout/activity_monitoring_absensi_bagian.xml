@@ -71,7 +71,7 @@
                                         android:layout_height="wrap_content"
                                         android:textSize="20dp"
                                         android:textColor="@color/white"
-                                        android:text="-"/>
+                                        android:text="Memuat data..."/>
 
                                     <TextView
                                         android:layout_marginTop="7dp"
@@ -87,7 +87,7 @@
                                         android:layout_height="wrap_content"
                                         android:textSize="13dp"
                                         android:textColor="@color/white"
-                                        android:text="-"/>
+                                        android:text="Memuat data..."/>
 
                                 </LinearLayout>
 
@@ -204,7 +204,7 @@
                                             android:textColor="#B15735"
                                             android:textSize="13dp"
                                             android:textStyle="bold"
-                                            android:text="-"/>
+                                            android:text="Memuat data..."/>
 
                                     </LinearLayout>
 

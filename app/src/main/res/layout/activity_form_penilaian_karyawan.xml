@@ -2918,74 +2918,13 @@
 
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:id="@+id/part_kelulusan"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/shape_pengumuman"
-                                android:layout_marginBottom="15dp"
-                                android:paddingTop="23dp"
-                                android:paddingBottom="23dp"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="20dp"
-                                    android:orientation="horizontal"
-                                    android:gravity="center|left">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:lineSpacingExtra="2.5dp"
-                                        android:layout_marginLeft="20dp"
-                                        android:text="Percobaan/Kontrak/OJT"
-                                        android:textColor="#494949"
-                                        android:textSize="14dp" />
-
-                                </LinearLayout>
-
-                                <RadioGroup
-                                    android:id="@+id/kelulusan_option"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:orientation="horizontal">
-
-                                    <RadioButton
-                                        android:id="@+id/ko_lulus"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:paddingHorizontal="3dp"
-                                        android:layout_marginRight="10dp"
-                                        android:textSize="13dp"
-                                        android:textStyle="bold"
-                                        android:textColor="#4A4A4A"
-                                        android:text="LULUS"/>
-
-                                    <RadioButton
-                                        android:id="@+id/ko_tidak_lulus"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:paddingHorizontal="3dp"
-                                        android:layout_marginLeft="10dp"
-                                        android:textSize="13dp"
-                                        android:textStyle="bold"
-                                        android:textColor="#4A4A4A"
-                                        android:text="TIDAK LULUS"/>
-
-                                </RadioGroup>
-
-                            </LinearLayout>
-
                             <!-- Total -->
                             <LinearLayout
                                 android:id="@+id/part_fp_total"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/shape_pengumuman"
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="15dp"
                                 android:paddingTop="25dp"
                                 android:paddingBottom="23dp"
                                 android:orientation="vertical">
@@ -3439,6 +3378,67 @@
                                     </TableLayout>
 
                                 </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/part_kelulusan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/shape_pengumuman"
+                                android:layout_marginBottom="15dp"
+                                android:paddingTop="23dp"
+                                android:paddingBottom="23dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:layout_marginLeft="20dp"
+                                        android:text="Percobaan/Kontrak/OJT"
+                                        android:textColor="#494949"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+                                <RadioGroup
+                                    android:id="@+id/kelulusan_option"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/ko_lulus"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginRight="10dp"
+                                        android:textSize="13dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#4A4A4A"
+                                        android:text="LULUS"/>
+
+                                    <RadioButton
+                                        android:id="@+id/ko_tidak_lulus"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:paddingHorizontal="3dp"
+                                        android:layout_marginLeft="10dp"
+                                        android:textSize="13dp"
+                                        android:textStyle="bold"
+                                        android:textColor="#4A4A4A"
+                                        android:text="TIDAK LULUS"/>
+
+                                </RadioGroup>
 
                             </LinearLayout>
 

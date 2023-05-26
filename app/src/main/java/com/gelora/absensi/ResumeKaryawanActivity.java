@@ -170,6 +170,7 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
+                                String akses_penilai = data.getString("akses_penilai");
                                 JSONObject dataArray = data.getJSONObject("data");
                                 String avatar = dataArray.getString("avatar");
                                 String nama = dataArray.getString("nama");
@@ -195,7 +196,7 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                 String hubungan = dataArray.getString("hubungan");
                                 String hubungan_lainnya = dataArray.getString("hubungan_lainnya");
 
-                                if(!status_karyawan.equals("Tetap")){
+                                if(akses_penilai.equals("1")){
                                     penilaianBTN.setVisibility(View.VISIBLE);
                                     penilaianBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -207,7 +208,20 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                         }
                                     });
                                 } else {
-                                    penilaianBTN.setVisibility(View.GONE);
+                                    if(!status_karyawan.equals("Tetap")){
+                                        penilaianBTN.setVisibility(View.VISIBLE);
+                                        penilaianBTN.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Intent intent = new Intent(ResumeKaryawanActivity.this, FormPenilaianKaryawanActivity.class);
+                                                intent.putExtra("nik_karyawan", nik);
+                                                intent.putExtra("nama_karyawan", nama);
+                                                startActivity(intent);
+                                            }
+                                        });
+                                    } else {
+                                        penilaianBTN.setVisibility(View.GONE);
+                                    }
                                 }
 
                                 if(avatar!=null && !avatar.equals("") && !avatar.equals("null")){

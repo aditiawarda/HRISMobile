@@ -101,7 +101,7 @@
                                             android:paddingBottom="0.5dp"
                                             android:singleLine="true"
                                             android:text="Beri Penilaian"
-                                            android:textColor="#E34D1D"
+                                            android:textColor="#1D6CE3"
                                             android:textSize="12dp"
                                             android:textStyle="bold" />
 
