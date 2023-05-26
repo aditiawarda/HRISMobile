@@ -15,8 +15,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -38,7 +38,8 @@
                 android:id="@+id/status_notifikasi_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="25dp"
+                android:lineSpacingExtra="3.5dp"
                 android:text="Delegasi/Pengganti Nama Karyawan"
                 android:textColor="#C16D02"
                 android:textSize="13dp" />
@@ -47,8 +48,8 @@
                 android:id="@+id/line_limit"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="7dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="#2DEFB975"
                 android:textSize="15dp" />
 
@@ -56,7 +57,7 @@
                 android:id="@+id/detail_notifikasi_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="15dp"
                 android:text="Untuk tanggal 17 Mei 2023 s.d. 22 Mei 2023"
                 android:textColor="#C16D02"
                 android:textSize="12dp"
@@ -66,7 +67,7 @@
                 android:id="@+id/tanggal_notifikasi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="18dp"
                 android:gravity="right"
                 android:text="Selasa, 16 Mei 2023 09:23"
                 android:textColor="#C16D02"
