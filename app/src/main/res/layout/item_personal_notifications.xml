@@ -38,7 +38,7 @@
                 android:id="@+id/status_notifikasi_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="23dp"
                 android:lineSpacingExtra="3.5dp"
                 android:text="Delegasi/Pengganti Nama Karyawan"
                 android:textColor="#C16D02"

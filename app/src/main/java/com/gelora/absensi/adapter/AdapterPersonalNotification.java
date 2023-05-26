@@ -67,7 +67,7 @@ public class AdapterPersonalNotification extends RecyclerView.Adapter<AdapterPer
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final DataPersonalNotification dataPersonalNotification = data[i];
 
-        myViewHolder.statusNotifikasiTV.setText(dataPersonalNotification.getNama_pecuti()+" mencantumkan anda sebagai karyawan pengganti selama cuti");
+        myViewHolder.statusNotifikasiTV.setText(dataPersonalNotification.getNama_pecuti()+" mencantumkan anda sebagai Pengganti Selama Cuti");
 
         String input_date_mulai = dataPersonalNotification.getTanggal_mulai();
         String dayDateMulai = input_date_mulai.substring(8,10);
