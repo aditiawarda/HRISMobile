@@ -332,7 +332,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
         namaKaryawan = getIntent().getExtras().getString("nama_karyawan");
 
         if(!nikKaryawan.equals("") && !namaKaryawan.equals("")){
-            namaKaryawanTV.setText(namaKaryawan);
+            namaKaryawanTV.setText(namaKaryawan.toUpperCase());
         } else {
             nikKaryawan = "";
             namaKaryawan = "";

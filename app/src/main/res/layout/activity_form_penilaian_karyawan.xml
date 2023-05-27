@@ -111,248 +111,297 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/shape_pengumuman"
                                 android:layout_marginBottom="15dp"
-                                android:paddingTop="20dp"
+                                android:paddingTop="23dp"
                                 android:paddingBottom="20dp"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
                                 android:orientation="vertical">
 
-                                <TableLayout
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:stretchColumns="0,1,2,3,4">
+                                    android:layout_marginBottom="20dp"
+                                    android:background="@drawable/shape_title_fp"
+                                    android:gravity="center"
+                                    android:paddingTop="7dp"
+                                    android:paddingBottom="7dp">
 
-                                    <TableRow
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="RATING"
+                                        android:textColor="@color/colorPrimaryDark"
+                                        android:textSize="13dp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+<!--                                    <LinearLayout-->
+<!--                                        android:layout_alignParentRight="true"-->
+<!--                                        android:background="@drawable/shape_ornament_form_2"-->
+<!--                                        android:layout_width="25dp"-->
+<!--                                        android:layout_height="167dp"/>-->
+
+                                    <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:background="#000000">
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="17dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:orientation="vertical">
 
-                                        <TextView
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_column="0"
-                                            android:layout_marginTop="0.5dp"
-                                            android:layout_marginBottom="0.5dp"
-                                            android:layout_marginLeft="0.5dp"
-                                            android:layout_marginRight="0.5dp"
-                                            android:layout_weight=".100"
-                                            android:background="#FFFFFF"
-                                            android:gravity="center"
-                                            android:paddingLeft="3dp"
-                                            android:paddingRight="3dp"
-                                            android:text="RATING"
-                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                            android:textSize="11dp"
-                                            android:textStyle="bold" />
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
 
-                                    </TableRow>
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center|left"
+                                                android:layout_marginBottom="3dp"
+                                                android:orientation="horizontal">
 
-                                    <TableRow
-                                        android:layout_marginTop="-0.5dp"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:background="#000000">
+                                                <LinearLayout
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:paddingLeft="11dp"
+                                                    android:paddingTop="5dp"
+                                                    android:paddingRight="11dp"
+                                                    android:paddingBottom="6dp"
+                                                    android:layout_marginRight="8dp"
+                                                    android:background="@drawable/shape_rating_5">
 
-                                        <TextView
-                                            android:layout_weight="1"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                            android:text="5"
-                                            android:textSize="10dp"
-                                            android:layout_marginTop="0.5dp"
-                                            android:layout_marginBottom="0.5dp"
-                                            android:layout_marginLeft="0.5dp"
-                                            android:layout_column="0"
-                                            android:background="#FFFFFF"
-                                            android:paddingRight="3dp"
-                                            android:paddingLeft="3dp"
-                                            android:gravity="center" />
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="5"
+                                                        android:textColor="#FFFFFF"
+                                                        android:textSize="14dp" />
 
-                                        <TextView
-                                            android:layout_weight="3"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                            android:text="Istimewa, sangat baik"
-                                            android:textSize="10dp"
-                                            android:layout_marginTop="0.5dp"
-                                            android:layout_marginBottom="0.5dp"
-                                            android:layout_marginLeft="0.5dp"
-                                            android:layout_marginRight="0.5dp"
-                                            android:layout_column="0"
-                                            android:background="#FFFFFF"
-                                            android:paddingRight="3dp"
-                                            android:paddingLeft="3dp"
-                                            android:gravity="center" />
+                                                </LinearLayout>
 
-                                    </TableRow>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:lineSpacingExtra="2.5dp"
+                                                    android:layout_marginLeft="3dp"
+                                                    android:text="Istimewa, sangat baik"
+                                                    android:textColor="#494949"
+                                                    android:textSize="14dp" />
 
-                                    <TableRow
-                                        android:layout_marginTop="-0.5dp"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:background="#000000">
+                                            </LinearLayout>
 
-                                        <TextView
-                                            android:layout_weight="1"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                            android:text="4"
-                                            android:textSize="10dp"
-                                            android:layout_marginTop="0.5dp"
-                                            android:layout_marginBottom="0.5dp"
-                                            android:layout_marginLeft="0.5dp"
-                                            android:layout_column="0"
-                                            android:background="#FFFFFF"
-                                            android:paddingRight="3dp"
-                                            android:paddingLeft="3dp"
-                                            android:gravity="center" />
+                                            <LinearLayout
+                                                android:layout_width="10dp"
+                                                android:layout_height="28dp"
+                                                android:layout_alignParentRight="true"
+                                                android:background="@drawable/shape_rate_mark_5" />
 
-                                        <TextView
-                                            android:layout_weight="3"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                            android:text="Baik"
-                                            android:textSize="10dp"
-                                            android:layout_marginTop="0.5dp"
-                                            android:layout_marginBottom="0.5dp"
-                                            android:layout_marginLeft="0.5dp"
-                                            android:layout_marginRight="0.5dp"
-                                            android:layout_column="1"
-                                            android:background="#FFFFFF"
-                                            android:paddingRight="3dp"
-                                            android:paddingLeft="3dp"
-                                            android:gravity="center" />
+                                        </RelativeLayout>
 
-                                    </TableRow>
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
 
-                                    <TableRow
-                                        android:layout_marginTop="-0.5dp"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:background="#000000">
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center|left"
+                                                android:layout_marginBottom="3dp"
+                                                android:orientation="horizontal">
 
-                                        <TextView
-                                            android:layout_weight="1"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                            android:text="3"
-                                            android:textSize="10dp"
-                                            android:layout_marginTop="0.5dp"
-                                            android:layout_marginBottom="0.5dp"
-                                            android:layout_marginLeft="0.5dp"
-                                            android:layout_column="0"
-                                            android:background="#FFFFFF"
-                                            android:paddingRight="3dp"
-                                            android:paddingLeft="3dp"
-                                            android:gravity="center" />
+                                                <LinearLayout
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:paddingLeft="11dp"
+                                                    android:paddingTop="5dp"
+                                                    android:paddingRight="11dp"
+                                                    android:paddingBottom="6dp"
+                                                    android:layout_marginRight="8dp"
+                                                    android:background="@drawable/shape_rating_4">
 
-                                        <TextView
-                                            android:layout_weight="3"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                            android:text="Rata-rata"
-                                            android:textSize="10dp"
-                                            android:layout_marginTop="0.5dp"
-                                            android:layout_marginBottom="0.5dp"
-                                            android:layout_marginLeft="0.5dp"
-                                            android:layout_marginRight="0.5dp"
-                                            android:layout_column="0"
-                                            android:background="#FFFFFF"
-                                            android:paddingRight="3dp"
-                                            android:paddingLeft="3dp"
-                                            android:gravity="center" />
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="4"
+                                                        android:textColor="#FFFFFF"
+                                                        android:textSize="14dp" />
 
-                                    </TableRow>
+                                                </LinearLayout>
 
-                                    <TableRow
-                                        android:layout_marginTop="-0.5dp"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:background="#000000">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="3dp"
+                                                    android:lineSpacingExtra="2.5dp"
+                                                    android:text="Baik"
+                                                    android:textColor="#494949"
+                                                    android:textSize="14dp" />
 
-                                        <TextView
-                                            android:layout_weight="1"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                            android:text="2"
-                                            android:textSize="10dp"
-                                            android:layout_marginTop="0.5dp"
-                                            android:layout_marginBottom="0.5dp"
-                                            android:layout_marginLeft="0.5dp"
-                                            android:layout_column="0"
-                                            android:background="#FFFFFF"
-                                            android:paddingRight="3dp"
-                                            android:paddingLeft="3dp"
-                                            android:gravity="center" />
+                                            </LinearLayout>
 
-                                        <TextView
-                                            android:layout_weight="3"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                            android:text="Dibawah rata-rata"
-                                            android:textSize="10dp"
-                                            android:layout_marginTop="0.5dp"
-                                            android:layout_marginBottom="0.5dp"
-                                            android:layout_marginLeft="0.5dp"
-                                            android:layout_marginRight="0.5dp"
-                                            android:layout_column="0"
-                                            android:background="#FFFFFF"
-                                            android:paddingRight="3dp"
-                                            android:paddingLeft="3dp"
-                                            android:gravity="center" />
+                                            <LinearLayout
+                                                android:layout_width="10dp"
+                                                android:layout_height="28dp"
+                                                android:layout_alignParentRight="true"
+                                                android:background="@drawable/shape_rate_mark_4" />
 
-                                    </TableRow>
+                                        </RelativeLayout>
 
-                                    <TableRow
-                                        android:layout_marginTop="-0.5dp"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:background="#000000">
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
 
-                                        <TextView
-                                            android:layout_weight="1"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                            android:text="1"
-                                            android:textSize="10dp"
-                                            android:layout_marginTop="0.5dp"
-                                            android:layout_marginBottom="0.5dp"
-                                            android:layout_marginLeft="0.5dp"
-                                            android:layout_column="0"
-                                            android:background="#FFFFFF"
-                                            android:paddingRight="3dp"
-                                            android:paddingLeft="3dp"
-                                            android:gravity="center" />
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center|left"
+                                                android:layout_marginBottom="3dp"
+                                                android:orientation="horizontal">
 
-                                        <TextView
-                                            android:layout_weight="3"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                            android:text="Kurang sekali/jelek"
-                                            android:textSize="10dp"
-                                            android:layout_marginTop="0.5dp"
-                                            android:layout_marginBottom="0.5dp"
-                                            android:layout_marginLeft="0.5dp"
-                                            android:layout_marginRight="0.5dp"
-                                            android:layout_column="0"
-                                            android:background="#FFFFFF"
-                                            android:paddingRight="3dp"
-                                            android:paddingLeft="3dp"
-                                            android:gravity="center" />
+                                                <LinearLayout
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:paddingLeft="11dp"
+                                                    android:paddingTop="5dp"
+                                                    android:paddingRight="11dp"
+                                                    android:paddingBottom="6dp"
+                                                    android:layout_marginRight="8dp"
+                                                    android:background="@drawable/shape_rating_3">
 
-                                    </TableRow>
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="3"
+                                                        android:textColor="#FFFFFF"
+                                                        android:textSize="14dp" />
 
-                                </TableLayout>
+                                                </LinearLayout>
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:lineSpacingExtra="2.5dp"
+                                                    android:layout_marginLeft="3dp"
+                                                    android:text="Rata-rata"
+                                                    android:textColor="#494949"
+                                                    android:textSize="14dp" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="10dp"
+                                                android:layout_height="28dp"
+                                                android:layout_alignParentRight="true"
+                                                android:background="@drawable/shape_rate_mark_3" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center|left"
+                                                android:layout_marginBottom="3dp"
+                                                android:orientation="horizontal">
+
+                                                <LinearLayout
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:paddingLeft="11dp"
+                                                    android:paddingTop="5dp"
+                                                    android:paddingRight="11dp"
+                                                    android:paddingBottom="6dp"
+                                                    android:layout_marginRight="8dp"
+                                                    android:background="@drawable/shape_rating_2">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="2"
+                                                        android:textColor="#FFFFFF"
+                                                        android:textSize="14dp" />
+
+                                                </LinearLayout>
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:lineSpacingExtra="2.5dp"
+                                                    android:layout_marginLeft="3dp"
+                                                    android:text="Dibawah rata-rata"
+                                                    android:textColor="#494949"
+                                                    android:textSize="14dp" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="10dp"
+                                                android:layout_height="28dp"
+                                                android:layout_alignParentRight="true"
+                                                android:background="@drawable/shape_rate_mark_2" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center|left"
+                                                android:layout_marginBottom="3dp"
+                                                android:orientation="horizontal">
+
+                                                <LinearLayout
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:paddingLeft="11dp"
+                                                    android:paddingTop="5dp"
+                                                    android:paddingRight="11dp"
+                                                    android:paddingBottom="6dp"
+                                                    android:layout_marginRight="8dp"
+                                                    android:background="@drawable/shape_rating_1">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="1"
+                                                        android:textColor="#FFFFFF"
+                                                        android:textSize="14dp" />
+
+                                                </LinearLayout>
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:lineSpacingExtra="2.5dp"
+                                                    android:layout_marginLeft="3dp"
+                                                    android:text="Kurang sekali/jelek"
+                                                    android:textColor="#494949"
+                                                    android:textSize="14dp" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="10dp"
+                                                android:layout_height="28dp"
+                                                android:layout_alignParentRight="true"
+                                                android:background="@drawable/shape_rate_mark_1" />
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
 
                             </LinearLayout>
 

@@ -26,6 +26,9 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.codesgood.views.JustifiedTextView;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -132,8 +135,11 @@ public class DetailPengumumanActivity extends AppCompatActivity {
                                     imagePart.setVisibility(View.GONE);
                                 } else {
                                     imagePart.setVisibility(View.VISIBLE);
-                                    Glide.with(getApplicationContext())
-                                            .load("https://geloraaksara.co.id/absen-online/assets/img/pengumuman/"+pengumuman_image).into(imagePengumuman);
+                                    Picasso.get().load("https://geloraaksara.co.id/absen-online/assets/img/pengumuman/"+pengumuman_image).networkPolicy(NetworkPolicy.NO_CACHE)
+                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                            .into(imagePengumuman);
+
+                                    // Glide.with(getApplicationContext()).load("https://geloraaksara.co.id/absen-online/assets/img/pengumuman/"+pengumuman_image).into(imagePengumuman);
 
                                     imageView.setOnClickListener(new View.OnClickListener() {
                                         @Override
