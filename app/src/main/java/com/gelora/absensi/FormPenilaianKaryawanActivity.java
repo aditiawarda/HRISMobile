@@ -64,7 +64,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheet;
-    TextView namaKaryawanTV, messageTV;
+    TextView namaKaryawanTV, messageTV, descPredikatTV;
     EditText keywordKaryawan;
     ImageView loadingGif, successGif;
     private RecyclerView karyawanRV;
@@ -202,6 +202,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
         successPart = findViewById(R.id.success_submit);
         messageTV = findViewById(R.id.message_tv);
         viewBTN = findViewById(R.id.view_btn);
+        descPredikatTV = findViewById(R.id.desc_predikat);
 
         fP1 = findViewById(R.id.rgf_1);
         fP1_1 = findViewById(R.id.rgf_1_rating_1);
@@ -924,14 +925,19 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
         fp_total_nilai.setText(String.valueOf(totalNilai));
         if(totalNilai <= 100){
             fp_predikat.setText("KS");
+            descPredikatTV.setText("Kurang Sekali");
         } else if(totalNilai > 100 && totalNilai <= 200){
             fp_predikat.setText("K");
+            descPredikatTV.setText("Kurang");
         } else if(totalNilai > 200 && totalNilai <= 300){
             fp_predikat.setText("C");
+            descPredikatTV.setText("Cukup");
         } else if(totalNilai > 300 && totalNilai <= 400){
             fp_predikat.setText("B");
+            descPredikatTV.setText("Baik");
         } else if(totalNilai > 400 && totalNilai <= 500){
             fp_predikat.setText("BS");
+            descPredikatTV.setText("Baik Sekali");
         }
     }
 

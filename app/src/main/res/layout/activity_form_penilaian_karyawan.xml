@@ -140,12 +140,6 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
 
-<!--                                    <LinearLayout-->
-<!--                                        android:layout_alignParentRight="true"-->
-<!--                                        android:background="@drawable/shape_ornament_form_2"-->
-<!--                                        android:layout_width="25dp"-->
-<!--                                        android:layout_height="167dp"/>-->
-
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -2991,7 +2985,7 @@
 
                                         <LinearLayout
                                             android:layout_width="80dp"
-                                            android:layout_height="60dp"
+                                            android:layout_height="65dp"
                                             android:layout_marginRight="10dp"
                                             android:orientation="vertical"
                                             android:gravity="center">
@@ -3040,7 +3034,7 @@
 
                                         <LinearLayout
                                             android:layout_width="40dp"
-                                            android:layout_height="60dp"
+                                            android:layout_height="65dp"
                                             android:orientation="vertical"
                                             android:gravity="center">
 
@@ -3087,17 +3081,33 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:lineSpacingExtra="2.5dp"
-                                            android:textStyle="italic"
                                             android:text="Total Bobot : 100  "
                                             android:textColor="#494949"
                                             android:textSize="11dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:text="Predikat :"
+                                            android:textColor="#494949"
+                                            android:textSize="9dp" />
+
+                                        <TextView
+                                            android:id="@+id/desc_predikat"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:text="-"
+                                            android:textColor="#494949"
+                                            android:textSize="13dp" />
 
                                     </LinearLayout>
 
                                 </RelativeLayout>
 
                                 <LinearLayout
-                                    android:layout_marginTop="15dp"
+                                    android:layout_marginTop="20dp"
                                     android:layout_width="match_parent"
                                     android:background="#41838383"
                                     android:layout_height="1dp"/>
