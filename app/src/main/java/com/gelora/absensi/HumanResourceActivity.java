@@ -108,7 +108,7 @@ public class HumanResourceActivity extends AppCompatActivity {
         formSdmBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HumanResourceActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(HumanResourceActivity.this, FormSdmActivity.class);
                 startActivity(intent);
             }
         });
