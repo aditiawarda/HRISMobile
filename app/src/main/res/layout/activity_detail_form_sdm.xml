@@ -104,7 +104,20 @@
                                                 <LinearLayout
                                                     android:layout_width="20dp"
                                                     android:layout_height="15dp"
-                                                    android:background="@drawable/shape_detail_form_sdm"/>
+                                                    android:background="@drawable/shape_detail_form_sdm">
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="✓"
+                                                        android:textSize="10dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:gravity="center"
+                                                        android:singleLine="true" />
+
+                                                </LinearLayout>
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
@@ -129,7 +142,20 @@
                                                 <LinearLayout
                                                     android:layout_width="20dp"
                                                     android:layout_height="15dp"
-                                                    android:background="@drawable/shape_detail_form_sdm"/>
+                                                    android:background="@drawable/shape_detail_form_sdm">
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="✓"
+                                                        android:textSize="10dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:gravity="center"
+                                                        android:singleLine="true" />
+
+                                                </LinearLayout>
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
@@ -154,7 +180,20 @@
                                                 <LinearLayout
                                                     android:layout_width="20dp"
                                                     android:layout_height="15dp"
-                                                    android:background="@drawable/shape_detail_form_sdm"/>
+                                                    android:background="@drawable/shape_detail_form_sdm">
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="✓"
+                                                        android:textSize="10dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:gravity="center"
+                                                        android:singleLine="true" />
+
+                                                </LinearLayout>
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
@@ -187,7 +226,20 @@
                                                 <LinearLayout
                                                     android:layout_width="20dp"
                                                     android:layout_height="15dp"
-                                                    android:background="@drawable/shape_detail_form_sdm"/>
+                                                    android:background="@drawable/shape_detail_form_sdm">
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="✓"
+                                                        android:textSize="10dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:gravity="center"
+                                                        android:singleLine="true" />
+
+                                                </LinearLayout>
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
@@ -212,7 +264,20 @@
                                                 <LinearLayout
                                                     android:layout_width="20dp"
                                                     android:layout_height="15dp"
-                                                    android:background="@drawable/shape_detail_form_sdm"/>
+                                                    android:background="@drawable/shape_detail_form_sdm">
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="✓"
+                                                        android:textSize="10dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:gravity="center"
+                                                        android:singleLine="true" />
+
+                                                </LinearLayout>
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
@@ -237,7 +302,20 @@
                                                 <LinearLayout
                                                     android:layout_width="20dp"
                                                     android:layout_height="15dp"
-                                                    android:background="@drawable/shape_detail_form_sdm"/>
+                                                    android:background="@drawable/shape_detail_form_sdm">
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="✓"
+                                                        android:textSize="10dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:gravity="center"
+                                                        android:singleLine="true" />
+
+                                                </LinearLayout>
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
@@ -270,7 +348,20 @@
                                                 <LinearLayout
                                                     android:layout_width="20dp"
                                                     android:layout_height="15dp"
-                                                    android:background="@drawable/shape_detail_form_sdm"/>
+                                                    android:background="@drawable/shape_detail_form_sdm">
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="✓"
+                                                        android:textSize="10dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:gravity="center"
+                                                        android:singleLine="true" />
+
+                                                </LinearLayout>
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
