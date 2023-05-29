@@ -212,7 +212,7 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:layout_marginTop="10dp"
+                                            android:layout_marginTop="5dp"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:orientation="horizontal">
@@ -334,7 +334,7 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:layout_marginTop="10dp"
+                                            android:layout_marginTop="5dp"
                                             android:layout_marginBottom="10dp"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -1835,78 +1835,101 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginLeft="12dp"
                                             android:layout_marginBottom="2dp"
                                             android:orientation="horizontal">
 
                                             <TextView
                                                 android:layout_width="0dp"
                                                 android:layout_height="wrap_content"
-                                                android:layout_weight=".15"
+                                                android:layout_weight=".35"
                                                 android:text="MEMENUHI SYARAT"
                                                 android:textColor="#515151"
                                                 android:textSize="8dp" />
 
                                             <LinearLayout
                                                 android:layout_width="0dp"
-                                                android:layout_weight=".30"
+                                                android:layout_weight=".65"
                                                 android:orientation="horizontal"
                                                 android:layout_height="wrap_content">
 
                                                 <LinearLayout
-                                                    android:layout_width="20dp"
-                                                    android:layout_height="15dp"
-                                                    android:layout_marginLeft="5dp"
-                                                    android:background="@drawable/shape_detail_form_sdm">
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content">
 
-                                                    <TextView
-                                                        android:layout_width="match_parent"
-                                                        android:layout_height="match_parent"
-                                                        android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text="✓"
-                                                        android:textSize="10dp"
-                                                        android:ellipsize="end"
-                                                        android:maxLines="1"
-                                                        android:gravity="center"
-                                                        android:singleLine="true" />
+                                                    <LinearLayout
+                                                        android:layout_width="0dp"
+                                                        android:layout_weight=".50"
+                                                        android:orientation="horizontal"
+                                                        android:layout_height="wrap_content">
+
+                                                        <LinearLayout
+                                                            android:layout_width="20dp"
+                                                            android:layout_height="15dp"
+                                                            android:layout_marginLeft="5dp"
+                                                            android:background="@drawable/shape_detail_form_sdm">
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent"
+                                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                                android:text="✓"
+                                                                android:textSize="10dp"
+                                                                android:ellipsize="end"
+                                                                android:maxLines="1"
+                                                                android:gravity="center"
+                                                                android:singleLine="true" />
+
+                                                        </LinearLayout>
+
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="15dp"
+                                                            android:text="YA"
+                                                            android:layout_marginLeft="5dp"
+                                                            android:textColor="#515151"
+                                                            android:gravity="center|left"
+                                                            android:textSize="8dp" />
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_width="0dp"
+                                                        android:layout_weight=".50"
+                                                        android:orientation="horizontal"
+                                                        android:layout_height="wrap_content">
+
+                                                        <LinearLayout
+                                                            android:layout_width="20dp"
+                                                            android:layout_height="15dp"
+                                                            android:layout_marginLeft="15dp"
+                                                            android:background="@drawable/shape_detail_form_sdm">
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent"
+                                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                                android:text="✓"
+                                                                android:textSize="10dp"
+                                                                android:ellipsize="end"
+                                                                android:maxLines="1"
+                                                                android:gravity="center"
+                                                                android:singleLine="true" />
+
+                                                        </LinearLayout>
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="15dp"
+                                                            android:text="TIDAK"
+                                                            android:layout_marginLeft="5dp"
+                                                            android:textColor="#515151"
+                                                            android:gravity="center|left"
+                                                            android:textSize="8dp" />
+
+                                                    </LinearLayout>
 
                                                 </LinearLayout>
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="15dp"
-                                                    android:text="YA"
-                                                    android:layout_marginLeft="5dp"
-                                                    android:textColor="#515151"
-                                                    android:gravity="center|left"
-                                                    android:textSize="8dp" />
-
-                                                <LinearLayout
-                                                    android:layout_width="20dp"
-                                                    android:layout_height="15dp"
-                                                    android:layout_marginLeft="15dp"
-                                                    android:background="@drawable/shape_detail_form_sdm">
-
-                                                <TextView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="match_parent"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
-                                                    android:text="✓"
-                                                    android:textSize="10dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:gravity="center"
-                                                    android:singleLine="true" />
-
-                                            </LinearLayout>
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="15dp"
-                                                android:text="YA"
-                                                android:layout_marginLeft="5dp"
-                                                android:textColor="#515151"
-                                                android:gravity="center|left"
-                                                android:textSize="8dp" />
 
                                             </LinearLayout>
 
@@ -1916,7 +1939,800 @@
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="2dp"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight=".35"
+                                                android:text="4  Lain-Lain"
+                                                android:textColor="#515151"
+                                                android:layout_marginLeft="5dp"
+                                                android:textStyle="bold"
+                                                android:textSize="8dp" />
+
+                                            <LinearLayout
+                                                android:layout_width="0dp"
+                                                android:layout_weight=".65"
+                                                android:orientation="horizontal"
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text=":  "
+                                                    android:textColor="#515151"
+                                                    android:textSize="8dp" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:lineSpacingExtra="2dp"
+                                                    android:text="......................................................."
+                                                    android:textColor="#515151"
+                                                    android:textSize="8dp" />
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="12dp"
+                                            android:layout_marginBottom="2dp"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight=".35"
+                                                android:text="PERSETUJUAN"
+                                                android:textColor="#515151"
+                                                android:textSize="8dp" />
+
+                                            <LinearLayout
+                                                android:layout_width="0dp"
+                                                android:layout_weight=".65"
+                                                android:orientation="horizontal"
+                                                android:layout_height="wrap_content">
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content">
+
+                                                    <LinearLayout
+                                                        android:layout_width="0dp"
+                                                        android:layout_weight=".50"
+                                                        android:orientation="horizontal"
+                                                        android:layout_height="wrap_content">
+
+                                                        <LinearLayout
+                                                            android:layout_width="20dp"
+                                                            android:layout_height="15dp"
+                                                            android:layout_marginLeft="5dp"
+                                                            android:background="@drawable/shape_detail_form_sdm">
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent"
+                                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                                android:text="✓"
+                                                                android:textSize="10dp"
+                                                                android:ellipsize="end"
+                                                                android:maxLines="1"
+                                                                android:gravity="center"
+                                                                android:singleLine="true" />
+
+                                                        </LinearLayout>
+
+                                                        <TextView
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="15dp"
+                                                            android:text="YA"
+                                                            android:layout_marginLeft="5dp"
+                                                            android:textColor="#515151"
+                                                            android:gravity="center|left"
+                                                            android:textSize="8dp" />
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_width="0dp"
+                                                        android:layout_weight=".50"
+                                                        android:orientation="horizontal"
+                                                        android:layout_height="wrap_content">
+
+                                                        <LinearLayout
+                                                            android:layout_width="20dp"
+                                                            android:layout_height="15dp"
+                                                            android:layout_marginLeft="15dp"
+                                                            android:background="@drawable/shape_detail_form_sdm">
+
+                                                            <TextView
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent"
+                                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                                android:text="✓"
+                                                                android:textSize="10dp"
+                                                                android:ellipsize="end"
+                                                                android:maxLines="1"
+                                                                android:gravity="center"
+                                                                android:singleLine="true" />
+
+                                                        </LinearLayout>
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="15dp"
+                                                            android:text="TIDAK"
+                                                            android:layout_marginLeft="5dp"
+                                                            android:textColor="#515151"
+                                                            android:gravity="center|left"
+                                                            android:textSize="8dp" />
+
+                                                    </LinearLayout>
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TableLayout
+                                        android:layout_marginTop="10dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:stretchColumns="0,1,2,3,4">
+
+                                        <TableRow
+                                            android:background="#000000"
+                                            android:layout_width="match_parent"
+                                            android:paddingRight="0.5dp"
+                                            android:layout_height="0dp">
+
+                                            <TableLayout
+                                                android:layout_weight=".46"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:stretchColumns="0,1">
+
+                                                <TableRow
+                                                    android:background="#000000"
+                                                    android:layout_width="match_parent"
+                                                    android:paddingRight="0.5dp"
+                                                    android:layout_height="0dp">
+
+                                                    <TextView
+                                                        android:layout_weight=".45"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="Rekomendasi : (berikan tanda &quot;✓&quot; )"
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginLeft="0.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingRight="3dp"
+                                                        android:paddingLeft="3dp"
+                                                        android:gravity="left" />
+
+                                                </TableRow>
+
+                                                <TableRow
+                                                    android:background="#000000"
+                                                    android:layout_width="match_parent"
+                                                    android:paddingRight="0.5dp"
+                                                    android:layout_height="0dp">
+
+                                                    <TextView
+                                                        android:layout_weight=".92"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="LULUS percobaan/kontrak/OJT"
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:layout_marginLeft="0.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                    <TextView
+                                                        android:id="@+id/mark_lulus"
+                                                        android:layout_weight=".10"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text=""
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:layout_marginLeft="0.5dp"
+                                                        android:layout_marginRight="-1.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                </TableRow>
+
+                                                <TableRow
+                                                    android:background="#000000"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginTop="-1dp"
+                                                    android:paddingRight="0.5dp"
+                                                    android:layout_height="0dp">
+
+                                                    <TextView
+                                                        android:layout_weight=".92"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="TIDAK LULUS percobaan/kontrak/OJT"
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:layout_marginLeft="0.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                    <TextView
+                                                        android:id="@+id/mark_tidak_lulus"
+                                                        android:layout_weight=".10"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text=""
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:layout_marginLeft="0.5dp"
+                                                        android:layout_marginRight="-1.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                </TableRow>
+
+                                                <TableRow
+                                                    android:background="#000000"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginTop="-1dp"
+                                                    android:paddingRight="0.5dp"
+                                                    android:layout_height="0dp">
+
+                                                    <TextView
+                                                        android:layout_weight=".10"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text=""
+                                                        android:textSize="7dp"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:layout_marginLeft="0.5dp"
+                                                        android:layout_marginRight="-1.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                </TableRow>
+
+                                                <TableRow
+                                                    android:background="#000000"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginTop="-1dp"
+                                                    android:paddingRight="0.5dp"
+                                                    android:layout_height="0dp">
+
+                                                    <TextView
+                                                        android:layout_weight=".10"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text=""
+                                                        android:textSize="7dp"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:layout_marginLeft="0.5dp"
+                                                        android:layout_marginRight="-1.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                </TableRow>
+
+                                            </TableLayout>
+
+                                            <TableLayout
+                                                android:layout_weight=".27"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:stretchColumns="0,1">
+
+                                                <TableRow
+                                                    android:background="#000000"
+                                                    android:layout_width="match_parent"
+                                                    android:paddingRight="0.5dp"
+                                                    android:layout_height="0dp">
+
+                                                    <TextView
+                                                        android:layout_weight=".45"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="Penilai"
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingRight="3dp"
+                                                        android:paddingLeft="3dp"
+                                                        android:gravity="center" />
+
+                                                </TableRow>
+
+                                                <TableRow
+                                                    android:background="#000000"
+                                                    android:layout_width="match_parent"
+                                                    android:paddingRight="0.5dp"
+                                                    android:layout_height="0dp">
+
+                                                    <TextView
+                                                        android:layout_weight=".43"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="Tanda Tangan"
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="2"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:paddingBottom="1.5dp"
+                                                        android:gravity="left" />
+
+                                                    <LinearLayout
+                                                        android:layout_weight=".57"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:layout_marginLeft="0.5dp"
+                                                        android:layout_marginRight="-1.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp" >
+
+                                                        <ImageView
+                                                            android:id="@+id/ttd_penilai"
+                                                            android:scaleType="fitXY"
+                                                            android:layout_marginRight="4dp"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="18dp" />
+
+                                                    </LinearLayout>
+
+                                                </TableRow>
+
+                                                <TableRow
+                                                    android:background="#000000"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginTop="-1dp"
+                                                    android:paddingRight="0.5dp"
+                                                    android:layout_height="0dp">
+
+                                                    <TextView
+                                                        android:layout_weight=".43"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="Nama"
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                    <TextView
+                                                        android:id="@+id/nama_penilai"
+                                                        android:layout_weight=".57"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text=" "
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:layout_marginLeft="0.5dp"
+                                                        android:layout_marginRight="-1.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                </TableRow>
+
+                                                <TableRow
+                                                    android:background="#000000"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginTop="-1dp"
+                                                    android:paddingRight="0.5dp"
+                                                    android:layout_height="0dp">
+
+                                                    <TextView
+                                                        android:layout_weight=".43"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="Tanggal"
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                    <TextView
+                                                        android:id="@+id/tgl_penilai"
+                                                        android:layout_weight=".57"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text=" "
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:layout_marginLeft="0.5dp"
+                                                        android:layout_marginRight="-1.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                </TableRow>
+
+                                            </TableLayout>
+
+                                            <TableLayout
+                                                android:layout_weight=".27"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:stretchColumns="0,1">
+
+                                                <TableRow
+                                                    android:background="#000000"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="0dp">
+
+                                                    <TextView
+                                                        android:layout_weight=".45"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="Atasan Penilai"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:textSize="7dp"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingRight="3dp"
+                                                        android:paddingLeft="3dp"
+                                                        android:gravity="center" />
+
+                                                </TableRow>
+
+                                                <TableRow
+                                                    android:background="#000000"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="0dp">
+
+                                                    <TextView
+                                                        android:layout_weight=".43"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="Tanda Tangan"
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="2"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:paddingBottom="1.5dp"
+                                                        android:gravity="left" />
+
+                                                    <LinearLayout
+                                                        android:layout_weight=".57"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:layout_marginLeft="0.5dp"
+                                                        android:layout_marginRight="-1.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp" >
+
+                                                        <ImageView
+                                                            android:id="@+id/ttd_atasan_penilai"
+                                                            android:scaleType="fitXY"
+                                                            android:layout_marginRight="4dp"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="18dp" />
+
+                                                    </LinearLayout>
+
+                                                </TableRow>
+
+                                                <TableRow
+                                                    android:background="#000000"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginTop="-1dp"
+                                                    android:layout_height="0dp">
+
+                                                    <TextView
+                                                        android:layout_weight=".43"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="Nama"
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                    <TextView
+                                                        android:id="@+id/nama_atasan_penilai"
+                                                        android:layout_weight=".57"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text=" "
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:layout_marginLeft="0.5dp"
+                                                        android:layout_marginRight="-1.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                </TableRow>
+
+                                                <TableRow
+                                                    android:background="#000000"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_marginTop="-1dp"
+                                                    android:layout_height="0dp">
+
+                                                    <TextView
+                                                        android:layout_weight=".43"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text="Tanggal"
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                    <TextView
+                                                        android:id="@+id/tgl_atasan_penilai"
+                                                        android:layout_weight=".57"
+                                                        android:layout_width="0dp"
+                                                        android:layout_height="match_parent"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:text=" "
+                                                        android:textSize="7dp"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:layout_marginTop="0.5dp"
+                                                        android:layout_marginBottom="0.5dp"
+                                                        android:layout_marginLeft="0.5dp"
+                                                        android:layout_marginRight="-1.5dp"
+                                                        android:background="#FFFFFF"
+                                                        android:paddingLeft="3dp"
+                                                        android:paddingRight="3dp"
+                                                        android:gravity="left" />
+
+                                                </TableRow>
+
+                                            </TableLayout>
+
+                                        </TableRow>
+
+                                        <TableRow
+                                            android:background="#000000"
+                                            android:layout_width="match_parent"
+                                            android:layout_marginTop="-1dp"
+                                            android:paddingRight="0.5dp"
+                                            android:paddingLeft="0.5dp"
+                                            android:layout_height="0dp">
+
+                                            <TextView
+                                                android:layout_weight=".100"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text="Catatan HRD :"
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:background="#FFFFFF"
+                                                android:paddingLeft="3dp"
+                                                android:paddingRight="3dp"
+                                                android:gravity="left" />
+
+                                        </TableRow>
+
+                                        <TableRow
+                                            android:background="#000000"
+                                            android:layout_width="match_parent"
+                                            android:layout_marginTop="-1dp"
+                                            android:paddingRight="0.5dp"
+                                            android:paddingLeft="0.5dp"
+                                            android:layout_height="0dp">
+
+                                            <TextView
+                                                android:id="@+id/catatan_hrd_tv"
+                                                android:layout_weight=".100"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text=""
+                                                android:textSize="7dp"
+                                                android:textStyle="italic"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:background="#FFFFFF"
+                                                android:paddingLeft="3dp"
+                                                android:paddingRight="3dp"
+                                                android:gravity="left" />
+
+                                        </TableRow>
+
+                                        <TableRow
+                                            android:background="#000000"
+                                            android:layout_width="match_parent"
+                                            android:layout_marginTop="-1dp"
+                                            android:paddingRight="0.5dp"
+                                            android:paddingLeft="0.5dp"
+                                            android:layout_height="0dp">
+
+                                            <TextView
+                                                android:layout_weight=".100"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text=" "
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:background="#FFFFFF"
+                                                android:paddingLeft="3dp"
+                                                android:paddingRight="3dp"
+                                                android:gravity="left" />
+
+                                        </TableRow>
+
+                                        <TableRow
+                                            android:background="#000000"
+                                            android:layout_width="match_parent"
+                                            android:layout_marginTop="-1dp"
+                                            android:paddingRight="0.5dp"
+                                            android:paddingLeft="0.5dp"
+                                            android:layout_height="0dp">
+
+                                            <TextView
+                                                android:layout_weight=".100"
+                                                android:layout_height="match_parent"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text=" "
+                                                android:textSize="7dp"
+                                                android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:background="#FFFFFF"
+                                                android:paddingLeft="3dp"
+                                                android:paddingRight="3dp"
+                                                android:gravity="left" />
+
+                                        </TableRow>
+
+                                    </TableLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="10dp" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:gravity="left"
+                                        android:textSize="7dp"
+                                        android:textColor="#515151"
+                                        android:text="*Beri tanda ✓ pada kotak pilihan yang sesuai"
+                                        tools:ignore="RtlHardcoded,SpUsage" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:gravity="left"
+                                        android:textSize="7dp"
+                                        android:textColor="#515151"
+                                        android:text="*Coret yang tidak perlu"
+                                        tools:ignore="RtlHardcoded,SpUsage" />
 
                                 </LinearLayout>
 
