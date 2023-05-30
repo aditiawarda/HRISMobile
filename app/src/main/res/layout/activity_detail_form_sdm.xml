@@ -2231,7 +2231,7 @@
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
                                                         android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text="Penilai"
+                                                        android:text="Mengetahui/Menyetujui"
                                                         android:textSize="7dp"
                                                         android:ellipsize="end"
                                                         android:maxLines="1"
@@ -2398,7 +2398,7 @@
                                                         android:layout_width="0dp"
                                                         android:layout_height="match_parent"
                                                         android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text="Atasan Penilai"
+                                                        android:text="Diterima"
                                                         android:ellipsize="end"
                                                         android:maxLines="1"
                                                         android:singleLine="true"
@@ -2502,7 +2502,7 @@
 
                                             <TextView
                                                 android:layout_weight=".100"
-                                                android:layout_height="match_parent"
+                                                android:layout_height="20dp"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
                                                 android:text="Catatan :"
                                                 android:textSize="7dp"
@@ -2519,7 +2519,7 @@
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="10dp" />
+                                        android:layout_height="5dp" />
 
                                     <TextView
                                         android:layout_width="match_parent"
