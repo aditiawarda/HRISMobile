@@ -28,7 +28,7 @@ public class FormSdmActivity extends AppCompatActivity {
     ImageView loadingForm;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
-    TextView titleBTN, keteranganTV;
+    TextView keteranganTV;
     BottomSheetLayout bottomSheet;
     String kodeKeterangan = "0";
 
@@ -41,7 +41,6 @@ public class FormSdmActivity extends AppCompatActivity {
         actionBar = findViewById(R.id.action_bar);
         backBTN = findViewById(R.id.back_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
-        titleBTN = findViewById(R.id.title_btn);
         pilihKeteranganPart = findViewById(R.id.pilih_keterangan_part);
         keteranganTV = findViewById(R.id.keterangan_tv);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
@@ -95,7 +94,7 @@ public class FormSdmActivity extends AppCompatActivity {
             }
         });
 
-        titleBTN.setOnClickListener(new View.OnClickListener() {
+        submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FormSdmActivity.this, DetailFormSdmActivity.class);
