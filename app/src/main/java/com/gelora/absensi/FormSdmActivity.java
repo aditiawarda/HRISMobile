@@ -19,7 +19,8 @@ import com.flipboard.bottomsheet.BottomSheetLayout;
 
 public class FormSdmActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, pilihKeteranganPart, actionBar;
+    LinearLayout backBTN, pilihKeteranganPart, actionBar, submitBTN;
+    LinearLayout f1Part;
     LinearLayout ket1BTN, ket2BTN, ket3BTN, ket4BTN, ket5BTN, ket6BTN, ket7BTN;
     LinearLayout markKet1, markKet2, markKet3, markKet4, markKet5, markKet6, markKet7;
     SharedPrefManager sharedPrefManager;
@@ -41,6 +42,27 @@ public class FormSdmActivity extends AppCompatActivity {
         pilihKeteranganPart = findViewById(R.id.pilih_keterangan_part);
         keteranganTV = findViewById(R.id.keterangan_tv);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
+        f1Part = findViewById(R.id.form_1);
+        submitBTN = findViewById(R.id.submit_btn);
+
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                keteranganTV.setText("");
+                kodeKeterangan = "0";
+                submitBTN.setVisibility(View.GONE);
+                f1Part.setVisibility(View.GONE);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,6 +239,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "1";
                 keteranganTV.setText("Penerimaan");
 
+                submitBTN.setVisibility(View.VISIBLE);
+                f1Part.setVisibility(View.VISIBLE);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -246,6 +271,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 ket7BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
                 kodeKeterangan = "2";
                 keteranganTV.setText("Pengangkatan");
+
+                submitBTN.setVisibility(View.VISIBLE);
+                f1Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -277,6 +305,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "3";
                 keteranganTV.setText("Penugasan Kembali");
 
+                submitBTN.setVisibility(View.VISIBLE);
+                f1Part.setVisibility(View.GONE);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -306,6 +337,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 ket7BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
                 kodeKeterangan = "4";
                 keteranganTV.setText("Pensiun/PHK");
+
+                submitBTN.setVisibility(View.VISIBLE);
+                f1Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -337,6 +371,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "5";
                 keteranganTV.setText("Promosi/Mutasi");
 
+                submitBTN.setVisibility(View.VISIBLE);
+                f1Part.setVisibility(View.GONE);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -367,6 +404,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "6";
                 keteranganTV.setText("Penyesuaian Gaji");
 
+                submitBTN.setVisibility(View.VISIBLE);
+                f1Part.setVisibility(View.GONE);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -396,6 +436,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 ket7BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option_choice));
                 kodeKeterangan = "7";
                 keteranganTV.setText("Lain-lain");
+
+                submitBTN.setVisibility(View.VISIBLE);
+                f1Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override

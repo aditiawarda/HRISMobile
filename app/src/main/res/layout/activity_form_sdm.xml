@@ -120,6 +120,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
+                                android:visibility="gone"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -470,6 +471,7 @@
 
                             <LinearLayout
                                 android:id="@+id/submit_btn"
+                                android:visibility="gone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="20dp"
