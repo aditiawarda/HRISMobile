@@ -431,6 +431,7 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable/shape_weather_more_btn.xml" value="0.173" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable/shape_weather_page.xml" value="0.173" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout-v29/item_personal_notifications.xml" value="0.33" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout-v29/layout_keterangan_form_sdm.xml" value="0.17222222222222222" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout-v29/layout_year_picker.xml" value="0.1" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_calendar_page.xml" value="0.18" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_chat_contact.xml" value="0.15904232578024796" />
@@ -470,7 +471,7 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_form_penilaian_karyawan.xml" value="0.15" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_form_permohonan_cuti.xml" value="0.2" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_form_permohonan_izin.xml" value="0.33" />
-        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_form_sdm.xml" value="0.12037037037037036" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_form_sdm.xml" value="0.21" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_full_maps.xml" value="0.25" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_history.xml" value="0.15904232578024796" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_history_cuti_izin.xml" value="0.15904232578024796" />
@@ -544,6 +545,7 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/layout_karyawan_form_penilaian.xml" value="0.16" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/layout_karyawan_pengganti.xml" value="0.16" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/layout_kategori_cuti.xml" value="0.1718683197947841" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/layout_keterangan_form_sdm.xml" value="0.33" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/layout_privacy_policy.xml" value="0.12141941000427534" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/layout_status_pekerjaan.xml" value="0.1718683197947841" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/layout_status_pernikahan.xml" value="0.1718683197947841" />
