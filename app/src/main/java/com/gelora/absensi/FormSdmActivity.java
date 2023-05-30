@@ -10,19 +10,22 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 
 public class FormSdmActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, pilihKeteranganPart, actionBar, submitBTN;
+    LinearLayout backBTN, pilihKeteranganPart, actionBar, submitBTN, attantionNoForm, loadingFormPart;
     LinearLayout f1Part;
     LinearLayout ket1BTN, ket2BTN, ket3BTN, ket4BTN, ket5BTN, ket6BTN, ket7BTN;
     LinearLayout markKet1, markKet2, markKet3, markKet4, markKet5, markKet6, markKet7;
+    ImageView loadingForm;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView titleBTN, keteranganTV;
@@ -44,6 +47,13 @@ public class FormSdmActivity extends AppCompatActivity {
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         f1Part = findViewById(R.id.form_1);
         submitBTN = findViewById(R.id.submit_btn);
+        attantionNoForm = findViewById(R.id.attantion_no_form);
+        loadingFormPart = findViewById(R.id.loading_form_part);
+        loadingForm = findViewById(R.id.loading_form);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(loadingForm);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -52,13 +62,19 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 keteranganTV.setText("");
                 kodeKeterangan = "0";
+                attantionNoForm.setVisibility(View.VISIBLE);
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
+
+                loadingFormPart.setVisibility(View.VISIBLE);
+                attantionNoForm.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
+                        loadingFormPart.setVisibility(View.GONE);
+                        attantionNoForm.setVisibility(View.VISIBLE);
                     }
                 }, 1000);
             }
@@ -91,6 +107,16 @@ public class FormSdmActivity extends AppCompatActivity {
                 keteranganChoice();
             }
         });
+
+        loadingFormPart.setVisibility(View.VISIBLE);
+        attantionNoForm.setVisibility(View.GONE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingFormPart.setVisibility(View.GONE);
+                attantionNoForm.setVisibility(View.VISIBLE);
+            }
+        }, 2000);
 
     }
 
@@ -239,13 +265,28 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "1";
                 keteranganTV.setText("Penerimaan");
 
-                submitBTN.setVisibility(View.VISIBLE);
-                f1Part.setVisibility(View.VISIBLE);
+                loadingFormPart.setVisibility(View.VISIBLE);
+                attantionNoForm.setVisibility(View.GONE);
+                submitBTN.setVisibility(View.GONE);
+                f1Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
+
+                        loadingFormPart.setVisibility(View.VISIBLE);
+                        attantionNoForm.setVisibility(View.GONE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingFormPart.setVisibility(View.GONE);
+                                attantionNoForm.setVisibility(View.GONE);
+
+                                submitBTN.setVisibility(View.VISIBLE);
+                                f1Part.setVisibility(View.VISIBLE);
+                            }
+                        }, 1500);
                     }
                 }, 300);
             }
@@ -272,13 +313,28 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "2";
                 keteranganTV.setText("Pengangkatan");
 
-                submitBTN.setVisibility(View.VISIBLE);
+                loadingFormPart.setVisibility(View.VISIBLE);
+                attantionNoForm.setVisibility(View.GONE);
+                submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
+
+                        loadingFormPart.setVisibility(View.VISIBLE);
+                        attantionNoForm.setVisibility(View.GONE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingFormPart.setVisibility(View.GONE);
+                                attantionNoForm.setVisibility(View.GONE);
+
+                                submitBTN.setVisibility(View.VISIBLE);
+                                f1Part.setVisibility(View.GONE);
+                            }
+                        }, 1500);
                     }
                 }, 300);
             }
@@ -305,13 +361,28 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "3";
                 keteranganTV.setText("Penugasan Kembali");
 
-                submitBTN.setVisibility(View.VISIBLE);
+                loadingFormPart.setVisibility(View.VISIBLE);
+                attantionNoForm.setVisibility(View.GONE);
+                submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
+
+                        loadingFormPart.setVisibility(View.VISIBLE);
+                        attantionNoForm.setVisibility(View.GONE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingFormPart.setVisibility(View.GONE);
+                                attantionNoForm.setVisibility(View.GONE);
+
+                                submitBTN.setVisibility(View.VISIBLE);
+                                f1Part.setVisibility(View.GONE);
+                            }
+                        }, 1500);
                     }
                 }, 300);
             }
@@ -338,13 +409,28 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "4";
                 keteranganTV.setText("Pensiun/PHK");
 
-                submitBTN.setVisibility(View.VISIBLE);
+                loadingFormPart.setVisibility(View.VISIBLE);
+                attantionNoForm.setVisibility(View.GONE);
+                submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
+
+                        loadingFormPart.setVisibility(View.VISIBLE);
+                        attantionNoForm.setVisibility(View.GONE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingFormPart.setVisibility(View.GONE);
+                                attantionNoForm.setVisibility(View.GONE);
+
+                                submitBTN.setVisibility(View.VISIBLE);
+                                f1Part.setVisibility(View.GONE);
+                            }
+                        }, 1500);
                     }
                 }, 300);
             }
@@ -371,13 +457,28 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "5";
                 keteranganTV.setText("Promosi/Mutasi");
 
-                submitBTN.setVisibility(View.VISIBLE);
+                loadingFormPart.setVisibility(View.VISIBLE);
+                attantionNoForm.setVisibility(View.GONE);
+                submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
+
+                        loadingFormPart.setVisibility(View.VISIBLE);
+                        attantionNoForm.setVisibility(View.GONE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingFormPart.setVisibility(View.GONE);
+                                attantionNoForm.setVisibility(View.GONE);
+
+                                submitBTN.setVisibility(View.VISIBLE);
+                                f1Part.setVisibility(View.GONE);
+                            }
+                        }, 1500);
                     }
                 }, 300);
             }
@@ -404,13 +505,28 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "6";
                 keteranganTV.setText("Penyesuaian Gaji");
 
-                submitBTN.setVisibility(View.VISIBLE);
+                loadingFormPart.setVisibility(View.VISIBLE);
+                attantionNoForm.setVisibility(View.GONE);
+                submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
+
+                        loadingFormPart.setVisibility(View.VISIBLE);
+                        attantionNoForm.setVisibility(View.GONE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingFormPart.setVisibility(View.GONE);
+                                attantionNoForm.setVisibility(View.GONE);
+
+                                submitBTN.setVisibility(View.VISIBLE);
+                                f1Part.setVisibility(View.GONE);
+                            }
+                        }, 1500);
                     }
                 }, 300);
             }
@@ -437,13 +553,28 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "7";
                 keteranganTV.setText("Lain-lain");
 
-                submitBTN.setVisibility(View.VISIBLE);
+                loadingFormPart.setVisibility(View.VISIBLE);
+                attantionNoForm.setVisibility(View.GONE);
+                submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bottomSheet.dismissSheet();
+
+                        loadingFormPart.setVisibility(View.VISIBLE);
+                        attantionNoForm.setVisibility(View.GONE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingFormPart.setVisibility(View.GONE);
+                                attantionNoForm.setVisibility(View.GONE);
+
+                                submitBTN.setVisibility(View.VISIBLE);
+                                f1Part.setVisibility(View.GONE);
+                            }
+                        }, 1500);
                     }
                 }, 300);
             }

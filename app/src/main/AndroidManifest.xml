@@ -48,10 +48,12 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".DetailFormSdmActivity"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".FormSdmActivity"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".PersonalNotificationActivity"
             android:screenOrientation="portrait"
