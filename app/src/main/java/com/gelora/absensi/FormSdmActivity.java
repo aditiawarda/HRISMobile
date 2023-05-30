@@ -22,7 +22,7 @@ import com.flipboard.bottomsheet.BottomSheetLayout;
 public class FormSdmActivity extends AppCompatActivity {
 
     LinearLayout backBTN, pilihKeteranganPart, actionBar, submitBTN, attantionNoForm, loadingFormPart;
-    LinearLayout f1Part;
+    LinearLayout f1Part, f2Part;
     LinearLayout ket1BTN, ket2BTN, ket3BTN, ket4BTN, ket5BTN, ket6BTN, ket7BTN;
     LinearLayout markKet1, markKet2, markKet3, markKet4, markKet5, markKet6, markKet7;
     ImageView loadingForm;
@@ -46,6 +46,7 @@ public class FormSdmActivity extends AppCompatActivity {
         keteranganTV = findViewById(R.id.keterangan_tv);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         f1Part = findViewById(R.id.form_1);
+        f2Part = findViewById(R.id.form_2);
         submitBTN = findViewById(R.id.submit_btn);
         attantionNoForm = findViewById(R.id.attantion_no_form);
         loadingFormPart = findViewById(R.id.loading_form_part);
@@ -65,6 +66,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 attantionNoForm.setVisibility(View.VISIBLE);
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
+                f2Part.setVisibility(View.GONE);
 
                 loadingFormPart.setVisibility(View.VISIBLE);
                 attantionNoForm.setVisibility(View.GONE);
@@ -269,6 +271,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
+                f2Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -285,6 +288,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                                 submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.VISIBLE);
+                                f2Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -317,6 +321,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
+                f2Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -333,6 +338,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                                 submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.GONE);
+                                f2Part.setVisibility(View.VISIBLE);
                             }
                         }, 1500);
                     }
@@ -365,6 +371,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
+                f2Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -381,6 +388,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                                 submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.GONE);
+                                f2Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -413,6 +421,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
+                f2Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -429,6 +438,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                                 submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.GONE);
+                                f2Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -461,6 +471,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
+                f2Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -477,6 +488,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                                 submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.GONE);
+                                f2Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -509,6 +521,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
+                f2Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -525,6 +538,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                                 submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.GONE);
+                                f2Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -557,6 +571,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
+                f2Part.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -573,6 +588,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                                 submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.GONE);
+                                f2Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
