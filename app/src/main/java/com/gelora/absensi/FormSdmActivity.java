@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -262,10 +263,25 @@ public class FormSdmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(kodeKeterangan.equals("1")){ //Form 1
-
+                    if(f1UnitBisnisTV.getText().toString().equals("") || f1IdDepartemen.equals("") || f1IdBagian.equals("") || f1IdJabatan.equals("") || f1KomponenGajiTV.equals("") || f1DeskripsiJabatanTV.getText().toString().equals("") || f1SyaratTV.getText().toString().equals("") || f1TglDibutuhkan.equals("") || f1TglPemenuhan.equals("")){
+                        new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap isi semua data!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                    } else {
+                        f1SendData();
+                    }
+                } else {
+                    Intent intent = new Intent(FormSdmActivity.this, DetailFormSdmActivity.class);
+                    startActivity(intent);
                 }
-                Intent intent = new Intent(FormSdmActivity.this, DetailFormSdmActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -945,7 +961,6 @@ public class FormSdmActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
     private void f1GetUnitBisnis() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bisnis";
@@ -995,27 +1010,22 @@ public class FormSdmActivity extends AppCompatActivity {
         requestQueue.add(postRequest);
 
     }
-
     public BroadcastReceiver f1UnitBisnisBoard = new BroadcastReceiver() {
         @SuppressLint("SetTextI18n")
         @Override
         public void onReceive(Context context, Intent intent) {
             String id_unit = intent.getStringExtra("id_unit");
             String nama_unit = intent.getStringExtra("nama_unit");
-
             f1IdUnitBisnis = id_unit;
             f1UnitBisnisTV.setText(nama_unit);
-
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
                 }
             }, 300);
-
         }
     };
-
     private void f1DepartemenWay(){
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -1043,7 +1053,6 @@ public class FormSdmActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
     private void f1GetDepartemen() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_departemen";
@@ -1093,30 +1102,24 @@ public class FormSdmActivity extends AppCompatActivity {
         requestQueue.add(postRequest);
 
     }
-
     public BroadcastReceiver f1DepartemenBoard = new BroadcastReceiver() {
         @SuppressLint("SetTextI18n")
         @Override
         public void onReceive(Context context, Intent intent) {
             String id_departemen = intent.getStringExtra("id_departemen");
             String nama_departemen = intent.getStringExtra("nama_departemen");
-
             f1IdDepartemen = id_departemen;
             f1DepartemenTV.setText(nama_departemen);
-
             f1IdBagian = "";
             f1BagianTV.setText("");
-
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
                 }
             }, 300);
-
         }
     };
-
     private void f1BagianWay(){
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -1144,7 +1147,6 @@ public class FormSdmActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
     private void f1GetBagian() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bagian";
@@ -1194,55 +1196,45 @@ public class FormSdmActivity extends AppCompatActivity {
         requestQueue.add(postRequest);
 
     }
-
     public BroadcastReceiver f1BagianBoard = new BroadcastReceiver() {
         @SuppressLint("SetTextI18n")
         @Override
         public void onReceive(Context context, Intent intent) {
             String id_bagian = intent.getStringExtra("id_bagian");
             String nama_bagian = intent.getStringExtra("nama_bagian");
-
             f1IdBagian = id_bagian;
             f1BagianTV.setText(nama_bagian);
-
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
                 }
             }, 300);
-
         }
     };
-
     private void f1JabatanWay(){
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_unit_jabatan, bottomSheet, false));
                 f1JabatanRV = findViewById(R.id.unit_jabatan_rv);
-
                 f1JabatanRV.setLayoutManager(new LinearLayoutManager(this));
                 f1JabatanRV.setHasFixedSize(true);
                 f1JabatanRV.setNestedScrollingEnabled(false);
                 f1JabatanRV.setItemAnimator(new DefaultItemAnimator());
-
                 f1GetJabatan();
             } else {
                 bottomSheet.showWithSheetView(LayoutInflater.from(this).inflate(R.layout.layout_unit_jabatan, bottomSheet, false));
                 f1JabatanRV = findViewById(R.id.unit_jabatan_rv);
-
                 f1JabatanRV.setLayoutManager(new LinearLayoutManager(this));
                 f1JabatanRV.setHasFixedSize(true);
                 f1JabatanRV.setNestedScrollingEnabled(false);
                 f1JabatanRV.setItemAnimator(new DefaultItemAnimator());
-
                 f1GetJabatan();
             }
         } catch (InflateException e){
             e.printStackTrace();
         }
     }
-
     private void f1GetJabatan() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_jabatan";
@@ -1292,27 +1284,22 @@ public class FormSdmActivity extends AppCompatActivity {
         requestQueue.add(postRequest);
 
     }
-
     public BroadcastReceiver f1JabatanBoard = new BroadcastReceiver() {
         @SuppressLint("SetTextI18n")
         @Override
         public void onReceive(Context context, Intent intent) {
             String id_jabatan = intent.getStringExtra("id_jabatan");
             String nama_jabatan = intent.getStringExtra("nama_jabatan");
-
             f1IdJabatan = id_jabatan;
             f1JabatanTV.setText(nama_jabatan);
-
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
                 }
             }, 300);
-
         }
     };
-
     @SuppressLint("SimpleDateFormat")
     private void dateDibutuhkan(){
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -1783,7 +1770,6 @@ public class FormSdmActivity extends AppCompatActivity {
 
 
     }
-
     @SuppressLint("SimpleDateFormat")
     private void datePemenuhan(){
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -2254,8 +2240,10 @@ public class FormSdmActivity extends AppCompatActivity {
 
 
     }
-
-    //
+    private void f1SendData(){
+        Toast.makeText(FormSdmActivity.this, "gass", Toast.LENGTH_SHORT).show();
+    }
+    //Form 1 End
 
     private void connectionFailed(){
         CookieBar.build(FormSdmActivity.this)
