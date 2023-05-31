@@ -128,7 +128,7 @@
                                 <LinearLayout
                                     android:layout_width="180dp"
                                     android:layout_height="180dp"
-                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginBottom="5dp"
                                     android:background="@drawable/no_form_sdm" />
 
                                 <TextView
@@ -136,7 +136,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Harap pilih keterangan"
                                     android:textAlignment="center"
-                                    android:textColor="#D87A6D"
+                                    android:textColor="#DF967E"
                                     android:fontFamily="@font/roboto"
                                     android:textSize="15dp"
                                     android:textStyle="bold" />
@@ -145,7 +145,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:textColor="#D87A6D"
+                                    android:textColor="#DF967E"
                                     android:fontFamily="@font/roboto"
                                     android:text="Tentukan keterangan formulir diatas"
                                     android:textAlignment="center"
@@ -500,6 +500,255 @@
                                         android:paddingRight="20dp"
                                         android:inputType="text"
                                         android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:textColor="#595959"
+                                        android:hint=""
+                                        android:textSize="14dp"
+                                        android:textColorHint="#595959"
+                                        android:textColorHighlight="#FFE1BC"/>
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="left"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="Untuk Penerimaan"
+                                    android:textColor="#E37146"
+                                    android:layout_marginBottom="15dp"
+                                    android:textSize="15dp"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Deskripsi/Jabatan :"/>
+
+                                    <EditText
+                                        android:id="@+id/f1_deskripsi_jabatan_tv"
+                                        android:layout_width="match_parent"
+                                        android:gravity="center|left"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="10dp"
+                                        android:paddingBottom="10dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:inputType="text"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:textColor="#595959"
+                                        android:hint=""
+                                        android:textSize="14dp"
+                                        android:textColorHint="#595959"
+                                        android:textColorHighlight="#FFE1BC"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Syarat-syarat penerimaan :"/>
+
+                                    <EditText
+                                        android:id="@+id/f1_syarat_tv"
+                                        android:layout_width="match_parent"
+                                        android:gravity="top"
+                                        android:inputType="textCapSentences|textMultiLine"
+                                        android:layout_height="wrap_content"
+                                        android:minHeight="80dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingBottom="13dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:maxLength="255"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:textColor="#595959"
+                                        android:hint=""
+                                        android:textSize="14dp"
+                                        android:textColorHint="#595959"
+                                        android:textColorHighlight="#FFE1BC"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Tanggal Dibutuhkan :"/>
+
+                                    <LinearLayout
+                                        android:id="@+id/f1_tgl_dibutuhkan_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:paddingStart="20dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="15dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left">
+
+                                                <TextView
+                                                    android:id="@+id/f1_tgl_dibutuhkan_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_date_mulai"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Tanggal Pemenuhan :"/>
+
+                                    <LinearLayout
+                                        android:id="@+id/f1_tgl_pemenuhan_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:paddingStart="20dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="15dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left">
+
+                                                <TextView
+                                                    android:id="@+id/f1_tgl_pemenuhan_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_date_akhir"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="25dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Catatan :"/>
+
+                                    <EditText
+                                        android:id="@+id/f1_catatan_tv"
+                                        android:layout_width="match_parent"
+                                        android:gravity="top"
+                                        android:inputType="textCapSentences|textMultiLine"
+                                        android:layout_height="wrap_content"
+                                        android:minHeight="80dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingBottom="13dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:maxLength="255"
                                         android:background="@drawable/shape_input_form"
                                         android:drawablePadding="10dp"
                                         android:textColor="#595959"
