@@ -256,10 +256,14 @@ public class FormSdmActivity extends AppCompatActivity {
                 datePemenuhan();
             }
         });
+        //End Form 1
 
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(kodeKeterangan.equals("1")){ //Form 1
+
+                }
                 Intent intent = new Intent(FormSdmActivity.this, DetailFormSdmActivity.class);
                 startActivity(intent);
             }
@@ -275,7 +279,7 @@ public class FormSdmActivity extends AppCompatActivity {
             }
         }, 2000);
 
-        //F1
+        //Form 1
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
