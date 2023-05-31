@@ -13,6 +13,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,10 +21,10 @@ import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,18 +34,27 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
-import com.gelora.absensi.adapter.AdapterTitikAbsenFinger;
+import com.gelora.absensi.adapter.AdapterUnitBagian;
 import com.gelora.absensi.adapter.AdapterUnitBisnis;
+import com.gelora.absensi.adapter.AdapterUnitDepartemen;
+import com.gelora.absensi.adapter.AdapterUnitJabatan;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.TitikAbsensi;
+import com.gelora.absensi.model.UnitBagian;
 import com.gelora.absensi.model.UnitBisnis;
+import com.gelora.absensi.model.UnitDepartemen;
+import com.gelora.absensi.model.UnitJabatan;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.takisoft.datetimepicker.DatePickerDialog;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,12 +66,22 @@ public class FormSdmActivity extends AppCompatActivity {
     LinearLayout markKet1, markKet2, markKet3, markKet4, markKet5, markKet6, markKet7;
 
     //Form 1
-    LinearLayout f1UnitBisnisPart;
-    TextView f1UnitBisnisTV;
-    String f1IdUnitBisnis = "";
-    private RecyclerView f1IdUnitBisnisRV;
+    LinearLayout f1UnitBisnisPart, f1DepartemenPart, f1BagianPart, f1JabatanPart, f1TglDibutuhkanPart, f1TglPemenuhanPart;
+    TextView f1UnitBisnisTV, f1DepartemenTV, f1BagianTV, f1JabatanTV, f1TglDibutuhkanTV, f1TglPemenuhanTV;
+    EditText f1KomponenGajiTV, f1DeskripsiJabatanTV, f1SyaratTV, f1CatatanTV;
+    String f1IdUnitBisnis = "", f1IdDepartemen = "", f1IdBagian = "", f1IdJabatan = "", f1TglDibutuhkan = "", f1TglPemenuhan = "";
+    private RecyclerView f1UnitBisnisRV;
     private UnitBisnis[] unitBisnis;
     private AdapterUnitBisnis adapterUnitBisnis;
+    private RecyclerView f1DepartemenRV;
+    private UnitDepartemen[] unitDepartemen;
+    private AdapterUnitDepartemen adapterUnitDepartemen;
+    private RecyclerView f1BagianRV;
+    private UnitBagian[] unitBagian;
+    private AdapterUnitBagian adapterUnitBagian;
+    private RecyclerView f1JabatanRV;
+    private UnitJabatan[] unitJabatans;
+    private AdapterUnitJabatan adapterUnitJabatan;
 
     ImageView loadingForm;
     SharedPrefManager sharedPrefManager;
@@ -94,6 +114,20 @@ public class FormSdmActivity extends AppCompatActivity {
         //Form 1
         f1UnitBisnisPart = findViewById(R.id.f1_unit_bisnis_part);
         f1UnitBisnisTV = findViewById(R.id.f1_unit_bisnis_tv);
+        f1DepartemenPart = findViewById(R.id.f1_departemen_part);
+        f1DepartemenTV = findViewById(R.id.f1_departemen_tv);
+        f1BagianPart = findViewById(R.id.f1_bagian_part);
+        f1BagianTV = findViewById(R.id.f1_bagian_tv);
+        f1JabatanPart = findViewById(R.id.f1_jabatan_part);
+        f1JabatanTV = findViewById(R.id.f1_jabatan_tv);
+        f1KomponenGajiTV = findViewById(R.id.f1_komponen_gaji_tv);
+        f1DeskripsiJabatanTV = findViewById(R.id.f1_deskripsi_jabatan_tv);
+        f1SyaratTV = findViewById(R.id.f1_syarat_tv);
+        f1TglDibutuhkanPart = findViewById(R.id.f1_tgl_dibutuhkan_part);
+        f1TglDibutuhkanTV = findViewById(R.id.f1_tgl_dibutuhkan_tv);
+        f1TglPemenuhanPart = findViewById(R.id.f1_tgl_pemenuhan_part);
+        f1TglPemenuhanTV = findViewById(R.id.f1_tgl_pemenuhan_tv);
+        f1CatatanTV = findViewById(R.id.f1_catatan_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -118,6 +152,23 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1UnitBisnisTV.setText("");
                 f1IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f1DepartemenTV.setText("");
+                f1IdDepartemen = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
+                f1BagianTV.setText("");
+                f1IdBagian = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
+                f1JabatanTV.setText("");
+                f1IdJabatan = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
+                f1KomponenGajiTV.setText("");
+                f1DeskripsiJabatanTV.setText("");
+                f1SyaratTV.setText("");
+                f1TglDibutuhkan = "";
+                f1TglDibutuhkanTV.setText("");
+                f1TglPemenuhan = "";
+                f1TglPemenuhanTV.setText("");
+                f1CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -152,11 +203,57 @@ public class FormSdmActivity extends AppCompatActivity {
 
         //Form 1
         LocalBroadcastManager.getInstance(this).registerReceiver(f1UnitBisnisBoard, new IntentFilter("f1_unit_bisnis_board"));
-
+        LocalBroadcastManager.getInstance(this).registerReceiver(f1DepartemenBoard, new IntentFilter("f1_departemen_board"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(f1BagianBoard, new IntentFilter("f1_bagian_board"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(f1JabatanBoard, new IntentFilter("f1_jabatan_board"));
         f1UnitBisnisPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 f1UnitBisnisWay();
+            }
+        });
+        f1DepartemenPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f1DepartemenWay();
+            }
+        });
+        f1BagianPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(f1IdDepartemen.equals("")){
+                    new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap pilih departemen terlebih dahulu!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    f1BagianWay();
+                }
+            }
+        });
+        f1JabatanPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f1JabatanWay();
+            }
+        });
+        f1TglDibutuhkanPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dateDibutuhkan();
+            }
+        });
+        f1TglPemenuhanPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePemenuhan();
             }
         });
 
@@ -180,6 +277,9 @@ public class FormSdmActivity extends AppCompatActivity {
 
         //F1
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
 
     }
 
@@ -338,6 +438,23 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1UnitBisnisTV.setText("");
                 f1IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f1DepartemenTV.setText("");
+                f1IdDepartemen = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
+                f1BagianTV.setText("");
+                f1IdBagian = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
+                f1JabatanTV.setText("");
+                f1IdJabatan = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
+                f1KomponenGajiTV.setText("");
+                f1DeskripsiJabatanTV.setText("");
+                f1SyaratTV.setText("");
+                f1TglDibutuhkan = "";
+                f1TglDibutuhkanTV.setText("");
+                f1TglPemenuhan = "";
+                f1TglPemenuhanTV.setText("");
+                f1CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -393,6 +510,23 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1UnitBisnisTV.setText("");
                 f1IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f1DepartemenTV.setText("");
+                f1IdDepartemen = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
+                f1BagianTV.setText("");
+                f1IdBagian = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
+                f1JabatanTV.setText("");
+                f1IdJabatan = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
+                f1KomponenGajiTV.setText("");
+                f1DeskripsiJabatanTV.setText("");
+                f1SyaratTV.setText("");
+                f1TglDibutuhkan = "";
+                f1TglDibutuhkanTV.setText("");
+                f1TglPemenuhan = "";
+                f1TglPemenuhanTV.setText("");
+                f1CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -448,6 +582,23 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1UnitBisnisTV.setText("");
                 f1IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f1DepartemenTV.setText("");
+                f1IdDepartemen = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
+                f1BagianTV.setText("");
+                f1IdBagian = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
+                f1JabatanTV.setText("");
+                f1IdJabatan = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
+                f1KomponenGajiTV.setText("");
+                f1DeskripsiJabatanTV.setText("");
+                f1SyaratTV.setText("");
+                f1TglDibutuhkan = "";
+                f1TglDibutuhkanTV.setText("");
+                f1TglPemenuhan = "";
+                f1TglPemenuhanTV.setText("");
+                f1CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -503,6 +654,23 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1UnitBisnisTV.setText("");
                 f1IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f1DepartemenTV.setText("");
+                f1IdDepartemen = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
+                f1BagianTV.setText("");
+                f1IdBagian = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
+                f1JabatanTV.setText("");
+                f1IdJabatan = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
+                f1KomponenGajiTV.setText("");
+                f1DeskripsiJabatanTV.setText("");
+                f1SyaratTV.setText("");
+                f1TglDibutuhkan = "";
+                f1TglDibutuhkanTV.setText("");
+                f1TglPemenuhan = "";
+                f1TglPemenuhanTV.setText("");
+                f1CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -558,6 +726,23 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1UnitBisnisTV.setText("");
                 f1IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f1DepartemenTV.setText("");
+                f1IdDepartemen = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
+                f1BagianTV.setText("");
+                f1IdBagian = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
+                f1JabatanTV.setText("");
+                f1IdJabatan = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
+                f1KomponenGajiTV.setText("");
+                f1DeskripsiJabatanTV.setText("");
+                f1SyaratTV.setText("");
+                f1TglDibutuhkan = "";
+                f1TglDibutuhkanTV.setText("");
+                f1TglPemenuhan = "";
+                f1TglPemenuhanTV.setText("");
+                f1CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -613,6 +798,23 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1UnitBisnisTV.setText("");
                 f1IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f1DepartemenTV.setText("");
+                f1IdDepartemen = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
+                f1BagianTV.setText("");
+                f1IdBagian = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
+                f1JabatanTV.setText("");
+                f1IdJabatan = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
+                f1KomponenGajiTV.setText("");
+                f1DeskripsiJabatanTV.setText("");
+                f1SyaratTV.setText("");
+                f1TglDibutuhkan = "";
+                f1TglDibutuhkanTV.setText("");
+                f1TglPemenuhan = "";
+                f1TglPemenuhanTV.setText("");
+                f1CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -668,6 +870,23 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1UnitBisnisTV.setText("");
                 f1IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f1DepartemenTV.setText("");
+                f1IdDepartemen = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
+                f1BagianTV.setText("");
+                f1IdBagian = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
+                f1JabatanTV.setText("");
+                f1IdJabatan = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
+                f1KomponenGajiTV.setText("");
+                f1DeskripsiJabatanTV.setText("");
+                f1SyaratTV.setText("");
+                f1TglDibutuhkan = "";
+                f1TglDibutuhkanTV.setText("");
+                f1TglPemenuhan = "";
+                f1TglPemenuhanTV.setText("");
+                f1CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -699,22 +918,22 @@ public class FormSdmActivity extends AppCompatActivity {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_unit_bisnis, bottomSheet, false));
-                f1IdUnitBisnisRV = findViewById(R.id.unit_bisnis_rv);
+                f1UnitBisnisRV = findViewById(R.id.unit_bisnis_rv);
 
-                f1IdUnitBisnisRV.setLayoutManager(new LinearLayoutManager(this));
-                f1IdUnitBisnisRV.setHasFixedSize(true);
-                f1IdUnitBisnisRV.setNestedScrollingEnabled(false);
-                f1IdUnitBisnisRV.setItemAnimator(new DefaultItemAnimator());
+                f1UnitBisnisRV.setLayoutManager(new LinearLayoutManager(this));
+                f1UnitBisnisRV.setHasFixedSize(true);
+                f1UnitBisnisRV.setNestedScrollingEnabled(false);
+                f1UnitBisnisRV.setItemAnimator(new DefaultItemAnimator());
 
                 f1GetUnitBisnis();
             } else {
                 bottomSheet.showWithSheetView(LayoutInflater.from(this).inflate(R.layout.layout_unit_bisnis, bottomSheet, false));
-                f1IdUnitBisnisRV = findViewById(R.id.unit_bisnis_rv);
+                f1UnitBisnisRV = findViewById(R.id.unit_bisnis_rv);
 
-                f1IdUnitBisnisRV.setLayoutManager(new LinearLayoutManager(this));
-                f1IdUnitBisnisRV.setHasFixedSize(true);
-                f1IdUnitBisnisRV.setNestedScrollingEnabled(false);
-                f1IdUnitBisnisRV.setItemAnimator(new DefaultItemAnimator());
+                f1UnitBisnisRV.setLayoutManager(new LinearLayoutManager(this));
+                f1UnitBisnisRV.setHasFixedSize(true);
+                f1UnitBisnisRV.setNestedScrollingEnabled(false);
+                f1UnitBisnisRV.setItemAnimator(new DefaultItemAnimator());
 
                 f1GetUnitBisnis();
             }
@@ -741,7 +960,7 @@ public class FormSdmActivity extends AppCompatActivity {
                             Gson gson = builder.create();
                             unitBisnis = gson.fromJson(unit, UnitBisnis[].class);
                             adapterUnitBisnis = new AdapterUnitBisnis(unitBisnis,FormSdmActivity.this);
-                            f1IdUnitBisnisRV.setAdapter(adapterUnitBisnis);
+                            f1UnitBisnisRV.setAdapter(adapterUnitBisnis);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -793,6 +1012,1247 @@ public class FormSdmActivity extends AppCompatActivity {
         }
     };
 
+    private void f1DepartemenWay(){
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_unit_departemen, bottomSheet, false));
+                f1DepartemenRV = findViewById(R.id.unit_departemen_rv);
+
+                f1DepartemenRV.setLayoutManager(new LinearLayoutManager(this));
+                f1DepartemenRV.setHasFixedSize(true);
+                f1DepartemenRV.setNestedScrollingEnabled(false);
+                f1DepartemenRV.setItemAnimator(new DefaultItemAnimator());
+
+                f1GetDepartemen();
+            } else {
+                bottomSheet.showWithSheetView(LayoutInflater.from(this).inflate(R.layout.layout_unit_departemen, bottomSheet, false));
+                f1DepartemenRV = findViewById(R.id.unit_departemen_rv);
+
+                f1DepartemenRV.setLayoutManager(new LinearLayoutManager(this));
+                f1DepartemenRV.setHasFixedSize(true);
+                f1DepartemenRV.setNestedScrollingEnabled(false);
+                f1DepartemenRV.setItemAnimator(new DefaultItemAnimator());
+
+                f1GetDepartemen();
+            }
+        } catch (InflateException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void f1GetDepartemen() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_departemen";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+
+                            JSONObject data = new JSONObject(response);
+                            String departemen = data.getString("data");
+
+                            GsonBuilder builder =new GsonBuilder();
+                            Gson gson = builder.create();
+                            unitDepartemen = gson.fromJson(departemen, UnitDepartemen[].class);
+                            adapterUnitDepartemen = new AdapterUnitDepartemen(unitDepartemen,FormSdmActivity.this);
+                            f1DepartemenRV.setAdapter(adapterUnitDepartemen);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("request", "request");
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    public BroadcastReceiver f1DepartemenBoard = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String id_departemen = intent.getStringExtra("id_departemen");
+            String nama_departemen = intent.getStringExtra("nama_departemen");
+
+            f1IdDepartemen = id_departemen;
+            f1DepartemenTV.setText(nama_departemen);
+
+            f1IdBagian = "";
+            f1BagianTV.setText("");
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                }
+            }, 300);
+
+        }
+    };
+
+    private void f1BagianWay(){
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_unit_bagian, bottomSheet, false));
+                f1BagianRV = findViewById(R.id.unit_bagian_rv);
+
+                f1BagianRV.setLayoutManager(new LinearLayoutManager(this));
+                f1BagianRV.setHasFixedSize(true);
+                f1BagianRV.setNestedScrollingEnabled(false);
+                f1BagianRV.setItemAnimator(new DefaultItemAnimator());
+
+                f1GetBagian();
+            } else {
+                bottomSheet.showWithSheetView(LayoutInflater.from(this).inflate(R.layout.layout_unit_bagian, bottomSheet, false));
+                f1BagianRV = findViewById(R.id.unit_bagian_rv);
+
+                f1BagianRV.setLayoutManager(new LinearLayoutManager(this));
+                f1BagianRV.setHasFixedSize(true);
+                f1BagianRV.setNestedScrollingEnabled(false);
+                f1BagianRV.setItemAnimator(new DefaultItemAnimator());
+
+                f1GetBagian();
+            }
+        } catch (InflateException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void f1GetBagian() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bagian";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+
+                            JSONObject data = new JSONObject(response);
+                            String bagian = data.getString("data");
+
+                            GsonBuilder builder =new GsonBuilder();
+                            Gson gson = builder.create();
+                            unitBagian = gson.fromJson(bagian, UnitBagian[].class);
+                            adapterUnitBagian = new AdapterUnitBagian(unitBagian,FormSdmActivity.this);
+                            f1BagianRV.setAdapter(adapterUnitBagian);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_departemen", f1IdDepartemen);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    public BroadcastReceiver f1BagianBoard = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String id_bagian = intent.getStringExtra("id_bagian");
+            String nama_bagian = intent.getStringExtra("nama_bagian");
+
+            f1IdBagian = id_bagian;
+            f1BagianTV.setText(nama_bagian);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                }
+            }, 300);
+
+        }
+    };
+
+    private void f1JabatanWay(){
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_unit_jabatan, bottomSheet, false));
+                f1JabatanRV = findViewById(R.id.unit_jabatan_rv);
+
+                f1JabatanRV.setLayoutManager(new LinearLayoutManager(this));
+                f1JabatanRV.setHasFixedSize(true);
+                f1JabatanRV.setNestedScrollingEnabled(false);
+                f1JabatanRV.setItemAnimator(new DefaultItemAnimator());
+
+                f1GetJabatan();
+            } else {
+                bottomSheet.showWithSheetView(LayoutInflater.from(this).inflate(R.layout.layout_unit_jabatan, bottomSheet, false));
+                f1JabatanRV = findViewById(R.id.unit_jabatan_rv);
+
+                f1JabatanRV.setLayoutManager(new LinearLayoutManager(this));
+                f1JabatanRV.setHasFixedSize(true);
+                f1JabatanRV.setNestedScrollingEnabled(false);
+                f1JabatanRV.setItemAnimator(new DefaultItemAnimator());
+
+                f1GetJabatan();
+            }
+        } catch (InflateException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void f1GetJabatan() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_jabatan";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+
+                            JSONObject data = new JSONObject(response);
+                            String jabatan = data.getString("data");
+
+                            GsonBuilder builder =new GsonBuilder();
+                            Gson gson = builder.create();
+                            unitJabatans = gson.fromJson(jabatan, UnitJabatan[].class);
+                            adapterUnitJabatan = new AdapterUnitJabatan(unitJabatans,FormSdmActivity.this);
+                            f1JabatanRV.setAdapter(adapterUnitJabatan);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("request", "request");
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    public BroadcastReceiver f1JabatanBoard = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String id_jabatan = intent.getStringExtra("id_jabatan");
+            String nama_jabatan = intent.getStringExtra("nama_jabatan");
+
+            f1IdJabatan = id_jabatan;
+            f1JabatanTV.setText(nama_jabatan);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                }
+            }, 300);
+
+        }
+    };
+
+    @SuppressLint("SimpleDateFormat")
+    private void dateDibutuhkan(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            Calendar cal = Calendar.getInstance();
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(FormSdmActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                f1TglDibutuhkan = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                Date date2 = null;
+                try {
+                    date = sdf.parse(String.valueOf(f1TglDibutuhkan));
+                    date2 = sdf.parse(getDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long pilih = date.getTime();
+                long sekarang = date2.getTime();
+
+                if (pilih<sekarang){
+                    f1TglDibutuhkanTV.setText("Pilih Kembali !");
+                    f1TglDibutuhkan = "";
+
+                    new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Tanggal dibutuhkan tidak bisa lebih kecil dari tanggal sekarang. Harap pilih kembali!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    if (!f1TglPemenuhan.equals("")) {
+                        SimpleDateFormat sdf_2 = new SimpleDateFormat("yyyy-MM-dd");
+                        Date date_2 = null;
+                        Date date2_2 = null;
+                        try {
+                            date_2 = sdf.parse(String.valueOf(f1TglDibutuhkan));
+                            date2_2 = sdf.parse(String.valueOf(f1TglPemenuhan));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        long dibutuhkan = date_2.getTime();
+                        long pemenuhan = date2_2.getTime();
+
+                        if (dibutuhkan<=pemenuhan){
+                            String input_date = f1TglDibutuhkan;
+                            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                            Date dt1= null;
+                            try {
+                                dt1 = format1.parse(input_date);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            DateFormat format2 = new SimpleDateFormat("EEE");
+                            DateFormat getweek = new SimpleDateFormat("W");
+                            String finalDay = format2.format(dt1);
+                            String week = getweek.format(dt1);
+                            String hariName = "";
+
+                            if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                                hariName = "Senin";
+                            } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                                hariName = "Selasa";
+                            } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                                hariName = "Rabu";
+                            } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                                hariName = "Kamis";
+                            } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                                hariName = "Jumat";
+                            } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                                hariName = "Sabtu";
+                            } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                                hariName = "Minggu";
+                            }
+
+                            String dayDate = input_date.substring(8,10);
+                            String yearDate = input_date.substring(0,4);;
+                            String bulanValue = input_date.substring(5,7);
+                            String bulanName;
+
+                            switch (bulanValue) {
+                                case "01":
+                                    bulanName = "Januari";
+                                    break;
+                                case "02":
+                                    bulanName = "Februari";
+                                    break;
+                                case "03":
+                                    bulanName = "Maret";
+                                    break;
+                                case "04":
+                                    bulanName = "April";
+                                    break;
+                                case "05":
+                                    bulanName = "Mei";
+                                    break;
+                                case "06":
+                                    bulanName = "Juni";
+                                    break;
+                                case "07":
+                                    bulanName = "Juli";
+                                    break;
+                                case "08":
+                                    bulanName = "Agustus";
+                                    break;
+                                case "09":
+                                    bulanName = "September";
+                                    break;
+                                case "10":
+                                    bulanName = "Oktober";
+                                    break;
+                                case "11":
+                                    bulanName = "November";
+                                    break;
+                                case "12":
+                                    bulanName = "Desember";
+                                    break;
+                                default:
+                                    bulanName = "Not found!";
+                                    break;
+                            }
+
+                            f1TglDibutuhkanTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                        }
+                        else {
+                            f1TglDibutuhkanTV.setText("Pilih Kembali !");
+                            f1TglDibutuhkan = "";
+
+                            new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Tanggal dibutuhkan tidak bisa lebih besar dari tanggal pemenuhan. Harap pilih kembali!")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        }
+                    }
+                    else {
+                        String input_date = f1TglDibutuhkan;
+                        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                        Date dt1= null;
+                        try {
+                            dt1 = format1.parse(input_date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        DateFormat format2 = new SimpleDateFormat("EEE");
+                        DateFormat getweek = new SimpleDateFormat("W");
+                        String finalDay = format2.format(dt1);
+                        String week = getweek.format(dt1);
+                        String hariName = "";
+
+                        if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                            hariName = "Senin";
+                        } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                            hariName = "Selasa";
+                        } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                            hariName = "Rabu";
+                        } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                            hariName = "Kamis";
+                        } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                            hariName = "Jumat";
+                        } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                            hariName = "Sabtu";
+                        } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                            hariName = "Minggu";
+                        }
+
+                        String dayDate = input_date.substring(8,10);
+                        String yearDate = input_date.substring(0,4);;
+                        String bulanValue = input_date.substring(5,7);
+                        String bulanName;
+
+                        switch (bulanValue) {
+                            case "01":
+                                bulanName = "Januari";
+                                break;
+                            case "02":
+                                bulanName = "Februari";
+                                break;
+                            case "03":
+                                bulanName = "Maret";
+                                break;
+                            case "04":
+                                bulanName = "April";
+                                break;
+                            case "05":
+                                bulanName = "Mei";
+                                break;
+                            case "06":
+                                bulanName = "Juni";
+                                break;
+                            case "07":
+                                bulanName = "Juli";
+                                break;
+                            case "08":
+                                bulanName = "Agustus";
+                                break;
+                            case "09":
+                                bulanName = "September";
+                                break;
+                            case "10":
+                                bulanName = "Oktober";
+                                break;
+                            case "11":
+                                bulanName = "November";
+                                break;
+                            case "12":
+                                bulanName = "Desember";
+                                break;
+                            default:
+                                bulanName = "Not found!";
+                                break;
+                        }
+
+                        f1TglDibutuhkanTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                    }
+                }
+
+            }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+            dpd.show();
+        } else {
+            int y = Integer.parseInt(getDateY());
+            int m = Integer.parseInt(getDateM());
+            int d = Integer.parseInt(getDateD());
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(FormSdmActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                f1TglDibutuhkan = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                Date date2 = null;
+                try {
+                    date = sdf.parse(String.valueOf(f1TglDibutuhkan));
+                    date2 = sdf.parse(getDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long pilih = date.getTime();
+                long sekarang = date2.getTime();
+
+                if (pilih<sekarang){
+                    f1TglDibutuhkanTV.setText("Pilih Kembali !");
+                    f1TglDibutuhkan = "";
+
+                    new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Tanggal dibutuhkan tidak bisa lebih kecil dari tanggal sekarang. Harap pilih kembali!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    if (!f1TglPemenuhan.equals("")) {
+                        SimpleDateFormat sdf_2 = new SimpleDateFormat("yyyy-MM-dd");
+                        Date date_2 = null;
+                        Date date2_2 = null;
+                        try {
+                            date_2 = sdf.parse(String.valueOf(f1TglDibutuhkan));
+                            date2_2 = sdf.parse(String.valueOf(f1TglPemenuhan));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        long dibutuhkan = date_2.getTime();
+                        long pemenuhan = date2_2.getTime();
+
+                        if (dibutuhkan<=pemenuhan){
+                            String input_date = f1TglDibutuhkan;
+                            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                            Date dt1= null;
+                            try {
+                                dt1 = format1.parse(input_date);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            DateFormat format2 = new SimpleDateFormat("EEE");
+                            DateFormat getweek = new SimpleDateFormat("W");
+                            String finalDay = format2.format(dt1);
+                            String week = getweek.format(dt1);
+                            String hariName = "";
+
+                            if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                                hariName = "Senin";
+                            } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                                hariName = "Selasa";
+                            } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                                hariName = "Rabu";
+                            } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                                hariName = "Kamis";
+                            } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                                hariName = "Jumat";
+                            } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                                hariName = "Sabtu";
+                            } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                                hariName = "Minggu";
+                            }
+
+                            String dayDate = input_date.substring(8,10);
+                            String yearDate = input_date.substring(0,4);;
+                            String bulanValue = input_date.substring(5,7);
+                            String bulanName;
+
+                            switch (bulanValue) {
+                                case "01":
+                                    bulanName = "Januari";
+                                    break;
+                                case "02":
+                                    bulanName = "Februari";
+                                    break;
+                                case "03":
+                                    bulanName = "Maret";
+                                    break;
+                                case "04":
+                                    bulanName = "April";
+                                    break;
+                                case "05":
+                                    bulanName = "Mei";
+                                    break;
+                                case "06":
+                                    bulanName = "Juni";
+                                    break;
+                                case "07":
+                                    bulanName = "Juli";
+                                    break;
+                                case "08":
+                                    bulanName = "Agustus";
+                                    break;
+                                case "09":
+                                    bulanName = "September";
+                                    break;
+                                case "10":
+                                    bulanName = "Oktober";
+                                    break;
+                                case "11":
+                                    bulanName = "November";
+                                    break;
+                                case "12":
+                                    bulanName = "Desember";
+                                    break;
+                                default:
+                                    bulanName = "Not found!";
+                                    break;
+                            }
+
+                            f1TglDibutuhkanTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                        }
+                        else {
+                            f1TglDibutuhkanTV.setText("Pilih Kembali !");
+                            f1TglDibutuhkan = "";
+
+                            new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Tanggal dibutuhkan tidak bisa lebih besar dari tanggal pemenuhan. Harap pilih kembali!")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        }
+                    }
+                    else {
+                        String input_date = f1TglDibutuhkan;
+                        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                        Date dt1= null;
+                        try {
+                            dt1 = format1.parse(input_date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        DateFormat format2 = new SimpleDateFormat("EEE");
+                        DateFormat getweek = new SimpleDateFormat("W");
+                        String finalDay = format2.format(dt1);
+                        String week = getweek.format(dt1);
+                        String hariName = "";
+
+                        if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                            hariName = "Senin";
+                        } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                            hariName = "Selasa";
+                        } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                            hariName = "Rabu";
+                        } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                            hariName = "Kamis";
+                        } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                            hariName = "Jumat";
+                        } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                            hariName = "Sabtu";
+                        } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                            hariName = "Minggu";
+                        }
+
+                        String dayDate = input_date.substring(8,10);
+                        String yearDate = input_date.substring(0,4);;
+                        String bulanValue = input_date.substring(5,7);
+                        String bulanName;
+
+                        switch (bulanValue) {
+                            case "01":
+                                bulanName = "Januari";
+                                break;
+                            case "02":
+                                bulanName = "Februari";
+                                break;
+                            case "03":
+                                bulanName = "Maret";
+                                break;
+                            case "04":
+                                bulanName = "April";
+                                break;
+                            case "05":
+                                bulanName = "Mei";
+                                break;
+                            case "06":
+                                bulanName = "Juni";
+                                break;
+                            case "07":
+                                bulanName = "Juli";
+                                break;
+                            case "08":
+                                bulanName = "Agustus";
+                                break;
+                            case "09":
+                                bulanName = "September";
+                                break;
+                            case "10":
+                                bulanName = "Oktober";
+                                break;
+                            case "11":
+                                bulanName = "November";
+                                break;
+                            case "12":
+                                bulanName = "Desember";
+                                break;
+                            default:
+                                bulanName = "Not found!";
+                                break;
+                        }
+
+                        f1TglDibutuhkanTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                    }
+                }
+
+            }, y,m,d);
+            dpd.show();
+        }
+
+
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private void datePemenuhan(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            Calendar cal = Calendar.getInstance();
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(FormSdmActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                f1TglPemenuhan = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                Date date2 = null;
+                try {
+                    date = sdf.parse(String.valueOf(f1TglPemenuhan));
+                    date2 = sdf.parse(getDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long pilih = date.getTime();
+                long sekarang = date2.getTime();
+
+                if (pilih<sekarang){
+                    f1TglPemenuhanTV.setText("Pilih Kembali !");
+                    f1TglPemenuhan = "";
+
+                    new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Tanggal pemenuhan tidak bisa lebih kecil dari tanggal sekarang. Harap pilih kembali!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    if (!f1TglDibutuhkan.equals("")) {
+                        SimpleDateFormat sdf_2 = new SimpleDateFormat("yyyy-MM-dd");
+                        Date date_2 = null;
+                        Date date2_2 = null;
+                        try {
+                            date_2 = sdf.parse(String.valueOf(f1TglDibutuhkan));
+                            date2_2 = sdf.parse(String.valueOf(f1TglPemenuhan));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        long dibutuhkan = date_2.getTime();
+                        long pemenuhan = date2_2.getTime();
+
+                        if (dibutuhkan<=pemenuhan){
+                            String input_date = f1TglPemenuhan;
+                            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                            Date dt1= null;
+                            try {
+                                dt1 = format1.parse(input_date);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            DateFormat format2 = new SimpleDateFormat("EEE");
+                            DateFormat getweek = new SimpleDateFormat("W");
+                            String finalDay = format2.format(dt1);
+                            String week = getweek.format(dt1);
+                            String hariName = "";
+
+                            if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                                hariName = "Senin";
+                            } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                                hariName = "Selasa";
+                            } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                                hariName = "Rabu";
+                            } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                                hariName = "Kamis";
+                            } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                                hariName = "Jumat";
+                            } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                                hariName = "Sabtu";
+                            } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                                hariName = "Minggu";
+                            }
+
+                            String dayDate = input_date.substring(8,10);
+                            String yearDate = input_date.substring(0,4);;
+                            String bulanValue = input_date.substring(5,7);
+                            String bulanName;
+
+                            switch (bulanValue) {
+                                case "01":
+                                    bulanName = "Januari";
+                                    break;
+                                case "02":
+                                    bulanName = "Februari";
+                                    break;
+                                case "03":
+                                    bulanName = "Maret";
+                                    break;
+                                case "04":
+                                    bulanName = "April";
+                                    break;
+                                case "05":
+                                    bulanName = "Mei";
+                                    break;
+                                case "06":
+                                    bulanName = "Juni";
+                                    break;
+                                case "07":
+                                    bulanName = "Juli";
+                                    break;
+                                case "08":
+                                    bulanName = "Agustus";
+                                    break;
+                                case "09":
+                                    bulanName = "September";
+                                    break;
+                                case "10":
+                                    bulanName = "Oktober";
+                                    break;
+                                case "11":
+                                    bulanName = "November";
+                                    break;
+                                case "12":
+                                    bulanName = "Desember";
+                                    break;
+                                default:
+                                    bulanName = "Not found!";
+                                    break;
+                            }
+
+                            f1TglPemenuhanTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                        }
+                        else {
+                            f1TglPemenuhanTV.setText("Pilih Kembali !");
+                            f1TglPemenuhan = "";
+
+                            new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Tanggal pemenuhan tidak bisa lebih kecil dari tanggal dibutuhkan. Harap pilih kembali!")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        }
+                    }
+                    else {
+                        String input_date = f1TglPemenuhan;
+                        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                        Date dt1= null;
+                        try {
+                            dt1 = format1.parse(input_date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        DateFormat format2 = new SimpleDateFormat("EEE");
+                        DateFormat getweek = new SimpleDateFormat("W");
+                        String finalDay = format2.format(dt1);
+                        String week = getweek.format(dt1);
+                        String hariName = "";
+
+                        if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                            hariName = "Senin";
+                        } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                            hariName = "Selasa";
+                        } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                            hariName = "Rabu";
+                        } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                            hariName = "Kamis";
+                        } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                            hariName = "Jumat";
+                        } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                            hariName = "Sabtu";
+                        } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                            hariName = "Minggu";
+                        }
+
+                        String dayDate = input_date.substring(8,10);
+                        String yearDate = input_date.substring(0,4);;
+                        String bulanValue = input_date.substring(5,7);
+                        String bulanName;
+
+                        switch (bulanValue) {
+                            case "01":
+                                bulanName = "Januari";
+                                break;
+                            case "02":
+                                bulanName = "Februari";
+                                break;
+                            case "03":
+                                bulanName = "Maret";
+                                break;
+                            case "04":
+                                bulanName = "April";
+                                break;
+                            case "05":
+                                bulanName = "Mei";
+                                break;
+                            case "06":
+                                bulanName = "Juni";
+                                break;
+                            case "07":
+                                bulanName = "Juli";
+                                break;
+                            case "08":
+                                bulanName = "Agustus";
+                                break;
+                            case "09":
+                                bulanName = "September";
+                                break;
+                            case "10":
+                                bulanName = "Oktober";
+                                break;
+                            case "11":
+                                bulanName = "November";
+                                break;
+                            case "12":
+                                bulanName = "Desember";
+                                break;
+                            default:
+                                bulanName = "Not found!";
+                                break;
+                        }
+
+                        f1TglPemenuhanTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                    }
+                }
+
+            }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+            dpd.show();
+        } else {
+            int y = Integer.parseInt(getDateY());
+            int m = Integer.parseInt(getDateM());
+            int d = Integer.parseInt(getDateD());
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(FormSdmActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                f1TglPemenuhan = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                Date date2 = null;
+                try {
+                    date = sdf.parse(String.valueOf(f1TglPemenuhan));
+                    date2 = sdf.parse(getDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long pilih = date.getTime();
+                long sekarang = date2.getTime();
+
+                if (pilih<sekarang){
+                    f1TglPemenuhanTV.setText("Pilih Kembali !");
+                    f1TglPemenuhan = "";
+
+                    new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Tanggal pemenuhan tidak bisa lebih kecil dari tanggal sekarang. Harap pilih kembali!")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    if (!f1TglDibutuhkan.equals("")) {
+                        SimpleDateFormat sdf_2 = new SimpleDateFormat("yyyy-MM-dd");
+                        Date date_2 = null;
+                        Date date2_2 = null;
+                        try {
+                            date_2 = sdf.parse(String.valueOf(f1TglDibutuhkan));
+                            date2_2 = sdf.parse(String.valueOf(f1TglPemenuhan));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        long dibutuhkan = date_2.getTime();
+                        long pemenuhan = date2_2.getTime();
+
+                        if (dibutuhkan<=pemenuhan){
+                            String input_date = f1TglPemenuhan;
+                            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                            Date dt1= null;
+                            try {
+                                dt1 = format1.parse(input_date);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            DateFormat format2 = new SimpleDateFormat("EEE");
+                            DateFormat getweek = new SimpleDateFormat("W");
+                            String finalDay = format2.format(dt1);
+                            String week = getweek.format(dt1);
+                            String hariName = "";
+
+                            if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                                hariName = "Senin";
+                            } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                                hariName = "Selasa";
+                            } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                                hariName = "Rabu";
+                            } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                                hariName = "Kamis";
+                            } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                                hariName = "Jumat";
+                            } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                                hariName = "Sabtu";
+                            } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                                hariName = "Minggu";
+                            }
+
+                            String dayDate = input_date.substring(8,10);
+                            String yearDate = input_date.substring(0,4);;
+                            String bulanValue = input_date.substring(5,7);
+                            String bulanName;
+
+                            switch (bulanValue) {
+                                case "01":
+                                    bulanName = "Januari";
+                                    break;
+                                case "02":
+                                    bulanName = "Februari";
+                                    break;
+                                case "03":
+                                    bulanName = "Maret";
+                                    break;
+                                case "04":
+                                    bulanName = "April";
+                                    break;
+                                case "05":
+                                    bulanName = "Mei";
+                                    break;
+                                case "06":
+                                    bulanName = "Juni";
+                                    break;
+                                case "07":
+                                    bulanName = "Juli";
+                                    break;
+                                case "08":
+                                    bulanName = "Agustus";
+                                    break;
+                                case "09":
+                                    bulanName = "September";
+                                    break;
+                                case "10":
+                                    bulanName = "Oktober";
+                                    break;
+                                case "11":
+                                    bulanName = "November";
+                                    break;
+                                case "12":
+                                    bulanName = "Desember";
+                                    break;
+                                default:
+                                    bulanName = "Not found!";
+                                    break;
+                            }
+
+                            f1TglPemenuhanTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                        }
+                        else {
+                            f1TglPemenuhanTV.setText("Pilih Kembali !");
+                            f1TglPemenuhan = "";
+
+                            new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Tanggal pemenuhan tidak bisa lebih kecil dari tanggal dibutuhkan. Harap pilih kembali!")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        }
+                    }
+                    else {
+                        String input_date = f1TglPemenuhan;
+                        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                        Date dt1= null;
+                        try {
+                            dt1 = format1.parse(input_date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        DateFormat format2 = new SimpleDateFormat("EEE");
+                        DateFormat getweek = new SimpleDateFormat("W");
+                        String finalDay = format2.format(dt1);
+                        String week = getweek.format(dt1);
+                        String hariName = "";
+
+                        if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                            hariName = "Senin";
+                        } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                            hariName = "Selasa";
+                        } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                            hariName = "Rabu";
+                        } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                            hariName = "Kamis";
+                        } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                            hariName = "Jumat";
+                        } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                            hariName = "Sabtu";
+                        } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                            hariName = "Minggu";
+                        }
+
+                        String dayDate = input_date.substring(8,10);
+                        String yearDate = input_date.substring(0,4);;
+                        String bulanValue = input_date.substring(5,7);
+                        String bulanName;
+
+                        switch (bulanValue) {
+                            case "01":
+                                bulanName = "Januari";
+                                break;
+                            case "02":
+                                bulanName = "Februari";
+                                break;
+                            case "03":
+                                bulanName = "Maret";
+                                break;
+                            case "04":
+                                bulanName = "April";
+                                break;
+                            case "05":
+                                bulanName = "Mei";
+                                break;
+                            case "06":
+                                bulanName = "Juni";
+                                break;
+                            case "07":
+                                bulanName = "Juli";
+                                break;
+                            case "08":
+                                bulanName = "Agustus";
+                                break;
+                            case "09":
+                                bulanName = "September";
+                                break;
+                            case "10":
+                                bulanName = "Oktober";
+                                break;
+                            case "11":
+                                bulanName = "November";
+                                break;
+                            case "12":
+                                bulanName = "Desember";
+                                break;
+                            default:
+                                bulanName = "Not found!";
+                                break;
+                        }
+
+                        f1TglPemenuhanTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                    }
+                }
+
+            }, y,m,d);
+            dpd.show();
+        }
+
+
+    }
+
+    //
+
     private void connectionFailed(){
         CookieBar.build(FormSdmActivity.this)
                 .setTitle("Perhatian")
@@ -803,6 +2263,34 @@ public class FormSdmActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    private String getDate() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateD() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateM() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateY() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     @Override
