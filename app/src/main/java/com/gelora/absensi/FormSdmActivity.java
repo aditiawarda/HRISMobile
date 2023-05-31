@@ -2,12 +2,22 @@ package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,9 +25,28 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.adapter.AdapterTitikAbsenFinger;
+import com.gelora.absensi.adapter.AdapterUnitBisnis;
+import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.model.TitikAbsensi;
+import com.gelora.absensi.model.UnitBisnis;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.aviran.cookiebar2.CookieBar;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FormSdmActivity extends AppCompatActivity {
 
@@ -25,12 +54,22 @@ public class FormSdmActivity extends AppCompatActivity {
     LinearLayout f1Part, f2Part;
     LinearLayout ket1BTN, ket2BTN, ket3BTN, ket4BTN, ket5BTN, ket6BTN, ket7BTN;
     LinearLayout markKet1, markKet2, markKet3, markKet4, markKet5, markKet6, markKet7;
+
+    //Form 1
+    LinearLayout f1UnitBisnisPart;
+    TextView f1UnitBisnisTV;
+    String f1IdUnitBisnis = "";
+    private RecyclerView f1IdUnitBisnisRV;
+    private UnitBisnis[] unitBisnis;
+    private AdapterUnitBisnis adapterUnitBisnis;
+
     ImageView loadingForm;
     SharedPrefManager sharedPrefManager;
+    SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
     TextView keteranganTV;
     BottomSheetLayout bottomSheet;
-    String kodeKeterangan = "0";
+    String kodeKeterangan = "0", perngajuanTerkirim = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +77,7 @@ public class FormSdmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form_sdm);
 
         sharedPrefManager = new SharedPrefManager(this);
+        sharedPrefAbsen = new SharedPrefAbsen(this);
         actionBar = findViewById(R.id.action_bar);
         backBTN = findViewById(R.id.back_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
@@ -50,6 +90,10 @@ public class FormSdmActivity extends AppCompatActivity {
         attantionNoForm = findViewById(R.id.attantion_no_form);
         loadingFormPart = findViewById(R.id.loading_form_part);
         loadingForm = findViewById(R.id.loading_form);
+
+        //Form 1
+        f1UnitBisnisPart = findViewById(R.id.f1_unit_bisnis_part);
+        f1UnitBisnisTV = findViewById(R.id.f1_unit_bisnis_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -69,6 +113,11 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 loadingFormPart.setVisibility(View.VISIBLE);
                 attantionNoForm.setVisibility(View.GONE);
+
+                //Form 1
+                f1UnitBisnisTV.setText("");
+                f1IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -94,18 +143,28 @@ public class FormSdmActivity extends AppCompatActivity {
             }
         });
 
+        pilihKeteranganPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keteranganChoice();
+            }
+        });
+
+        //Form 1
+        LocalBroadcastManager.getInstance(this).registerReceiver(f1UnitBisnisBoard, new IntentFilter("f1_unit_bisnis_board"));
+
+        f1UnitBisnisPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f1UnitBisnisWay();
+            }
+        });
+
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FormSdmActivity.this, DetailFormSdmActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        pilihKeteranganPart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                keteranganChoice();
             }
         });
 
@@ -118,6 +177,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 attantionNoForm.setVisibility(View.VISIBLE);
             }
         }, 2000);
+
+        //F1
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
 
     }
 
@@ -272,6 +334,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
 
+                //Form 1
+                f1UnitBisnisTV.setText("");
+                f1IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -321,6 +388,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
+
+                //Form 1
+                f1UnitBisnisTV.setText("");
+                f1IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -372,6 +444,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
 
+                //Form 1
+                f1UnitBisnisTV.setText("");
+                f1IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -421,6 +498,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
+
+                //Form 1
+                f1UnitBisnisTV.setText("");
+                f1IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -472,6 +554,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
 
+                //Form 1
+                f1UnitBisnisTV.setText("");
+                f1IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -521,6 +608,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
+
+                //Form 1
+                f1UnitBisnisTV.setText("");
+                f1IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -572,6 +664,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
 
+                //Form 1
+                f1UnitBisnisTV.setText("");
+                f1IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -595,6 +692,158 @@ public class FormSdmActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    //Form 1
+    private void f1UnitBisnisWay(){
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_unit_bisnis, bottomSheet, false));
+                f1IdUnitBisnisRV = findViewById(R.id.unit_bisnis_rv);
+
+                f1IdUnitBisnisRV.setLayoutManager(new LinearLayoutManager(this));
+                f1IdUnitBisnisRV.setHasFixedSize(true);
+                f1IdUnitBisnisRV.setNestedScrollingEnabled(false);
+                f1IdUnitBisnisRV.setItemAnimator(new DefaultItemAnimator());
+
+                f1GetUnitBisnis();
+            } else {
+                bottomSheet.showWithSheetView(LayoutInflater.from(this).inflate(R.layout.layout_unit_bisnis, bottomSheet, false));
+                f1IdUnitBisnisRV = findViewById(R.id.unit_bisnis_rv);
+
+                f1IdUnitBisnisRV.setLayoutManager(new LinearLayoutManager(this));
+                f1IdUnitBisnisRV.setHasFixedSize(true);
+                f1IdUnitBisnisRV.setNestedScrollingEnabled(false);
+                f1IdUnitBisnisRV.setItemAnimator(new DefaultItemAnimator());
+
+                f1GetUnitBisnis();
+            }
+        } catch (InflateException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void f1GetUnitBisnis() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bisnis";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+
+                            JSONObject data = new JSONObject(response);
+                            String unit = data.getString("data");
+
+                            GsonBuilder builder =new GsonBuilder();
+                            Gson gson = builder.create();
+                            unitBisnis = gson.fromJson(unit, UnitBisnis[].class);
+                            adapterUnitBisnis = new AdapterUnitBisnis(unitBisnis,FormSdmActivity.this);
+                            f1IdUnitBisnisRV.setAdapter(adapterUnitBisnis);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("request", "request");
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    public BroadcastReceiver f1UnitBisnisBoard = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String id_unit = intent.getStringExtra("id_unit");
+            String nama_unit = intent.getStringExtra("nama_unit");
+
+            f1IdUnitBisnis = id_unit;
+            f1UnitBisnisTV.setText(nama_unit);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                }
+            }, 300);
+
+        }
+    };
+
+    private void connectionFailed(){
+        CookieBar.build(FormSdmActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!kodeKeterangan.equals("0")){
+            if(bottomSheet.isSheetShowing()){
+                bottomSheet.dismissSheet();
+            } else {
+                if (perngajuanTerkirim.equals("1")){
+                    super.onBackPressed();
+                } else {
+                    new KAlertDialog(FormSdmActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
+                            .setCancelText("TIDAK")
+                            .setConfirmText("   YA   ")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                    kodeKeterangan = "0";
+                                    onBackPressed();
+                                }
+                            })
+                            .show();
+                }
+            }
+        } else {
+            if(bottomSheet.isSheetShowing()){
+                bottomSheet.dismissSheet();
+            } else {
+                super.onBackPressed();
+            }
+        }
     }
 
 }
