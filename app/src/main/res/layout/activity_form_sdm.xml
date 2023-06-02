@@ -1115,7 +1115,7 @@
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Penilaan SDM Selesai"
+                                        android:text="Data Terkirim"
                                         android:textAlignment="center"
                                         android:textColor="@color/white"
                                         android:textSize="15dp"
@@ -1126,7 +1126,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="15dp"
-                                        android:text="Penilaian atas nama - dengan NIK - telah berhasil."
+                                        android:text="Data Formulir SDM berhasil terkirim untuk diajukan."
                                         android:textAlignment="center"
                                         android:textColor="@color/white"
                                         android:textSize="13dp" />
@@ -1163,7 +1163,7 @@
                                     android:textStyle="bold"
                                     android:textSize="13dp"
                                     android:textColor="@color/white"
-                                    android:text="LIHAT HASIL PENILAIAN"/>
+                                    android:text="LIHAT DETAIL AJUAN"/>
 
                             </LinearLayout>
 

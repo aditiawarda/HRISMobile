@@ -953,7 +953,7 @@
                                             android:gravity="right|center">
 
                                             <LinearLayout
-                                                android:background="@drawable/shape_tidak_hadir"
+                                                android:background="@drawable/shape_sisa_cuti_count"
                                                 android:gravity="center"
                                                 android:layout_width="85dp"
                                                 android:layout_height="55dp"

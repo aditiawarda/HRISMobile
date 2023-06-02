@@ -16,6 +16,7 @@ import android.content.IntentFilter;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.InflateException;
@@ -27,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -61,7 +63,7 @@ import java.util.Map;
 
 public class FormSdmActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, pilihKeteranganPart, actionBar, submitBTN, attantionNoForm, loadingFormPart;
+    LinearLayout backBTN, pilihKeteranganPart, actionBar, submitBTN, attantionNoForm, loadingFormPart, formPart, successPart;
     LinearLayout f1Part, f2Part;
     LinearLayout ket1BTN, ket2BTN, ket3BTN, ket4BTN, ket5BTN, ket6BTN, ket7BTN;
     LinearLayout markKet1, markKet2, markKet3, markKet4, markKet5, markKet6, markKet7;
@@ -90,6 +92,10 @@ public class FormSdmActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     TextView keteranganTV;
     BottomSheetLayout bottomSheet;
+    RequestQueue requestQueue;
+    KAlertDialog pDialog;
+    ImageView successGif;
+    private int i = -1;
     String kodeKeterangan = "0", perngajuanTerkirim = "0";
 
     @Override
@@ -99,6 +105,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
         sharedPrefManager = new SharedPrefManager(this);
         sharedPrefAbsen = new SharedPrefAbsen(this);
+        requestQueue = Volley.newRequestQueue(this);
         actionBar = findViewById(R.id.action_bar);
         backBTN = findViewById(R.id.back_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
@@ -111,6 +118,9 @@ public class FormSdmActivity extends AppCompatActivity {
         attantionNoForm = findViewById(R.id.attantion_no_form);
         loadingFormPart = findViewById(R.id.loading_form_part);
         loadingForm = findViewById(R.id.loading_form);
+        formPart = findViewById(R.id.form_part);
+        successPart = findViewById(R.id.success_submit);
+        successGif = findViewById(R.id.success_gif);
 
         //Form 1
         f1UnitBisnisPart = findViewById(R.id.f1_unit_bisnis_part);
@@ -133,6 +143,10 @@ public class FormSdmActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
                 .into(loadingForm);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.success_ic)
+                .into(successGif);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -276,7 +290,65 @@ public class FormSdmActivity extends AppCompatActivity {
                             })
                             .show();
                     } else {
-                        f1SendData();
+                        new KAlertDialog(FormSdmActivity.this, KAlertDialog.WARNING_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Kirim data sekarang?")
+                                .setCancelText("TIDAK")
+                                .setConfirmText("   YA   ")
+                                .showCancelButton(true)
+                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                        pDialog = new KAlertDialog(FormSdmActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                        pDialog.show();
+                                        pDialog.setCancelable(false);
+                                        new CountDownTimer(1300, 800) {
+                                            public void onTick(long millisUntilFinished) {
+                                                i++;
+                                                switch (i) {
+                                                    case 0:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormSdmActivity.this, R.color.colorGradien));
+                                                        break;
+                                                    case 1:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormSdmActivity.this, R.color.colorGradien2));
+                                                        break;
+                                                    case 2:
+                                                    case 6:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormSdmActivity.this, R.color.colorGradien3));
+                                                        break;
+                                                    case 3:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormSdmActivity.this, R.color.colorGradien4));
+                                                        break;
+                                                    case 4:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormSdmActivity.this, R.color.colorGradien5));
+                                                        break;
+                                                    case 5:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormSdmActivity.this, R.color.colorGradien6));
+                                                        break;
+                                                }
+                                            }
+                                            public void onFinish() {
+                                                i = -1;
+                                                checkSignature();
+                                            }
+                                        }.start();
+
+                                    }
+                                })
+                                .show();
                     }
                 } else {
                     Intent intent = new Intent(FormSdmActivity.this, DetailFormSdmActivity.class);
@@ -2241,9 +2313,166 @@ public class FormSdmActivity extends AppCompatActivity {
 
     }
     private void f1SendData(){
-        Toast.makeText(FormSdmActivity.this, "gass", Toast.LENGTH_SHORT).show();
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/input_formulir_sdm";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                String id = data.getString("id_data");
+
+                                perngajuanTerkirim = "1";
+                                pDialog.dismiss();
+                                successPart.setVisibility(View.VISIBLE);
+                                formPart.setVisibility(View.GONE);
+
+                            }  else {
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                        successPart.setVisibility(View.GONE);
+                        formPart.setVisibility(View.VISIBLE);
+                        pDialog.setTitleText("Gagal Terkirim")
+                                .setConfirmText("    OK    ")
+                                .changeAlertType(KAlertDialog.ERROR_TYPE);
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("keterangan", kodeKeterangan);
+                params.put("catatan", f1CatatanTV.getText().toString());
+
+                params.put("unit_bisnis", f1IdUnitBisnis);
+                params.put("departemen", f1IdDepartemen);
+                params.put("bagian", f1IdBagian);
+                params.put("jabatan", f1IdJabatan);
+                params.put("komponen_gaji", f1KomponenGajiTV.getText().toString());
+
+                params.put("jabatan_penerimaan", f1JabatanTV.getText().toString());
+                params.put("deskripsi_penerimaan", f1DeskripsiJabatanTV.getText().toString());
+                params.put("syarat", f1SyaratTV.getText().toString());
+                params.put("tgl_dibutuhkan_penerimaan", f1TglDibutuhkan);
+                params.put("tgl_pemenuhan_penerimaan", f1TglPemenuhan);
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
+
     }
     //Form 1 End
+
+    private void checkSignature(){
+        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Available")){
+                                String signature = data.getString("data");
+                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                if(kodeKeterangan.equals("1")){
+                                    f1SendData();
+                                }
+                            } else {
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")
+                                        .setCancelText(" BATAL ")
+                                        .setConfirmText("LANJUT")
+                                        .showCancelButton(true)
+                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                Intent intent = new Intent(FormSdmActivity.this, DigitalSignatureActivity.class);
+                                                intent.putExtra("kode", "form");
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.WARNING_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+
+                return params;
+            }
+        };
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(
+                0,
+                -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
+
+        requestQueue.add(postRequest);
+
+    }
 
     private void connectionFailed(){
         CookieBar.build(FormSdmActivity.this)
