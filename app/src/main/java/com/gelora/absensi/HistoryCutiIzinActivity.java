@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -28,7 +27,7 @@ import com.gelora.absensi.adapter.AdapterDataHistoryPenambahanCuti;
 import com.gelora.absensi.adapter.AdapterDataHistoryCuti;
 import com.gelora.absensi.adapter.AdapterDataHistoryCutiBersama;
 import com.gelora.absensi.adapter.AdapterDataHistoryIzin;
-import com.gelora.absensi.model.DataHistorPenambahanCuti;
+import com.gelora.absensi.model.DataHistoryPenambahanCuti;
 import com.gelora.absensi.model.DataHistoryCuti;
 import com.gelora.absensi.model.DataHistoryCutiBersama;
 import com.gelora.absensi.model.DataHistoryIzin;
@@ -65,7 +64,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
     private AdapterDataHistoryIzin adapterDataHistoryIzin;
 
     private RecyclerView dataHistoryPenambahanCutiRV;
-    private DataHistorPenambahanCuti[] dataHistorPenambahanCutis;
+    private DataHistoryPenambahanCuti[] dataHistoryPenambahanCutis;
     private AdapterDataHistoryPenambahanCuti adapterDataHistoryPenambahanCuti;
 
     @Override
@@ -344,8 +343,8 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                                     GsonBuilder builder =new GsonBuilder();
                                     Gson gson = builder.create();
 
-                                    dataHistorPenambahanCutis = gson.fromJson(history_cuti_penambahan_cuti, DataHistorPenambahanCuti[].class);
-                                    adapterDataHistoryPenambahanCuti = new AdapterDataHistoryPenambahanCuti(dataHistorPenambahanCutis,HistoryCutiIzinActivity.this);
+                                    dataHistoryPenambahanCutis = gson.fromJson(history_cuti_penambahan_cuti, DataHistoryPenambahanCuti[].class);
+                                    adapterDataHistoryPenambahanCuti = new AdapterDataHistoryPenambahanCuti(dataHistoryPenambahanCutis,HistoryCutiIzinActivity.this);
                                     dataHistoryPenambahanCutiRV.setAdapter(adapterDataHistoryPenambahanCuti);
                                 }
 

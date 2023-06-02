@@ -15,16 +15,16 @@ import com.gelora.absensi.HistoryCutiIzinActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
-import com.gelora.absensi.model.DataHistorPenambahanCuti;
+import com.gelora.absensi.model.DataHistoryPenambahanCuti;
 
 public class AdapterDataHistoryPenambahanCuti extends RecyclerView.Adapter<AdapterDataHistoryPenambahanCuti.MyViewHolder> {
 
-    private DataHistorPenambahanCuti[] data;
+    private DataHistoryPenambahanCuti[] data;
     private Context mContext;
     SharedPrefAbsen sharedPrefAbsen;
     SharedPrefManager sharedPrefManager;
 
-    public AdapterDataHistoryPenambahanCuti(DataHistorPenambahanCuti[] data, HistoryCutiIzinActivity context) {
+    public AdapterDataHistoryPenambahanCuti(DataHistoryPenambahanCuti[] data, HistoryCutiIzinActivity context) {
         this.data = data;
         this.mContext = context;
     }
@@ -41,7 +41,7 @@ public class AdapterDataHistoryPenambahanCuti extends RecyclerView.Adapter<Adapt
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
-        final DataHistorPenambahanCuti dataHistorPenambahanCuti = data[i];
+        final DataHistoryPenambahanCuti dataHistorPenambahanCuti = data[i];
 
         String dataDate = dataHistorPenambahanCuti.getTanggal();
         String ket = dataHistorPenambahanCuti.getKeterangan();

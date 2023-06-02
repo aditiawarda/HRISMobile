@@ -1,7 +1,7 @@
 package com.gelora.absensi.model;
 
 
-public class DataHistorPenambahanCuti {
+public class DataHistoryPenambahanCuti {
 
     private String id;
     private String tanggal;
