@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DataPenilaianSdmActivity">
+    tools:context=".DataFormSdmActivity">
 
     <RelativeLayout
         android:background="@color/white"
@@ -227,7 +227,7 @@
                                 android:ellipsize="end"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="DATA PENILAIAN SDM"
+                                android:text="DATA FORM SDM"
                                 android:textColor="@color/white"
                                 android:textSize="15dp" />
 
