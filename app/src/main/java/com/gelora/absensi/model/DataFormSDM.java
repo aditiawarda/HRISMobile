@@ -8,6 +8,7 @@ public class DataFormSDM {
     private String status_approve_kabag;
     private String status_approve_kadept;
     private String status_approve_direktur;
+    private String status_approve_hrd;
     private String created_at;
     private String updated_at;
 
@@ -49,6 +50,14 @@ public class DataFormSDM {
 
     public void setStatus_approve_direktur(String status_approve_direktur) {
         this.status_approve_direktur = status_approve_direktur;
+    }
+
+    public String getStatus_approve_hrd() {
+        return status_approve_hrd;
+    }
+
+    public void setStatus_approve_hrd(String status_approve_hrd) {
+        this.status_approve_hrd = status_approve_hrd;
     }
 
     public String getCreated_at() {

@@ -51,9 +51,45 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
         final DataFormSDM dataFormSDM = data[i];
 
         if(dataFormSDM.getKeterangan().equals("1")){
-            myViewHolder.keteranganTV.setText("Penerimaan");
-        } else {
-            myViewHolder.keteranganTV.setText(dataFormSDM.getKeterangan());
+            myViewHolder.keteranganTV.setText("PENERIMAAN");
+        } else if(dataFormSDM.getKeterangan().equals("2")){
+            myViewHolder.keteranganTV.setText("PENGANGKATAN");
+        } else if(dataFormSDM.getKeterangan().equals("3")){
+            myViewHolder.keteranganTV.setText("PENUGASAN KEMBALI");
+        } else if(dataFormSDM.getKeterangan().equals("4")){
+            myViewHolder.keteranganTV.setText("PENSIUN/PHK");
+        } else if(dataFormSDM.getKeterangan().equals("5")){
+            myViewHolder.keteranganTV.setText("PROMOSI/MUTASI");
+        } else if(dataFormSDM.getKeterangan().equals("6")){
+            myViewHolder.keteranganTV.setText("PENYESUAIAN GAJI");
+        } else if(dataFormSDM.getKeterangan().equals("7")){
+            myViewHolder.keteranganTV.setText("LAIN-LAIN");
+        }
+
+        if(dataFormSDM.getStatus_approve_kabag().equals("0")){
+            myViewHolder.detailTV.setText("Menunggu verifikasi Kepala Bagian");
+        } else if(dataFormSDM.getStatus_approve_kabag().equals("1")){
+            if(dataFormSDM.getStatus_approve_kadept().equals("0")){
+                myViewHolder.detailTV.setText("Menunggu verifikasi Kepala Departemen");
+            } else if(dataFormSDM.getStatus_approve_kadept().equals("1")){
+                if(dataFormSDM.getStatus_approve_direktur().equals("0")){
+                    myViewHolder.detailTV.setText("Menunggu verifikasi Direksi");
+                } else if(dataFormSDM.getStatus_approve_direktur().equals("1")){
+                    if(dataFormSDM.getStatus_approve_hrd().equals("0")){
+                        myViewHolder.detailTV.setText("Menunggu verifikasi HRD");
+                    } else if(dataFormSDM.getStatus_approve_hrd().equals("1")){
+                        myViewHolder.detailTV.setText("Pengajuan telah di verifikasi HRD");
+                    } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
+                        myViewHolder.detailTV.setText("Pengajuan ditolak HRD");
+                    }
+                } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
+                    myViewHolder.detailTV.setText("Pengajuan ditolak Direksi");
+                }
+            } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
+                myViewHolder.detailTV.setText("Pengajuan ditolak Kepala Departemen");
+            }
+        } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
+            myViewHolder.detailTV.setText("Pengajuan ditolak Kepala Bagian");
         }
 
         String tanggal_buat = dataFormSDM.getCreated_at();
@@ -122,11 +158,12 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         LinearLayout parrentPart;
-        TextView keteranganTV, timestampTV;
+        TextView keteranganTV, timestampTV, detailTV;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parrentPart = itemView.findViewById(R.id.parent_part);
             keteranganTV = itemView.findViewById(R.id.keterangan_data_tv);
+            detailTV = itemView.findViewById(R.id.detail_tv);
             timestampTV = itemView.findViewById(R.id.timestamp_data_tv);
         }
     }
