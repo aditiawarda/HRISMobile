@@ -95,7 +95,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
 
         String tanggal_buat = dataFormSDM.getCreated_at();
         String dayDate = tanggal_buat.substring(8,10);
-        String yearDate = tanggal_buat.substring(0,4);;
+        String yearDate = tanggal_buat.substring(0,4);
         String bulanValue = tanggal_buat.substring(5,7);
         String bulanName;
 
