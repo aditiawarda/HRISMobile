@@ -44,8 +44,8 @@
                 <LinearLayout
                     android:background="@drawable/shape_ornament_point"
                     android:layout_marginRight="8dp"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"/>
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"/>
 
                 <TextView
                     android:id="@+id/keterangan_data_tv"
@@ -54,7 +54,7 @@
                     android:lineSpacingExtra="3.5dp"
                     android:text=""
                     android:textColor="#C16D02"
-                    android:textSize="15dp" />
+                    android:textSize="14dp" />
 
             </LinearLayout>
 
