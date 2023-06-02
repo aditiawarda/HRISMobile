@@ -79,7 +79,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
                     if(dataFormSDM.getStatus_approve_hrd().equals("0")){
                         myViewHolder.detailTV.setText("Menunggu verifikasi HRD");
                     } else if(dataFormSDM.getStatus_approve_hrd().equals("1")){
-                        myViewHolder.detailTV.setText("Pengajuan telah di verifikasi HRD");
+                        myViewHolder.detailTV.setText("Pengajuan telah diverifikasi HRD");
                     } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
                         myViewHolder.detailTV.setText("Pengajuan ditolak HRD");
                     }
