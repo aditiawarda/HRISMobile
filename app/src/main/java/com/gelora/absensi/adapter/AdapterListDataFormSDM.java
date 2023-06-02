@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DataFormSdmActivity;
 import com.gelora.absensi.DataPenilaianSdmActivity;
+import com.gelora.absensi.DetailFormSdmActivity;
 import com.gelora.absensi.DetailPenilaianKaryawanActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefManager;
@@ -145,7 +146,8 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
         myViewHolder.parrentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, dataFormSDM.getId(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, DetailFormSdmActivity.class);
+                mContext.startActivity(intent);
             }
         });
 
