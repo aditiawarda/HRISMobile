@@ -83,7 +83,7 @@
                             </LinearLayout>
 
                             <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/list_penilaian_sdm_rv"
+                                android:id="@+id/list_form_sdm_rv"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"

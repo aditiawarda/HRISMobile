@@ -2367,6 +2367,8 @@ public class FormSdmActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
+                params.put("pembuat", sharedPrefManager.getSpNik());
+
                 params.put("keterangan", kodeKeterangan);
                 params.put("catatan", f1CatatanTV.getText().toString());
 

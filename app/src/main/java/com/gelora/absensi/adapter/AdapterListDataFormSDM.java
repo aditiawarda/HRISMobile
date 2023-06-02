@@ -49,7 +49,11 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final DataFormSDM dataFormSDM = data[i];
 
-        myViewHolder.keteranganTV.setText(dataFormSDM.getKeterangan());
+        if(dataFormSDM.getKeterangan().equals("1")){
+            myViewHolder.keteranganTV.setText("Penerimaan");
+        } else {
+            myViewHolder.keteranganTV.setText(dataFormSDM.getKeterangan());
+        }
 
         String tanggal_buat = dataFormSDM.getCreated_at();
         String dayDate = tanggal_buat.substring(8,10);
@@ -104,7 +108,6 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
         myViewHolder.parrentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
 
