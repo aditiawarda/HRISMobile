@@ -96,9 +96,12 @@ public class FormSdmActivity extends AppCompatActivity {
 
     //Form 2
     LinearLayout f2NamaKaryawanPart, f2UnitBisnisPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
+    LinearLayout f2NamaKaryawanLamaPart, f2UnitBisnisLamaPart, f2StartAttantionKaryawanLamaPart, f2NoDataKaryawanLamaPart, f2loadingDataKaryawanLamaPart;
     ImageView f1loadingGif;
     TextView f2NamaKaryawanTV, f2UnitBisnisTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
+    TextView f2NamaKaryawanLamaTV, f2UnitBisnisLamaTV, f2DepartemenLamaTV, f2BagianLamaTV, f2JabatanLamaTV;
     EditText f2keywordKaryawanBaru, f2KomponenGajiTV;
+    EditText f2keywordKaryawanLama, f2KomponenGajiLamaTV;
     String f2NikBaru = "", f2IdUnitBisnis = "", f2DepartemenBaru = "", f2BagianBaru = "", f2JabatanBaru = "";
     private RecyclerView f2KaryawanBaruRV, f2UnitBisnisRV;
     private KaryawanSDM[] f2KaryawanSDMS;
@@ -168,6 +171,14 @@ public class FormSdmActivity extends AppCompatActivity {
         f2BagianTV = findViewById(R.id.f2_bagian_tv);
         f2JabatanTV = findViewById(R.id.f2_jabatan_tv);
         f2KomponenGajiTV = findViewById(R.id.f2_komponen_gaji_tv);
+        f2NamaKaryawanLamaPart = findViewById(R.id.f2_nama_karyawan_lama_part);
+        f2NamaKaryawanLamaTV = findViewById(R.id.f2_nama_karyawan_lama_tv);
+        f2UnitBisnisLamaPart = findViewById(R.id.f2_unit_bisnis_lama_part);
+        f2UnitBisnisLamaTV = findViewById(R.id.f2_unit_bisnis_lama_tv);
+        f2DepartemenLamaTV = findViewById(R.id.f2_departemen_lama_tv);
+        f2BagianLamaTV = findViewById(R.id.f2_bagian_lama_tv);
+        f2JabatanLamaTV = findViewById(R.id.f2_jabatan_lama_tv);
+        f2KomponenGajiLamaTV = findViewById(R.id.f2_komponen_gaji_lama_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
