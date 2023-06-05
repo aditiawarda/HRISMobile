@@ -67,6 +67,12 @@ public class AdapterKaryawanBaruSDM extends RecyclerView.Adapter<AdapterKaryawan
                 Intent intent = new Intent("f2_karyawan_baru_broad");
                 intent.putExtra("nik_karyawan_baru",karyawanSDM.getNIK());
                 intent.putExtra("nama_karyawan_baru",karyawanSDM.getNama());
+                intent.putExtra("departemen_karyawan_baru",karyawanSDM.getDepartemen());
+                intent.putExtra("id_departemen_karyawan_baru",karyawanSDM.getId_departemen());
+                intent.putExtra("bagian_karyawan_baru",karyawanSDM.getBagian());
+                intent.putExtra("id_bagian_karyawan_baru",karyawanSDM.getId_bagian());
+                intent.putExtra("jabatan_karyawan_baru",karyawanSDM.getJabatan());
+                intent.putExtra("id_jabatan_karyawan_baru",karyawanSDM.getId_jabatan());
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, karyawanSDM.getNIK());

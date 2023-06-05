@@ -101,9 +101,9 @@ public class FormSdmActivity extends AppCompatActivity {
     //Form 2
     LinearLayout f2NamaKaryawanPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
     ImageView f1loadingGif;
-    TextView f2NamaKaryawanTV;
+    TextView f2NamaKaryawanTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
     EditText f2keywordKaryawanBaru;
-    String f2NikBaru = "";
+    String f2NikBaru = "", f2DepartemenBaru = "", f2BagianBaru = "", f2JabatanBaru = "";
     private RecyclerView f2KaryawanBaruRV;
     private KaryawanSDM[] f2KaryawanSDMS;
     private AdapterKaryawanBaruSDM f2AdapterKaryawanBaruSDM;
@@ -165,6 +165,9 @@ public class FormSdmActivity extends AppCompatActivity {
         //Form 2
         f2NamaKaryawanPart = findViewById(R.id.f2_nama_karyawan_part);
         f2NamaKaryawanTV = findViewById(R.id.f2_nama_karyawan_tv);
+        f2DepartemenTV = findViewById(R.id.f2_departemen_tv);
+        f2BagianTV = findViewById(R.id.f2_bagian_tv);
+        f2JabatanTV = findViewById(R.id.f2_jabatan_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -215,6 +218,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+                f2DepartemenBaru = "";
+                f2DepartemenTV.setText("");
+                f2BagianBaru = "";
+                f2BagianTV.setText("");
+                f2JabatanBaru = "";
+                f2JabatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -596,6 +605,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+                f2DepartemenBaru = "";
+                f2DepartemenTV.setText("");
+                f2BagianBaru = "";
+                f2BagianTV.setText("");
+                f2JabatanBaru = "";
+                f2JabatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -673,6 +688,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+                f2DepartemenBaru = "";
+                f2DepartemenTV.setText("");
+                f2BagianBaru = "";
+                f2BagianTV.setText("");
+                f2JabatanBaru = "";
+                f2JabatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -750,6 +771,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+                f2DepartemenBaru = "";
+                f2DepartemenTV.setText("");
+                f2BagianBaru = "";
+                f2BagianTV.setText("");
+                f2JabatanBaru = "";
+                f2JabatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -827,6 +854,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+                f2DepartemenBaru = "";
+                f2DepartemenTV.setText("");
+                f2BagianBaru = "";
+                f2BagianTV.setText("");
+                f2JabatanBaru = "";
+                f2JabatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -904,6 +937,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+                f2DepartemenBaru = "";
+                f2DepartemenTV.setText("");
+                f2BagianBaru = "";
+                f2BagianTV.setText("");
+                f2JabatanBaru = "";
+                f2JabatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -981,6 +1020,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+                f2DepartemenBaru = "";
+                f2DepartemenTV.setText("");
+                f2BagianBaru = "";
+                f2BagianTV.setText("");
+                f2JabatanBaru = "";
+                f2JabatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1058,6 +1103,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+                f2DepartemenBaru = "";
+                f2DepartemenTV.setText("");
+                f2BagianBaru = "";
+                f2BagianTV.setText("");
+                f2JabatanBaru = "";
+                f2JabatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -2622,8 +2673,22 @@ public class FormSdmActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String nik_karyawan_baru = intent.getStringExtra("nik_karyawan_baru");
             String nama_karyawan_baru = intent.getStringExtra("nama_karyawan_baru");
+            String departemen_karyawan_baru = intent.getStringExtra("departemen_karyawan_baru");
+            String id_departemen_karyawan_baru = intent.getStringExtra("id_departemen_karyawan_baru");
+            String bagian_karyawan_baru = intent.getStringExtra("bagian_karyawan_baru");
+            String id_bagian_karyawan_baru = intent.getStringExtra("id_bagian_karyawan_baru");
+            String jabatan_karyawan_baru = intent.getStringExtra("jabatan_karyawan_baru");
+            String id_jabatan_karyawan_baru = intent.getStringExtra("id_jabatan_karyawan_baru");
+
             f2NikBaru = nik_karyawan_baru;
             f2NamaKaryawanTV.setText(nama_karyawan_baru);
+            f2DepartemenBaru = departemen_karyawan_baru;
+            f2DepartemenTV.setText(departemen_karyawan_baru);
+            f2BagianBaru = id_bagian_karyawan_baru;
+            f2BagianTV.setText(bagian_karyawan_baru);
+            f2JabatanBaru = id_jabatan_karyawan_baru;
+            f2JabatanTV.setText(jabatan_karyawan_baru);
+
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
