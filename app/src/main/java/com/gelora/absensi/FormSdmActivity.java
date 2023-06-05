@@ -102,7 +102,7 @@ public class FormSdmActivity extends AppCompatActivity {
     LinearLayout f2NamaKaryawanPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
     ImageView f1loadingGif;
     TextView f2NamaKaryawanTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
-    EditText f2keywordKaryawanBaru;
+    EditText f2keywordKaryawanBaru, f2KomponenGajiTV;
     String f2NikBaru = "", f2DepartemenBaru = "", f2BagianBaru = "", f2JabatanBaru = "";
     private RecyclerView f2KaryawanBaruRV;
     private KaryawanSDM[] f2KaryawanSDMS;
@@ -168,6 +168,7 @@ public class FormSdmActivity extends AppCompatActivity {
         f2DepartemenTV = findViewById(R.id.f2_departemen_tv);
         f2BagianTV = findViewById(R.id.f2_bagian_tv);
         f2JabatanTV = findViewById(R.id.f2_jabatan_tv);
+        f2KomponenGajiTV = findViewById(R.id.f2_komponen_gaji_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -224,6 +225,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianTV.setText("");
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
+                f2KomponenGajiTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -611,6 +613,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianTV.setText("");
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
+                f2KomponenGajiTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -694,6 +697,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianTV.setText("");
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
+                f2KomponenGajiTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -777,6 +781,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianTV.setText("");
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
+                f2KomponenGajiTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -860,6 +865,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianTV.setText("");
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
+                f2KomponenGajiTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -943,6 +949,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianTV.setText("");
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
+                f2KomponenGajiTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1026,6 +1033,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianTV.setText("");
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
+                f2KomponenGajiTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1109,6 +1117,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianTV.setText("");
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
+                f2KomponenGajiTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -2693,6 +2702,8 @@ public class FormSdmActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 }
             }, 300);
         }
