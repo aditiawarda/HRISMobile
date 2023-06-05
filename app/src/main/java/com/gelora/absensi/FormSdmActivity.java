@@ -32,7 +32,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -44,16 +43,13 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterKaryawanBaruSDM;
-import com.gelora.absensi.adapter.AdapterKaryawanPengganti;
-import com.gelora.absensi.adapter.AdapterKategoriIzin;
 import com.gelora.absensi.adapter.AdapterUnitBagian;
 import com.gelora.absensi.adapter.AdapterUnitBisnis;
+import com.gelora.absensi.adapter.AdapterUnitBisnis2;
 import com.gelora.absensi.adapter.AdapterUnitDepartemen;
 import com.gelora.absensi.adapter.AdapterUnitJabatan;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.KaryawanPengganti;
 import com.gelora.absensi.model.KaryawanSDM;
-import com.gelora.absensi.model.KategoriIzin;
 import com.gelora.absensi.model.UnitBagian;
 import com.gelora.absensi.model.UnitBisnis;
 import com.gelora.absensi.model.UnitDepartemen;
@@ -87,7 +83,7 @@ public class FormSdmActivity extends AppCompatActivity {
     String f1IdUnitBisnis = "", f1IdDepartemen = "", f1IdBagian = "", f1IdJabatan = "", f1TglDibutuhkan = "", f1TglPemenuhan = "";
     private RecyclerView f1UnitBisnisRV;
     private UnitBisnis[] unitBisnis;
-    private AdapterUnitBisnis adapterUnitBisnis;
+    private AdapterUnitBisnis f1AdapterUnitBisnis;
     private RecyclerView f1DepartemenRV;
     private UnitDepartemen[] unitDepartemen;
     private AdapterUnitDepartemen adapterUnitDepartemen;
@@ -99,14 +95,15 @@ public class FormSdmActivity extends AppCompatActivity {
     private AdapterUnitJabatan adapterUnitJabatan;
 
     //Form 2
-    LinearLayout f2NamaKaryawanPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
+    LinearLayout f2NamaKaryawanPart, f2UnitBisnisPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
     ImageView f1loadingGif;
-    TextView f2NamaKaryawanTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
+    TextView f2NamaKaryawanTV, f2UnitBisnisTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
     EditText f2keywordKaryawanBaru, f2KomponenGajiTV;
-    String f2NikBaru = "", f2DepartemenBaru = "", f2BagianBaru = "", f2JabatanBaru = "";
-    private RecyclerView f2KaryawanBaruRV;
+    String f2NikBaru = "", f2IdUnitBisnis = "", f2DepartemenBaru = "", f2BagianBaru = "", f2JabatanBaru = "";
+    private RecyclerView f2KaryawanBaruRV, f2UnitBisnisRV;
     private KaryawanSDM[] f2KaryawanSDMS;
     private AdapterKaryawanBaruSDM f2AdapterKaryawanBaruSDM;
+    private AdapterUnitBisnis2 f2AdapterUnitBisnis;
 
     ImageView loadingForm;
     SharedPrefManager sharedPrefManager;
@@ -165,6 +162,8 @@ public class FormSdmActivity extends AppCompatActivity {
         //Form 2
         f2NamaKaryawanPart = findViewById(R.id.f2_nama_karyawan_part);
         f2NamaKaryawanTV = findViewById(R.id.f2_nama_karyawan_tv);
+        f2UnitBisnisPart = findViewById(R.id.f2_unit_bisnis_part);
+        f2UnitBisnisTV = findViewById(R.id.f2_unit_bisnis_tv);
         f2DepartemenTV = findViewById(R.id.f2_departemen_tv);
         f2BagianTV = findViewById(R.id.f2_bagian_tv);
         f2JabatanTV = findViewById(R.id.f2_jabatan_tv);
@@ -226,6 +225,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2UnitBisnisTV.setText("");
+                f2IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -317,10 +319,17 @@ public class FormSdmActivity extends AppCompatActivity {
 
         //Form 2
         LocalBroadcastManager.getInstance(this).registerReceiver(f2KaryawanBaruBroad, new IntentFilter("f2_karyawan_baru_broad"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(f2UnitBisnisBoard, new IntentFilter("f2_unit_bisnis_board"));
         f2NamaKaryawanPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 f2KaryawanBaruFunc();
+            }
+        });
+        f2UnitBisnisPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f2UnitBisnisWay();
             }
         });
         //End Form 2
@@ -614,6 +623,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2UnitBisnisTV.setText("");
+                f2IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -698,6 +710,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2UnitBisnisTV.setText("");
+                f2IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -782,6 +797,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2UnitBisnisTV.setText("");
+                f2IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -866,6 +884,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2UnitBisnisTV.setText("");
+                f2IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -950,6 +971,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2UnitBisnisTV.setText("");
+                f2IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1034,6 +1058,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2UnitBisnisTV.setText("");
+                f2IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1118,6 +1145,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2UnitBisnisTV.setText("");
+                f2IdUnitBisnis = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1189,8 +1219,8 @@ public class FormSdmActivity extends AppCompatActivity {
                             GsonBuilder builder =new GsonBuilder();
                             Gson gson = builder.create();
                             unitBisnis = gson.fromJson(unit, UnitBisnis[].class);
-                            adapterUnitBisnis = new AdapterUnitBisnis(unitBisnis,FormSdmActivity.this);
-                            f1UnitBisnisRV.setAdapter(adapterUnitBisnis);
+                            f1AdapterUnitBisnis = new AdapterUnitBisnis(unitBisnis,FormSdmActivity.this);
+                            f1UnitBisnisRV.setAdapter(f1AdapterUnitBisnis);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -2704,6 +2734,98 @@ public class FormSdmActivity extends AppCompatActivity {
                     bottomSheet.dismissSheet();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                }
+            }, 300);
+        }
+    };
+    private void f2UnitBisnisWay(){
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_unit_bisnis, bottomSheet, false));
+                f2UnitBisnisRV = findViewById(R.id.unit_bisnis_rv);
+
+                f2UnitBisnisRV.setLayoutManager(new LinearLayoutManager(this));
+                f2UnitBisnisRV.setHasFixedSize(true);
+                f2UnitBisnisRV.setNestedScrollingEnabled(false);
+                f2UnitBisnisRV.setItemAnimator(new DefaultItemAnimator());
+
+                f2GetUnitBisnis();
+            } else {
+                bottomSheet.showWithSheetView(LayoutInflater.from(this).inflate(R.layout.layout_unit_bisnis, bottomSheet, false));
+                f2UnitBisnisRV = findViewById(R.id.unit_bisnis_rv);
+
+                f2UnitBisnisRV.setLayoutManager(new LinearLayoutManager(this));
+                f2UnitBisnisRV.setHasFixedSize(true);
+                f2UnitBisnisRV.setNestedScrollingEnabled(false);
+                f2UnitBisnisRV.setItemAnimator(new DefaultItemAnimator());
+
+                f2GetUnitBisnis();
+            }
+        } catch (InflateException e){
+            e.printStackTrace();
+        }
+    }
+    private void f2GetUnitBisnis() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bisnis";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+
+                            JSONObject data = new JSONObject(response);
+                            String unit = data.getString("data");
+
+                            GsonBuilder builder =new GsonBuilder();
+                            Gson gson = builder.create();
+                            unitBisnis = gson.fromJson(unit, UnitBisnis[].class);
+                            f2AdapterUnitBisnis = new AdapterUnitBisnis2(unitBisnis,FormSdmActivity.this);
+                            f2UnitBisnisRV.setAdapter(f2AdapterUnitBisnis);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("request", "request");
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+    public BroadcastReceiver f2UnitBisnisBoard = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String id_unit = intent.getStringExtra("id_unit");
+            String nama_unit = intent.getStringExtra("nama_unit");
+            f2IdUnitBisnis = id_unit;
+            f2UnitBisnisTV.setText(nama_unit);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
                 }
             }, 300);
         }

@@ -874,7 +874,7 @@
                                         android:textSize="12dp" />
 
                                     <LinearLayout
-                                        android:id="@+id/f1_unit_bisnis_part"
+                                        android:id="@+id/f2_unit_bisnis_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:paddingStart="20dp"
@@ -894,7 +894,7 @@
                                                 android:gravity="center|left">
 
                                                 <TextView
-                                                    android:id="@+id/f1_unit_bisnis_tv"
+                                                    android:id="@+id/f2_unit_bisnis_tv"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:textColor="#B15735"
