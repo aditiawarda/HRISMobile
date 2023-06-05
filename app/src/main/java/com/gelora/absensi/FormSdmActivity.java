@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,10 +19,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.InflateException;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,11 +43,17 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.adapter.AdapterKaryawanBaruSDM;
+import com.gelora.absensi.adapter.AdapterKaryawanPengganti;
+import com.gelora.absensi.adapter.AdapterKategoriIzin;
 import com.gelora.absensi.adapter.AdapterUnitBagian;
 import com.gelora.absensi.adapter.AdapterUnitBisnis;
 import com.gelora.absensi.adapter.AdapterUnitDepartemen;
 import com.gelora.absensi.adapter.AdapterUnitJabatan;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.model.KaryawanPengganti;
+import com.gelora.absensi.model.KaryawanSDM;
+import com.gelora.absensi.model.KategoriIzin;
 import com.gelora.absensi.model.UnitBagian;
 import com.gelora.absensi.model.UnitBisnis;
 import com.gelora.absensi.model.UnitDepartemen;
@@ -85,6 +97,16 @@ public class FormSdmActivity extends AppCompatActivity {
     private RecyclerView f1JabatanRV;
     private UnitJabatan[] unitJabatans;
     private AdapterUnitJabatan adapterUnitJabatan;
+
+    //Form 2
+    LinearLayout f2NamaKaryawanPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
+    ImageView f1loadingGif;
+    TextView f2NamaKaryawanTV;
+    EditText f2keywordKaryawanBaru;
+    String f2NikBaru = "";
+    private RecyclerView f2KaryawanBaruRV;
+    private KaryawanSDM[] f2KaryawanSDMS;
+    private AdapterKaryawanBaruSDM f2AdapterKaryawanBaruSDM;
 
     ImageView loadingForm;
     SharedPrefManager sharedPrefManager;
@@ -140,6 +162,10 @@ public class FormSdmActivity extends AppCompatActivity {
         f1TglPemenuhanTV = findViewById(R.id.f1_tgl_pemenuhan_tv);
         f1CatatanTV = findViewById(R.id.f1_catatan_tv);
 
+        //Form 2
+        f2NamaKaryawanPart = findViewById(R.id.f2_nama_karyawan_part);
+        f2NamaKaryawanTV = findViewById(R.id.f2_nama_karyawan_tv);
+
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
                 .into(loadingForm);
@@ -184,6 +210,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhan = "";
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
+
+                //Form 2
+                f2NamaKaryawanTV.setText("");
+                f2NikBaru = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -272,6 +303,16 @@ public class FormSdmActivity extends AppCompatActivity {
             }
         });
         //End Form 1
+
+        //Form 2
+        LocalBroadcastManager.getInstance(this).registerReceiver(f2KaryawanBaruBroad, new IntentFilter("f2_karyawan_baru_broad"));
+        f2NamaKaryawanPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f2KaryawanBaruFunc();
+            }
+        });
+        //End Form 2
 
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -372,6 +413,9 @@ public class FormSdmActivity extends AppCompatActivity {
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
+
+        //Form 2
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
 
     }
 
@@ -548,6 +592,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
 
+                //Form 2
+                f2NamaKaryawanTV.setText("");
+                f2NikBaru = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -619,6 +668,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhan = "";
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
+
+                //Form 2
+                f2NamaKaryawanTV.setText("");
+                f2NikBaru = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -692,6 +746,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
 
+                //Form 2
+                f2NamaKaryawanTV.setText("");
+                f2NikBaru = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -763,6 +822,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhan = "";
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
+
+                //Form 2
+                f2NamaKaryawanTV.setText("");
+                f2NikBaru = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -836,6 +900,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
 
+                //Form 2
+                f2NamaKaryawanTV.setText("");
+                f2NikBaru = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -908,6 +977,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
 
+                //Form 2
+                f2NamaKaryawanTV.setText("");
+                f2NikBaru = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -979,6 +1053,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhan = "";
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
+
+                //Form 2
+                f2NamaKaryawanTV.setText("");
+                f2NikBaru = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -2396,6 +2475,163 @@ public class FormSdmActivity extends AppCompatActivity {
 
     }
     //Form 1 End
+
+    //Form 2
+    private void f2KaryawanBaruFunc(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(FormSdmActivity.this).inflate(R.layout.layout_karyawan_sdm, bottomSheet, false));
+        f2keywordKaryawanBaru = findViewById(R.id.keyword_user_ed);
+
+        f2KaryawanBaruRV = findViewById(R.id.karyawan_rv);
+        f2StartAttantionKaryawanBaruPart = findViewById(R.id.attantion_data_part);
+        f2NoDataKaryawanBaruPart = findViewById(R.id.no_data_part);
+        f2loadingDataKaryawanBaruPart = findViewById(R.id.loading_data_part);
+        f1loadingGif = findViewById(R.id.loading_data);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(f1loadingGif);
+
+        f2KaryawanBaruRV.setLayoutManager(new LinearLayoutManager(this));
+        f2KaryawanBaruRV.setHasFixedSize(true);
+        f2KaryawanBaruRV.setNestedScrollingEnabled(false);
+        f2KaryawanBaruRV.setItemAnimator(new DefaultItemAnimator());
+
+        f2keywordKaryawanBaru.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                String keyWordSearch = f2keywordKaryawanBaru.getText().toString();
+
+                f2StartAttantionKaryawanBaruPart.setVisibility(View.GONE);
+                f2loadingDataKaryawanBaruPart.setVisibility(View.VISIBLE);
+                f2NoDataKaryawanBaruPart.setVisibility(View.GONE);
+                f2KaryawanBaruRV.setVisibility(View.GONE);
+
+                if(!keyWordSearch.equals("")){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            f2GetDataKaryawanBaru(keyWordSearch);
+                        }
+                    }, 500);
+                }
+            }
+
+        });
+
+        f2keywordKaryawanBaru.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    String keyWordSearch = f2keywordKaryawanBaru.getText().toString();
+                    f2GetDataKaryawanBaru(keyWordSearch);
+
+                    InputMethodManager imm = (InputMethodManager) FormSdmActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    View view = FormSdmActivity.this.getCurrentFocus();
+                    if (view == null) {
+                        view = new View(FormSdmActivity.this);
+                    }
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+    }
+    private void f2GetDataKaryawanBaru(String keyword) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_sdm";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")) {
+
+                                f2StartAttantionKaryawanBaruPart.setVisibility(View.GONE);
+                                f2loadingDataKaryawanBaruPart.setVisibility(View.GONE);
+                                f2NoDataKaryawanBaruPart.setVisibility(View.GONE);
+                                f2KaryawanBaruRV.setVisibility(View.VISIBLE);
+
+                                String data_list = data.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                f2KaryawanSDMS = gson.fromJson(data_list, KaryawanSDM[].class);
+                                f2AdapterKaryawanBaruSDM = new AdapterKaryawanBaruSDM(f2KaryawanSDMS, FormSdmActivity.this);
+                                f2KaryawanBaruRV.setAdapter(f2AdapterKaryawanBaruSDM);
+                            } else {
+                                f2StartAttantionKaryawanBaruPart.setVisibility(View.GONE);
+                                f2loadingDataKaryawanBaruPart.setVisibility(View.GONE);
+                                f2NoDataKaryawanBaruPart.setVisibility(View.VISIBLE);
+                                f2KaryawanBaruRV.setVisibility(View.GONE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+
+                        f2StartAttantionKaryawanBaruPart.setVisibility(View.GONE);
+                        f2loadingDataKaryawanBaruPart.setVisibility(View.GONE);
+                        f2NoDataKaryawanBaruPart.setVisibility(View.VISIBLE);
+                        f2KaryawanBaruRV.setVisibility(View.GONE);
+
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                params.put("nik", sharedPrefManager.getSpNik());
+                params.put("keyword_karyawan", keyword);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+    public BroadcastReceiver f2KaryawanBaruBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String nik_karyawan_baru = intent.getStringExtra("nik_karyawan_baru");
+            String nama_karyawan_baru = intent.getStringExtra("nama_karyawan_baru");
+            f2NikBaru = nik_karyawan_baru;
+            f2NamaKaryawanTV.setText(nama_karyawan_baru);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                }
+            }, 300);
+        }
+    };
 
     private void checkSignature(){
         final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
