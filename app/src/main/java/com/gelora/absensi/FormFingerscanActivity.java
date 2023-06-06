@@ -3882,6 +3882,11 @@ public class FormFingerscanActivity extends AppCompatActivity {
                                         .setContentText("Bulan ini anda telah mengajukan 3 permohonan form keterangan tidak absen/batas maksimum pengajuan permohonan")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            } else if(status.equals("Over Day")) {
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setContentText("Permohonan form keterangan tidak absen tidak dapat diajukan lebih dari 2 hari dari tanggal yang dipilih")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
