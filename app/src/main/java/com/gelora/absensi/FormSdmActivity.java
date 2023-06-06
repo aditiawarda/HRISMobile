@@ -47,6 +47,7 @@ import com.gelora.absensi.adapter.AdapterKaryawanLamaSDM;
 import com.gelora.absensi.adapter.AdapterUnitBagian;
 import com.gelora.absensi.adapter.AdapterUnitBisnis;
 import com.gelora.absensi.adapter.AdapterUnitBisnis2;
+import com.gelora.absensi.adapter.AdapterUnitBisnis2Lama;
 import com.gelora.absensi.adapter.AdapterUnitDepartemen;
 import com.gelora.absensi.adapter.AdapterUnitJabatan;
 import com.gelora.absensi.kalert.KAlertDialog;
@@ -105,11 +106,12 @@ public class FormSdmActivity extends AppCompatActivity {
     EditText f2keywordKaryawanLama, f2KomponenGajiLamaTV;
     String f2NikBaru = "", f2IdUnitBisnis = "", f2DepartemenBaru = "", f2BagianBaru = "", f2JabatanBaru = "";
     String f2NikLama = "", f2IdUnitBisnisLama = "", f2DepartemenLama = "", f2BagianLama = "", f2JabatanLama= "";
-    private RecyclerView f2KaryawanBaruRV, f2KaryawanLamaRV, f2UnitBisnisRV;
+    private RecyclerView f2KaryawanBaruRV, f2KaryawanLamaRV, f2UnitBisnisRV, f2UnitBisnisLamaRV;
     private KaryawanSDM[] f2KaryawanSDMS;
     private AdapterKaryawanBaruSDM f2AdapterKaryawanBaruSDM;
     private AdapterKaryawanLamaSDM f2AdapterKaryawanLamaSDM;
     private AdapterUnitBisnis2 f2AdapterUnitBisnis;
+    private AdapterUnitBisnis2Lama f2AdapterUnitBisnisLama;
 
     ImageView loadingForm;
     SharedPrefManager sharedPrefManager;
@@ -251,6 +253,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianLamaTV.setText("");
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
+                f2KomponenGajiLamaTV.setText("");
+                f2UnitBisnisLamaTV.setText("");
+                f2IdUnitBisnisLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -344,6 +350,7 @@ public class FormSdmActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(f2KaryawanBaruBroad, new IntentFilter("f2_karyawan_baru_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(f2KaryawanLamaBroad, new IntentFilter("f2_karyawan_lama_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(f2UnitBisnisBoard, new IntentFilter("f2_unit_bisnis_board"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(f2UnitBisnisLamaBoard, new IntentFilter("f2_unit_bisnis_lama_board"));
         f2NamaKaryawanPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -360,6 +367,12 @@ public class FormSdmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 f2KaryawanLamaFunc();
+            }
+        });
+        f2UnitBisnisLamaPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f2UnitBisnisLamaWay();
             }
         });
         //End Form 2
@@ -666,6 +679,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianLamaTV.setText("");
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
+                f2KomponenGajiLamaTV.setText("");
+                f2UnitBisnisLamaTV.setText("");
+                f2IdUnitBisnisLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -762,6 +779,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianLamaTV.setText("");
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
+                f2KomponenGajiLamaTV.setText("");
+                f2UnitBisnisLamaTV.setText("");
+                f2IdUnitBisnisLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -858,6 +879,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianLamaTV.setText("");
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
+                f2KomponenGajiLamaTV.setText("");
+                f2UnitBisnisLamaTV.setText("");
+                f2IdUnitBisnisLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -954,6 +979,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianLamaTV.setText("");
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
+                f2KomponenGajiLamaTV.setText("");
+                f2UnitBisnisLamaTV.setText("");
+                f2IdUnitBisnisLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1050,6 +1079,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianLamaTV.setText("");
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
+                f2KomponenGajiLamaTV.setText("");
+                f2UnitBisnisLamaTV.setText("");
+                f2IdUnitBisnisLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1146,6 +1179,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianLamaTV.setText("");
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
+                f2KomponenGajiLamaTV.setText("");
+                f2UnitBisnisLamaTV.setText("");
+                f2IdUnitBisnisLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1242,6 +1279,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2BagianLamaTV.setText("");
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
+                f2KomponenGajiLamaTV.setText("");
+                f2UnitBisnisLamaTV.setText("");
+                f2IdUnitBisnisLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -3091,6 +3132,98 @@ public class FormSdmActivity extends AppCompatActivity {
                     bottomSheet.dismissSheet();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                }
+            }, 300);
+        }
+    };
+    private void f2UnitBisnisLamaWay(){
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_unit_bisnis, bottomSheet, false));
+                f2UnitBisnisLamaRV = findViewById(R.id.unit_bisnis_rv);
+
+                f2UnitBisnisLamaRV.setLayoutManager(new LinearLayoutManager(this));
+                f2UnitBisnisLamaRV.setHasFixedSize(true);
+                f2UnitBisnisLamaRV.setNestedScrollingEnabled(false);
+                f2UnitBisnisLamaRV.setItemAnimator(new DefaultItemAnimator());
+
+                f2GetUnitBisnisLama();
+            } else {
+                bottomSheet.showWithSheetView(LayoutInflater.from(this).inflate(R.layout.layout_unit_bisnis, bottomSheet, false));
+                f2UnitBisnisLamaRV = findViewById(R.id.unit_bisnis_rv);
+
+                f2UnitBisnisLamaRV.setLayoutManager(new LinearLayoutManager(this));
+                f2UnitBisnisLamaRV.setHasFixedSize(true);
+                f2UnitBisnisLamaRV.setNestedScrollingEnabled(false);
+                f2UnitBisnisLamaRV.setItemAnimator(new DefaultItemAnimator());
+
+                f2GetUnitBisnisLama();
+            }
+        } catch (InflateException e){
+            e.printStackTrace();
+        }
+    }
+    private void f2GetUnitBisnisLama() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_unit_bisnis";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+
+                            JSONObject data = new JSONObject(response);
+                            String unit = data.getString("data");
+
+                            GsonBuilder builder =new GsonBuilder();
+                            Gson gson = builder.create();
+                            unitBisnis = gson.fromJson(unit, UnitBisnis[].class);
+                            f2AdapterUnitBisnisLama = new AdapterUnitBisnis2Lama(unitBisnis,FormSdmActivity.this);
+                            f2UnitBisnisLamaRV.setAdapter(f2AdapterUnitBisnisLama);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("request", "request");
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+    public BroadcastReceiver f2UnitBisnisLamaBoard = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String id_unit_lama = intent.getStringExtra("id_unit_lama");
+            String nama_unit_lama = intent.getStringExtra("nama_unit_lama");
+            f2IdUnitBisnisLama = id_unit_lama;
+            f2UnitBisnisLamaTV.setText(nama_unit_lama);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
                 }
             }, 300);
         }

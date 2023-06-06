@@ -17,6 +17,7 @@ public class SharedPrefAbsen {
     public static final String SP_ID_KARYAWAN_PENILAIAN = "spIdKaryawanPenilaian";
     public static final String SP_ID_TITIK_ABSENSI = "spIdTitikAbsensi";
     public static final String SP_ID_UNIT_BISNIS = "spIdUnitBisnis";
+    public static final String SP_ID_UNIT_BISNIS_LAMA = "spIdUnitBisnisLama";
     public static final String SP_ID_UNIT_DEPARTEMEN = "spIdUnitDepartemen";
     public static final String SP_ID_UNIT_BAGIAN = "spIdUnitBagian";
     public static final String SP_ID_UNIT_JABATAN = "spIdUnitJabatan";
@@ -28,7 +29,9 @@ public class SharedPrefAbsen {
     public static final String SP_KARYAWAN_SDM_BARU = "spKaryawanSdmBaru";
     public static final String SP_KARYAWAN_SDM_LAMA = "spKaryawanSdmLama";
     public static final String SP_KARYAWAN_PENILAIAN = "spKaryawanPenilaian";
+    public static final String SP_TITIK_ABSENSI = "spTitikAbsensi";
     public static final String SP_UNIT_BISNIS = "spUnitBisnis";
+    public static final String SP_UNIT_BISNIS_LAMA = "spUnitBisnisLama";
     public static final String SP_UNIT_DEPARTEMEN = "spUnitDepartemen";
     public static final String SP_UNIT_BAGIAN = "spUnitBagian";
     public static final String SP_UNIT_JABATAN = "spUnitJabatan";
@@ -102,6 +105,10 @@ public class SharedPrefAbsen {
         return sp.getString(SP_ID_UNIT_BISNIS, "");
     }
 
+    public String getSpIdUnitBisnisLama(){
+        return sp.getString(SP_ID_UNIT_BISNIS_LAMA, "");
+    }
+
     public String getSpIdUnitDepartemen(){
         return sp.getString(SP_ID_UNIT_DEPARTEMEN, "");
     }
@@ -147,23 +154,27 @@ public class SharedPrefAbsen {
     }
 
     public String getSpTitikAbsensi(){
-        return sp.getString(SP_ID_TITIK_ABSENSI, "");
+        return sp.getString(SP_TITIK_ABSENSI, "");
     }
 
     public String getSpUnitBisnis(){
-        return sp.getString(SP_ID_UNIT_BISNIS, "");
+        return sp.getString(SP_UNIT_BISNIS, "");
+    }
+
+    public String getSpUnitBisnisLama(){
+        return sp.getString(SP_UNIT_BISNIS_LAMA, "");
     }
 
     public String getSpUnitDepartemen(){
-        return sp.getString(SP_ID_UNIT_DEPARTEMEN, "");
+        return sp.getString(SP_UNIT_DEPARTEMEN, "");
     }
 
     public String getSpUnitBagian(){
-        return sp.getString(SP_ID_UNIT_BAGIAN, "");
+        return sp.getString(SP_UNIT_BAGIAN, "");
     }
 
     public String getSpUnitJabatan(){
-        return sp.getString(SP_ID_UNIT_JABATAN, "");
+        return sp.getString(SP_UNIT_JABATAN, "");
     }
 
     public String getSpNotifUltah(){
