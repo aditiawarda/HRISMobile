@@ -31,7 +31,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -103,15 +106,17 @@ public class FormSdmActivity extends AppCompatActivity {
     TextView f2NamaKaryawanTV, f2UnitBisnisTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
     TextView f2NamaKaryawanLamaTV, f2UnitBisnisLamaTV, f2DepartemenLamaTV, f2BagianLamaTV, f2JabatanLamaTV;
     EditText f2keywordKaryawanBaru, f2KomponenGajiTV;
-    EditText f2keywordKaryawanLama, f2KomponenGajiLamaTV;
+    EditText f2keywordKaryawanLama, f2KomponenGajiLamaTV, f2CatatanTV;
     String f2NikBaru = "", f2IdUnitBisnis = "", f2DepartemenBaru = "", f2BagianBaru = "", f2JabatanBaru = "";
-    String f2NikLama = "", f2IdUnitBisnisLama = "", f2DepartemenLama = "", f2BagianLama = "", f2JabatanLama= "";
+    String f2NikLama = "", f2IdUnitBisnisLama = "", f2DepartemenLama = "", f2BagianLama = "", f2JabatanLama= "", f2PemenuhanSyarat = "";
     private RecyclerView f2KaryawanBaruRV, f2KaryawanLamaRV, f2UnitBisnisRV, f2UnitBisnisLamaRV;
     private KaryawanSDM[] f2KaryawanSDMS;
     private AdapterKaryawanBaruSDM f2AdapterKaryawanBaruSDM;
     private AdapterKaryawanLamaSDM f2AdapterKaryawanLamaSDM;
     private AdapterUnitBisnis2 f2AdapterUnitBisnis;
     private AdapterUnitBisnis2Lama f2AdapterUnitBisnisLama;
+    RadioGroup f2VerifSyaratGroup;
+    RadioButton f2OptionYa, f2OptionTidak;
 
     ImageView loadingForm;
     SharedPrefManager sharedPrefManager;
@@ -184,6 +189,10 @@ public class FormSdmActivity extends AppCompatActivity {
         f2BagianLamaTV = findViewById(R.id.f2_bagian_lama_tv);
         f2JabatanLamaTV = findViewById(R.id.f2_jabatan_lama_tv);
         f2KomponenGajiLamaTV = findViewById(R.id.f2_komponen_gaji_lama_tv);
+        f2VerifSyaratGroup = findViewById(R.id.f2_option);
+        f2OptionYa = findViewById(R.id.f2_option_ya);
+        f2OptionTidak = findViewById(R.id.f2_option_tidak);
+        f2CatatanTV = findViewById(R.id.f2_catatan_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -257,6 +266,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2PemenuhanSyarat = "";
+                f2VerifSyaratGroup.clearCheck();
+                f2CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -375,24 +387,36 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisLamaWay();
             }
         });
+        f2VerifSyaratGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                if (f2OptionYa.isChecked()) {
+                    f2PemenuhanSyarat = "0";
+                } else if (f2OptionTidak.isChecked()) {
+                    f2PemenuhanSyarat = "1";
+                }
+            }
+        });
         //End Form 2
 
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(kodeKeterangan.equals("1")){ //Form 1
-                    if(f1UnitBisnisTV.getText().toString().equals("") || f1IdDepartemen.equals("") || f1IdBagian.equals("") || f1IdJabatan.equals("") || f1KomponenGajiTV.equals("") || f1DeskripsiJabatanTV.getText().toString().equals("") || f1SyaratTV.getText().toString().equals("") || f1TglDibutuhkan.equals("") || f1TglPemenuhan.equals("")){
+                if(kodeKeterangan.equals("1")) { //Form 1
+                    if (f1UnitBisnisTV.getText().toString().equals("") || f1IdDepartemen.equals("") || f1IdBagian.equals("") || f1IdJabatan.equals("") || f1KomponenGajiTV.equals("") || f1DeskripsiJabatanTV.getText().toString().equals("") || f1SyaratTV.getText().toString().equals("") || f1TglDibutuhkan.equals("") || f1TglPemenuhan.equals("")) {
                         new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Harap isi semua data!")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi semua data!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
                     } else {
                         new KAlertDialog(FormSdmActivity.this, KAlertDialog.WARNING_TYPE)
                                 .setTitleText("Perhatian")
@@ -444,6 +468,82 @@ public class FormSdmActivity extends AppCompatActivity {
                                                         break;
                                                 }
                                             }
+
+                                            public void onFinish() {
+                                                i = -1;
+                                                checkSignature();
+                                            }
+                                        }.start();
+
+                                    }
+                                })
+                                .show();
+                    }
+                } else if(kodeKeterangan.equals("2")){ //Form 2
+                    if (f2NikBaru.equals("") || f2IdUnitBisnis.equals("") || f2KomponenGajiTV.getText().toString().equals("") || f2NikLama.equals("") || f2IdUnitBisnisLama.equals("") || f2KomponenGajiLamaTV.getText().toString().equals("")) {
+                        new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Pastikan kolom nama, unit bisnis dan komponen gaji terisi!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    } else {
+                        new KAlertDialog(FormSdmActivity.this, KAlertDialog.WARNING_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Kirim data sekarang?")
+                                .setCancelText("TIDAK")
+                                .setConfirmText("   YA   ")
+                                .showCancelButton(true)
+                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                        pDialog = new KAlertDialog(FormSdmActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                        pDialog.show();
+                                        pDialog.setCancelable(false);
+                                        new CountDownTimer(1300, 800) {
+                                            public void onTick(long millisUntilFinished) {
+                                                i++;
+                                                switch (i) {
+                                                    case 0:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormSdmActivity.this, R.color.colorGradien));
+                                                        break;
+                                                    case 1:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormSdmActivity.this, R.color.colorGradien2));
+                                                        break;
+                                                    case 2:
+                                                    case 6:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormSdmActivity.this, R.color.colorGradien3));
+                                                        break;
+                                                    case 3:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormSdmActivity.this, R.color.colorGradien4));
+                                                        break;
+                                                    case 4:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormSdmActivity.this, R.color.colorGradien5));
+                                                        break;
+                                                    case 5:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormSdmActivity.this, R.color.colorGradien6));
+                                                        break;
+                                                }
+                                            }
+
                                             public void onFinish() {
                                                 i = -1;
                                                 checkSignature();
@@ -683,6 +783,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2PemenuhanSyarat = "";
+                f2VerifSyaratGroup.clearCheck();
+                f2CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -783,6 +886,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2PemenuhanSyarat = "";
+                f2VerifSyaratGroup.clearCheck();
+                f2CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -883,6 +989,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2PemenuhanSyarat = "";
+                f2VerifSyaratGroup.clearCheck();
+                f2CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -983,6 +1092,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2PemenuhanSyarat = "";
+                f2VerifSyaratGroup.clearCheck();
+                f2CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1083,6 +1195,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2PemenuhanSyarat = "";
+                f2VerifSyaratGroup.clearCheck();
+                f2CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1183,6 +1298,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2PemenuhanSyarat = "";
+                f2VerifSyaratGroup.clearCheck();
+                f2CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1283,6 +1401,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2PemenuhanSyarat = "";
+                f2VerifSyaratGroup.clearCheck();
+                f2CatatanTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -3247,6 +3368,8 @@ public class FormSdmActivity extends AppCompatActivity {
                                 String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
                                 if(kodeKeterangan.equals("1")){
                                     f1SendData();
+                                } else  if(kodeKeterangan.equals("2")){
+                                    Toast.makeText(FormSdmActivity.this, "Goww", Toast.LENGTH_SHORT).show();
                                 }
                             } else {
                                 pDialog.setTitleText("Perhatian")
