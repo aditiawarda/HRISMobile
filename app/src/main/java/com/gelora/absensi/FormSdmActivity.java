@@ -43,6 +43,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterKaryawanBaruSDM;
+import com.gelora.absensi.adapter.AdapterKaryawanLamaSDM;
 import com.gelora.absensi.adapter.AdapterUnitBagian;
 import com.gelora.absensi.adapter.AdapterUnitBisnis;
 import com.gelora.absensi.adapter.AdapterUnitBisnis2;
@@ -97,15 +98,17 @@ public class FormSdmActivity extends AppCompatActivity {
     //Form 2
     LinearLayout f2NamaKaryawanPart, f2UnitBisnisPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
     LinearLayout f2NamaKaryawanLamaPart, f2UnitBisnisLamaPart, f2StartAttantionKaryawanLamaPart, f2NoDataKaryawanLamaPart, f2loadingDataKaryawanLamaPart;
-    ImageView f1loadingGif;
+    ImageView f2loadingGif, f2loadingLamaGif;
     TextView f2NamaKaryawanTV, f2UnitBisnisTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
     TextView f2NamaKaryawanLamaTV, f2UnitBisnisLamaTV, f2DepartemenLamaTV, f2BagianLamaTV, f2JabatanLamaTV;
     EditText f2keywordKaryawanBaru, f2KomponenGajiTV;
     EditText f2keywordKaryawanLama, f2KomponenGajiLamaTV;
     String f2NikBaru = "", f2IdUnitBisnis = "", f2DepartemenBaru = "", f2BagianBaru = "", f2JabatanBaru = "";
-    private RecyclerView f2KaryawanBaruRV, f2UnitBisnisRV;
+    String f2NikLama = "", f2IdUnitBisnisLama = "", f2DepartemenLama = "", f2BagianLama = "", f2JabatanLama= "";
+    private RecyclerView f2KaryawanBaruRV, f2KaryawanLamaRV, f2UnitBisnisRV;
     private KaryawanSDM[] f2KaryawanSDMS;
     private AdapterKaryawanBaruSDM f2AdapterKaryawanBaruSDM;
+    private AdapterKaryawanLamaSDM f2AdapterKaryawanLamaSDM;
     private AdapterUnitBisnis2 f2AdapterUnitBisnis;
 
     ImageView loadingForm;
@@ -239,6 +242,15 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f2NamaKaryawanLamaTV.setText("");
+                f2NikLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+                f2DepartemenLama = "";
+                f2DepartemenLamaTV.setText("");
+                f2BagianLama = "";
+                f2BagianLamaTV.setText("");
+                f2JabatanLama = "";
+                f2JabatanLamaTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -330,6 +342,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
         //Form 2
         LocalBroadcastManager.getInstance(this).registerReceiver(f2KaryawanBaruBroad, new IntentFilter("f2_karyawan_baru_broad"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(f2KaryawanLamaBroad, new IntentFilter("f2_karyawan_lama_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(f2UnitBisnisBoard, new IntentFilter("f2_unit_bisnis_board"));
         f2NamaKaryawanPart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -341,6 +354,12 @@ public class FormSdmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 f2UnitBisnisWay();
+            }
+        });
+        f2NamaKaryawanLamaPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f2KaryawanLamaFunc();
             }
         });
         //End Form 2
@@ -447,6 +466,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
         //Form 2
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
 
     }
 
@@ -637,6 +657,15 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f2NamaKaryawanLamaTV.setText("");
+                f2NikLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+                f2DepartemenLama = "";
+                f2DepartemenLamaTV.setText("");
+                f2BagianLama = "";
+                f2BagianLamaTV.setText("");
+                f2JabatanLama = "";
+                f2JabatanLamaTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -724,6 +753,15 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f2NamaKaryawanLamaTV.setText("");
+                f2NikLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+                f2DepartemenLama = "";
+                f2DepartemenLamaTV.setText("");
+                f2BagianLama = "";
+                f2BagianLamaTV.setText("");
+                f2JabatanLama = "";
+                f2JabatanLamaTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -811,6 +849,15 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f2NamaKaryawanLamaTV.setText("");
+                f2NikLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+                f2DepartemenLama = "";
+                f2DepartemenLamaTV.setText("");
+                f2BagianLama = "";
+                f2BagianLamaTV.setText("");
+                f2JabatanLama = "";
+                f2JabatanLamaTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -898,6 +945,15 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f2NamaKaryawanLamaTV.setText("");
+                f2NikLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+                f2DepartemenLama = "";
+                f2DepartemenLamaTV.setText("");
+                f2BagianLama = "";
+                f2BagianLamaTV.setText("");
+                f2JabatanLama = "";
+                f2JabatanLamaTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -985,6 +1041,15 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f2NamaKaryawanLamaTV.setText("");
+                f2NikLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+                f2DepartemenLama = "";
+                f2DepartemenLamaTV.setText("");
+                f2BagianLama = "";
+                f2BagianLamaTV.setText("");
+                f2JabatanLama = "";
+                f2JabatanLamaTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1072,6 +1137,15 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f2NamaKaryawanLamaTV.setText("");
+                f2NikLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+                f2DepartemenLama = "";
+                f2DepartemenLamaTV.setText("");
+                f2BagianLama = "";
+                f2BagianLamaTV.setText("");
+                f2JabatanLama = "";
+                f2JabatanLamaTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -1159,6 +1233,15 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+                f2NamaKaryawanLamaTV.setText("");
+                f2NikLama = "";
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+                f2DepartemenLama = "";
+                f2DepartemenLamaTV.setText("");
+                f2BagianLama = "";
+                f2BagianLamaTV.setText("");
+                f2JabatanLama = "";
+                f2JabatanLamaTV.setText("");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -2586,11 +2669,11 @@ public class FormSdmActivity extends AppCompatActivity {
         f2StartAttantionKaryawanBaruPart = findViewById(R.id.attantion_data_part);
         f2NoDataKaryawanBaruPart = findViewById(R.id.no_data_part);
         f2loadingDataKaryawanBaruPart = findViewById(R.id.loading_data_part);
-        f1loadingGif = findViewById(R.id.loading_data);
+        f2loadingGif = findViewById(R.id.loading_data);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
-                .into(f1loadingGif);
+                .into(f2loadingGif);
 
         f2KaryawanBaruRV.setLayoutManager(new LinearLayoutManager(this));
         f2KaryawanBaruRV.setHasFixedSize(true);
@@ -2837,6 +2920,177 @@ public class FormSdmActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     bottomSheet.dismissSheet();
+                }
+            }, 300);
+        }
+    };
+    private void f2KaryawanLamaFunc(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(FormSdmActivity.this).inflate(R.layout.layout_karyawan_sdm, bottomSheet, false));
+        f2keywordKaryawanLama = findViewById(R.id.keyword_user_ed);
+
+        f2KaryawanLamaRV = findViewById(R.id.karyawan_rv);
+        f2StartAttantionKaryawanLamaPart = findViewById(R.id.attantion_data_part);
+        f2NoDataKaryawanLamaPart = findViewById(R.id.no_data_part);
+        f2loadingDataKaryawanLamaPart = findViewById(R.id.loading_data_part);
+        f2loadingLamaGif = findViewById(R.id.loading_data);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(f2loadingLamaGif);
+
+        f2KaryawanLamaRV.setLayoutManager(new LinearLayoutManager(this));
+        f2KaryawanLamaRV.setHasFixedSize(true);
+        f2KaryawanLamaRV.setNestedScrollingEnabled(false);
+        f2KaryawanLamaRV.setItemAnimator(new DefaultItemAnimator());
+
+        f2keywordKaryawanLama.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                String keyWordSearch = f2keywordKaryawanLama.getText().toString();
+
+                f2StartAttantionKaryawanLamaPart.setVisibility(View.GONE);
+                f2loadingDataKaryawanLamaPart.setVisibility(View.VISIBLE);
+                f2NoDataKaryawanLamaPart.setVisibility(View.GONE);
+                f2KaryawanLamaRV.setVisibility(View.GONE);
+
+                if(!keyWordSearch.equals("")){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            f2GetDataKaryawanLama(keyWordSearch);
+                        }
+                    }, 500);
+                }
+            }
+
+        });
+
+        f2keywordKaryawanLama.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    String keyWordSearch = f2keywordKaryawanLama.getText().toString();
+                    f2GetDataKaryawanBaru(keyWordSearch);
+
+                    InputMethodManager imm = (InputMethodManager) FormSdmActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    View view = FormSdmActivity.this.getCurrentFocus();
+                    if (view == null) {
+                        view = new View(FormSdmActivity.this);
+                    }
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+    }
+    private void f2GetDataKaryawanLama(String keyword) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_sdm";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")) {
+
+                                f2StartAttantionKaryawanLamaPart.setVisibility(View.GONE);
+                                f2loadingDataKaryawanLamaPart.setVisibility(View.GONE);
+                                f2NoDataKaryawanLamaPart.setVisibility(View.GONE);
+                                f2KaryawanLamaRV.setVisibility(View.VISIBLE);
+
+                                String data_list = data.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                f2KaryawanSDMS = gson.fromJson(data_list, KaryawanSDM[].class);
+                                f2AdapterKaryawanLamaSDM = new AdapterKaryawanLamaSDM(f2KaryawanSDMS, FormSdmActivity.this);
+                                f2KaryawanLamaRV.setAdapter(f2AdapterKaryawanLamaSDM);
+                            } else {
+                                f2StartAttantionKaryawanLamaPart.setVisibility(View.GONE);
+                                f2loadingDataKaryawanLamaPart.setVisibility(View.GONE);
+                                f2NoDataKaryawanLamaPart.setVisibility(View.VISIBLE);
+                                f2KaryawanLamaRV.setVisibility(View.GONE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+
+                        f2StartAttantionKaryawanLamaPart.setVisibility(View.GONE);
+                        f2loadingDataKaryawanLamaPart.setVisibility(View.GONE);
+                        f2NoDataKaryawanLamaPart.setVisibility(View.VISIBLE);
+                        f2KaryawanLamaRV.setVisibility(View.GONE);
+
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                params.put("nik", sharedPrefManager.getSpNik());
+                params.put("keyword_karyawan", keyword);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+    public BroadcastReceiver f2KaryawanLamaBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String nik_karyawan_lama = intent.getStringExtra("nik_karyawan_lama");
+            String nama_karyawan_lama = intent.getStringExtra("nama_karyawan_lama");
+            String departemen_karyawan_lama = intent.getStringExtra("departemen_karyawan_lama");
+            String id_departemen_karyawan_lama = intent.getStringExtra("id_departemen_karyawan_lama");
+            String bagian_karyawan_lama = intent.getStringExtra("bagian_karyawan_lama");
+            String id_bagian_karyawan_lama = intent.getStringExtra("id_bagian_karyawan_lama");
+            String jabatan_karyawan_lama = intent.getStringExtra("jabatan_karyawan_lama");
+            String id_jabatan_karyawan_lama = intent.getStringExtra("id_jabatan_karyawan_lama");
+
+            f2NikLama = nik_karyawan_lama;
+            f2NamaKaryawanLamaTV.setText(nama_karyawan_lama);
+            f2DepartemenLama = departemen_karyawan_lama;
+            f2DepartemenLamaTV.setText(departemen_karyawan_lama);
+            f2BagianLama = id_bagian_karyawan_lama;
+            f2BagianLamaTV.setText(bagian_karyawan_lama);
+            f2JabatanLama = id_jabatan_karyawan_lama;
+            f2JabatanLamaTV.setText(jabatan_karyawan_lama);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 }
             }, 300);
         }

@@ -13,6 +13,7 @@ public class SharedPrefAbsen {
     public static final String SP_ID_CUTI = "spIdCuti";
     public static final String SP_ID_KARYAWAN_PENGGANTI = "spIdKaryawanPengganti";
     public static final String SP_ID_KARYAWAN_SDM_BARU = "spIdKaryawanSdmBaru";
+    public static final String SP_ID_KARYAWAN_SDM_LAMA = "spIdKaryawanSdmLama";
     public static final String SP_ID_KARYAWAN_PENILAIAN = "spIdKaryawanPenilaian";
     public static final String SP_ID_TITIK_ABSENSI = "spIdTitikAbsensi";
     public static final String SP_ID_UNIT_BISNIS = "spIdUnitBisnis";
@@ -25,6 +26,7 @@ public class SharedPrefAbsen {
     public static final String SP_CUTI = "spCuti";
     public static final String SP_KARYAWAN_PENGGANTI = "spKaryawanPengganti";
     public static final String SP_KARYAWAN_SDM_BARU = "spKaryawanSdmBaru";
+    public static final String SP_KARYAWAN_SDM_LAMA = "spKaryawanSdmLama";
     public static final String SP_KARYAWAN_PENILAIAN = "spKaryawanPenilaian";
     public static final String SP_UNIT_BISNIS = "spUnitBisnis";
     public static final String SP_UNIT_DEPARTEMEN = "spUnitDepartemen";
@@ -84,6 +86,10 @@ public class SharedPrefAbsen {
         return sp.getString(SP_ID_KARYAWAN_SDM_BARU, "");
     }
 
+    public String getSpIdKaryawanSdmLama(){
+        return sp.getString(SP_ID_KARYAWAN_SDM_LAMA, "");
+    }
+
     public String getSpIdKaryawanPenilaian(){
         return sp.getString(SP_ID_KARYAWAN_PENILAIAN, "");
     }
@@ -130,6 +136,10 @@ public class SharedPrefAbsen {
 
     public String getSpKaryawanSdmBaru(){
         return sp.getString(SP_KARYAWAN_SDM_BARU, "");
+    }
+
+    public String getSpKaryawanSdmLama(){
+        return sp.getString(SP_KARYAWAN_SDM_LAMA, "");
     }
 
     public String getSpKaryawanPenilaian(){
