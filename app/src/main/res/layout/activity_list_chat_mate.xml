@@ -195,6 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="25dp"
                 android:layout_marginBottom="20dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -214,8 +215,13 @@
 
                 <TextView
                     android:gravity="center"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:background="@drawable/shape_label_add_button"
                     android:textStyle="bold"
                     android:ellipsize="end"
                     android:maxLines="1"

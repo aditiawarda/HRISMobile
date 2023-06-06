@@ -393,9 +393,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 if (f2OptionYa.isChecked()) {
-                    f2PemenuhanSyarat = "0";
-                } else if (f2OptionTidak.isChecked()) {
                     f2PemenuhanSyarat = "1";
+                } else if (f2OptionTidak.isChecked()) {
+                    f2PemenuhanSyarat = "2";
                 }
             }
         });
@@ -2977,7 +2977,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
             f2NikBaru = nik_karyawan_baru;
             f2NamaKaryawanTV.setText(nama_karyawan_baru);
-            f2DepartemenBaru = departemen_karyawan_baru;
+            f2DepartemenBaru = id_departemen_karyawan_baru;
             f2DepartemenTV.setText(departemen_karyawan_baru);
             f2BagianBaru = id_bagian_karyawan_baru;
             f2BagianTV.setText(bagian_karyawan_baru);
@@ -3240,7 +3240,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
             f2NikLama = nik_karyawan_lama;
             f2NamaKaryawanLamaTV.setText(nama_karyawan_lama);
-            f2DepartemenLama = departemen_karyawan_lama;
+            f2DepartemenLama = id_departemen_karyawan_lama;
             f2DepartemenLamaTV.setText(departemen_karyawan_lama);
             f2BagianLama = id_bagian_karyawan_lama;
             f2BagianLamaTV.setText(bagian_karyawan_lama);
@@ -3349,6 +3349,95 @@ public class FormSdmActivity extends AppCompatActivity {
             }, 300);
         }
     };
+    private void f2SendData(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/input_formulir_sdm";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                String id = data.getString("id_data");
+
+                                perngajuanTerkirim = "1";
+                                pDialog.dismiss();
+                                successPart.setVisibility(View.VISIBLE);
+                                formPart.setVisibility(View.GONE);
+
+                            }  else {
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                        successPart.setVisibility(View.GONE);
+                        formPart.setVisibility(View.VISIBLE);
+                        pDialog.setTitleText("Gagal Terkirim")
+                                .setConfirmText("    OK    ")
+                                .changeAlertType(KAlertDialog.ERROR_TYPE);
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("pembuat", sharedPrefManager.getSpNik());
+                params.put("keterangan", kodeKeterangan);
+
+                //BARU
+                params.put("nik_baru", f2NikBaru);
+                params.put("unit_bisnis_baru", f2IdUnitBisnis);
+                params.put("departemen_baru", f2DepartemenBaru);
+                params.put("bagian_baru", f2BagianBaru);
+                params.put("jabatan_baru", f2JabatanBaru);
+                params.put("komponen_gaji_baru", f2KomponenGajiTV.getText().toString());
+
+                //LAMA
+                params.put("nik_lama", f2NikLama);
+                params.put("unit_bisnis_lama", f2IdUnitBisnisLama);
+                params.put("departemen_lama", f2DepartemenLama);
+                params.put("bagian_lama", f2BagianLama);
+                params.put("jabatan_lama", f2JabatanLama);
+                params.put("komponen_gaji_lama", f2KomponenGajiLamaTV.getText().toString());
+
+                params.put("memenuhi_syarat", f2PemenuhanSyarat);
+                params.put("catatan", f2CatatanTV.getText().toString());
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
+
+    }
+    //Form 2 End
 
     private void checkSignature(){
         final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
@@ -3369,7 +3458,7 @@ public class FormSdmActivity extends AppCompatActivity {
                                 if(kodeKeterangan.equals("1")){
                                     f1SendData();
                                 } else  if(kodeKeterangan.equals("2")){
-                                    Toast.makeText(FormSdmActivity.this, "Goww", Toast.LENGTH_SHORT).show();
+                                    f2SendData();
                                 }
                             } else {
                                 pDialog.setTitleText("Perhatian")
