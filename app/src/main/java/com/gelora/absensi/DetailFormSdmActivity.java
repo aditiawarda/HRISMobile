@@ -37,7 +37,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
-    TextView namaBaruTV, unitBisnisBaruTV, departemenBaruTV, bagianBaruTV, jabatanBaruTV;
+    TextView namaBaruTV, unitBisnisBaruTV, departemenBaruTV, bagianBaruTV, jabatanBaruTV, komponenGajiBaruTV;
+    TextView namaLamaTV, unitBisnisLamaTV, departemenLamaTV, bagianLamaTV, jabatanLamaTV, komponenGajiLamaTV;
 
     String idData = "";
 
@@ -57,6 +58,20 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         markCeklis5 = findViewById(R.id.mark_ceklis_5);
         markCeklis6 = findViewById(R.id.mark_ceklis_6);
         markCeklis7 = findViewById(R.id.mark_ceklis_7);
+
+        namaBaruTV = findViewById(R.id.nama_baru_tv);
+        unitBisnisBaruTV = findViewById(R.id.unit_bisnis_baru_tv);
+        departemenBaruTV = findViewById(R.id.departemen_baru_tv);
+        bagianBaruTV = findViewById(R.id.bagian_baru_tv);
+        jabatanBaruTV = findViewById(R.id.jabatan_baru_tv);
+        komponenGajiBaruTV = findViewById(R.id.komponen_gaji_baru_tv);
+
+        namaLamaTV = findViewById(R.id.nama_lama_tv);
+        unitBisnisLamaTV = findViewById(R.id.unit_bisnis_lama_tv);
+        departemenLamaTV = findViewById(R.id.departemen_lama_tv);
+        bagianLamaTV = findViewById(R.id.bagian_lama_tv);
+        jabatanLamaTV = findViewById(R.id.jabatan_lama_tv);
+        komponenGajiLamaTV = findViewById(R.id.komponen_gaji_lama_tv);
 
         idData = getIntent().getExtras().getString("id_data");
 
@@ -114,16 +129,24 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String nik                     = dataArray.getString("nik");
                                 String nama                    = dataArray.getString("nama");
                                 String unit_bisnis             = dataArray.getString("unit_bisnis");
+                                String nama_unit_bisnis        = dataArray.getString("nama_unit_bisnis");
                                 String departemen              = dataArray.getString("departemen");
+                                String nama_departemen         = dataArray.getString("nama_departemen");
                                 String bagian                  = dataArray.getString("bagian");
+                                String nama_bagian             = dataArray.getString("nama_bagian");
                                 String jabatan                 = dataArray.getString("jabatan");
+                                String nama_jabatan            = dataArray.getString("nama_jabatan");
                                 String komponen_gaji           = dataArray.getString("komponen_gaji");
                                 String nik_lama                = dataArray.getString("nik_lama");
                                 String nama_lama               = dataArray.getString("nama_lama");
                                 String unit_bisnis_lama        = dataArray.getString("unit_bisnis_lama");
+                                String nama_unit_bisnis_lama   = dataArray.getString("nama_unit_bisnis_lama");
                                 String departemen_lama         = dataArray.getString("departemen_lama");
+                                String nama_departemen_lama    = dataArray.getString("nama_departemen_lama");
                                 String bagian_lama             = dataArray.getString("bagian_lama");
+                                String nama_bagian_lama        = dataArray.getString("nama_bagian_lama");
                                 String jabatan_lama            = dataArray.getString("jabatan_lama");
+                                String nama_jabatan_lama       = dataArray.getString("nama_jabatan_lama");
                                 String komponen_gaji_lama      = dataArray.getString("komponen_gaji_lama");
                                 String status_approve_kabag    = dataArray.getString("status_approve_kabag");
                                 String tgl_approve_kabag       = dataArray.getString("tgl_approve_kabag");
@@ -165,60 +188,45 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
                                 if(keterangan.equals("1")){
                                     markCeklis1.setText("✓");
-                                    markCeklis2.setText("");
-                                    markCeklis3.setText("");
-                                    markCeklis4.setText("");
-                                    markCeklis5.setText("");
-                                    markCeklis6.setText("");
-                                    markCeklis7.setText("");
+
+                                    unitBisnisBaruTV.setText(nama_unit_bisnis);
+                                    departemenBaruTV.setText(nama_departemen);
+                                    bagianBaruTV.setText(nama_bagian);
+                                    jabatanBaruTV.setText(nama_jabatan);
+                                    komponenGajiBaruTV.setText(komponen_gaji);
+
                                 } else if(keterangan.equals("2")){
-                                    markCeklis1.setText("");
                                     markCeklis2.setText("✓");
-                                    markCeklis3.setText("");
-                                    markCeklis4.setText("");
-                                    markCeklis5.setText("");
-                                    markCeklis6.setText("");
-                                    markCeklis7.setText("");
+
+                                    namaBaruTV.setText(nama);
+                                    unitBisnisBaruTV.setText(nama_unit_bisnis);
+                                    departemenBaruTV.setText(nama_departemen);
+                                    bagianBaruTV.setText(nama_bagian);
+                                    jabatanBaruTV.setText(nama_jabatan);
+                                    komponenGajiBaruTV.setText(komponen_gaji);
+
+                                    namaLamaTV.setText(nama_lama);
+                                    unitBisnisLamaTV.setText(nama_unit_bisnis_lama);
+                                    departemenLamaTV.setText(nama_departemen_lama);
+                                    bagianLamaTV.setText(nama_bagian_lama);
+                                    jabatanLamaTV.setText(nama_jabatan_lama);
+                                    komponenGajiLamaTV.setText(komponen_gaji_lama);
+
                                 } else if(keterangan.equals("3")){
-                                    markCeklis1.setText("");
-                                    markCeklis2.setText("");
                                     markCeklis3.setText("✓");
-                                    markCeklis4.setText("");
-                                    markCeklis5.setText("");
-                                    markCeklis6.setText("");
-                                    markCeklis7.setText("");
+
                                 } else if(keterangan.equals("4")){
-                                    markCeklis1.setText("");
-                                    markCeklis2.setText("");
-                                    markCeklis3.setText("");
                                     markCeklis4.setText("✓");
-                                    markCeklis5.setText("");
-                                    markCeklis6.setText("");
-                                    markCeklis7.setText("");
+
                                 } else if(keterangan.equals("5")){
-                                    markCeklis1.setText("");
-                                    markCeklis2.setText("");
-                                    markCeklis3.setText("");
-                                    markCeklis4.setText("");
                                     markCeklis5.setText("✓");
-                                    markCeklis6.setText("");
-                                    markCeklis7.setText("");
+
                                 } else if(keterangan.equals("6")){
-                                    markCeklis1.setText("");
-                                    markCeklis2.setText("");
-                                    markCeklis3.setText("");
-                                    markCeklis4.setText("");
-                                    markCeklis5.setText("");
                                     markCeklis6.setText("✓");
-                                    markCeklis7.setText("");
+
                                 } else if(keterangan.equals("7")){
-                                    markCeklis1.setText("");
-                                    markCeklis2.setText("");
-                                    markCeklis3.setText("");
-                                    markCeklis4.setText("");
-                                    markCeklis5.setText("");
-                                    markCeklis6.setText("");
                                     markCeklis7.setText("✓");
+
                                 }
 
 //                                String input_date = tanggal_bergabung;

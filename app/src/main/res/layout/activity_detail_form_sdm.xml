@@ -499,9 +499,10 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="center" />
+                                                android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/nama_lama_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".30"
                                                 android:layout_height="wrap_content"
@@ -564,9 +565,10 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="center" />
+                                                android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/unit_bisnis_lama_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".30"
                                                 android:layout_height="wrap_content"
@@ -629,9 +631,10 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="center" />
+                                                android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/departemen_lama_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".30"
                                                 android:layout_height="wrap_content"
@@ -694,9 +697,10 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="center" />
+                                                android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bagian_lama_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".30"
                                                 android:layout_height="wrap_content"
@@ -759,9 +763,10 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="center" />
+                                                android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/jabatan_lama_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".30"
                                                 android:layout_height="wrap_content"
@@ -824,9 +829,10 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="center" />
+                                                android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/komponen_gaji_lama_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".30"
                                                 android:layout_height="wrap_content"
