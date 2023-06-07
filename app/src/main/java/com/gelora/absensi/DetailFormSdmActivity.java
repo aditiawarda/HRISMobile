@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
     TextView jabatanSlashDepartemenTV, deskripsiSlashJabatanTV, syaratPenerimaanTV, tglDibutuhkan1TV, tglPemenuhan1TV;
     TextView syaratYaTV, syaratTidakTV;
     TextView catatanTV;
+    ImageView ttdPemohon;
     String idData = "";
 
     @Override
@@ -85,6 +87,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         syaratTidakTV = findViewById(R.id.syarat_tidak_tv);
 
         catatanTV = findViewById(R.id.catatan_tv);
+        ttdPemohon = findViewById(R.id.ttd_pemohon);
 
         idData = getIntent().getExtras().getString("id_data");
 
@@ -211,6 +214,13 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     syaratPenerimaanTV.setText(syarat_penerimaan);
                                     tglDibutuhkan1TV.setText(tgl_dibutuhkan.substring(8,10)+"/"+tgl_dibutuhkan.substring(5,7)+"/"+tgl_dibutuhkan.substring(0,4));
                                     tglPemenuhan1TV.setText(tgl_pemenuhan.substring(8,10)+"/"+tgl_pemenuhan.substring(5,7)+"/"+tgl_pemenuhan.substring(0,4));
+
+                                    if(status_approve_kabag.equals("1")){
+                                        String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kabag;
+                                        Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                .into(ttdPemohon);
+                                    }
 
                                     catatanTV.setText(catatan);
 
