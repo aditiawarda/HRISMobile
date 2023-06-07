@@ -76,7 +76,7 @@ import java.util.Map;
 
 public class FormSdmActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, pilihKeteranganPart, actionBar, submitBTN, attantionNoForm, loadingFormPart, formPart, successPart;
+    LinearLayout viewBTN, backBTN, pilihKeteranganPart, actionBar, submitBTN, attantionNoForm, loadingFormPart, formPart, successPart;
     LinearLayout f1Part, f2Part;
     LinearLayout ket1BTN, ket2BTN, ket3BTN, ket4BTN, ket5BTN, ket6BTN, ket7BTN;
     LinearLayout markKet1, markKet2, markKet3, markKet4, markKet5, markKet6, markKet7;
@@ -153,6 +153,7 @@ public class FormSdmActivity extends AppCompatActivity {
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
         successGif = findViewById(R.id.success_gif);
+        viewBTN = findViewById(R.id.view_btn);
 
         //Form 1
         f1UnitBisnisPart = findViewById(R.id.f1_unit_bisnis_part);
@@ -2753,11 +2754,19 @@ public class FormSdmActivity extends AppCompatActivity {
 
                             if(status.equals("Success")){
                                 String id = data.getString("id_data");
-
                                 perngajuanTerkirim = "1";
                                 pDialog.dismiss();
                                 successPart.setVisibility(View.VISIBLE);
                                 formPart.setVisibility(View.GONE);
+
+                                viewBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(FormSdmActivity.this, DetailFormSdmActivity.class);
+                                        intent.putExtra("id_data",id);
+                                        startActivity(intent);
+                                    }
+                                });
 
                             }  else {
                                 successPart.setVisibility(View.GONE);
@@ -3365,11 +3374,19 @@ public class FormSdmActivity extends AppCompatActivity {
 
                             if(status.equals("Success")){
                                 String id = data.getString("id_data");
-
                                 perngajuanTerkirim = "1";
                                 pDialog.dismiss();
                                 successPart.setVisibility(View.VISIBLE);
                                 formPart.setVisibility(View.GONE);
+
+                                viewBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(FormSdmActivity.this, DetailFormSdmActivity.class);
+                                        intent.putExtra("id_data",id);
+                                        startActivity(intent);
+                                    }
+                                });
 
                             }  else {
                                 successPart.setVisibility(View.GONE);

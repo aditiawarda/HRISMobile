@@ -1232,7 +1232,7 @@
                                                         android:textSize="7dp" />
 
                                                     <TextView
-                                                        android:id="@+id/tipe_cuti_tv"
+                                                        android:id="@+id/jabatan_slash_departemen_tv"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
                                                         android:text="......................................................."
@@ -1271,6 +1271,7 @@
                                                         android:textSize="7dp" />
 
                                                     <TextView
+                                                        android:id="@+id/deskripsi_slash_jabatan_tv"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
                                                         android:lineSpacingExtra="2.5dp"
@@ -1349,6 +1350,7 @@
                                                         android:textSize="8dp" />
 
                                                     <TextView
+                                                        android:id="@+id/syarat_penerimaan_tv"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
                                                         android:text="......................................................."
@@ -1504,6 +1506,7 @@
                                                         android:textSize="7dp" />
 
                                                     <TextView
+                                                        android:id="@+id/tgl_dibutuhkan_1_tv"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
                                                         android:text="....................."
@@ -1531,14 +1534,15 @@
                                                         android:layout_height="wrap_content"
                                                         android:text=":  "
                                                         android:textColor="#515151"
-                                                        android:textSize="8dp" />
+                                                        android:textSize="7dp" />
 
                                                     <TextView
+                                                        android:id="@+id/tgl_pemenuhan_1_tv"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
                                                         android:text="....................."
                                                         android:textColor="#515151"
-                                                        android:textSize="8dp" />
+                                                        android:textSize="7dp" />
 
                                                 </LinearLayout>
 
@@ -1889,6 +1893,7 @@
                                                             android:background="@drawable/shape_detail_form_sdm">
 
                                                             <TextView
+                                                                android:id="@+id/syarat_ya_tv"
                                                                 android:layout_width="match_parent"
                                                                 android:layout_height="match_parent"
                                                                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -1925,6 +1930,7 @@
                                                             android:background="@drawable/shape_detail_form_sdm">
 
                                                             <TextView
+                                                                android:id="@+id/syarat_tidak_tv"
                                                                 android:layout_width="match_parent"
                                                                 android:layout_height="match_parent"
                                                                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -2521,11 +2527,34 @@
 
                                             <TextView
                                                 android:layout_weight=".100"
-                                                android:layout_height="20dp"
+                                                android:layout_height="wrap_content"
                                                 android:textAppearance="?android:attr/textAppearanceLarge"
                                                 android:text="Catatan :"
                                                 android:textSize="7dp"
                                                 android:layout_marginTop="0.5dp"
+                                                android:layout_marginBottom="0.5dp"
+                                                android:background="#FFFFFF"
+                                                android:paddingLeft="3dp"
+                                                android:paddingRight="3dp"
+                                                android:gravity="left" />
+
+                                        </TableRow>
+
+                                        <TableRow
+                                            android:background="#000000"
+                                            android:layout_width="match_parent"
+                                            android:layout_marginTop="-1dp"
+                                            android:paddingRight="0.5dp"
+                                            android:paddingLeft="0.5dp"
+                                            android:layout_height="0dp">
+
+                                            <TextView
+                                                android:id="@+id/catatan_tv"
+                                                android:layout_weight=".100"
+                                                android:layout_height="wrap_content"
+                                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                                android:text=""
+                                                android:textSize="7dp"
                                                 android:layout_marginBottom="0.5dp"
                                                 android:background="#FFFFFF"
                                                 android:paddingLeft="3dp"

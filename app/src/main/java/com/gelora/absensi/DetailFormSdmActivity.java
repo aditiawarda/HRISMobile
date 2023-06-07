@@ -39,7 +39,9 @@ public class DetailFormSdmActivity extends AppCompatActivity {
     TextView markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
     TextView namaBaruTV, unitBisnisBaruTV, departemenBaruTV, bagianBaruTV, jabatanBaruTV, komponenGajiBaruTV;
     TextView namaLamaTV, unitBisnisLamaTV, departemenLamaTV, bagianLamaTV, jabatanLamaTV, komponenGajiLamaTV;
-
+    TextView jabatanSlashDepartemenTV, deskripsiSlashJabatanTV, syaratPenerimaanTV, tglDibutuhkan1TV, tglPemenuhan1TV;
+    TextView syaratYaTV, syaratTidakTV;
+    TextView catatanTV;
     String idData = "";
 
     @Override
@@ -73,9 +75,18 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         jabatanLamaTV = findViewById(R.id.jabatan_lama_tv);
         komponenGajiLamaTV = findViewById(R.id.komponen_gaji_lama_tv);
 
-        idData = getIntent().getExtras().getString("id_data");
+        jabatanSlashDepartemenTV = findViewById(R.id.jabatan_slash_departemen_tv);
+        deskripsiSlashJabatanTV = findViewById(R.id.deskripsi_slash_jabatan_tv);
+        syaratPenerimaanTV = findViewById(R.id.syarat_penerimaan_tv);
+        tglDibutuhkan1TV = findViewById(R.id.tgl_dibutuhkan_1_tv);
+        tglPemenuhan1TV = findViewById(R.id.tgl_pemenuhan_1_tv);
 
-        Toast.makeText(this, idData, Toast.LENGTH_SHORT).show();
+        syaratYaTV = findViewById(R.id.syarat_ya_tv);
+        syaratTidakTV = findViewById(R.id.syarat_tidak_tv);
+
+        catatanTV = findViewById(R.id.catatan_tv);
+
+        idData = getIntent().getExtras().getString("id_data");
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,6 +206,14 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     jabatanBaruTV.setText(nama_jabatan);
                                     komponenGajiBaruTV.setText(komponen_gaji);
 
+                                    jabatanSlashDepartemenTV.setText(jabatan_departemen);
+                                    deskripsiSlashJabatanTV.setText(deskripsi_jabatan);
+                                    syaratPenerimaanTV.setText(syarat_penerimaan);
+                                    tglDibutuhkan1TV.setText(tgl_dibutuhkan.substring(8,10)+"/"+tgl_dibutuhkan.substring(5,7)+"/"+tgl_dibutuhkan.substring(0,4));
+                                    tglPemenuhan1TV.setText(tgl_pemenuhan.substring(8,10)+"/"+tgl_pemenuhan.substring(5,7)+"/"+tgl_pemenuhan.substring(0,4));
+
+                                    catatanTV.setText(catatan);
+
                                 } else if(keterangan.equals("2")){
                                     markCeklis2.setText("✓");
 
@@ -211,6 +230,19 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     bagianLamaTV.setText(nama_bagian_lama);
                                     jabatanLamaTV.setText(nama_jabatan_lama);
                                     komponenGajiLamaTV.setText(komponen_gaji_lama);
+
+                                    if(memenuhi_syarat.equals("1")){
+                                        syaratYaTV.setText("✓");
+                                        syaratTidakTV.setText("");
+                                    } else if(memenuhi_syarat.equals("2")){
+                                        syaratYaTV.setText("");
+                                        syaratTidakTV.setText("✓");
+                                    } else {
+                                        syaratYaTV.setText("");
+                                        syaratTidakTV.setText("");
+                                    }
+
+                                    catatanTV.setText(catatan);
 
                                 } else if(keterangan.equals("3")){
                                     markCeklis3.setText("✓");
@@ -278,8 +310,6 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 //                                }
 //
 //                                karTglmasuk.setText(dayDate+" "+bulanName+" "+yearDate);
-
-                                Toast.makeText(DetailFormSdmActivity.this, "Well", Toast.LENGTH_SHORT).show();
 
                             } else {
                                 new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.ERROR_TYPE)
