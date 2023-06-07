@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -35,6 +36,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
     LinearLayout backBTN, actionBar;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
+    TextView markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
+    TextView namaBaruTV, unitBisnisBaruTV, departemenBaruTV, bagianBaruTV, jabatanBaruTV;
 
     String idData = "";
 
@@ -47,6 +50,13 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         actionBar = findViewById(R.id.action_bar);
+        markCeklis1 = findViewById(R.id.mark_ceklis_1);
+        markCeklis2 = findViewById(R.id.mark_ceklis_2);
+        markCeklis3 = findViewById(R.id.mark_ceklis_3);
+        markCeklis4 = findViewById(R.id.mark_ceklis_4);
+        markCeklis5 = findViewById(R.id.mark_ceklis_5);
+        markCeklis6 = findViewById(R.id.mark_ceklis_6);
+        markCeklis7 = findViewById(R.id.mark_ceklis_7);
 
         idData = getIntent().getExtras().getString("id_data");
 
@@ -101,12 +111,14 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 JSONObject dataArray           = data.getJSONObject("data");
                                 String id_record               = dataArray.getString("id_record");
                                 String keterangan              = dataArray.getString("keterangan");
+                                String nik                     = dataArray.getString("nik");
                                 String nama                    = dataArray.getString("nama");
                                 String unit_bisnis             = dataArray.getString("unit_bisnis");
                                 String departemen              = dataArray.getString("departemen");
                                 String bagian                  = dataArray.getString("bagian");
                                 String jabatan                 = dataArray.getString("jabatan");
                                 String komponen_gaji           = dataArray.getString("komponen_gaji");
+                                String nik_lama                = dataArray.getString("nik_lama");
                                 String nama_lama               = dataArray.getString("nama_lama");
                                 String unit_bisnis_lama        = dataArray.getString("unit_bisnis_lama");
                                 String departemen_lama         = dataArray.getString("departemen_lama");
@@ -116,14 +128,23 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String status_approve_kabag    = dataArray.getString("status_approve_kabag");
                                 String tgl_approve_kabag       = dataArray.getString("tgl_approve_kabag");
                                 String approver_kabag          = dataArray.getString("approver_kabag");
+                                String nama_kabag              = dataArray.getString("nama_kabag");
+                                String ttd_kabag               = dataArray.getString("ttd_kabag");
                                 String status_approve_kadept   = dataArray.getString("status_approve_kadept");
                                 String tgl_approve_kadept      = dataArray.getString("tgl_approve_kadept");
+                                String approver_kadept         = dataArray.getString("approver_kadept");
+                                String nama_kadept             = dataArray.getString("nama_kadept");
+                                String ttd_kadept              = dataArray.getString("ttd_kadept");
                                 String status_approve_direktur = dataArray.getString("status_approve_direktur");
                                 String tgl_approve_direktur    = dataArray.getString("tgl_approve_direktur");
                                 String approver_direktur       = dataArray.getString("approver_direktur");
+                                String nama_direktur           = dataArray.getString("nama_direktur");
+                                String ttd_direktur            = dataArray.getString("ttd_direktur");
                                 String status_approve_hrd      = dataArray.getString("status_approve_hrd");
                                 String tgl_diterima            = dataArray.getString("tgl_diterima");
                                 String diterima_oleh           = dataArray.getString("diterima_oleh");
+                                String nama_penerima           = dataArray.getString("nama_penerima");
+                                String ttd_penerima            = dataArray.getString("ttd_penerima");
                                 String catatan                 = dataArray.getString("catatan");
                                 String no_frm                  = dataArray.getString("no_frm");
                                 String created_at              = dataArray.getString("created_at");
@@ -141,6 +162,64 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String memenuhi_syarat         = dataArray.getString("memenuhi_syarat");
                                 String lain_lain               = dataArray.getString("lain_lain");
                                 String persetujuan             = dataArray.getString("persetujuan");
+
+                                if(keterangan.equals("1")){
+                                    markCeklis1.setText("✓");
+                                    markCeklis2.setText("");
+                                    markCeklis3.setText("");
+                                    markCeklis4.setText("");
+                                    markCeklis5.setText("");
+                                    markCeklis6.setText("");
+                                    markCeklis7.setText("");
+                                } else if(keterangan.equals("2")){
+                                    markCeklis1.setText("");
+                                    markCeklis2.setText("✓");
+                                    markCeklis3.setText("");
+                                    markCeklis4.setText("");
+                                    markCeklis5.setText("");
+                                    markCeklis6.setText("");
+                                    markCeklis7.setText("");
+                                } else if(keterangan.equals("3")){
+                                    markCeklis1.setText("");
+                                    markCeklis2.setText("");
+                                    markCeklis3.setText("✓");
+                                    markCeklis4.setText("");
+                                    markCeklis5.setText("");
+                                    markCeklis6.setText("");
+                                    markCeklis7.setText("");
+                                } else if(keterangan.equals("4")){
+                                    markCeklis1.setText("");
+                                    markCeklis2.setText("");
+                                    markCeklis3.setText("");
+                                    markCeklis4.setText("✓");
+                                    markCeklis5.setText("");
+                                    markCeklis6.setText("");
+                                    markCeklis7.setText("");
+                                } else if(keterangan.equals("5")){
+                                    markCeklis1.setText("");
+                                    markCeklis2.setText("");
+                                    markCeklis3.setText("");
+                                    markCeklis4.setText("");
+                                    markCeklis5.setText("✓");
+                                    markCeklis6.setText("");
+                                    markCeklis7.setText("");
+                                } else if(keterangan.equals("6")){
+                                    markCeklis1.setText("");
+                                    markCeklis2.setText("");
+                                    markCeklis3.setText("");
+                                    markCeklis4.setText("");
+                                    markCeklis5.setText("");
+                                    markCeklis6.setText("✓");
+                                    markCeklis7.setText("");
+                                } else if(keterangan.equals("7")){
+                                    markCeklis1.setText("");
+                                    markCeklis2.setText("");
+                                    markCeklis3.setText("");
+                                    markCeklis4.setText("");
+                                    markCeklis5.setText("");
+                                    markCeklis6.setText("");
+                                    markCeklis7.setText("✓");
+                                }
 
 //                                String input_date = tanggal_bergabung;
 //                                String dayDate = input_date.substring(8,10);
@@ -192,6 +271,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 //
 //                                karTglmasuk.setText(dayDate+" "+bulanName+" "+yearDate);
 
+                                Toast.makeText(DetailFormSdmActivity.this, "Well", Toast.LENGTH_SHORT).show();
 
                             } else {
                                 new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.ERROR_TYPE)

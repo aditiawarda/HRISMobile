@@ -107,6 +107,7 @@
                                                     android:background="@drawable/shape_detail_form_sdm">
 
                                                     <TextView
+                                                        android:id="@+id/mark_ceklis_1"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
                                                         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -145,6 +146,7 @@
                                                     android:background="@drawable/shape_detail_form_sdm">
 
                                                     <TextView
+                                                        android:id="@+id/mark_ceklis_2"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
                                                         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -183,6 +185,7 @@
                                                     android:background="@drawable/shape_detail_form_sdm">
 
                                                     <TextView
+                                                        android:id="@+id/mark_ceklis_3"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
                                                         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -229,6 +232,7 @@
                                                     android:background="@drawable/shape_detail_form_sdm">
 
                                                     <TextView
+                                                        android:id="@+id/mark_ceklis_4"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
                                                         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -267,6 +271,7 @@
                                                     android:background="@drawable/shape_detail_form_sdm">
 
                                                     <TextView
+                                                        android:id="@+id/mark_ceklis_5"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
                                                         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -305,6 +310,7 @@
                                                     android:background="@drawable/shape_detail_form_sdm">
 
                                                     <TextView
+                                                        android:id="@+id/mark_ceklis_6"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
                                                         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -351,6 +357,7 @@
                                                     android:background="@drawable/shape_detail_form_sdm">
 
                                                     <TextView
+                                                        android:id="@+id/mark_ceklis_7"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
                                                         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -475,6 +482,7 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/nama_baru_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".30"
                                                 android:layout_height="match_parent"
@@ -539,6 +547,7 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/unit_bisnis_baru_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".30"
                                                 android:layout_height="wrap_content"
@@ -603,6 +612,7 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/departemen_baru_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".30"
                                                 android:layout_height="wrap_content"
@@ -667,6 +677,7 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/bagian_baru_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".30"
                                                 android:layout_height="wrap_content"
@@ -731,6 +742,7 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/jabatan_baru_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".30"
                                                 android:layout_height="wrap_content"
@@ -795,6 +807,7 @@
                                                 android:gravity="left" />
 
                                             <TextView
+                                                android:id="@+id/komponen_gaji_baru_tv"
                                                 android:layout_width="0dp"
                                                 android:layout_weight=".30"
                                                 android:layout_height="wrap_content"
