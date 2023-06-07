@@ -5,6 +5,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -31,7 +32,7 @@ import java.util.Map;
 
 public class DetailFormSdmActivity extends AppCompatActivity {
 
-    LinearLayout backBTN;
+    LinearLayout backBTN, actionBar;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
 
@@ -45,10 +46,31 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         backBTN = findViewById(R.id.back_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
+        actionBar = findViewById(R.id.action_bar);
 
         idData = getIntent().getExtras().getString("id_data");
 
         Toast.makeText(this, idData, Toast.LENGTH_SHORT).show();
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override

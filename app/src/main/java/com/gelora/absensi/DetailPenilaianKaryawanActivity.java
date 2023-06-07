@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, downloadBTN, actionPart, confirmBTN;
+    LinearLayout backBTN, downloadBTN, actionPart, confirmBTN, actionBar;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
 
@@ -128,9 +128,16 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
         downloadBTN = findViewById(R.id.download_btn);
         actionPart = findViewById(R.id.action_part);
         confirmBTN = findViewById(R.id.confirm_btn);
+        actionBar = findViewById(R.id.action_bar);
 
         idPenilaian = getIntent().getExtras().getString("id_penilaian");
         file_url = "https://geloraaksara.co.id/absen-online/absen/download_pdf_penilaian_karyawan/"+idPenilaian;
+
+        actionBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
