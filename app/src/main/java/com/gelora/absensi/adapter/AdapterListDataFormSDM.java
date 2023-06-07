@@ -147,6 +147,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetailFormSdmActivity.class);
+                intent.putExtra("id_data",dataFormSDM.getId());
                 mContext.startActivity(intent);
             }
         });
