@@ -353,13 +353,13 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                 if(alamat_ktp.equals("")||alamat_ktp.equals("null")){
                                     alamatKTPTV.setText("-");
                                 } else {
-                                    alamatKTPTV.setText(alamat_ktp);
+                                    alamatKTPTV.setText(alamat_ktp.replaceAll("\\s+$", ""));
                                 }
 
                                 if(alamat_domisili.equals("")||alamat_domisili.equals("null")){
                                     alamatDomisiliTV.setText("-");
                                 } else {
-                                    alamatDomisiliTV.setText(alamat_domisili);
+                                    alamatDomisiliTV.setText(alamat_domisili.replaceAll("\\s+$", ""));
                                 }
 
                                 nikTV.setText(nik);

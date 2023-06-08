@@ -285,7 +285,7 @@ public class InfoPersonalActivity extends AppCompatActivity {
                                     warningAlamatKTP.setVisibility(View.VISIBLE);
                                     emptyWarningBTN.setVisibility(View.VISIBLE);
                                 } else {
-                                    alamatKTPTV.setText(alamat_ktp);
+                                    alamatKTPTV.setText(alamat_ktp.replaceAll("\\s+$", ""));
                                     warningAlamatKTP.setVisibility(View.GONE);
                                 }
 
@@ -294,7 +294,7 @@ public class InfoPersonalActivity extends AppCompatActivity {
                                     warningAlamatDomisili.setVisibility(View.VISIBLE);
                                     emptyWarningBTN.setVisibility(View.VISIBLE);
                                 } else {
-                                    alamatDomisiliTV.setText(alamat_domisili);
+                                    alamatDomisiliTV.setText(alamat_domisili.replaceAll("\\s+$", ""));
                                     warningAlamatDomisili.setVisibility(View.GONE);
                                 }
 
