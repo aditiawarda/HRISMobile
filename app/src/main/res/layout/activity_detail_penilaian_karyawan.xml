@@ -3030,7 +3030,7 @@
 
                             <LinearLayout
                                 android:id="@+id/download_btn"
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="15dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:background="@drawable/shape_third_btn"
@@ -3046,99 +3046,6 @@
                                     android:textColor="#CF811F"
                                     android:textSize="13dp"
                                     android:text="Unduh File"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <LinearLayout
-                                    android:visibility="gone"
-                                    android:layout_marginRight="5dp"
-                                    android:id="@+id/cancel_permohonan_btn"
-                                    android:layout_marginBottom="10dp"
-                                    android:layout_width="0dp"
-                                    android:layout_weight=".50"
-                                    android:layout_height="40dp"
-                                    android:background="@drawable/shape_btn_rejected"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textStyle="bold"
-                                        android:gravity="center"
-                                        android:drawablePadding="7dp"
-                                        android:textSize="13dp"
-                                        android:textColor="@color/white"
-                                        android:text="Batalkan"/>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:visibility="gone"
-                                    android:layout_marginLeft="5dp"
-                                    android:id="@+id/edit_permohonan_btn"
-                                    android:layout_marginBottom="10dp"
-                                    android:layout_width="0dp"
-                                    android:layout_weight=".50"
-                                    android:layout_height="40dp"
-                                    android:background="@drawable/shape_btn_edit_permohonan"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textStyle="bold"
-                                        android:gravity="center"
-                                        android:drawablePadding="7dp"
-                                        android:textSize="13dp"
-                                        android:textColor="@color/white"
-                                        android:text="Edit"/>
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:visibility="gone"
-                                android:id="@+id/wakili_btn"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingTop="12dp"
-                                android:paddingBottom="12dp"
-                                android:background="@drawable/shape_btn"
-                                android:gravity="center">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textStyle="bold"
-                                    android:textSize="13dp"
-                                    android:textColor="@color/white"
-                                    android:text="Wakili Persetujuan Ka.Dept"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:visibility="gone"
-                                android:id="@+id/batal_wakili_btn"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingTop="12dp"
-                                android:paddingBottom="12dp"
-                                android:background="@drawable/shape_btn_batal"
-                                android:gravity="center">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textStyle="bold"
-                                    android:textSize="13dp"
-                                    android:textColor="@color/white"
-                                    android:text="Batal"/>
 
                             </LinearLayout>
 

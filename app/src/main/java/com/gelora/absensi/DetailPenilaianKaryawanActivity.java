@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, downloadBTN, actionPart, confirmBTN, actionBar;
+    LinearLayout backBTN, downloadBTN, actionPart, confirmBTN, rejectedBTN, actionBar;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
 
@@ -258,6 +258,73 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
             }
         });
 
+        rejectedBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailPenilaianKaryawanActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Konfirmasi?")
+                        .setContentText("Yakin untuk dikonfirmasi sekarang?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+
+                                pDialog = new KAlertDialog(DetailPenilaianKaryawanActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1000, 500) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailPenilaianKaryawanActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+
+                                    public void onFinish() {
+                                        i = -1;
+                                        checkSignature();
+                                    }
+                                }.start();
+
+                            }
+                        })
+                        .show();
+            }
+        });
+
         getData();
 
     }
@@ -288,10 +355,12 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                 String nama_approver_kabag = dataArray.getString("nama_approver_kabag");
                                 String tgl_approve_kabag = dataArray.getString("tgl_approve_kabag");
                                 String ttd_approver_kabag = dataArray.getString("ttd_approver_kabag");
+                                String status_approve_kadept = dataArray.getString("status_approve_kadept");
                                 String nama_approver_kadept = dataArray.getString("nama_approver_kadept");
                                 String tgl_approve_kadept = dataArray.getString("tgl_approve_kadept");
                                 String ttd_approver_kadept = dataArray.getString("ttd_approver_kadept");
                                 String catatan_hrd = dataArray.getString("catatan_hrd");
+                                String id_departemen = dataArray.getString("id_departemen");
 
                                 karNama.setText(nama_karyawan);
                                 karJabatan.setText(jabatan);
@@ -434,31 +503,39 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                     markTidakLulus.setText("✓");
                                 }
 
-                                namaPenilai.setText(nama_approver_kabag);
-                                String dayDatePenilai = tgl_approve_kabag.substring(0, 10).substring(8,10);
-                                String yearDatePenilai = tgl_approve_kabag.substring(0, 10).substring(0,4);
-                                String monthDatePenilai = tgl_approve_kabag.substring(0, 10).substring(5,7);
-                                tglPenilai.setText(dayDatePenilai+"/"+monthDatePenilai+"/"+yearDatePenilai);
-                                String url_ttd_penilai = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_approver_kabag;
+                                if(!nama_approver_kabag.equals("") && !nama_approver_kabag.equals("null") && nama_approver_kabag != null){
+                                    namaPenilai.setText(nama_approver_kabag);
+                                    String dayDatePenilai = tgl_approve_kabag.substring(0, 10).substring(8,10);
+                                    String yearDatePenilai = tgl_approve_kabag.substring(0, 10).substring(0,4);
+                                    String monthDatePenilai = tgl_approve_kabag.substring(0, 10).substring(5,7);
+                                    tglPenilai.setText(dayDatePenilai+"/"+monthDatePenilai+"/"+yearDatePenilai);
+                                    String url_ttd_penilai = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_approver_kabag;
 
-                                Picasso.get().load(url_ttd_penilai).networkPolicy(NetworkPolicy.NO_CACHE)
-                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                        .into(ttdPenilai);
-
-                                if(!nama_approver_kadept.equals("") && !nama_approver_kadept.equals("null") && nama_approver_kadept!=null){
-                                    actionPart.setVisibility(View.GONE);
-                                    namaAtasanPenilai.setText(nama_approver_kadept);
-                                    String dayDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(8,10);
-                                    String yearDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(0,4);
-                                    String monthDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(5,7);
-                                    tglAtasanPenilai.setText(dayDateAtasanPenilai+"/"+monthDateAtasanPenilai+"/"+yearDateAtasanPenilai);
-                                    String url_ttd_atasan_penilai = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_approver_kadept;
-
-                                    Picasso.get().load(url_ttd_atasan_penilai).networkPolicy(NetworkPolicy.NO_CACHE)
+                                    Picasso.get().load(url_ttd_penilai).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                            .into(ttdAtasanPenilai);
-                                } else {
-                                    actionPart.setVisibility(View.VISIBLE);
+                                            .into(ttdPenilai);
+
+                                    if(status_approve_kadept.equals("1")){
+                                        actionPart.setVisibility(View.GONE);
+                                        namaAtasanPenilai.setText(nama_approver_kadept);
+                                        String dayDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(8,10);
+                                        String yearDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(0,4);
+                                        String monthDateAtasanPenilai = tgl_approve_kadept.substring(0, 10).substring(5,7);
+                                        tglAtasanPenilai.setText(dayDateAtasanPenilai+"/"+monthDateAtasanPenilai+"/"+yearDateAtasanPenilai);
+                                        String url_ttd_atasan_penilai = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_approver_kadept;
+
+                                        Picasso.get().load(url_ttd_atasan_penilai).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                .into(ttdAtasanPenilai);
+                                    } else if(status_approve_kadept.equals("2")){
+
+                                    } else if(status_approve_kadept.equals("0")){
+                                        if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && sharedPrefManager.getSpIdJabatan().equals("10")){
+                                            actionPart.setVisibility(View.VISIBLE);
+                                        } else {
+                                            actionPart.setVisibility(View.GONE);
+                                        }
+                                    }
                                 }
 
                                 if(!catatan_hrd.equals("") && !catatan_hrd.equals("null") && catatan_hrd!=null){
