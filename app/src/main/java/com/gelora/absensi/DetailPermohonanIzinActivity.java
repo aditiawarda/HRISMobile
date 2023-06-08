@@ -831,7 +831,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                 nikKaryawanTV.setText(nik_karyawan);
                                 bagianKaryawanTV.setText(bagian);
                                 jabatanKaryawanTV.setText(jabatan);
-                                alasanIzinTV.setText(alasan);
+                                alasanIzinTV.setText(alasan.replaceAll("\\s+$", ""));
 
                                 String input_date_mulai = tgl_mulai;
                                 String dayDateMulai = input_date_mulai.substring(8,10);

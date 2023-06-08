@@ -3145,14 +3145,34 @@
                             <LinearLayout
                                 android:visibility="gone"
                                 android:id="@+id/action_part"
-                                android:layout_marginTop="5dp"
-                                android:orientation="vertical"
+                                android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
                                 <LinearLayout
+                                    android:id="@+id/rejected_btn"
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".50"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/shape_btn_rejected"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/white"
+                                        android:textSize="13dp"
+                                        android:text="TOLAK"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:id="@+id/confirm_btn"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".50"
+                                    android:layout_marginLeft="5dp"
                                     android:layout_height="40dp"
                                     android:background="@drawable/shape_btn_approved"
                                     android:gravity="center">
@@ -3161,8 +3181,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textStyle="bold"
-                                        android:textSize="13dp"
                                         android:textColor="@color/white"
+                                        android:textSize="13dp"
                                         android:text="KONFIRMASI"/>
 
                                 </LinearLayout>

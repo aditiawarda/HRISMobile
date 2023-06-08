@@ -2167,17 +2167,40 @@
                                                         android:layout_marginTop="0.5dp"
                                                         android:layout_marginBottom="0.5dp"
                                                         android:layout_marginLeft="0.5dp"
-                                                        android:layout_marginRight="0.5dp"
+                                                        android:layout_marginRight="0dp"
                                                         android:background="#FFFFFF"
+                                                        android:gravity="center"
                                                         android:paddingLeft="3dp"
                                                         android:paddingRight="3dp" >
 
-                                                        <ImageView
-                                                            android:id="@+id/ttd_pemohon"
-                                                            android:scaleType="fitXY"
-                                                            android:layout_marginRight="4dp"
+                                                        <RelativeLayout
                                                             android:layout_width="match_parent"
-                                                            android:layout_height="25dp" />
+                                                            android:layout_height="match_parent">
+
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent"
+                                                                android:gravity="center">
+
+                                                                <ImageView
+                                                                    android:id="@+id/ttd_pemohon"
+                                                                    android:scaleType="fitXY"
+                                                                    android:layout_width="35dp"
+                                                                    android:layout_height="25dp" />
+
+                                                            </LinearLayout>
+
+                                                            <TextView
+                                                                android:id="@+id/tgl_approve_kabag"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="2dp"
+                                                                android:gravity="right"
+                                                                android:text=""
+                                                                android:textColor="#145391"
+                                                                android:textSize="5dp" />
+
+                                                        </RelativeLayout>
 
                                                     </LinearLayout>
 
@@ -2191,6 +2214,7 @@
                                                     android:layout_height="0dp">
 
                                                     <TextView
+                                                        android:id="@+id/nama_kabag_tv"
                                                         android:layout_weight=".30"
                                                         android:layout_width="0dp"
                                                         android:layout_height="match_parent"
@@ -2206,7 +2230,7 @@
                                                         android:background="#FFFFFF"
                                                         android:paddingLeft="3dp"
                                                         android:paddingRight="3dp"
-                                                        android:gravity="left" />
+                                                        android:gravity="center" />
 
                                                 </TableRow>
 
@@ -2283,14 +2307,38 @@
                                                         android:layout_marginTop="0.5dp"
                                                         android:layout_marginBottom="0.5dp"
                                                         android:background="#FFFFFF"
+                                                        android:gravity="center"
                                                         android:paddingLeft="3dp"
                                                         android:paddingRight="3dp" >
 
-                                                        <ImageView
-                                                            android:scaleType="fitXY"
-                                                            android:layout_marginRight="4dp"
+                                                        <RelativeLayout
                                                             android:layout_width="match_parent"
-                                                            android:layout_height="25dp" />
+                                                            android:layout_height="match_parent">
+
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent"
+                                                                android:gravity="center">
+
+                                                                <ImageView
+                                                                    android:id="@+id/ttd_kadept"
+                                                                    android:scaleType="fitXY"
+                                                                    android:layout_width="35dp"
+                                                                    android:layout_height="25dp" />
+
+                                                            </LinearLayout>
+
+                                                            <TextView
+                                                                android:id="@+id/tgl_approve_kadept"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="2dp"
+                                                                android:gravity="right"
+                                                                android:text=""
+                                                                android:textColor="#145391"
+                                                                android:textSize="5dp" />
+
+                                                        </RelativeLayout>
 
                                                     </LinearLayout>
 
@@ -2303,14 +2351,38 @@
                                                         android:layout_marginLeft="0.5dp"
                                                         android:layout_marginRight="-1.5dp"
                                                         android:background="#FFFFFF"
+                                                        android:gravity="center"
                                                         android:paddingLeft="3dp"
                                                         android:paddingRight="3dp" >
 
-                                                        <ImageView
-                                                            android:scaleType="fitXY"
-                                                            android:layout_marginRight="4dp"
+                                                        <RelativeLayout
                                                             android:layout_width="match_parent"
-                                                            android:layout_height="25dp" />
+                                                            android:layout_height="match_parent">
+
+                                                            <LinearLayout
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent"
+                                                                android:gravity="center">
+
+                                                                <ImageView
+                                                                    android:id="@+id/ttd_direksi"
+                                                                    android:scaleType="fitXY"
+                                                                    android:layout_width="35dp"
+                                                                    android:layout_height="25dp" />
+
+                                                            </LinearLayout>
+
+                                                            <TextView
+                                                                android:id="@+id/tgl_approve_direksi"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="2dp"
+                                                                android:gravity="right"
+                                                                android:text=""
+                                                                android:textColor="#145391"
+                                                                android:textSize="5dp" />
+
+                                                        </RelativeLayout>
 
                                                     </LinearLayout>
 
@@ -2324,6 +2396,7 @@
                                                     android:layout_height="0dp">
 
                                                     <TextView
+                                                        android:id="@+id/nama_kadept_tv"
                                                         android:layout_weight=".50"
                                                         android:layout_width="0dp"
                                                         android:layout_height="match_parent"
@@ -2341,6 +2414,7 @@
                                                         android:gravity="center" />
 
                                                     <TextView
+                                                        android:id="@+id/nama_direktur_tv"
                                                         android:layout_weight=".50"
                                                         android:layout_width="0dp"
                                                         android:layout_height="match_parent"
@@ -2450,14 +2524,14 @@
                                                         android:layout_marginBottom="0.5dp"
                                                         android:layout_marginRight="-1.5dp"
                                                         android:background="#FFFFFF"
+                                                        android:gravity="center"
                                                         android:paddingLeft="3dp"
                                                         android:paddingRight="3dp" >
 
                                                         <ImageView
-                                                            android:id="@+id/ttd_atasan_penilai"
+                                                            android:id="@+id/ttd_penerima"
                                                             android:scaleType="fitXY"
-                                                            android:layout_marginRight="4dp"
-                                                            android:layout_width="match_parent"
+                                                            android:layout_width="35dp"
                                                             android:layout_height="25dp" />
 
                                                     </LinearLayout>

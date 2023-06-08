@@ -681,9 +681,9 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
 
                                 String jumlah_hari = data.getString("jumlah_hari");
                                 totalCutiTV.setText("Total  "+jumlah_hari+"  Hari");
-                                alasanCutiTV.setText(alasan_cuti);
-                                alamatTV.setText(alamat_selama_cuti);
-                                noHpTV.setText(no_hp);
+                                alasanCutiTV.setText(alasan_cuti.replaceAll("\\s+$", ""));
+                                alamatTV.setText(alamat_selama_cuti.replaceAll("\\s+$", ""));
+                                noHpTV.setText(no_hp.replaceAll("\\s+$", ""));
 
                                 if(tipe_cuti.equals("0")){
                                     tipeCutiTV.setText("Undefined");

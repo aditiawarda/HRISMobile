@@ -42,8 +42,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
     TextView namaLamaTV, unitBisnisLamaTV, departemenLamaTV, bagianLamaTV, jabatanLamaTV, komponenGajiLamaTV;
     TextView jabatanSlashDepartemenTV, deskripsiSlashJabatanTV, syaratPenerimaanTV, tglDibutuhkan1TV, tglPemenuhan1TV;
     TextView syaratYaTV, syaratTidakTV;
-    TextView catatanTV;
-    ImageView ttdPemohon;
+    TextView catatanTV, namaKabagTV, namaKadeptTV, namaDirekturTV, tglApproveKabag, tglApproveKadept, tglApproveDireksi;
+    ImageView ttdPemohon, ttdKadept, ttdDireksi, ttdPenerima;
     String idData = "";
 
     @Override
@@ -87,7 +87,19 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         syaratTidakTV = findViewById(R.id.syarat_tidak_tv);
 
         catatanTV = findViewById(R.id.catatan_tv);
+
+        namaKabagTV = findViewById(R.id.nama_kabag_tv);
+        namaKadeptTV = findViewById(R.id.nama_kadept_tv);
+        namaDirekturTV = findViewById(R.id.nama_direktur_tv);
+
         ttdPemohon = findViewById(R.id.ttd_pemohon);
+        ttdKadept = findViewById(R.id.ttd_kadept);
+        ttdDireksi = findViewById(R.id.ttd_direksi);
+        ttdPenerima = findViewById(R.id.ttd_penerima);
+
+        tglApproveKabag = findViewById(R.id.tgl_approve_kabag);
+        tglApproveKadept = findViewById(R.id.tgl_approve_kadept);
+        tglApproveDireksi = findViewById(R.id.tgl_approve_direksi);
 
         idData = getIntent().getExtras().getString("id_data");
 
@@ -216,10 +228,45 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     tglPemenuhan1TV.setText(tgl_pemenuhan.substring(8,10)+"/"+tgl_pemenuhan.substring(5,7)+"/"+tgl_pemenuhan.substring(0,4));
 
                                     if(status_approve_kabag.equals("1")){
-                                        String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kabag;
-                                        Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                                        String url_ttd_kabag = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kabag;
+                                        Picasso.get().load(url_ttd_kabag).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                 .into(ttdPemohon);
+                                        namaKabagTV.setText(nama_kabag);
+                                        tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
+
+                                        if(status_approve_kadept.equals("1")){
+                                            String url_ttd_kadept = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kadept;
+                                            Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                    .into(ttdKadept);
+                                            namaKadeptTV.setText(nama_kadept);
+                                            tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
+
+                                            if(status_approve_direktur.equals("1")){
+                                                String url_ttd_direksi = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_direktur;
+                                                Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                        .into(ttdDireksi);
+                                                namaDirekturTV.setText(nama_direktur);
+                                                tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
+
+                                            } else if(status_approve_direktur.equals("2")){
+
+                                            } else if(status_approve_direktur.equals("0")){
+
+                                            }
+
+                                        } else if(status_approve_kadept.equals("2")){
+
+                                        } else if(status_approve_kadept.equals("0")){
+
+                                        }
+
+                                    } else if(status_approve_kabag.equals("2")){
+
+                                    } else if(status_approve_kabag.equals("0")){
+
                                     }
 
                                     catatanTV.setText(catatan);

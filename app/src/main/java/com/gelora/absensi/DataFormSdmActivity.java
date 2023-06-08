@@ -125,23 +125,22 @@ public class DataFormSdmActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
-//                                String jumlah = data.getString("jumlah");
-//                                if(Integer.parseInt(jumlah)>0){
-//                                    countWaitingBTN.setVisibility(View.VISIBLE);
-//                                    countWaitingTV.setText(jumlah);
-//                                } else {
-//                                    countWaitingBTN.setVisibility(View.GONE);
-//                                    countWaitingTV.setText("");
-//                                }
-                                noDataPart.setVisibility(View.GONE);
-                                loadingDataPart.setVisibility(View.GONE);
-                                dataFormSDMRV.setVisibility(View.VISIBLE);
-                                String data_record = data.getString("data");
-                                GsonBuilder builder = new GsonBuilder();
-                                Gson gson = builder.create();
-                                dataFormSDMS = gson.fromJson(data_record, DataFormSDM[].class);
-                                adapterListDataFormSDM = new AdapterListDataFormSDM(dataFormSDMS, DataFormSdmActivity.this);
-                                dataFormSDMRV.setAdapter(adapterListDataFormSDM);
+                                String jumlah = data.getString("jumlah");
+                                if(Integer.parseInt(jumlah)>0){
+                                    noDataPart.setVisibility(View.GONE);
+                                    loadingDataPart.setVisibility(View.GONE);
+                                    dataFormSDMRV.setVisibility(View.VISIBLE);
+                                    String data_record = data.getString("data");
+                                    GsonBuilder builder = new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    dataFormSDMS = gson.fromJson(data_record, DataFormSDM[].class);
+                                    adapterListDataFormSDM = new AdapterListDataFormSDM(dataFormSDMS, DataFormSdmActivity.this);
+                                    dataFormSDMRV.setAdapter(adapterListDataFormSDM);
+                                } else {
+                                    noDataPart.setVisibility(View.VISIBLE);
+                                    loadingDataPart.setVisibility(View.GONE);
+                                    dataFormSDMRV.setVisibility(View.GONE);
+                                }
                             } else {
                                 noDataPart.setVisibility(View.VISIBLE);
                                 loadingDataPart.setVisibility(View.GONE);

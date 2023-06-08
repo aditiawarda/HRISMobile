@@ -534,7 +534,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     keteranganTV.setText("Tidak Absen Diliburkan");
                                 }
 
-                                alasanTV.setText(alasan);
+                                alasanTV.setText(alasan.replaceAll("\\s+$", ""));
 
                                 String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_pemohon;
 
