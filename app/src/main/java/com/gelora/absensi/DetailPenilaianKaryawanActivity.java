@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, downloadBTN, actionPart, confirmBTN, rejectedBTN, actionBar;
+    LinearLayout backBTN, downloadBTN, actionPart, confirmBTN, rejectedBTN, actionBar, accMark, rejMark;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
 
@@ -128,7 +128,10 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
         downloadBTN = findViewById(R.id.download_btn);
         actionPart = findViewById(R.id.action_part);
         confirmBTN = findViewById(R.id.confirm_btn);
+        rejectedBTN = findViewById(R.id.rejected_btn);
         actionBar = findViewById(R.id.action_bar);
+        accMark = findViewById(R.id.acc_mark);
+        rejMark = findViewById(R.id.rej_mark);
 
         idPenilaian = getIntent().getExtras().getString("id_penilaian");
         file_url = "https://geloraaksara.co.id/absen-online/absen/download_pdf_penilaian_karyawan/"+idPenilaian;
@@ -262,8 +265,8 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new KAlertDialog(DetailPenilaianKaryawanActivity.this, KAlertDialog.WARNING_TYPE)
-                        .setTitleText("Konfirmasi?")
-                        .setContentText("Yakin untuk dikonfirmasi sekarang?")
+                        .setTitleText("Tolak?")
+                        .setContentText("Yakin untuk menolak penilaian?")
                         .setCancelText("TIDAK")
                         .setConfirmText("   YA   ")
                         .showCancelButton(true)
@@ -315,7 +318,7 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
 
                                     public void onFinish() {
                                         i = -1;
-                                        checkSignature();
+                                        rejectFunc();
                                     }
                                 }.start();
 
@@ -527,8 +530,13 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                                         Picasso.get().load(url_ttd_atasan_penilai).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                 .into(ttdAtasanPenilai);
-                                    } else if(status_approve_kadept.equals("2")){
 
+                                        accMark.setVisibility(View.VISIBLE);
+                                        rejMark.setVisibility(View.GONE);
+
+                                    } else if(status_approve_kadept.equals("2")){
+                                        accMark.setVisibility(View.GONE);
+                                        rejMark.setVisibility(View.VISIBLE);
                                     } else if(status_approve_kadept.equals("0")){
                                         if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && sharedPrefManager.getSpIdJabatan().equals("10")){
                                             actionPart.setVisibility(View.VISIBLE);
@@ -681,6 +689,63 @@ public class DetailPenilaianKaryawanActivity extends AppCompatActivity {
                             } else {
                                 actionPart.setVisibility(View.VISIBLE);
                                 pDialog.setTitleText("Gagal Dikonfirmasi")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("id", idPenilaian);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void rejectFunc(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/update_reject_penilaian_sdm";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                getData();
+                                actionPart.setVisibility(View.GONE);
+                                pDialog.setTitleText("Berhasil Ditolak")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            } else {
+                                actionPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Ditolak")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }

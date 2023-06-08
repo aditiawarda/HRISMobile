@@ -124,10 +124,18 @@ public class AdapterListDataPenilaianSDM extends RecyclerView.Adapter<AdapterLis
             }
         });
 
-        if (dataPenilaianSDM.getApprover_kadept()!=null && !dataPenilaianSDM.getApprover_kadept().equals("null") && !dataPenilaianSDM.getApprover_kadept().equals("")){
+        if (dataPenilaianSDM.getStatus_approve_kadept().equals("1")){
             myViewHolder.waitingMark.setVisibility(View.GONE);
-        } else {
+            myViewHolder.accMark.setVisibility(View.VISIBLE);
+            myViewHolder.rejMark.setVisibility(View.GONE);
+        } else if (dataPenilaianSDM.getStatus_approve_kadept().equals("2")){
+            myViewHolder.waitingMark.setVisibility(View.GONE);
+            myViewHolder.accMark.setVisibility(View.GONE);
+            myViewHolder.rejMark.setVisibility(View.VISIBLE);
+        } else if (dataPenilaianSDM.getStatus_approve_kadept().equals("0")){
             myViewHolder.waitingMark.setVisibility(View.VISIBLE);
+            myViewHolder.accMark.setVisibility(View.GONE);
+            myViewHolder.rejMark.setVisibility(View.GONE);
             if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||(sharedPrefManager.getSpIdJabatan().equals("4")&&sharedPrefManager.getSpNik().equals("1309131210"))){
                 myViewHolder.waitingMarkTV.setText("Menunggu Konfirmasi Atasan");
             } else {
@@ -144,7 +152,7 @@ public class AdapterListDataPenilaianSDM extends RecyclerView.Adapter<AdapterLis
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         LinearLayout parrentPart, waitingMark;
-        TextView namaTV, nikTV, detailTV, predikatTV, tanggalBuatTV, waitingMarkTV;
+        TextView namaTV, nikTV, detailTV, predikatTV, tanggalBuatTV, waitingMarkTV, accMark, rejMark;
         CircleImageView profileImage;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -157,6 +165,8 @@ public class AdapterListDataPenilaianSDM extends RecyclerView.Adapter<AdapterLis
             tanggalBuatTV = itemView.findViewById(R.id.tanggal_buat_tv);
             waitingMark = itemView.findViewById(R.id.waiting_mark);
             waitingMarkTV = itemView.findViewById(R.id.waiting_mark_tv);
+            accMark = itemView.findViewById(R.id.acc_mark);
+            rejMark = itemView.findViewById(R.id.rej_mark);
         }
     }
 }

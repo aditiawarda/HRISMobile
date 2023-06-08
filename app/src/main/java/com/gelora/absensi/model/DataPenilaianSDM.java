@@ -15,6 +15,7 @@ public class DataPenilaianSDM {
     private String predikat;
     private String approver_kabag;
     private String approver_kadept;
+    private String status_approve_kadept;
 
     public String getId() {
         return id;
@@ -111,4 +112,13 @@ public class DataPenilaianSDM {
     public void setApprover_kadept(String approver_kadept) {
         this.approver_kadept = approver_kadept;
     }
+
+    public String getStatus_approve_kadept() {
+        return status_approve_kadept;
+    }
+
+    public void setStatus_approve_kadept(String status_approve_kadept) {
+        this.status_approve_kadept = status_approve_kadept;
+    }
+
 }

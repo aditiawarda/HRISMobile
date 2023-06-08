@@ -43,7 +43,7 @@
                                 android:id="@+id/info_pengalaman"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:paddingBottom="90dp"
+                                android:paddingBottom="100dp"
                                 android:orientation="vertical">
 
                                 <androidx.recyclerview.widget.RecyclerView
@@ -138,7 +138,7 @@
                                 android:id="@+id/info_pelatihan"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:paddingBottom="90dp"
+                                android:paddingBottom="100dp"
                                 android:orientation="vertical"
                                 android:visibility="gone">
 
