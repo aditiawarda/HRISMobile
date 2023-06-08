@@ -42,19 +42,76 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:background="@drawable/shape_ornament_point"
+                    android:id="@+id/point_1"
+                    android:background="@drawable/shape_point_sdm_1"
                     android:layout_marginRight="8dp"
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"/>
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/point_2"
+                    android:background="@drawable/shape_point_sdm_2"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/point_3"
+                    android:background="@drawable/shape_point_sdm_3"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/point_4"
+                    android:background="@drawable/shape_point_sdm_4"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/point_5"
+                    android:background="@drawable/shape_point_sdm_5"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/point_6"
+                    android:background="@drawable/shape_point_sdm_6"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/point_7"
+                    android:background="@drawable/shape_point_sdm_7"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal" />
 
                 <TextView
                     android:id="@+id/keterangan_data_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lineSpacingExtra="3.5dp"
+                    android:layout_marginBottom="0.5dp"
                     android:text=""
                     android:textColor="#C16D02"
-                    android:textSize="14dp" />
+                    android:textSize="13dp" />
 
             </LinearLayout>
 
@@ -84,7 +141,7 @@
                 android:layout_marginBottom="18dp"
                 android:gravity="right"
                 android:text="-"
-                android:textColor="#C16D02"
+                android:textColor="#979797"
                 android:textSize="10dp" />
 
             <LinearLayout

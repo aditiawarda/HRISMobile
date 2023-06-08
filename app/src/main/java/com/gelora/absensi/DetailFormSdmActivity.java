@@ -34,7 +34,7 @@ import java.util.Map;
 
 public class DetailFormSdmActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, actionBar;
+    LinearLayout backBTN, actionBar, accMark, rejMark;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
@@ -42,7 +42,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
     TextView namaLamaTV, unitBisnisLamaTV, departemenLamaTV, bagianLamaTV, jabatanLamaTV, komponenGajiLamaTV;
     TextView jabatanSlashDepartemenTV, deskripsiSlashJabatanTV, syaratPenerimaanTV, tglDibutuhkan1TV, tglPemenuhan1TV;
     TextView syaratYaTV, syaratTidakTV;
-    TextView catatanTV, namaKabagTV, namaKadeptTV, namaDirekturTV, tglApproveKabag, tglApproveKadept, tglApproveDireksi;
+    TextView catatanTV, namaKabagTV, namaKadeptTV, namaDirekturTV, tglApproveKabag, tglApproveKadept, tglApproveDireksi, tglPenerimaanTV;
     ImageView ttdPemohon, ttdKadept, ttdDireksi, ttdPenerima;
     String idData = "";
 
@@ -55,6 +55,10 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         actionBar = findViewById(R.id.action_bar);
+
+        accMark = findViewById(R.id.acc_mark);
+        rejMark = findViewById(R.id.rej_mark);
+
         markCeklis1 = findViewById(R.id.mark_ceklis_1);
         markCeklis2 = findViewById(R.id.mark_ceklis_2);
         markCeklis3 = findViewById(R.id.mark_ceklis_3);
@@ -100,6 +104,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         tglApproveKabag = findViewById(R.id.tgl_approve_kabag);
         tglApproveKadept = findViewById(R.id.tgl_approve_kadept);
         tglApproveDireksi = findViewById(R.id.tgl_approve_direksi);
+
+        tglPenerimaanTV = findViewById(R.id.tgl_penerimaan_tv);
 
         idData = getIntent().getExtras().getString("id_data");
 
@@ -251,22 +257,33 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 namaDirekturTV.setText(nama_direktur);
                                                 tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
 
+                                                if(status_approve_hrd.equals("1")){
+                                                    String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
+                                                    Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                            .into(ttdPenerima);
+                                                    tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+
+                                                } else if(status_approve_hrd.equals("2")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.VISIBLE);
+                                                }
+
                                             } else if(status_approve_direktur.equals("2")){
-
-                                            } else if(status_approve_direktur.equals("0")){
-
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.VISIBLE);
                                             }
 
                                         } else if(status_approve_kadept.equals("2")){
-
+                                            accMark.setVisibility(View.GONE);
+                                            rejMark.setVisibility(View.VISIBLE);
                                         } else if(status_approve_kadept.equals("0")){
-
+                                            // action Approve Kadept
                                         }
 
                                     } else if(status_approve_kabag.equals("2")){
-
-                                    } else if(status_approve_kabag.equals("0")){
-
+                                        accMark.setVisibility(View.GONE);
+                                        rejMark.setVisibility(View.VISIBLE);
                                     }
 
                                     catatanTV.setText(catatan);

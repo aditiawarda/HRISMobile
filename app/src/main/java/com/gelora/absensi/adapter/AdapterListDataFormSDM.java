@@ -3,6 +3,7 @@ package com.gelora.absensi.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,18 +54,32 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
 
         if(dataFormSDM.getKeterangan().equals("1")){
             myViewHolder.keteranganTV.setText("PENERIMAAN");
+            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#438cd6"));
+            myViewHolder.point1.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("2")){
             myViewHolder.keteranganTV.setText("PENGANGKATAN");
+            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#2bc3d4"));
+            myViewHolder.point2.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("3")){
             myViewHolder.keteranganTV.setText("PENUGASAN KEMBALI");
+            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#BAA2F5"));
+            myViewHolder.point3.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("4")){
             myViewHolder.keteranganTV.setText("PENSIUN/PHK");
+            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#F199B8"));
+            myViewHolder.point4.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("5")){
             myViewHolder.keteranganTV.setText("PROMOSI/MUTASI");
+            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#ECB994"));
+            myViewHolder.point5.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("6")){
             myViewHolder.keteranganTV.setText("PENYESUAIAN GAJI");
+            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#8AD8AA"));
+            myViewHolder.point6.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("7")){
             myViewHolder.keteranganTV.setText("LAIN-LAIN");
+            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#FF8B8B"));
+            myViewHolder.point7.setVisibility(View.VISIBLE);
         }
 
         if(dataFormSDM.getStatus_approve_kabag().equals("0")){
@@ -160,12 +175,19 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout parrentPart;
+        LinearLayout parrentPart, point1, point2, point3, point4, point5, point6, point7;
         TextView keteranganTV, timestampTV, detailTV;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parrentPart = itemView.findViewById(R.id.parent_part);
             keteranganTV = itemView.findViewById(R.id.keterangan_data_tv);
+            point1 = itemView.findViewById(R.id.point_1);
+            point2 = itemView.findViewById(R.id.point_2);
+            point3 = itemView.findViewById(R.id.point_3);
+            point4 = itemView.findViewById(R.id.point_4);
+            point5 = itemView.findViewById(R.id.point_5);
+            point6 = itemView.findViewById(R.id.point_6);
+            point7 = itemView.findViewById(R.id.point_7);
             detailTV = itemView.findViewById(R.id.detail_tv);
             timestampTV = itemView.findViewById(R.id.timestamp_data_tv);
         }
