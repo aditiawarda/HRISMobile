@@ -58,11 +58,11 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             myViewHolder.point1.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("2")){
             myViewHolder.keteranganTV.setText("PENGANGKATAN");
-            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#2bc3d4"));
+            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#27afbf"));
             myViewHolder.point2.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("3")){
             myViewHolder.keteranganTV.setText("PENUGASAN KEMBALI");
-            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#BAA2F5"));
+            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#9570f0"));
             myViewHolder.point3.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("4")){
             myViewHolder.keteranganTV.setText("PENSIUN/PHK");
@@ -70,7 +70,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             myViewHolder.point4.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("5")){
             myViewHolder.keteranganTV.setText("PROMOSI/MUTASI");
-            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#ECB994"));
+            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#db7a33"));
             myViewHolder.point5.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("6")){
             myViewHolder.keteranganTV.setText("PENYESUAIAN GAJI");
@@ -78,7 +78,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             myViewHolder.point6.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("7")){
             myViewHolder.keteranganTV.setText("LAIN-LAIN");
-            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#FF8B8B"));
+            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#ff6666"));
             myViewHolder.point7.setVisibility(View.VISIBLE);
         }
 
@@ -104,7 +104,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
                 myViewHolder.detailTV.setText("Pengajuan ditolak Kepala Departemen");
             }
-        } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
+        } else if(dataFormSDM.getStatus_approve_kabag().equals("2")){
             myViewHolder.detailTV.setText("Pengajuan ditolak Kepala Bagian");
         }
 

@@ -34,7 +34,7 @@ import java.util.Map;
 
 public class DetailFormSdmActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, actionBar, accMark, rejMark;
+    LinearLayout backBTN, actionBar, accMark, rejMark, actionPart;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
@@ -106,6 +106,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         tglApproveDireksi = findViewById(R.id.tgl_approve_direksi);
 
         tglPenerimaanTV = findViewById(R.id.tgl_penerimaan_tv);
+
+        actionPart = findViewById(R.id.action_part);
 
         idData = getIntent().getExtras().getString("id_data");
 
@@ -217,6 +219,11 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String memenuhi_syarat         = dataArray.getString("memenuhi_syarat");
                                 String lain_lain               = dataArray.getString("lain_lain");
                                 String persetujuan             = dataArray.getString("persetujuan");
+                                String id_departemen           = dataArray.getString("id_departemen");
+
+                                if(catatan.equals("null")){
+                                    catatan = "";
+                                }
 
                                 if(keterangan.equals("1")){
                                     markCeklis1.setText("✓");
@@ -279,6 +286,11 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             rejMark.setVisibility(View.VISIBLE);
                                         } else if(status_approve_kadept.equals("0")){
                                             // action Approve Kadept
+                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && sharedPrefManager.getSpIdJabatan().equals("10")){
+                                                actionPart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                actionPart.setVisibility(View.GONE);
+                                            }
                                         }
 
                                     } else if(status_approve_kabag.equals("2")){
@@ -362,6 +374,11 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             rejMark.setVisibility(View.VISIBLE);
                                         } else if(status_approve_kadept.equals("0")){
                                             // action Approve Kadept
+                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && sharedPrefManager.getSpIdJabatan().equals("10")){
+                                                actionPart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                actionPart.setVisibility(View.GONE);
+                                            }
                                         }
 
                                     } else if(status_approve_kabag.equals("2")){

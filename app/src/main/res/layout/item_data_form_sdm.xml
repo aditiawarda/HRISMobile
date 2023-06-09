@@ -130,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:text="-"
-                android:textColor="#C16D02"
+                android:textColor="#BF7517"
                 android:textSize="13dp"
                 android:textStyle="italic" />
 
