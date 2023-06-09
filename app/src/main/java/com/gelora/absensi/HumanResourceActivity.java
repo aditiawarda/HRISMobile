@@ -37,8 +37,8 @@ import java.util.Map;
 
 public class HumanResourceActivity extends AppCompatActivity {
 
-    LinearLayout searchOtherPart, backBTN, formSdmBTN, penilaianSdmBTN, loadingDataPart, noDataPart, countNotificationPenilaian;
-    TextView titleSDM, dataSelengkapnyaBTN, searchOtherBTN, countNotifPenilaianTV;
+    LinearLayout countNotificationSDM, searchOtherPart, backBTN, formSdmBTN, penilaianSdmBTN, loadingDataPart, noDataPart, countNotificationPenilaian;
+    TextView titleSDM, dataSelengkapnyaBTN, searchOtherBTN, countNotifPenilaianTV, countNotifSdmTV;
     ImageView loadingDataRecord;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -67,6 +67,8 @@ public class HumanResourceActivity extends AppCompatActivity {
         searchOtherBTN = findViewById(R.id.search_other_btn);
         countNotificationPenilaian = findViewById(R.id.count_notification_penilaian);
         countNotifPenilaianTV = findViewById(R.id.count_notif_penilaian_tv);
+        countNotificationSDM = findViewById(R.id.count_notification_sdm);
+        countNotifSdmTV = findViewById(R.id.count_notif_sdm_tv);
 
         dataListKaryawanRV = findViewById(R.id.data_absensi_rv);
 
@@ -144,7 +146,7 @@ public class HumanResourceActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void getData() {
 
-        if(sharedPrefManager.getSpIdJabatan().equals("10")){
+        if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){
             getWaitingConfirm();
         }
 
@@ -218,7 +220,7 @@ public class HumanResourceActivity extends AppCompatActivity {
 
     private void getWaitingConfirm(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_waiting_penilaian_sdm";
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_waiting_data";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -230,13 +232,21 @@ public class HumanResourceActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
-                                String jumlah_data = data.getString("jumlah");
-                                if(Integer.parseInt(jumlah_data)>0){
+                                String jumlah_penilaian = data.getString("jumlah_penilaian");
+                                String jumlah_sdm = data.getString("jumlah_sdm");
+                                if(Integer.parseInt(jumlah_penilaian)>0){
                                     countNotificationPenilaian.setVisibility(View.VISIBLE);
-                                    countNotifPenilaianTV.setText(jumlah_data);
+                                    countNotifPenilaianTV.setText(jumlah_penilaian);
                                 } else {
                                     countNotificationPenilaian.setVisibility(View.GONE);
                                     countNotifPenilaianTV.setText("");
+                                }
+                                if(Integer.parseInt(jumlah_sdm)>0){
+                                    countNotificationSDM.setVisibility(View.VISIBLE);
+                                    countNotifSdmTV.setText(jumlah_sdm);
+                                } else {
+                                    countNotificationSDM.setVisibility(View.GONE);
+                                    countNotifSdmTV.setText("");
                                 }
                             } else {
                                 countNotificationPenilaian.setVisibility(View.GONE);
@@ -278,6 +288,22 @@ public class HumanResourceActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        searchOtherBTN.setVisibility(View.GONE);
+        loadingDataPart.setVisibility(View.VISIBLE);
+        noDataPart.setVisibility(View.GONE);
+        dataListKaryawanRV.setVisibility(View.GONE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.setRefreshing(false);
+                getData();
+            }
+        }, 500);
     }
 
 }

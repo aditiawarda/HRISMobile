@@ -134,15 +134,57 @@
                 android:textSize="13dp"
                 android:textStyle="italic" />
 
-            <TextView
-                android:id="@+id/timestamp_data_tv"
+            <RelativeLayout
+                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="18dp"
-                android:gravity="right"
-                android:text="-"
-                android:textColor="#979797"
-                android:textSize="10dp" />
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left">
+
+                    <LinearLayout
+                        android:id="@+id/waiting_mark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/ic_baseline_timelapse_waiting" />
+
+                        <TextView
+                            android:id="@+id/waiting_mark_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="1"
+                            android:paddingLeft="4dp"
+                            android:singleLine="true"
+                            android:text="Menunggu Persetujuan"
+                            android:textColor="#D32F2F"
+                            android:textSize="11dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/timestamp_data_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:gravity="right"
+                    android:text="-"
+                    android:textColor="#979797"
+                    android:textSize="10dp" />
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="70dp"

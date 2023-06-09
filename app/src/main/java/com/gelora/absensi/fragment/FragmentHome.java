@@ -1666,7 +1666,7 @@ public class FragmentHome extends Fragment {
 
     private void getWaitingConfirm(){
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_waiting_penilaian_sdm";
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_waiting_data";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1678,10 +1678,11 @@ public class FragmentHome extends Fragment {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
-                                String jumlah_data = data.getString("jumlah");
-                                if(Integer.parseInt(jumlah_data)>0){
+                                String jumlah_penilaian = data.getString("jumlah_penilaian");
+                                String jumlah_sdm = data.getString("jumlah_sdm");
+                                if(Integer.parseInt(jumlah_penilaian)+Integer.parseInt(jumlah_sdm)>0){
                                     countNotificationPenilaian.setVisibility(View.VISIBLE);
-                                    countNotifPenilaianTV.setText(jumlah_data);
+                                    countNotifPenilaianTV.setText(String.valueOf(Integer.parseInt(jumlah_penilaian)+Integer.parseInt(jumlah_sdm)));
                                 } else {
                                     countNotificationPenilaian.setVisibility(View.GONE);
                                     countNotifPenilaianTV.setText("");
