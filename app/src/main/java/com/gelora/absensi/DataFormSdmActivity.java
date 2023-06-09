@@ -126,6 +126,14 @@ public class DataFormSdmActivity extends AppCompatActivity {
                             String status = data.getString("status");
                             if (status.equals("Success")) {
                                 String jumlah = data.getString("jumlah");
+                                String waiting = data.getString("waiting");
+                                if(Integer.parseInt(waiting)>0){
+                                    countWaitingBTN.setVisibility(View.VISIBLE);
+                                    countWaitingTV.setText(waiting);
+                                } else {
+                                    countWaitingBTN.setVisibility(View.GONE);
+                                    countWaitingTV.setText("");
+                                }
                                 if(Integer.parseInt(jumlah)>0){
                                     noDataPart.setVisibility(View.GONE);
                                     loadingDataPart.setVisibility(View.GONE);
