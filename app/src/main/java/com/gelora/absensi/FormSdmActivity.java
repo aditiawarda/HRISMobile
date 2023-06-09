@@ -216,6 +216,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
 
+                warningNoForm.setVisibility(View.GONE);
                 loadingFormPart.setVisibility(View.VISIBLE);
                 attantionNoForm.setVisibility(View.GONE);
 
@@ -276,6 +277,7 @@ public class FormSdmActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
+                        warningNoForm.setVisibility(View.GONE);
                         loadingFormPart.setVisibility(View.GONE);
                         attantionNoForm.setVisibility(View.VISIBLE);
                     }
@@ -835,6 +837,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "2";
                 keteranganTV.setText("Pengangkatan");
 
+                warningNoForm.setVisibility(View.GONE);
                 loadingFormPart.setVisibility(View.VISIBLE);
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
