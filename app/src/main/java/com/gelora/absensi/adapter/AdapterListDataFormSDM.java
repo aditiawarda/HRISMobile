@@ -99,10 +99,10 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
                     } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
                         myViewHolder.detailTV.setText("Pengajuan ditolak HRD");
                     }
-                } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
+                } else if(dataFormSDM.getStatus_approve_direktur().equals("2")){
                     myViewHolder.detailTV.setText("Pengajuan ditolak Direksi");
                 }
-            } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
+            } else if(dataFormSDM.getStatus_approve_kadept().equals("2")){
                 myViewHolder.detailTV.setText("Pengajuan ditolak Kepala Departemen");
             }
         } else if(dataFormSDM.getStatus_approve_kabag().equals("2")){

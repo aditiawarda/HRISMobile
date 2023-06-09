@@ -1,10 +1,13 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -34,7 +37,7 @@ import java.util.Map;
 
 public class DetailFormSdmActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, actionBar, accMark, rejMark, actionPart;
+    LinearLayout backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
@@ -45,6 +48,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
     TextView catatanTV, namaKabagTV, namaKadeptTV, namaDirekturTV, tglApproveKabag, tglApproveKadept, tglApproveDireksi, tglPenerimaanTV;
     ImageView ttdPemohon, ttdKadept, ttdDireksi, ttdPenerima;
     String idData = "";
+    KAlertDialog pDialog;
+    private int i = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +113,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         tglPenerimaanTV = findViewById(R.id.tgl_penerimaan_tv);
 
         actionPart = findViewById(R.id.action_part);
+        appovedBTN = findViewById(R.id.appoved_btn);
+        rejectedBTN = findViewById(R.id.rejected_btn);
 
         idData = getIntent().getExtras().getString("id_data");
 
@@ -135,6 +142,140 @@ public class DetailFormSdmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        appovedBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Konfirmasi?")
+                        .setContentText("Yakin untuk disetujui sekarang?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+
+                                pDialog = new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1000, 500) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+
+                                    public void onFinish() {
+                                        i = -1;
+                                        checkSignature();
+                                    }
+                                }.start();
+
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        rejectedBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Tolak?")
+                        .setContentText("Yakin untuk menolak ajuan?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+
+                                pDialog = new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1000, 500) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailFormSdmActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+
+                                    public void onFinish() {
+                                        i = -1;
+                                        rejectFunc();
+                                    }
+                                }.start();
+
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -439,6 +580,191 @@ public class DetailFormSdmActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
+                params.put("id", idData);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void checkSignature(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Available")){
+                                String signature = data.getString("data");
+                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                updateApproved();
+                            } else {
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")
+                                        .setCancelText(" BATAL ")
+                                        .setConfirmText("LANJUT")
+                                        .showCancelButton(true)
+                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                Intent intent = new Intent(DetailFormSdmActivity.this, DigitalSignatureActivity.class);
+                                                intent.putExtra("kode", "form");
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.WARNING_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void updateApproved(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/update_approve_kadept_form_sdm";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                getData();
+                                actionPart.setVisibility(View.GONE);
+                                pDialog.setTitleText("Berhasil Disetujui")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            } else {
+                                actionPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Disetujui")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("id", idData);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void rejectFunc(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/update_reject_kadept_form_sdm";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                getData();
+                                actionPart.setVisibility(View.GONE);
+                                pDialog.setTitleText("Berhasil Ditolak")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            } else {
+                                actionPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Ditolak")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
                 params.put("id", idData);
                 return params;
             }
