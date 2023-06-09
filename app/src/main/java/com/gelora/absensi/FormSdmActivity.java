@@ -76,7 +76,7 @@ import java.util.Map;
 
 public class FormSdmActivity extends AppCompatActivity {
 
-    LinearLayout viewBTN, backBTN, pilihKeteranganPart, actionBar, submitBTN, attantionNoForm, loadingFormPart, formPart, successPart;
+    LinearLayout viewBTN, backBTN, pilihKeteranganPart, actionBar, submitBTN, attantionNoForm, loadingFormPart, formPart, successPart, warningNoForm;
     LinearLayout f1Part, f2Part;
     LinearLayout ket1BTN, ket2BTN, ket3BTN, ket4BTN, ket5BTN, ket6BTN, ket7BTN;
     LinearLayout markKet1, markKet2, markKet3, markKet4, markKet5, markKet6, markKet7;
@@ -147,6 +147,7 @@ public class FormSdmActivity extends AppCompatActivity {
         f1Part = findViewById(R.id.form_1);
         f2Part = findViewById(R.id.form_2);
         submitBTN = findViewById(R.id.submit_btn);
+        warningNoForm = findViewById(R.id.warning_no_form);
         attantionNoForm = findViewById(R.id.attantion_no_form);
         loadingFormPart = findViewById(R.id.loading_form_part);
         loadingForm = findViewById(R.id.loading_form);
@@ -729,6 +730,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "1";
                 keteranganTV.setText("Penerimaan");
 
+                warningNoForm.setVisibility(View.GONE);
                 loadingFormPart.setVisibility(View.VISIBLE);
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
@@ -798,6 +800,7 @@ public class FormSdmActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                warningNoForm.setVisibility(View.GONE);
                                 loadingFormPart.setVisibility(View.GONE);
                                 attantionNoForm.setVisibility(View.GONE);
 
@@ -935,6 +938,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "3";
                 keteranganTV.setText("Penugasan Kembali");
 
+                warningNoForm.setVisibility(View.GONE);
                 loadingFormPart.setVisibility(View.VISIBLE);
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
@@ -1004,10 +1008,13 @@ public class FormSdmActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                //Sementara
+                                warningNoForm.setVisibility(View.VISIBLE);
+
                                 loadingFormPart.setVisibility(View.GONE);
                                 attantionNoForm.setVisibility(View.GONE);
 
-                                submitBTN.setVisibility(View.VISIBLE);
+                                submitBTN.setVisibility(View.GONE);
                                 f1Part.setVisibility(View.GONE);
                                 f2Part.setVisibility(View.GONE);
                             }
@@ -1038,6 +1045,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "4";
                 keteranganTV.setText("Pensiun/PHK");
 
+                warningNoForm.setVisibility(View.GONE);
                 loadingFormPart.setVisibility(View.VISIBLE);
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
@@ -1107,10 +1115,13 @@ public class FormSdmActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                //Sementara
+                                warningNoForm.setVisibility(View.VISIBLE);
+
                                 loadingFormPart.setVisibility(View.GONE);
                                 attantionNoForm.setVisibility(View.GONE);
 
-                                submitBTN.setVisibility(View.VISIBLE);
+                                submitBTN.setVisibility(View.GONE);
                                 f1Part.setVisibility(View.GONE);
                                 f2Part.setVisibility(View.GONE);
                             }
@@ -1141,6 +1152,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "5";
                 keteranganTV.setText("Promosi/Mutasi");
 
+                warningNoForm.setVisibility(View.GONE);
                 loadingFormPart.setVisibility(View.VISIBLE);
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
@@ -1210,10 +1222,13 @@ public class FormSdmActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                //Sementara
+                                warningNoForm.setVisibility(View.VISIBLE);
+
                                 loadingFormPart.setVisibility(View.GONE);
                                 attantionNoForm.setVisibility(View.GONE);
 
-                                submitBTN.setVisibility(View.VISIBLE);
+                                submitBTN.setVisibility(View.GONE);
                                 f1Part.setVisibility(View.GONE);
                                 f2Part.setVisibility(View.GONE);
                             }
@@ -1244,6 +1259,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "6";
                 keteranganTV.setText("Penyesuaian Gaji");
 
+                warningNoForm.setVisibility(View.GONE);
                 loadingFormPart.setVisibility(View.VISIBLE);
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
@@ -1313,10 +1329,13 @@ public class FormSdmActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                //Sementara
+                                warningNoForm.setVisibility(View.VISIBLE);
+
                                 loadingFormPart.setVisibility(View.GONE);
                                 attantionNoForm.setVisibility(View.GONE);
 
-                                submitBTN.setVisibility(View.VISIBLE);
+                                submitBTN.setVisibility(View.GONE);
                                 f1Part.setVisibility(View.GONE);
                                 f2Part.setVisibility(View.GONE);
                             }
@@ -1347,6 +1366,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 kodeKeterangan = "7";
                 keteranganTV.setText("Lain-lain");
 
+                warningNoForm.setVisibility(View.GONE);
                 loadingFormPart.setVisibility(View.VISIBLE);
                 attantionNoForm.setVisibility(View.GONE);
                 submitBTN.setVisibility(View.GONE);
@@ -1416,10 +1436,13 @@ public class FormSdmActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                //Sementara
+                                warningNoForm.setVisibility(View.VISIBLE);
+
                                 loadingFormPart.setVisibility(View.GONE);
                                 attantionNoForm.setVisibility(View.GONE);
 
-                                submitBTN.setVisibility(View.VISIBLE);
+                                submitBTN.setVisibility(View.GONE);
                                 f1Part.setVisibility(View.GONE);
                                 f2Part.setVisibility(View.GONE);
                             }

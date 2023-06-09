@@ -316,6 +316,59 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         syaratTidakTV.setText("");
                                     }
 
+                                    if(status_approve_kabag.equals("1")){
+                                        String url_ttd_kabag = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kabag;
+                                        Picasso.get().load(url_ttd_kabag).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                .into(ttdPemohon);
+                                        namaKabagTV.setText(nama_kabag);
+                                        tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
+
+                                        if(status_approve_kadept.equals("1")){
+                                            String url_ttd_kadept = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kadept;
+                                            Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                    .into(ttdKadept);
+                                            namaKadeptTV.setText(nama_kadept);
+                                            tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
+
+                                            if(status_approve_direktur.equals("1")){
+                                                String url_ttd_direksi = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_direktur;
+                                                Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                        .into(ttdDireksi);
+                                                namaDirekturTV.setText(nama_direktur);
+                                                tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
+
+                                                if(status_approve_hrd.equals("1")){
+                                                    String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
+                                                    Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                            .into(ttdPenerima);
+                                                    tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+
+                                                } else if(status_approve_hrd.equals("2")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.VISIBLE);
+                                                }
+
+                                            } else if(status_approve_direktur.equals("2")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.VISIBLE);
+                                            }
+
+                                        } else if(status_approve_kadept.equals("2")){
+                                            accMark.setVisibility(View.GONE);
+                                            rejMark.setVisibility(View.VISIBLE);
+                                        } else if(status_approve_kadept.equals("0")){
+                                            // action Approve Kadept
+                                        }
+
+                                    } else if(status_approve_kabag.equals("2")){
+                                        accMark.setVisibility(View.GONE);
+                                        rejMark.setVisibility(View.VISIBLE);
+                                    }
+
                                     catatanTV.setText(catatan);
 
                                 } else if(keterangan.equals("3")){
@@ -334,56 +387,6 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     markCeklis7.setText("✓");
 
                                 }
-
-//                                String input_date = tanggal_bergabung;
-//                                String dayDate = input_date.substring(8,10);
-//                                String yearDate = input_date.substring(0,4);
-//                                String bulanValue = input_date.substring(5,7);
-//                                String bulanName;
-//
-//                                switch (bulanValue) {
-//                                    case "01":
-//                                        bulanName = "Jan";
-//                                        break;
-//                                    case "02":
-//                                        bulanName = "Feb";
-//                                        break;
-//                                    case "03":
-//                                        bulanName = "Mar";
-//                                        break;
-//                                    case "04":
-//                                        bulanName = "Apr";
-//                                        break;
-//                                    case "05":
-//                                        bulanName = "Mei";
-//                                        break;
-//                                    case "06":
-//                                        bulanName = "Jun";
-//                                        break;
-//                                    case "07":
-//                                        bulanName = "Jul";
-//                                        break;
-//                                    case "08":
-//                                        bulanName = "Agu";
-//                                        break;
-//                                    case "09":
-//                                        bulanName = "Sep";
-//                                        break;
-//                                    case "10":
-//                                        bulanName = "Okt";
-//                                        break;
-//                                    case "11":
-//                                        bulanName = "Nov";
-//                                        break;
-//                                    case "12":
-//                                        bulanName = "Des";
-//                                        break;
-//                                    default:
-//                                        bulanName = "Not found";
-//                                        break;
-//                                }
-//
-//                                karTglmasuk.setText(dayDate+" "+bulanName+" "+yearDate);
 
                             } else {
                                 new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.ERROR_TYPE)
