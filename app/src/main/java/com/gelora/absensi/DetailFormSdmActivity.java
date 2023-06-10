@@ -412,6 +412,9 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                             .into(ttdPenerima);
                                                     tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
 
+                                                    accMark.setVisibility(View.VISIBLE);
+                                                    rejMark.setVisibility(View.GONE);
+
                                                 } else if(status_approve_hrd.equals("2")){
                                                     accMark.setVisibility(View.GONE);
                                                     rejMark.setVisibility(View.VISIBLE);
