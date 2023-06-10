@@ -186,8 +186,8 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout parrentPart, point1, point2, point3, point4, point5, point6, point7, waitingMark, rejMark, accMark;
-        TextView keteranganTV, timestampTV, detailTV;
+        LinearLayout parrentPart, point1, point2, point3, point4, point5, point6, point7, waitingMark;
+        TextView keteranganTV, timestampTV, detailTV, rejMark, accMark;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parrentPart = itemView.findViewById(R.id.parent_part);

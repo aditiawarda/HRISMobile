@@ -1514,6 +1514,709 @@
 
                             </LinearLayout>
 
+                            <!-- Form Penugasan Kembali -->
+                            <LinearLayout
+                                android:id="@+id/form_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="left"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="BARU"
+                                    android:textColor="#E37146"
+                                    android:layout_marginBottom="15dp"
+                                    android:textSize="15dp"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Nama :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp" />
+
+                                    <LinearLayout
+                                        android:id="@+id/f3_nama_karyawan_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:paddingStart="20dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left">
+
+                                                <TextView
+                                                    android:id="@+id/f3_nama_karyawan_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_person"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Unit Bisnis :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp" />
+
+                                    <LinearLayout
+                                        android:id="@+id/f3_unit_bisnis_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:paddingStart="20dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left">
+
+                                                <TextView
+                                                    android:id="@+id/f3_unit_bisnis_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_down"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Departemen :"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp">
+
+                                        <TextView
+                                            android:id="@+id/f3_departemen_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Bagian :"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp">
+
+                                        <TextView
+                                            android:id="@+id/f3_bagian_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Jabatan :"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp">
+
+                                        <TextView
+                                            android:id="@+id/f3_jabatan_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:focusable="true"
+                                    android:focusableInTouchMode="true"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Komponen Gaji :"/>
+
+                                    <EditText
+                                        android:id="@+id/f3_komponen_gaji_tv"
+                                        android:layout_width="match_parent"
+                                        android:imeOptions="actionDone"
+                                        android:gravity="center|left"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="10dp"
+                                        android:paddingBottom="10dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:inputType="text"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:textColor="#595959"
+                                        android:hint=""
+                                        android:textSize="14dp"
+                                        android:textColorHint="#595959"
+                                        android:textColorHighlight="#FFE1BC"/>
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="left"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="LAMA"
+                                    android:textColor="#E37146"
+                                    android:layout_marginBottom="15dp"
+                                    android:textSize="15dp"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Nama :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp" />
+
+                                    <LinearLayout
+                                        android:id="@+id/f3_nama_karyawan_lama_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:paddingStart="20dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left">
+
+                                                <TextView
+                                                    android:id="@+id/f3_nama_karyawan_lama_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_person"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Unit Bisnis :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp" />
+
+                                    <LinearLayout
+                                        android:id="@+id/f3_unit_bisnis_lama_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:paddingStart="20dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left">
+
+                                                <TextView
+                                                    android:id="@+id/f3_unit_bisnis_lama_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_down"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Departemen :"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp">
+
+                                        <TextView
+                                            android:id="@+id/f3_departemen_lama_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Bagian :"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp">
+
+                                        <TextView
+                                            android:id="@+id/f3_bagian_lama_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Jabatan :"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp">
+
+                                        <TextView
+                                            android:id="@+id/f3_jabatan_lama_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="true"
+                                    android:focusableInTouchMode="true"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Komponen Gaji :"/>
+
+                                    <EditText
+                                        android:id="@+id/f3_komponen_gaji_lama_tv"
+                                        android:imeOptions="actionDone"
+                                        android:layout_width="match_parent"
+                                        android:gravity="center|left"
+                                        android:layout_height="40dp"
+                                        android:paddingTop="10dp"
+                                        android:paddingBottom="10dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:inputType="text"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:textColor="#595959"
+                                        android:hint=""
+                                        android:textSize="14dp"
+                                        android:textColorHint="#595959"
+                                        android:textColorHighlight="#FFE1BC"/>
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="left"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="Pengunduran Diri, Penugasan Kembali, Pensiun, PHK"
+                                    android:textColor="#E37146"
+                                    android:layout_marginBottom="15dp"
+                                    android:textSize="15dp"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/shape_pengumuman"
+                                    android:layout_marginBottom="15dp"
+                                    android:paddingTop="18dp"
+                                    android:paddingBottom="23dp"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="20dp"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:orientation="horizontal"
+                                        android:gravity="center|left">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:layout_marginLeft="15dp"
+                                            android:text="Memenuhi Syarat"
+                                            android:textColor="#6E6E6E"
+                                            android:textSize="14dp" />
+
+                                    </LinearLayout>
+
+                                    <RadioGroup
+                                        android:id="@+id/f3_option"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:orientation="horizontal">
+
+                                        <RadioButton
+                                            android:id="@+id/f3_option_ya"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:paddingHorizontal="3dp"
+                                            android:layout_marginRight="20dp"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#4A4A4A"
+                                            android:text="YA"/>
+
+                                        <RadioButton
+                                            android:id="@+id/f3_option_tidak"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:paddingHorizontal="3dp"
+                                            android:layout_marginLeft="20dp"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#4A4A4A"
+                                            android:text="TIDAK"/>
+
+                                    </RadioGroup>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="25dp"
+                                    android:focusable="true"
+                                    android:focusableInTouchMode="true"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Catatan :"/>
+
+                                    <EditText
+                                        android:id="@+id/f3_catatan_tv"
+                                        android:layout_width="match_parent"
+                                        android:gravity="top"
+                                        android:inputType="textCapSentences|textMultiLine"
+                                        android:layout_height="wrap_content"
+                                        android:minHeight="80dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingBottom="13dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:maxLength="255"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:textColor="#595959"
+                                        android:hint=""
+                                        android:textSize="14dp"
+                                        android:textColorHint="#595959"
+                                        android:textColorHighlight="#FFE1BC"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
                             <LinearLayout
                                 android:id="@+id/submit_btn"
                                 android:visibility="gone"
