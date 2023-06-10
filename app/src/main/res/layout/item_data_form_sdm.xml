@@ -174,15 +174,62 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/timestamp_data_tv"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="18dp"
-                    android:gravity="right"
-                    android:text="-"
-                    android:textColor="#979797"
-                    android:textSize="10dp" />
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_weight=".50"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/acc_mark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="ACCEPTED"
+                            android:layout_marginRight="10dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textStyle="bold"
+                            android:textColor="#26982B"
+                            android:visibility="gone"
+                            android:textSize="11dp" />
+
+                        <TextView
+                            android:id="@+id/rej_mark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="REJECTED"
+                            android:layout_marginRight="10dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="#CD4135"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            android:textSize="11dp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/timestamp_data_tv"
+                        android:layout_weight=".50"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="18dp"
+                        android:gravity="right"
+                        android:text="-"
+                        android:textColor="#979797"
+                        android:textSize="10dp" />
+
+                </LinearLayout>
 
             </RelativeLayout>
 

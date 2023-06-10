@@ -96,17 +96,27 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
                         myViewHolder.detailTV.setText("Menunggu verifikasi HRD");
                     } else if(dataFormSDM.getStatus_approve_hrd().equals("1")){
                         myViewHolder.detailTV.setText("Pengajuan telah diverifikasi HRD");
+                        myViewHolder.accMark.setVisibility(View.VISIBLE);
+                        myViewHolder.rejMark.setVisibility(View.GONE);
                     } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
                         myViewHolder.detailTV.setText("Pengajuan ditolak HRD");
+                        myViewHolder.accMark.setVisibility(View.GONE);
+                        myViewHolder.rejMark.setVisibility(View.VISIBLE);
                     }
                 } else if(dataFormSDM.getStatus_approve_direktur().equals("2")){
                     myViewHolder.detailTV.setText("Pengajuan ditolak Direksi");
+                    myViewHolder.accMark.setVisibility(View.GONE);
+                    myViewHolder.rejMark.setVisibility(View.VISIBLE);
                 }
             } else if(dataFormSDM.getStatus_approve_kadept().equals("2")){
                 myViewHolder.detailTV.setText("Pengajuan ditolak Kepala Departemen");
+                myViewHolder.accMark.setVisibility(View.GONE);
+                myViewHolder.rejMark.setVisibility(View.VISIBLE);
             }
         } else if(dataFormSDM.getStatus_approve_kabag().equals("2")){
             myViewHolder.detailTV.setText("Pengajuan ditolak Kepala Bagian");
+            myViewHolder.accMark.setVisibility(View.GONE);
+            myViewHolder.rejMark.setVisibility(View.VISIBLE);
         }
 
         String tanggal_buat = dataFormSDM.getCreated_at();
@@ -176,7 +186,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout parrentPart, point1, point2, point3, point4, point5, point6, point7, waitingMark;
+        LinearLayout parrentPart, point1, point2, point3, point4, point5, point6, point7, waitingMark, rejMark, accMark;
         TextView keteranganTV, timestampTV, detailTV;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -192,6 +202,8 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             detailTV = itemView.findViewById(R.id.detail_tv);
             timestampTV = itemView.findViewById(R.id.timestamp_data_tv);
             waitingMark = itemView.findViewById(R.id.waiting_mark);
+            accMark = itemView.findViewById(R.id.acc_mark);
+            rejMark = itemView.findViewById(R.id.rej_mark);
         }
     }
 }
