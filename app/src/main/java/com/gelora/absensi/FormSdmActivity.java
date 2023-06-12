@@ -77,7 +77,7 @@ import java.util.Map;
 public class FormSdmActivity extends AppCompatActivity {
 
     LinearLayout viewBTN, backBTN, pilihKeteranganPart, actionBar, submitBTN, attantionNoForm, loadingFormPart, formPart, successPart, warningNoForm;
-    LinearLayout f1Part, f2Part;
+    LinearLayout f1Part, f2Part, f3Part;
     LinearLayout ket1BTN, ket2BTN, ket3BTN, ket4BTN, ket5BTN, ket6BTN, ket7BTN;
     LinearLayout markKet1, markKet2, markKet3, markKet4, markKet5, markKet6, markKet7;
 
@@ -99,7 +99,7 @@ public class FormSdmActivity extends AppCompatActivity {
     private UnitJabatan[] unitJabatans;
     private AdapterUnitJabatan adapterUnitJabatan;
 
-    //Form 2
+    //Form 2 3 4
     LinearLayout f2NamaKaryawanPart, f2UnitBisnisPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
     LinearLayout f2NamaKaryawanLamaPart, f2UnitBisnisLamaPart, f2StartAttantionKaryawanLamaPart, f2NoDataKaryawanLamaPart, f2loadingDataKaryawanLamaPart;
     ImageView f2loadingGif, f2loadingLamaGif;
@@ -146,6 +146,7 @@ public class FormSdmActivity extends AppCompatActivity {
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         f1Part = findViewById(R.id.form_1);
         f2Part = findViewById(R.id.form_2);
+        f3Part = findViewById(R.id.form_3);
         submitBTN = findViewById(R.id.submit_btn);
         warningNoForm = findViewById(R.id.warning_no_form);
         attantionNoForm = findViewById(R.id.attantion_no_form);
@@ -174,7 +175,7 @@ public class FormSdmActivity extends AppCompatActivity {
         f1TglPemenuhanTV = findViewById(R.id.f1_tgl_pemenuhan_tv);
         f1CatatanTV = findViewById(R.id.f1_catatan_tv);
 
-        //Form 2
+        //Form 2 3 4
         f2NamaKaryawanPart = findViewById(R.id.f2_nama_karyawan_part);
         f2NamaKaryawanTV = findViewById(R.id.f2_nama_karyawan_tv);
         f2UnitBisnisPart = findViewById(R.id.f2_unit_bisnis_part);
@@ -215,6 +216,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
+                f2Part.setVisibility(View.GONE);
 
                 warningNoForm.setVisibility(View.GONE);
                 loadingFormPart.setVisibility(View.VISIBLE);
@@ -242,7 +244,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
 
-                //Form 2
+                //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
@@ -362,7 +364,7 @@ public class FormSdmActivity extends AppCompatActivity {
         });
         //End Form 1
 
-        //Form 2
+        //Form 2 3 4
         LocalBroadcastManager.getInstance(this).registerReceiver(f2KaryawanBaruBroad, new IntentFilter("f2_karyawan_baru_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(f2KaryawanLamaBroad, new IntentFilter("f2_karyawan_lama_broad"));
         LocalBroadcastManager.getInstance(this).registerReceiver(f2UnitBisnisBoard, new IntentFilter("f2_unit_bisnis_board"));
@@ -483,7 +485,8 @@ public class FormSdmActivity extends AppCompatActivity {
                                 })
                                 .show();
                     }
-                } else if(kodeKeterangan.equals("2")){ //Form 2
+                }
+                else if(kodeKeterangan.equals("2")||kodeKeterangan.equals("3")||kodeKeterangan.equals("4")){ //Form 2 3 4
                     if (f2NikBaru.equals("") || f2IdUnitBisnis.equals("") || f2KomponenGajiTV.getText().toString().equals("") || f2NikLama.equals("") || f2IdUnitBisnisLama.equals("") || f2KomponenGajiLamaTV.getText().toString().equals("")) {
                         new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -581,7 +584,7 @@ public class FormSdmActivity extends AppCompatActivity {
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
 
-        //Form 2
+        //Form 2 3 4
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
 
@@ -738,6 +741,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
+                f3Part.setVisibility(View.GONE);
 
                 //Form 1
                 f1UnitBisnisTV.setText("");
@@ -761,7 +765,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
 
-                //Form 2
+                //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
@@ -809,6 +813,7 @@ public class FormSdmActivity extends AppCompatActivity {
                                 submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.VISIBLE);
                                 f2Part.setVisibility(View.GONE);
+                                f3Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -843,6 +848,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
+                f3Part.setVisibility(View.GONE);
 
                 //Form 1
                 f1UnitBisnisTV.setText("");
@@ -866,7 +872,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
 
-                //Form 2
+                //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
@@ -907,12 +913,14 @@ public class FormSdmActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                warningNoForm.setVisibility(View.GONE);
                                 loadingFormPart.setVisibility(View.GONE);
                                 attantionNoForm.setVisibility(View.GONE);
 
                                 submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.GONE);
                                 f2Part.setVisibility(View.VISIBLE);
+                                f3Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -947,6 +955,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
+                f3Part.setVisibility(View.GONE);
 
                 //Form 1
                 f1UnitBisnisTV.setText("");
@@ -970,7 +979,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
 
-                //Form 2
+                //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
@@ -1011,15 +1020,14 @@ public class FormSdmActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                //Sementara
-                                warningNoForm.setVisibility(View.VISIBLE);
-
+                                warningNoForm.setVisibility(View.GONE);
                                 loadingFormPart.setVisibility(View.GONE);
                                 attantionNoForm.setVisibility(View.GONE);
 
-                                submitBTN.setVisibility(View.GONE);
+                                submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.GONE);
-                                f2Part.setVisibility(View.GONE);
+                                f2Part.setVisibility(View.VISIBLE);
+                                f3Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -1054,6 +1062,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
+                f3Part.setVisibility(View.GONE);
 
                 //Form 1
                 f1UnitBisnisTV.setText("");
@@ -1077,7 +1086,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
 
-                //Form 2
+                //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
@@ -1118,15 +1127,14 @@ public class FormSdmActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                //Sementara
-                                warningNoForm.setVisibility(View.VISIBLE);
-
+                                warningNoForm.setVisibility(View.GONE);
                                 loadingFormPart.setVisibility(View.GONE);
                                 attantionNoForm.setVisibility(View.GONE);
 
-                                submitBTN.setVisibility(View.GONE);
+                                submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.GONE);
-                                f2Part.setVisibility(View.GONE);
+                                f2Part.setVisibility(View.VISIBLE);
+                                f3Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -1161,6 +1169,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
+                f3Part.setVisibility(View.GONE);
 
                 //Form 1
                 f1UnitBisnisTV.setText("");
@@ -1184,7 +1193,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
 
-                //Form 2
+                //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
@@ -1225,15 +1234,15 @@ public class FormSdmActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                //Sementara
-                                warningNoForm.setVisibility(View.VISIBLE);
+                                warningNoForm.setVisibility(View.GONE);
 
                                 loadingFormPart.setVisibility(View.GONE);
                                 attantionNoForm.setVisibility(View.GONE);
 
-                                submitBTN.setVisibility(View.GONE);
+                                submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.GONE);
                                 f2Part.setVisibility(View.GONE);
+                                f3Part.setVisibility(View.VISIBLE);
                             }
                         }, 1500);
                     }
@@ -1268,6 +1277,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
+                f3Part.setVisibility(View.GONE);
 
                 //Form 1
                 f1UnitBisnisTV.setText("");
@@ -1291,7 +1301,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
 
-                //Form 2
+                //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
@@ -1332,15 +1342,15 @@ public class FormSdmActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                //Sementara
-                                warningNoForm.setVisibility(View.VISIBLE);
+                                warningNoForm.setVisibility(View.GONE);
 
                                 loadingFormPart.setVisibility(View.GONE);
                                 attantionNoForm.setVisibility(View.GONE);
 
-                                submitBTN.setVisibility(View.GONE);
+                                submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.GONE);
                                 f2Part.setVisibility(View.GONE);
+                                f3Part.setVisibility(View.VISIBLE);
                             }
                         }, 1500);
                     }
@@ -1375,6 +1385,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 submitBTN.setVisibility(View.GONE);
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
+                f3Part.setVisibility(View.GONE);
 
                 //Form 1
                 f1UnitBisnisTV.setText("");
@@ -1398,7 +1409,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1TglPemenuhanTV.setText("");
                 f1CatatanTV.setText("");
 
-                //Form 2
+                //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
@@ -1448,6 +1459,7 @@ public class FormSdmActivity extends AppCompatActivity {
                                 submitBTN.setVisibility(View.GONE);
                                 f1Part.setVisibility(View.GONE);
                                 f2Part.setVisibility(View.GONE);
+                                f3Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -2857,7 +2869,7 @@ public class FormSdmActivity extends AppCompatActivity {
     }
     //Form 1 End
 
-    //Form 2
+    //Form 2 3 4
     private void f2KaryawanBaruFunc(){
         bottomSheet.showWithSheetView(LayoutInflater.from(FormSdmActivity.this).inflate(R.layout.layout_karyawan_sdm, bottomSheet, false));
         f2keywordKaryawanBaru = findViewById(R.id.keyword_user_ed);
@@ -3480,7 +3492,7 @@ public class FormSdmActivity extends AppCompatActivity {
         postRequest.setRetryPolicy(retryPolicy);
 
     }
-    //Form 2 End
+    //Form 2 3 4 End
 
     private void checkSignature(){
         final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
@@ -3500,7 +3512,7 @@ public class FormSdmActivity extends AppCompatActivity {
                                 String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
                                 if(kodeKeterangan.equals("1")){
                                     f1SendData();
-                                } else  if(kodeKeterangan.equals("2")){
+                                } else  if(kodeKeterangan.equals("2")||kodeKeterangan.equals("3")||kodeKeterangan.equals("4")){
                                     f2SendData();
                                 }
                             } else {

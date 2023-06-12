@@ -356,7 +356,7 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
             myViewHolder.higlightTV.setText(dataAbsensi.getTipe_izin());
             myViewHolder.higlightTV.setTextColor(Color.parseColor("#835BDF"));
             myViewHolder.dateAbsensi.setTextColor(Color.parseColor("#835BDF"));
-            myViewHolder.alasanTV.setText(dataAbsensi.getAlasan());
+            myViewHolder.alasanTV.setText(dataAbsensi.getAlasan().replaceAll("\\s+$", ""));
 
         } else if(dataAbsensi.getKet_kehadiran().equals("Libur")){
             myViewHolder.partHadir.setVisibility(View.GONE);

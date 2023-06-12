@@ -444,8 +444,14 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
                                     catatanTV.setText(catatan);
 
-                                } else if(keterangan.equals("2")){
-                                    markCeklis2.setText("✓");
+                                } else if(keterangan.equals("2")||keterangan.equals("3")||keterangan.equals("4")){
+                                    if(keterangan.equals("2")){
+                                        markCeklis2.setText("✓");
+                                    } else if(keterangan.equals("3")){
+                                        markCeklis3.setText("✓");
+                                    } else if(keterangan.equals("4")){
+                                        markCeklis4.setText("✓");
+                                    }
 
                                     namaBaruTV.setText(nama);
                                     unitBisnisBaruTV.setText(nama_unit_bisnis);
@@ -532,17 +538,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
                                     catatanTV.setText(catatan);
 
-                                } else if(keterangan.equals("3")){
-                                    markCeklis3.setText("✓");
-
-                                } else if(keterangan.equals("4")){
-                                    markCeklis4.setText("✓");
-
-                                } else if(keterangan.equals("5")){
+                                } else if(keterangan.equals("5")||keterangan.equals("6")){
                                     markCeklis5.setText("✓");
-
-                                } else if(keterangan.equals("6")){
-                                    markCeklis6.setText("✓");
 
                                 } else if(keterangan.equals("7")){
                                     markCeklis7.setText("✓");
