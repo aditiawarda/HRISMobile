@@ -77,7 +77,7 @@ import java.util.Map;
 public class FormSdmActivity extends AppCompatActivity {
 
     LinearLayout viewBTN, backBTN, pilihKeteranganPart, actionBar, submitBTN, attantionNoForm, loadingFormPart, formPart, successPart, warningNoForm;
-    LinearLayout f1Part, f2Part, f3Part;
+    LinearLayout f1Part, f2Part, f3Part, f4Part;
     LinearLayout ket1BTN, ket2BTN, ket3BTN, ket4BTN, ket5BTN, ket6BTN, ket7BTN;
     LinearLayout markKet1, markKet2, markKet3, markKet4, markKet5, markKet6, markKet7;
 
@@ -147,6 +147,7 @@ public class FormSdmActivity extends AppCompatActivity {
         f1Part = findViewById(R.id.form_1);
         f2Part = findViewById(R.id.form_2);
         f3Part = findViewById(R.id.form_3);
+        f4Part = findViewById(R.id.form_4);
         submitBTN = findViewById(R.id.submit_btn);
         warningNoForm = findViewById(R.id.warning_no_form);
         attantionNoForm = findViewById(R.id.attantion_no_form);
@@ -217,6 +218,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
+                f4Part.setVisibility(View.GONE);
 
                 warningNoForm.setVisibility(View.GONE);
                 loadingFormPart.setVisibility(View.VISIBLE);
@@ -742,6 +744,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
                 f3Part.setVisibility(View.GONE);
+                f4Part.setVisibility(View.GONE);
 
                 //Form 1
                 f1UnitBisnisTV.setText("");
@@ -814,6 +817,7 @@ public class FormSdmActivity extends AppCompatActivity {
                                 f1Part.setVisibility(View.VISIBLE);
                                 f2Part.setVisibility(View.GONE);
                                 f3Part.setVisibility(View.GONE);
+                                f4Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -849,6 +853,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
                 f3Part.setVisibility(View.GONE);
+                f4Part.setVisibility(View.GONE);
 
                 //Form 1
                 f1UnitBisnisTV.setText("");
@@ -921,6 +926,7 @@ public class FormSdmActivity extends AppCompatActivity {
                                 f1Part.setVisibility(View.GONE);
                                 f2Part.setVisibility(View.VISIBLE);
                                 f3Part.setVisibility(View.GONE);
+                                f4Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -956,6 +962,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
                 f3Part.setVisibility(View.GONE);
+                f4Part.setVisibility(View.GONE);
 
                 //Form 1
                 f1UnitBisnisTV.setText("");
@@ -1028,6 +1035,7 @@ public class FormSdmActivity extends AppCompatActivity {
                                 f1Part.setVisibility(View.GONE);
                                 f2Part.setVisibility(View.VISIBLE);
                                 f3Part.setVisibility(View.GONE);
+                                f4Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -1278,6 +1286,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
                 f3Part.setVisibility(View.GONE);
+                f4Part.setVisibility(View.GONE);
 
                 //Form 1
                 f1UnitBisnisTV.setText("");
@@ -1351,6 +1360,7 @@ public class FormSdmActivity extends AppCompatActivity {
                                 f1Part.setVisibility(View.GONE);
                                 f2Part.setVisibility(View.GONE);
                                 f3Part.setVisibility(View.VISIBLE);
+                                f4Part.setVisibility(View.GONE);
                             }
                         }, 1500);
                     }
@@ -1386,6 +1396,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1Part.setVisibility(View.GONE);
                 f2Part.setVisibility(View.GONE);
                 f3Part.setVisibility(View.GONE);
+                f4Part.setVisibility(View.GONE);
 
                 //Form 1
                 f1UnitBisnisTV.setText("");
@@ -1451,15 +1462,16 @@ public class FormSdmActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 //Sementara
-                                warningNoForm.setVisibility(View.VISIBLE);
+                                warningNoForm.setVisibility(View.GONE);
 
                                 loadingFormPart.setVisibility(View.GONE);
                                 attantionNoForm.setVisibility(View.GONE);
 
-                                submitBTN.setVisibility(View.GONE);
+                                submitBTN.setVisibility(View.VISIBLE);
                                 f1Part.setVisibility(View.GONE);
                                 f2Part.setVisibility(View.GONE);
                                 f3Part.setVisibility(View.GONE);
+                                f4Part.setVisibility(View.VISIBLE);
                             }
                         }, 1500);
                     }
