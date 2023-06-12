@@ -66,7 +66,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             myViewHolder.point3.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("4")){
             myViewHolder.keteranganTV.setText("PENSIUN/PHK");
-            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#F199B8"));
+            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#e85588"));
             myViewHolder.point4.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("5")){
             myViewHolder.keteranganTV.setText("PROMOSI/MUTASI");

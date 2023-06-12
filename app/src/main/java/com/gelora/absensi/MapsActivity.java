@@ -1973,6 +1973,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                         if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                             pDialog.dismiss();
+                                                            devModeOnDetection();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian")
                                                                     .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
@@ -2109,6 +2110,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                         if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                             pDialog.dismiss();
+                                                            devModeOnDetection();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian")
                                                                     .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
@@ -2311,6 +2313,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                     if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                         pDialog.dismiss();
+                                                        devModeOnDetection();
                                                         new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
                                                                 .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
@@ -2447,6 +2450,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                     if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                         pDialog.dismiss();
+                                                        devModeOnDetection();
                                                         new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("Perhatian")
                                                                 .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
@@ -2860,6 +2864,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                         if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                             pDialog.dismiss();
+                                                            devModeOnDetection();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian")
                                                                     .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
@@ -2996,6 +3001,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                         if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                             pDialog.dismiss();
+                                                            devModeOnDetection();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian")
                                                                     .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
@@ -3142,6 +3148,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                         if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                             pDialog.dismiss();
+                                                            devModeOnDetection();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian")
                                                                     .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
@@ -3279,6 +3286,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                         if (isDeveloperModeEnabled() && devModCheck.equals("1")){
                                                             pDialog.dismiss();
+                                                            devModeOnDetection();
                                                             new KAlertDialog(MapsActivity.this, KAlertDialog.ERROR_TYPE)
                                                                     .setTitleText("Perhatian")
                                                                     .setContentText("Mode Pengembang/Developer pada perangkat anda terdeteksi aktif, harap non-aktifkan terlebih dahulu!")
@@ -4953,6 +4961,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1, notificationBuilder.build());
+
+    }
+
+    private void devModeOnDetection(){
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/user_devmode_detection";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
 
     }
 
