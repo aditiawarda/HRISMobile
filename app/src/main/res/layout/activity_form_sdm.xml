@@ -1676,28 +1676,57 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Departemen :"
                                         android:textColor="#696969"
-                                        android:text="Departemen :"/>
+                                        android:textSize="12dp" />
 
                                     <LinearLayout
+                                        android:id="@+id/f3_departemen_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:background="@drawable/shape_feel_disable"
-                                        android:gravity="center|left"
-                                        android:orientation="horizontal"
                                         android:paddingStart="20dp"
-                                        android:paddingEnd="20dp">
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal">
 
-                                        <TextView
-                                            android:id="@+id/f3_departemen_tv"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text=""
-                                            android:textColor="#B15735"
-                                            android:textSize="13dp"
-                                            android:textStyle="bold" />
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left">
+
+                                                <TextView
+                                                    android:id="@+id/f3_departemen_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_down"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
 
                                     </LinearLayout>
 
@@ -1712,28 +1741,57 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Bagian :"
                                         android:textColor="#696969"
-                                        android:text="Bagian :"/>
+                                        android:textSize="12dp" />
 
                                     <LinearLayout
+                                        android:id="@+id/f3_bagian_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:background="@drawable/shape_feel_disable"
-                                        android:gravity="center|left"
-                                        android:orientation="horizontal"
                                         android:paddingStart="20dp"
-                                        android:paddingEnd="20dp">
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal">
 
-                                        <TextView
-                                            android:id="@+id/f3_bagian_tv"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text=""
-                                            android:textColor="#B15735"
-                                            android:textSize="13dp"
-                                            android:textStyle="bold" />
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left">
+
+                                                <TextView
+                                                    android:id="@+id/f3_bagian_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_down"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
 
                                     </LinearLayout>
 
@@ -1748,28 +1806,57 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Jabatan :"
                                         android:textColor="#696969"
-                                        android:text="Jabatan :"/>
+                                        android:textSize="12dp" />
 
                                     <LinearLayout
+                                        android:id="@+id/f3_jabatan_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:background="@drawable/shape_feel_disable"
-                                        android:gravity="center|left"
-                                        android:orientation="horizontal"
                                         android:paddingStart="20dp"
-                                        android:paddingEnd="20dp">
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal">
 
-                                        <TextView
-                                            android:id="@+id/f3_jabatan_tv"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text=""
-                                            android:textColor="#B15735"
-                                            android:textSize="13dp"
-                                            android:textStyle="bold" />
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left">
+
+                                                <TextView
+                                                    android:id="@+id/f3_jabatan_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_down"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
 
                                     </LinearLayout>
 
@@ -1965,28 +2052,57 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Departemen :"
                                         android:textColor="#696969"
-                                        android:text="Departemen :"/>
+                                        android:textSize="12dp" />
 
                                     <LinearLayout
+                                        android:id="@+id/f3_departemen_lama_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:background="@drawable/shape_feel_disable"
-                                        android:gravity="center|left"
-                                        android:orientation="horizontal"
                                         android:paddingStart="20dp"
-                                        android:paddingEnd="20dp">
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal">
 
-                                        <TextView
-                                            android:id="@+id/f3_departemen_lama_tv"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text=""
-                                            android:textColor="#B15735"
-                                            android:textSize="13dp"
-                                            android:textStyle="bold" />
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left">
+
+                                                <TextView
+                                                    android:id="@+id/f3_departemen_lama_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_down"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
 
                                     </LinearLayout>
 
@@ -2001,28 +2117,57 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Bagian :"
                                         android:textColor="#696969"
-                                        android:text="Bagian :"/>
+                                        android:textSize="12dp" />
 
                                     <LinearLayout
+                                        android:id="@+id/f3_bagian_lama_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:background="@drawable/shape_feel_disable"
-                                        android:gravity="center|left"
-                                        android:orientation="horizontal"
                                         android:paddingStart="20dp"
-                                        android:paddingEnd="20dp">
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal">
 
-                                        <TextView
-                                            android:id="@+id/f3_bagian_lama_tv"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text=""
-                                            android:textColor="#B15735"
-                                            android:textSize="13dp"
-                                            android:textStyle="bold" />
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left">
+
+                                                <TextView
+                                                    android:id="@+id/f3_bagian_lama_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_down"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
 
                                     </LinearLayout>
 
@@ -2037,28 +2182,57 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Jabatan :"
                                         android:textColor="#696969"
-                                        android:text="Jabatan :"/>
+                                        android:textSize="12dp" />
 
                                     <LinearLayout
+                                        android:id="@+id/f3_jabatan_lama_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
-                                        android:background="@drawable/shape_feel_disable"
-                                        android:gravity="center|left"
-                                        android:orientation="horizontal"
                                         android:paddingStart="20dp"
-                                        android:paddingEnd="20dp">
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal">
 
-                                        <TextView
-                                            android:id="@+id/f3_jabatan_lama_tv"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text=""
-                                            android:textColor="#B15735"
-                                            android:textSize="13dp"
-                                            android:textStyle="bold" />
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left">
+
+                                                <TextView
+                                                    android:id="@+id/f3_jabatan_lama_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_down"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
 
                                     </LinearLayout>
 
@@ -2130,7 +2304,7 @@
                                         android:textSize="12dp" />
 
                                     <LinearLayout
-                                        android:id="@+id/f3_jabatan_lama_part"
+                                        android:id="@+id/f3_jabatan_lama_d_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:paddingStart="20dp"
@@ -2150,7 +2324,7 @@
                                                 android:gravity="center|left">
 
                                                 <TextView
-                                                    android:id="@+id/f3_jabatan_lama_tv"
+                                                    android:id="@+id/f3_jabatan_lama_d_tv"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:textColor="#B15735"
@@ -2260,7 +2434,7 @@
                                         android:textSize="12dp" />
 
                                     <LinearLayout
-                                        android:id="@+id/f3_jabatan_baru_part"
+                                        android:id="@+id/f3_jabatan_baru_d_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:paddingStart="20dp"
@@ -2280,7 +2454,7 @@
                                                 android:gravity="center|left">
 
                                                 <TextView
-                                                    android:id="@+id/f3_jabatan_baru_tv"
+                                                    android:id="@+id/f3_jabatan_baru_d_tv"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:textColor="#B15735"
