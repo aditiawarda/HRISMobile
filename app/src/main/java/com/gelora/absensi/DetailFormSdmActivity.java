@@ -6,6 +6,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -37,7 +38,7 @@ import java.util.Map;
 
 public class DetailFormSdmActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
+    LinearLayout downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
@@ -48,7 +49,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
     TextView persetujuanYaTV, persetujuanTidakTV;
     TextView lainLainTV, jabatanLamaDetailTV, jabatanBaruDetailTV, tglPengangkatanJabatanLamaDetailTV, tglPengangkatanJabatanBaruDetailTV, alasanPengangkatanTV, catatanTV, namaKabagTV, namaKadeptTV, namaDirekturTV, tglApproveKabag, tglApproveKadept, tglApproveDireksi, tglPenerimaanTV;
     ImageView ttdPemohon, ttdKadept, ttdDireksi, ttdPenerima;
-    String idData = "";
+    String idData = "", urlDownload = "";
     KAlertDialog pDialog;
     private int i = -1;
 
@@ -61,6 +62,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         actionBar = findViewById(R.id.action_bar);
+        downloadBTN = findViewById(R.id.download_btn);
 
         accMark = findViewById(R.id.acc_mark);
         rejMark = findViewById(R.id.rej_mark);
@@ -129,6 +131,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         rejectedBTN = findViewById(R.id.rejected_btn);
 
         idData = getIntent().getExtras().getString("id_data");
+        urlDownload = "https://geloraaksara.co.id/absen-online/absen/pdf_formulir_sdm/"+idData;
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +157,37 @@ public class DetailFormSdmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        downloadBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailFormSdmActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Unduh File?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlDownload));
+                                try {
+                                    startActivity(browserIntent);
+                                } catch (SecurityException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        })
+                        .show();
             }
         });
 
