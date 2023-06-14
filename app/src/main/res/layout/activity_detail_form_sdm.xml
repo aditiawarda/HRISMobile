@@ -1642,6 +1642,7 @@
                                                             android:textSize="7dp" />
 
                                                         <TextView
+                                                            android:id="@+id/jabatan_lama_detail_tv"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:text="......................................................."
@@ -1680,6 +1681,7 @@
                                                             android:textSize="7dp" />
 
                                                         <TextView
+                                                            android:id="@+id/tgl_pengangkatan_jabatan_lama_detail_tv"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:lineSpacingExtra="2.5dp"
@@ -1719,6 +1721,7 @@
                                                             android:textSize="7dp" />
 
                                                         <TextView
+                                                            android:id="@+id/jabatan_baru_detail_tv"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:lineSpacingExtra="2dp"
@@ -1758,6 +1761,7 @@
                                                             android:textSize="7dp" />
 
                                                         <TextView
+                                                            android:id="@+id/tgl_pengangkatan_jabatan_baru_detail_tv"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:text="......................................................."
@@ -1796,6 +1800,7 @@
                                                             android:textSize="7dp" />
 
                                                         <TextView
+                                                            android:id="@+id/alasan_pengangkatan_tv"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:lineSpacingExtra="2dp"
@@ -1835,6 +1840,7 @@
                                                             android:textSize="7dp" />
 
                                                         <TextView
+                                                            android:id="@+id/tgl_dibutuhkan_2_tv"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:text="....................."
@@ -1865,6 +1871,7 @@
                                                             android:textSize="7dp" />
 
                                                         <TextView
+                                                            android:id="@+id/tgl_pemenuhan_2_tv"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:text="....................."
@@ -2037,6 +2044,7 @@
                                                         android:textSize="7dp" />
 
                                                     <TextView
+                                                        android:id="@+id/lain_lain_tv"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
                                                         android:lineSpacingExtra="2dp"
@@ -2086,6 +2094,7 @@
                                                                 android:background="@drawable/shape_detail_form_sdm">
 
                                                                 <TextView
+                                                                    android:id="@+id/persetujuan_ya_tv"
                                                                     android:layout_width="match_parent"
                                                                     android:layout_height="match_parent"
                                                                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -2122,6 +2131,7 @@
                                                                 android:background="@drawable/shape_detail_form_sdm">
 
                                                                 <TextView
+                                                                    android:id="@+id/persetujuan_tidak_tv"
                                                                     android:layout_width="match_parent"
                                                                     android:layout_height="match_parent"
                                                                     android:textAppearance="?android:attr/textAppearanceLarge"

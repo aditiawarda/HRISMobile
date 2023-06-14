@@ -43,9 +43,10 @@ public class DetailFormSdmActivity extends AppCompatActivity {
     TextView markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
     TextView namaBaruTV, unitBisnisBaruTV, departemenBaruTV, bagianBaruTV, jabatanBaruTV, komponenGajiBaruTV;
     TextView namaLamaTV, unitBisnisLamaTV, departemenLamaTV, bagianLamaTV, jabatanLamaTV, komponenGajiLamaTV;
-    TextView jabatanSlashDepartemenTV, deskripsiSlashJabatanTV, syaratPenerimaanTV, tglDibutuhkan1TV, tglPemenuhan1TV;
+    TextView jabatanSlashDepartemenTV, deskripsiSlashJabatanTV, syaratPenerimaanTV, tglDibutuhkan1TV, tglPemenuhan1TV, tglDibutuhkan2TV, tglPemenuhan2TV;
     TextView syaratYaTV, syaratTidakTV;
-    TextView catatanTV, namaKabagTV, namaKadeptTV, namaDirekturTV, tglApproveKabag, tglApproveKadept, tglApproveDireksi, tglPenerimaanTV;
+    TextView persetujuanYaTV, persetujuanTidakTV;
+    TextView lainLainTV, jabatanLamaDetailTV, jabatanBaruDetailTV, tglPengangkatanJabatanLamaDetailTV, tglPengangkatanJabatanBaruDetailTV, alasanPengangkatanTV, catatanTV, namaKabagTV, namaKadeptTV, namaDirekturTV, tglApproveKabag, tglApproveKadept, tglApproveDireksi, tglPenerimaanTV;
     ImageView ttdPemohon, ttdKadept, ttdDireksi, ttdPenerima;
     String idData = "";
     KAlertDialog pDialog;
@@ -91,11 +92,22 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         syaratPenerimaanTV = findViewById(R.id.syarat_penerimaan_tv);
         tglDibutuhkan1TV = findViewById(R.id.tgl_dibutuhkan_1_tv);
         tglPemenuhan1TV = findViewById(R.id.tgl_pemenuhan_1_tv);
+        tglDibutuhkan2TV = findViewById(R.id.tgl_dibutuhkan_2_tv);
+        tglPemenuhan2TV = findViewById(R.id.tgl_pemenuhan_2_tv);
+
+        jabatanLamaDetailTV = findViewById(R.id.jabatan_lama_detail_tv);
+        jabatanBaruDetailTV = findViewById(R.id.jabatan_baru_detail_tv);
+        tglPengangkatanJabatanLamaDetailTV = findViewById(R.id.tgl_pengangkatan_jabatan_lama_detail_tv);
+        tglPengangkatanJabatanBaruDetailTV = findViewById(R.id.tgl_pengangkatan_jabatan_baru_detail_tv);
+        alasanPengangkatanTV = findViewById(R.id.alasan_pengangkatan_tv);
 
         syaratYaTV = findViewById(R.id.syarat_ya_tv);
         syaratTidakTV = findViewById(R.id.syarat_tidak_tv);
+        persetujuanYaTV = findViewById(R.id.persetujuan_ya_tv);
+        persetujuanTidakTV = findViewById(R.id.persetujuan_tidak_tv);
 
         catatanTV = findViewById(R.id.catatan_tv);
+        lainLainTV = findViewById(R.id.lain_lain_tv);
 
         namaKabagTV = findViewById(R.id.nama_kabag_tv);
         namaKadeptTV = findViewById(R.id.nama_kadept_tv);
@@ -348,11 +360,15 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String created_at              = dataArray.getString("created_at");
                                 String updated_at              = dataArray.getString("updated_at");
                                 String dibuat_oleh             = dataArray.getString("dibuat_oleh");
+
                                 String jabatan_departemen      = dataArray.getString("jabatan_departemen");
                                 String deskripsi_jabatan       = dataArray.getString("deskripsi_jabatan");
                                 String syarat_penerimaan       = dataArray.getString("syarat_penerimaan");
-                                String tgl_pengangkatan        = dataArray.getString("tgl_pengangkatan");
-                                String jabatan_baru            = dataArray.getString("jabatan_baru");
+                                String jabatan_lama_detail     = dataArray.getString("jabatan_lama_detail");
+                                String nama_jabatan_lama_detail= dataArray.getString("nama_jabatan_lama_detail");
+                                String tgl_pengangkatan_lama   = dataArray.getString("tgl_pengangkatan_lama");
+                                String jabatan_baru_detail     = dataArray.getString("jabatan_baru_detail");
+                                String nama_jabatan_baru_detail= dataArray.getString("nama_jabatan_baru_detail");
                                 String tgl_pengangkatan_baru   = dataArray.getString("tgl_pengangkatan_baru");
                                 String alasan_pengangkatan     = dataArray.getString("alasan_pengangkatan");
                                 String tgl_dibutuhkan          = dataArray.getString("tgl_dibutuhkan");
@@ -539,10 +555,183 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     catatanTV.setText(catatan);
 
                                 } else if(keterangan.equals("5")||keterangan.equals("6")){
-                                    markCeklis5.setText("✓");
+                                    if(keterangan.equals("5")){
+                                        markCeklis5.setText("✓");
+                                    } else if(keterangan.equals("6")){
+                                        markCeklis6.setText("✓");
+                                    }
+
+                                    namaBaruTV.setText(nama);
+                                    unitBisnisBaruTV.setText(nama_unit_bisnis);
+                                    departemenBaruTV.setText(nama_departemen);
+                                    bagianBaruTV.setText(nama_bagian);
+                                    jabatanBaruTV.setText(nama_jabatan);
+                                    komponenGajiBaruTV.setText(komponen_gaji);
+
+                                    namaLamaTV.setText(nama_lama);
+                                    unitBisnisLamaTV.setText(nama_unit_bisnis_lama);
+                                    departemenLamaTV.setText(nama_departemen_lama);
+                                    bagianLamaTV.setText(nama_bagian_lama);
+                                    jabatanLamaTV.setText(nama_jabatan_lama);
+                                    komponenGajiLamaTV.setText(komponen_gaji_lama);
+
+                                    jabatanLamaDetailTV.setText(nama_jabatan_lama_detail);
+                                    jabatanBaruDetailTV.setText(nama_jabatan_baru_detail);
+                                    tglPengangkatanJabatanLamaDetailTV.setText(tgl_pengangkatan_lama.substring(8,10)+"/"+tgl_pengangkatan_lama.substring(5,7)+"/"+tgl_pengangkatan_lama.substring(0,4));
+                                    tglPengangkatanJabatanBaruDetailTV.setText(tgl_pengangkatan_baru.substring(8,10)+"/"+tgl_pengangkatan_baru.substring(5,7)+"/"+tgl_pengangkatan_baru.substring(0,4));
+                                    alasanPengangkatanTV.setText(alasan_pengangkatan);
+
+                                    tglDibutuhkan2TV.setText(tgl_dibutuhkan.substring(8,10)+"/"+tgl_dibutuhkan.substring(5,7)+"/"+tgl_dibutuhkan.substring(0,4));
+                                    tglPemenuhan2TV.setText(tgl_pemenuhan.substring(8,10)+"/"+tgl_pemenuhan.substring(5,7)+"/"+tgl_pemenuhan.substring(0,4));
+
+                                    if(status_approve_kabag.equals("1")){
+                                        String url_ttd_kabag = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kabag;
+                                        Picasso.get().load(url_ttd_kabag).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                .into(ttdPemohon);
+                                        namaKabagTV.setText(nama_kabag);
+                                        tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
+
+                                        if(status_approve_kadept.equals("1")){
+                                            String url_ttd_kadept = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kadept;
+                                            Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                    .into(ttdKadept);
+                                            namaKadeptTV.setText(nama_kadept);
+                                            tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
+
+                                            if(status_approve_direktur.equals("1")){
+                                                String url_ttd_direksi = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_direktur;
+                                                Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                        .into(ttdDireksi);
+                                                namaDirekturTV.setText(nama_direktur);
+                                                tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
+
+                                                if(status_approve_hrd.equals("1")){
+                                                    String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
+                                                    Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                            .into(ttdPenerima);
+                                                    tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+
+                                                } else if(status_approve_hrd.equals("2")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.VISIBLE);
+                                                }
+
+                                            } else if(status_approve_direktur.equals("2")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.VISIBLE);
+                                            }
+
+                                        } else if(status_approve_kadept.equals("2")){
+                                            accMark.setVisibility(View.GONE);
+                                            rejMark.setVisibility(View.VISIBLE);
+                                        } else if(status_approve_kadept.equals("0")){
+                                            // action Approve Kadept
+                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && sharedPrefManager.getSpIdJabatan().equals("10")){
+                                                actionPart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                actionPart.setVisibility(View.GONE);
+                                            }
+                                        }
+
+                                    } else if(status_approve_kabag.equals("2")){
+                                        accMark.setVisibility(View.GONE);
+                                        rejMark.setVisibility(View.VISIBLE);
+                                    }
+
+                                    catatanTV.setText(catatan);
 
                                 } else if(keterangan.equals("7")){
                                     markCeklis7.setText("✓");
+
+                                    namaBaruTV.setText(nama);
+                                    unitBisnisBaruTV.setText(nama_unit_bisnis);
+                                    departemenBaruTV.setText(nama_departemen);
+                                    bagianBaruTV.setText(nama_bagian);
+                                    jabatanBaruTV.setText(nama_jabatan);
+                                    komponenGajiBaruTV.setText(komponen_gaji);
+
+                                    namaLamaTV.setText(nama_lama);
+                                    unitBisnisLamaTV.setText(nama_unit_bisnis_lama);
+                                    departemenLamaTV.setText(nama_departemen_lama);
+                                    bagianLamaTV.setText(nama_bagian_lama);
+                                    jabatanLamaTV.setText(nama_jabatan_lama);
+                                    komponenGajiLamaTV.setText(komponen_gaji_lama);
+
+                                    lainLainTV.setText(lain_lain);
+                                    if(persetujuan.equals("1")){
+                                        persetujuanYaTV.setText("✓");
+                                        persetujuanTidakTV.setText("");
+                                    } else if(persetujuan.equals("2")){
+                                        persetujuanYaTV.setText("");
+                                        persetujuanTidakTV.setText("✓");
+                                    } else {
+                                        persetujuanYaTV.setText("");
+                                        persetujuanTidakTV.setText("");
+                                    }
+
+                                    if(status_approve_kabag.equals("1")){
+                                        String url_ttd_kabag = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kabag;
+                                        Picasso.get().load(url_ttd_kabag).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                .into(ttdPemohon);
+                                        namaKabagTV.setText(nama_kabag);
+                                        tglApproveKabag.setText(tgl_approve_kabag.substring(8,10)+"/"+tgl_approve_kabag.substring(5,7)+"/"+tgl_approve_kabag.substring(0,4));
+
+                                        if(status_approve_kadept.equals("1")){
+                                            String url_ttd_kadept = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_kadept;
+                                            Picasso.get().load(url_ttd_kadept).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                    .into(ttdKadept);
+                                            namaKadeptTV.setText(nama_kadept);
+                                            tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
+
+                                            if(status_approve_direktur.equals("1")){
+                                                String url_ttd_direksi = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_direktur;
+                                                Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                        .into(ttdDireksi);
+                                                namaDirekturTV.setText(nama_direktur);
+                                                tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
+
+                                                if(status_approve_hrd.equals("1")){
+                                                    String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
+                                                    Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                            .into(ttdPenerima);
+                                                    tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+
+                                                } else if(status_approve_hrd.equals("2")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.VISIBLE);
+                                                }
+
+                                            } else if(status_approve_direktur.equals("2")){
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.VISIBLE);
+                                            }
+
+                                        } else if(status_approve_kadept.equals("2")){
+                                            accMark.setVisibility(View.GONE);
+                                            rejMark.setVisibility(View.VISIBLE);
+                                        } else if(status_approve_kadept.equals("0")){
+                                            // action Approve Kadept
+                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && sharedPrefManager.getSpIdJabatan().equals("10")){
+                                                actionPart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                actionPart.setVisibility(View.GONE);
+                                            }
+                                        }
+
+                                    } else if(status_approve_kabag.equals("2")){
+                                        accMark.setVisibility(View.GONE);
+                                        rejMark.setVisibility(View.VISIBLE);
+                                    }
+
+                                    catatanTV.setText(catatan);
 
                                 }
 
