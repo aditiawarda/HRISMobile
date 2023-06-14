@@ -1253,10 +1253,10 @@ public class FormSdmActivity extends AppCompatActivity {
                     }
                 }
                 else if(kodeKeterangan.equals("2")||kodeKeterangan.equals("3")||kodeKeterangan.equals("4")){ //Form 2 3 4
-                    if (f2NikBaru.equals("") || f2IdUnitBisnis.equals("") || f2KomponenGajiTV.getText().toString().equals("") || f2NikLama.equals("") || f2IdUnitBisnisLama.equals("") || f2KomponenGajiLamaTV.getText().toString().equals("")) {
+                    if (f2NikBaru.equals("") || f2IdUnitBisnis.equals("") || f2KomponenGajiTV.getText().toString().equals("") || f2NikLama.equals("") || f2IdUnitBisnisLama.equals("") || f2KomponenGajiLamaTV.getText().toString().equals("") || f2VerifSyaratGroup.equals("")) {
                         new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
-                                .setContentText("Pastikan kolom nama, unit bisnis dan komponen gaji terisi!")
+                                .setContentText("Pastikan kolom nama, unit bisnis, komponen gaji dan pemenuhan syarat terisi!")
                                 .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override
@@ -1406,7 +1406,7 @@ public class FormSdmActivity extends AppCompatActivity {
                     if (f4NikBaru.equals("") || f4IdUnitBisnis.equals("") || f4KomponenGajiTV.getText().toString().equals("") || f4NikLama.equals("") || f4IdUnitBisnisLama.equals("") || f4KomponenGajiLamaTV.getText().toString().equals("") || f4LainlainTV.getText().toString().equals("") || f4Persetujuan.equals("")) {
                         new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
-                                .setContentText("Pastikan kolom nama, unit bisnis, komponen gaji terisi dan kolom lain-lain!")
+                                .setContentText("Pastikan kolom nama, unit bisnis, komponen gaji, kolom lain-lain dan persetujuan terisi!")
                                 .setConfirmText("    OK    ")
                                 .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                     @Override

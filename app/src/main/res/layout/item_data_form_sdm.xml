@@ -70,7 +70,7 @@
                             android:maxLines="1"
                             android:singleLine="true"
                             android:textStyle="bold"
-                            android:textColor="#26982B"
+                            android:textColor="#41B847"
                             android:visibility="gone"
                             android:textSize="12dp" />
 
@@ -83,7 +83,7 @@
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:textColor="#CD4135"
+                            android:textColor="#DD5043"
                             android:textStyle="bold"
                             android:visibility="gone"
                             android:textSize="12dp" />
@@ -97,7 +97,7 @@
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:textColor="#AA7915"
+                            android:textColor="#CC8D0F"
                             android:textStyle="bold"
                             android:visibility="gone"
                             android:textSize="12dp" />
@@ -114,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="0.5dp"
-                    android:text="Aditia Wardani"
+                    android:text=""
                     android:textColor="#C16D02"
                     android:textSize="13dp" />
 

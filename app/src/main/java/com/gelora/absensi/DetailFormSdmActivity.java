@@ -544,14 +544,32 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             namaKadeptTV.setText(nama_kadept);
                                             tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
 
-                                            if(status_approve_direktur.equals("1")){
-                                                String url_ttd_direksi = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_direktur;
-                                                Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                        .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                        .into(ttdDireksi);
-                                                namaDirekturTV.setText(nama_direktur);
-                                                tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
+                                            if(keterangan.equals("2")){
+                                                if(status_approve_direktur.equals("1")){
+                                                    String url_ttd_direksi = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_direktur;
+                                                    Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                            .into(ttdDireksi);
+                                                    namaDirekturTV.setText(nama_direktur);
+                                                    tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
 
+                                                    if(status_approve_hrd.equals("1")){
+                                                        String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
+                                                        Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
+                                                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                                .into(ttdPenerima);
+                                                        tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
+
+                                                    } else if(status_approve_hrd.equals("2")){
+                                                        accMark.setVisibility(View.GONE);
+                                                        rejMark.setVisibility(View.VISIBLE);
+                                                    }
+
+                                                } else if(status_approve_direktur.equals("2")){
+                                                    accMark.setVisibility(View.GONE);
+                                                    rejMark.setVisibility(View.VISIBLE);
+                                                }
+                                            } else if(keterangan.equals("3")||keterangan.equals("4")){
                                                 if(status_approve_hrd.equals("1")){
                                                     String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
                                                     Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
@@ -563,10 +581,6 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                     accMark.setVisibility(View.GONE);
                                                     rejMark.setVisibility(View.VISIBLE);
                                                 }
-
-                                            } else if(status_approve_direktur.equals("2")){
-                                                accMark.setVisibility(View.GONE);
-                                                rejMark.setVisibility(View.VISIBLE);
                                             }
 
                                         } else if(status_approve_kadept.equals("2")){
@@ -634,27 +648,14 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             namaKadeptTV.setText(nama_kadept);
                                             tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
 
-                                            if(status_approve_direktur.equals("1")){
-                                                String url_ttd_direksi = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_direktur;
-                                                Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
+                                            if(status_approve_hrd.equals("1")){
+                                                String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
+                                                Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
                                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                        .into(ttdDireksi);
-                                                namaDirekturTV.setText(nama_direktur);
-                                                tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
+                                                        .into(ttdPenerima);
+                                                tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
 
-                                                if(status_approve_hrd.equals("1")){
-                                                    String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
-                                                    Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                            .into(ttdPenerima);
-                                                    tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
-
-                                                } else if(status_approve_hrd.equals("2")){
-                                                    accMark.setVisibility(View.GONE);
-                                                    rejMark.setVisibility(View.VISIBLE);
-                                                }
-
-                                            } else if(status_approve_direktur.equals("2")){
+                                            } else if(status_approve_hrd.equals("2")){
                                                 accMark.setVisibility(View.GONE);
                                                 rejMark.setVisibility(View.VISIBLE);
                                             }
@@ -723,27 +724,14 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             namaKadeptTV.setText(nama_kadept);
                                             tglApproveKadept.setText(tgl_approve_kadept.substring(8,10)+"/"+tgl_approve_kadept.substring(5,7)+"/"+tgl_approve_kadept.substring(0,4));
 
-                                            if(status_approve_direktur.equals("1")){
-                                                String url_ttd_direksi = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_direktur;
-                                                Picasso.get().load(url_ttd_direksi).networkPolicy(NetworkPolicy.NO_CACHE)
+                                            if(status_approve_hrd.equals("1")){
+                                                String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
+                                                Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
                                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                        .into(ttdDireksi);
-                                                namaDirekturTV.setText(nama_direktur);
-                                                tglApproveDireksi.setText(tgl_approve_direktur.substring(8,10)+"/"+tgl_approve_direktur.substring(5,7)+"/"+tgl_approve_direktur.substring(0,4));
+                                                        .into(ttdPenerima);
+                                                tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
 
-                                                if(status_approve_hrd.equals("1")){
-                                                    String url_ttd_penerima = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+ttd_penerima;
-                                                    Picasso.get().load(url_ttd_penerima).networkPolicy(NetworkPolicy.NO_CACHE)
-                                                            .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                            .into(ttdPenerima);
-                                                    tglPenerimaanTV.setText(tgl_diterima.substring(8,10)+"/"+tgl_diterima.substring(5,7)+"/"+tgl_diterima.substring(0,4));
-
-                                                } else if(status_approve_hrd.equals("2")){
-                                                    accMark.setVisibility(View.GONE);
-                                                    rejMark.setVisibility(View.VISIBLE);
-                                                }
-
-                                            } else if(status_approve_direktur.equals("2")){
+                                            } else if(status_approve_hrd.equals("2")){
                                                 accMark.setVisibility(View.GONE);
                                                 rejMark.setVisibility(View.VISIBLE);
                                             }
