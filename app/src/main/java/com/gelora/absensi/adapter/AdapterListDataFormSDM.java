@@ -55,68 +55,99 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
         if(dataFormSDM.getKeterangan().equals("1")){
             myViewHolder.keteranganTV.setText("PENERIMAAN");
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#438cd6"));
+            myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#438cd6"));
             myViewHolder.point1.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("2")){
             myViewHolder.keteranganTV.setText("PENGANGKATAN");
-            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#27afbf"));
+            myViewHolder.keteranganTV.setTextColor(Color.parseColor("#239fae"));
+            myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#239fae"));
             myViewHolder.point2.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("3")){
             myViewHolder.keteranganTV.setText("PENUGASAN KEMBALI");
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#9570f0"));
+            myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#9570f0"));
             myViewHolder.point3.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("4")){
             myViewHolder.keteranganTV.setText("PENSIUN/PHK");
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#e85588"));
+            myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#e85588"));
             myViewHolder.point4.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("5")){
             myViewHolder.keteranganTV.setText("PROMOSI/MUTASI");
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#db7a33"));
+            myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#db7a33"));
             myViewHolder.point5.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("6")){
             myViewHolder.keteranganTV.setText("PENYESUAIAN GAJI");
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#37a464"));
+            myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#37a464"));
             myViewHolder.point6.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("7")){
             myViewHolder.keteranganTV.setText("LAIN-LAIN");
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#ff6666"));
+            myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#ff6666"));
             myViewHolder.point7.setVisibility(View.VISIBLE);
+        }
+
+        if(dataFormSDM.getKeterangan().equals("1")){
+            myViewHolder.atasNamaTV.setVisibility(View.GONE);
+        } else {
+            myViewHolder.atasNamaTV.setVisibility(View.VISIBLE);
+            myViewHolder.atasNamaTV.setText(dataFormSDM.getNama().toUpperCase());
         }
 
         if(dataFormSDM.getStatus_approve_kabag().equals("0")){
             myViewHolder.detailTV.setText("Menunggu verifikasi Kepala Bagian");
+            myViewHolder.accMark.setVisibility(View.GONE);
+            myViewHolder.rejMark.setVisibility(View.GONE);
+            myViewHolder.proMark.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getStatus_approve_kabag().equals("1")){
             if(dataFormSDM.getStatus_approve_kadept().equals("0")){
                 myViewHolder.detailTV.setText("Menunggu verifikasi Kepala Departemen");
                 myViewHolder.waitingMark.setVisibility(View.VISIBLE);
+                myViewHolder.accMark.setVisibility(View.GONE);
+                myViewHolder.rejMark.setVisibility(View.GONE);
+                myViewHolder.proMark.setVisibility(View.VISIBLE);
             } else if(dataFormSDM.getStatus_approve_kadept().equals("1")){
                 if(dataFormSDM.getStatus_approve_direktur().equals("0")){
                     myViewHolder.detailTV.setText("Menunggu verifikasi Direksi");
+                    myViewHolder.accMark.setVisibility(View.GONE);
+                    myViewHolder.rejMark.setVisibility(View.GONE);
+                    myViewHolder.proMark.setVisibility(View.VISIBLE);
                 } else if(dataFormSDM.getStatus_approve_direktur().equals("1")){
                     if(dataFormSDM.getStatus_approve_hrd().equals("0")){
                         myViewHolder.detailTV.setText("Menunggu verifikasi HRD");
+                        myViewHolder.accMark.setVisibility(View.GONE);
+                        myViewHolder.rejMark.setVisibility(View.GONE);
+                        myViewHolder.proMark.setVisibility(View.VISIBLE);
                     } else if(dataFormSDM.getStatus_approve_hrd().equals("1")){
                         myViewHolder.detailTV.setText("Pengajuan telah diverifikasi HRD");
                         myViewHolder.accMark.setVisibility(View.VISIBLE);
                         myViewHolder.rejMark.setVisibility(View.GONE);
+                        myViewHolder.proMark.setVisibility(View.GONE);
                     } else if(dataFormSDM.getStatus_approve_hrd().equals("2")){
                         myViewHolder.detailTV.setText("Pengajuan ditolak HRD");
                         myViewHolder.accMark.setVisibility(View.GONE);
                         myViewHolder.rejMark.setVisibility(View.VISIBLE);
+                        myViewHolder.proMark.setVisibility(View.GONE);
                     }
                 } else if(dataFormSDM.getStatus_approve_direktur().equals("2")){
                     myViewHolder.detailTV.setText("Pengajuan ditolak Direksi");
                     myViewHolder.accMark.setVisibility(View.GONE);
                     myViewHolder.rejMark.setVisibility(View.VISIBLE);
+                    myViewHolder.proMark.setVisibility(View.GONE);
                 }
             } else if(dataFormSDM.getStatus_approve_kadept().equals("2")){
                 myViewHolder.detailTV.setText("Pengajuan ditolak Kepala Departemen");
                 myViewHolder.accMark.setVisibility(View.GONE);
                 myViewHolder.rejMark.setVisibility(View.VISIBLE);
+                myViewHolder.proMark.setVisibility(View.GONE);
             }
         } else if(dataFormSDM.getStatus_approve_kabag().equals("2")){
             myViewHolder.detailTV.setText("Pengajuan ditolak Kepala Bagian");
             myViewHolder.accMark.setVisibility(View.GONE);
             myViewHolder.rejMark.setVisibility(View.VISIBLE);
+            myViewHolder.proMark.setVisibility(View.GONE);
         }
 
         String tanggal_buat = dataFormSDM.getCreated_at();
@@ -187,7 +218,7 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         LinearLayout parrentPart, point1, point2, point3, point4, point5, point6, point7, waitingMark;
-        TextView keteranganTV, timestampTV, detailTV, rejMark, accMark;
+        TextView keteranganTV, timestampTV, detailTV, rejMark, accMark, proMark, atasNamaTV;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parrentPart = itemView.findViewById(R.id.parent_part);
@@ -204,6 +235,8 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             waitingMark = itemView.findViewById(R.id.waiting_mark);
             accMark = itemView.findViewById(R.id.acc_mark);
             rejMark = itemView.findViewById(R.id.rej_mark);
+            proMark = itemView.findViewById(R.id.pro_mark);
+            atasNamaTV = itemView.findViewById(R.id.atas_nama_tv);
         }
     }
 }

@@ -10,179 +10,53 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/shape_notifikasi"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginBottom="-20dp"
-                android:layout_marginTop="-25dp"
-                android:layout_width="match_parent"
-                android:gravity="right"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:background="@drawable/shape_ornament_2"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="23dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left|center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/point_1"
-                    android:background="@drawable/shape_point_sdm_1"
-                    android:layout_marginRight="8dp"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:visibility="gone"
-                    android:orientation="horizontal" />
-
-                <LinearLayout
-                    android:id="@+id/point_2"
-                    android:background="@drawable/shape_point_sdm_2"
-                    android:layout_marginRight="8dp"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:visibility="gone"
-                    android:orientation="horizontal" />
-
-                <LinearLayout
-                    android:id="@+id/point_3"
-                    android:background="@drawable/shape_point_sdm_3"
-                    android:layout_marginRight="8dp"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:visibility="gone"
-                    android:orientation="horizontal" />
-
-                <LinearLayout
-                    android:id="@+id/point_4"
-                    android:background="@drawable/shape_point_sdm_4"
-                    android:layout_marginRight="8dp"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:visibility="gone"
-                    android:orientation="horizontal" />
-
-                <LinearLayout
-                    android:id="@+id/point_5"
-                    android:background="@drawable/shape_point_sdm_5"
-                    android:layout_marginRight="8dp"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:visibility="gone"
-                    android:orientation="horizontal" />
-
-                <LinearLayout
-                    android:id="@+id/point_6"
-                    android:background="@drawable/shape_point_sdm_6"
-                    android:layout_marginRight="8dp"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:visibility="gone"
-                    android:orientation="horizontal" />
-
-                <LinearLayout
-                    android:id="@+id/point_7"
-                    android:background="@drawable/shape_point_sdm_7"
-                    android:layout_marginRight="8dp"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:visibility="gone"
-                    android:orientation="horizontal" />
-
-                <TextView
-                    android:id="@+id/keterangan_data_tv"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="-20dp"
+                    android:layout_marginTop="-25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="0.5dp"
-                    android:text=""
-                    android:textColor="#C16D02"
-                    android:textSize="13dp" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/line_limit"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="#2DEFB975"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/detail_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="-"
-                android:textColor="#BF7517"
-                android:textSize="13dp"
-                android:textStyle="italic" />
-
-            <RelativeLayout
-                android:layout_marginBottom="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="left">
+                    android:gravity="right"
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
-                        android:id="@+id/waiting_mark"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        android:gravity="center">
-
-                        <LinearLayout
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:background="@drawable/ic_baseline_timelapse_waiting" />
-
-                        <TextView
-                            android:id="@+id/waiting_mark_tv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:gravity="left"
-                            android:maxLines="1"
-                            android:paddingLeft="4dp"
-                            android:singleLine="true"
-                            android:text="Menunggu Persetujuan"
-                            android:textColor="#D32F2F"
-                            android:textSize="11dp" />
-
-                    </LinearLayout>
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:background="@drawable/shape_ornament_2"/>
 
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
+                    android:layout_marginTop="23dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="28dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/keterangan_data_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0.5dp"
+                        android:text=""
+                        android:textColor="#C16D02"
+                        android:textSize="12dp" />
 
                     <LinearLayout
-                        android:layout_weight=".50"
-                        android:layout_width="0dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
@@ -192,14 +66,13 @@
                             android:layout_height="wrap_content"
                             android:gravity="left"
                             android:text="ACCEPTED"
-                            android:layout_marginRight="10dp"
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:singleLine="true"
                             android:textStyle="bold"
                             android:textColor="#26982B"
                             android:visibility="gone"
-                            android:textSize="11dp" />
+                            android:textSize="12dp" />
 
                         <TextView
                             android:id="@+id/rej_mark"
@@ -207,40 +80,201 @@
                             android:layout_height="wrap_content"
                             android:gravity="left"
                             android:text="REJECTED"
-                            android:layout_marginRight="10dp"
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:singleLine="true"
                             android:textColor="#CD4135"
                             android:textStyle="bold"
                             android:visibility="gone"
-                            android:textSize="11dp" />
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/pro_mark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="PROSES"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="#AA7915"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/atas_nama_tv"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="28dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0.5dp"
+                    android:text="Aditia Wardani"
+                    android:textColor="#C16D02"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/line_limit"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="28dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#2DEFB975"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/detail_tv"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:text="-"
+                    android:textColor="#BF7517"
+                    android:textSize="13dp"
+                    android:textStyle="italic" />
+
+                <RelativeLayout
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="28dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left">
+
+                        <LinearLayout
+                            android:id="@+id/waiting_mark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:background="@drawable/ic_baseline_timelapse_waiting" />
+
+                            <TextView
+                                android:id="@+id/waiting_mark_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:gravity="left"
+                                android:maxLines="1"
+                                android:paddingLeft="4dp"
+                                android:singleLine="true"
+                                android:text="Menunggu Persetujuan"
+                                android:textColor="#D32F2F"
+                                android:textSize="11dp" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                     <TextView
                         android:id="@+id/timestamp_data_tv"
-                        android:layout_weight=".50"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="18dp"
                         android:gravity="right"
                         android:text="-"
                         android:textColor="#979797"
                         android:textSize="10dp" />
 
-                </LinearLayout>
+                </RelativeLayout>
 
-            </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="-20dp"
+                    android:layout_marginTop="-20dp"
+                    android:background="@drawable/shape_ornament_1"/>
+
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="-20dp"
-                android:layout_marginTop="-20dp"
-                android:background="@drawable/shape_ornament_1"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="1dp"
+                android:gravity="left|center"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/point_1"
+                    android:background="@drawable/shape_point_sdm_1"
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/point_2"
+                    android:background="@drawable/shape_point_sdm_2"
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/point_3"
+                    android:background="@drawable/shape_point_sdm_3"
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/point_4"
+                    android:background="@drawable/shape_point_sdm_4"
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/point_5"
+                    android:background="@drawable/shape_point_sdm_5"
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/point_6"
+                    android:background="@drawable/shape_point_sdm_6"
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:id="@+id/point_7"
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/shape_point_sdm_7"
+                    android:orientation="horizontal"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
