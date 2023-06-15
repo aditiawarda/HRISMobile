@@ -672,7 +672,7 @@ public class FragmentHome extends Fragment {
 
                                         bannerPengumumanPart.setVisibility(View.VISIBLE);
                                         judulPengumuman.setText(pengumuman_title.toUpperCase());
-                                        highlightPengumuman.setText("Klik untuk melihat informasi selengkapnya...");
+                                        highlightPengumuman.setText("Tap untuk melihat informasi selengkapnya...");
 
                                         bannerPengumumanPart.setOnClickListener(new View.OnClickListener() {
                                             @Override
@@ -1642,7 +1642,7 @@ public class FragmentHome extends Fragment {
                 .setColor(Color.parseColor("#A6441F"))
                 .setPriority(Notification.PRIORITY_DEFAULT)
                 .setContentTitle("HRIS Mobile Gelora")
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(title+"\nKlik untuk melihat informasi selengkapnya..."))
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(title+"\nTap untuk melihat informasi selengkapnya..."))
                 .setContentText(title);
 
         Intent notificationIntent = new Intent(mContext, DetailPengumumanActivity.class);
