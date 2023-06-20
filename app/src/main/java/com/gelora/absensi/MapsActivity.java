@@ -287,6 +287,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             descStatusPart.setTypeface(typeface);
             markTitleStatus.setTypeface(typeface);
             markTitleShift.setTypeface(typeface);
+            dateCurrentAbsensiTV.setTypeface(typeface);
+            detailAbsenTV.setTypeface(typeface);
+            actionTV.setTypeface(typeface);
         }
 
         Glide.with(getApplicationContext())
