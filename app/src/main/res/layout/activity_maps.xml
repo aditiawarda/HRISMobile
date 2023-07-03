@@ -409,10 +409,11 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
+                            <!-- Height Edit -->
                             <LinearLayout
                                 android:background="#FAFAFA"
                                 android:layout_width="match_parent"
-                                android:layout_height="150dp"
+                                android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
                                 <!-- Skeleton -->
@@ -540,6 +541,36 @@
 
                                         </LinearLayout>
 
+                                        <!-- Layoff Attantion -->
+                                        <LinearLayout
+                                            android:id="@+id/attantion_layoff_part"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/shape_attantion"
+                                            android:orientation="vertical"
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:paddingLeft="20dp"
+                                            android:paddingTop="10dp"
+                                            android:paddingRight="20dp"
+                                            android:paddingBottom="10dp"
+                                            android:visibility="gone">
+
+                                            <TextView
+                                                android:id="@+id/desc_attantion_layoff"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:lineSpacingExtra="2.5dp"
+                                                android:text="Status absensi diliburkan/layoff dapat digunakan berdasarkan kebijakan dari bagian masing-masing atau dari HRD."
+                                                android:textColor="#C68D46"
+                                                android:ellipsize="end"
+                                                android:maxLines="3"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
                                         <LinearLayout
                                             android:id="@+id/shift_btn"
                                             android:layout_width="match_parent"
@@ -547,7 +578,7 @@
                                             android:layout_marginLeft="20dp"
                                             android:layout_marginTop="15dp"
                                             android:layout_marginRight="20dp"
-                                            android:layout_marginBottom="90dp"
+                                            android:layout_marginBottom="30dp"
                                             android:background="@drawable/shape_btn"
                                             android:gravity="center"
                                             android:visibility="gone">
@@ -569,6 +600,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="20dp"
                                             android:layout_marginTop="5dp"
+                                            android:layout_marginBottom="20dp"
                                             android:layout_marginRight="20dp"
                                             android:orientation="vertical"
                                             android:visibility="gone">
@@ -649,7 +681,7 @@
                                         android:layout_marginLeft="20dp"
                                         android:layout_marginTop="-7dp"
                                         android:layout_marginRight="20dp"
-                                        android:layout_marginBottom="15dp"
+                                        android:layout_marginBottom="35dp"
                                         android:background="@drawable/shape_attantion"
                                         android:orientation="vertical"
                                         android:paddingLeft="20dp"
@@ -667,7 +699,7 @@
                                             android:textColor="#C68D46"
                                             android:ellipsize="end"
                                             android:maxLines="3"
-                                            android:textSize="11dp" />
+                                            android:textSize="12dp" />
 
                                     </LinearLayout>
 
@@ -930,6 +962,7 @@
                                             android:layout_marginLeft="20dp"
                                             android:layout_marginTop="-1dp"
                                             android:layout_marginRight="20dp"
+                                            android:layout_marginBottom="15dp"
                                             android:background="@drawable/shape_attantion_body"
                                             android:orientation="vertical"
                                             android:paddingLeft="20dp"
@@ -952,9 +985,10 @@
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginLeft="10dp"
                                                 android:layout_marginTop="7dp"
+                                                android:lineSpacingExtra="2.5dp"
                                                 android:text="Status absensi anda hari ini Layoff/Diliburkan. jika terjadi kesalahan atau kekeliruan data harap hubungi bagian HRD."
                                                 android:textColor="#C68D46"
-                                                android:textSize="11dp" />
+                                                android:textSize="12dp" />
 
                                         </LinearLayout>
 
@@ -966,7 +1000,6 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:gravity="center"
-                                        android:paddingBottom="10dp"
                                         android:orientation="vertical"
                                         android:visibility="gone">
 
@@ -996,6 +1029,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="20dp"
                                             android:layout_marginTop="-1dp"
+                                            android:layout_marginBottom="15dp"
                                             android:layout_marginRight="20dp"
                                             android:background="@drawable/shape_attantion_body"
                                             android:orientation="vertical"
@@ -1019,9 +1053,10 @@
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginLeft="10dp"
                                                 android:layout_marginTop="7dp"
+                                                android:lineSpacingExtra="2.5dp"
                                                 android:text="Yang tertera diatas merupakan status abensi anda hari ini. Jika terjadi kesalahan atau kekeliruan data harap hubungi bagian HRD."
                                                 android:textColor="#C68D46"
-                                                android:textSize="11dp" />
+                                                android:textSize="12dp" />
 
                                         </LinearLayout>
 

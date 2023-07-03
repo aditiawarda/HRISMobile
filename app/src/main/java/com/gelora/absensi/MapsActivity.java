@@ -124,7 +124,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     SwipeRefreshLayout refreshLayout;
     ImageView loadingDataRecord, weatherIconPart, onlineGif, warningGif;
     TextView viewMoreBTN, titleRecordTV, userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
-    LinearLayout viewMorePart, mapBTN, noDataPart, loadingRecordPart, backBTN, reminderCongrat, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
+    LinearLayout attantionLayoffPart, viewMorePart, mapBTN, noDataPart, loadingRecordPart, backBTN, reminderCongrat, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -257,6 +257,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         titleRecordTV = findViewById(R.id.title_record_tv);
         viewMorePart = findViewById(R.id.view_more_part);
         viewMoreBTN = findViewById(R.id.view_more_btn);
+        attantionLayoffPart = findViewById(R.id.attantion_layoff_part);
 
         dataAbsensiRV = findViewById(R.id.data_absensi_rv);
 
@@ -1121,6 +1122,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             statusAbsenChoiceTV.setText(namaStatusAbsen+" ("+descStatusAbsen+")");
             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_SHIFT, "");
 
+            if(namaStatusAbsen.equals("DL")){
+                attantionLayoffPart.setVisibility(View.VISIBLE);
+            } else {
+                attantionLayoffPart.setVisibility(View.GONE);
+            }
+
             if(namaStatusAbsen.equals("WFH") || namaStatusAbsen.equals("Pjd") || namaStatusAbsen.equals("KLL")) {
                 shiftAbsenChoiceBTN.setOnClickListener(null);
 
@@ -1860,6 +1867,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 checkoutRecord(id_checkout);
 
                             } else { //Belum checkin atau interval sudah habis
+                                attantionLayoffPart.setVisibility(View.GONE);
                                 attantionPart.setVisibility(View.VISIBLE);
                                 statusAbsenBTN.setVisibility(View.VISIBLE);
                                 changeStatusAbsen.setVisibility(View.GONE);
