@@ -422,9 +422,9 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingLeft="20dp"
-                                    android:paddingTop="10dp"
+                                    android:paddingTop="11dp"
                                     android:paddingRight="20dp"
-                                    android:paddingBottom="10dp"
+                                    android:paddingBottom="12dp"
                                     android:visibility="visible">
 
                                     <include layout="@layout/skeleton_layout" />
