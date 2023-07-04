@@ -776,7 +776,9 @@
 
                                                     <LinearLayout
                                                         android:layout_width="8dp"
-                                                        android:layout_height="match_parent"
+                                                        android:layout_height="50dp"
+                                                        android:layout_centerInParent="true"
+                                                        android:layout_alignParentLeft="true"
                                                         android:background="@drawable/shape_ornament_checkin" />
 
                                                     <LinearLayout
@@ -854,8 +856,9 @@
 
                                                     <LinearLayout
                                                         android:layout_width="8dp"
-                                                        android:layout_height="match_parent"
+                                                        android:layout_height="50dp"
                                                         android:layout_alignParentRight="true"
+                                                        android:layout_centerInParent="true"
                                                         android:background="@drawable/shape_ornament_checkout" />
 
                                                     <LinearLayout
