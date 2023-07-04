@@ -2145,7 +2145,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else if (status.equals("Limit Stock")){
-                                pDialog.setTitleText("Gagal Terkirim")
+                                pDialog.setTitleText("Gagal Terupdate")
                                         .setContentText("Maaf, jumlah hari dari permohonan yang anda ajukan melebihi sisa cuti anda saat ini")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);

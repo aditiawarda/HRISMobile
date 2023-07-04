@@ -2820,6 +2820,13 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                                         .setContentText("Permohonan serupa sudah anda ajukan sebelumnya, harap tunggu persetujuan")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            } else if (status.equals("Limit Stock")){
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setContentText("Maaf, jumlah hari dari permohonan yang anda ajukan melebihi sisa cuti anda saat ini")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
