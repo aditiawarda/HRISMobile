@@ -204,7 +204,6 @@
 
                                                 </LinearLayout>
 
-
                                             </LinearLayout>
 
                                         </RelativeLayout>
@@ -246,7 +245,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:textColor="#CD4E4B"
-                                android:textSize="11dp"
+                                android:textSize="12dp"
+                                android:lineSpacingExtra="2.5dp"
                                 android:layout_marginTop="7dp"
                                 android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur fingerscan/form keterangan tidak absen."/>
 
