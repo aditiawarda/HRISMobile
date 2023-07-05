@@ -494,6 +494,7 @@ public class FragmentHome extends Fragment {
                                 String jabatan = data.getString("jabatan");
                                 String avatar = data.getString("avatar");
                                 String weather_key = data.getString("weather_key");
+                                String chat_room = data.getString("chat_room");
                                 String fitur_pengumuman = data.getString("fitur_pengumuman");
                                 String join_reminder = data.getString("join_reminder");
                                 String pengumuman_id = data.getString("pengumuman_id");
@@ -687,6 +688,12 @@ public class FragmentHome extends Fragment {
                                         bannerPengumumanPart.setVisibility(View.GONE);
                                         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_PENGUMUMAN, "");
                                     }
+                                }
+
+                                if(chat_room.equals("1")){
+                                    chatBTN.setVisibility(View.VISIBLE);
+                                } else {
+                                    chatBTN.setVisibility(View.GONE);
                                 }
 
                                 getCurrentLocation(weather_key);

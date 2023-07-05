@@ -508,8 +508,8 @@ public class FragmentInfo extends Fragment {
                 Intent intent = new Intent(mContext, FaqActivity.class);
                 intent.putExtra("status_karyawan", sharedPrefManager.getSpStatusKaryawan());
                 intent.putExtra("tanggal_bergabung", sharedPrefManager.getSpTglBergabung());
-                intent.putExtra("status_fitur", statusFiturFinger);
-                intent.putExtra("status_finger", statusFiturIzinCuti);
+                intent.putExtra("status_fitur", statusFiturIzinCuti);
+                intent.putExtra("status_finger", statusFiturFinger);
                 startActivity(intent);
             }
         });
