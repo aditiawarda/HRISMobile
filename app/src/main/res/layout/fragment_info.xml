@@ -1248,7 +1248,7 @@
                                         android:paddingLeft="15dp"
                                         android:paddingRight="15dp"
                                         android:paddingBottom="15dp"
-                                        android:background="@drawable/shape_bg_expand_absensi_field"
+                                        android:background="@drawable/shape_bg_expand_info_menu"
                                         app:el_duration="300"
                                         app:el_expanded="false">
 
@@ -1361,7 +1361,7 @@
                                         android:paddingLeft="15dp"
                                         android:paddingRight="15dp"
                                         android:paddingBottom="15dp"
-                                        android:background="@drawable/shape_bg_expand_absensi_field"
+                                        android:background="@drawable/shape_bg_expand_info_menu"
                                         app:el_duration="300"
                                         app:el_expanded="false">
 
@@ -1532,7 +1532,7 @@
                                         android:paddingLeft="15dp"
                                         android:paddingRight="15dp"
                                         android:paddingBottom="15dp"
-                                        android:background="@drawable/shape_bg_expand_absensi_field"
+                                        android:background="@drawable/shape_bg_expand_info_menu"
                                         app:el_duration="300"
                                         app:el_expanded="false">
 
