@@ -381,23 +381,23 @@ public class SplashScreen extends AppCompatActivity {
 
                             String status = response.getString("status");
                             String version = response.getString("version");
+                            String target = response.getString("target");
                             String popup = response.getString("pop_up");
                             String close_btn = response.getString("close_btn");
 
                             if (status.equals("Success")){
-                                String currentVersion = "1.8.6";
-                                if (!currentVersion.equals(version) && popup.equals("1")){
-
+                                String currentVersion = "1.8.7";
+                                if (popup.equals("1") && ((!currentVersion.equals(version) && target.equals("all")) || target.equals(currentVersion))){
                                     refreshPart.animate()
-                                        .translationY(refreshPart.getHeight())
-                                        .setDuration(300)
-                                        .setListener(new AnimatorListenerAdapter() {
-                                            @Override
-                                            public void onAnimationEnd(Animator animation) {
-                                            super.onAnimationEnd(animation);
-                                            refreshPart.setVisibility(View.GONE);
-                                            }
-                                        });
+                                            .translationY(refreshPart.getHeight())
+                                            .setDuration(300)
+                                            .setListener(new AnimatorListenerAdapter() {
+                                                @Override
+                                                public void onAnimationEnd(Animator animation) {
+                                                    super.onAnimationEnd(animation);
+                                                    refreshPart.setVisibility(View.GONE);
+                                                }
+                                            });
 
                                     statusUpdateLayout = "1";
 
