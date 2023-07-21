@@ -1014,6 +1014,7 @@ public class FragmentInfo extends Fragment {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void dateLive(){
         switch (getDateM()) {
             case "01":
