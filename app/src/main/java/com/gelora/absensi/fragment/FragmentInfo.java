@@ -677,7 +677,7 @@ public class FragmentInfo extends Fragment {
 
     private void getPersonalization() {
 
-        if(sharedPrefManager.getSpNik().equals("80085")){
+        if(sharedPrefManager.getSpNik().equals("80085") || sharedPrefManager.getSpNik().equals("2151010115")){
             sdmBTN.setVisibility(View.VISIBLE);
         } else {
             sdmBTN.setVisibility(View.GONE);
