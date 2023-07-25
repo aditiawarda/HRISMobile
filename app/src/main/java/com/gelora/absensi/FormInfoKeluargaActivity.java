@@ -748,62 +748,69 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         markMale = findViewById(R.id.mark_male);
         markFemale = findViewById(R.id.mark_female);
 
-        if (genderChoice.equals("male")){
-            maleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markMale.setVisibility(View.VISIBLE);
-            markFemale.setVisibility(View.GONE);
-        } else if (genderChoice.equals("female")){
-            maleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            markMale.setVisibility(View.GONE);
-            markFemale.setVisibility(View.VISIBLE);
-        } else {
-            maleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markMale.setVisibility(View.GONE);
-            markFemale.setVisibility(View.GONE);
-        }
-
-        maleBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                markMale.setVisibility(View.VISIBLE);
-                markFemale.setVisibility(View.GONE);
-                maleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                genderChoice = "male";
-                genderPilihTV.setText("Laki-Laki");
+            public void run() {
+                if (genderChoice.equals("male")){
+                    maleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markMale.setVisibility(View.VISIBLE);
+                    markFemale.setVisibility(View.GONE);
+                }
+                else if (genderChoice.equals("female")){
+                    maleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    markMale.setVisibility(View.GONE);
+                    markFemale.setVisibility(View.VISIBLE);
+                }
+                else {
+                    maleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markMale.setVisibility(View.GONE);
+                    markFemale.setVisibility(View.GONE);
+                }
 
-                new Handler().postDelayed(new Runnable() {
+                maleBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        markMale.setVisibility(View.VISIBLE);
+                        markFemale.setVisibility(View.GONE);
+                        maleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        genderChoice = "male";
+                        genderPilihTV.setText("Laki-Laki");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        femaleBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                markMale.setVisibility(View.GONE);
-                markFemale.setVisibility(View.VISIBLE);
-                maleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                genderChoice = "female";
-                genderPilihTV.setText("Perempuan");
-
-                new Handler().postDelayed(new Runnable() {
+                femaleBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        markMale.setVisibility(View.GONE);
+                        markFemale.setVisibility(View.VISIBLE);
+                        maleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        femaleBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        genderChoice = "female";
+                        genderPilihTV.setText("Perempuan");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
+                });
             }
-        });
+        }, 500);
 
     }
 
@@ -826,439 +833,451 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         markSodaraPerempuan = findViewById(R.id.mark_sodara_perempuan);
         markLainnya = findViewById(R.id.mark_lainnya);
 
-        if (hubunganPilih.equals("Ayah")){
-            ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markAyah.setVisibility(View.VISIBLE);
-            markIbu.setVisibility(View.GONE);
-            markSuami.setVisibility(View.GONE);
-            markIstri.setVisibility(View.GONE);
-            markAnak.setVisibility(View.GONE);
-            markSodaraLaki.setVisibility(View.GONE);
-            markSodaraPerempuan.setVisibility(View.GONE);
-            markLainnya.setVisibility(View.GONE);
-
-            hubunganLainnyaPart.setVisibility(View.GONE);
-        } else if (hubunganPilih.equals("Ibu")){
-            ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markAyah.setVisibility(View.GONE);
-            markIbu.setVisibility(View.VISIBLE);
-            markSuami.setVisibility(View.GONE);
-            markIstri.setVisibility(View.GONE);
-            markAnak.setVisibility(View.GONE);
-            markSodaraLaki.setVisibility(View.GONE);
-            markSodaraPerempuan.setVisibility(View.GONE);
-            markLainnya.setVisibility(View.GONE);
-
-            hubunganLainnyaPart.setVisibility(View.GONE);
-        } else if (hubunganPilih.equals("Suami")){
-            ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markAyah.setVisibility(View.GONE);
-            markIbu.setVisibility(View.GONE);
-            markSuami.setVisibility(View.VISIBLE);
-            markIstri.setVisibility(View.GONE);
-            markAnak.setVisibility(View.GONE);
-            markSodaraLaki.setVisibility(View.GONE);
-            markSodaraPerempuan.setVisibility(View.GONE);
-            markLainnya.setVisibility(View.GONE);
-
-            hubunganLainnyaPart.setVisibility(View.GONE);
-        } else if (hubunganPilih.equals("Istri")){
-            ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markAyah.setVisibility(View.GONE);
-            markIbu.setVisibility(View.GONE);
-            markSuami.setVisibility(View.GONE);
-            markIstri.setVisibility(View.VISIBLE);
-            markAnak.setVisibility(View.GONE);
-            markSodaraLaki.setVisibility(View.GONE);
-            markSodaraPerempuan.setVisibility(View.GONE);
-            markLainnya.setVisibility(View.GONE);
-
-            hubunganLainnyaPart.setVisibility(View.GONE);
-        } else if (hubunganPilih.equals("Anak")){
-            ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markAyah.setVisibility(View.GONE);
-            markIbu.setVisibility(View.GONE);
-            markSuami.setVisibility(View.GONE);
-            markIstri.setVisibility(View.GONE);
-            markAnak.setVisibility(View.VISIBLE);
-            markSodaraLaki.setVisibility(View.GONE);
-            markSodaraPerempuan.setVisibility(View.GONE);
-            markLainnya.setVisibility(View.GONE);
-
-            hubunganLainnyaPart.setVisibility(View.GONE);
-        } else if (hubunganPilih.equals("Saudara Laki-Laki")){
-            ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markAyah.setVisibility(View.GONE);
-            markIbu.setVisibility(View.GONE);
-            markSuami.setVisibility(View.GONE);
-            markIstri.setVisibility(View.GONE);
-            markAnak.setVisibility(View.GONE);
-            markSodaraLaki.setVisibility(View.VISIBLE);
-            markSodaraPerempuan.setVisibility(View.GONE);
-            markLainnya.setVisibility(View.GONE);
-
-            hubunganLainnyaPart.setVisibility(View.GONE);
-        } else if (hubunganPilih.equals("Saudara Perempuan")){
-            ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markAyah.setVisibility(View.GONE);
-            markIbu.setVisibility(View.GONE);
-            markSuami.setVisibility(View.GONE);
-            markIstri.setVisibility(View.GONE);
-            markAnak.setVisibility(View.GONE);
-            markSodaraLaki.setVisibility(View.GONE);
-            markSodaraPerempuan.setVisibility(View.VISIBLE);
-            markLainnya.setVisibility(View.GONE);
-
-            hubunganLainnyaPart.setVisibility(View.GONE);
-        } else if (hubunganPilih.equals("Lainnya")){
-            ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            markAyah.setVisibility(View.GONE);
-            markIbu.setVisibility(View.GONE);
-            markSuami.setVisibility(View.GONE);
-            markIstri.setVisibility(View.GONE);
-            markAnak.setVisibility(View.GONE);
-            markSodaraLaki.setVisibility(View.GONE);
-            markSodaraPerempuan.setVisibility(View.GONE);
-            markLainnya.setVisibility(View.VISIBLE);
-
-            hubunganLainnyaPart.setVisibility(View.VISIBLE);
-        }
-
-        ayahBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markAyah.setVisibility(View.VISIBLE);
-                markIbu.setVisibility(View.GONE);
-                markSuami.setVisibility(View.GONE);
-                markIstri.setVisibility(View.GONE);
-                markAnak.setVisibility(View.GONE);
-                markSodaraLaki.setVisibility(View.GONE);
-                markSodaraPerempuan.setVisibility(View.GONE);
-                markLainnya.setVisibility(View.GONE);
+            public void run() {
+                if (hubunganPilih.equals("Ayah")){
+                    ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markAyah.setVisibility(View.VISIBLE);
+                    markIbu.setVisibility(View.GONE);
+                    markSuami.setVisibility(View.GONE);
+                    markIstri.setVisibility(View.GONE);
+                    markAnak.setVisibility(View.GONE);
+                    markSodaraLaki.setVisibility(View.GONE);
+                    markSodaraPerempuan.setVisibility(View.GONE);
+                    markLainnya.setVisibility(View.GONE);
 
-                hubunganLainnyaPart.setVisibility(View.GONE);
+                    hubunganLainnyaPart.setVisibility(View.GONE);
+                }
+                else if (hubunganPilih.equals("Ibu")){
+                    ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markAyah.setVisibility(View.GONE);
+                    markIbu.setVisibility(View.VISIBLE);
+                    markSuami.setVisibility(View.GONE);
+                    markIstri.setVisibility(View.GONE);
+                    markAnak.setVisibility(View.GONE);
+                    markSodaraLaki.setVisibility(View.GONE);
+                    markSodaraPerempuan.setVisibility(View.GONE);
+                    markLainnya.setVisibility(View.GONE);
 
-                hubunganPilih = "Ayah";
-                hubunganPilihTV.setText("Ayah");
+                    hubunganLainnyaPart.setVisibility(View.GONE);
+                }
+                else if (hubunganPilih.equals("Suami")){
+                    ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markAyah.setVisibility(View.GONE);
+                    markIbu.setVisibility(View.GONE);
+                    markSuami.setVisibility(View.VISIBLE);
+                    markIstri.setVisibility(View.GONE);
+                    markAnak.setVisibility(View.GONE);
+                    markSodaraLaki.setVisibility(View.GONE);
+                    markSodaraPerempuan.setVisibility(View.GONE);
+                    markLainnya.setVisibility(View.GONE);
 
-                new Handler().postDelayed(new Runnable() {
+                    hubunganLainnyaPart.setVisibility(View.GONE);
+                }
+                else if (hubunganPilih.equals("Istri")){
+                    ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markAyah.setVisibility(View.GONE);
+                    markIbu.setVisibility(View.GONE);
+                    markSuami.setVisibility(View.GONE);
+                    markIstri.setVisibility(View.VISIBLE);
+                    markAnak.setVisibility(View.GONE);
+                    markSodaraLaki.setVisibility(View.GONE);
+                    markSodaraPerempuan.setVisibility(View.GONE);
+                    markLainnya.setVisibility(View.GONE);
+
+                    hubunganLainnyaPart.setVisibility(View.GONE);
+                }
+                else if (hubunganPilih.equals("Anak")){
+                    ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markAyah.setVisibility(View.GONE);
+                    markIbu.setVisibility(View.GONE);
+                    markSuami.setVisibility(View.GONE);
+                    markIstri.setVisibility(View.GONE);
+                    markAnak.setVisibility(View.VISIBLE);
+                    markSodaraLaki.setVisibility(View.GONE);
+                    markSodaraPerempuan.setVisibility(View.GONE);
+                    markLainnya.setVisibility(View.GONE);
+
+                    hubunganLainnyaPart.setVisibility(View.GONE);
+                }
+                else if (hubunganPilih.equals("Saudara Laki-Laki")){
+                    ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markAyah.setVisibility(View.GONE);
+                    markIbu.setVisibility(View.GONE);
+                    markSuami.setVisibility(View.GONE);
+                    markIstri.setVisibility(View.GONE);
+                    markAnak.setVisibility(View.GONE);
+                    markSodaraLaki.setVisibility(View.VISIBLE);
+                    markSodaraPerempuan.setVisibility(View.GONE);
+                    markLainnya.setVisibility(View.GONE);
+
+                    hubunganLainnyaPart.setVisibility(View.GONE);
+                }
+                else if (hubunganPilih.equals("Saudara Perempuan")){
+                    ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markAyah.setVisibility(View.GONE);
+                    markIbu.setVisibility(View.GONE);
+                    markSuami.setVisibility(View.GONE);
+                    markIstri.setVisibility(View.GONE);
+                    markAnak.setVisibility(View.GONE);
+                    markSodaraLaki.setVisibility(View.GONE);
+                    markSodaraPerempuan.setVisibility(View.VISIBLE);
+                    markLainnya.setVisibility(View.GONE);
+
+                    hubunganLainnyaPart.setVisibility(View.GONE);
+                }
+                else if (hubunganPilih.equals("Lainnya")){
+                    ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    markAyah.setVisibility(View.GONE);
+                    markIbu.setVisibility(View.GONE);
+                    markSuami.setVisibility(View.GONE);
+                    markIstri.setVisibility(View.GONE);
+                    markAnak.setVisibility(View.GONE);
+                    markSodaraLaki.setVisibility(View.GONE);
+                    markSodaraPerempuan.setVisibility(View.GONE);
+                    markLainnya.setVisibility(View.VISIBLE);
+
+                    hubunganLainnyaPart.setVisibility(View.VISIBLE);
+                }
+
+                ayahBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markAyah.setVisibility(View.VISIBLE);
+                        markIbu.setVisibility(View.GONE);
+                        markSuami.setVisibility(View.GONE);
+                        markIstri.setVisibility(View.GONE);
+                        markAnak.setVisibility(View.GONE);
+                        markSodaraLaki.setVisibility(View.GONE);
+                        markSodaraPerempuan.setVisibility(View.GONE);
+                        markLainnya.setVisibility(View.GONE);
+
+                        hubunganLainnyaPart.setVisibility(View.GONE);
+
+                        hubunganPilih = "Ayah";
+                        hubunganPilihTV.setText("Ayah");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        ibuBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markAyah.setVisibility(View.GONE);
-                markIbu.setVisibility(View.VISIBLE);
-                markSuami.setVisibility(View.GONE);
-                markIstri.setVisibility(View.GONE);
-                markAnak.setVisibility(View.GONE);
-                markSodaraLaki.setVisibility(View.GONE);
-                markSodaraPerempuan.setVisibility(View.GONE);
-                markLainnya.setVisibility(View.GONE);
-
-                hubunganLainnyaPart.setVisibility(View.GONE);
-
-                hubunganPilih = "Ibu";
-                hubunganPilihTV.setText("Ibu");
-
-                new Handler().postDelayed(new Runnable() {
+                ibuBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markAyah.setVisibility(View.GONE);
+                        markIbu.setVisibility(View.VISIBLE);
+                        markSuami.setVisibility(View.GONE);
+                        markIstri.setVisibility(View.GONE);
+                        markAnak.setVisibility(View.GONE);
+                        markSodaraLaki.setVisibility(View.GONE);
+                        markSodaraPerempuan.setVisibility(View.GONE);
+                        markLainnya.setVisibility(View.GONE);
+
+                        hubunganLainnyaPart.setVisibility(View.GONE);
+
+                        hubunganPilih = "Ibu";
+                        hubunganPilihTV.setText("Ibu");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        suamiBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markAyah.setVisibility(View.GONE);
-                markIbu.setVisibility(View.GONE);
-                markSuami.setVisibility(View.VISIBLE);
-                markIstri.setVisibility(View.GONE);
-                markAnak.setVisibility(View.GONE);
-                markSodaraLaki.setVisibility(View.GONE);
-                markSodaraPerempuan.setVisibility(View.GONE);
-                markLainnya.setVisibility(View.GONE);
-
-                hubunganLainnyaPart.setVisibility(View.GONE);
-
-                hubunganPilih = "Suami";
-                hubunganPilihTV.setText("Suami");
-
-                new Handler().postDelayed(new Runnable() {
+                suamiBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markAyah.setVisibility(View.GONE);
+                        markIbu.setVisibility(View.GONE);
+                        markSuami.setVisibility(View.VISIBLE);
+                        markIstri.setVisibility(View.GONE);
+                        markAnak.setVisibility(View.GONE);
+                        markSodaraLaki.setVisibility(View.GONE);
+                        markSodaraPerempuan.setVisibility(View.GONE);
+                        markLainnya.setVisibility(View.GONE);
+
+                        hubunganLainnyaPart.setVisibility(View.GONE);
+
+                        hubunganPilih = "Suami";
+                        hubunganPilihTV.setText("Suami");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        istriBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markAyah.setVisibility(View.GONE);
-                markIbu.setVisibility(View.GONE);
-                markSuami.setVisibility(View.GONE);
-                markIstri.setVisibility(View.VISIBLE);
-                markAnak.setVisibility(View.GONE);
-                markSodaraLaki.setVisibility(View.GONE);
-                markSodaraPerempuan.setVisibility(View.GONE);
-                markLainnya.setVisibility(View.GONE);
-
-                hubunganLainnyaPart.setVisibility(View.GONE);
-
-                hubunganPilih = "Istri";
-                hubunganPilihTV.setText("Istri");
-
-                new Handler().postDelayed(new Runnable() {
+                istriBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markAyah.setVisibility(View.GONE);
+                        markIbu.setVisibility(View.GONE);
+                        markSuami.setVisibility(View.GONE);
+                        markIstri.setVisibility(View.VISIBLE);
+                        markAnak.setVisibility(View.GONE);
+                        markSodaraLaki.setVisibility(View.GONE);
+                        markSodaraPerempuan.setVisibility(View.GONE);
+                        markLainnya.setVisibility(View.GONE);
+
+                        hubunganLainnyaPart.setVisibility(View.GONE);
+
+                        hubunganPilih = "Istri";
+                        hubunganPilihTV.setText("Istri");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        anakBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markAyah.setVisibility(View.GONE);
-                markIbu.setVisibility(View.GONE);
-                markSuami.setVisibility(View.GONE);
-                markIstri.setVisibility(View.GONE);
-                markAnak.setVisibility(View.VISIBLE);
-                markSodaraLaki.setVisibility(View.GONE);
-                markSodaraPerempuan.setVisibility(View.GONE);
-                markLainnya.setVisibility(View.GONE);
-
-                hubunganLainnyaPart.setVisibility(View.GONE);
-
-                hubunganPilih = "Anak";
-                hubunganPilihTV.setText("Anak");
-
-                new Handler().postDelayed(new Runnable() {
+                anakBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markAyah.setVisibility(View.GONE);
+                        markIbu.setVisibility(View.GONE);
+                        markSuami.setVisibility(View.GONE);
+                        markIstri.setVisibility(View.GONE);
+                        markAnak.setVisibility(View.VISIBLE);
+                        markSodaraLaki.setVisibility(View.GONE);
+                        markSodaraPerempuan.setVisibility(View.GONE);
+                        markLainnya.setVisibility(View.GONE);
+
+                        hubunganLainnyaPart.setVisibility(View.GONE);
+
+                        hubunganPilih = "Anak";
+                        hubunganPilihTV.setText("Anak");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        sodaraLakiBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markAyah.setVisibility(View.GONE);
-                markIbu.setVisibility(View.GONE);
-                markSuami.setVisibility(View.GONE);
-                markIstri.setVisibility(View.GONE);
-                markAnak.setVisibility(View.GONE);
-                markSodaraLaki.setVisibility(View.VISIBLE);
-                markSodaraPerempuan.setVisibility(View.GONE);
-                markLainnya.setVisibility(View.GONE);
-
-                hubunganLainnyaPart.setVisibility(View.GONE);
-
-                hubunganPilih = "Saudara Laki-Laki";
-                hubunganPilihTV.setText("Saudara Laki-Laki");
-
-                new Handler().postDelayed(new Runnable() {
+                sodaraLakiBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markAyah.setVisibility(View.GONE);
+                        markIbu.setVisibility(View.GONE);
+                        markSuami.setVisibility(View.GONE);
+                        markIstri.setVisibility(View.GONE);
+                        markAnak.setVisibility(View.GONE);
+                        markSodaraLaki.setVisibility(View.VISIBLE);
+                        markSodaraPerempuan.setVisibility(View.GONE);
+                        markLainnya.setVisibility(View.GONE);
+
+                        hubunganLainnyaPart.setVisibility(View.GONE);
+
+                        hubunganPilih = "Saudara Laki-Laki";
+                        hubunganPilihTV.setText("Saudara Laki-Laki");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        sodaraPerempuanBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markAyah.setVisibility(View.GONE);
-                markIbu.setVisibility(View.GONE);
-                markSuami.setVisibility(View.GONE);
-                markIstri.setVisibility(View.GONE);
-                markAnak.setVisibility(View.GONE);
-                markSodaraLaki.setVisibility(View.GONE);
-                markSodaraPerempuan.setVisibility(View.VISIBLE);
-                markLainnya.setVisibility(View.GONE);
-
-                hubunganLainnyaPart.setVisibility(View.GONE);
-
-                hubunganPilih = "Saudara Perempuan";
-                hubunganPilihTV.setText("Saudara Perempuan");
-
-                new Handler().postDelayed(new Runnable() {
+                sodaraPerempuanBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markAyah.setVisibility(View.GONE);
+                        markIbu.setVisibility(View.GONE);
+                        markSuami.setVisibility(View.GONE);
+                        markIstri.setVisibility(View.GONE);
+                        markAnak.setVisibility(View.GONE);
+                        markSodaraLaki.setVisibility(View.GONE);
+                        markSodaraPerempuan.setVisibility(View.VISIBLE);
+                        markLainnya.setVisibility(View.GONE);
+
+                        hubunganLainnyaPart.setVisibility(View.GONE);
+
+                        hubunganPilih = "Saudara Perempuan";
+                        hubunganPilihTV.setText("Saudara Perempuan");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        lainnyaBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                markAyah.setVisibility(View.GONE);
-                markIbu.setVisibility(View.GONE);
-                markSuami.setVisibility(View.GONE);
-                markIstri.setVisibility(View.GONE);
-                markAnak.setVisibility(View.GONE);
-                markSodaraLaki.setVisibility(View.GONE);
-                markSodaraPerempuan.setVisibility(View.GONE);
-                markLainnya.setVisibility(View.VISIBLE);
-
-                hubunganLainnyaPart.setVisibility(View.VISIBLE);
-
-                hubunganPilih = "Lainnya";
-                hubunganPilihTV.setText("Lainnya");
-
-                new Handler().postDelayed(new Runnable() {
+                lainnyaBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        ayahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        ibuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        suamiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        istriBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        anakBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraLakiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sodaraPerempuanBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        markAyah.setVisibility(View.GONE);
+                        markIbu.setVisibility(View.GONE);
+                        markSuami.setVisibility(View.GONE);
+                        markIstri.setVisibility(View.GONE);
+                        markAnak.setVisibility(View.GONE);
+                        markSodaraLaki.setVisibility(View.GONE);
+                        markSodaraPerempuan.setVisibility(View.GONE);
+                        markLainnya.setVisibility(View.VISIBLE);
+
+                        hubunganLainnyaPart.setVisibility(View.VISIBLE);
+
+                        hubunganPilih = "Lainnya";
+                        hubunganPilihTV.setText("Lainnya");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
+                });
             }
-        });
+        }, 500);
 
     }
 
@@ -1273,143 +1292,152 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         markCeraiHidup = findViewById(R.id.mark_cerai_hidup);
         markCeraiMati = findViewById(R.id.mark_cerai_mati);
 
-        if (statusPernikahanChoice.equals("1")){
-            belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markBelumMenikah.setVisibility(View.VISIBLE);
-            markSudahMenikah.setVisibility(View.GONE);
-            markCeraiHidup.setVisibility(View.GONE);
-            markCeraiMati.setVisibility(View.GONE);
-        } else if (statusPernikahanChoice.equals("2")){
-            belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markBelumMenikah.setVisibility(View.GONE);
-            markSudahMenikah.setVisibility(View.VISIBLE);
-            markCeraiHidup.setVisibility(View.GONE);
-            markCeraiMati.setVisibility(View.GONE);
-        } else if (statusPernikahanChoice.equals("3")){
-            belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markBelumMenikah.setVisibility(View.GONE);
-            markSudahMenikah.setVisibility(View.GONE);
-            markCeraiHidup.setVisibility(View.VISIBLE);
-            markCeraiMati.setVisibility(View.GONE);
-        } else if (statusPernikahanChoice.equals("4")){
-            belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            markBelumMenikah.setVisibility(View.GONE);
-            markSudahMenikah.setVisibility(View.GONE);
-            markCeraiHidup.setVisibility(View.GONE);
-            markCeraiMati.setVisibility(View.VISIBLE);
-        }
-
-        belumMenikahBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markBelumMenikah.setVisibility(View.VISIBLE);
-                markSudahMenikah.setVisibility(View.GONE);
-                markCeraiHidup.setVisibility(View.GONE);
-                markCeraiMati.setVisibility(View.GONE);
+            public void run() {
+                if (statusPernikahanChoice.equals("1")){
+                    belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markBelumMenikah.setVisibility(View.VISIBLE);
+                    markSudahMenikah.setVisibility(View.GONE);
+                    markCeraiHidup.setVisibility(View.GONE);
+                    markCeraiMati.setVisibility(View.GONE);
+                }
+                else if (statusPernikahanChoice.equals("2")){
+                    belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markBelumMenikah.setVisibility(View.GONE);
+                    markSudahMenikah.setVisibility(View.VISIBLE);
+                    markCeraiHidup.setVisibility(View.GONE);
+                    markCeraiMati.setVisibility(View.GONE);
+                }
+                else if (statusPernikahanChoice.equals("3")){
+                    belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markBelumMenikah.setVisibility(View.GONE);
+                    markSudahMenikah.setVisibility(View.GONE);
+                    markCeraiHidup.setVisibility(View.VISIBLE);
+                    markCeraiMati.setVisibility(View.GONE);
+                }
+                else if (statusPernikahanChoice.equals("4")){
+                    belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    markBelumMenikah.setVisibility(View.GONE);
+                    markSudahMenikah.setVisibility(View.GONE);
+                    markCeraiHidup.setVisibility(View.GONE);
+                    markCeraiMati.setVisibility(View.VISIBLE);
+                }
 
-                statusPernikahanChoice = "1";
-                statusPernikahanPilihTV.setText("Belum Menikah");
-
-                new Handler().postDelayed(new Runnable() {
+                belumMenikahBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markBelumMenikah.setVisibility(View.VISIBLE);
+                        markSudahMenikah.setVisibility(View.GONE);
+                        markCeraiHidup.setVisibility(View.GONE);
+                        markCeraiMati.setVisibility(View.GONE);
+
+                        statusPernikahanChoice = "1";
+                        statusPernikahanPilihTV.setText("Belum Menikah");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        sudahMenikahBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markBelumMenikah.setVisibility(View.GONE);
-                markSudahMenikah.setVisibility(View.VISIBLE);
-                markCeraiHidup.setVisibility(View.GONE);
-                markCeraiMati.setVisibility(View.GONE);
-
-                statusPernikahanChoice = "2";
-                statusPernikahanPilihTV.setText("Menikah");
-
-                new Handler().postDelayed(new Runnable() {
+                sudahMenikahBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markBelumMenikah.setVisibility(View.GONE);
+                        markSudahMenikah.setVisibility(View.VISIBLE);
+                        markCeraiHidup.setVisibility(View.GONE);
+                        markCeraiMati.setVisibility(View.GONE);
+
+                        statusPernikahanChoice = "2";
+                        statusPernikahanPilihTV.setText("Menikah");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        ceraiHidupBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markBelumMenikah.setVisibility(View.GONE);
-                markSudahMenikah.setVisibility(View.GONE);
-                markCeraiHidup.setVisibility(View.VISIBLE);
-                markCeraiMati.setVisibility(View.GONE);
-
-                statusPernikahanChoice = "3";
-                statusPernikahanPilihTV.setText("Cerai Hidup");
-
-                new Handler().postDelayed(new Runnable() {
+                ceraiHidupBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markBelumMenikah.setVisibility(View.GONE);
+                        markSudahMenikah.setVisibility(View.GONE);
+                        markCeraiHidup.setVisibility(View.VISIBLE);
+                        markCeraiMati.setVisibility(View.GONE);
+
+                        statusPernikahanChoice = "3";
+                        statusPernikahanPilihTV.setText("Cerai Hidup");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        ceraiMatiBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                markBelumMenikah.setVisibility(View.GONE);
-                markSudahMenikah.setVisibility(View.GONE);
-                markCeraiHidup.setVisibility(View.GONE);
-                markCeraiMati.setVisibility(View.VISIBLE);
-
-                statusPernikahanChoice = "4";
-                statusPernikahanPilihTV.setText("Cerai Mati");
-
-                new Handler().postDelayed(new Runnable() {
+                ceraiMatiBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        belumMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        sudahMenikahBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        ceraiHidupBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        ceraiMatiBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        markBelumMenikah.setVisibility(View.GONE);
+                        markSudahMenikah.setVisibility(View.GONE);
+                        markCeraiHidup.setVisibility(View.GONE);
+                        markCeraiMati.setVisibility(View.VISIBLE);
+
+                        statusPernikahanChoice = "4";
+                        statusPernikahanPilihTV.setText("Cerai Mati");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
+                });
+
             }
-        });
+        }, 500);
 
     }
 
@@ -1430,329 +1458,340 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         markKonghuchu = findViewById(R.id.mark_konghuchu);
         markLainnya = findViewById(R.id.mark_lainnya);
 
-        if (agamaChoice.equals("Islam")){
-            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markIslam.setVisibility(View.VISIBLE);
-            markKristen.setVisibility(View.GONE);
-            markHindu.setVisibility(View.GONE);
-            markBuddha.setVisibility(View.GONE);
-            markKatolik.setVisibility(View.GONE);
-            markKonghuchu.setVisibility(View.GONE);
-            markLainnya.setVisibility(View.GONE);
-        } else if (agamaChoice.equals("Kristen")){
-            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markIslam.setVisibility(View.GONE);
-            markKristen.setVisibility(View.VISIBLE);
-            markHindu.setVisibility(View.GONE);
-            markBuddha.setVisibility(View.GONE);
-            markKatolik.setVisibility(View.GONE);
-            markKonghuchu.setVisibility(View.GONE);
-            markLainnya.setVisibility(View.GONE);
-        } else if (agamaChoice.equals("Hindu")){
-            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markIslam.setVisibility(View.GONE);
-            markKristen.setVisibility(View.GONE);
-            markHindu.setVisibility(View.VISIBLE);
-            markBuddha.setVisibility(View.GONE);
-            markKatolik.setVisibility(View.GONE);
-            markKonghuchu.setVisibility(View.GONE);
-            markLainnya.setVisibility(View.GONE);
-        } else if (agamaChoice.equals("Buddha")){
-            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markIslam.setVisibility(View.GONE);
-            markKristen.setVisibility(View.GONE);
-            markHindu.setVisibility(View.GONE);
-            markBuddha.setVisibility(View.VISIBLE);
-            markKatolik.setVisibility(View.GONE);
-            markKonghuchu.setVisibility(View.GONE);
-            markLainnya.setVisibility(View.GONE);
-        } else if (agamaChoice.equals("Katolik")){
-            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markIslam.setVisibility(View.GONE);
-            markKristen.setVisibility(View.GONE);
-            markHindu.setVisibility(View.GONE);
-            markBuddha.setVisibility(View.GONE);
-            markKatolik.setVisibility(View.VISIBLE);
-            markKonghuchu.setVisibility(View.GONE);
-            markLainnya.setVisibility(View.GONE);
-        } else if (agamaChoice.equals("Kong Hu Chu")){
-            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markIslam.setVisibility(View.GONE);
-            markKristen.setVisibility(View.GONE);
-            markHindu.setVisibility(View.GONE);
-            markBuddha.setVisibility(View.GONE);
-            markKatolik.setVisibility(View.GONE);
-            markKonghuchu.setVisibility(View.VISIBLE);
-            markLainnya.setVisibility(View.GONE);
-        } else if (agamaChoice.equals("Lainnya")){
-            islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            markIslam.setVisibility(View.GONE);
-            markKristen.setVisibility(View.GONE);
-            markHindu.setVisibility(View.GONE);
-            markBuddha.setVisibility(View.GONE);
-            markKatolik.setVisibility(View.GONE);
-            markKonghuchu.setVisibility(View.GONE);
-            markLainnya.setVisibility(View.VISIBLE);
-        }
-
-        islamBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markIslam.setVisibility(View.VISIBLE);
-                markKristen.setVisibility(View.GONE);
-                markHindu.setVisibility(View.GONE);
-                markBuddha.setVisibility(View.GONE);
-                markKatolik.setVisibility(View.GONE);
-                markKonghuchu.setVisibility(View.GONE);
-                markLainnya.setVisibility(View.GONE);
+            public void run() {
+                if (agamaChoice.equals("Islam")){
+                    islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markIslam.setVisibility(View.VISIBLE);
+                    markKristen.setVisibility(View.GONE);
+                    markHindu.setVisibility(View.GONE);
+                    markBuddha.setVisibility(View.GONE);
+                    markKatolik.setVisibility(View.GONE);
+                    markKonghuchu.setVisibility(View.GONE);
+                    markLainnya.setVisibility(View.GONE);
+                }
+                else if (agamaChoice.equals("Kristen")){
+                    islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markIslam.setVisibility(View.GONE);
+                    markKristen.setVisibility(View.VISIBLE);
+                    markHindu.setVisibility(View.GONE);
+                    markBuddha.setVisibility(View.GONE);
+                    markKatolik.setVisibility(View.GONE);
+                    markKonghuchu.setVisibility(View.GONE);
+                    markLainnya.setVisibility(View.GONE);
+                }
+                else if (agamaChoice.equals("Hindu")){
+                    islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markIslam.setVisibility(View.GONE);
+                    markKristen.setVisibility(View.GONE);
+                    markHindu.setVisibility(View.VISIBLE);
+                    markBuddha.setVisibility(View.GONE);
+                    markKatolik.setVisibility(View.GONE);
+                    markKonghuchu.setVisibility(View.GONE);
+                    markLainnya.setVisibility(View.GONE);
+                }
+                else if (agamaChoice.equals("Buddha")){
+                    islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markIslam.setVisibility(View.GONE);
+                    markKristen.setVisibility(View.GONE);
+                    markHindu.setVisibility(View.GONE);
+                    markBuddha.setVisibility(View.VISIBLE);
+                    markKatolik.setVisibility(View.GONE);
+                    markKonghuchu.setVisibility(View.GONE);
+                    markLainnya.setVisibility(View.GONE);
+                }
+                else if (agamaChoice.equals("Katolik")){
+                    islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markIslam.setVisibility(View.GONE);
+                    markKristen.setVisibility(View.GONE);
+                    markHindu.setVisibility(View.GONE);
+                    markBuddha.setVisibility(View.GONE);
+                    markKatolik.setVisibility(View.VISIBLE);
+                    markKonghuchu.setVisibility(View.GONE);
+                    markLainnya.setVisibility(View.GONE);
+                }
+                else if (agamaChoice.equals("Kong Hu Chu")){
+                    islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markIslam.setVisibility(View.GONE);
+                    markKristen.setVisibility(View.GONE);
+                    markHindu.setVisibility(View.GONE);
+                    markBuddha.setVisibility(View.GONE);
+                    markKatolik.setVisibility(View.GONE);
+                    markKonghuchu.setVisibility(View.VISIBLE);
+                    markLainnya.setVisibility(View.GONE);
+                }
+                else if (agamaChoice.equals("Lainnya")){
+                    islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    markIslam.setVisibility(View.GONE);
+                    markKristen.setVisibility(View.GONE);
+                    markHindu.setVisibility(View.GONE);
+                    markBuddha.setVisibility(View.GONE);
+                    markKatolik.setVisibility(View.GONE);
+                    markKonghuchu.setVisibility(View.GONE);
+                    markLainnya.setVisibility(View.VISIBLE);
+                }
 
-                agamaChoice = "Islam";
-                agamaPilihTV.setText("Islam");
-
-                new Handler().postDelayed(new Runnable() {
+                islamBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markIslam.setVisibility(View.VISIBLE);
+                        markKristen.setVisibility(View.GONE);
+                        markHindu.setVisibility(View.GONE);
+                        markBuddha.setVisibility(View.GONE);
+                        markKatolik.setVisibility(View.GONE);
+                        markKonghuchu.setVisibility(View.GONE);
+                        markLainnya.setVisibility(View.GONE);
+
+                        agamaChoice = "Islam";
+                        agamaPilihTV.setText("Islam");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        kristenBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markIslam.setVisibility(View.GONE);
-                markKristen.setVisibility(View.VISIBLE);
-                markHindu.setVisibility(View.GONE);
-                markBuddha.setVisibility(View.GONE);
-                markKatolik.setVisibility(View.GONE);
-                markKonghuchu.setVisibility(View.GONE);
-                markLainnya.setVisibility(View.GONE);
-
-                agamaChoice = "Kristen";
-                agamaPilihTV.setText("Kristen");
-
-                new Handler().postDelayed(new Runnable() {
+                kristenBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markIslam.setVisibility(View.GONE);
+                        markKristen.setVisibility(View.VISIBLE);
+                        markHindu.setVisibility(View.GONE);
+                        markBuddha.setVisibility(View.GONE);
+                        markKatolik.setVisibility(View.GONE);
+                        markKonghuchu.setVisibility(View.GONE);
+                        markLainnya.setVisibility(View.GONE);
+
+                        agamaChoice = "Kristen";
+                        agamaPilihTV.setText("Kristen");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        hinduBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markIslam.setVisibility(View.GONE);
-                markKristen.setVisibility(View.GONE);
-                markHindu.setVisibility(View.VISIBLE);
-                markBuddha.setVisibility(View.GONE);
-                markKatolik.setVisibility(View.GONE);
-                markKonghuchu.setVisibility(View.GONE);
-                markLainnya.setVisibility(View.GONE);
-
-                agamaChoice = "Hindu";
-                agamaPilihTV.setText("Hindu");
-
-                new Handler().postDelayed(new Runnable() {
+                hinduBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markIslam.setVisibility(View.GONE);
+                        markKristen.setVisibility(View.GONE);
+                        markHindu.setVisibility(View.VISIBLE);
+                        markBuddha.setVisibility(View.GONE);
+                        markKatolik.setVisibility(View.GONE);
+                        markKonghuchu.setVisibility(View.GONE);
+                        markLainnya.setVisibility(View.GONE);
+
+                        agamaChoice = "Hindu";
+                        agamaPilihTV.setText("Hindu");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        buddhaBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markIslam.setVisibility(View.GONE);
-                markKristen.setVisibility(View.GONE);
-                markHindu.setVisibility(View.GONE);
-                markBuddha.setVisibility(View.VISIBLE);
-                markKatolik.setVisibility(View.GONE);
-                markKonghuchu.setVisibility(View.GONE);
-                markLainnya.setVisibility(View.GONE);
-
-                agamaChoice = "Buddha";
-                agamaPilihTV.setText("Buddha");
-
-                new Handler().postDelayed(new Runnable() {
+                buddhaBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markIslam.setVisibility(View.GONE);
+                        markKristen.setVisibility(View.GONE);
+                        markHindu.setVisibility(View.GONE);
+                        markBuddha.setVisibility(View.VISIBLE);
+                        markKatolik.setVisibility(View.GONE);
+                        markKonghuchu.setVisibility(View.GONE);
+                        markLainnya.setVisibility(View.GONE);
+
+                        agamaChoice = "Buddha";
+                        agamaPilihTV.setText("Buddha");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        katolikBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markIslam.setVisibility(View.GONE);
-                markKristen.setVisibility(View.GONE);
-                markHindu.setVisibility(View.GONE);
-                markBuddha.setVisibility(View.GONE);
-                markKatolik.setVisibility(View.VISIBLE);
-                markKonghuchu.setVisibility(View.GONE);
-                markLainnya.setVisibility(View.GONE);
-
-                agamaChoice = "Katolik";
-                agamaPilihTV.setText("Katolik");
-
-                new Handler().postDelayed(new Runnable() {
+                katolikBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markIslam.setVisibility(View.GONE);
+                        markKristen.setVisibility(View.GONE);
+                        markHindu.setVisibility(View.GONE);
+                        markBuddha.setVisibility(View.GONE);
+                        markKatolik.setVisibility(View.VISIBLE);
+                        markKonghuchu.setVisibility(View.GONE);
+                        markLainnya.setVisibility(View.GONE);
+
+                        agamaChoice = "Katolik";
+                        agamaPilihTV.setText("Katolik");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        konghuchuBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                markIslam.setVisibility(View.GONE);
-                markKristen.setVisibility(View.GONE);
-                markHindu.setVisibility(View.GONE);
-                markBuddha.setVisibility(View.GONE);
-                markKatolik.setVisibility(View.GONE);
-                markKonghuchu.setVisibility(View.VISIBLE);
-                markLainnya.setVisibility(View.GONE);
-
-                agamaChoice = "Kong Hu Chu";
-                agamaPilihTV.setText("Kong Hu Chu");
-
-                new Handler().postDelayed(new Runnable() {
+                konghuchuBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        markIslam.setVisibility(View.GONE);
+                        markKristen.setVisibility(View.GONE);
+                        markHindu.setVisibility(View.GONE);
+                        markBuddha.setVisibility(View.GONE);
+                        markKatolik.setVisibility(View.GONE);
+                        markKonghuchu.setVisibility(View.VISIBLE);
+                        markLainnya.setVisibility(View.GONE);
+
+                        agamaChoice = "Kong Hu Chu";
+                        agamaPilihTV.setText("Kong Hu Chu");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        lainnyaBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                markIslam.setVisibility(View.GONE);
-                markKristen.setVisibility(View.GONE);
-                markHindu.setVisibility(View.GONE);
-                markBuddha.setVisibility(View.GONE);
-                markKatolik.setVisibility(View.GONE);
-                markKonghuchu.setVisibility(View.GONE);
-                markLainnya.setVisibility(View.VISIBLE);
-
-                agamaChoice = "Lainnya";
-                agamaPilihTV.setText("Lainnya");
-
-                new Handler().postDelayed(new Runnable() {
+                lainnyaBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        islamBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        kristenBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        hinduBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        buddhaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        katolikBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        konghuchuBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        lainnyaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        markIslam.setVisibility(View.GONE);
+                        markKristen.setVisibility(View.GONE);
+                        markHindu.setVisibility(View.GONE);
+                        markBuddha.setVisibility(View.GONE);
+                        markKatolik.setVisibility(View.GONE);
+                        markKonghuchu.setVisibility(View.GONE);
+                        markLainnya.setVisibility(View.VISIBLE);
+
+                        agamaChoice = "Lainnya";
+                        agamaPilihTV.setText("Lainnya");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
+                });
             }
-        });
+        }, 500);
 
     }
 
@@ -1763,62 +1802,69 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
         markBekerja = findViewById(R.id.mark_bekerja);
         markTidakBekerja = findViewById(R.id.mark_tidak_bekerja);
 
-        if (statusBekerjaChoice.equals("Bekerja")){
-            bekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            tidakBekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markBekerja.setVisibility(View.VISIBLE);
-            markTidakBekerja.setVisibility(View.GONE);
-        } else if (statusBekerjaChoice.equals("Belum/Tidak Bekerja")){
-            bekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            tidakBekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-            markBekerja.setVisibility(View.GONE);
-            markTidakBekerja.setVisibility(View.VISIBLE);
-        } else {
-            bekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            tidakBekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-            markBekerja.setVisibility(View.GONE);
-            markTidakBekerja.setVisibility(View.GONE);
-        }
-
-        bekerjaBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                markBekerja.setVisibility(View.VISIBLE);
-                markTidakBekerja.setVisibility(View.GONE);
-                bekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                tidakBekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                statusBekerjaChoice = "Bekerja";
-                statusBekerjaPilihTV.setText("Bekerja");
+            public void run() {
+                if (statusBekerjaChoice.equals("Bekerja")){
+                    bekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    tidakBekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markBekerja.setVisibility(View.VISIBLE);
+                    markTidakBekerja.setVisibility(View.GONE);
+                }
+                else if (statusBekerjaChoice.equals("Belum/Tidak Bekerja")){
+                    bekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    tidakBekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                    markBekerja.setVisibility(View.GONE);
+                    markTidakBekerja.setVisibility(View.VISIBLE);
+                }
+                else {
+                    bekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    tidakBekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                    markBekerja.setVisibility(View.GONE);
+                    markTidakBekerja.setVisibility(View.GONE);
+                }
 
-                new Handler().postDelayed(new Runnable() {
+                bekerjaBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        markBekerja.setVisibility(View.VISIBLE);
+                        markTidakBekerja.setVisibility(View.GONE);
+                        bekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        tidakBekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        statusBekerjaChoice = "Bekerja";
+                        statusBekerjaPilihTV.setText("Bekerja");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
-            }
-        });
+                });
 
-        tidakBekerjaBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                markBekerja.setVisibility(View.GONE);
-                markTidakBekerja.setVisibility(View.VISIBLE);
-                bekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
-                tidakBekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
-                statusBekerjaChoice = "Belum/Tidak Bekerja";
-                statusBekerjaPilihTV.setText("Belum/Tidak Bekerja");
-
-                new Handler().postDelayed(new Runnable() {
+                tidakBekerjaBTN.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
+                    public void onClick(View v) {
+                        markBekerja.setVisibility(View.GONE);
+                        markTidakBekerja.setVisibility(View.VISIBLE);
+                        bekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option));
+                        tidakBekerjaBTN.setBackground(ContextCompat.getDrawable(FormInfoKeluargaActivity.this, R.drawable.shape_option_choice));
+                        statusBekerjaChoice = "Belum/Tidak Bekerja";
+                        statusBekerjaPilihTV.setText("Belum/Tidak Bekerja");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomSheet.dismissSheet();
+                            }
+                        }, 300);
                     }
-                }, 300);
+                });
             }
-        });
+        }, 500);
 
     }
 
