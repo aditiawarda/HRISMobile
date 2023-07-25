@@ -253,14 +253,14 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                 tempatLahirED.clearFocus();
                 hubunganLainnyaED.clearFocus();
                 if(
-                        namaED.getText().toString().equals("")        ||
-                        tempatLahirED.getText().toString().equals("") ||
-                        tanggalLahir.equals("")                       ||
-                        genderChoice.equals("")                       ||
-                        hubunganPilih.equals("")                      ||
-                        statusPernikahanChoice.equals("")             ||
-                        agamaChoice.equals("")                        ||
-                        statusBekerjaChoice.equals("")
+                    namaED.getText().toString().equals("")        ||
+                    tempatLahirED.getText().toString().equals("") ||
+                    tanggalLahir.equals("")                       ||
+                    genderChoice.equals("")                       ||
+                    hubunganPilih.equals("")                      ||
+                    statusPernikahanChoice.equals("")             ||
+                    agamaChoice.equals("")                        ||
+                    statusBekerjaChoice.equals("")
                 ){
                     new KAlertDialog(FormInfoKeluargaActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
