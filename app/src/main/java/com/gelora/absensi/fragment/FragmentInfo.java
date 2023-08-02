@@ -66,7 +66,7 @@ import java.util.Map;
  */
 public class FragmentInfo extends Fragment {
 
-    TextView titlePage, dateNowTV, countNotifFingerTV, countNotifIzinTV;
+    TextView descContactHRDTV, titlePage, dateNowTV, countNotifFingerTV, countNotifIzinTV;
     ExpandableLayout aboutAppField, privacyPolicyField, contactServiceField;
     LinearLayout sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
     TextView bagianNameTVSDM, historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
@@ -151,6 +151,7 @@ public class FragmentInfo extends Fragment {
         bagianNameTV = view.findViewById(R.id.bagian_name_tv);
         bagianNameTVSDM = view.findViewById(R.id.bagian_name_tv_sdm);
         sdmBTN = view.findViewById(R.id.sdm_btn);
+        descContactHRDTV = view.findViewById(R.id.desc_contact_hrd_tv);
 
         selectMonth = getBulanTahun();
         dateNowTV.setText(getDate().substring(8,10)+"/"+getDate().substring(5,7)+"/"+getDate().substring(0,4));
@@ -706,6 +707,7 @@ public class FragmentInfo extends Fragment {
                                 String periode_akhir = data.getString("periode_akhir");
                                 String bagian = data.getString("bagian");
                                 String departemen = data.getString("departemen");
+                                String id_corporate = data.getString("id_corporate");
 
                                 statusFiturIzinCuti = fitur_izin;
                                 statusFiturFinger = fitur_finger;
@@ -777,6 +779,14 @@ public class FragmentInfo extends Fragment {
                                     }
                                 } else {
                                     sisaCutiBTN.setVisibility(View.GONE);
+                                }
+
+                                if(!id_corporate.equals("1")){
+                                    aboutCompanyBTN.setVisibility(View.GONE);
+                                    descContactHRDTV.setText("Untuk layanan pengaduan anda akan terhubung dengan bagian HRD perusahaan");
+                                } else {
+                                    aboutCompanyBTN.setVisibility(View.VISIBLE);
+                                    descContactHRDTV.setText("Untuk layanan pengaduan anda akan terhubung dengan bagian HRD PT. Gelora Aksara Pratama");
                                 }
 
                             }

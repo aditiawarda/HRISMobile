@@ -503,6 +503,7 @@ public class FragmentHome extends Fragment {
                                 String pengumuman_desc = data.getString("pengumuman_desc");
                                 String pengumuman_time = data.getString("pengumuman_time");
 
+                                String id_corporate = data.getString("id_corporate");
                                 String id_cab = data.getString("id_cab");
                                 String id_dept = data.getString("id_dept");
                                 String id_bagian = data.getString("id_bagian");
@@ -690,11 +691,16 @@ public class FragmentHome extends Fragment {
                                     }
                                 }
 
-                                if(chat_room.equals("1")){
-                                    chatBTN.setVisibility(View.VISIBLE);
+                                if(id_corporate.equals("1")){
+                                    if(chat_room.equals("1")){
+                                        chatBTN.setVisibility(View.VISIBLE);
+                                    } else {
+                                        chatBTN.setVisibility(View.GONE);
+                                    }
                                 } else {
                                     chatBTN.setVisibility(View.GONE);
                                 }
+
 
                                 getCurrentLocation(weather_key);
                                 getDataPengumumanNew();
