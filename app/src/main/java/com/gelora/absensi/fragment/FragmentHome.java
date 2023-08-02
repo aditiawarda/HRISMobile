@@ -701,7 +701,6 @@ public class FragmentHome extends Fragment {
                                     chatBTN.setVisibility(View.GONE);
                                 }
 
-
                                 getCurrentLocation(weather_key);
                                 getDataPengumumanNew();
                                 getCountPersonalNotif();
