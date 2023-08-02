@@ -1809,6 +1809,11 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                         .setContentText("Maaf, jumlah hari dari permohonan yang anda ajukan melebihi sisa cuti anda saat ini")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            } else if(status.equals("Over Day")) {
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setContentText("Permohonan izin/sakit tidak dapat diajukan lebih dari 2 hari dari tanggal yang dipilih")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else {
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
