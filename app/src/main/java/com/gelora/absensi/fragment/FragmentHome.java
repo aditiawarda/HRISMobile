@@ -509,6 +509,9 @@ public class FragmentHome extends Fragment {
                                 String id_bagian = data.getString("id_bagian");
                                 String id_jabatan = data.getString("id_jabatan");
 
+                                if(!sharedPrefManager.getSpIdCor().equals(id_corporate)){
+                                    sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_COR, id_corporate);
+                                }
                                 if(!sharedPrefManager.getSpIdCab().equals(id_cab)){
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_CAB, id_cab);
                                 }

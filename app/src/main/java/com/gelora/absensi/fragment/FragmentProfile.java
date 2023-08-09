@@ -930,6 +930,7 @@ public class FragmentProfile extends Fragment {
         sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
         sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_COR, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_CAB, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_HEAD_DEPT, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_DEPT, "");

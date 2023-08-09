@@ -379,6 +379,7 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject jsonArray = response.getJSONObject("data_user");
                         String nikUser = jsonArray.getString("NIK");
                         String namaUser = jsonArray.getString("NmKaryawan");
+                        String idCor = "1"; //Set
                         String idCab = jsonArray.getString("IdCab");
                         String idHeadDept = jsonArray.getString("IdHeadDept");
                         String idDept = jsonArray.getString("IdDept");
@@ -390,6 +391,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK, nikUser);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, namaUser);
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_COR, idCor);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_CAB, idCab);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_HEAD_DEPT, idHeadDept);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_DEPT, idDept);
@@ -435,15 +437,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        // Banner.make(rootview, LoginActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
-
         CookieBar.build(LoginActivity.this)
                 .setCustomView(R.layout.layout_custom_cookie)
                 .setEnableAutoDismiss(true)
                 .setSwipeToDismiss(false)
                 .setCookiePosition(Gravity.TOP)
                 .show();
-
     }
 
     private void contactService(){
@@ -678,7 +677,6 @@ public class LoginActivity extends AppCompatActivity {
                             } else {
                                 statusCheck = "0";
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
