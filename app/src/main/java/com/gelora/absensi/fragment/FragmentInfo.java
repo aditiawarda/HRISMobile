@@ -781,7 +781,7 @@ public class FragmentInfo extends Fragment {
                                     sisaCutiBTN.setVisibility(View.GONE);
                                 }
 
-                                if(!id_corporate.equals("1")){
+                                if(!id_corporate.equals("1")){ // PT. Gelora Aksara Pratama
                                     aboutCompanyBTN.setVisibility(View.GONE);
                                     descContactHRDTV.setText("Untuk layanan pengaduan anda akan terhubung dengan bagian HRD perusahaan");
                                 } else {
