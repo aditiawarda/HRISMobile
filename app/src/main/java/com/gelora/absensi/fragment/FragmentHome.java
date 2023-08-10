@@ -871,7 +871,7 @@ public class FragmentHome extends Fragment {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("request", "request");
+                params.put("id_cor", sharedPrefManager.getSpIdCor());
                 return params;
             }
         };

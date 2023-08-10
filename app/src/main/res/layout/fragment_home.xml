@@ -50,15 +50,22 @@
                                 android:layout_height="match_parent"
                                 android:orientation="horizontal">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:ellipsize="end"
-                                    android:maxLines="1"
-                                    android:singleLine="true"
-                                    android:text="HRIS Mobile"
-                                    android:textColor="@color/white"
-                                    android:textSize="15dp" />
+                                <ImageView
+                                    android:foregroundGravity="center"
+                                    android:layout_width="100dp"
+                                    android:layout_height="19dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/hris_text_logo" />
+
+<!--                                <TextView-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:ellipsize="end"-->
+<!--                                    android:maxLines="1"-->
+<!--                                    android:singleLine="true"-->
+<!--                                    android:text="HRIS Mobile"-->
+<!--                                    android:textColor="@color/white"-->
+<!--                                    android:textSize="15dp" />-->
 
                                 <LinearLayout
                                     android:orientation="horizontal"

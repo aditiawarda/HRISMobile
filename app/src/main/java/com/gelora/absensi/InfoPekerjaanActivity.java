@@ -35,8 +35,8 @@ import java.util.Map;
 
 public class InfoPekerjaanActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backBTN, nonGapPart;
-    TextView nikTV, cabangTV, departemenTV, bagianTV, jabatanTV, statusKaryawanTV, tanggalBergabungTV, masaKerjaTV, golonganKaryawanTV;
+    LinearLayout actionBar, backBTN, nonGapPart, corporatePart;
+    TextView nikTV, corporateTV, cabangTV, departemenTV, bagianTV, jabatanTV, statusKaryawanTV, tanggalBergabungTV, masaKerjaTV, golonganKaryawanTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
 
@@ -49,6 +49,7 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         nikTV = findViewById(R.id.nik);
+        corporateTV = findViewById(R.id.corporate);
         cabangTV = findViewById(R.id.cabang);
         departemenTV = findViewById(R.id.departemen);
         bagianTV = findViewById(R.id.bagian);
@@ -58,6 +59,7 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
         masaKerjaTV = findViewById(R.id.masa_kerja);
         golonganKaryawanTV = findViewById(R.id.golongan_karyawan);
         nonGapPart = findViewById(R.id.non_gap_part);
+        corporatePart = findViewById(R.id.corporate_part);
         actionBar = findViewById(R.id.action_bar);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +116,8 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
                             if (status.equals("Success")){
                                 JSONObject dataArray = data.getJSONObject("data");
                                 String nik = dataArray.getString("nik");
+                                String id_perusahaan = dataArray.getString("id_perusahaan");
+                                String nama_perusahaan = dataArray.getString("nama_perusahaan");
                                 String cabang = dataArray.getString("cabang");
                                 String departemen = dataArray.getString("departemen");
                                 String bagian = dataArray.getString("bagian");
@@ -123,6 +127,13 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
                                 String golongan_karyawan = dataArray.getString("golongan_karyawan");
 
                                 nikTV.setText(nik);
+
+                                if(id_perusahaan.equals("1")){
+                                    corporatePart.setVisibility(View.GONE);
+                                } else {
+                                    corporatePart.setVisibility(View.VISIBLE);
+                                    corporateTV.setText(nama_perusahaan);
+                                }
 
                                 if(cabang.equals("")||cabang.equals("null")||cabang.equals("0")){
                                     cabangTV.setText("-");

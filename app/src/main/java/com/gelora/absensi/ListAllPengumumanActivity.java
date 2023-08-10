@@ -39,6 +39,7 @@ public class ListAllPengumumanActivity extends AppCompatActivity {
     LinearLayout actionBar, backBTN, noDataPart, loadingDataPart;
     ImageView loadingData;
     SwipeRefreshLayout refreshLayout;
+    SharedPrefManager sharedPrefManager;
 
     private RecyclerView listPengumumanRV;
     private DataPengumumanAll[] dataPengumumans;
@@ -49,6 +50,7 @@ public class ListAllPengumumanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_all_pengumuman);
 
+        sharedPrefManager = new SharedPrefManager(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         loadingDataPart = findViewById(R.id.loading_data_part);
@@ -157,7 +159,7 @@ public class ListAllPengumumanActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("request", "request");
+                params.put("id_cor", sharedPrefManager.getSpIdCor());
                 return params;
             }
         };

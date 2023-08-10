@@ -82,10 +82,10 @@
 
         <ImageView
             android:foregroundGravity="center"
-            android:layout_width="140dp"
-            android:layout_height="80dp"
+            android:layout_width="143dp"
+            android:layout_height="62dp"
             android:scaleType="fitXY"
-            android:src="@drawable/hris_logo_ss" />
+            android:src="@drawable/hr_logo" />
 
 <!--        <TextView-->
 <!--            android:layout_width="wrap_content"-->
