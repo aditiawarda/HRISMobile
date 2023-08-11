@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/parent_part"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_btn_effect"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:paddingTop="24dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="103dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="left"
+                    android:maxLines="3"
+                    android:paddingBottom="2dp"
+                    android:lineSpacingExtra="3dp"
+                    android:text="-"
+                    android:textColor="#515151"
+                    android:textStyle="bold"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/creator_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingTop="1dp"
+                    android:singleLine="true"
+                    android:layout_marginTop="5dp"
+                    android:text="-"
+                    android:textColor="#9C9C9C"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/pub_date_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingTop="1dp"
+                    android:singleLine="true"
+                    android:layout_marginTop="5dp"
+                    android:text="-"
+                    android:textColor="#9C9C9C"
+                    android:textSize="10dp" />
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_alignParentRight="true"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/img_news"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/no_image"
+                    android:scaleType="centerCrop" />
+
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#F3F3F3" />
+
+    </LinearLayout>
+
+</RelativeLayout>

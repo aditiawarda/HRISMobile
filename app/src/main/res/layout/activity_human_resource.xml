@@ -449,17 +449,6 @@
 
                                     </LinearLayout>
 
-<!--                                    <include layout="@layout/item_karyawan_list" />-->
-<!--                                    <include layout="@layout/item_karyawan_list" />-->
-<!--                                    <include layout="@layout/item_karyawan_list" />-->
-<!--                                    <include layout="@layout/item_karyawan_list" />-->
-<!--                                    <include layout="@layout/item_karyawan_list" />-->
-<!--                                    <include layout="@layout/item_karyawan_list" />-->
-<!--                                    <include layout="@layout/item_karyawan_list" />-->
-<!--                                    <include layout="@layout/item_karyawan_list" />-->
-<!--                                    <include layout="@layout/item_karyawan_list" />-->
-<!--                                    <include layout="@layout/item_karyawan_list" />-->
-
                                 </LinearLayout>
 
                                 <LinearLayout

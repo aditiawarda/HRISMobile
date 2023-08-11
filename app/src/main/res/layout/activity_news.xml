@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchSdmActivity">
+    tools:context=".NewsActivity">
 
     <RelativeLayout
         android:background="@color/white"
@@ -34,159 +34,102 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingRight="20dp"
+                            android:orientation="vertical"
                             android:paddingLeft="20dp"
-                            android:paddingTop="90dp"
-                            android:orientation="vertical">
+                            android:paddingTop="85dp"
+                            android:paddingRight="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="#696969"
+                                android:text="Kategori :"/>
 
                             <LinearLayout
+                                android:id="@+id/choice_category"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_marginBottom="10dp">
+                                android:layout_height="40dp"
+                                android:paddingStart="20dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/shape_feel"
+                                android:orientation="horizontal">
 
-                                <LinearLayout
-                                    android:id="@+id/choice_bagian"
+                                <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
-                                    android:paddingStart="20dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:background="@drawable/shape_feel"
-                                    android:orientation="horizontal"
-                                    android:visibility="gone">
+                                    android:layout_height="match_parent">
 
-                                    <RelativeLayout
+                                    <LinearLayout
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="10dp"
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_marginRight="50dp"
+                                        android:layout_height="40dp"
+                                        android:orientation="vertical"
+                                        android:gravity="center|left">
 
-                                        <LinearLayout
-                                            android:layout_marginTop="10dp"
-                                            android:layout_marginBottom="10dp"
+                                        <TextView
+                                            android:id="@+id/category_choice_tv"
                                             android:layout_width="match_parent"
-                                            android:layout_marginRight="50dp"
-                                            android:layout_height="40dp"
-                                            android:orientation="vertical"
-                                            android:gravity="center|left">
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#B15735"
+                                            android:ellipsize="end"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:textStyle="bold"
+                                            android:text=""/>
 
-                                            <TextView
-                                                android:id="@+id/bagian_choice"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:textColor="#B15735"
-                                                android:ellipsize="end"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:textStyle="bold"
-                                                android:text=""/>
+                                    </LinearLayout>
 
-                                        </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="40dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/shape_btn"
+                                        android:gravity="center">
 
-                                        <LinearLayout
-                                            android:layout_alignParentRight="true"
-                                            android:layout_width="40dp"
-                                            android:layout_height="match_parent"
-                                            android:background="@drawable/shape_btn"
-                                            android:gravity="center">
+                                        <TextView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:background="@drawable/ic_baseline_down"/>
 
-                                            <TextView
-                                                android:layout_width="25dp"
-                                                android:layout_height="25dp"
-                                                android:background="@drawable/ic_baseline_bagian"/>
+                                    </LinearLayout>
 
-                                        </LinearLayout>
-
-                                    </RelativeLayout>
-
-                                </LinearLayout>
-
-                                <EditText
-                                    android:id="@+id/keyword_user_ed"
-                                    android:background="@drawable/shape_search"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:drawableLeft="@drawable/ic_baseline_search_2"
-                                    android:drawablePadding="10dp"
-                                    android:drawableTint="@color/colorPrimaryDark"
-                                    android:paddingLeft="17dp"
-                                    android:paddingTop="9dp"
-                                    android:paddingBottom="10dp"
-                                    android:paddingRight="20dp"
-                                    android:hint="Ketik nama karyawan/NIK..."
-                                    android:imeOptions="actionSearch"
-                                    android:inputType="text"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textColorHint="#D36C46"
-                                    android:textColorHighlight="#FFDCB1" />
+                                </RelativeLayout>
 
                             </LinearLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="20dp"
                             android:layout_width="match_parent"
                             android:layout_height="10dp"
-                            android:background="#3CCFCFCF"/>
+                            android:layout_marginTop="10dp"
+                            android:background="#3CCFCFCF" />
 
                         <LinearLayout
-                            android:paddingRight="20dp"
-                            android:paddingLeft="20dp"
-                            android:layout_marginBottom="30dp"
-                            android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:id="@+id/attantion_part"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:paddingBottom="20dp"
-                                android:paddingLeft="20dp"
-                                android:paddingRight="20dp"
-                                android:paddingTop="15dp"
-                                android:orientation="vertical"
-                                android:background="@drawable/shape_attantion">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="#C68D46"
-                                    android:textSize="12dp"
-                                    android:textStyle="bold"
-                                    android:text="Perhatian :"/>
-
-                                <TextView
-                                    android:id="@+id/attantion_desc"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:textColor="#C68D46"
-                                    android:textSize="12dp"
-                                    android:lineSpacingExtra="2.5dp"
-                                    android:layout_marginTop="7dp"
-                                    android:text="Ketikkan Nomor Induk Karyawan atau Nama Karyawan untuk menampilan data SDM yang dicari."/>
-
-                            </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
                             <androidx.recyclerview.widget.RecyclerView
-                                android:visibility="gone"
-                                android:id="@+id/data_sdm_rv"
+                                android:id="@+id/data_news_rv"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:visibility="gone">
                             </androidx.recyclerview.widget.RecyclerView>
 
                             <LinearLayout
-                                android:id="@+id/no_data_part"
+                                android:id="@+id/no_data_part_news"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
                                 android:orientation="vertical"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
-                                android:paddingTop="60dp"
+                                android:paddingTop="75dp"
                                 android:paddingBottom="35dp"
                                 android:visibility="gone">
 
@@ -212,7 +155,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Data SDM tidak tersedia"
+                                    android:text="Data berita tidak tersedia"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
                                     android:textSize="10dp" />
@@ -220,19 +163,18 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/loading_data_part"
+                                android:id="@+id/loading_data_part_news"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
                                 android:orientation="vertical"
                                 android:paddingLeft="20dp"
-                                android:paddingTop="60dp"
+                                android:paddingTop="80dp"
                                 android:paddingRight="20dp"
-                                android:paddingBottom="35dp"
-                                android:visibility="gone">
+                                android:paddingBottom="35dp">
 
                                 <ImageView
-                                    android:id="@+id/loading_data"
+                                    android:id="@+id/loading_data_news"
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     android:layout_marginBottom="5dp"
@@ -255,6 +197,27 @@
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
                                     android:textSize="10dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/source_label_part"
+                                android:gravity="center"
+                                android:paddingTop="25dp"
+                                android:paddingBottom="30dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:gravity="right"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:text="Sumber : newsdata.io"
+                                    android:textColor="#BCBCBC"
+                                    android:textSize="13dp" />
 
                             </LinearLayout>
 
@@ -310,7 +273,7 @@
                                 android:ellipsize="end"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="LIST SDM"
+                                android:text="PORTAL BERITA"
                                 android:textColor="@color/white"
                                 android:textSize="15dp" />
 

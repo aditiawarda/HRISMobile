@@ -496,12 +496,13 @@
                                             android:orientation="horizontal">
 
                                             <TextView
-                                                android:layout_width="wrap_content"
+                                                android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:ellipsize="end"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:gravity="center"
+                                                android:gravity="left"
+                                                android:layout_marginRight="28dp"
                                                 android:text="Info Personal"
                                                 android:textColor="#CF811F"
                                                 android:textSize="13dp" />
@@ -583,12 +584,13 @@
                                             android:orientation="horizontal">
 
                                             <TextView
-                                                android:layout_width="wrap_content"
+                                                android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:ellipsize="end"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:gravity="center"
+                                                android:gravity="left"
+                                                android:layout_marginRight="28dp"
                                                 android:text="Info Pekerjaan"
                                                 android:textColor="#CF811F"
                                                 android:textSize="13dp" />
@@ -661,12 +663,13 @@
                                             android:orientation="horizontal">
 
                                             <TextView
-                                                android:layout_width="wrap_content"
+                                                android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:ellipsize="end"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:gravity="center"
+                                                android:gravity="left"
+                                                android:layout_marginRight="28dp"
                                                 android:text="Info Kontak Darurat"
                                                 android:textColor="#CF811F"
                                                 android:textSize="13dp" />
@@ -770,12 +773,13 @@
                                                 android:orientation="horizontal">
 
                                                 <TextView
-                                                    android:layout_width="wrap_content"
+                                                    android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:ellipsize="end"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
-                                                    android:gravity="center"
+                                                    android:gravity="left"
+                                                    android:layout_marginRight="28dp"
                                                     android:text="Info Keluarga"
                                                     android:textColor="#CF811F"
                                                     android:textSize="13dp" />
@@ -848,12 +852,13 @@
                                                 android:orientation="horizontal">
 
                                                 <TextView
-                                                    android:layout_width="wrap_content"
+                                                    android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:ellipsize="end"
-                                                    android:gravity="center"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
+                                                    android:gravity="left"
+                                                    android:layout_marginRight="28dp"
                                                     android:text="Info Pengalaman dan Pelatihan"
                                                     android:textColor="#CF811F"
                                                     android:textSize="13dp" />
@@ -926,12 +931,13 @@
                                                 android:orientation="horizontal">
 
                                                 <TextView
-                                                    android:layout_width="wrap_content"
+                                                    android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:ellipsize="end"
-                                                    android:gravity="center"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
+                                                    android:gravity="left"
+                                                    android:layout_marginRight="28dp"
                                                     android:text="Info Payroll"
                                                     android:textColor="#CF811F"
                                                     android:textSize="13dp" />
@@ -1006,12 +1012,13 @@
                                             android:orientation="horizontal">
 
                                             <TextView
-                                                android:layout_width="wrap_content"
+                                                android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:ellipsize="end"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:gravity="center"
+                                                android:gravity="left"
+                                                android:layout_marginRight="28dp"
                                                 android:text="ID Card Digital"
                                                 android:textColor="#CF811F"
                                                 android:textSize="13dp" />
@@ -1084,12 +1091,13 @@
                                             android:orientation="horizontal">
 
                                             <TextView
-                                                android:layout_width="wrap_content"
+                                                android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:ellipsize="end"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:gravity="center"
+                                                android:gravity="left"
+                                                android:layout_marginRight="28dp"
                                                 android:text="Tanda Tangan Digital"
                                                 android:textColor="#CF811F"
                                                 android:textSize="13dp" />

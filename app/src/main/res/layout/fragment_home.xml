@@ -1044,6 +1044,85 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:id="@+id/news_part"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@drawable/shape_news_home"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="19.5dp"
+                                        android:layout_marginTop="15dp"
+                                        android:layout_marginRight="110dp"
+                                        android:text="BERITA TERKINI"
+                                        android:letterSpacing="0.05"
+                                        android:textColor="#F9FDFF"
+                                        android:textSize="16dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="110dp"
+                                        android:text="Update informasi di portal berita"
+                                        android:textColor="#F9FDFF"
+                                        android:textSize="11dp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="110dp"
+                                    android:layout_height="108dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginTop="-20dp"
+                                    android:layout_marginRight="40dp"
+                                    android:layout_marginBottom="-24dp"
+                                    android:background="@drawable/shape_ornament_news_1"
+                                    android:text=""
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="110dp"
+                                    android:layout_height="108dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_marginBottom="-22dp"
+                                    android:layout_marginTop="-22dp"
+                                    android:background="@drawable/shape_ornament_news_2"
+                                    android:text=""
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="105dp"
+                                    android:layout_height="103dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginBottom="-35dp"
+                                    android:background="@drawable/news_bg_img"
+                                    android:text=""
+                                    android:textStyle="bold" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
@@ -1465,7 +1544,7 @@
                                         android:layout_height="115dp"
                                         android:layout_alignParentRight="true"
                                         android:layout_marginRight="5dp"
-                                        android:layout_marginBottom="-42dp"
+                                        android:layout_marginBottom="-43dp"
                                         android:background="@drawable/stay_safe_img"
                                         android:text=""
                                         android:textStyle="bold" />

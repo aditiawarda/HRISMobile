@@ -56,6 +56,7 @@ import com.gelora.absensi.CalendarPageActivity;
 import com.gelora.absensi.ChatSplashScreenActivity;
 import com.gelora.absensi.ComingSoonActivity;
 import com.gelora.absensi.DetailCuacaActivity;
+import com.gelora.absensi.DetailFormSdmActivity;
 import com.gelora.absensi.DetailPengumumanActivity;
 import com.gelora.absensi.DigitalCardActivity;
 import com.gelora.absensi.DigitalSignatureActivity;
@@ -68,6 +69,7 @@ import com.gelora.absensi.HumanResourceActivity;
 import com.gelora.absensi.InfoPersonalActivity;
 import com.gelora.absensi.ListAllPengumumanActivity;
 import com.gelora.absensi.MapsActivity;
+import com.gelora.absensi.NewsActivity;
 import com.gelora.absensi.PersonalNotificationActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
@@ -113,7 +115,7 @@ import java.util.Map;
 
 public class FragmentHome extends Fragment {
 
-    LinearLayout countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
+    LinearLayout newsPart, countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
     TextView countNotificationPersonalTV, countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
     ImageView avatarUser, weatherIcon, loadingData;
@@ -221,6 +223,7 @@ public class FragmentHome extends Fragment {
 
         cutiPart = view.findViewById(R.id.cuti_part);
         pengaduanPart = view.findViewById(R.id.pengaduan_part);
+        newsPart = view.findViewById(R.id.news_part);
 
         listPengumumanNewRV = view.findViewById(R.id.list_pengumuman_rv);
         listPengumumanNewRV.setLayoutManager(new LinearLayoutManager(mContext));
@@ -495,6 +498,8 @@ public class FragmentHome extends Fragment {
                                 String avatar = data.getString("avatar");
                                 String weather_key = data.getString("weather_key");
                                 String chat_room = data.getString("chat_room");
+                                String news_part = data.getString("news_part");
+                                String base_news_api = data.getString("base_news_api");
                                 String fitur_pengumuman = data.getString("fitur_pengumuman");
                                 String join_reminder = data.getString("join_reminder");
                                 String pengumuman_id = data.getString("pengumuman_id");
@@ -508,6 +513,20 @@ public class FragmentHome extends Fragment {
                                 String id_dept = data.getString("id_dept");
                                 String id_bagian = data.getString("id_bagian");
                                 String id_jabatan = data.getString("id_jabatan");
+
+                                if(news_part.equals("1")){
+                                    newsPart.setVisibility(View.VISIBLE);
+                                    newsPart.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(mContext, NewsActivity.class);
+                                            intent.putExtra("api_url", base_news_api);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                } else {
+                                    newsPart.setVisibility(View.GONE);
+                                }
 
                                 if(!sharedPrefManager.getSpIdCor().equals(id_corporate)){
                                     sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_COR, id_corporate);
