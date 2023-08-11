@@ -115,7 +115,7 @@ import java.util.Map;
 
 public class FragmentHome extends Fragment {
 
-    LinearLayout newsPart, countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
+    LinearLayout weatherBTN, newsPart, countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
     TextView countNotificationPersonalTV, countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
     ImageView avatarUser, weatherIcon, loadingData;
@@ -211,6 +211,7 @@ public class FragmentHome extends Fragment {
         personalNotifBTN = view.findViewById(R.id.personal_notif_btn);
         countNotificationPersonalPart = view.findViewById(R.id.count_notification_personal);
         countNotificationPersonalTV = view.findViewById(R.id.count_personal);
+        weatherBTN = view.findViewById(R.id.weather_btn);
 
         ulangTahunPart = view.findViewById(R.id.ulang_tahun_part);
         congratTahunanPart = view.findViewById(R.id.congrat_tahunan);
@@ -1181,7 +1182,7 @@ public class FragmentHome extends Fragment {
                                 dataCuaca.setVisibility(View.VISIBLE);
                                 dataCuacaEmpty.setVisibility(View.GONE);
 
-                                dataCuaca.setOnClickListener(new View.OnClickListener() {
+                                weatherBTN.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
                                         // Detail Cuaca
@@ -1208,7 +1209,7 @@ public class FragmentHome extends Fragment {
                 error.printStackTrace();
                 dataCuaca.setVisibility(View.GONE);
                 dataCuacaEmpty.setVisibility(View.VISIBLE);
-                dataCuaca.setOnClickListener(null);
+                weatherBTN.setOnClickListener(null);
             }
         });
 
