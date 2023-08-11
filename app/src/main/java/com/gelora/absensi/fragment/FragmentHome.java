@@ -500,6 +500,7 @@ public class FragmentHome extends Fragment {
                                 String chat_room = data.getString("chat_room");
                                 String news_part = data.getString("news_part");
                                 String base_news_api = data.getString("base_news_api");
+                                String defaut_news_category = data.getString("defaut_news_category");
                                 String fitur_pengumuman = data.getString("fitur_pengumuman");
                                 String join_reminder = data.getString("join_reminder");
                                 String pengumuman_id = data.getString("pengumuman_id");
@@ -521,6 +522,7 @@ public class FragmentHome extends Fragment {
                                         public void onClick(View v) {
                                             Intent intent = new Intent(mContext, NewsActivity.class);
                                             intent.putExtra("api_url", base_news_api);
+                                            intent.putExtra("defaut_news_category", defaut_news_category);
                                             startActivity(intent);
                                         }
                                     });

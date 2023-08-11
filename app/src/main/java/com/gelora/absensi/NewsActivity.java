@@ -53,7 +53,7 @@ public class NewsActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheet;
     View rootview;
-    String linkApi = "", categoryNewsLabel = "Teratas", categoryNews = "top"; //business,health,politics,sports,technology,entertainment,environment,food,science,top,tourism,world
+    String linkApi = "", categoryNewsLabel = "", categoryNews = ""; //business,health,politics,sports,technology,entertainment,environment,food,science,top,tourism,world
 
     private RecyclerView dataNewsRV;
     private NewsData[] dataNews;
@@ -85,6 +85,34 @@ public class NewsActivity extends AppCompatActivity {
         dataNewsRV.setItemAnimator(new DefaultItemAnimator());
 
         linkApi = getIntent().getExtras().getString("api_url");
+        categoryNews = getIntent().getExtras().getString("defaut_news_category");
+
+        if(categoryNews.equals("top")){
+            categoryNewsLabel = "Teratas";
+        } else if(categoryNews.equals("business")){
+            categoryNewsLabel = "Bisnis";
+        } else if(categoryNews.equals("health")){
+            categoryNewsLabel = "Kesehatan";
+        } else if(categoryNews.equals("politics")){
+            categoryNewsLabel = "Politik";
+        } else if(categoryNews.equals("sports")){
+            categoryNewsLabel = "Olahraga";
+        } else if(categoryNews.equals("technology")){
+            categoryNewsLabel = "Teknologi";
+        } else if(categoryNews.equals("entertainment")){
+            categoryNewsLabel = "Hiburan";
+        } else if(categoryNews.equals("environment")){
+            categoryNewsLabel = "Lingkungan";
+        } else if(categoryNews.equals("food")){
+            categoryNewsLabel = "Kuliner";
+        } else if(categoryNews.equals("science")){
+            categoryNewsLabel = "Sains";
+        } else if(categoryNews.equals("tourism")){
+            categoryNewsLabel = "Pariwisata";
+        } else if(categoryNews.equals("world")){
+            categoryNewsLabel = "Dunia";
+        }
+        categoryChoiceTV.setText(categoryNewsLabel);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -129,7 +157,6 @@ public class NewsActivity extends AppCompatActivity {
             }
         });
 
-        categoryChoiceTV.setText(categoryNewsLabel);
         getNews(categoryNews);
 
     }

@@ -3,6 +3,7 @@ package com.gelora.absensi.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gelora.absensi.DetailCuacaActivity;
 import com.gelora.absensi.DetailHadirActivity;
 import com.gelora.absensi.DetailPermohonanCutiActivity;
 import com.gelora.absensi.DetailPermohonanIzinActivity;
@@ -20,6 +22,7 @@ import com.gelora.absensi.NewsActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
+import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataHadir;
 import com.gelora.absensi.model.NewsData;
 import com.squareup.picasso.MemoryPolicy;
@@ -147,7 +150,23 @@ public class AdapterDataNews extends RecyclerView.Adapter<AdapterDataNews.MyView
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse(dataNews.getLink()));
+                try {
+                    mContext.startActivity(webIntent);
+                } catch (SecurityException e) {
+                    e.printStackTrace();
+                    new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Terjadi kesalahan")
+                            .setContentText("Tidak dapat membuka browser")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                }
             }
 
         });
