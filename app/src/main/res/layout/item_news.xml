@@ -48,7 +48,7 @@
                     android:maxLines="1"
                     android:paddingTop="1dp"
                     android:singleLine="true"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="3dp"
                     android:text="-"
                     android:textColor="#9C9C9C"
                     android:textSize="12dp" />
