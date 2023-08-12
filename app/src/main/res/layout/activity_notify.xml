@@ -119,7 +119,7 @@
                     android:layout_gravity="center"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@drawable/success" />
+                    android:background="@drawable/success_2" />
 
             </LinearLayout>
 
