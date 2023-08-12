@@ -41,6 +41,7 @@ import com.gelora.absensi.HumanResourceActivity;
 import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.ListNotifikasiFingerscanActivity;
 import com.gelora.absensi.MonitoringAbsensiBagianActivity;
+import com.gelora.absensi.NewsActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.kalert.KAlertDialog;
@@ -68,7 +69,7 @@ public class FragmentInfo extends Fragment {
 
     TextView descContactHRDTV, titlePage, dateNowTV, countNotifFingerTV, countNotifIzinTV;
     ExpandableLayout aboutAppField, privacyPolicyField, contactServiceField;
-    LinearLayout sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
+    LinearLayout newsPart, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
     TextView bagianNameTVSDM, historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     ImageView notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     SwipeRefreshLayout refreshLayout;
@@ -152,6 +153,7 @@ public class FragmentInfo extends Fragment {
         bagianNameTVSDM = view.findViewById(R.id.bagian_name_tv_sdm);
         sdmBTN = view.findViewById(R.id.sdm_btn);
         descContactHRDTV = view.findViewById(R.id.desc_contact_hrd_tv);
+        newsPart = view.findViewById(R.id.news_part);
 
         selectMonth = getBulanTahun();
         dateNowTV.setText(getDate().substring(8,10)+"/"+getDate().substring(5,7)+"/"+getDate().substring(0,4));
@@ -708,9 +710,31 @@ public class FragmentInfo extends Fragment {
                                 String bagian = data.getString("bagian");
                                 String departemen = data.getString("departemen");
                                 String id_corporate = data.getString("id_corporate");
+                                String news_part = data.getString("news_part");
+                                String base_news_api = data.getString("base_news_api");
+                                String defaut_news_category = data.getString("defaut_news_category");
 
                                 statusFiturIzinCuti = fitur_izin;
                                 statusFiturFinger = fitur_finger;
+
+                                if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+                                    if(news_part.equals("1")){
+                                        newsPart.setVisibility(View.VISIBLE);
+                                        newsPart.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Intent intent = new Intent(mContext, NewsActivity.class);
+                                                intent.putExtra("api_url", base_news_api);
+                                                intent.putExtra("defaut_news_category", defaut_news_category);
+                                                startActivity(intent);
+                                            }
+                                        });
+                                    } else {
+                                        newsPart.setVisibility(View.GONE);
+                                    }
+                                } else {
+                                    newsPart.setVisibility(View.GONE);
+                                }
 
                                 if (monitoring.equals("1")) {
                                     if (sharedPrefManager.getSpIdJabatan().equals("10")) {

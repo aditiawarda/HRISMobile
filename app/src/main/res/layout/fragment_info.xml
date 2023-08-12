@@ -772,13 +772,13 @@
                                                 android:layout_height="wrap_content">
 
                                                 <LinearLayout
-                                                    android:orientation="vertical"
-                                                    android:paddingTop="10dp"
-                                                    android:paddingBottom="10dp"
-                                                    android:paddingRight="15dp"
-                                                    android:paddingLeft="15dp"
                                                     android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content">
+                                                    android:layout_height="wrap_content"
+                                                    android:orientation="vertical"
+                                                    android:paddingLeft="15dp"
+                                                    android:paddingTop="10dp"
+                                                    android:paddingRight="15dp"
+                                                    android:paddingBottom="10dp">
 
                                                     <TextView
                                                         android:layout_width="match_parent"
@@ -786,19 +786,19 @@
                                                         android:ellipsize="end"
                                                         android:maxLines="1"
                                                         android:singleLine="true"
+                                                        android:text="Pulang Cepat"
                                                         android:textColor="@color/white"
-                                                        android:textSize="10dp"
-                                                        android:text="Pulang Cepat"/>
+                                                        android:textSize="10dp" />
 
                                                     <TextView
-                                                        android:visibility="gone"
                                                         android:id="@+id/data_pulang_cepat"
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"
+                                                        android:text="0"
                                                         android:textColor="@color/white"
                                                         android:textSize="30dp"
                                                         android:textStyle="bold"
-                                                        android:text="0"/>
+                                                        android:visibility="gone" />
 
                                                     <ImageView
                                                         android:id="@+id/pulang_cepat_loading"
@@ -1034,6 +1034,89 @@
                                     </RelativeLayout>
 
                                 </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/news_part"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginBottom="15dp"
+                                android:background="@drawable/shape_news_home"
+                                android:gravity="center"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <LinearLayout
+                                        android:layout_width="110dp"
+                                        android:layout_height="117dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginTop="-27dp"
+                                        android:layout_marginRight="40dp"
+                                        android:layout_marginBottom="-25dp"
+                                        android:background="@drawable/shape_ornament_news_1"
+                                        android:text=""
+                                        android:textStyle="bold" />
+
+                                    <LinearLayout
+                                        android:layout_width="110dp"
+                                        android:layout_height="108dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginRight="8dp"
+                                        android:layout_marginBottom="-22dp"
+                                        android:layout_marginTop="-22dp"
+                                        android:background="@drawable/shape_ornament_news_2"
+                                        android:text=""
+                                        android:textStyle="bold" />
+
+                                    <LinearLayout
+                                        android:layout_width="105dp"
+                                        android:layout_height="103dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_marginBottom="-35dp"
+                                        android:background="@drawable/news_bg_img"
+                                        android:text=""
+                                        android:textStyle="bold" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="19.5dp"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_marginRight="110dp"
+                                            android:letterSpacing="0.05"
+                                            android:text="BERITA TERKINI"
+                                            android:textColor="#FFF3F1"
+                                            android:textSize="16dp"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="110dp"
+                                            android:ellipsize="end"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Update informasi di portal berita"
+                                            android:textColor="#FFF3F1"
+                                            android:textSize="11dp" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
 
                             </LinearLayout>
 

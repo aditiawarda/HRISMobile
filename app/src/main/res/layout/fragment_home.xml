@@ -1053,6 +1053,7 @@
                             android:layout_marginBottom="15dp"
                             android:background="@drawable/shape_news_home"
                             android:gravity="center"
+                            android:visibility="gone"
                             android:orientation="vertical">
 
                             <RelativeLayout
@@ -1102,9 +1103,9 @@
                                         android:layout_marginLeft="19.5dp"
                                         android:layout_marginTop="15dp"
                                         android:layout_marginRight="110dp"
-                                        android:text="BERITA TERKINI"
                                         android:letterSpacing="0.05"
-                                        android:textColor="#FFEAE6"
+                                        android:text="BERITA TERKINI"
+                                        android:textColor="#FFF3F1"
                                         android:textSize="16dp"
                                         android:textStyle="bold" />
 
@@ -1117,7 +1118,7 @@
                                         android:maxLines="1"
                                         android:singleLine="true"
                                         android:text="Update informasi di portal berita"
-                                        android:textColor="#FFEAE6"
+                                        android:textColor="#FFF3F1"
                                         android:textSize="11dp" />
 
                                 </LinearLayout>

@@ -14,16 +14,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.DetailCuacaActivity;
-import com.gelora.absensi.DetailHadirActivity;
-import com.gelora.absensi.DetailPermohonanCutiActivity;
-import com.gelora.absensi.DetailPermohonanIzinActivity;
 import com.gelora.absensi.NewsActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.DataHadir;
 import com.gelora.absensi.model.NewsData;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
@@ -32,7 +27,6 @@ import com.squareup.picasso.Picasso;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -142,10 +136,21 @@ public class AdapterDataNews extends RecyclerView.Adapter<AdapterDataNews.MyView
             myViewHolder.pubDateTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
         }
 
-        Picasso.get().load(String.valueOf(dataNews.getImage_url())).networkPolicy(NetworkPolicy.NO_CACHE)
-                .memoryPolicy(MemoryPolicy.NO_CACHE)
-                .resize(300, 300)
-                .into(myViewHolder.imgNews);
+        int min = 1;
+        int max = 10;
+        int acak = (int)(Math.random()*(max-min+1)+min);
+
+        if(String.valueOf(dataNews.getImage_url()).equals("null")){
+            Picasso.get().load("https://geloraaksara.co.id/absen-online/assets/img/news_no_img/"+String.valueOf(acak)+".jpg").networkPolicy(NetworkPolicy.NO_CACHE)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .resize(300, 300)
+                    .into(myViewHolder.imgNews);
+        } else {
+            Picasso.get().load(String.valueOf(dataNews.getImage_url())).networkPolicy(NetworkPolicy.NO_CACHE)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .resize(300, 300)
+                    .into(myViewHolder.imgNews);
+        }
 
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +173,6 @@ public class AdapterDataNews extends RecyclerView.Adapter<AdapterDataNews.MyView
                             .show();
                 }
             }
-
         });
 
     }

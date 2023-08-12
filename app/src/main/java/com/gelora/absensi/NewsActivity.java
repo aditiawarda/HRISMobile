@@ -197,6 +197,11 @@ public class NewsActivity extends AppCompatActivity {
                                     dataNewsRV.setAdapter(adapterDataNews);
                                 }
 
+                            } else {
+                                sourceLabelPart.setVisibility(View.GONE);
+                                emptyDataNews.setVisibility(View.VISIBLE);
+                                dataNewsRV.setVisibility(View.GONE);
+                                loadingNewsPart.setVisibility(View.GONE);
                             }
 
                         } catch (JSONException e) {
@@ -207,7 +212,10 @@ public class NewsActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                connectionFailed();
+                sourceLabelPart.setVisibility(View.GONE);
+                emptyDataNews.setVisibility(View.VISIBLE);
+                dataNewsRV.setVisibility(View.GONE);
+                loadingNewsPart.setVisibility(View.GONE);
             }
         });
 
