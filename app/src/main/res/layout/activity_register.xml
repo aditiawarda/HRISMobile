@@ -84,7 +84,7 @@
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/shape_feel_login"
                             android:hint="NIK"
-                            android:inputType="number"
+                            android:inputType="textCapCharacters"
                             android:paddingLeft="20dp"
                             android:paddingTop="10dp"
                             android:paddingRight="20dp"
@@ -366,7 +366,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#CBFFFFFF"
                 android:textSize="13dp"
-                android:text="HRIS Mobile Gelora v 1.8.7"/>
+                android:text="HRIS Mobile Gelora v 1.8.8"/>
 
         </LinearLayout>
 

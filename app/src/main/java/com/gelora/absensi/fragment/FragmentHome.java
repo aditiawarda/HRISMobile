@@ -650,29 +650,34 @@ public class FragmentHome extends Fragment {
                                     String tahunMasuk = tanggal_masuk.substring(0, 4);
                                     if (tglBulanMasuk.equals(getDayMonth())) {
                                         int masaKerja = Integer.parseInt(getDateY()) - Integer.parseInt(tahunMasuk);
-                                        congratCelebrate.setText("Selamat Merayakan " + String.valueOf(masaKerja) + " Tahun Masa Kerja.");
-                                        if (join_reminder.equals("1")) {
-                                            if(!sharedPrefAbsen.getSpNotifJoinRemainder().equals("1")){
-                                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_JOIN_REMAINDER, "1");
-                                                getNotifMasaKerja(String.valueOf(masaKerja));
-                                            }
-
-                                            congratTahunanPart.setVisibility(View.VISIBLE);
-                                            congratTahunanPart.setOnClickListener(new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View v) {
-                                                    if (refeatConfeti.equals("1")) {
-                                                        CommonConfetti.rainingConfetti(mainParent, colors).stream(3000);
-                                                        refeatConfeti = "0";
-                                                        new Handler().postDelayed(new Runnable() {
-                                                            @Override
-                                                            public void run() {
-                                                                refeatConfeti = "1";
-                                                            }
-                                                        }, 3000);
-                                                    }
+                                        if(masaKerja > 0){
+                                            congratCelebrate.setText("Selamat Merayakan " + String.valueOf(masaKerja) + " Tahun Masa Kerja.");
+                                            if (join_reminder.equals("1")) {
+                                                if(!sharedPrefAbsen.getSpNotifJoinRemainder().equals("1")){
+                                                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_JOIN_REMAINDER, "1");
+                                                    getNotifMasaKerja(String.valueOf(masaKerja));
                                                 }
-                                            });
+
+                                                congratTahunanPart.setVisibility(View.VISIBLE);
+                                                congratTahunanPart.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        if (refeatConfeti.equals("1")) {
+                                                            CommonConfetti.rainingConfetti(mainParent, colors).stream(3000);
+                                                            refeatConfeti = "0";
+                                                            new Handler().postDelayed(new Runnable() {
+                                                                @Override
+                                                                public void run() {
+                                                                    refeatConfeti = "1";
+                                                                }
+                                                            }, 3000);
+                                                        }
+                                                    }
+                                                });
+                                            } else {
+                                                congratTahunanPart.setVisibility(View.GONE);
+                                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_JOIN_REMAINDER, "");
+                                            }
                                         } else {
                                             congratTahunanPart.setVisibility(View.GONE);
                                             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_JOIN_REMAINDER, "");

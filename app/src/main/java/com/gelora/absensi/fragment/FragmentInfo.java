@@ -739,6 +739,8 @@ public class FragmentInfo extends Fragment {
                                 }
 
                                 if (monitoring.equals("1")) {
+
+                                    //PT Gelora Aksara Pratama
                                     if (sharedPrefManager.getSpIdJabatan().equals("10")) {
                                         monitoringStaffBTN.setVisibility(View.VISIBLE);
                                         titlePantau.setText("Pantau kehadiran departemen*");
@@ -757,7 +759,25 @@ public class FragmentInfo extends Fragment {
                                         notePantau.setText("*Fitur khusus Kepala Bagian");
                                         bagianNameTV.setText(bagian);
                                         bagianNameTVSDM.setText(bagian);
-                                    } else {
+                                    }
+
+                                    //Yayasan Erlass Kreatif Bangsa
+                                    else if (sharedPrefManager.getSpIdJabatan().equals("33")){
+                                        monitoringStaffBTN.setVisibility(View.VISIBLE);
+                                        titlePantau.setText("Pantau kehadiran*");
+                                        notePantau.setText("*Fitur khusus Koordinator Sekolah");
+                                        bagianNameTV.setText(departemen);
+                                        bagianNameTVSDM.setText(departemen);
+                                    }
+                                    else if (sharedPrefManager.getSpIdJabatan().equals("35")){
+                                        monitoringStaffBTN.setVisibility(View.VISIBLE);
+                                        titlePantau.setText("Pantau kehadiran*");
+                                        notePantau.setText("*Fitur khusus Kepala Sekolah");
+                                        bagianNameTV.setText(bagian);
+                                        bagianNameTVSDM.setText(bagian);
+                                    }
+
+                                    else {
                                         monitoringStaffBTN.setVisibility(View.GONE);
                                     }
                                 } else {
