@@ -313,8 +313,10 @@ public class FragmentInfo extends Fragment {
                                     bulan = "09";
                                 } else if (month==9){
                                     bulan = "10";
-                                } else {
-                                    bulan = String.valueOf(month);
+                                } else if (month==10){
+                                    bulan = "11";
+                                } else if (month==11){
+                                    bulan = "12";
                                 }
 
                                 selectMonth = String.valueOf(year)+"-"+bulan;

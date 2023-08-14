@@ -176,8 +176,10 @@ public class DetailTidakCheckoutActivity extends AppCompatActivity {
                                     bulan = "09";
                                 } else if (month==9){
                                     bulan = "10";
-                                } else {
-                                    bulan = String.valueOf(month);
+                                } else if (month==10){
+                                    bulan = "11";
+                                } else if (month==11){
+                                    bulan = "12";
                                 }
 
                                 bulanPilih = String.valueOf(year)+"-"+bulan;
