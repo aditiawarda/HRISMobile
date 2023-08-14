@@ -217,8 +217,8 @@
                                     android:maxLines="1"
                                     android:singleLine="true"
                                     android:text="SUMBER : NEWSDATA.IO"
-                                    android:textColor="#BCBCBC"
-                                    android:textSize="13dp" />
+                                    android:textColor="#CFCFCF"
+                                    android:textSize="12dp" />
 
                             </LinearLayout>
 
