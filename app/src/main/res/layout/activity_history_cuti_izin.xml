@@ -954,7 +954,7 @@
                                                 android:ellipsize="end"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:text="Riwayat Penenambahan Hak Cuti"
+                                                android:text="Riwayat Penambahan Hak Cuti"
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="10dp"
                                                 android:textStyle="italic" />
