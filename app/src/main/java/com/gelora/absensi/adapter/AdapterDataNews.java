@@ -162,7 +162,7 @@ public class AdapterDataNews extends RecyclerView.Adapter<AdapterDataNews.MyView
                     myViewHolder.pubDateTV.setText("Hari ini, "+String.valueOf(Integer.parseInt(String.valueOf((f.format(hour)))))+" jam yang lalu");
                 }
             } else if(selisih_hari==1){
-                myViewHolder.pubDateTV.setText("Kemarin, "+dataNews.getPubDate().substring(11,16));
+                myViewHolder.pubDateTV.setText("Kemarin, "+dataNews.getPubDate().substring(11,16)+" WIB");
             } else {
                 myViewHolder.pubDateTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
             }
