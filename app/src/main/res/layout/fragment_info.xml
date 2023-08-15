@@ -1367,7 +1367,7 @@
                                                 android:layout_marginBottom="7dp"
                                                 android:fontFamily="@font/roboto"
                                                 android:lineSpacingExtra="2dp"
-                                                android:text="Untuk kemudahan dan kelancaran penggunaan, HRIS Mobile Gelora didukung oleh API Google Maps sebagai penanda lokasi, API openweather.org untuk informasi cuaca dan API newsdata.io untuk data berita terkini."
+                                                android:text="Untuk kemudahan dan kelancaran penggunaan, HRIS Mobile Gelora didukung oleh API Google Maps sebagai penanda lokasi, API openweathermap.org untuk informasi cuaca dan API newsdata.io untuk data berita terkini."
                                                 android:textColor="@color/text_color"
                                                 android:textSize="13dp" />
 
