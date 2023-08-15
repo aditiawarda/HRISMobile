@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -46,18 +47,21 @@ import androidmads.library.qrgenearator.QRGEncoder;
 
 public class DigitalCardActivity extends AppCompatActivity {
 
+    SharedPrefManager sharedPrefManager;
     TextView namaKaryawan, nikKaryawan;
     String namaString, nikString, dataDiri, uriImage;
     View rootview;
     ImageView qrKaryawan;
-    LinearLayout backBTN, captureBTN, digitalCard;
+    LinearLayout headerGAP, headerErlass, footerGAP, footerErlass, backBTN, captureBTN, digitalCard;
     private int i = -1;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_digital_card);
 
+        sharedPrefManager = new SharedPrefManager(this);
         rootview = findViewById(android.R.id.content);
         namaKaryawan = findViewById(R.id.nama_karyawan);
         nikKaryawan = findViewById(R.id.nik_karyawan);
@@ -65,6 +69,10 @@ public class DigitalCardActivity extends AppCompatActivity {
         captureBTN = findViewById(R.id.capture_btn);
         digitalCard = findViewById(R.id.main_content);
         backBTN = findViewById(R.id.back_btn);
+        headerGAP = findViewById(R.id.gap_header);
+        headerErlass = findViewById(R.id.erlass_header);
+        footerGAP = findViewById(R.id.gap_footer);
+        footerErlass = findViewById(R.id.erlass_footer);
 
         namaString = getIntent().getExtras().getString("nama");
         nikString = getIntent().getExtras().getString("nik");
@@ -73,6 +81,18 @@ public class DigitalCardActivity extends AppCompatActivity {
         nikKaryawan.setText("NIK. "+nikString);
 
         dataDiri = namaString+" - "+nikString;
+
+        if(sharedPrefManager.getSpIdCor().equals("1")){
+            headerGAP.setVisibility(View.VISIBLE);
+            footerGAP.setVisibility(View.VISIBLE);
+            headerErlass.setVisibility(View.GONE);
+            footerErlass.setVisibility(View.GONE);
+        } else if(sharedPrefManager.getSpIdCor().equals("3")){
+            headerGAP.setVisibility(View.GONE);
+            footerGAP.setVisibility(View.GONE);
+            headerErlass.setVisibility(View.VISIBLE);
+            footerErlass.setVisibility(View.VISIBLE);
+        }
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
