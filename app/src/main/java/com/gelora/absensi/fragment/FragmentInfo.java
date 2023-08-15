@@ -940,54 +940,105 @@ public class FragmentInfo extends Fragment {
     }
 
     private void getContact() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_contact";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
-                        try {
-                            String bagian = response.getString("bagian");
-                            String nama = response.getString("nama");
-                            String whatsapp = response.getString("whatsapp");
+        if(sharedPrefManager.getSpIdCor().equals("1")){
+            final String url = "https://geloraaksara.co.id/absen-online/api/get_contact";
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONObject>() {
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.e("PaRSE JSON", response + "");
+                            try {
+                                String bagian = response.getString("bagian");
+                                String nama = response.getString("nama");
+                                String whatsapp = response.getString("whatsapp");
 
-                            connectBTN.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+"+whatsapp+"&text="));
-                                    try {
-                                        startActivity(webIntent);
-                                    } catch (SecurityException e) {
-                                        e.printStackTrace();
-                                        new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
-                                                .setTitleText("Perhatian")
-                                                .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian HRD")
-                                                .setConfirmText("    OK    ")
-                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                    @Override
-                                                    public void onClick(KAlertDialog sDialog) {
-                                                        sDialog.dismiss();
-                                                    }
-                                                })
-                                                .show();
+                                connectBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+"+whatsapp+"&text="));
+                                        try {
+                                            startActivity(webIntent);
+                                        } catch (SecurityException e) {
+                                            e.printStackTrace();
+                                            new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian HRD")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+                                        }
                                     }
-                                }
-                            });
+                                });
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            });
 
-        requestQueue.add(request);
+            requestQueue.add(request);
+
+        } else if(sharedPrefManager.getSpIdCor().equals("3")){
+            final String url = "https://geloraaksara.co.id/absen-online/api/get_contact_erlass";
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONObject>() {
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.e("PaRSE JSON", response + "");
+                            try {
+                                String bagian = response.getString("bagian");
+                                String nama = response.getString("nama");
+                                String whatsapp = response.getString("whatsapp");
+
+                                connectBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+"+whatsapp+"&text="));
+                                        try {
+                                            startActivity(webIntent);
+                                        } catch (SecurityException e) {
+                                            e.printStackTrace();
+                                            new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian HRD")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+                                        }
+                                    }
+                                });
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            });
+
+            requestQueue.add(request);
+
+        }
 
     }
 
