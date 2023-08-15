@@ -42,6 +42,9 @@ import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class NewsActivity extends AppCompatActivity {
 
     LinearLayout sourceLabelPart, actionBar, categoryBTN, emptyDataNews, loadingNewsPart, backBTN;
@@ -158,6 +161,7 @@ public class NewsActivity extends AppCompatActivity {
         });
 
         getNews(categoryNews);
+        newsVisitor();
 
     }
 
@@ -1171,6 +1175,47 @@ public class NewsActivity extends AppCompatActivity {
 
             }
         }, 100);
+
+    }
+
+    private void newsVisitor() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/news_visitor";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response);
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("nik", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
 
     }
 
