@@ -108,6 +108,7 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
             myViewHolder.partDiliburkan.setVisibility(View.GONE);
             myViewHolder.partIzin.setVisibility(View.GONE);
             myViewHolder.partLibur.setVisibility(View.GONE);
+            myViewHolder.partSabtu.setVisibility(View.GONE);
             myViewHolder.partMinggu.setVisibility(View.GONE);
             myViewHolder.partAlpha.setVisibility(View.GONE);
             myViewHolder.warningMark.setVisibility(View.GONE);
@@ -336,6 +337,7 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
             myViewHolder.partDiliburkan.setVisibility(View.VISIBLE);
             myViewHolder.partIzin.setVisibility(View.GONE);
             myViewHolder.partLibur.setVisibility(View.GONE);
+            myViewHolder.partSabtu.setVisibility(View.GONE);
             myViewHolder.partMinggu.setVisibility(View.GONE);
             myViewHolder.partAlpha.setVisibility(View.GONE);
             myViewHolder.warningMark.setVisibility(View.GONE);
@@ -349,6 +351,7 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
             myViewHolder.partDiliburkan.setVisibility(View.GONE);
             myViewHolder.partIzin.setVisibility(View.VISIBLE);
             myViewHolder.partLibur.setVisibility(View.GONE);
+            myViewHolder.partSabtu.setVisibility(View.GONE);
             myViewHolder.partMinggu.setVisibility(View.GONE);
             myViewHolder.partAlpha.setVisibility(View.GONE);
             myViewHolder.warningMark.setVisibility(View.GONE);
@@ -363,6 +366,7 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
             myViewHolder.partDiliburkan.setVisibility(View.GONE);
             myViewHolder.partIzin.setVisibility(View.GONE);
             myViewHolder.partLibur.setVisibility(View.VISIBLE);
+            myViewHolder.partSabtu.setVisibility(View.GONE);
             myViewHolder.partMinggu.setVisibility(View.GONE);
             myViewHolder.partAlpha.setVisibility(View.GONE);
             myViewHolder.warningMark.setVisibility(View.GONE);
@@ -372,11 +376,26 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
             myViewHolder.dateAbsensi.setTextColor(Color.parseColor("#C58534"));
             myViewHolder.dalamRangkaTV.setText(dataAbsensi.getDalam_rangka());
 
+        } else if(dataAbsensi.getKet_kehadiran().equals("Sabtu")){ //Khusus Erlass
+            myViewHolder.partHadir.setVisibility(View.GONE);
+            myViewHolder.partDiliburkan.setVisibility(View.GONE);
+            myViewHolder.partIzin.setVisibility(View.GONE);
+            myViewHolder.partLibur.setVisibility(View.GONE);
+            myViewHolder.partSabtu.setVisibility(View.VISIBLE);
+            myViewHolder.partMinggu.setVisibility(View.GONE);
+            myViewHolder.partAlpha.setVisibility(View.GONE);
+            myViewHolder.warningMark.setVisibility(View.GONE);
+
+            myViewHolder.higlightTV.setText("Libur");
+            myViewHolder.higlightTV.setTextColor(Color.parseColor("#C58534"));
+            myViewHolder.dateAbsensi.setTextColor(Color.parseColor("#C58534"));
+
         } else if(dataAbsensi.getKet_kehadiran().equals("Minggu")){
             myViewHolder.partHadir.setVisibility(View.GONE);
             myViewHolder.partDiliburkan.setVisibility(View.GONE);
             myViewHolder.partIzin.setVisibility(View.GONE);
             myViewHolder.partLibur.setVisibility(View.GONE);
+            myViewHolder.partSabtu.setVisibility(View.GONE);
             myViewHolder.partMinggu.setVisibility(View.VISIBLE);
             myViewHolder.partAlpha.setVisibility(View.GONE);
             myViewHolder.warningMark.setVisibility(View.GONE);
@@ -390,6 +409,7 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
             myViewHolder.partDiliburkan.setVisibility(View.GONE);
             myViewHolder.partIzin.setVisibility(View.GONE);
             myViewHolder.partLibur.setVisibility(View.GONE);
+            myViewHolder.partSabtu.setVisibility(View.GONE);
             myViewHolder.partMinggu.setVisibility(View.GONE);
             myViewHolder.partAlpha.setVisibility(View.VISIBLE);
             myViewHolder.warningMark.setVisibility(View.VISIBLE);
@@ -419,7 +439,7 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView overTime, terlambatTime, dalamRangkaTV, alasanTV, dateAbsensi, higlightTV, dateCheckin, dateCheckout, timeCheckin, timeCheckout, checkinPoint, checkoutPoint;
-        LinearLayout partTerlambat, partOvertime, partPulangCepat, partNoCheckout, warningMark, partHadir, partDiliburkan, partIzin, partLibur, partMinggu, partAlpha, expandBTN;
+        LinearLayout partTerlambat, partOvertime, partPulangCepat, partNoCheckout, warningMark, partHadir, partDiliburkan, partIzin, partLibur, partSabtu, partMinggu, partAlpha, expandBTN;
         ExpandableLayout expandableLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -427,6 +447,7 @@ public class AdapterDataAbsensi extends RecyclerView.Adapter<AdapterDataAbsensi.
             partDiliburkan = itemView.findViewById(R.id.part_diliburkan);
             partIzin = itemView.findViewById(R.id.part_izin);
             partLibur = itemView.findViewById(R.id.part_libur);
+            partSabtu = itemView.findViewById(R.id.part_sabtu);
             partMinggu = itemView.findViewById(R.id.part_minggu);
             partAlpha = itemView.findViewById(R.id.part_alpha);
 

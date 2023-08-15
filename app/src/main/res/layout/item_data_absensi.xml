@@ -393,6 +393,29 @@
 
         </LinearLayout>
 
+        <!-- Sabtu  -->
+        <LinearLayout
+            android:id="@+id/part_sabtu"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_bg_record_libur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            tools:ignore="DisableBaselineAlignment">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="17dp"
+                android:text="Libur Hari Sabtu"
+                android:textColor="#CC8D3E"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
         <!-- Minggu  -->
         <LinearLayout
             android:id="@+id/part_minggu"
