@@ -4482,7 +4482,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onRestart();
     }
 
-
     private void checkLibur(String date) {
         //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/checking_libur";
