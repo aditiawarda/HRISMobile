@@ -1347,7 +1347,7 @@
                                                 android:layout_marginBottom="7dp"
                                                 android:fontFamily="@font/roboto"
                                                 android:lineSpacingExtra="2dp"
-                                                android:text="HRIS Mobile Gelora merupakan aplikasi android dari HR System PT Gelora Aksara Pratama, HRIS Mobile Gelora diharapkan dapat memfasilitasi karyawan PT. Gelora Aksara Pratama dalam pelayanan kepegawaian (HR) perusahaan."
+                                                android:text="HRIS Mobile Gelora merupakan aplikasi android dari HR System PT. Gelora Aksara Pratama, HRIS Mobile Gelora diharapkan dapat memfasilitasi karyawan PT. Gelora Aksara Pratama dalam pelayanan kepegawaian (HR) perusahaan."
                                                 android:textColor="@color/text_color"
                                                 android:textSize="13dp" />
 

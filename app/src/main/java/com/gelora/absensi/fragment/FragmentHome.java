@@ -650,7 +650,7 @@ public class FragmentHome extends Fragment {
                                     String tahunMasuk = tanggal_masuk.substring(0, 4);
                                     if (tglBulanMasuk.equals(getDayMonth())) {
                                         int masaKerja = Integer.parseInt(getDateY()) - Integer.parseInt(tahunMasuk);
-                                        if(masaKerja > 0){
+                                        if(masaKerja > 0 && sharedPrefManager.getSpIdCor().equals("1")){
                                             congratCelebrate.setText("Selamat Merayakan " + String.valueOf(masaKerja) + " Tahun Masa Kerja.");
                                             if (join_reminder.equals("1")) {
                                                 if(!sharedPrefAbsen.getSpNotifJoinRemainder().equals("1")){
