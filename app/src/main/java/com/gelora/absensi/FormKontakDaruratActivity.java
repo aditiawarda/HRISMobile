@@ -99,8 +99,8 @@ public class FormKontakDaruratActivity extends AppCompatActivity {
                 .load(R.drawable.success_ic)
                 .into(successGif);
 
-        namaED.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-        hubunganLainnyaED.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        namaED.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        hubunganLainnyaED.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         tipeForm = getIntent().getExtras().getString("tipe");
 

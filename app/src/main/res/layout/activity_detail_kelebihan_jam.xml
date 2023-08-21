@@ -219,7 +219,6 @@
                                 android:id="@+id/message_kelebihan_jam"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
                                 android:textColor="#C68D46"
                                 android:textSize="12dp"
                                 android:layout_marginTop="7dp"

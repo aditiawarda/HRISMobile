@@ -125,6 +125,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
         jumlahHariTV = findViewById(R.id.jumlah_hari_tv);
         actionBar = findViewById(R.id.action_bar);
 
+        alasanED.clearComposingText();
         alasanED.clearFocus();
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)

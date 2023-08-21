@@ -9,6 +9,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,6 +75,9 @@ public class FormInfoPelatihanActivity extends AppCompatActivity {
         submitBTN = findViewById(R.id.submit_btn);
         successGif = findViewById(R.id.success_gif);
         hapusBTN = findViewById(R.id.hapus_btn);
+
+        namaPelatihanED.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        lembagaPelatihanED.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)

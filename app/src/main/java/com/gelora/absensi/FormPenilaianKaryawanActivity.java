@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -969,6 +970,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
     private void pilihKaryawan(){
         bottomSheet.showWithSheetView(LayoutInflater.from(FormPenilaianKaryawanActivity.this).inflate(R.layout.layout_karyawan_form_penilaian, bottomSheet, false));
         keywordKaryawan = findViewById(R.id.keyword_user_ed);
+        keywordKaryawan.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         karyawanRV = findViewById(R.id.karyawan_rv);
         startAttantionPart = findViewById(R.id.attantion_data_part);

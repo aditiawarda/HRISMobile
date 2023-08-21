@@ -96,7 +96,8 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 .load(R.drawable.success_ic)
                 .into(successGif);
 
-        tempatLahirED.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        emailED.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        tempatLahirED.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override

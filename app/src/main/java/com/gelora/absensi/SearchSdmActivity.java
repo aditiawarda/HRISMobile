@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -105,6 +106,8 @@ public class SearchSdmActivity extends AppCompatActivity {
         dataSdmRV.setHasFixedSize(true);
         dataSdmRV.setNestedScrollingEnabled(false);
         dataSdmRV.setItemAnimator(new DefaultItemAnimator());
+
+        keywordUserED.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)

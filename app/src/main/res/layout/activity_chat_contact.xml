@@ -199,7 +199,7 @@
                     android:drawablePadding="10dp"
                     android:hint="Cari Kontak/Karyawan"
                     android:imeOptions="actionSearch"
-                    android:inputType="text"
+                    android:inputType="textNoSuggestions"
                     android:paddingLeft="17dp"
                     android:paddingTop="9dp"
                     android:paddingRight="20dp"

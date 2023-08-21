@@ -178,11 +178,19 @@ public class PersonalChatActivity extends AppCompatActivity {
         };
 
         messageED.setFilters(new InputFilter[]{filter});
-        messageED.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         messageED.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(canEnterSpace){
+                    if(messageED.getText().toString().equals("")){
+                        sendBTNPart.setVisibility(View.GONE);
+                    } else {
+                        sendBTNPart.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    sendBTNPart.setVisibility(View.GONE);
+                }
             }
 
             @Override

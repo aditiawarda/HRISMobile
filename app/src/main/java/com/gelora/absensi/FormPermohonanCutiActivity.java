@@ -2936,6 +2936,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
     private void karyawanPengganti(){
         bottomSheet.showWithSheetView(LayoutInflater.from(FormPermohonanCutiActivity.this).inflate(R.layout.layout_karyawan_pengganti, bottomSheet, false));
         keywordKaryawanPengganti = findViewById(R.id.keyword_user_ed);
+        keywordKaryawanPengganti.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         karyawanPenggantiRV = findViewById(R.id.karyawan_rv);
         startAttantionPart = findViewById(R.id.attantion_data_part);

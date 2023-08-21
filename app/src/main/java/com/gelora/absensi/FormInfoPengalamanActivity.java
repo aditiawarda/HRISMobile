@@ -88,6 +88,8 @@ public class FormInfoPengalamanActivity extends AppCompatActivity {
         successGif = findViewById(R.id.success_gif);
         hapusBTN = findViewById(R.id.hapus_btn);
 
+        posisiED.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
                 .into(successGif);

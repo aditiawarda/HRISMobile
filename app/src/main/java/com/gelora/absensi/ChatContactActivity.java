@@ -14,13 +14,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -72,6 +77,8 @@ public class ChatContactActivity extends AppCompatActivity {
         listContactRV.setLayoutManager(new LinearLayoutManager(this));
         listContactRV.setHasFixedSize(true);
         listContactRV.setItemAnimator(new DefaultItemAnimator());
+
+        keywordContact.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +152,17 @@ public class ChatContactActivity extends AppCompatActivity {
 
             }
 
+        });
+
+        keywordContact.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                }
+                return false;
+            }
         });
 
     }

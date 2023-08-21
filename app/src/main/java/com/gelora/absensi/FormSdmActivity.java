@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.InflateException;
@@ -253,6 +254,9 @@ public class FormSdmActivity extends AppCompatActivity {
         f1TglPemenuhanTV = findViewById(R.id.f1_tgl_pemenuhan_tv);
         f1CatatanTV = findViewById(R.id.f1_catatan_tv);
 
+        f1KomponenGajiTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        f1DeskripsiJabatanTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
         //Form 2 3 4
         f2NamaKaryawanPart = findViewById(R.id.f2_nama_karyawan_part);
         f2NamaKaryawanTV = findViewById(R.id.f2_nama_karyawan_tv);
@@ -274,6 +278,9 @@ public class FormSdmActivity extends AppCompatActivity {
         f2OptionYa = findViewById(R.id.f2_option_ya);
         f2OptionTidak = findViewById(R.id.f2_option_tidak);
         f2CatatanTV = findViewById(R.id.f2_catatan_tv);
+
+        f2KomponenGajiTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        f2KomponenGajiLamaTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         //Form 5 6
         f3NamaKaryawanPart = findViewById(R.id.f3_nama_karyawan_part);
@@ -313,6 +320,9 @@ public class FormSdmActivity extends AppCompatActivity {
         f3TglPemenuhanTV = findViewById(R.id.f3_tgl_pemenuhan_tv);
         f3CatatanTV = findViewById(R.id.f3_catatan_tv);
 
+        f3KomponenGajiTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        f3KomponenGajiLamaTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
         //Form 7
         f4NamaKaryawanPart = findViewById(R.id.f4_nama_karyawan_part);
         f4NamaKaryawanTV = findViewById(R.id.f4_nama_karyawan_tv);
@@ -335,6 +345,9 @@ public class FormSdmActivity extends AppCompatActivity {
         f4OptionYa = findViewById(R.id.f4_option_ya);
         f4OptionTidak = findViewById(R.id.f4_option_tidak);
         f4CatatanTV = findViewById(R.id.f4_catatan_tv);
+
+        f4KomponenGajiTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        f4KomponenGajiLamaTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -5298,6 +5311,7 @@ public class FormSdmActivity extends AppCompatActivity {
     private void f2KaryawanBaruFunc(){
         bottomSheet.showWithSheetView(LayoutInflater.from(FormSdmActivity.this).inflate(R.layout.layout_karyawan_sdm, bottomSheet, false));
         f2keywordKaryawanBaru = findViewById(R.id.keyword_user_ed);
+        f2keywordKaryawanBaru.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         f2KaryawanBaruRV = findViewById(R.id.karyawan_rv);
         f2StartAttantionKaryawanBaruPart = findViewById(R.id.attantion_data_part);
@@ -5561,6 +5575,7 @@ public class FormSdmActivity extends AppCompatActivity {
     private void f2KaryawanLamaFunc(){
         bottomSheet.showWithSheetView(LayoutInflater.from(FormSdmActivity.this).inflate(R.layout.layout_karyawan_sdm, bottomSheet, false));
         f2keywordKaryawanLama = findViewById(R.id.keyword_user_ed);
+        f2keywordKaryawanLama.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         f2KaryawanLamaRV = findViewById(R.id.karyawan_rv);
         f2StartAttantionKaryawanLamaPart = findViewById(R.id.attantion_data_part);
@@ -5923,6 +5938,7 @@ public class FormSdmActivity extends AppCompatActivity {
     private void f3KaryawanBaruFunc(){
         bottomSheet.showWithSheetView(LayoutInflater.from(FormSdmActivity.this).inflate(R.layout.layout_karyawan_sdm, bottomSheet, false));
         f3keywordKaryawanBaru = findViewById(R.id.keyword_user_ed);
+        f3keywordKaryawanBaru.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         f3KaryawanBaruRV = findViewById(R.id.karyawan_rv);
         f3StartAttantionKaryawanBaruPart = findViewById(R.id.attantion_data_part);
@@ -6454,6 +6470,7 @@ public class FormSdmActivity extends AppCompatActivity {
     private void f3KaryawanLamaFunc(){
         bottomSheet.showWithSheetView(LayoutInflater.from(FormSdmActivity.this).inflate(R.layout.layout_karyawan_sdm, bottomSheet, false));
         f3keywordKaryawanLama = findViewById(R.id.keyword_user_ed);
+        f3keywordKaryawanLama.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         f3KaryawanLamaRV = findViewById(R.id.karyawan_rv);
         f3StartAttantionKaryawanLamaPart = findViewById(R.id.attantion_data_part);
@@ -7268,6 +7285,7 @@ public class FormSdmActivity extends AppCompatActivity {
     private void f4KaryawanBaruFunc(){
         bottomSheet.showWithSheetView(LayoutInflater.from(FormSdmActivity.this).inflate(R.layout.layout_karyawan_sdm, bottomSheet, false));
         f4keywordKaryawanBaru = findViewById(R.id.keyword_user_ed);
+        f4keywordKaryawanBaru.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         f4KaryawanBaruRV = findViewById(R.id.karyawan_rv);
         f4StartAttantionKaryawanBaruPart = findViewById(R.id.attantion_data_part);
@@ -7531,6 +7549,7 @@ public class FormSdmActivity extends AppCompatActivity {
     private void f4KaryawanLamaFunc(){
         bottomSheet.showWithSheetView(LayoutInflater.from(FormSdmActivity.this).inflate(R.layout.layout_karyawan_sdm, bottomSheet, false));
         f4keywordKaryawanLama = findViewById(R.id.keyword_user_ed);
+        f4keywordKaryawanLama.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         f4KaryawanLamaRV = findViewById(R.id.karyawan_rv);
         f4StartAttantionKaryawanLamaPart = findViewById(R.id.attantion_data_part);

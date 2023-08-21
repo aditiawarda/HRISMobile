@@ -121,7 +121,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
         idIzinRecord = getIntent().getExtras().getString("id_izin");
         file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_cuti/"+idIzinRecord;
 
-        catatanAtasanTV.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        catatanAtasanTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
