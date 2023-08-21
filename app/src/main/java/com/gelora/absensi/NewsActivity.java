@@ -20,7 +20,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -55,6 +57,7 @@ public class NewsActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheet;
+    RequestQueue requestQueue;
     View rootview;
     String linkApi = "", categoryNewsLabel = "", categoryNews = ""; //business,health,politics,sports,technology,entertainment,environment,food,science,top,tourism,world
 
@@ -68,6 +71,7 @@ public class NewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_news);
 
         sharedPrefManager = new SharedPrefManager(this);
+        requestQueue = Volley.newRequestQueue(this);
         rootview = findViewById(android.R.id.content);
         bottomSheet = findViewById(R.id.bottom_sheet_layout);
         backBTN = findViewById(R.id.back_btn);
@@ -166,7 +170,7 @@ public class NewsActivity extends AppCompatActivity {
     }
 
     private void getNews(String category) {
-        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        //RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
         final String url = linkApi+category;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -179,7 +183,7 @@ public class NewsActivity extends AppCompatActivity {
                         try {
                             Log.d("Success.Response", response.toString());
                             data = response;
-                            String status = data.getString("status");
+                            String status = data.getString("status").toString();
                             if (status.equals("success")) {
                                 String totalResults = data.getString("totalResults");
 
@@ -194,6 +198,7 @@ public class NewsActivity extends AppCompatActivity {
                                     dataNewsRV.setVisibility(View.VISIBLE);
                                     loadingNewsPart.setVisibility(View.GONE);
                                     String results = data.getString("results");
+
                                     GsonBuilder builder = new GsonBuilder();
                                     Gson gson = builder.create();
                                     dataNews = gson.fromJson(results, NewsData[].class);
@@ -222,6 +227,9 @@ public class NewsActivity extends AppCompatActivity {
                 loadingNewsPart.setVisibility(View.GONE);
             }
         });
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        request.setRetryPolicy(retryPolicy);
 
         requestQueue.add(request);
 
