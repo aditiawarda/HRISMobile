@@ -605,36 +605,40 @@ public class LoginActivity extends AppCompatActivity {
                             String whatsapp = response.getString("whatsapp");
 
                             closeBTN = findViewById(R.id.close_btn);
-                            closeBTN.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    bottomSheetCS.dismissSheet();
-                                }
-                            });
-
                             connectBTN = findViewById(R.id.connect_btn);
-                            connectBTN.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+"+whatsapp+"&text="));
-                                    try {
-                                        startActivity(webIntent);
-                                    } catch (SecurityException e) {
-                                        e.printStackTrace();
-                                        new KAlertDialog(LoginActivity.this, KAlertDialog.WARNING_TYPE)
-                                                .setTitleText("Perhatian")
-                                                .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian HRD")
-                                                .setConfirmText("    OK    ")
-                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                                    @Override
-                                                    public void onClick(KAlertDialog sDialog) {
-                                                        sDialog.dismiss();
-                                                    }
-                                                })
-                                                .show();
+
+                            try {
+                                closeBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        bottomSheetCS.dismissSheet();
                                     }
-                                }
-                            });
+                                });
+                                connectBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+"+whatsapp+"&text="));
+                                        try {
+                                            startActivity(webIntent);
+                                        } catch (SecurityException e) {
+                                            e.printStackTrace();
+                                            new KAlertDialog(LoginActivity.this, KAlertDialog.WARNING_TYPE)
+                                                    .setTitleText("Perhatian")
+                                                    .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian HRD")
+                                                    .setConfirmText("    OK    ")
+                                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                        @Override
+                                                        public void onClick(KAlertDialog sDialog) {
+                                                            sDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .show();
+                                        }
+                                    }
+                                });
+                            } catch (NullPointerException e){
+                                e.printStackTrace();
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
