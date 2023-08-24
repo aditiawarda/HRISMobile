@@ -1800,7 +1800,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
                                 pDialog.setTitleText("Gagal Terkirim")
-                                        .setContentText("Permohonan serupa sudah anda ajukan sebelumnya, harap tunggu persetujuan Kepala Bagian/Supervisor")
+                                        .setContentText("Permohonan serupa sudah anda ajukan sebelumnya, harap periksa notifikasi permohonan izin anda")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else if (status.equals("Limit Stock")){
