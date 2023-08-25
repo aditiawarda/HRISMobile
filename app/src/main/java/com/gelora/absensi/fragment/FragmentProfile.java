@@ -262,6 +262,12 @@ public class FragmentProfile extends Fragment {
             }
         });
 
+        if(!sharedPrefManager.getSpIdCor().equals("1")){
+            infoPayrollBTN.setVisibility(View.GONE);
+        } else {
+            infoPayrollBTN.setVisibility(View.VISIBLE);
+        }
+
         nameOfUser.setText(sharedPrefManager.getSpNama());
         nikTV.setText(sharedPrefManager.getSpNik());
         getDataKaryawan();
