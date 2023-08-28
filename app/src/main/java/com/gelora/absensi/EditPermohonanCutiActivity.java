@@ -4311,7 +4311,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else if (status.equals("Available Checkin")){
                                 pDialog.setTitleText("Gagal Terkirim")
-                                        .setContentText("Anda telah melakukan checkin pada tanggal yang dipilih, harap periksa kembali")
+                                        .setContentText("Anda telah melakukan check in pada tanggal yang dipilih, harap periksa kembali")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else if (status.equals("Limit Stock")){
