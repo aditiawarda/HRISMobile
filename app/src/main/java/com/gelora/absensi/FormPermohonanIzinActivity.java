@@ -1803,6 +1803,13 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                         .setContentText("Permohonan serupa sudah anda ajukan sebelumnya, harap periksa notifikasi permohonan izin anda")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            } else if(status.equals("Available Checkin")){
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Anda telah melakukan checkin pada tanggal yang dipilih, harap periksa kembali")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else if (status.equals("Limit Stock")){
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);

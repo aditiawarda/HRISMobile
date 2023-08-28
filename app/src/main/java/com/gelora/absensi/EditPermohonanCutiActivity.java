@@ -4309,6 +4309,11 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                                         .setContentText("Permohonan dengan tanggal yang sama sudah pernah anda ajukan, harap ubah tanggal permohonan")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            } else if (status.equals("Available Checkin")){
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setContentText("Anda telah melakukan checkin pada tanggal yang dipilih, harap periksa kembali")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else if (status.equals("Limit Stock")){
                                 pDialog.setTitleText("Gagal Terupdate")
                                         .setContentText("Maaf, jumlah hari dari permohonan yang anda ajukan melebihi sisa cuti anda saat ini")

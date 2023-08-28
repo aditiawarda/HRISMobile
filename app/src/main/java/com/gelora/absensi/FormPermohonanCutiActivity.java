@@ -2820,6 +2820,13 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
                                         .setContentText("Permohonan serupa sudah anda ajukan sebelumnya, harap tunggu persetujuan")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            } else if (status.equals("Available Checkin")){
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setContentText("Anda telah melakukan checkin pada tanggal yang dipilih, harap periksa kembali")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
                             } else if (status.equals("Limit Stock")){
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
