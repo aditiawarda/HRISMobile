@@ -21,6 +21,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.InputType;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -60,6 +62,7 @@ import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -1796,7 +1799,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                     successPart.setVisibility(View.VISIBLE);
                                     formPart.setVisibility(View.GONE);
                                 }
-                            } else if (status.equals("Available")){
+                            } else if(status.equals("Available")){
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
                                 pDialog.setTitleText("Gagal Terkirim")
@@ -1810,7 +1813,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                                         .setContentText("Anda telah melakukan check in pada tanggal yang dipilih, harap periksa kembali")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
-                            } else if (status.equals("Limit Stock")){
+                            } else if(status.equals("Limit Stock")){
                                 successPart.setVisibility(View.GONE);
                                 formPart.setVisibility(View.VISIBLE);
                                 pDialog.setTitleText("Gagal Terkirim")
@@ -2262,6 +2265,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     .addParameter("current_time", getDate().substring(0,4)+getDate().substring(5,7)+getDate().substring(8,10))//Adding text parameter to the request
                     .setMaxRetries(1)
                     .startUpload();
+
             } catch (Exception exc) {
                 Log.e("PaRSE JSON", "Oke");
                 pDialog.dismiss();
