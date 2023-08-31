@@ -3,24 +3,16 @@ package com.gelora.absensi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
-
-import java.io.File;
 
 public class ViewImageActivity extends AppCompatActivity {
 
@@ -102,22 +94,5 @@ public class ViewImageActivity extends AppCompatActivity {
         });
 
     }
-
-   // @Override
-   // public boolean onTouchEvent(MotionEvent motionEvent) {
-   //     scaleGestureDetector.onTouchEvent(motionEvent);
-   //     return true;
-   // }
-
-   // private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-   //     @Override
-   //     public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
-   //         mScaleFactor *= scaleGestureDetector.getScaleFactor();
-   //         mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 10.0f));
-   //         mainImage.setScaleX(mScaleFactor);
-   //         mainImage.setScaleY(mScaleFactor);
-   //         return true;
-   //     }
-   // }
 
 }
