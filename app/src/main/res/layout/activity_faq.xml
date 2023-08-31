@@ -29,16 +29,18 @@
                     android:id="@+id/faq_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_item_faq"
-                    android:gravity="center"
                     android:orientation="horizontal"
+                    android:layout_marginLeft="-2dp"
+                    android:layout_marginRight="-2dp"
                     android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
+                    android:paddingBottom="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/shape_item_faq">
 
                     <LinearLayout
+                        android:layout_marginLeft="27dp"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="25dp"
                         android:layout_marginRight="50dp"
                         android:layout_weight=".90"
                         android:gravity="center">
@@ -75,13 +77,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="-2dp"
+                    android:layout_marginLeft="-2dp"
+                    android:layout_marginRight="-2dp"
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:gravity="center"
                     android:background="@drawable/shape_item_faq">
 
                     <LinearLayout
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="27dp"
                         android:layout_marginRight="50dp"
                         android:gravity="center"
                         android:layout_width="0dp"
@@ -120,13 +124,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="-2dp"
+                    android:layout_marginLeft="-2dp"
+                    android:layout_marginRight="-2dp"
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:gravity="center"
                     android:background="@drawable/shape_item_faq">
 
                     <LinearLayout
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="27dp"
                         android:layout_marginRight="50dp"
                         android:gravity="center"
                         android:layout_width="0dp"
@@ -165,13 +171,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="-2dp"
+                    android:layout_marginLeft="-2dp"
+                    android:layout_marginRight="-2dp"
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:gravity="center"
                     android:background="@drawable/shape_item_faq">
 
                     <LinearLayout
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="27dp"
                         android:layout_marginRight="50dp"
                         android:gravity="center"
                         android:layout_width="0dp"
@@ -210,13 +218,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="-2dp"
+                    android:layout_marginLeft="-2dp"
+                    android:layout_marginRight="-2dp"
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:gravity="center"
                     android:background="@drawable/shape_item_faq">
 
                     <LinearLayout
-                        android:layout_marginLeft="25dp"
+                        android:layout_marginLeft="27dp"
                         android:layout_marginRight="50dp"
                         android:gravity="center"
                         android:layout_width="0dp"
@@ -246,6 +256,178 @@
                             android:layout_height="30dp"/>
 
                     </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/faq_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="-2dp"
+                    android:layout_marginLeft="-2dp"
+                    android:layout_marginRight="-2dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/shape_item_faq">
+
+                    <LinearLayout
+                        android:layout_marginLeft="27dp"
+                        android:layout_marginRight="50dp"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight=".90"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:textColor="#4C4C4C"
+                            android:text="Cara ganti atau pindah perangkat"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight=".10"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:background="@drawable/ic_baseline_arrow_right"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/faq_7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="-2dp"
+                    android:layout_marginLeft="-2dp"
+                    android:layout_marginRight="-2dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/shape_item_faq">
+
+                    <LinearLayout
+                        android:layout_marginLeft="27dp"
+                        android:layout_marginRight="50dp"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight=".90"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:textColor="#4C4C4C"
+                            android:text="Lupa password atau ingin mengganti password"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight=".10"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:background="@drawable/ic_baseline_arrow_right"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/faq_8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="-2dp"
+                    android:layout_marginLeft="-2dp"
+                    android:layout_marginRight="-2dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/shape_item_faq">
+
+                    <LinearLayout
+                        android:layout_marginLeft="27dp"
+                        android:layout_marginRight="50dp"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight=".90"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:textColor="#4C4C4C"
+                            android:text="Menambahkan atau mengganti tanda tangan digital"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight=".10"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:background="@drawable/ic_baseline_arrow_right"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Tanyakan kendala lain?"
+                        android:textColor="#808080"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/hubungi_it"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="Hubungi IT/EDP"
+                        android:textColor="#B15B3B"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
