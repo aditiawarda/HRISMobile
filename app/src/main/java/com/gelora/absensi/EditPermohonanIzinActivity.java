@@ -2154,7 +2154,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
                                         .setContentText("Maaf, jumlah hari dari permohonan yang anda ajukan melebihi sisa cuti anda saat ini")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
-                            } else if(status.equals("Over Day")) {
+                            } else if(status.equals("Over Day")){
                                 pDialog.setTitleText("Gagal Terkirim")
                                         .setContentText("Permohonan izin/sakit tidak dapat diajukan lebih dari 2 hari dari tanggal yang dipilih")
                                         .setConfirmText("    OK    ")
@@ -2301,6 +2301,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
                         .addParameter("current_time", getDate().substring(0,4)+getDate().substring(5,7)+getDate().substring(8,10))//Adding text parameter to the request
                         .setMaxRetries(1)
                         .startUpload();
+                
             } catch (Exception exc) {
                 Log.e("PaRSE JSON", "Oke");
                 pDialog.dismiss();

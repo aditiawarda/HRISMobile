@@ -1166,7 +1166,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                             if(status.equals("Success")){
                                 actionPart.setVisibility(View.GONE);
                                 opsiKetLembur.setVisibility(View.GONE);
-                                pDialog.setTitleText("Permohonan Berhasil Dibatalkan")
+                                pDialog.setTitleText("Permohonan Dibatalkan")
                                         .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override
