@@ -314,7 +314,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="Masuk ke pengaturan manajemen aplikasi HRIS Mobile lalu pilih menu penyimpanan."
+                            android:text="Masuk ke pengaturan manajemen aplikasi HRIS Mobile Gelora lalu pilih menu penyimpanan."
                             android:textColor="@color/text_color"
                             android:textSize="14dp" />
 
@@ -338,7 +338,7 @@
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="15dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="Selanjutnya pilih hapus data untuk menghapus cache aplikasi, jika telah berhasil di hapus, buka kembali aplikasi HRIS Mobile dan login dengan akun anda."
+                            android:text="Selanjutnya pilih hapus data untuk menghapus cache aplikasi, jika telah berhasil di hapus, buka kembali aplikasi HRIS Mobile Gelora dan login dengan akun anda."
                             android:textColor="@color/text_color"
                             android:textSize="14dp" />
 
@@ -359,7 +359,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="Pengajuan permohonan izin/sakit dapat dilakukan secara online/digital di HRIS Mobile, berikut merupakan tahapan-tahapan dalam pengisian form permohonan izin :"
+                            android:text="Pengajuan permohonan izin/sakit dapat dilakukan secara online/digital di HRIS Mobile Gelora, berikut merupakan tahapan-tahapan dalam pengisian form permohonan izin :"
                             android:textColor="@color/text_color"
                             android:textSize="14dp" />
 
@@ -511,7 +511,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="Pengajuan permohonan cuti dapat dilakukan secara online/digital di HRIS Mobile, berikut merupakan tahapan-tahapan dalam pengisian form permohonan cuti :"
+                            android:text="Pengajuan permohonan cuti dapat dilakukan secara online/digital di HRIS Mobile Gelora, berikut merupakan tahapan-tahapan dalam pengisian form permohonan cuti :"
                             android:textColor="@color/text_color"
                             android:textSize="14dp" />
 
@@ -674,7 +674,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="Pengajuan permohonan fingerscan/form keterangan tidak absen dapat dilakukan secara online/digital di HRIS Mobile, berikut merupakan tahapan-tahapan dalam pengisian form keterangan tidak absen :"
+                            android:text="Pengajuan permohonan fingerscan/form keterangan tidak absen dapat dilakukan secara online/digital di HRIS Mobile Gelora, berikut merupakan tahapan-tahapan dalam pengisian form keterangan tidak absen :"
                             android:textColor="@color/text_color"
                             android:textSize="14dp" />
 
