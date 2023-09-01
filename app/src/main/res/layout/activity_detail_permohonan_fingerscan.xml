@@ -442,7 +442,7 @@
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
                                                         android:gravity="center"
-                                                        android:text="Atasan"
+                                                        android:text="Atasan Terkait"
                                                         android:textColor="#515151"
                                                         android:textSize="11dp" />
 
