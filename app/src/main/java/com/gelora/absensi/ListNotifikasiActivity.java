@@ -49,7 +49,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
     ImageView loadingImage,loadingImage2;
     SwipeRefreshLayout refreshLayout;
     View rootview;
-    TextView countNotifMasuk, countNotifSaya;
+    TextView countNotifMasuk, countNotifSaya, labelPageIzin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +79,7 @@ public class ListNotifikasiActivity extends AppCompatActivity {
         optionPart = findViewById(R.id.option_part);
         mainPart = findViewById(R.id.main_part);
         actionBar = findViewById(R.id.action_bar);
+        labelPageIzin = findViewById(R.id.label_page);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -123,6 +124,12 @@ public class ListNotifikasiActivity extends AppCompatActivity {
                 }, 500);
             }
         });
+
+        if(sharedPrefManager.getSpIdCor().equals("1")){
+            labelPageIzin.setText("NOTIFIKASI IZIN/CUTI");
+        } else if(sharedPrefManager.getSpIdCor().equals("3")){
+            labelPageIzin.setText("NOTIFIKASI IZIN");
+        }
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override

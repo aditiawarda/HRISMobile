@@ -160,6 +160,7 @@
                                                 android:textSize="11dp" />
 
                                             <TextView
+                                                android:id="@+id/label_notification_izin"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:ellipsize="end"
