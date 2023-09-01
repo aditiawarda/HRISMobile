@@ -98,6 +98,16 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
             nonGapPart.setVisibility(View.VISIBLE);
         }
 
+        if(sharedPrefManager.getSpIdCor().equals("1")){
+            tanggalBergabungPart.setVisibility(View.VISIBLE);
+            masaKerjaPart.setVisibility(View.VISIBLE);
+            golonganKaryawanPart.setVisibility(View.VISIBLE);
+        } else if(sharedPrefManager.getSpIdCor().equals("3")) {
+            tanggalBergabungPart.setVisibility(View.GONE);
+            masaKerjaPart.setVisibility(View.GONE);
+            golonganKaryawanPart.setVisibility(View.GONE);
+        }
+
         getData();
 
     }
@@ -171,16 +181,6 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
                                     } else if(id_perusahaan.equals("3")) {
                                         statusKaryawanTV.setText("Erlass");
                                     }
-                                }
-
-                                if(id_perusahaan.equals("1")){
-                                    tanggalBergabungPart.setVisibility(View.VISIBLE);
-                                    masaKerjaPart.setVisibility(View.VISIBLE);
-                                    golonganKaryawanPart.setVisibility(View.VISIBLE);
-                                } else if(id_perusahaan.equals("3")) {
-                                    tanggalBergabungPart.setVisibility(View.GONE);
-                                    masaKerjaPart.setVisibility(View.GONE);
-                                    golonganKaryawanPart.setVisibility(View.GONE);
                                 }
 
                                 if(tanggal_bergabung.equals("")||tanggal_bergabung.equals("null")){

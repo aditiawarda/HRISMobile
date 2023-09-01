@@ -70,7 +70,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
     TextView catatanHRDTV, approverHrdTV, notedTV, appoveStatusHRD, idPermohonanTV, namaKaryawanTV, nikKaryawanTV, bagianKaryawanTV, jabatanKaryawanTV, alasanIzinTV, tglMulaiTV, tglAkhirTV, totalHariTV, tglPermohonanTV, pemohonTV, tanggalApproveTV, tanggalApproveHRDTV, supervisorTV, hrdTV;
     String uriImage, uriImage2, idIzinRecord, statusKondisi = "0", kode, title;
-    LinearLayout catatanHRDPart, actionBar, editPermohonanBTN, cancelPermohonanBTN, pdfBTN, viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, approvedBTN, rejectedBTN, actionPart;
+    LinearLayout kopGap, kopErlass, catatanHRDPart, actionBar, editPermohonanBTN, cancelPermohonanBTN, pdfBTN, viewSuratSakitBTN, downloadBTN, suratIzinPart, rejectedMark, acceptedMark, backBTN, approvedBTN, rejectedBTN, actionPart;
     SwipeRefreshLayout refreshLayout;
     ImageView ttdPemohon, ttdSupervisor, ttdHRD, qrDocument;
     KAlertDialog pDialog;
@@ -96,6 +96,8 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         idPermohonanTV = findViewById(R.id.id_permohonan);
         backBTN = findViewById(R.id.back_btn);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
+        kopGap = findViewById(R.id.kop_gap);
+        kopErlass = findViewById(R.id.kop_erlass);
         approvedBTN = findViewById(R.id.appoved_btn);
         rejectedBTN = findViewById(R.id.rejected_btn);
         namaKaryawanTV = findViewById(R.id.nama_karyawan_tv);
@@ -135,6 +137,14 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         kode = getIntent().getExtras().getString("kode");
         idIzinRecord = getIntent().getExtras().getString("id_izin");
         file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_form_izin/"+idIzinRecord;
+
+        if (sharedPrefManager.getSpIdCor().equals("1")){
+            kopGap.setVisibility(View.VISIBLE);
+            kopErlass.setVisibility(View.GONE);
+        } else if (sharedPrefManager.getSpIdCor().equals("3")){
+            kopGap.setVisibility(View.GONE);
+            kopErlass.setVisibility(View.VISIBLE);
+        }
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
