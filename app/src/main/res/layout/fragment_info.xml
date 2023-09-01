@@ -1348,7 +1348,7 @@
                                                 android:layout_marginBottom="7dp"
                                                 android:fontFamily="@font/roboto"
                                                 android:lineSpacingExtra="2dp"
-                                                android:text="HRIS Mobile Gelora merupakan aplikasi android dari HR System PT. Gelora Aksara Pratama, HRIS Mobile Gelora diharapkan dapat memfasilitasi karyawan PT. Gelora Aksara Pratama dalam pelayanan kepegawaian (HR) perusahaan."
+                                                android:text="HRIS Mobile Gelora merupakan aplikasi android dari HR System PT. Gelora Aksara Pratama, HRIS Mobile Gelora diharapkan mampu memfasilitasi karyawan dalam hal pelayanan kepegawaian perusahaan."
                                                 android:textColor="@color/text_color"
                                                 android:textSize="13dp" />
 
@@ -1463,7 +1463,7 @@
                                                 android:lineSpacingExtra="2dp"
                                                 android:layout_marginBottom="5dp"
                                                 android:textColor="@color/text_color"
-                                                android:text="HRIS Mobile Gelora dibuat untuk membantu pelayanan kepegawaian PT. Gelora Aksara Pratama secara online. Diharapkan aplikasi ini dapat mempermudah karyawan dalam melaksanakan absensi kerja serta pelayanan kepegawaian lainnya."/>
+                                                android:text="HRIS Mobile Gelora dibuat untuk membantu pelayanan kepegawaian secara online. Diharapkan aplikasi ini dapat mempermudah karyawan dalam melaksanakan absensi kerja serta pelayanan kepegawaian lainnya."/>
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -1485,7 +1485,7 @@
                                                 android:fontFamily="@font/roboto"
                                                 android:lineSpacingExtra="2dp"
                                                 android:textColor="@color/text_color"
-                                                android:text="HRIS Mobile Gelora mengikuti prosedur standar menggunakan file log. Informasi yang dikumpulkan oleh file log termasuk data lokasi, tanggal dan waktu. Data ini hanya diolah secara internal oleh PT. Gelora Aksara Pratama dan tidak untuk disebarluaskan."/>
+                                                android:text="HRIS Mobile Gelora telah mengikuti prosedur standar menggunakan file log. Semua data atau informasi yang dikumpulkan oleh file log meliputi data lokasi, tanggal dan waktu. Data ini hanya disimpan dan diolah secara internal oleh PT. Gelora Aksara Pratama dan tidak untuk disebarluaskan."/>
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -1507,7 +1507,7 @@
                                                 android:layout_marginLeft="10dp"
                                                 android:layout_marginBottom="8dp"
                                                 android:textColor="@color/text_color"
-                                                android:text="Dalam penggunaan HRIS Mobile Gelora pada satu perangkat hanya dapat login untuk satu NIK/id karyawan."/>
+                                                android:text="Dalam penggunaan HRIS Mobile Gelora pada satu perangkat/device hanya dapat login untuk satu NIK/id karyawan."/>
 
                                             <TextView
                                                 android:layout_width="wrap_content"
