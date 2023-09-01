@@ -20,7 +20,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,16 +32,11 @@ import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterBagian;
 import com.gelora.absensi.adapter.AdapterKehadiranBagian;
 import com.gelora.absensi.adapter.AdapterKetidakhadiranBagian;
-import com.gelora.absensi.adapter.AdapterPulangCepat;
-import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.model.Bagian;
 import com.gelora.absensi.model.DataMonitoringKehadiranBagian;
 import com.gelora.absensi.model.DataMonitoringKetidakhadiranBagian;
-import com.gelora.absensi.model.DataPulangCepat;
-import com.gelora.absensi.model.StatusAbsen;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.shasin.notificationbanner.Banner;
 import com.takisoft.datetimepicker.DatePickerDialog;
 
 import org.aviran.cookiebar2.CookieBar;
@@ -917,8 +911,6 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        // Banner.make(rootview, MonitoringAbsensiBagianActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
-
         CookieBar.build(MonitoringAbsensiBagianActivity.this)
                 .setTitle("Perhatian")
                 .setMessage("Koneksi anda terputus!")
@@ -928,7 +920,6 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
-
     }
 
 }
