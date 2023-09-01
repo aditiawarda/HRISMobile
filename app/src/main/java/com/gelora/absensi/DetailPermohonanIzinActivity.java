@@ -833,7 +833,11 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         }
                                     });
                                 } else {
-                                    notedTV.setVisibility(View.VISIBLE);
+                                    if(sharedPrefManager.getSpIdCor().equals("1")){
+                                        notedTV.setVisibility(View.VISIBLE);
+                                    } else if(sharedPrefManager.getSpIdCor().equals("3")){
+                                        notedTV.setVisibility(View.INVISIBLE);
+                                    }
                                     viewSuratSakitBTN.setVisibility(View.GONE);
                                 }
 
