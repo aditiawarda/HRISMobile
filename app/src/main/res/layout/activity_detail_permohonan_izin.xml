@@ -661,7 +661,7 @@
                                                         android:gravity="center"
                                                         android:text="( ATASAN TERKAIT )"
                                                         android:textColor="#515151"
-                                                        android:textSize="11dp" />
+                                                        android:textSize="10dp" />
 
                                                 </LinearLayout>
 
@@ -733,7 +733,7 @@
                                                         android:gravity="center"
                                                         android:text="( HRD )"
                                                         android:textColor="#515151"
-                                                        android:textSize="11dp" />
+                                                        android:textSize="10dp" />
 
                                                 </LinearLayout>
 

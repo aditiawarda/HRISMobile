@@ -1153,14 +1153,16 @@
                                                 android:id="@+id/accepted_mark"
                                                 android:layout_width="130dp"
                                                 android:layout_height="58dp"
-                                                android:background="@drawable/accepted_img"/>
+                                                android:background="@drawable/accepted_img"
+                                                android:orientation="horizontal" />
 
                                             <LinearLayout
                                                 android:visibility="gone"
                                                 android:id="@+id/rejected_mark"
                                                 android:layout_width="130dp"
                                                 android:layout_height="58dp"
-                                                android:background="@drawable/rejected_img"/>
+                                                android:background="@drawable/rejected_img"
+                                                android:orientation="horizontal" />
 
                                         </LinearLayout>
 
