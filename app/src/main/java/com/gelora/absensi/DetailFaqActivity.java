@@ -27,7 +27,7 @@ public class DetailFaqActivity extends AppCompatActivity {
 
     String noFAQ;
     TextView titleTV, hubungiIT;
-    LinearLayout backBTN, faq1Detail, faq2Detail, faq3Detail, faq4Detail, faq5Detail, actionBar;
+    LinearLayout backBTN, faq1Detail, faq2Detail, faq3Detail, faq4Detail, faq5Detail, faq6Detail, faq7Detail, faq8Detail, actionBar;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -43,6 +43,9 @@ public class DetailFaqActivity extends AppCompatActivity {
         faq3Detail = findViewById(R.id.faq_3_detail);
         faq4Detail = findViewById(R.id.faq_4_detail);
         faq5Detail = findViewById(R.id.faq_5_detail);
+        faq6Detail = findViewById(R.id.faq_6_detail);
+        faq7Detail = findViewById(R.id.faq_7_detail);
+        faq8Detail = findViewById(R.id.faq_8_detail);
         actionBar = findViewById(R.id.action_bar);
 
         noFAQ = getIntent().getExtras().getString("no_faq");
@@ -62,6 +65,15 @@ public class DetailFaqActivity extends AppCompatActivity {
         } else if(noFAQ.equals("5")){
             titleTV.setText("CARA PENGISIAN FORM KETERANGAN TIDAK ABSEN");
             faq5Detail.setVisibility(View.VISIBLE);
+        } else if(noFAQ.equals("6")){
+            titleTV.setText("CARA GANTI ATAU PINDAH PERANGKAT");
+            faq6Detail.setVisibility(View.VISIBLE);
+        } else if(noFAQ.equals("7")){
+            titleTV.setText("LUPA PASSWORD ATAU INGIN MENGGANTI PASSWORD");
+            faq7Detail.setVisibility(View.VISIBLE);
+        } else if(noFAQ.equals("8")){
+            titleTV.setText("MENAMBAHKAN ATAU MENGGANTI TANDA TANGAN DIGITAL");
+            faq8Detail.setVisibility(View.VISIBLE);
         }
 
         actionBar.setOnClickListener(new View.OnClickListener() {

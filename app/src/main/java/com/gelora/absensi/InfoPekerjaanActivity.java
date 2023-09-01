@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class InfoPekerjaanActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backBTN, nonGapPart, corporatePart;
+    LinearLayout actionBar, backBTN, nonGapPart, corporatePart, tanggalBergabungPart, masaKerjaPart, golonganKaryawanPart;
     TextView nikTV, corporateTV, cabangTV, departemenTV, bagianTV, jabatanTV, statusKaryawanTV, tanggalBergabungTV, masaKerjaTV, golonganKaryawanTV;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -56,8 +56,11 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
         jabatanTV = findViewById(R.id.jabatan);
         statusKaryawanTV = findViewById(R.id.status_karyawan);
         tanggalBergabungTV = findViewById(R.id.tanggal_bergabung);
+        tanggalBergabungPart = findViewById(R.id.tanggal_bergabung_part);
         masaKerjaTV = findViewById(R.id.masa_kerja);
+        masaKerjaPart = findViewById(R.id.masa_kerja_part);
         golonganKaryawanTV = findViewById(R.id.golongan_karyawan);
+        golonganKaryawanPart = findViewById(R.id.golongan_karyawan_part);
         nonGapPart = findViewById(R.id.non_gap_part);
         corporatePart = findViewById(R.id.corporate_part);
         actionBar = findViewById(R.id.action_bar);
@@ -163,6 +166,21 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
                                     statusKaryawanTV.setText("-");
                                 } else {
                                     statusKaryawanTV.setText(status_karyawan);
+                                    if(id_perusahaan.equals("1")){
+                                        statusKaryawanTV.setText(status_karyawan);
+                                    } else if(id_perusahaan.equals("3")) {
+                                        statusKaryawanTV.setText("Erlass");
+                                    }
+                                }
+
+                                if(id_perusahaan.equals("1")){
+                                    tanggalBergabungPart.setVisibility(View.VISIBLE);
+                                    masaKerjaPart.setVisibility(View.VISIBLE);
+                                    golonganKaryawanPart.setVisibility(View.VISIBLE);
+                                } else if(id_perusahaan.equals("3")) {
+                                    tanggalBergabungPart.setVisibility(View.GONE);
+                                    masaKerjaPart.setVisibility(View.GONE);
+                                    golonganKaryawanPart.setVisibility(View.GONE);
                                 }
 
                                 if(tanggal_bergabung.equals("")||tanggal_bergabung.equals("null")){

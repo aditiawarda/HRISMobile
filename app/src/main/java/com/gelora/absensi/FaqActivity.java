@@ -4,10 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.gelora.absensi.kalert.KAlertDialog;
+
+import org.aviran.cookiebar2.CookieBar;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -16,7 +31,8 @@ import java.util.Date;
 
 public class FaqActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, faq1, faq2, faq3, faq4, faq5, actionBar;
+    LinearLayout backBTN, faq1, faq2, faq3, faq4, faq5, faq6, faq7, faq8, actionBar;
+    TextView hubungiIT;
     String statusKaryawan, tanggalBergabung, statusFitur, statusFinger;
 
     @Override
@@ -30,7 +46,11 @@ public class FaqActivity extends AppCompatActivity {
         faq3 = findViewById(R.id.faq_3);
         faq4 = findViewById(R.id.faq_4);
         faq5 = findViewById(R.id.faq_5);
+        faq6 = findViewById(R.id.faq_6);
+        faq7 = findViewById(R.id.faq_7);
+        faq8 = findViewById(R.id.faq_8);
         actionBar = findViewById(R.id.action_bar);
+        hubungiIT = findViewById(R.id.hubungi_it);
 
         statusKaryawan = getIntent().getExtras().getString("status_karyawan");
         tanggalBergabung = getIntent().getExtras().getString("tanggal_bergabung");
@@ -95,6 +115,40 @@ public class FaqActivity extends AppCompatActivity {
             }
         });
 
+        faq6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FaqActivity.this, DetailFaqActivity.class);
+                intent.putExtra("no_faq", "6");
+                startActivity(intent);
+            }
+        });
+
+        faq7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FaqActivity.this, DetailFaqActivity.class);
+                intent.putExtra("no_faq", "7");
+                startActivity(intent);
+            }
+        });
+
+        faq8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FaqActivity.this, DetailFaqActivity.class);
+                intent.putExtra("no_faq", "8");
+                startActivity(intent);
+            }
+        });
+
+        hubungiIT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getContactIT();
+            }
+        });
+
         if(statusKaryawan.equals("Tetap")||statusKaryawan.equals("Kontrak")){
             if(statusFitur.equals("1")){
                 if(statusKaryawan.equals("Tetap")){
@@ -149,6 +203,66 @@ public class FaqActivity extends AppCompatActivity {
             faq5.setVisibility(View.GONE);
         }
 
+    }
+
+    private void getContactIT() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_contact_it";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String bagian = response.getString("bagian");
+                            String nama = response.getString("nama");
+                            String whatsapp = response.getString("whatsapp");
+
+                            Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse("https://api.whatsapp.com/send?phone=+"+whatsapp+"&text="));
+                            try {
+                                startActivity(webIntent);
+                            } catch (SecurityException e) {
+                                e.printStackTrace();
+                                new KAlertDialog(FaqActivity.this, KAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian IT/EDP")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                connectionFailed();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
+    private void connectionFailed(){
+        CookieBar.build(FaqActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
     }
 
     private String getDate() {

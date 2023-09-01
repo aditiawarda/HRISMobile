@@ -317,6 +317,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/tanggal_bergabung_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
@@ -356,6 +357,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/masa_kerja_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
@@ -395,6 +397,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/golongan_karyawan_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"

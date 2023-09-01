@@ -57,16 +57,6 @@
                                     android:scaleType="fitXY"
                                     android:src="@drawable/hris_text_logo" />
 
-<!--                                <TextView-->
-<!--                                    android:layout_width="wrap_content"-->
-<!--                                    android:layout_height="wrap_content"-->
-<!--                                    android:ellipsize="end"-->
-<!--                                    android:maxLines="1"-->
-<!--                                    android:singleLine="true"-->
-<!--                                    android:text="HRIS Mobile"-->
-<!--                                    android:textColor="@color/white"-->
-<!--                                    android:textSize="15dp" />-->
-
                                 <LinearLayout
                                     android:orientation="horizontal"
                                     android:layout_marginLeft="11dp"
