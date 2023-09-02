@@ -90,7 +90,7 @@
                                                 android:id="@+id/no_permohonan"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:text="00000"
+                                                android:text="000000000"
                                                 android:textColor="#515151"
                                                 android:textSize="12dp"
                                                 android:textStyle="bold" />
