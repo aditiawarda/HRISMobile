@@ -489,6 +489,8 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
+                                String nomor = data.getString("nomor");
+
                                 JSONObject detail = data.getJSONObject("data");
                                 String id = detail.getString("id");
                                 String tanggal = detail.getString("tanggal");
@@ -501,19 +503,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                 String ttd_pemohon = detail.getString("ttd_pemohon");
 
                                 keteranganForm = keterangan;
-
-                                if(id.length()==1){
-                                    noPermohonan.setText("0000"+id);
-                                } else if(id.length()==2){
-                                    noPermohonan.setText("000"+id);
-                                } else if(id.length()==3){
-                                    noPermohonan.setText("00"+id);
-                                } else if(id.length()==4){
-                                    noPermohonan.setText("0"+id);
-                                } else if(id.length()==5){
-                                    noPermohonan.setText(id);
-                                }
-
+                                noPermohonan.setText(nomor);
                                 tanggalTV.setText(tanggal.substring(8,10)+"/"+tanggal.substring(5,7)+"/"+tanggal.substring(0,4));
                                 nikNamaTV.setText(nik+"/"+nama_karyawan);
                                 deptBagianTV.setText(bagian+"/"+departemen);
