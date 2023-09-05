@@ -225,6 +225,9 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
         } else if (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")) {
             choiceBagianBTN.setVisibility(View.GONE);
             attantionDesc.setText("Fitur ini dibuat khusus untuk Kepala Bagian/Supervisor agar dapat memantau kehadiran karyawan di bagiannya masing-masing.");
+        } else if (sharedPrefManager.getSpNik().equals("1304101110")) {
+            choiceBagianBTN.setVisibility(View.GONE);
+            attantionDesc.setText("Fitur ini dibuat khusus untuk Kepala Bagian/Supervisor/Koordinator agar dapat memantau kehadiran karyawan di bagiannya masing-masing.");
         } else if (sharedPrefManager.getSpIdJabatan().equals("33")) {
             choiceBagianBTN.setVisibility(View.VISIBLE);
             attantionDesc.setText("Fitur ini dibuat khusus untuk Koordinator Sekolah agar dapat memantau kehadiran karyawan di lingkungan sekolah.");
