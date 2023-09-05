@@ -110,6 +110,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 new Handler().postDelayed(new Runnable() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
                         refreshLabel.setText("LOADING...");
