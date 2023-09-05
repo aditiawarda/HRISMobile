@@ -766,6 +766,12 @@ public class FragmentInfo extends Fragment {
                                         notePantau.setText("*Fitur khusus Kepala Bagian");
                                         bagianNameTV.setText(bagian);
                                         bagianNameTVSDM.setText(bagian);
+                                    } else if (sharedPrefManager.getSpNik().equals("1304101110")){
+                                        monitoringStaffBTN.setVisibility(View.VISIBLE);
+                                        titlePantau.setText("Pantau kehadiran bagian*");
+                                        notePantau.setText("*Fitur khusus Kepala Bagian/Koordinator");
+                                        bagianNameTV.setText(bagian);
+                                        bagianNameTVSDM.setText(bagian);
                                     }
 
                                     //Yayasan Erlass Kreatif Bangsa

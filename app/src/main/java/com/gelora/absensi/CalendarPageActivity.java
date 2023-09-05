@@ -53,12 +53,14 @@ public class CalendarPageActivity extends AppCompatActivity {
     private StatusBarColorManager mStatusBarColorManager;
     TextView eventCalender, yearTV, monthTV, dayDateTV, monthDateTV, yearDateTV, celebrateTV;
     LinearLayout prevBTN, nextBTN, backBTN, peringatanPart;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_page);
 
+        sharedPrefManager = new SharedPrefManager(this);
         dayDateTV = findViewById(R.id.day_date);
         monthDateTV = findViewById(R.id.month_date);
         yearDateTV = findViewById(R.id.year_date);
@@ -371,6 +373,7 @@ public class CalendarPageActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
+                params.put("id_perusahaan", sharedPrefManager.getSpNik());
                 params.put("tanggal", getDate());
                 return params;
             }

@@ -28,11 +28,13 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.StatusBarColorManager;
@@ -59,6 +61,9 @@ import org.json.JSONObject;
 import static android.service.controls.ControlsProviderService.TAG;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SplashScreen extends AppCompatActivity {
 
     private static final String[] LOCATION_PERMS = {Manifest.permission.ACCESS_FINE_LOCATION};
@@ -70,6 +75,8 @@ public class SplashScreen extends AppCompatActivity {
     String closeBottomSheet, statusUpdateLayout = "0";
     SwipeRefreshLayout refreshLayout;
     ProgressBar loadingProgressBar;
+    SharedPrefManager sharedPrefManager;
+    RequestQueue requestQueue;
 
     private StatusBarColorManager mStatusBarColorManager;
     private LocationRequest mLocationRequest;
@@ -81,6 +88,8 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        sharedPrefManager = new SharedPrefManager(this);
+        requestQueue = Volley.newRequestQueue(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         rootview = findViewById(android.R.id.content);
         updateLayout = findViewById(R.id.update_layout);
@@ -344,16 +353,19 @@ public class SplashScreen extends AppCompatActivity {
 
     }
 
-    private void versionCheck() {
-        RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
+    public void versionCheck(){
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/version_app";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @SuppressLint("SetTextI18n")
                     @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("PaRSE JSON", response + "");
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
                         try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
                             refreshLayout.setRefreshing(false);
                             refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss));
 
@@ -379,11 +391,11 @@ public class SplashScreen extends AppCompatActivity {
                                 }
                             });
 
-                            String status = response.getString("status");
-                            String version = response.getString("version");
-                            String target = response.getString("target");
-                            String popup = response.getString("pop_up");
-                            String close_btn = response.getString("close_btn");
+                            String status = data.getString("status");
+                            String version = data.getString("version");
+                            String target = data.getString("target");
+                            String popup = data.getString("pop_up");
+                            String close_btn = data.getString("close_btn");
 
                             if (status.equals("Success")){
                                 String currentVersion = "2.0.0";
@@ -517,60 +529,74 @@ public class SplashScreen extends AppCompatActivity {
 
                                 Banner.make(rootview, SplashScreen.this, Banner.ERROR, "Not found!", Banner.BOTTOM, 3000).show();
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                refreshLayout.setRefreshing(false);
-                loadingOff.setVisibility(View.VISIBLE);
-                loadingProgressBar.setVisibility(View.GONE);
-
-                refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss));
-                refreshBTN.setOnClickListener(new View.OnClickListener() {
+                },
+                new Response.ErrorListener() {
                     @SuppressLint("SetTextI18n")
                     @Override
-                    public void onClick(View v) {
-                        refreshLabel.setText("LOADING...");
-                        loadingOff.setVisibility(View.GONE);
-                        loadingProgressBar.setVisibility(View.VISIBLE);
-                        refreshBTN.setOnClickListener(null);
-                        refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss_off));
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        error.printStackTrace();
+                        refreshLayout.setRefreshing(false);
+                        loadingOff.setVisibility(View.VISIBLE);
+                        loadingProgressBar.setVisibility(View.GONE);
 
-                        new Handler().postDelayed(new Runnable() {
+                        refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss));
+                        refreshBTN.setOnClickListener(new View.OnClickListener() {
+                            @SuppressLint("SetTextI18n")
                             @Override
-                            public void run() {
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                    requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
-                                }
-                                versionCheck();
+                            public void onClick(View v) {
+                                refreshLabel.setText("LOADING...");
+                                loadingOff.setVisibility(View.GONE);
+                                loadingProgressBar.setVisibility(View.VISIBLE);
+                                refreshBTN.setOnClickListener(null);
+                                refreshBTN.setBackground(ContextCompat.getDrawable(SplashScreen.this, R.drawable.shape_refresh_ss_off));
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                            requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
+                                        }
+                                        versionCheck();
+                                    }
+                                }, 2000);
                             }
-                        }, 2000);
+                        });
+
+                        Animation animation = new TranslateAnimation(0, 0,500, 0);
+                        animation.setDuration(600);
+                        animation.setFillAfter(true);
+                        refreshPart.startAnimation(animation);
+                        refreshPart.setVisibility(View.VISIBLE);
+                        refreshLabel.setText("REFRESH");
+
+                        CookieBar.build(SplashScreen.this)
+                                .setCustomView(R.layout.layout_custom_cookie)
+                                .setEnableAutoDismiss(true)
+                                .setSwipeToDismiss(false)
+                                .setCookiePosition(Gravity.TOP)
+                                .show();
                     }
-                });
-
-                Animation animation = new TranslateAnimation(0, 0,500, 0);
-                animation.setDuration(600);
-                animation.setFillAfter(true);
-                refreshPart.startAnimation(animation);
-                refreshPart.setVisibility(View.VISIBLE);
-                refreshLabel.setText("REFRESH");
-
-                CookieBar.build(SplashScreen.this)
-                        .setCustomView(R.layout.layout_custom_cookie)
-                        .setEnableAutoDismiss(true)
-                        .setSwipeToDismiss(false)
-                        .setCookiePosition(Gravity.TOP)
-                        .show();
-
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
             }
-        });
+        };
 
-        requestQueue.add(request);
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        requestQueue.add(postRequest);
 
     }
 

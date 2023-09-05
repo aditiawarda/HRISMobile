@@ -295,6 +295,9 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         } else if (sharedPrefManager.getSpIdJabatan().equals("11")) {
             pageTitle.setText("KEHADIRAN BAGIAN");
             choiceBagianBTN.setVisibility(View.GONE);
+        } else if (sharedPrefManager.getSpNik().equals("1304101110")) {
+            pageTitle.setText("KEHADIRAN BAGIAN");
+            choiceBagianBTN.setVisibility(View.GONE);
         }
 
         //Yayasan Erlass Kreatif Bangsa
@@ -381,6 +384,9 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                                     namaBagian.setText(data.getString("desc_departemen"));
                                     jumlahKaryawanTV.setText(data.getString("jumlah_karyawan_dept"));
                                 } else if (sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("35")) {
+                                    namaBagian.setText(data.getString("nama_bagian"));
+                                    jumlahKaryawanTV.setText(data.getString("jumlah_karyawan"));
+                                } else if (sharedPrefManager.getSpNik().equals("1304101110")) {
                                     namaBagian.setText(data.getString("nama_bagian"));
                                     jumlahKaryawanTV.setText(data.getString("jumlah_karyawan"));
                                 }
@@ -486,6 +492,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                                         dataMonitoringKetidakhadiranBagians = gson.fromJson(data_ketidakhadiran_bagian, DataMonitoringKetidakhadiranBagian[].class);
                                         adapterKetidakhadiranBagian = new AdapterKetidakhadiranBagian(dataMonitoringKetidakhadiranBagians, MonitoringAbsensiBagianActivity.this);
                                         dataKeTidakhadiranBagianRV.setAdapter(adapterKetidakhadiranBagian);
+
                                     }
 
                                 }
