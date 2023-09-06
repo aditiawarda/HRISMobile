@@ -87,22 +87,6 @@
             android:scaleType="fitXY"
             android:src="@drawable/hr_logo" />
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="13dp"-->
-<!--            android:textSize="22dp"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:text="HRIS MOBILE"/>-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="-3dp"-->
-<!--            android:textSize="15dp"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:text="G    E    L    O    R    A"/>-->
-
     </LinearLayout>
 
     <LinearLayout
