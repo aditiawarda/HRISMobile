@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class DetailFormSdmActivity extends AppCompatActivity {
 
-    LinearLayout downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
+    LinearLayout ttdDireksiPart, downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView labelDireksi, markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
@@ -126,6 +126,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
         tglPenerimaanTV = findViewById(R.id.tgl_penerimaan_tv);
         labelDireksi = findViewById(R.id.label_direksi);
+        ttdDireksiPart = findViewById(R.id.ttd_direksi_part);
 
         actionPart = findViewById(R.id.action_part);
         appovedBTN = findViewById(R.id.appoved_btn);
@@ -420,6 +421,9 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 if(keterangan.equals("1")){
                                     markCeklis1.setText("✓");
                                     labelDireksi.setText("Direktur");
+                                    ttdDireksiPart.setVisibility(View.VISIBLE);
+                                    namaDirekturTV.setVisibility(View.VISIBLE);
+                                    labelDireksi.setVisibility(View.VISIBLE);
 
                                     unitBisnisBaruTV.setText(nama_unit_bisnis);
                                     departemenBaruTV.setText(nama_departemen);
@@ -499,12 +503,21 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     if(keterangan.equals("2")){
                                         markCeklis2.setText("✓");
                                         labelDireksi.setText("Direktur");
+                                        ttdDireksiPart.setVisibility(View.VISIBLE);
+                                        namaDirekturTV.setVisibility(View.VISIBLE);
+                                        labelDireksi.setVisibility(View.VISIBLE);
                                     } else if(keterangan.equals("3")){
                                         markCeklis3.setText("✓");
                                         labelDireksi.setText("");
+                                        ttdDireksiPart.setVisibility(View.GONE);
+                                        namaDirekturTV.setVisibility(View.GONE);
+                                        labelDireksi.setVisibility(View.GONE);
                                     } else if(keterangan.equals("4")){
                                         markCeklis4.setText("✓");
                                         labelDireksi.setText("");
+                                        ttdDireksiPart.setVisibility(View.GONE);
+                                        namaDirekturTV.setVisibility(View.GONE);
+                                        labelDireksi.setVisibility(View.GONE);
                                     }
 
                                     namaBaruTV.setText(nama);
@@ -609,9 +622,15 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     if(keterangan.equals("5")){
                                         markCeklis5.setText("✓");
                                         labelDireksi.setText("");
+                                        ttdDireksiPart.setVisibility(View.GONE);
+                                        namaDirekturTV.setVisibility(View.GONE);
+                                        labelDireksi.setVisibility(View.GONE);
                                     } else if(keterangan.equals("6")){
                                         markCeklis6.setText("✓");
                                         labelDireksi.setText("");
+                                        ttdDireksiPart.setVisibility(View.GONE);
+                                        namaDirekturTV.setVisibility(View.GONE);
+                                        labelDireksi.setVisibility(View.GONE);
                                     }
 
                                     namaBaruTV.setText(nama);
@@ -686,6 +705,9 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 } else if(keterangan.equals("7")){
                                     markCeklis7.setText("✓");
                                     labelDireksi.setText("");
+                                    ttdDireksiPart.setVisibility(View.GONE);
+                                    namaDirekturTV.setVisibility(View.GONE);
+                                    labelDireksi.setVisibility(View.GONE);
 
                                     namaBaruTV.setText(nama);
                                     unitBisnisBaruTV.setText(nama_unit_bisnis);

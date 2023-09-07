@@ -2393,6 +2393,7 @@
                                                         </LinearLayout>
 
                                                         <LinearLayout
+                                                            android:id="@+id/ttd_direksi_part"
                                                             android:layout_weight=".50"
                                                             android:layout_width="0dp"
                                                             android:layout_height="match_parent"
@@ -2403,7 +2404,7 @@
                                                             android:background="#FFFFFF"
                                                             android:gravity="center"
                                                             android:paddingLeft="3dp"
-                                                            android:paddingRight="3dp" >
+                                                            android:paddingRight="3dp">
 
                                                             <RelativeLayout
                                                                 android:layout_width="match_parent"
