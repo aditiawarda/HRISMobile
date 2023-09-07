@@ -2416,9 +2416,9 @@
 
                                                                     <ImageView
                                                                         android:id="@+id/ttd_direksi"
-                                                                        android:scaleType="fitXY"
                                                                         android:layout_width="35dp"
-                                                                        android:layout_height="25dp" />
+                                                                        android:layout_height="25dp"
+                                                                        android:scaleType="fitXY" />
 
                                                                 </LinearLayout>
 
@@ -2510,6 +2510,7 @@
                                                             android:gravity="center" />
 
                                                         <TextView
+                                                            android:id="@+id/label_direksi"
                                                             android:layout_weight=".50"
                                                             android:layout_width="0dp"
                                                             android:layout_height="match_parent"
