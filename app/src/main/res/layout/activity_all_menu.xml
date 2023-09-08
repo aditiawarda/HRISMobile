@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AllMenuActivity">
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_to_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@id/scrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:ignore="MissingConstraints">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="-2dp"
+                        android:orientation="vertical"
+                        android:paddingTop="75dp"
+                        android:paddingBottom="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingLeft="25dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="25dp"
+                            android:paddingBottom="18dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="90dp"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_weight=".25"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:id="@+id/menu_absensi_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="65dp"
+                                            android:background="@drawable/shape_menu_1"
+                                            android:orientation="vertical"
+                                            android:padding="10dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:scaleType="fitCenter"
+                                                android:src="@drawable/icon_absen" />
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Absensi"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="90dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_weight=".25"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:id="@+id/menu_izin_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="65dp"
+                                            android:background="@drawable/shape_menu_2"
+                                            android:orientation="vertical"
+                                            android:padding="10dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:scaleType="fitCenter"
+                                                android:src="@drawable/icon_izin" />
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Izin"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="90dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_weight=".25"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:id="@+id/cuti_part"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="visible"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_cuti_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_3"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_cuti" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Cuti"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/pengaduan_part"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_pengaduan_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_3"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_pengaduan" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Pengaduan"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="90dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_weight=".25"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:id="@+id/menu_finger_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="65dp"
+                                            android:background="@drawable/shape_menu_4"
+                                            android:orientation="vertical"
+                                            android:padding="10dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:scaleType="fitCenter"
+                                                android:src="@drawable/icon_fingerscan" />
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Fingerscan"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="90dp"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_weight=".25"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:id="@+id/card_part"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_card_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_3"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_id_card" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="ID Card"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/sdm_part"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="visible"
+                                            android:orientation="vertical">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:orientation="vertical">
+
+                                                    <LinearLayout
+                                                        android:id="@+id/menu_sdm_btn"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="65dp"
+                                                        android:background="@drawable/shape_menu_3"
+                                                        android:orientation="vertical"
+                                                        android:padding="10dp">
+
+                                                        <ImageView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:scaleType="fitCenter"
+                                                            android:src="@drawable/icon_sdm" />
+
+                                                    </LinearLayout>
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginTop="3dp"
+                                                        android:ellipsize="end"
+                                                        android:gravity="center"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:text="SDM"
+                                                        android:textColor="#515151"
+                                                        android:textSize="12dp" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:visibility="gone"
+                                                    android:layout_alignParentRight="true"
+                                                    android:id="@+id/count_notification_penilaian"
+                                                    android:layout_marginRight="7dp"
+                                                    android:layout_marginTop="7dp"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:paddingRight="3.5dp"
+                                                    android:paddingLeft="3.5dp"
+                                                    android:paddingBottom="0.5dp"
+                                                    android:gravity="center"
+                                                    android:background="@drawable/shape_notification_mark_info">
+
+                                                    <TextView
+                                                        android:id="@+id/count_notif_penilaian_tv"
+                                                        android:gravity="center"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="@color/white"
+                                                        android:textSize="9dp"
+                                                        android:text="0"/>
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="90dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_weight=".25"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:id="@+id/menu_signature_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="65dp"
+                                            android:background="@drawable/shape_menu_4"
+                                            android:orientation="vertical"
+                                            android:padding="10dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:scaleType="fitCenter"
+                                                android:src="@drawable/icon_signature" />
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Signature"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="90dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_weight=".25"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:id="@+id/clearance_part"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="visible"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_clearance_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_1"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_exit_clearance" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Exit - C"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/calendar_part"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_calendar_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_1"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_calendar" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Kalender"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="90dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_weight=".25"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:id="@+id/messenger_part"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="visible"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_messenger_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_2"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_gm" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Messenger"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/news_part"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_news_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_1"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_news" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="News"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="90dp"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_weight=".25"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+
+                                            android:layout_width="match_parent"
+                                            android:layout_height="65dp"
+                                            android:background="@drawable/shape_menu_1"
+                                            android:orientation="vertical"
+                                            android:padding="10dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:scaleType="fitCenter"
+                                                android:src="@drawable/icon_news" />
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Berita"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="90dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_weight=".25"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+
+                                            android:layout_width="match_parent"
+                                            android:layout_height="65dp"
+                                            android:background="@drawable/shape_menu_2"
+                                            android:orientation="vertical"
+                                            android:padding="10dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:scaleType="fitCenter"
+                                                android:src="@drawable/icon_calendar" />
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Kalender"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="90dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_weight=".25"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+
+                                            android:layout_width="match_parent"
+                                            android:layout_height="65dp"
+                                            android:background="@drawable/shape_menu_3"
+                                            android:orientation="vertical"
+                                            android:padding="10dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:scaleType="fitCenter"
+                                                android:src="@drawable/icon_id_card" />
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="ID Card"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="90dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_weight=".25"
+                                        android:orientation="vertical">
+
+
+                                        <LinearLayout
+
+                                            android:layout_width="match_parent"
+                                            android:layout_height="65dp"
+                                            android:background="@drawable/shape_menu_4"
+                                            android:orientation="vertical"
+                                            android:padding="10dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:scaleType="fitCenter"
+                                                android:src="@drawable/icon_pengaduan" />
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Pengaduan"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+                <LinearLayout
+                    android:id="@+id/action_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_marginTop="-2dp"
+                        android:layout_marginRight="-2dp"
+                        android:layout_marginLeft="-2dp"
+                        android:background="@drawable/shape_bar_profile_notify"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp">
+
+                        <LinearLayout
+                            android:id="@+id/back_btn"
+                            android:layout_marginTop="17dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="33dp"
+                            android:layout_height="33dp"
+                            android:gravity="center"
+                            android:background="@drawable/shape_back_2">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_marginRight="1.5dp"
+                                android:background="@drawable/ic_baseline_chevron_back"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="right|center"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:gravity="right"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="MENU"
+                                android:textColor="@color/white"
+                                android:textSize="15dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <com.flipboard.bottomsheet.BottomSheetLayout
+            android:id="@+id/bottom_sheet_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical" />
+
+            </LinearLayout>
+
+        </com.flipboard.bottomsheet.BottomSheetLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

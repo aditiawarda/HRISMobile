@@ -962,32 +962,116 @@
                                         android:orientation="vertical">
 
                                         <LinearLayout
-                                            android:id="@+id/menu_calendar_btn"
+                                            android:id="@+id/clearance_part"
                                             android:layout_width="match_parent"
-                                            android:layout_height="65dp"
-                                            android:background="@drawable/shape_menu_1"
-                                            android:orientation="vertical"
-                                            android:padding="10dp">
+                                            android:layout_height="wrap_content"
+                                            android:visibility="visible"
+                                            android:orientation="vertical">
 
-                                            <ImageView
+                                            <RelativeLayout
                                                 android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_calendar" />
+                                                android:layout_height="wrap_content">
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:orientation="vertical">
+
+                                                    <LinearLayout
+                                                        android:id="@+id/menu_clearance_btn"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="65dp"
+                                                        android:background="@drawable/shape_menu_1"
+                                                        android:orientation="vertical"
+                                                        android:padding="10dp">
+
+                                                        <ImageView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:scaleType="fitCenter"
+                                                            android:src="@drawable/icon_exit_clearance" />
+
+                                                    </LinearLayout>
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginTop="3dp"
+                                                        android:ellipsize="end"
+                                                        android:gravity="center"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:text="Exit - C"
+                                                        android:textColor="#515151"
+                                                        android:textSize="12dp" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:visibility="gone"
+                                                    android:layout_alignParentRight="true"
+                                                    android:id="@+id/count_notification_clearance"
+                                                    android:layout_marginRight="7dp"
+                                                    android:layout_marginTop="7dp"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:paddingRight="3.5dp"
+                                                    android:paddingLeft="3.5dp"
+                                                    android:paddingBottom="0.5dp"
+                                                    android:gravity="center"
+                                                    android:background="@drawable/shape_notification_mark_info">
+
+                                                    <TextView
+                                                        android:id="@+id/count_notif_clearance_tv"
+                                                        android:gravity="center"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="@color/white"
+                                                        android:textSize="9dp"
+                                                        android:text="0"/>
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
 
                                         </LinearLayout>
 
-                                        <TextView
+                                        <LinearLayout
+                                            android:id="@+id/calendar_part"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginTop="3dp"
-                                            android:ellipsize="end"
-                                            android:gravity="center"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="Kalender"
-                                            android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_calendar_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_1"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_calendar" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Kalender"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -999,7 +1083,7 @@
                                         android:orientation="vertical">
 
                                         <LinearLayout
-                                            android:id="@+id/menu_lembur_btn"
+                                            android:id="@+id/menu_lainnya_btn"
                                             android:layout_width="match_parent"
                                             android:layout_height="65dp"
                                             android:background="@drawable/shape_menu_2"
@@ -1010,7 +1094,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_lembur_soon" />
+                                                android:src="@drawable/icon_lainnya" />
 
                                         </LinearLayout>
 
@@ -1022,7 +1106,7 @@
                                             android:gravity="center"
                                             android:maxLines="1"
                                             android:singleLine="true"
-                                            android:text="Lembur"
+                                            android:text="Lainnya"
                                             android:textColor="#515151"
                                             android:textSize="12dp" />
 

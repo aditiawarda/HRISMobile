@@ -47,6 +47,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AllMenuActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".NewsActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

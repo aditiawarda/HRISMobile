@@ -52,6 +52,7 @@ import com.android.volley.toolbox.Volley;
 import com.application.isradeleon.notify.Notify;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.AllMenuActivity;
 import com.gelora.absensi.CalendarPageActivity;
 import com.gelora.absensi.ChatSplashScreenActivity;
 import com.gelora.absensi.ComingSoonActivity;
@@ -115,8 +116,8 @@ import java.util.Map;
 
 public class FragmentHome extends Fragment {
 
-    LinearLayout weatherBTN, newsPart, countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLemburBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN;
-    TextView countNotificationPersonalTV, countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
+    LinearLayout countNotificationClearancePart, clearancePart, calendarPart, weatherBTN, newsPart, countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLainnyaBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN, menuClearanceBTN;
+    TextView countNotifClearanceTV, countNotificationPersonalTV, countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
     ImageView avatarUser, weatherIcon, loadingData;
     RelativeLayout dataCuaca, dataCuacaEmpty;
@@ -179,11 +180,12 @@ public class FragmentHome extends Fragment {
         menuCutiBTN = view.findViewById(R.id.menu_cuti_btn);
         menuPengaduanBTN = view.findViewById(R.id.menu_pengaduan_btn);
         menuFingerBTN = view.findViewById(R.id.menu_finger_btn);
-        menuLemburBTN = view.findViewById(R.id.menu_lembur_btn);
+        menuLainnyaBTN = view.findViewById(R.id.menu_lainnya_btn);
         menuSignatureBTN = view.findViewById(R.id.menu_signature_btn);
         menuCardBTN = view.findViewById(R.id.menu_card_btn);
         menuCalendarBTN = view.findViewById(R.id.menu_calendar_btn);
         menuSdmBTN = view.findViewById(R.id.menu_sdm_btn);
+        menuClearanceBTN = view.findViewById(R.id.menu_clearance_btn);
         dataCuaca = view.findViewById(R.id.data_cuaca);
         dataCuacaEmpty = view.findViewById(R.id.data_cuaca_empty);
         hTime = view.findViewById(R.id.h_time);
@@ -225,6 +227,10 @@ public class FragmentHome extends Fragment {
         cutiPart = view.findViewById(R.id.cuti_part);
         pengaduanPart = view.findViewById(R.id.pengaduan_part);
         newsPart = view.findViewById(R.id.news_part);
+        clearancePart = view.findViewById(R.id.clearance_part);
+        calendarPart = view.findViewById(R.id.calendar_part);
+        countNotificationClearancePart = view.findViewById(R.id.count_notification_clearance);
+        countNotifClearanceTV = view.findViewById(R.id.count_notif_clearance_tv);
 
         listPengumumanNewRV = view.findViewById(R.id.list_pengumuman_rv);
         listPengumumanNewRV.setLayoutManager(new LinearLayoutManager(mContext));
@@ -364,10 +370,10 @@ public class FragmentHome extends Fragment {
             }
         });
 
-        menuLemburBTN.setOnClickListener(new View.OnClickListener() {
+        menuLainnyaBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ComingSoonActivity.class);
+                Intent intent = new Intent(mContext, AllMenuActivity.class);
                 startActivity(intent);
             }
         });
@@ -407,6 +413,14 @@ public class FragmentHome extends Fragment {
             }
         });
 
+        menuClearanceBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ComingSoonActivity.class);
+                startActivity(intent);
+            }
+        });
+
         pengumumanSelengkapnyaBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -429,6 +443,8 @@ public class FragmentHome extends Fragment {
             if(sharedPrefManager.getSpStatusKaryawan().equals("Tetap")){
                 cutiPart.setVisibility(View.VISIBLE);
                 pengaduanPart.setVisibility(View.GONE);
+                clearancePart.setVisibility(View.VISIBLE);
+                calendarPart.setVisibility(View.GONE);
             } else if(sharedPrefManager.getSpStatusKaryawan().equals("Kontrak")){
                 if(!sharedPrefManager.getSpTglBergabung().equals("") || !sharedPrefManager.getSpTglBergabung().equals("null")){
                     String tanggalMulaiBekerja = sharedPrefManager.getSpTglBergabung();
@@ -463,9 +479,23 @@ public class FragmentHome extends Fragment {
                     pengaduanPart.setVisibility(View.VISIBLE);
                 }
             }
+            clearancePart.setVisibility(View.VISIBLE);
+            calendarPart.setVisibility(View.GONE);
         } else {
             cutiPart.setVisibility(View.GONE);
             pengaduanPart.setVisibility(View.VISIBLE);
+            if(sharedPrefManager.getSpIdCor().equals("1")){
+                if(sharedPrefManager.getSpIdJabatan().equals("29")||sharedPrefManager.getSpIdJabatan().equals("31")){
+                    clearancePart.setVisibility(View.GONE);
+                    calendarPart.setVisibility(View.VISIBLE);
+                } else {
+                    clearancePart.setVisibility(View.VISIBLE);
+                    calendarPart.setVisibility(View.GONE);
+                }
+            } else if(sharedPrefManager.getSpIdCor().equals("3")){
+                clearancePart.setVisibility(View.GONE);
+                calendarPart.setVisibility(View.VISIBLE);
+            }
         }
 
         if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpNik().equals("1309131210")){
