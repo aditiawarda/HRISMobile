@@ -123,12 +123,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
     ImageView loadingDataRecord, weatherIconPart, onlineGif, warningGif;
-    TextView viewMoreBTN, titleRecordTV, userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
+    TextView backArrow, backHome, viewMoreBTN, titleRecordTV, userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
     LinearLayout attantionLayoffPart, viewMorePart, mapBTN, noDataPart, loadingRecordPart, backBTN, reminderCongrat, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
-    String connectionStatus = "success", statusDialog = "0", statusLooping = "on", shiftIdAbsen = "", warningPerangkat = "nonaktif", sesiBaru = "nonaktif", actionSession = "", checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
+    String fromIntent = "", connectionStatus = "success", statusDialog = "0", statusLooping = "on", shiftIdAbsen = "", warningPerangkat = "nonaktif", sesiBaru = "nonaktif", actionSession = "", checkinTimeZone = "", devModCheck = "", fakeTimeCheck = "", timeDetection = "undefined", deviceID, zoomAction = "0", idIzin = "", statusLibur = "nonaktif", dialogAktif = "0", intervalTime, dateCheckin, statusTglLibur = "0", shiftType, shortName, pesanCheckout, statusPulangCepat, radiusZone = "undefined", idCheckin = "", idStatusAbsen, idShiftAbsen = "", namaStatusAbsen = "undefined", descStatusAbsen, namaShiftAbsen = "undefined", datangShiftAbsen = "00:00:00", pulangShiftAbsen = "00:00:00", batasPulang = "00:00:00", currentDay, statusAction = "undefined", lateTime, lateStatus, overTime, checkoutStatus;
     View rootview;
     DayNightSwitch dayNightSwitch;
     LocationManager locationManager;
@@ -179,6 +179,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             requestPermissions(LOCATION_PERMS, LOCATION_REQUEST);
         }
 
+        fromIntent = getIntent().getExtras().getString("from");
         deviceID = String.valueOf(Secure.getString(MapsActivity.this.getContentResolver(), Secure.ANDROID_ID)).toUpperCase();
 
         if (getTimeZone().equals("GMT+07:00")||getTimeZone().equals("UTC+07")){
@@ -258,9 +259,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         viewMorePart = findViewById(R.id.view_more_part);
         viewMoreBTN = findViewById(R.id.view_more_btn);
         attantionLayoffPart = findViewById(R.id.attantion_layoff_part);
+        backArrow = findViewById(R.id.back_arrow);
+        backHome = findViewById(R.id.back_home);
 
         dataAbsensiRV = findViewById(R.id.data_absensi_rv);
-
         dataAbsensiRV.setLayoutManager(new LinearLayoutManager(this));
         dataAbsensiRV.setHasFixedSize(true);
         dataAbsensiRV.setNestedScrollingEnabled(false);
@@ -291,6 +293,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             dateCurrentAbsensiTV.setTypeface(typeface);
             detailAbsenTV.setTypeface(typeface);
             actionTV.setTypeface(typeface);
+        }
+
+        if(fromIntent.equals("home")){
+            backHome.setVisibility(View.VISIBLE);
+            backArrow.setVisibility(View.GONE);
+        } else if(fromIntent.equals("all_menu")){
+            backHome.setVisibility(View.GONE);
+            backArrow.setVisibility(View.VISIBLE);
         }
 
         Glide.with(getApplicationContext())

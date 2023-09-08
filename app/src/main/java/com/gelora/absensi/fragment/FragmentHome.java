@@ -283,6 +283,7 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, MapsActivity.class);
+                intent.putExtra("from", "home");
                 startActivity(intent);
             }
         });

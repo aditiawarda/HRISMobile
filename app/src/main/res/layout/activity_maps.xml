@@ -129,9 +129,18 @@
                                     android:gravity="center">
 
                                     <TextView
+                                        android:id="@+id/back_home"
+                                        android:visibility="gone"
                                         android:layout_width="19.5dp"
                                         android:layout_height="19.5dp"
                                         android:background="@drawable/ic_baseline_home" />
+
+                                    <TextView
+                                        android:id="@+id/back_arrow"
+                                        android:visibility="visible"
+                                        android:layout_width="25dp"
+                                        android:layout_height="25dp"
+                                        android:background="@drawable/ic_baseline_chevron_back" />
 
                                 </LinearLayout>
 

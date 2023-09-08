@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -15,7 +16,7 @@ import com.gelora.absensi.model.DataPersonalNotification;
 
 public class AllMenuActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backBTN;
+    LinearLayout actionBar, backBTN, menuAbsensiBTN;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -30,6 +31,7 @@ public class AllMenuActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
         actionBar = findViewById(R.id.action_bar);
+        menuAbsensiBTN = findViewById(R.id.menu_absensi_btn);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +58,15 @@ public class AllMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        menuAbsensiBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMenuActivity.this, MapsActivity.class);
+                intent.putExtra("from", "all_menu");
+                startActivity(intent);
             }
         });
 
