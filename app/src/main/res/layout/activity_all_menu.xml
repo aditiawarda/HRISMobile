@@ -564,7 +564,7 @@
                                                 android:id="@+id/menu_news_btn"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="65dp"
-                                                android:background="@drawable/shape_menu_1"
+                                                android:background="@drawable/shape_menu_2"
                                                 android:orientation="vertical"
                                                 android:padding="10dp">
 
@@ -615,32 +615,40 @@
                                         android:orientation="vertical">
 
                                         <LinearLayout
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="65dp"
-                                            android:background="@drawable/shape_menu_1"
-                                            android:orientation="vertical"
-                                            android:padding="10dp">
-
-                                            <ImageView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_news" />
-
-                                        </LinearLayout>
-
-                                        <TextView
+                                            android:id="@+id/news_part_sub"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginTop="3dp"
-                                            android:ellipsize="end"
-                                            android:gravity="center"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="Berita"
-                                            android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_news_btn_sub"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_1"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_news" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Berita"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -653,32 +661,40 @@
                                         android:orientation="vertical">
 
                                         <LinearLayout
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="65dp"
-                                            android:background="@drawable/shape_menu_2"
-                                            android:orientation="vertical"
-                                            android:padding="10dp">
-
-                                            <ImageView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_calendar" />
-
-                                        </LinearLayout>
-
-                                        <TextView
+                                            android:id="@+id/calendar_part_sub"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginTop="3dp"
-                                            android:ellipsize="end"
-                                            android:gravity="center"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="Kalender"
-                                            android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_calendar_btn_sub"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_2"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_calendar" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Kalender"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -691,32 +707,40 @@
                                         android:orientation="vertical">
 
                                         <LinearLayout
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="65dp"
-                                            android:background="@drawable/shape_menu_3"
-                                            android:orientation="vertical"
-                                            android:padding="10dp">
-
-                                            <ImageView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_id_card" />
-
-                                        </LinearLayout>
-
-                                        <TextView
+                                            android:id="@+id/pengaduan_part_sub"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginTop="3dp"
-                                            android:ellipsize="end"
-                                            android:gravity="center"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="ID Card"
-                                            android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_pengaduan_btn_sub"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_3"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_pengaduan" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Pengaduan"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -727,34 +751,41 @@
                                         android:layout_weight=".25"
                                         android:orientation="vertical">
 
-
                                         <LinearLayout
-
-                                            android:layout_width="match_parent"
-                                            android:layout_height="65dp"
-                                            android:background="@drawable/shape_menu_4"
-                                            android:orientation="vertical"
-                                            android:padding="10dp">
-
-                                            <ImageView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_pengaduan" />
-
-                                        </LinearLayout>
-
-                                        <TextView
+                                            android:id="@+id/id_card_part_sub"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginTop="3dp"
-                                            android:ellipsize="end"
-                                            android:gravity="center"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="Pengaduan"
-                                            android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_id_card_btn_sub"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_4"
+                                                android:orientation="vertical"
+                                                android:padding="10dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_id_card" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="ID Card"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
