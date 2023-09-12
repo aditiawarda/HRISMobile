@@ -276,7 +276,7 @@ public class FragmentProfile extends Fragment {
     }
 
     private void getDataKaryawan() {
-        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpIdJabatan().equals("31")||sharedPrefManager.getSpNik().equals("80085")) {
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpIdJabatan().equals("31")||sharedPrefManager.getSpNik().equals("000112092023")) {
             infoGapPart.setVisibility(View.GONE);
             if(sharedPrefManager.getSpIdJabatan().equals("31")){
                 nonGapSgnBTN.setVisibility(View.GONE);

@@ -1094,7 +1094,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_lainnya" />
+                                                android:src="@drawable/icon_lembur_soon" />
 
                                         </LinearLayout>
 
@@ -1106,7 +1106,7 @@
                                             android:gravity="center"
                                             android:maxLines="1"
                                             android:singleLine="true"
-                                            android:text="Lainnya"
+                                            android:text="Lembur"
                                             android:textColor="#515151"
                                             android:textSize="12dp" />
 

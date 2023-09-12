@@ -82,7 +82,7 @@ public class HomeActivity extends AppCompatActivity {
         sharedPrefAbsen = new SharedPrefAbsen(this);
         requestQueue = Volley.newRequestQueue(this);
 
-        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")) {
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")) {
             setContentView(R.layout.activity_home_non_gap);
 
             bubbleNavigationNonGap = findViewById(R.id.equal_navigation_bar_non_gap);
@@ -320,7 +320,7 @@ public class HomeActivity extends AppCompatActivity {
                                 }
 
                             } else {
-                                if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+                                if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
                                     // Nothing else
                                 } else {
                                     checkNotification();
@@ -662,7 +662,7 @@ public class HomeActivity extends AppCompatActivity {
             if(nowLayout.equals("0")){
                 super.onBackPressed();
             } else {
-                if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")) {
+                if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")) {
                     viewPager.setCurrentItem(Integer.parseInt(beforeLayout), true);
                 } else {
                     if(nowLayout.equals("2") && beforeLayout.equals("1")){

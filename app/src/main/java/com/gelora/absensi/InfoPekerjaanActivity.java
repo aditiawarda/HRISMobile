@@ -92,7 +92,7 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
             }
         });
 
-        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpIdJabatan().equals("31")||sharedPrefManager.getSpNik().equals("80085")) {
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpIdJabatan().equals("31")||sharedPrefManager.getSpNik().equals("000112092023")) {
             nonGapPart.setVisibility(View.GONE);
         } else {
             nonGapPart.setVisibility(View.VISIBLE);

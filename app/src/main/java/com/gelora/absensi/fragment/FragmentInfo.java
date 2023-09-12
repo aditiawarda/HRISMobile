@@ -526,7 +526,7 @@ public class FragmentInfo extends Fragment {
             }
         });
 
-        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+        if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
             titlePage.setText("HRIS Mobile");
             dasboardStatistikAbsen.setVisibility(View.GONE);
             faqBTN.setVisibility(View.GONE);
@@ -689,7 +689,7 @@ public class FragmentInfo extends Fragment {
 
     private void getPersonalization() {
 
-        if(sharedPrefManager.getSpNik().equals("80085")){
+        if(sharedPrefManager.getSpNik().equals("000112092023")){
             sdmBTN.setVisibility(View.VISIBLE);
         } else {
             sdmBTN.setVisibility(View.GONE);
@@ -726,7 +726,7 @@ public class FragmentInfo extends Fragment {
                                 statusFiturIzinCuti = fitur_izin;
                                 statusFiturFinger = fitur_finger;
 
-                                if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("80085")){
+                                if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
                                     if(news_part.equals("1")){
                                         newsPart.setVisibility(View.VISIBLE);
                                         newsPart.setOnClickListener(new View.OnClickListener() {
