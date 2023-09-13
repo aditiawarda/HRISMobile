@@ -13,6 +13,7 @@ public class DetailExitClearanceActivity extends AppCompatActivity {
     LinearLayout actionBar, backBTN;
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
+    String idData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,8 @@ public class DetailExitClearanceActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         actionBar = findViewById(R.id.action_bar);
         backBTN = findViewById(R.id.back_btn);
+
+        //idData = getIntent().getExtras().getString("id_data");
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
