@@ -372,6 +372,7 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable-xhdpi/shape_news_home.xml" value="0.1" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable-xhdpi/shape_nilai.xml" value="0.1365" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable-xhdpi/shape_nilai_label.xml" value="0.1565" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable-xhdpi/shape_notification_mark.xml" value="0.1195" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable-xhdpi/shape_notifikasi.xml" value="0.104" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable-xhdpi/shape_ornament_3.xml" value="0.133" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable-xhdpi/shape_ornament_news_1.xml" value="0.1" />
@@ -439,6 +440,7 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable/shape_label_add_button.xml" value="0.1355" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable/shape_menu_info.xml" value="0.134" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable/shape_notification_mark_info.xml" value="0.145" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable/shape_notification_markk.xml" value="0.1195" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable/shape_ornament_absensi_record.xml" value="0.1135" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable/shape_ornament_checkin.xml" value="0.122" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/drawable/shape_ornament_checkin_item.xml" value="0.1135" />
@@ -477,7 +479,7 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_data_form_sdm.xml" value="0.14027777777777778" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_data_penilaian_sdm.xml" value="0.22" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_detail_cuaca.xml" value="0.12" />
-        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_detail_exit_clearance.xml" value="0.33" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_detail_exit_clearance.xml" value="0.25" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_detail_faq.xml" value="0.1" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_detail_form_sdm.xml" value="0.2" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_detail_hadir.xml" value="0.15904232578024796" />
@@ -547,7 +549,7 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_user_detail.xml" value="0.15904232578024796" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/activity_view_image.xml" value="0.15904232578024796" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/alert_dialog.xml" value="0.1718683197947841" />
-        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/fragment_home.xml" value="0.15" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/fragment_home.xml" value="0.5" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/fragment_info.xml" value="0.1" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/fragment_one.xml" value="0.13552800342026508" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
@@ -557,6 +559,7 @@
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/item_data_absensi.xml" value="0.14" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/item_data_finger.xml" value="0.14" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/item_data_form_sdm.xml" value="0.18" />
+        <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/item_data_no_checkout.xml" value="0.1175925925925926" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/item_karyawan_item_form_penilaian.xml" value="0.11435185185185186" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/item_karyawan_list.xml" value="0.33" />
         <entry key="..\:/Users/ADIT-PC/AndroidStudioProjects/HRISMobile-New/app/src/main/res/layout/item_karyawan_list_penilaian.xml" value="0.352112676056338" />

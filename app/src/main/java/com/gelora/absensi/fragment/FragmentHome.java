@@ -57,6 +57,7 @@ import com.gelora.absensi.CalendarPageActivity;
 import com.gelora.absensi.ChatSplashScreenActivity;
 import com.gelora.absensi.ComingSoonActivity;
 import com.gelora.absensi.DetailCuacaActivity;
+import com.gelora.absensi.DetailExitClearanceActivity;
 import com.gelora.absensi.DetailFormSdmActivity;
 import com.gelora.absensi.DetailPengumumanActivity;
 import com.gelora.absensi.DigitalCardActivity;
@@ -418,7 +419,7 @@ public class FragmentHome extends Fragment {
         menuClearanceBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ExitClearanceActivity.class);
+                Intent intent = new Intent(mContext, DetailExitClearanceActivity.class);
                 startActivity(intent);
             }
         });

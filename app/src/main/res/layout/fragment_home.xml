@@ -76,23 +76,23 @@
                                             android:gravity="center">
 
                                             <TextView
-                                                android:layout_width="23dp"
-                                                android:layout_height="23dp"
+                                                android:layout_width="22dp"
+                                                android:layout_height="22dp"
                                                 android:background="@drawable/ic_baseline_notifications_icon" />
 
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:visibility="gone"
+                                            android:visibility="visible"
                                             android:id="@+id/count_notification_personal"
-                                            android:layout_marginLeft="23dp"
+                                            android:layout_marginLeft="21dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:paddingRight="4dp"
-                                            android:paddingLeft="4dp"
-                                            android:paddingBottom="1dp"
+                                            android:paddingRight="3.5dp"
+                                            android:paddingLeft="3.5dp"
+                                            android:paddingBottom="0.5dp"
                                             android:gravity="center"
-                                            android:background="@drawable/shape_notification_mark">
+                                            android:background="@drawable/shape_notification_mark_home">
 
                                             <TextView
                                                 android:id="@+id/count_personal"
@@ -100,7 +100,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:textColor="@color/white"
-                                                android:textSize="10dp"
+                                                android:textSize="9dp"
                                                 android:text="0"/>
 
                                         </LinearLayout>
@@ -127,16 +127,16 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:visibility="gone"
+                                            android:visibility="visible"
                                             android:id="@+id/count_notification_message"
-                                            android:layout_marginLeft="23dp"
+                                            android:layout_marginLeft="31dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:paddingRight="4dp"
-                                            android:paddingLeft="4dp"
-                                            android:paddingBottom="1dp"
+                                            android:paddingRight="3.5dp"
+                                            android:paddingLeft="3.5dp"
+                                            android:paddingBottom="0.5dp"
                                             android:gravity="center"
-                                            android:background="@drawable/shape_notification_mark">
+                                            android:background="@drawable/shape_notification_mark_home">
 
                                             <TextView
                                                 android:id="@+id/count_message"
@@ -144,7 +144,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:textColor="@color/white"
-                                                android:textSize="10dp"
+                                                android:textSize="9dp"
                                                 android:text="0"/>
 
                                         </LinearLayout>
@@ -1106,7 +1106,7 @@
                                             android:gravity="center"
                                             android:maxLines="1"
                                             android:singleLine="true"
-                                            android:text="Lembur"
+                                            android:text="Lainnya"
                                             android:textColor="#515151"
                                             android:textSize="12dp" />
 
