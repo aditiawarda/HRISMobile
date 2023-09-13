@@ -640,7 +640,7 @@
                                                             android:layout_marginRight="15dp"
                                                             android:gravity="right"
                                                             android:text=""
-                                                            android:textColor="#515151"
+                                                            android:textColor="#0C4883"
                                                             android:textSize="8dp" />
 
                                                     </RelativeLayout>
@@ -707,11 +707,11 @@
                                                             android:id="@+id/tanggal_approve_hrd"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
-                                                            android:layout_marginRight="15dp"
                                                             android:layout_marginTop="5dp"
+                                                            android:layout_marginRight="15dp"
                                                             android:gravity="right"
                                                             android:text=""
-                                                            android:textColor="#515151"
+                                                            android:textColor="#0C4883"
                                                             android:textSize="8dp" />
 
                                                     </RelativeLayout>

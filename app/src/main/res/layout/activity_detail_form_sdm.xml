@@ -2247,7 +2247,7 @@
                                                                     android:layout_marginTop="2dp"
                                                                     android:gravity="right"
                                                                     android:text=""
-                                                                    android:textColor="#145391"
+                                                                    android:textColor="#0C4883"
                                                                     android:textSize="5dp" />
 
                                                             </RelativeLayout>
@@ -2385,7 +2385,7 @@
                                                                     android:layout_marginTop="2dp"
                                                                     android:gravity="right"
                                                                     android:text=""
-                                                                    android:textColor="#145391"
+                                                                    android:textColor="#0C4883"
                                                                     android:textSize="5dp" />
 
                                                             </RelativeLayout>
@@ -2430,7 +2430,7 @@
                                                                     android:layout_marginTop="2dp"
                                                                     android:gravity="right"
                                                                     android:text=""
-                                                                    android:textColor="#145391"
+                                                                    android:textColor="#0C4883"
                                                                     android:textSize="5dp" />
 
                                                             </RelativeLayout>

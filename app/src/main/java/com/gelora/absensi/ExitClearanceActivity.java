@@ -16,7 +16,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
 
     SharedPrefManager sharedPrefManager;
     ImageView loadingDataImg, loadingDataImg2;
-    LinearLayout mainPart, actionBar, addBTN, dataInBTN, dataOutBTN, optionPart, dataMasukPart, dataKeluarPart, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
+    LinearLayout backBTN, mainPart, actionBar, addBTN, dataInBTN, dataOutBTN, optionPart, dataMasukPart, dataKeluarPart, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
     SwipeRefreshLayout refreshLayout;
 
     @Override
@@ -26,6 +26,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
 
         sharedPrefManager = new SharedPrefManager(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
+        backBTN = findViewById(R.id.back_btn);
         noDataPart = findViewById(R.id.no_data_part);
         noDataPart2 = findViewById(R.id.no_data_part_2);
         loadingDataPart = findViewById(R.id.loading_data_part);
@@ -72,6 +73,13 @@ public class ExitClearanceActivity extends AppCompatActivity {
 //                        getData();
                     }
                 }, 500);
+            }
+        });
+
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 

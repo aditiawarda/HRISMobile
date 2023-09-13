@@ -422,7 +422,7 @@
                                                             android:layout_marginRight="15dp"
                                                             android:gravity="right"
                                                             android:text=""
-                                                            android:textColor="#515151"
+                                                            android:textColor="#0C4883"
                                                             android:textSize="8dp" />
 
                                                     </RelativeLayout>
@@ -502,7 +502,7 @@
                                                             android:layout_marginRight="15dp"
                                                             android:gravity="right"
                                                             android:text=""
-                                                            android:textColor="#515151"
+                                                            android:textColor="#0C4883"
                                                             android:textSize="8dp" />
 
                                                     </RelativeLayout>
