@@ -282,7 +282,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="BUAT"
+                    android:text="BUAT "
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="11dp" />
 

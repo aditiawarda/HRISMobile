@@ -282,7 +282,7 @@
                     android:paddingTop="3dp"
                     android:paddingBottom="3dp"
                     android:background="@drawable/shape_label_add_button"
-                    android:text="BUAT"
+                    android:text="BUAT "
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="11dp" />
 
