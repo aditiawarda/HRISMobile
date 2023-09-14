@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -18,6 +19,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
     ImageView loadingDataImg, loadingDataImg2;
     LinearLayout backBTN, mainPart, actionBar, addBTN, dataInBTN, dataOutBTN, optionPart, dataMasukPart, dataKeluarPart, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
     SwipeRefreshLayout refreshLayout;
+    View fakeData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class ExitClearanceActivity extends AppCompatActivity {
         addBTN = findViewById(R.id.add_btn);
         actionBar = findViewById(R.id.action_bar);
         mainPart = findViewById(R.id.main_part);
+
+        fakeData = findViewById(R.id.fake_data);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -135,7 +139,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
             }
         });
 
-        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpIdJabatan().equals("4") && sharedPrefManager.getSpNik().equals("1309131210")) || sharedPrefManager.getSpNik().equals("3186150321")){
+        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpIdJabatan().equals("4") && sharedPrefManager.getSpNik().equals("1309131210"))){
             optionPart.setVisibility(View.VISIBLE);
         } else if (sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
             float scale = getResources().getDisplayMetrics().density;
@@ -156,6 +160,14 @@ public class ExitClearanceActivity extends AppCompatActivity {
             dataMasukPart.setVisibility(View.GONE);
             dataKeluarPart.setVisibility(View.VISIBLE);
         }
+
+        fakeData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ExitClearanceActivity.this, DetailExitClearanceActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

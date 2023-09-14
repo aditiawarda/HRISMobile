@@ -47,6 +47,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".FormExitClearanceActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailExitClearanceActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

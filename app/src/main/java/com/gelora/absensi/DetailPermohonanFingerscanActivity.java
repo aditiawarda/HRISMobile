@@ -506,7 +506,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                 noPermohonan.setText(nomor);
                                 tanggalTV.setText(tanggal.substring(8,10)+"/"+tanggal.substring(5,7)+"/"+tanggal.substring(0,4));
                                 nikNamaTV.setText(nik+"/"+nama_karyawan);
-                                deptBagianTV.setText(bagian+"/"+departemen);
+                                deptBagianTV.setText(departemen+"/"+bagian);
 
                                 if(keterangan.equals("1")){
                                     keteranganTV.setText("Tidak Absen Masuk dan Pulang");

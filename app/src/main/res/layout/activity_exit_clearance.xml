@@ -48,7 +48,7 @@
                                 android:orientation="vertical">
 
                                 <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/data_notifikasi_rv"
+                                    android:id="@+id/data_masuk_rv"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:orientation="vertical"
@@ -105,7 +105,8 @@
                                     android:paddingLeft="20dp"
                                     android:paddingTop="60dp"
                                     android:paddingRight="20dp"
-                                    android:paddingBottom="35dp">
+                                    android:paddingBottom="35dp"
+                                    android:visibility="gone">
 
                                     <ImageView
                                         android:id="@+id/loading_data_img"
@@ -131,6 +132,23 @@
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
                                         android:textSize="10dp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <include layout="@layout/item_data_masuk_exit_clearance" android:id="@+id/fake_data"/>
+                                    <include layout="@layout/item_data_masuk_exit_clearance"/>
+                                    <include layout="@layout/item_data_masuk_exit_clearance"/>
+                                    <include layout="@layout/item_data_masuk_exit_clearance"/>
+                                    <include layout="@layout/item_data_masuk_exit_clearance"/>
+                                    <include layout="@layout/item_data_masuk_exit_clearance"/>
+                                    <include layout="@layout/item_data_masuk_exit_clearance"/>
+                                    <include layout="@layout/item_data_masuk_exit_clearance"/>
+                                    <include layout="@layout/item_data_masuk_exit_clearance"/>
 
                                 </LinearLayout>
 
