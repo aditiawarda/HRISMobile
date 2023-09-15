@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -441,47 +442,47 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
 
                                     switch (bulanValue) {
                                         case "01":
-                                            bulanName = "Jan";
+                                            bulanName = "Januari";
                                             break;
                                         case "02":
-                                            bulanName = "Feb";
+                                            bulanName = "Februari";
                                             break;
                                         case "03":
-                                            bulanName = "Mar";
+                                            bulanName = "Maret";
                                             break;
                                         case "04":
-                                            bulanName = "Apr";
+                                            bulanName = "April";
                                             break;
                                         case "05":
                                             bulanName = "Mei";
                                             break;
                                         case "06":
-                                            bulanName = "Jun";
+                                            bulanName = "Juni";
                                             break;
                                         case "07":
-                                            bulanName = "Jul";
+                                            bulanName = "Juli";
                                             break;
                                         case "08":
-                                            bulanName = "Agu";
+                                            bulanName = "Agustus";
                                             break;
                                         case "09":
-                                            bulanName = "Sep";
+                                            bulanName = "September";
                                             break;
                                         case "10":
-                                            bulanName = "Okt";
+                                            bulanName = "Oktober";
                                             break;
                                         case "11":
-                                            bulanName = "Nov";
+                                            bulanName = "November";
                                             break;
                                         case "12":
-                                            bulanName = "Des";
+                                            bulanName = "Desember";
                                             break;
                                         default:
                                             bulanName = "Not found!";
                                             break;
                                     }
 
-                                    tanggalLahirPilihTV.setText(dayDate+" "+bulanName+" "+yearDate);
+                                    tanggalLahirPilihTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
                                 }
 
@@ -1090,6 +1091,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
             int y = Integer.parseInt(getDateY());
             int m = Integer.parseInt(getDateM());
             int d = Integer.parseInt(getDateD());
+
             @SuppressLint({"DefaultLocale", "SetTextI18n"})
             DatePickerDialog dpd = new DatePickerDialog(FormInfoPersonalActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
 
@@ -1102,49 +1104,49 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
 
                 switch (bulanValue) {
                     case "01":
-                        bulanName = "Jan";
+                        bulanName = "Januari";
                         break;
                     case "02":
-                        bulanName = "Feb";
+                        bulanName = "Februari";
                         break;
                     case "03":
-                        bulanName = "Mar";
+                        bulanName = "Maret";
                         break;
                     case "04":
-                        bulanName = "Apr";
+                        bulanName = "April";
                         break;
                     case "05":
                         bulanName = "Mei";
                         break;
                     case "06":
-                        bulanName = "Jun";
+                        bulanName = "Juni";
                         break;
                     case "07":
-                        bulanName = "Jul";
+                        bulanName = "Juli";
                         break;
                     case "08":
-                        bulanName = "Agu";
+                        bulanName = "Agustus";
                         break;
                     case "09":
-                        bulanName = "Sep";
+                        bulanName = "September";
                         break;
                     case "10":
-                        bulanName = "Okt";
+                        bulanName = "Oktober";
                         break;
                     case "11":
-                        bulanName = "Nov";
+                        bulanName = "November";
                         break;
                     case "12":
-                        bulanName = "Des";
+                        bulanName = "Desember";
                         break;
                     default:
                         bulanName = "Not found!";
                         break;
                 }
 
-                tanggalLahirPilihTV.setText(dayDate+" "+bulanName+" "+yearDate);
+                tanggalLahirPilihTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
-            }, y,m,d);
+            }, y,m-1,d);
             dpd.show();
 
     }

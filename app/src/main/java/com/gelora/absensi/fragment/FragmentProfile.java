@@ -82,7 +82,7 @@ import java.util.UUID;
  */
 public class FragmentProfile extends Fragment {
 
-    LinearLayout idCardBTN, nonGapSgnBTN, infoGapPart, warningInfoKontakDarurat, warningInfoPersonal, updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
+    LinearLayout nonGapSgnBTN, infoGapPart, warningInfoKontakDarurat, warningInfoPersonal, updateAppBTN, removeAvatarBTN, updateAvatarBTN, viewAvatarBTN, emptyAvatarBTN, availableAvatarBTN, avatarBTN, logoutPart, logoutBTN, uploadFileImage, editFileImage, availableAvatarPart, emptyAvatarPart;
     LinearLayout infoPersonalBTN, infoPekerjaanBTN, infoKontakDaruratBTN, infoKeluargaBTN, infoPengalamanDanPelatihanBTN, infoPayrollBTN;
     TextView nameOfUser, nikTV, positionOfUser, descAvailable, descEmpty;
     ImageView avatarUser;
@@ -140,7 +140,6 @@ public class FragmentProfile extends Fragment {
         warningInfoKontakDarurat = view.findViewById(R.id.warning_info_kontak_darurat);
         infoGapPart = view.findViewById(R.id.info_gap_part);
         nonGapSgnBTN = view.findViewById(R.id.non_gap_sgn_btn);
-        idCardBTN = view.findViewById(R.id.id_card_btn);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -218,16 +217,6 @@ public class FragmentProfile extends Fragment {
             }
         });
 
-        idCardBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, DigitalCardActivity.class);
-                intent.putExtra("nama", sharedPrefManager.getSpNama());
-                intent.putExtra("nik", sharedPrefManager.getSpNik());
-                startActivity(intent);
-            }
-        });
-
         logoutBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -262,11 +251,11 @@ public class FragmentProfile extends Fragment {
             }
         });
 
-        if(!sharedPrefManager.getSpIdCor().equals("1")){
-            infoPayrollBTN.setVisibility(View.GONE);
-        } else {
-            infoPayrollBTN.setVisibility(View.VISIBLE);
-        }
+        // if(!sharedPrefManager.getSpIdCor().equals("1")){
+        //    infoPayrollBTN.setVisibility(View.GONE);
+        // } else {
+        //    infoPayrollBTN.setVisibility(View.VISIBLE);
+        // }
 
         nameOfUser.setText(sharedPrefManager.getSpNama());
         nikTV.setText(sharedPrefManager.getSpNik());
@@ -294,12 +283,6 @@ public class FragmentProfile extends Fragment {
         } else {
             infoGapPart.setVisibility(View.VISIBLE);
             nonGapSgnBTN.setVisibility(View.GONE);
-        }
-
-        if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")){
-            idCardBTN.setVisibility(View.VISIBLE);
-        } else {
-            idCardBTN.setVisibility(View.GONE);
         }
 
         //RequestQueue requestQueue = Volley.newRequestQueue(mContext);

@@ -574,7 +574,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
                     }
                 }, 500);
 
-            }, y,m,d);
+            }, y,m-1,d);
             dpd.show();
         }
 

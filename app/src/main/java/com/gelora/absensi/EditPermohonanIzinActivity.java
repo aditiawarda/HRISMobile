@@ -927,7 +927,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
 
                 }
 
-            }, y,m,d);
+            }, y,m-1,d);
             dpd.show();
         }
 
@@ -1343,7 +1343,7 @@ public class EditPermohonanIzinActivity extends AppCompatActivity {
 
                 }
 
-            }, y,m,d);
+            }, y,m-1,d);
             dpd.show();
         }
 

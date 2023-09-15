@@ -141,40 +141,40 @@ public class AdapterPermohonanSaya extends RecyclerView.Adapter<AdapterPermohona
 
         switch (bulanValueMulai) {
             case "01":
-                bulanNameMulai = "Januari";
+                bulanNameMulai = "Jan";
                 break;
             case "02":
-                bulanNameMulai = "Februari";
+                bulanNameMulai = "Feb";
                 break;
             case "03":
-                bulanNameMulai = "Maret";
+                bulanNameMulai = "Mar";
                 break;
             case "04":
-                bulanNameMulai = "April";
+                bulanNameMulai = "Apr";
                 break;
             case "05":
                 bulanNameMulai = "Mei";
                 break;
             case "06":
-                bulanNameMulai = "Juni";
+                bulanNameMulai = "Jun";
                 break;
             case "07":
-                bulanNameMulai = "Juli";
+                bulanNameMulai = "Jul";
                 break;
             case "08":
-                bulanNameMulai = "Agustus";
+                bulanNameMulai = "Agu";
                 break;
             case "09":
-                bulanNameMulai = "September";
+                bulanNameMulai = "Sep";
                 break;
             case "10":
-                bulanNameMulai = "Oktober";
+                bulanNameMulai = "Okt";
                 break;
             case "11":
-                bulanNameMulai = "November";
+                bulanNameMulai = "Nov";
                 break;
             case "12":
-                bulanNameMulai = "Desember";
+                bulanNameMulai = "Des";
                 break;
             default:
                 bulanNameMulai = "Not found";
@@ -189,40 +189,40 @@ public class AdapterPermohonanSaya extends RecyclerView.Adapter<AdapterPermohona
 
         switch (bulanValueAkhir) {
             case "01":
-                bulanNameAkhir = "Januari";
+                bulanNameAkhir = "Jan";
                 break;
             case "02":
-                bulanNameAkhir = "Februari";
+                bulanNameAkhir = "Feb";
                 break;
             case "03":
-                bulanNameAkhir = "Maret";
+                bulanNameAkhir = "Mar";
                 break;
             case "04":
-                bulanNameAkhir = "April";
+                bulanNameAkhir = "Apr";
                 break;
             case "05":
                 bulanNameAkhir = "Mei";
                 break;
             case "06":
-                bulanNameAkhir = "Juni";
+                bulanNameAkhir = "Jun";
                 break;
             case "07":
-                bulanNameAkhir = "Juli";
+                bulanNameAkhir = "Jul";
                 break;
             case "08":
-                bulanNameAkhir = "Agustus";
+                bulanNameAkhir = "Agu";
                 break;
             case "09":
-                bulanNameAkhir = "September";
+                bulanNameAkhir = "Sep";
                 break;
             case "10":
-                bulanNameAkhir = "Oktober";
+                bulanNameAkhir = "Okt";
                 break;
             case "11":
-                bulanNameAkhir = "November";
+                bulanNameAkhir = "Nov";
                 break;
             case "12":
-                bulanNameAkhir = "Desember";
+                bulanNameAkhir = "Des";
                 break;
             default:
                 bulanNameAkhir = "Not found";
@@ -268,40 +268,40 @@ public class AdapterPermohonanSaya extends RecyclerView.Adapter<AdapterPermohona
 
         switch (bulanValue) {
             case "01":
-                bulanName = "Januari";
+                bulanName = "Jan";
                 break;
             case "02":
-                bulanName = "Februari";
+                bulanName = "Feb";
                 break;
             case "03":
-                bulanName = "Maret";
+                bulanName = "Mar";
                 break;
             case "04":
-                bulanName = "April";
+                bulanName = "Apr";
                 break;
             case "05":
                 bulanName = "Mei";
                 break;
             case "06":
-                bulanName = "Juni";
+                bulanName = "Jun";
                 break;
             case "07":
-                bulanName = "Juli";
+                bulanName = "Jul";
                 break;
             case "08":
-                bulanName = "Agustus";
+                bulanName = "Agu";
                 break;
             case "09":
-                bulanName = "September";
+                bulanName = "Sep";
                 break;
             case "10":
-                bulanName = "Oktober";
+                bulanName = "Okt";
                 break;
             case "11":
-                bulanName = "November";
+                bulanName = "Nov";
                 break;
             case "12":
-                bulanName = "Desember";
+                bulanName = "Des";
                 break;
             default:
                 bulanName = "Not found";

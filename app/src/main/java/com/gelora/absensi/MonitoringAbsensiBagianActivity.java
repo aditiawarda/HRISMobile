@@ -852,7 +852,7 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                     }
                 }, 1000);
 
-            }, y,m,d);
+            }, y,m-1,d);
             dpd.show();
         }
 

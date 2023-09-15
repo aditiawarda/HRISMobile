@@ -3317,7 +3317,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
 
                 }
 
-            }, y,m,d);
+            }, y,m-1,d);
             dpd.show();
         }
 
@@ -3733,7 +3733,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
 
                 }
 
-            }, y,m,d);
+            }, y,m-1,d);
             dpd.show();
         }
 

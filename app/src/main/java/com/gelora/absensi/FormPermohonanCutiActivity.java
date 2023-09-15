@@ -3551,7 +3551,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
                 }
 
-            }, y,m,d);
+            }, y,m-1,d);
             dpd.show();
         }
 
@@ -3969,7 +3969,7 @@ public class FormPermohonanCutiActivity extends AppCompatActivity {
 
                 }
 
-            }, y,m,d);
+            }, y,m-1,d);
             dpd.show();
         }
 

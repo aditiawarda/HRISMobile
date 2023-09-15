@@ -4452,7 +4452,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                             .show();
                 }
 
-            }, y,m,d);
+            }, y,m-1,d);
             dpd.show();
         }
 
@@ -4810,7 +4810,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                             .show();
                 }
 
-            }, y,m,d);
+            }, y,m-1,d);
             dpd.show();
         }
 

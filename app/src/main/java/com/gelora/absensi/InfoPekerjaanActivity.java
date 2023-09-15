@@ -194,47 +194,47 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
 
                                     switch (bulanValue) {
                                         case "01":
-                                            bulanName = "Jan";
+                                            bulanName = "Januari";
                                             break;
                                         case "02":
-                                            bulanName = "Feb";
+                                            bulanName = "Februari";
                                             break;
                                         case "03":
-                                            bulanName = "Mar";
+                                            bulanName = "Maret";
                                             break;
                                         case "04":
-                                            bulanName = "Apr";
+                                            bulanName = "April";
                                             break;
                                         case "05":
                                             bulanName = "Mei";
                                             break;
                                         case "06":
-                                            bulanName = "Jun";
+                                            bulanName = "Juni";
                                             break;
                                         case "07":
-                                            bulanName = "Jul";
+                                            bulanName = "Juli";
                                             break;
                                         case "08":
-                                            bulanName = "Agu";
+                                            bulanName = "Agustus";
                                             break;
                                         case "09":
-                                            bulanName = "Sep";
+                                            bulanName = "September";
                                             break;
                                         case "10":
-                                            bulanName = "Okt";
+                                            bulanName = "Oktober";
                                             break;
                                         case "11":
-                                            bulanName = "Nov";
+                                            bulanName = "November";
                                             break;
                                         case "12":
-                                            bulanName = "Des";
+                                            bulanName = "Desember";
                                             break;
                                         default:
                                             bulanName = "Not found!";
                                             break;
                                     }
 
-                                    tanggalBergabungTV.setText(dayDate+" "+bulanName+" "+yearDate);
+                                    tanggalBergabungTV.setText(String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
 
                                     String tglSekarang = getDate();
                                     String tglMasukKerja = tanggal_bergabung;
