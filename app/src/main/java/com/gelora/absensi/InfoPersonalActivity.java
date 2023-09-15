@@ -203,7 +203,7 @@ public class InfoPersonalActivity extends AppCompatActivity {
                                 } else {
                                     warningTanggalLahir.setVisibility(View.GONE);
                                     String dayDate = tanggal_lahir.substring(8,10);
-                                    String yearDate = tanggal_lahir.substring(0,4);;
+                                    String yearDate = tanggal_lahir.substring(0,4);
                                     String bulanValue = tanggal_lahir.substring(5,7);
                                     String bulanName;
 

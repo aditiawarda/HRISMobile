@@ -552,7 +552,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
                                 tempatLahirED.setText(tempat_lahir);
 
                                 String dayDate = tanggal_lahir.substring(8,10);
-                                String yearDate = tanggal_lahir.substring(0,4);;
+                                String yearDate = tanggal_lahir.substring(0,4);
                                 String bulanValue = tanggal_lahir.substring(5,7);
                                 String bulanName;
 
@@ -688,7 +688,7 @@ public class FormInfoKeluargaActivity extends AppCompatActivity {
             tanggalLahir = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
             String dayDate = tanggalLahir.substring(8,10);
-            String yearDate = tanggalLahir.substring(0,4);;
+            String yearDate = tanggalLahir.substring(0,4);
             String bulanValue = tanggalLahir.substring(5,7);
             String bulanName;
 

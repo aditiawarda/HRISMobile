@@ -356,7 +356,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         }
 
                         String dayDate = input_date.substring(8,10);
-                        String yearDate = input_date.substring(0,4);;
+                        String yearDate = input_date.substring(0,4);
                         String bulanValue = input_date.substring(5,7);
                         String bulanName;
 
@@ -459,7 +459,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     }
 
                     String dayDate = input_date.substring(8,10);
-                    String yearDate = input_date.substring(0,4);;
+                    String yearDate = input_date.substring(0,4);
                     String bulanValue = input_date.substring(5,7);
                     String bulanName;
 
@@ -563,7 +563,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         }
 
                         String dayDate = input_date.substring(8,10);
-                        String yearDate = input_date.substring(0,4);;
+                        String yearDate = input_date.substring(0,4);
                         String bulanValue = input_date.substring(5,7);
                         String bulanName;
 
@@ -666,7 +666,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     }
 
                     String dayDate = input_date.substring(8,10);
-                    String yearDate = input_date.substring(0,4);;
+                    String yearDate = input_date.substring(0,4);
                     String bulanValue = input_date.substring(5,7);
                     String bulanName;
 
@@ -774,7 +774,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         }
 
                         String dayDate = input_date.substring(8,10);
-                        String yearDate = input_date.substring(0,4);;
+                        String yearDate = input_date.substring(0,4);
                         String bulanValue = input_date.substring(5,7);
                         String bulanName;
 
@@ -877,7 +877,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     }
 
                     String dayDate = input_date.substring(8,10);
-                    String yearDate = input_date.substring(0,4);;
+                    String yearDate = input_date.substring(0,4);
                     String bulanValue = input_date.substring(5,7);
                     String bulanName;
 
@@ -981,7 +981,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                         }
 
                         String dayDate = input_date.substring(8,10);
-                        String yearDate = input_date.substring(0,4);;
+                        String yearDate = input_date.substring(0,4);
                         String bulanValue = input_date.substring(5,7);
                         String bulanName;
 
@@ -1084,7 +1084,7 @@ public class FormPermohonanIzinActivity extends AppCompatActivity {
                     }
 
                     String dayDate = input_date.substring(8,10);
-                    String yearDate = input_date.substring(0,4);;
+                    String yearDate = input_date.substring(0,4);
                     String bulanValue = input_date.substring(5,7);
                     String bulanName;
 

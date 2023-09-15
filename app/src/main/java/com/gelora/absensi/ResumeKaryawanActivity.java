@@ -282,7 +282,7 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                     tanggalLAhirTV.setText("-");
                                 } else {
                                     String dayDate = tanggal_lahir.substring(8,10);
-                                    String yearDate = tanggal_lahir.substring(0,4);;
+                                    String yearDate = tanggal_lahir.substring(0,4);
                                     String bulanValue = tanggal_lahir.substring(5,7);
                                     String bulanName;
 
@@ -399,7 +399,7 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                     masaKerjaTV.setText("-");
                                 } else {
                                     String dayDate = tanggal_bergabung.substring(8,10);
-                                    String yearDate = tanggal_bergabung.substring(0,4);;
+                                    String yearDate = tanggal_bergabung.substring(0,4);
                                     String bulanValue = tanggal_bergabung.substring(5,7);
                                     String bulanName;
 

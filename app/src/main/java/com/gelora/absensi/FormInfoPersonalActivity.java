@@ -436,7 +436,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                                 } else {
                                     tanggalLAhir = tanggal_lahir;
                                     String dayDate = tanggal_lahir.substring(8,10);
-                                    String yearDate = tanggal_lahir.substring(0,4);;
+                                    String yearDate = tanggal_lahir.substring(0,4);
                                     String bulanValue = tanggal_lahir.substring(5,7);
                                     String bulanName;
 
@@ -1098,7 +1098,7 @@ public class FormInfoPersonalActivity extends AppCompatActivity {
                 tanggalLAhir = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
 
                 String dayDate = tanggalLAhir.substring(8,10);
-                String yearDate = tanggalLAhir.substring(0,4);;
+                String yearDate = tanggalLAhir.substring(0,4);
                 String bulanValue = tanggalLAhir.substring(5,7);
                 String bulanName;
 

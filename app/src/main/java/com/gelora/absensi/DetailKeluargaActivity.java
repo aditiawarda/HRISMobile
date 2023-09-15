@@ -189,7 +189,7 @@ public class DetailKeluargaActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(KAlertDialog sDialog) {
                                                 sDialog.dismiss();
-                                                onBackPressed();;
+                                                onBackPressed();
                                             }
                                         })
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
@@ -266,7 +266,7 @@ public class DetailKeluargaActivity extends AppCompatActivity {
                                 tempatLahirTV.setText(tempat_lahir);
 
                                 String dayDate = tanggal_lahir.substring(8,10);
-                                String yearDate = tanggal_lahir.substring(0,4);;
+                                String yearDate = tanggal_lahir.substring(0,4);
                                 String bulanValue = tanggal_lahir.substring(5,7);
                                 String bulanName;
 

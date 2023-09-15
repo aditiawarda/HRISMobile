@@ -339,7 +339,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                 } else if (keterangan7.isChecked()) {
                     pilihanKeterangan = keterangan6.getText().toString();
                     kategoriKeterangan = "7";
-                    detailKeterangan1.setVisibility(View.GONE);;
+                    detailKeterangan1.setVisibility(View.GONE);
                     detailKeterangan3.setVisibility(View.GONE);
                     detailKeterangan6.setVisibility(View.GONE);
                     labelDetail.setVisibility(View.GONE);
@@ -4023,7 +4023,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                             }
 
                             String dayDate = input_date.substring(8,10);
-                            String yearDate = input_date.substring(0,4);;
+                            String yearDate = input_date.substring(0,4);
                             String bulanValue = input_date.substring(5,7);
                             String bulanName;
 
@@ -4129,7 +4129,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                         }
 
                         String dayDate = input_date.substring(8,10);
-                        String yearDate = input_date.substring(0,4);;
+                        String yearDate = input_date.substring(0,4);
                         String bulanValue = input_date.substring(5,7);
                         String bulanName;
 
@@ -4272,7 +4272,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                             }
 
                             String dayDate = input_date.substring(8,10);
-                            String yearDate = input_date.substring(0,4);;
+                            String yearDate = input_date.substring(0,4);
                             String bulanValue = input_date.substring(5,7);
                             String bulanName;
 
@@ -4378,7 +4378,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                         }
 
                         String dayDate = input_date.substring(8,10);
-                        String yearDate = input_date.substring(0,4);;
+                        String yearDate = input_date.substring(0,4);
                         String bulanValue = input_date.substring(5,7);
                         String bulanName;
 
@@ -4525,7 +4525,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                         }
 
                         String dayDate = input_date.substring(8,10);
-                        String yearDate = input_date.substring(0,4);;
+                        String yearDate = input_date.substring(0,4);
                         String bulanValue = input_date.substring(5,7);
                         String bulanName;
 
@@ -4701,7 +4701,7 @@ public class FormFingerscanActivity extends AppCompatActivity {
                         }
 
                         String dayDate = input_date.substring(8,10);
-                        String yearDate = input_date.substring(0,4);;
+                        String yearDate = input_date.substring(0,4);
                         String bulanValue = input_date.substring(5,7);
                         String bulanName;
 

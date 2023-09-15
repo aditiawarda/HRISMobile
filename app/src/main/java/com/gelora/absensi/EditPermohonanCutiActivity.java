@@ -2712,7 +2712,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                                 }
 
                                 String dayDate = input_date.substring(8,10);
-                                String yearDate = input_date.substring(0,4);;
+                                String yearDate = input_date.substring(0,4);
                                 String bulanValue = input_date.substring(5,7);
                                 String bulanName;
 
@@ -2789,7 +2789,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                                 }
 
                                 String dayDate_akhir = input_date_akhir.substring(8,10);
-                                String yearDate_akhir = input_date_akhir.substring(0,4);;
+                                String yearDate_akhir = input_date_akhir.substring(0,4);
                                 String bulanValue_akhir = input_date_akhir.substring(5,7);
                                 String bulanName_akhir;
 
@@ -2959,7 +2959,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                         }
 
                         String dayDate = input_date.substring(8,10);
-                        String yearDate = input_date.substring(0,4);;
+                        String yearDate = input_date.substring(0,4);
                         String bulanValue = input_date.substring(5,7);
                         String bulanName;
 
@@ -3061,7 +3061,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                     }
 
                     String dayDate = input_date.substring(8,10);
-                    String yearDate = input_date.substring(0,4);;
+                    String yearDate = input_date.substring(0,4);
                     String bulanValue = input_date.substring(5,7);
                     String bulanName;
 
@@ -3165,7 +3165,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                         }
 
                         String dayDate = input_date.substring(8,10);
-                        String yearDate = input_date.substring(0,4);;
+                        String yearDate = input_date.substring(0,4);
                         String bulanValue = input_date.substring(5,7);
                         String bulanName;
 
@@ -3267,7 +3267,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                     }
 
                     String dayDate = input_date.substring(8,10);
-                    String yearDate = input_date.substring(0,4);;
+                    String yearDate = input_date.substring(0,4);
                     String bulanValue = input_date.substring(5,7);
                     String bulanName;
 
@@ -3375,7 +3375,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                         }
 
                         String dayDate = input_date.substring(8,10);
-                        String yearDate = input_date.substring(0,4);;
+                        String yearDate = input_date.substring(0,4);
                         String bulanValue = input_date.substring(5,7);
                         String bulanName;
 
@@ -3477,7 +3477,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                     }
 
                     String dayDate = input_date.substring(8,10);
-                    String yearDate = input_date.substring(0,4);;
+                    String yearDate = input_date.substring(0,4);
                     String bulanValue = input_date.substring(5,7);
                     String bulanName;
 
@@ -3581,7 +3581,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                         }
 
                         String dayDate = input_date.substring(8,10);
-                        String yearDate = input_date.substring(0,4);;
+                        String yearDate = input_date.substring(0,4);
                         String bulanValue = input_date.substring(5,7);
                         String bulanName;
 
@@ -3683,7 +3683,7 @@ public class EditPermohonanCutiActivity extends AppCompatActivity {
                     }
 
                     String dayDate = input_date.substring(8,10);
-                    String yearDate = input_date.substring(0,4);;
+                    String yearDate = input_date.substring(0,4);
                     String bulanValue = input_date.substring(5,7);
                     String bulanName;
 

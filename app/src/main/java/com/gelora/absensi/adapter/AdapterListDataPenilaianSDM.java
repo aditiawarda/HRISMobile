@@ -67,7 +67,7 @@ public class AdapterListDataPenilaianSDM extends RecyclerView.Adapter<AdapterLis
 
         String tanggal_buat = dataPenilaianSDM.getTanggal_buat();
         String dayDate = tanggal_buat.substring(8,10);
-        String yearDate = tanggal_buat.substring(0,4);;
+        String yearDate = tanggal_buat.substring(0,4);
         String bulanValue = tanggal_buat.substring(5,7);
         String bulanName;
 

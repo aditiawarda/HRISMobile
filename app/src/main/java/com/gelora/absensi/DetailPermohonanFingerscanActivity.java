@@ -589,7 +589,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
 
                                         tanggalApproveHRDTV.setText(timestamp_approve.substring(8,10)+"/"+timestamp_approve.substring(5,7)+"/"+timestamp_approve.substring(2,4));
 
-                                        String shortName3 = nama_approver_hrd+" ";;
+                                        String shortName3 = nama_approver_hrd+" ";
                                         if(shortName3.contains(" ")){
                                             shortName3 = shortName3.substring(0, shortName3.indexOf(" "));
                                             approverHRDTV.setText("( "+shortName3.toUpperCase()+" )");
@@ -639,7 +639,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     String nama_approver = detail.getString("NmApprover");
                                     String jabatan_approver = detail.getString("jabatan_approver");
 
-                                    String shortName2 = nama_approver+" ";;
+                                    String shortName2 = nama_approver+" ";
                                     if(shortName2.contains(" ")){
                                         shortName2 = shortName2.substring(0, shortName2.indexOf(" "));
                                         approverTV.setText("( "+shortName2.toUpperCase()+" )");

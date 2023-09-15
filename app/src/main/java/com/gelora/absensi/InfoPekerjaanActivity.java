@@ -188,7 +188,7 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
                                     masaKerjaTV.setText("-");
                                 } else {
                                     String dayDate = tanggal_bergabung.substring(8,10);
-                                    String yearDate = tanggal_bergabung.substring(0,4);;
+                                    String yearDate = tanggal_bergabung.substring(0,4);
                                     String bulanValue = tanggal_bergabung.substring(5,7);
                                     String bulanName;
 

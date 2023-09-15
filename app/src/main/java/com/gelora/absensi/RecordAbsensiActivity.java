@@ -197,7 +197,7 @@ public class RecordAbsensiActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void currentMonth(){
-        String yearDate = getMonth().substring(0,4);;
+        String yearDate = getMonth().substring(0,4);
         String bulanValue = getMonth().substring(5,7);
         String bulanName;
 
