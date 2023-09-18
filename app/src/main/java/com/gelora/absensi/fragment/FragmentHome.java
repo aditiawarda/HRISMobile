@@ -590,11 +590,13 @@ public class FragmentHome extends Fragment {
                                     String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
                                     Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                        .resize(108, 108)
                                         .into(avatarUser);
                                 } else {
                                     String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
                                     Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                        .resize(108, 108)
                                         .into(avatarUser);
                                 }
 

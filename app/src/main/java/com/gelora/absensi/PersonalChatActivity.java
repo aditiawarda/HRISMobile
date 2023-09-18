@@ -426,6 +426,7 @@ public class PersonalChatActivity extends AppCompatActivity {
 
                                 Picasso.get().load(avatar).networkPolicy(NetworkPolicy.NO_CACHE)
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                        .resize(80, 80)
                                         .into(partnerPic);
 
                                 partnerPic.setOnClickListener(new View.OnClickListener() {

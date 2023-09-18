@@ -66,6 +66,7 @@ public class AdapterListChatMate extends RecyclerView.Adapter<AdapterListChatMat
 
         Picasso.get().load(chatMate.getAvatar()).networkPolicy(NetworkPolicy.NO_CACHE)
                 .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .resize(95, 95)
                 .into(myViewHolder.avatarChatmate);
 
         myViewHolder.namaChatmate.setText(chatMate.getNama());

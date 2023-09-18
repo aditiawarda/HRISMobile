@@ -354,6 +354,7 @@ public class FragmentProfile extends Fragment {
                                     String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
                                     Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                            .resize(110, 110)
                                             .into(avatarUser);
                                     String shortName = sharedPrefManager.getSpNama()+" ";
                                     if(shortName.contains(" ")){
@@ -434,6 +435,7 @@ public class FragmentProfile extends Fragment {
                                         String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
                                         Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                                .resize(110, 110)
                                                 .into(avatarUser);
                                         String shortName = sharedPrefManager.getSpNama()+" ";
                                         if(shortName.contains(" ")){
@@ -547,7 +549,7 @@ public class FragmentProfile extends Fragment {
                             String btn_update = response.getString("btn_update");
 
                             if (status.equals("Success")){
-                                String currentVersion = "2.0.4"; //harus disesuaikan
+                                String currentVersion = "2.0.5"; //harus disesuaikan
                                 if (!currentVersion.equals(version) && btn_update.equals("1")){
                                     updateAppBTN.setVisibility(View.VISIBLE);
                                     updateAppBTN.setOnClickListener(new View.OnClickListener() {

@@ -1155,7 +1155,7 @@
                                 android:ellipsize="end"
                                 android:maxLines="1"
                                 android:textColor="#1AB4FF"
-                                android:text="Versi 2.0.4"/>
+                                android:text="Versi 2.0.5"/>
 
                         </LinearLayout>
 

@@ -61,6 +61,7 @@ public class AdapterListContactSearch extends RecyclerView.Adapter<AdapterListCo
 
         Picasso.get().load(contactSearch.getAvatar()).networkPolicy(NetworkPolicy.NO_CACHE)
                 .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .resize(95, 95)
                 .into(myViewHolder.avatarContact);
 
         myViewHolder.namaContact.setText(contactSearch.getNama());

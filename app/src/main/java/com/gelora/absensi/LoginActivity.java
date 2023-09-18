@@ -434,10 +434,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void contactService(){
-        bottomSheetCS.showWithSheetView(LayoutInflater.from(LoginActivity.this).inflate(R.layout.layout_contact_service, bottomSheetCS, false));
+        bottomSheetCS.showWithSheetView(LayoutInflater.from(LoginActivity.this).inflate(R.layout.layout_contact_service_it, bottomSheetCS, false));
         closeBTN = findViewById(R.id.close_btn);
         connectBTN = findViewById(R.id.connect_btn);
-        getContact();
+        getContactIT();
     }
 
     @Override
@@ -590,9 +590,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void getContact() {
+    private void getContactIT() {
         RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
-        final String url = "https://geloraaksara.co.id/absen-online/api/get_contact";
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_contact_it";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")
