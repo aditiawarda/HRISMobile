@@ -227,12 +227,12 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                 if(avatar!=null && !avatar.equals("") && !avatar.equals("null")){
                                     Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                            .resize(180, 180)
+                                            .resize(150, 150)
                                             .into(profileImage);
                                 } else {
                                     Picasso.get().load("https://geloraaksara.co.id/absen-online/upload/avatar/default_profile.jpg").networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                            .resize(180, 180)
+                                            .resize(150, 150)
                                             .into(profileImage);
                                 }
 

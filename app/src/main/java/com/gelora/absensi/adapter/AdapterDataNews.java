@@ -177,12 +177,12 @@ public class AdapterDataNews extends RecyclerView.Adapter<AdapterDataNews.MyView
         if(String.valueOf(dataNews.getImage_url()).equals("null")){
             Picasso.get().load("https://geloraaksara.co.id/absen-online/assets/img/news_no_img/"+String.valueOf(acak)+".jpg").networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
-                    .resize(180, 180)
+                    .resize(150, 150)
                     .into(myViewHolder.imgNews);
         } else {
             Picasso.get().load(String.valueOf(dataNews.getImage_url())).networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
-                    .resize(180, 180)
+                    .resize(150, 150)
                     .into(myViewHolder.imgNews);
         }
 
