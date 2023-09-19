@@ -50,7 +50,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="10dp"
                                     android:orientation="horizontal"
-                                    android:background="@drawable/shape_monitoring_detail">
+                                    android:background="@drawable/shape_exit_clearance_form">
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
@@ -129,13 +129,48 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textSize="12dp"
-                                        android:layout_marginTop="5dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Tipe :"/>
+                                        android:text="Tanggal Masuk :"/>
 
                                     <LinearLayout
-                                        android:id="@+id/tipe_choice_btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp">
+
+                                        <TextView
+                                            android:id="@+id/tanggal_masuk_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Memuat data..."
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Tanggal Keluar :"/>
+
+                                    <LinearLayout
+                                        android:id="@+id/resign_date_btn"
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:paddingStart="20dp"
@@ -156,7 +191,7 @@
                                                 android:gravity="center|left">
 
                                                 <TextView
-                                                    android:id="@+id/tipe_choice_tv"
+                                                    android:id="@+id/resign_date_pilih"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:textColor="#B15735"
@@ -176,7 +211,7 @@
                                                 <TextView
                                                     android:layout_width="25dp"
                                                     android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_down"/>
+                                                    android:background="@drawable/ic_baseline_date_akhir"/>
 
                                             </LinearLayout>
 
@@ -186,288 +221,745 @@
 
                                 </LinearLayout>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="12dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:textColor="#696969"
-                                    android:text="Dari Tanggal :"/>
-
                                 <LinearLayout
-                                    android:id="@+id/mulai_date"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="40dp"
-                                    android:paddingStart="20dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:background="@drawable/shape_feel"
-                                    android:orientation="horizontal">
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <LinearLayout
-                                            android:layout_marginTop="10dp"
-                                            android:layout_marginBottom="10dp"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="40dp"
-                                            android:orientation="vertical"
-                                            android:gravity="center|left">
-
-                                            <TextView
-                                                android:id="@+id/mulai_date_pilih"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:textColor="#B15735"
-                                                android:textSize="13dp"
-                                                android:textStyle="bold"
-                                                android:text=""/>
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_alignParentRight="true"
-                                            android:layout_width="40dp"
-                                            android:layout_height="match_parent"
-                                            android:background="@drawable/shape_btn"
-                                            android:gravity="center">
-
-                                            <TextView
-                                                android:layout_width="25dp"
-                                                android:layout_height="25dp"
-                                                android:background="@drawable/ic_baseline_date_mulai"/>
-
-                                        </LinearLayout>
-
-                                    </RelativeLayout>
-
-                                </LinearLayout>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="12dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:textColor="#696969"
-                                    android:text="Sampai Tanggal :"/>
-
-                                <LinearLayout
-                                    android:id="@+id/akhir_date"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="40dp"
-                                    android:paddingStart="20dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:background="@drawable/shape_feel"
-                                    android:orientation="horizontal">
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                        <LinearLayout
-                                            android:layout_marginTop="10dp"
-                                            android:layout_marginBottom="10dp"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="40dp"
-                                            android:orientation="vertical"
-                                            android:gravity="center|left">
-
-                                            <TextView
-                                                android:id="@+id/akhir_date_pilih"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:textColor="#B15735"
-                                                android:textSize="13dp"
-                                                android:textStyle="bold"
-                                                android:text=""/>
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_alignParentRight="true"
-                                            android:layout_width="40dp"
-                                            android:layout_height="match_parent"
-                                            android:background="@drawable/shape_btn"
-                                            android:gravity="center">
-
-                                            <TextView
-                                                android:layout_width="25dp"
-                                                android:layout_height="25dp"
-                                                android:background="@drawable/ic_baseline_date_akhir"/>
-
-                                        </LinearLayout>
-
-                                    </RelativeLayout>
-
-                                </LinearLayout>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="12dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:textColor="#696969"
-                                    android:text="Jumlah Hari :"/>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="40dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:background="@drawable/shape_feel_disable"
-                                    android:gravity="center|left"
                                     android:orientation="horizontal"
-                                    android:paddingStart="20dp"
-                                    android:paddingEnd="20dp">
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:layout_marginTop="13dp"
+                                    android:layout_marginBottom="15dp">
 
                                     <TextView
-                                        android:id="@+id/jumlah_hari_tv"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Tentukan Tanggal..."
-                                        android:textColor="#B15735"
                                         android:textSize="13dp"
-                                        android:textStyle="bold" />
+                                        android:textColor="#C3C3C3"
+                                        android:textStyle="bold"
+                                        android:text="LAMPIRAN SERAH TERIMA"/>
+
+                                    <LinearLayout
+                                        android:orientation="vertical"
+                                        android:background="#CFCFCF"
+                                        android:layout_marginTop="4.5dp"
+                                        android:layout_marginLeft="-1dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"/>
 
                                 </LinearLayout>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="9dp"
-                                    android:layout_marginTop="-5dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:textStyle="italic"
-                                    android:textColor="#696969"
-                                    android:text="*) Hari Minggu/Tanggal Merah/ Libur Cuti Bersama tidak dihitung  "/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="12dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:textColor="#696969"
-                                    android:text="Alasan :"/>
-
-                                <EditText
-                                    android:id="@+id/alasan_tv"
-                                    android:layout_width="match_parent"
-                                    android:gravity="top"
-                                    android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
-                                    android:lineSpacingExtra="3dp"
-                                    android:layout_height="wrap_content"
-                                    android:minHeight="80dp"
-                                    android:paddingTop="13dp"
-                                    android:paddingBottom="13dp"
-                                    android:paddingLeft="20dp"
-                                    android:paddingRight="20dp"
-                                    android:maxLength="255"
-                                    android:layout_marginBottom="10dp"
-                                    android:background="@drawable/shape_input_form"
-                                    android:drawablePadding="10dp"
-                                    android:textColor="#595959"
-                                    android:hint=""
-                                    android:textSize="14dp"
-                                    android:textColorHint="#595959"
-                                    android:textColorHighlight="#FFE1BC"/>
-
                                 <LinearLayout
-                                    android:visibility="gone"
-                                    android:id="@+id/upload_file_part"
-                                    android:layout_width="match_parent"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="10dp"
                                     android:orientation="vertical"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
+                                        android:textSize="14dp"
+                                        android:layout_marginTop="5dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Surat Sakit :"/>
+                                        android:textStyle="bold"
+                                        android:text="Tugas/Pekerjaan :"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="10dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="(Softcopy, Laporan, Seragam Kerja, Safety Shoes, Kunci Loker)"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="9dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#BA4A4A"
+                                        android:text="Mohon dijadikan 1 file PDF"/>
 
                                     <LinearLayout
-                                        android:orientation="horizontal"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
 
                                         <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_weight=".50"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="horizontal">
-
-                                            <LinearLayout
-                                                android:visibility="gone"
-                                                android:id="@+id/mark_upload"
-                                                android:layout_marginTop="3dp"
-                                                android:layout_width="28dp"
-                                                android:layout_height="28dp"
-                                                android:background="@drawable/ic_baseline_check_circle_outline"
-                                                android:orientation="horizontal" />
+                                            android:id="@+id/st_1_upload_view"
+                                            android:layout_width="40dp"
+                                            android:layout_height="40dp"
+                                            android:layout_marginRight="7dp"
+                                            android:background="@drawable/shape_second_btn"
+                                            android:visibility="gone"
+                                            android:gravity="center">
 
                                             <TextView
-                                                android:id="@+id/status_upload_tv"
-                                                android:layout_marginTop="7dp"
-                                                android:layout_marginLeft="5dp"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:textSize="13dp"
-                                                android:textColor="#696969"
-                                                android:text="Belum diunggah"/>
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:background="@drawable/ic_baseline_content_surat" />
 
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:layout_width="0dp"
-                                            android:layout_weight=".50"
-                                            android:gravity="right"
-                                            android:layout_height="wrap_content">
+                                            android:id="@+id/st_1_upload_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:paddingStart="20dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal">
 
-                                            <LinearLayout
-                                                android:id="@+id/upload_btn"
-                                                android:layout_width="wrap_content"
-                                                android:paddingTop="5dp"
-                                                android:paddingBottom="5dp"
-                                                android:paddingRight="15dp"
-                                                android:paddingLeft="15dp"
-                                                android:background="@drawable/shape_btn_upload"
-                                                android:layout_height="wrap_content">
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
 
-                                                <TextView
-                                                    android:id="@+id/label_unggah"
-                                                    android:layout_width="wrap_content"
-                                                    android:gravity="center"
-                                                    android:textColor="@color/white"
-                                                    android:drawablePadding="5dp"
-                                                    android:textSize="12dp"
-                                                    android:drawableLeft="@drawable/ic_baseline_upload_file"
-                                                    android:layout_height="wrap_content"
-                                                    android:text="Unggah"/>
+                                                <LinearLayout
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginBottom="10dp"
+                                                    android:layout_width="match_parent"
+                                                    android:paddingRight="60dp"
+                                                    android:layout_height="40dp"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left">
 
-                                            </LinearLayout>
+                                                    <TextView
+                                                        android:id="@+id/st_1_file_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
+                                                        android:ellipsize="end"
+                                                        android:gravity="left"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:textStyle="bold"
+                                                        android:text="Unggah PDF..."/>
 
-                                            <LinearLayout
-                                                android:visibility="gone"
-                                                android:id="@+id/view_btn"
-                                                android:layout_width="wrap_content"
-                                                android:paddingTop="5dp"
-                                                android:paddingBottom="5dp"
-                                                android:paddingRight="5dp"
-                                                android:paddingLeft="5dp"
-                                                android:layout_marginLeft="5dp"
-                                                android:background="@drawable/shape_btn_view_upload"
-                                                android:layout_height="wrap_content">
+                                                </LinearLayout>
 
-                                                <TextView
-                                                    android:layout_width="20dp"
-                                                    android:gravity="center"
-                                                    android:background="@drawable/ic_baseline_content_surat"
-                                                    android:layout_height="20dp" />
+                                                <LinearLayout
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_alignParentRight="true"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center">
 
-                                            </LinearLayout>
+                                                    <TextView
+                                                        android:id="@+id/st_1_upload_ic"
+                                                        android:visibility="visible"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_upload" />
+
+                                                    <TextView
+                                                        android:id="@+id/st_1_upload_ic_change"
+                                                        android:visibility="gone"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_change" />
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="14dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:textStyle="bold"
+                                        android:text="Kendaraan :"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="10dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="(Mobil, Motor)"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="9dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#BA4A4A"
+                                        android:text="Mohon dijadikan 1 file PDF"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:id="@+id/st_2_upload_view"
+                                            android:layout_width="40dp"
+                                            android:layout_height="40dp"
+                                            android:layout_marginRight="7dp"
+                                            android:background="@drawable/shape_second_btn"
+                                            android:visibility="gone"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:background="@drawable/ic_baseline_content_surat" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/st_2_upload_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:paddingStart="20dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                <LinearLayout
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginBottom="10dp"
+                                                    android:layout_width="match_parent"
+                                                    android:paddingRight="60dp"
+                                                    android:layout_height="40dp"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left">
+
+                                                    <TextView
+                                                        android:id="@+id/st_2_file_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
+                                                        android:ellipsize="end"
+                                                        android:gravity="left"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:textStyle="bold"
+                                                        android:text="Unggah PDF..."/>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_alignParentRight="true"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center">
+
+                                                    <TextView
+                                                        android:id="@+id/st_2_upload_ic"
+                                                        android:visibility="visible"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_upload" />
+
+                                                    <TextView
+                                                        android:id="@+id/st_2_upload_ic_change"
+                                                        android:visibility="gone"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_change" />
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="14dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:textStyle="bold"
+                                        android:text="Fasilitas IT :"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="10dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="(Notebook, Email)"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="9dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#BA4A4A"
+                                        android:text="Mohon dijadikan 1 file PDF"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:id="@+id/st_3_upload_view"
+                                            android:layout_width="40dp"
+                                            android:layout_height="40dp"
+                                            android:layout_marginRight="7dp"
+                                            android:background="@drawable/shape_second_btn"
+                                            android:visibility="gone"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:background="@drawable/ic_baseline_content_surat" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/st_3_upload_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:paddingStart="20dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                <LinearLayout
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginBottom="10dp"
+                                                    android:layout_width="match_parent"
+                                                    android:paddingRight="60dp"
+                                                    android:layout_height="40dp"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left">
+
+                                                    <TextView
+                                                        android:id="@+id/st_3_file_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
+                                                        android:ellipsize="end"
+                                                        android:gravity="left"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:textStyle="bold"
+                                                        android:text="Unggah PDF..."/>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_alignParentRight="true"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center">
+
+                                                    <TextView
+                                                        android:id="@+id/st_3_upload_ic"
+                                                        android:visibility="visible"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_upload" />
+
+                                                    <TextView
+                                                        android:id="@+id/st_3_upload_ic_change"
+                                                        android:visibility="gone"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_change" />
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="14dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:textStyle="bold"
+                                        android:text="Keuangan :"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="10dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="(Pinjaman Perusahaan)"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="9dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#BA4A4A"
+                                        android:text="Mohon dijadikan 1 file PDF"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:id="@+id/st_4_upload_view"
+                                            android:layout_width="40dp"
+                                            android:layout_height="40dp"
+                                            android:layout_marginRight="7dp"
+                                            android:background="@drawable/shape_second_btn"
+                                            android:visibility="gone"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:background="@drawable/ic_baseline_content_surat" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/st_4_upload_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:paddingStart="20dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                <LinearLayout
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginBottom="10dp"
+                                                    android:layout_width="match_parent"
+                                                    android:paddingRight="60dp"
+                                                    android:layout_height="40dp"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left">
+
+                                                    <TextView
+                                                        android:id="@+id/st_4_file_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
+                                                        android:ellipsize="end"
+                                                        android:gravity="left"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:textStyle="bold"
+                                                        android:text="Unggah PDF..."/>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_alignParentRight="true"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center">
+
+                                                    <TextView
+                                                        android:id="@+id/st_4_upload_ic"
+                                                        android:visibility="visible"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_upload" />
+
+                                                    <TextView
+                                                        android:id="@+id/st_4_upload_ic_change"
+                                                        android:visibility="gone"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_change" />
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="14dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:textStyle="bold"
+                                        android:text="Koperasi :"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="10dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="(Pinjaman Koperasi)"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="9dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#BA4A4A"
+                                        android:text="Mohon dijadikan 1 file PDF"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:id="@+id/st_5_upload_view"
+                                            android:layout_width="40dp"
+                                            android:layout_height="40dp"
+                                            android:layout_marginRight="7dp"
+                                            android:background="@drawable/shape_second_btn"
+                                            android:visibility="gone"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:background="@drawable/ic_baseline_content_surat" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/st_5_upload_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:paddingStart="20dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                <LinearLayout
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginBottom="10dp"
+                                                    android:layout_width="match_parent"
+                                                    android:paddingRight="60dp"
+                                                    android:layout_height="40dp"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left">
+
+                                                    <TextView
+                                                        android:id="@+id/st_5_file_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
+                                                        android:ellipsize="end"
+                                                        android:gravity="left"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:textStyle="bold"
+                                                        android:text="Unggah PDF..."/>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_alignParentRight="true"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center">
+
+                                                    <TextView
+                                                        android:id="@+id/st_5_upload_ic"
+                                                        android:visibility="visible"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_upload" />
+
+                                                    <TextView
+                                                        android:id="@+id/st_5_upload_ic_change"
+                                                        android:visibility="gone"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_change" />
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="14dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:textStyle="bold"
+                                        android:text="Personalia :"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="10dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="(Ijazah, ID Card, Ikatan Dinas)"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="9dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#BA4A4A"
+                                        android:text="Mohon dijadikan 1 file PDF"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:id="@+id/st_6_upload_view"
+                                            android:layout_width="40dp"
+                                            android:layout_height="40dp"
+                                            android:layout_marginRight="7dp"
+                                            android:background="@drawable/shape_second_btn"
+                                            android:visibility="gone"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="25dp"
+                                                android:layout_height="25dp"
+                                                android:background="@drawable/ic_baseline_content_surat" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/st_6_upload_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:paddingStart="20dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                <LinearLayout
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginBottom="10dp"
+                                                    android:layout_width="match_parent"
+                                                    android:paddingRight="60dp"
+                                                    android:layout_height="40dp"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left">
+
+                                                    <TextView
+                                                        android:id="@+id/st_6_file_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
+                                                        android:ellipsize="end"
+                                                        android:gravity="left"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:textStyle="bold"
+                                                        android:text="Unggah PDF..."/>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_alignParentRight="true"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center">
+
+                                                    <TextView
+                                                        android:id="@+id/st_6_upload_ic"
+                                                        android:visibility="visible"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_upload" />
+
+                                                    <TextView
+                                                        android:id="@+id/st_6_upload_ic_change"
+                                                        android:visibility="gone"
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_change" />
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
 
                                         </LinearLayout>
 

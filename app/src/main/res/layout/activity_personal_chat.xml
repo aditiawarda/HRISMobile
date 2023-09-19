@@ -142,9 +142,9 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="bottom"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -169,11 +169,11 @@
 
                     <LinearLayout
                         android:id="@+id/emoji_btn"
-                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="10dp"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="35dp"
@@ -183,58 +183,58 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <EditText
                             android:id="@+id/message_et"
                             android:layout_width="0.dp"
-                            android:layout_weight=".80"
-                            android:animateLayoutChanges="true"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:layout_marginBottom="10dp"
                             android:layout_marginEnd="10dp"
-                            android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
-                            android:lineSpacingExtra="3dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight=".80"
+                            android:animateLayoutChanges="true"
                             android:background="@drawable/shape_message_fill"
                             android:hint="Ketik pesan"
                             android:imeOptions="flagNoEnterAction"
+                            android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                            android:lineSpacingExtra="3dp"
                             android:maxHeight="100dp"
-                            android:textColor="#474747"
                             android:paddingHorizontal="10dp"
                             android:paddingStart="17dp"
                             android:paddingTop="10dp"
                             android:paddingEnd="17dp"
                             android:paddingBottom="10dp"
                             android:scrollbars="vertical"
-                            android:text="" />
+                            android:text=""
+                            android:textColor="#474747" />
 
                         <LinearLayout
                             android:id="@+id/loadingProgressBar"
-                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="7dp"
+                            android:layout_marginBottom="10dp"
                             android:gravity="center"
-                            android:layout_marginBottom="10dp">
+                            android:visibility="gone">
 
                             <ProgressBar
-                                android:indeterminateTint="@color/colorPrimaryDark"
                                 android:layout_width="35dp"
-                                android:layout_height="35dp" />
+                                android:layout_height="35dp"
+                                android:indeterminateTint="@color/colorPrimaryDark" />
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/send_btn_part"
-                            android:visibility="gone"
-                            android:animateLayoutChanges="true"
                             android:layout_width="wrap_content"
-                            android:gravity="center"
+                            android:layout_height="match_parent"
                             android:layout_marginBottom="10dp"
-                            android:layout_height="match_parent">
+                            android:animateLayoutChanges="true"
+                            android:gravity="center"
+                            android:visibility="gone">
 
                             <ImageButton
                                 android:id="@+id/send_message_btn"

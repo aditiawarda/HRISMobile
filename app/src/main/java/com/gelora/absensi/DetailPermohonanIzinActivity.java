@@ -1241,7 +1241,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
         page.getCanvas().drawBitmap(bitmap,10,10, null);
         pdfDocument.finishPage(page);
 
-        File pictureFileDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),"Absensi App");
+        File pictureFileDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),"HRIS Mobile");
         if (!pictureFileDir.exists()) {
             boolean isDirectoryCreated = pictureFileDir.mkdirs();
             if(!isDirectoryCreated)
@@ -1262,7 +1262,7 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
     }
 
     private File saveBitMap(Context context, View drawView){
-        File pictureFileDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"Absensi App");
+        File pictureFileDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"HRIS Mobile");
         if (!pictureFileDir.exists()) {
             boolean isDirectoryCreated = pictureFileDir.mkdirs();
             if(!isDirectoryCreated)
