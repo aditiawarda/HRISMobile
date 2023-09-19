@@ -74,7 +74,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView namaTV, nikTV, detailTV, tanggalMasukTV, tanggalResignTV;
-    String tanggalResign = "";
+    String tanggalResign = "", permohonanTerkirim = "";
 
     // In your activity or fragment
     private static final int PICK_PDF_ST_1 = 1;
@@ -758,6 +758,39 @@ public class FormExitClearanceActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!tanggalResign.equals("")){
+            if (permohonanTerkirim.equals("1")){
+                super.onBackPressed();
+            } else {
+                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                permohonanTerkirim = "1";
+                                onBackPressed();
+                            }
+                        })
+                        .show();
+            }
+        } else {
+            super.onBackPressed();
+        }
     }
 
 }
