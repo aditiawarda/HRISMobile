@@ -55,21 +55,27 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
     LinearLayout st1UploadBTN, st1UploadView;
     TextView st1FileTV, st1UploadIc, st1UploadIcChange;
+    Uri st1UriFile;
 
     LinearLayout st2UploadBTN, st2UploadView;
     TextView st2FileTV, st2UploadIc, st2UploadIcChange;
+    Uri st2UriFile;
 
     LinearLayout st3UploadBTN, st3UploadView;
     TextView st3FileTV, st3UploadIc, st3UploadIcChange;
+    Uri st3UriFile;
 
     LinearLayout st4UploadBTN, st4UploadView;
     TextView st4FileTV, st4UploadIc, st4UploadIcChange;
+    Uri st4UriFile;
 
     LinearLayout st5UploadBTN, st5UploadView;
     TextView st5FileTV, st5UploadIc, st5UploadIcChange;
+    Uri st5UriFile;
 
     LinearLayout st6UploadBTN, st6UploadView;
     TextView st6FileTV, st6UploadIc, st6UploadIcChange;
+    Uri st6UriFile;
 
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -300,19 +306,47 @@ public class FormExitClearanceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(tanggalResign.equals("")){
-                    new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Harap isi tanggal keluar!")
-                            .setConfirmText("    OK    ")
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .show();
+                    if((st1UriFile==null&&st2UriFile==null&&st3UriFile==null&&st4UriFile==null&&st5UriFile==null&&st6UriFile==null)){
+                        new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tanggal keluar dan lampiran serah terima!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    } else {
+                        new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi tanggal keluar!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
                 } else {
-                    Toast.makeText(FormExitClearanceActivity.this, "Submit", Toast.LENGTH_SHORT).show();
+                    if((st1UriFile==null&&st2UriFile==null&&st3UriFile==null&&st4UriFile==null&&st5UriFile==null&&st6UriFile==null)){
+                        new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Harap isi lampiran serah terima!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    } else {
+                        Toast.makeText(FormExitClearanceActivity.this, "Submit", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -467,6 +501,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 st1UploadIc.setVisibility(View.GONE);
                 st1UploadIcChange.setVisibility(View.VISIBLE);
                 String finalMimeType = mimeType;
+                st1UriFile = Uri.parse(String.valueOf(tempFile));
                 st1UploadView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -487,6 +522,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 st2UploadIcChange.setVisibility(View.VISIBLE);
                 st2UploadView.setVisibility(View.VISIBLE);
                 String finalMimeType = mimeType;
+                st2UriFile = Uri.parse(String.valueOf(tempFile));
                 st2UploadView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -507,6 +543,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 st3UploadIcChange.setVisibility(View.VISIBLE);
                 st3UploadView.setVisibility(View.VISIBLE);
                 String finalMimeType = mimeType;
+                st3UriFile = Uri.parse(String.valueOf(tempFile));
                 st3UploadView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -527,6 +564,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 st4UploadIcChange.setVisibility(View.VISIBLE);
                 st4UploadView.setVisibility(View.VISIBLE);
                 String finalMimeType = mimeType;
+                st4UriFile = Uri.parse(String.valueOf(tempFile));
                 st4UploadView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -547,6 +585,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 st5UploadIcChange.setVisibility(View.VISIBLE);
                 st5UploadView.setVisibility(View.VISIBLE);
                 String finalMimeType = mimeType;
+                st5UriFile = Uri.parse(String.valueOf(tempFile));
                 st5UploadView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -567,6 +606,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 st6UploadIcChange.setVisibility(View.VISIBLE);
                 st6UploadView.setVisibility(View.VISIBLE);
                 String finalMimeType = mimeType;
+                st6UriFile = Uri.parse(String.valueOf(tempFile));
                 st6UploadView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -762,7 +802,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (!tanggalResign.equals("")){
+        if (!tanggalResign.equals("")||(st1UriFile!=null||st2UriFile!=null||st3UriFile!=null||st4UriFile!=null||st5UriFile!=null||st6UriFile!=null)){
             if (permohonanTerkirim.equals("1")){
                 super.onBackPressed();
             } else {
