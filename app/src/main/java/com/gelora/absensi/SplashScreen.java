@@ -163,7 +163,7 @@ public class SplashScreen extends AppCompatActivity {
             }
         });
 
-        CacheUtil.clearCache(getApplicationContext());
+        CacheUtil.clearCacheExt(getApplicationContext());
 
     }
 

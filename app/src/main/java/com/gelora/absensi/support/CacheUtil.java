@@ -4,6 +4,21 @@ import java.io.File;
 
 public class CacheUtil {
 
+    public static void clearCacheExt(Context context) {
+        try {
+            // Clear the app's internal cache directory
+            context.getCacheDir().delete();
+
+            // Clear the app's external cache directory if it exists
+            if (context.getExternalCacheDir() != null) {
+                context.getExternalCacheDir().delete();
+                clearCache(context);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void clearCache(Context context) {
         try {
             File cacheDir = context.getCacheDir();
@@ -27,5 +42,6 @@ public class CacheUtil {
         }
         return dir.delete();
     }
+
 }
 
