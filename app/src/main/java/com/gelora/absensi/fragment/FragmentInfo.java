@@ -1196,12 +1196,16 @@ public class FragmentInfo extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        requestQueue = Volley.newRequestQueue(mContext);
-        getDataAbsensi();
-        getPersonalization();
-        aboutAppField.collapse();
-        privacyPolicyField.collapse();
-        contactServiceField.collapse();
+        try {
+            requestQueue = Volley.newRequestQueue(mContext);
+            getDataAbsensi();
+            getPersonalization();
+            aboutAppField.collapse();
+            privacyPolicyField.collapse();
+            contactServiceField.collapse();
+        } catch (OutOfMemoryError e){
+            Log.e("Error", e.toString());
+        }
     }
 
 }
