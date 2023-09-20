@@ -33,10 +33,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.support.CacheUtil;
 import com.gelora.absensi.support.StatusBarColorManager;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -64,6 +64,7 @@ import static com.google.android.gms.location.LocationServices.getFusedLocationP
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashScreen extends AppCompatActivity {
 
     private static final String[] LOCATION_PERMS = {Manifest.permission.ACCESS_FINE_LOCATION};
@@ -104,6 +105,8 @@ public class SplashScreen extends AppCompatActivity {
         loadingOff = findViewById(R.id.loading_off);
         mStatusBarColorManager = new StatusBarColorManager(this);
         mStatusBarColorManager.setStatusBarColor(Color.BLACK, true, false);
+
+        refreshLayout.setEnabled(false);
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -159,6 +162,8 @@ public class SplashScreen extends AppCompatActivity {
                 }, 1200);
             }
         });
+
+        CacheUtil.clearCache(getApplicationContext());
 
     }
 
@@ -409,6 +414,7 @@ public class SplashScreen extends AppCompatActivity {
                                                 public void onAnimationEnd(Animator animation) {
                                                     super.onAnimationEnd(animation);
                                                     refreshPart.setVisibility(View.GONE);
+                                                    refreshLayout.setEnabled(false);
                                                 }
                                             });
 
@@ -456,6 +462,7 @@ public class SplashScreen extends AppCompatActivity {
                                             try {
                                                 startActivity(webIntent);
                                                 refreshPart.setVisibility(View.GONE);
+                                                refreshLayout.setEnabled(false);
                                                 finish();
                                             } catch (SecurityException e) {
                                                 e.printStackTrace();
@@ -520,6 +527,7 @@ public class SplashScreen extends AppCompatActivity {
                                                 public void onAnimationEnd(Animator animation) {
                                                     super.onAnimationEnd(animation);
                                                     refreshPart.setVisibility(View.GONE);
+                                                    refreshLayout.setEnabled(false);
                                                 }
                                             });
                                     permissionLoc();
@@ -527,6 +535,7 @@ public class SplashScreen extends AppCompatActivity {
                             } else {
                                 refreshPart.setVisibility(View.VISIBLE);
                                 refreshLabel.setText("REFRESH");
+                                refreshLayout.setEnabled(true);
 
                                 Banner.make(rootview, SplashScreen.this, Banner.ERROR, "Not found!", Banner.BOTTOM, 3000).show();
                             }
@@ -575,6 +584,7 @@ public class SplashScreen extends AppCompatActivity {
                         refreshPart.startAnimation(animation);
                         refreshPart.setVisibility(View.VISIBLE);
                         refreshLabel.setText("REFRESH");
+                        refreshLayout.setEnabled(true);
 
                         CookieBar.build(SplashScreen.this)
                                 .setCustomView(R.layout.layout_custom_cookie)
