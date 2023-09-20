@@ -3,6 +3,8 @@ package com.gelora.absensi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
@@ -15,6 +17,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
@@ -33,7 +36,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.support.FilePathimage;
 import com.takisoft.datetimepicker.DatePickerDialog;
+
+import net.gotev.uploadservice.MultipartUploadRequest;
+import net.gotev.uploadservice.UploadNotificationConfig;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -48,10 +55,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class FormExitClearanceActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backBTN, resignDateBTN, submitBTN;
+    LinearLayout actionBar, backBTN, resignDateBTN, submitBTN, formPart, successPart;
 
     LinearLayout st1UploadBTN, st1UploadView;
     TextView st1FileTV, st1UploadIc, st1UploadIcChange;
@@ -81,6 +89,8 @@ public class FormExitClearanceActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     TextView namaTV, nikTV, detailTV, tanggalMasukTV, tanggalResignTV;
     String tanggalResign = "", permohonanTerkirim = "";
+    KAlertDialog pDialog;
+    private int i = -1;
 
     // In your activity or fragment
     private static final int PICK_PDF_ST_1 = 1;
@@ -106,6 +116,8 @@ public class FormExitClearanceActivity extends AppCompatActivity {
         resignDateBTN = findViewById(R.id.resign_date_btn);
         tanggalResignTV = findViewById(R.id.resign_date_pilih);
         submitBTN = findViewById(R.id.submit_btn);
+        formPart = findViewById(R.id.form_part);
+        successPart = findViewById(R.id.success_submit);
 
         st1UploadBTN = findViewById(R.id.st_1_upload_btn);
         st1FileTV = findViewById(R.id.st_1_file_tv);
@@ -162,31 +174,37 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                         tanggalResign = "";
                         tanggalResignTV.setText("");
 
+                        st1UriFile = null;
                         st1FileTV.setText("Unggah PDF...");
                         st1UploadView.setVisibility(View.GONE);
                         st1UploadIc.setVisibility(View.VISIBLE);
                         st1UploadIcChange.setVisibility(View.GONE);
 
+                        st2UriFile = null;
                         st2FileTV.setText("Unggah PDF...");
                         st2UploadView.setVisibility(View.GONE);
                         st2UploadIc.setVisibility(View.VISIBLE);
                         st2UploadIcChange.setVisibility(View.GONE);
 
+                        st3UriFile = null;
                         st3FileTV.setText("Unggah PDF...");
                         st3UploadView.setVisibility(View.GONE);
                         st3UploadIc.setVisibility(View.VISIBLE);
                         st3UploadIcChange.setVisibility(View.GONE);
 
+                        st4UriFile = null;
                         st4FileTV.setText("Unggah PDF...");
                         st4UploadView.setVisibility(View.GONE);
                         st4UploadIc.setVisibility(View.VISIBLE);
                         st4UploadIcChange.setVisibility(View.GONE);
 
+                        st5UriFile = null;
                         st5FileTV.setText("Unggah PDF...");
                         st5UploadView.setVisibility(View.GONE);
                         st5UploadIc.setVisibility(View.VISIBLE);
                         st5UploadIcChange.setVisibility(View.GONE);
 
+                        st6UriFile = null;
                         st6FileTV.setText("Unggah PDF...");
                         st6UploadView.setVisibility(View.GONE);
                         st6UploadIc.setVisibility(View.VISIBLE);
@@ -345,7 +363,65 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                                 })
                                 .show();
                     } else {
-                        Toast.makeText(FormExitClearanceActivity.this, "Submit", Toast.LENGTH_SHORT).show();
+                        new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Kirim data sekarang?")
+                                .setCancelText("TIDAK")
+                                .setConfirmText("   YA   ")
+                                .showCancelButton(true)
+                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                        pDialog = new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                        pDialog.show();
+                                        pDialog.setCancelable(false);
+                                        new CountDownTimer(1300, 800) {
+                                            public void onTick(long millisUntilFinished) {
+                                                i++;
+                                                switch (i) {
+                                                    case 0:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormExitClearanceActivity.this, R.color.colorGradien));
+                                                        break;
+                                                    case 1:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormExitClearanceActivity.this, R.color.colorGradien2));
+                                                        break;
+                                                    case 2:
+                                                    case 6:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormExitClearanceActivity.this, R.color.colorGradien3));
+                                                        break;
+                                                    case 3:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormExitClearanceActivity.this, R.color.colorGradien4));
+                                                        break;
+                                                    case 4:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormExitClearanceActivity.this, R.color.colorGradien5));
+                                                        break;
+                                                    case 5:
+                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                (FormExitClearanceActivity.this, R.color.colorGradien6));
+                                                        break;
+                                                }
+                                            }
+                                            public void onFinish() {
+                                                i = -1;
+                                                uploadDocuments();
+                                            }
+                                        }.start();
+
+                                    }
+                                })
+                                .show();
                     }
                 }
             }
@@ -624,18 +700,6 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
     }
 
-    private String getRealPathFromURIPath(Uri contentURI, Activity activity) {
-        @SuppressLint("Recycle")
-        Cursor cursor = activity.getContentResolver().query(contentURI, null, null, null, null);
-        if (cursor == null) {
-            return contentURI.getPath();
-        } else {
-            cursor.moveToFirst();
-            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-            return cursor.getString(idx);
-        }
-    }
-
     private void getDataKaryawan(){
         namaTV.setText(sharedPrefManager.getSpNama().toUpperCase());
         nikTV.setText(sharedPrefManager.getSpNik());
@@ -748,6 +812,38 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SdCardPath")
+    public void uploadDocuments() {
+        String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran_serah_terima_exit_c";
+        Uri[] arrayFile = {st1UriFile, st2UriFile, st3UriFile, st4UriFile, st5UriFile, st6UriFile};
+
+        try {
+            for(int i = 0; i < arrayFile.length; i++){
+                if(arrayFile[i]!=null){
+                    String uploadId = UUID.randomUUID().toString();
+                    MultipartUploadRequest request = new MultipartUploadRequest(this, uploadId, UPLOAD_URL);
+                    request.addFileToUpload(String.valueOf(arrayFile[i]), "st_file_"+String.valueOf(i+1));
+                    request.addParameter("NIK", sharedPrefManager.getSpNik());
+                    request.addParameter("current_time", getDate().substring(8,10)+getDate().substring(5,7)+getDate().substring(0,4));
+                    request.setMaxRetries(1);
+                    request.startUpload();
+                }
+
+                if(i+1 == arrayFile.length){
+                    permohonanTerkirim = "1";
+                    pDialog.dismiss();
+                    successPart.setVisibility(View.VISIBLE);
+                    formPart.setVisibility(View.GONE);
+                }
+            }
+
+        } catch (Exception exc) {
+            Log.e("PaRSE JSON", exc.toString());
+            pDialog.dismiss();
+        }
+
+    }
+
     private void connectionFailed(){
         CookieBar.build(FormExitClearanceActivity.this)
                 .setTitle("Perhatian")
@@ -777,6 +873,13 @@ public class FormExitClearanceActivity extends AppCompatActivity {
         Uri uri = Uri.fromParts("package", getPackageName(), null);
         intent.setData(uri);
         startActivity(intent);
+    }
+
+    private String getDate() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     private String getDateD() {
