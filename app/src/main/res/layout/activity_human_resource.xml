@@ -38,7 +38,7 @@
                                 <LinearLayout
                                     android:id="@+id/header_background"
                                     android:layout_width="match_parent"
-                                    android:layout_height="190dp"
+                                    android:layout_height="175dp"
                                     android:layout_marginLeft="-3dp"
                                     android:layout_marginTop="-3.5dp"
                                     android:layout_marginRight="-3dp"
@@ -106,7 +106,7 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="100dp"
+                                    android:layout_marginTop="85dp"
                                     android:orientation="horizontal"
                                     android:paddingLeft="20dp"
                                     android:paddingRight="20dp">
