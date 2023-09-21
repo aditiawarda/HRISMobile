@@ -175,10 +175,23 @@ public class ListChatMateActivity extends AppCompatActivity {
             String nik_rekan_chat = intent.getStringExtra("nik_rekan");
             String nama_rekan_chat = intent.getStringExtra("nama_rekan");
 
-            String shortName = nama_rekan_chat;
-            if(shortName.contains(" ")){
-                shortName = shortName.substring(0, shortName.indexOf(" "));
+            String shortName;
+            String[] shortNameArray = nama_rekan_chat.split(" ");
+
+            if(shortNameArray.length>1){
+                if(shortNameArray[0].length()<3){
+                    shortName = shortNameArray[1];
+                } else {
+                    shortName = shortNameArray[0];
+                }
+            } else {
+                shortName = shortNameArray[0];
             }
+
+            // String shortName = nama_rekan_chat;
+            // if(shortName.contains(" ")){
+            //    shortName = shortName.substring(0, shortName.indexOf(" "));
+            // }
 
             try {
                 new KAlertDialog(ListChatMateActivity.this, KAlertDialog.WARNING_TYPE)

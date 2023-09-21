@@ -356,11 +356,26 @@ public class FragmentProfile extends Fragment {
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                                             .resize(110, 110)
                                             .into(avatarUser);
-                                    String shortName = sharedPrefManager.getSpNama()+" ";
-                                    if(shortName.contains(" ")){
-                                        shortName = shortName.substring(0, shortName.indexOf(" "));
-                                        System.out.println(shortName);
+
+                                    String shortName;
+                                    String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+                                    if(shortNameArray.length>1){
+                                        if(shortNameArray[0].length()<3){
+                                            shortName = shortNameArray[1];
+                                        } else {
+                                            shortName = shortNameArray[0];
+                                        }
+                                    } else {
+                                        shortName = shortNameArray[0];
                                     }
+
+                                    // String shortName = sharedPrefManager.getSpNama()+" ";
+                                    // if(shortName.contains(" ")){
+                                    //     shortName = shortName.substring(0, shortName.indexOf(" "));
+                                    //     System.out.println(shortName);
+                                    // }
+
                                     descAvailable.setText("Halo "+shortName+", anda bisa atur foto profil sesuai keinginan anda.");
                                     emptyAvatarPart.setVisibility(View.GONE);
                                     availableAvatarPart.setVisibility(View.VISIBLE);
@@ -437,11 +452,26 @@ public class FragmentProfile extends Fragment {
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                 .resize(110, 110)
                                                 .into(avatarUser);
-                                        String shortName = sharedPrefManager.getSpNama()+" ";
-                                        if(shortName.contains(" ")){
-                                            shortName = shortName.substring(0, shortName.indexOf(" "));
-                                            System.out.println(shortName);
+
+                                        String shortName;
+                                        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+                                        if(shortNameArray.length>1){
+                                            if(shortNameArray[0].length()<3){
+                                                shortName = shortNameArray[1];
+                                            } else {
+                                                shortName = shortNameArray[0];
+                                            }
+                                        } else {
+                                            shortName = shortNameArray[0];
                                         }
+
+                                        // String shortName = sharedPrefManager.getSpNama()+" ";
+                                        // if(shortName.contains(" ")){
+                                        //    shortName = shortName.substring(0, shortName.indexOf(" "));
+                                        //    System.out.println(shortName);
+                                        // }
+
                                         descEmpty.setText("Halo "+shortName+", anda bisa tambahkan foto profil sesuai keinginan anda.");
                                         emptyAvatarPart.setVisibility(View.VISIBLE);
                                         availableAvatarPart.setVisibility(View.GONE);
@@ -464,11 +494,26 @@ public class FragmentProfile extends Fragment {
                                     } else {
                                         uploadFileImage.setVisibility(View.VISIBLE);
                                         editFileImage.setVisibility(View.GONE);
-                                        String shortName = sharedPrefManager.getSpNama()+" ";
-                                        if(shortName.contains(" ")){
-                                            shortName = shortName.substring(0, shortName.indexOf(" "));
-                                            System.out.println(shortName);
+
+                                        String shortName;
+                                        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+                                        if(shortNameArray.length>1){
+                                            if(shortNameArray[0].length()<3){
+                                                shortName = shortNameArray[1];
+                                            } else {
+                                                shortName = shortNameArray[0];
+                                            }
+                                        } else {
+                                            shortName = shortNameArray[0];
                                         }
+
+                                        // String shortName = sharedPrefManager.getSpNama()+" ";
+                                        // if(shortName.contains(" ")){
+                                        //    shortName = shortName.substring(0, shortName.indexOf(" "));
+                                        //    System.out.println(shortName);
+                                        // }
+
                                         descEmpty.setText("Halo "+shortName+", anda bisa tambahkan foto profil sesuai keinginan anda.");
                                         emptyAvatarPart.setVisibility(View.VISIBLE);
                                         availableAvatarPart.setVisibility(View.GONE);

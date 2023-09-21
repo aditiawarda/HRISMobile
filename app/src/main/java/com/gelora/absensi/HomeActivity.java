@@ -409,12 +409,6 @@ public class HomeActivity extends AppCompatActivity {
                                 String tidak_checkout = data.getString("tidak_checkout");
                                 String status_notif = data.getString("status_notif");
 
-                                String shortName = sharedPrefManager.getSpNama()+" ";
-                                if(shortName.contains(" ")){
-                                    shortName = shortName.substring(0, shortName.indexOf(" "));
-                                    System.out.println(shortName);
-                                }
-
                                 if (count.equals("0") && count_finger.equals("0")){
                                     int alpaNumb = Integer.parseInt(alpa);
                                     int lateNumb = Integer.parseInt(terlambat);
@@ -677,9 +671,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void warningNotifNoCheckout() {
-        String shortName = sharedPrefManager.getSpNama()+" ";
-        if(shortName.contains(" ")){
-            shortName = shortName.substring(0, shortName.indexOf(" "));
+        String shortName;
+        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+        if(shortNameArray.length>1){
+            if(shortNameArray[0].length()<3){
+                shortName = shortNameArray[1];
+                System.out.println(shortName);
+            } else {
+                shortName = shortNameArray[0];
+                System.out.println(shortName);
+            }
+        } else {
+            shortName = shortNameArray[1];
             System.out.println(shortName);
         }
 
@@ -725,9 +729,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void warningNotifLate() {
-        String shortName = sharedPrefManager.getSpNama()+" ";
-        if(shortName.contains(" ")){
-            shortName = shortName.substring(0, shortName.indexOf(" "));
+        String shortName;
+        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+        if(shortNameArray.length>1){
+            if(shortNameArray[0].length()<3){
+                shortName = shortNameArray[1];
+                System.out.println(shortName);
+            } else {
+                shortName = shortNameArray[0];
+                System.out.println(shortName);
+            }
+        } else {
+            shortName = shortNameArray[1];
             System.out.println(shortName);
         }
 
@@ -773,9 +787,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void warningNotifAlpa() {
-        String shortName = sharedPrefManager.getSpNama()+" ";
-        if(shortName.contains(" ")){
-            shortName = shortName.substring(0, shortName.indexOf(" "));
+        String shortName;
+        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+        if(shortNameArray.length>1){
+            if(shortNameArray[0].length()<3){
+                shortName = shortNameArray[1];
+                System.out.println(shortName);
+            } else {
+                shortName = shortNameArray[0];
+                System.out.println(shortName);
+            }
+        } else {
+            shortName = shortNameArray[1];
             System.out.println(shortName);
         }
 
@@ -821,9 +845,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void warningNotifIzin() {
-        String shortName = sharedPrefManager.getSpNama()+" ";
-        if(shortName.contains(" ")){
-            shortName = shortName.substring(0, shortName.indexOf(" "));
+        String shortName;
+        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+        if(shortNameArray.length>1){
+            if(shortNameArray[0].length()<3){
+                shortName = shortNameArray[1];
+                System.out.println(shortName);
+            } else {
+                shortName = shortNameArray[0];
+                System.out.println(shortName);
+            }
+        } else {
+            shortName = shortNameArray[1];
             System.out.println(shortName);
         }
 
@@ -868,9 +902,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void warningNotifFinger() {
-        String shortName = sharedPrefManager.getSpNama()+" ";
-        if(shortName.contains(" ")){
-            shortName = shortName.substring(0, shortName.indexOf(" "));
+        String shortName;
+        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+        if(shortNameArray.length>1){
+            if(shortNameArray[0].length()<3){
+                shortName = shortNameArray[1];
+                System.out.println(shortName);
+            } else {
+                shortName = shortNameArray[0];
+                System.out.println(shortName);
+            }
+        } else {
+            shortName = shortNameArray[1];
             System.out.println(shortName);
         }
 
@@ -915,9 +959,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void warningNotifKontakDarurat() {
-        String shortName = sharedPrefManager.getSpNama()+" ";
-        if(shortName.contains(" ")){
-            shortName = shortName.substring(0, shortName.indexOf(" "));
+        String shortName;
+        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+        if(shortNameArray.length>1){
+            if(shortNameArray[0].length()<3){
+                shortName = shortNameArray[1];
+                System.out.println(shortName);
+            } else {
+                shortName = shortNameArray[0];
+                System.out.println(shortName);
+            }
+        } else {
+            shortName = shortNameArray[1];
             System.out.println(shortName);
         }
 
@@ -962,9 +1016,25 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void warningNotifInfoPersonal() {
-        String shortName = sharedPrefManager.getSpNama()+" ";
-        if(shortName.contains(" ")){
-            shortName = shortName.substring(0, shortName.indexOf(" "));
+        String shortName;
+
+        // if(shortName.contains(" ")){
+        //    shortName = shortName.substring(0, shortName.indexOf(" "));
+        //    System.out.println(shortName);
+        // }
+
+        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+        if(shortNameArray.length>1){
+            if(shortNameArray[0].length()<3){
+                shortName = shortNameArray[1];
+                System.out.println(shortName);
+            } else {
+                shortName = shortNameArray[0];
+                System.out.println(shortName);
+            }
+        } else {
+            shortName = shortNameArray[1];
             System.out.println(shortName);
         }
 

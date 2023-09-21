@@ -1004,11 +1004,23 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                                         .into(ttdPemohon);
 
-                                String shortName = nama_karyawan+" ";
-                                if(shortName.contains(" ")){
-                                    shortName = shortName.substring(0, shortName.indexOf(" "));
-                                    pemohonTV.setText(shortName.toUpperCase());
+                                String[] shortName = nama_karyawan.split(" ");
+
+                                if(shortName.length>1){
+                                    if(shortName[0].length()<3){
+                                        pemohonTV.setText(shortName[1].toUpperCase());
+                                    } else {
+                                        pemohonTV.setText(shortName[0].toUpperCase());
+                                    }
+                                } else {
+                                    pemohonTV.setText(shortName[0].toUpperCase());
                                 }
+
+                                // String shortName = nama_karyawan+" ";
+                                // if(shortName.contains(" ")){
+                                //    shortName = shortName.substring(0, shortName.indexOf(" "));
+                                //    pemohonTV.setText(shortName.toUpperCase());
+                                // }
 
                                 String status_approve = detail.getString("status_approve");
                                 if(status_approve.equals("1")){
@@ -1029,11 +1041,23 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
                                     tanggalApproveTV.setText(timestamp_approve.substring(8,10)+"/"+timestamp_approve.substring(5,7)+"/"+timestamp_approve.substring(2,4));
 
-                                    String shortName2 = approver+" ";
-                                    if(shortName2.contains(" ")){
-                                        shortName2 = shortName2.substring(0, shortName2.indexOf(" "));
-                                        supervisorTV.setText(shortName2.toUpperCase());
+                                    String[] shortName2 = approver.split(" ");
+
+                                    if(shortName2.length>1){
+                                        if(shortName2[0].length()<3){
+                                            supervisorTV.setText(shortName2[1].toUpperCase());
+                                        } else {
+                                            supervisorTV.setText(shortName2[0].toUpperCase());
+                                        }
+                                    } else {
+                                        supervisorTV.setText(shortName2[0].toUpperCase());
                                     }
+
+                                    // String shortName2 = approver+" ";
+                                    // if(shortName2.contains(" ")){
+                                    //    shortName2 = shortName2.substring(0, shortName2.indexOf(" "));
+                                    //    supervisorTV.setText(shortName2.toUpperCase());
+                                    // }
 
                                     String status_approve_hrd = detail.getString("status_approve_hrd");
                                     if (status_approve_hrd.equals("1")){
@@ -1062,11 +1086,23 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                                                     .into(ttdHRD);
 
-                                            String namaPendek = nama_approver_hrd;
-                                            if(namaPendek.contains(" ")){
-                                                namaPendek = namaPendek.substring(0, namaPendek.indexOf(" "));
-                                                approverHrdTV.setText(namaPendek.toUpperCase());
+                                            String[] shortName3 = nama_approver_hrd.split(" ");
+
+                                            if(shortName3.length>1){
+                                                if(shortName3[0].length()<3){
+                                                    approverHrdTV.setText(shortName3[1].toUpperCase());
+                                                } else {
+                                                    approverHrdTV.setText(shortName3[0].toUpperCase());
+                                                }
+                                            } else {
+                                                approverHrdTV.setText(shortName3[0].toUpperCase());
                                             }
+
+                                            // String namaPendek = nama_approver_hrd;
+                                            // if(namaPendek.contains(" ")){
+                                            //    namaPendek = namaPendek.substring(0, namaPendek.indexOf(" "));
+                                            //    approverHrdTV.setText(namaPendek.toUpperCase());
+                                            // }
                                         }
                                     } else if (status_approve_hrd.equals("2")){
                                         acceptedMark.setVisibility(View.GONE);
@@ -1087,11 +1123,23 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
                                             }
                                         }
 
-                                        String namaPendek = nama_approver_hrd;
-                                        if(namaPendek.contains(" ")){
-                                            namaPendek = namaPendek.substring(0, namaPendek.indexOf(" "));
-                                            approverHrdTV.setText(namaPendek.toUpperCase());
+                                        String[] shortName3 = nama_approver_hrd.split(" ");
+
+                                        if(shortName3.length>1){
+                                            if(shortName3[0].length()<3){
+                                                approverHrdTV.setText(shortName3[1].toUpperCase());
+                                            } else {
+                                                approverHrdTV.setText(shortName3[0].toUpperCase());
+                                            }
+                                        } else {
+                                            approverHrdTV.setText(shortName3[0].toUpperCase());
                                         }
+
+                                        // String namaPendek = nama_approver_hrd;
+                                        // if(namaPendek.contains(" ")){
+                                        //    namaPendek = namaPendek.substring(0, namaPendek.indexOf(" "));
+                                        //    approverHrdTV.setText(namaPendek.toUpperCase());
+                                        // }
 
                                     } else {
                                         acceptedMark.setVisibility(View.GONE);
@@ -1112,11 +1160,23 @@ public class DetailPermohonanIzinActivity extends AppCompatActivity {
 
                                     String approver = detail.getString("approver");
 
-                                    String shortName2 = approver+" ";
-                                    if(shortName2.contains(" ")){
-                                        shortName2 = shortName2.substring(0, shortName2.indexOf(" "));
-                                        supervisorTV.setText(shortName2.toUpperCase());
+                                    String[] shortName2 = approver.split(" ");
+
+                                    if(shortName2.length>1){
+                                        if(shortName2[0].length()<3){
+                                            supervisorTV.setText(shortName2[1].toUpperCase());
+                                        } else {
+                                            supervisorTV.setText(shortName2[0].toUpperCase());
+                                        }
+                                    } else {
+                                        supervisorTV.setText(shortName2[0].toUpperCase());
                                     }
+
+                                    // String shortName2 = approver+" ";
+                                    // if(shortName2.contains(" ")){
+                                    //    shortName2 = shortName2.substring(0, shortName2.indexOf(" "));
+                                    //    supervisorTV.setText(shortName2.toUpperCase());
+                                    // }
 
                                 } else {
                                     actionPart.setVisibility(View.VISIBLE);

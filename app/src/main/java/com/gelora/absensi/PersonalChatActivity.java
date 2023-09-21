@@ -239,74 +239,89 @@ public class PersonalChatActivity extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         int id = menuItem.getItemId();
-                        String shortName = partnerNameString;
-                        if(shortName.contains(" ")){
-                            shortName = shortName.substring(0, shortName.indexOf(" "));
+
+                        String shortName;
+                        String[] shortNameArray = partnerNameString.split(" ");
+
+                        if(shortNameArray.length>1){
+                            if(shortNameArray[0].length()<3){
+                                shortName = shortNameArray[1];
+                            } else {
+                                shortName = shortNameArray[0];
+                            }
+                        } else {
+                            shortName = shortNameArray[0];
                         }
+
+                        // String shortName = partnerNameString;
+                        // if(shortName.contains(" ")){
+                        //    shortName = shortName.substring(0, shortName.indexOf(" "));
+                        // }
+
                         if (id == R.id.dropdown_end_chat) {
+                            if(!partnerName.getText().toString().equals("")){
+                                new KAlertDialog(PersonalChatActivity.this, KAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Apakah anda yakin untuk menghapus percakapan dengan "+shortName+"?")
+                                        .setCancelText("TIDAK")
+                                        .setConfirmText("   YA   ")
+                                        .showCancelButton(true)
+                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
 
-                            new KAlertDialog(PersonalChatActivity.this, KAlertDialog.WARNING_TYPE)
-                                    .setTitleText("Perhatian")
-                                    .setContentText("Apakah anda yakin untuk menghapus percakapan dengan "+shortName+"?")
-                                    .setCancelText("TIDAK")
-                                    .setConfirmText("   YA   ")
-                                    .showCancelButton(true)
-                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-                                        }
-                                    })
-                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismiss();
-
-                                            pDialog = new KAlertDialog(PersonalChatActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                            pDialog.show();
-                                            pDialog.setCancelable(false);
-                                            new CountDownTimer(1300, 800) {
-                                                public void onTick(long millisUntilFinished) {
-                                                    i++;
-                                                    switch (i) {
-                                                        case 0:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (PersonalChatActivity.this, R.color.colorGradien));
-                                                            break;
-                                                        case 1:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (PersonalChatActivity.this, R.color.colorGradien2));
-                                                            break;
-                                                        case 2:
-                                                        case 6:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (PersonalChatActivity.this, R.color.colorGradien3));
-                                                            break;
-                                                        case 3:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (PersonalChatActivity.this, R.color.colorGradien4));
-                                                            break;
-                                                        case 4:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (PersonalChatActivity.this, R.color.colorGradien5));
-                                                            break;
-                                                        case 5:
-                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                    (PersonalChatActivity.this, R.color.colorGradien6));
-                                                            break;
+                                                pDialog = new KAlertDialog(PersonalChatActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                                pDialog.show();
+                                                pDialog.setCancelable(false);
+                                                new CountDownTimer(1300, 800) {
+                                                    public void onTick(long millisUntilFinished) {
+                                                        i++;
+                                                        switch (i) {
+                                                            case 0:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (PersonalChatActivity.this, R.color.colorGradien));
+                                                                break;
+                                                            case 1:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (PersonalChatActivity.this, R.color.colorGradien2));
+                                                                break;
+                                                            case 2:
+                                                            case 6:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (PersonalChatActivity.this, R.color.colorGradien3));
+                                                                break;
+                                                            case 3:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (PersonalChatActivity.this, R.color.colorGradien4));
+                                                                break;
+                                                            case 4:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (PersonalChatActivity.this, R.color.colorGradien5));
+                                                                break;
+                                                            case 5:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (PersonalChatActivity.this, R.color.colorGradien6));
+                                                                break;
+                                                        }
                                                     }
-                                                }
-                                                public void onFinish() {
-                                                    i = -1;
-                                                    repeat = "false";
-                                                    endChatFunction();
-                                                }
-                                            }.start();
+                                                    public void onFinish() {
+                                                        i = -1;
+                                                        repeat = "false";
+                                                        endChatFunction();
+                                                    }
+                                                }.start();
 
-                                        }
-                                    })
-                                    .show();
-
+                                            }
+                                        })
+                                        .show();
+                            }
                             return true;
                         } else if(id == R.id.dropdown_contact_it){
                             getContactIT();

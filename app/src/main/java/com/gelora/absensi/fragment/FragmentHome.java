@@ -626,11 +626,25 @@ public class FragmentHome extends Fragment {
                                     String tahunLahir = tanggal_lahir.substring(0, 4);
                                     if (tglBulanLahir.equals(getDayMonth())) {
                                         ulangTahunPart.setVisibility(View.VISIBLE);
-                                        String shortName = sharedPrefManager.getSpNama()+" ";
-                                        if(shortName.contains(" ")){
-                                            shortName = shortName.substring(0, shortName.indexOf(" "));
-                                            System.out.println(shortName);
+                                        String shortName;
+                                        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+                                        if(shortNameArray.length>1){
+                                            if(shortNameArray[0].length()<3){
+                                                shortName = shortNameArray[1];
+                                            } else {
+                                                shortName = shortNameArray[0];
+                                            }
+                                        } else {
+                                            shortName = shortNameArray[0];
                                         }
+
+                                        // String shortName = sharedPrefManager.getSpNama()+" ";
+                                        // if(shortName.contains(" ")){
+                                        //    shortName = shortName.substring(0, shortName.indexOf(" "));
+                                        //    System.out.println(shortName);
+                                        // }
+
                                         int usia = Integer.parseInt(getDateY()) - Integer.parseInt(tahunLahir);
                                         ulangTahunTo.setText("Happy Birthday " + shortName + ",");
                                         ulangTahunCelebrate.setText("Selamat Merayakan Ulang Tahun ke " + String.valueOf(usia) + " Tahun.");
@@ -1331,11 +1345,24 @@ public class FragmentHome extends Fragment {
                                         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_YET_BEFORE_MESSENGER, message_count);
                                         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_MESSENGER, "1");
 
-                                        String shortName = sharedPrefManager.getSpNama()+" ";
-                                        if(shortName.contains(" ")){
-                                            shortName = shortName.substring(0, shortName.indexOf(" "));
-                                            System.out.println(shortName);
+                                        String shortName;
+                                        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+                                        if(shortNameArray.length>1){
+                                            if(shortNameArray[0].length()<3){
+                                                shortName = shortNameArray[1];
+                                            } else {
+                                                shortName = shortNameArray[0];
+                                            }
+                                        } else {
+                                            shortName = shortNameArray[0];
                                         }
+
+                                        // String shortName = sharedPrefManager.getSpNama()+" ";
+                                        // if(shortName.contains(" ")){
+                                        //    shortName = shortName.substring(0, shortName.indexOf(" "));
+                                        //    System.out.println(shortName);
+                                        // }
 
                                         try {
                                             Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
@@ -1364,11 +1391,24 @@ public class FragmentHome extends Fragment {
                                             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_YET_BEFORE_MESSENGER, message_count);
                                             sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_MESSENGER, "1");
 
-                                            String shortName = sharedPrefManager.getSpNama()+" ";
-                                            if(shortName.contains(" ")){
-                                                shortName = shortName.substring(0, shortName.indexOf(" "));
-                                                System.out.println(shortName);
+                                            String shortName;
+                                            String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+                                            if(shortNameArray.length>1){
+                                                if(shortNameArray[0].length()<3){
+                                                    shortName = shortNameArray[1];
+                                                } else {
+                                                    shortName = shortNameArray[0];
+                                                }
+                                            } else {
+                                                shortName = shortNameArray[0];
                                             }
+
+                                            // String shortName = sharedPrefManager.getSpNama()+" ";
+                                            // if(shortName.contains(" ")){
+                                            //    shortName = shortName.substring(0, shortName.indexOf(" "));
+                                            //    System.out.println(shortName);
+                                            // }
 
                                             try {
                                                 Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
@@ -1661,12 +1701,6 @@ public class FragmentHome extends Fragment {
     }
 
     private void getNotifMasaKerja(String lama) {
-        String shortName = sharedPrefManager.getSpNama()+" ";
-        if(shortName.contains(" ")){
-            shortName = shortName.substring(0, shortName.indexOf(" "));
-            System.out.println(shortName);
-        }
-
         NotificationManager notificationManager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL_ID = "notif_masa_kerja";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -1708,11 +1742,24 @@ public class FragmentHome extends Fragment {
     }
 
     private void getNotifBirthday(String age) {
-        String shortName = sharedPrefManager.getSpNama()+" ";
-        if(shortName.contains(" ")){
-            shortName = shortName.substring(0, shortName.indexOf(" "));
-            System.out.println(shortName);
+        String shortName;
+        String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+        if(shortNameArray.length>1){
+            if(shortNameArray[0].length()<3){
+                shortName = shortNameArray[1];
+            } else {
+                shortName = shortNameArray[0];
+            }
+        } else {
+            shortName = shortNameArray[0];
         }
+
+        // String shortName = sharedPrefManager.getSpNama()+" ";
+        // if(shortName.contains(" ")){
+        //    shortName = shortName.substring(0, shortName.indexOf(" "));
+        //    System.out.println(shortName);
+        // }
 
         NotificationManager notificationManager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL_ID = "notif_birthday";
@@ -1755,12 +1802,6 @@ public class FragmentHome extends Fragment {
     }
 
     private void getNotifPengumuman(String id, String title) {
-        String shortName = sharedPrefManager.getSpNama()+" ";
-        if(shortName.contains(" ")){
-            shortName = shortName.substring(0, shortName.indexOf(" "));
-            System.out.println(shortName);
-        }
-
         NotificationManager notificationManager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL_ID = "notif_pengumuman";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -1873,11 +1914,25 @@ public class FragmentHome extends Fragment {
                                 if(Integer.parseInt(jumlah_data)>0){
                                     countNotificationPersonalPart.setVisibility(View.VISIBLE);
                                     countNotificationPersonalTV.setText(jumlah_data);
-                                    String shortName = sharedPrefManager.getSpNama()+" ";
-                                    if(shortName.contains(" ")){
-                                        shortName = shortName.substring(0, shortName.indexOf(" "));
-                                        System.out.println(shortName);
+
+                                    String shortName;
+                                    String[] shortNameArray = sharedPrefManager.getSpNama().split(" ");
+
+                                    if(shortNameArray.length>1){
+                                        if(shortNameArray[0].length()<3){
+                                            shortName = shortNameArray[1];
+                                        } else {
+                                            shortName = shortNameArray[0];
+                                        }
+                                    } else {
+                                        shortName = shortNameArray[0];
                                     }
+
+                                    // String shortName = sharedPrefManager.getSpNama()+" ";
+                                    // if(shortName.contains(" ")){
+                                    //    shortName = shortName.substring(0, shortName.indexOf(" "));
+                                    //    System.out.println(shortName);
+                                    // }
 
                                     try {
                                         Intent intent = new Intent(mContext, PersonalNotificationActivity.class);
