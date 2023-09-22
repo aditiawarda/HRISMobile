@@ -1185,6 +1185,10 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
+
     }
 
     @SuppressLint("SdCardPath")
