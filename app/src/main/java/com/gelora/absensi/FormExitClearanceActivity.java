@@ -94,7 +94,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
     RadioGroup alasanGroup;
     RadioButton alasan1, alasan2, alasan3, alasan4, alasan5, alasan6, alasan7, alasan8;
     EditText alasanED, saranED;
-    String tanggalResign = "", permohonanTerkirim = "", alasanResign = "", saranUntukPerusahaan = "";
+    String tanggalResign = "", permohonanTerkirim = "", alasanResign = "", alasanLainnya = "", saranUntukPerusahaan = "";
     KAlertDialog pDialog;
     private int i = -1;
 
@@ -231,8 +231,12 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                         st6UploadIcChange.setVisibility(View.GONE);
 
                         alasanResign = "";
+                        alasanLainnya = "";
                         saranUntukPerusahaan = "";
                         alasanGroup.clearCheck();
+
+                        alasanED.setText("");
+                        saranED.setText("");
 
                         getDataKaryawan();
                     }
@@ -384,17 +388,59 @@ public class FormExitClearanceActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(tanggalResign.equals("")){
                     if((st1UriFile==null&&st2UriFile==null&&st3UriFile==null&&st4UriFile==null&&st5UriFile==null&&st6UriFile==null)){
-                        new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
-                                .setTitleText("Perhatian")
-                                .setContentText("Harap isi tanggal keluar dan lampiran serah terima!")
-                                .setConfirmText("    OK    ")
-                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                    @Override
-                                    public void onClick(KAlertDialog sDialog) {
-                                        sDialog.dismiss();
-                                    }
-                                })
-                                .show();
+                        if(alasanResign.equals("")){
+                            if(saranUntukPerusahaan.equals("")){
+                                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Harap isi tanggal keluar, lampiran serah terima, alasan keluar dan saran!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            } else {
+                                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Harap isi tanggal keluar, lampiran serah terima dan alasan keluar!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        } else {
+                            if(saranUntukPerusahaan.equals("")){
+                                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Harap isi tanggal keluar, lampiran serah terima dan saran!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            } else {
+                                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Harap isi tanggal keluar dan lampiran serah terima!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        }
                     } else {
                         new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
@@ -410,77 +456,163 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     }
                 } else {
                     if((st1UriFile==null&&st2UriFile==null&&st3UriFile==null&&st4UriFile==null&&st5UriFile==null&&st6UriFile==null)){
-                        new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
-                                .setTitleText("Perhatian")
-                                .setContentText("Harap isi lampiran serah terima!")
-                                .setConfirmText("    OK    ")
-                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                    @Override
-                                    public void onClick(KAlertDialog sDialog) {
-                                        sDialog.dismiss();
-                                    }
-                                })
-                                .show();
+                        if(alasanResign.equals("")){
+                            if(saranUntukPerusahaan.equals("")){
+                                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Harap isi lampiran serah terima, alasan keluar dan saran!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            } else {
+                                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Harap isi lampiran serah terima dan alasan keluar!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        } else {
+                            if(saranUntukPerusahaan.equals("")){
+                                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Harap isi lampiran serah terima dan saran!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            } else {
+                                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Harap isi lampiran serah terima!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        }
                     } else {
-                        new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
-                                .setTitleText("Perhatian")
-                                .setContentText("Kirim data sekarang?")
-                                .setCancelText("TIDAK")
-                                .setConfirmText("   YA   ")
-                                .showCancelButton(true)
-                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                    @Override
-                                    public void onClick(KAlertDialog sDialog) {
-                                        sDialog.dismiss();
-                                    }
-                                })
-                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                    @Override
-                                    public void onClick(KAlertDialog sDialog) {
-                                        sDialog.dismiss();
-                                        pDialog = new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                        pDialog.show();
-                                        pDialog.setCancelable(false);
-                                        new CountDownTimer(1300, 800) {
-                                            public void onTick(long millisUntilFinished) {
-                                                i++;
-                                                switch (i) {
-                                                    case 0:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormExitClearanceActivity.this, R.color.colorGradien));
-                                                        break;
-                                                    case 1:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormExitClearanceActivity.this, R.color.colorGradien2));
-                                                        break;
-                                                    case 2:
-                                                    case 6:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormExitClearanceActivity.this, R.color.colorGradien3));
-                                                        break;
-                                                    case 3:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormExitClearanceActivity.this, R.color.colorGradien4));
-                                                        break;
-                                                    case 4:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormExitClearanceActivity.this, R.color.colorGradien5));
-                                                        break;
-                                                    case 5:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormExitClearanceActivity.this, R.color.colorGradien6));
-                                                        break;
-                                                }
+                        if(alasanResign.equals("")){
+                            if(saranUntukPerusahaan.equals("")){
+                                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Harap isi alasan keluar dan saran!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
                                             }
-                                            public void onFinish() {
-                                                i = -1;
-                                                uploadDocuments();
+                                        })
+                                        .show();
+                            } else {
+                                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Harap isi alasan keluar!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
                                             }
-                                        }.start();
+                                        })
+                                        .show();
+                            }
+                        } else {
+                            if(alasan8.isChecked() && alasanLainnya.equals("")){
+                                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Harap isi alasan keluar lainnya!")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            } else {
+                                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Kirim data sekarang?")
+                                        .setCancelText("TIDAK")
+                                        .setConfirmText("   YA   ")
+                                        .showCancelButton(true)
+                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                pDialog = new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                                pDialog.show();
+                                                pDialog.setCancelable(false);
+                                                new CountDownTimer(1300, 800) {
+                                                    public void onTick(long millisUntilFinished) {
+                                                        i++;
+                                                        switch (i) {
+                                                            case 0:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (FormExitClearanceActivity.this, R.color.colorGradien));
+                                                                break;
+                                                            case 1:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (FormExitClearanceActivity.this, R.color.colorGradien2));
+                                                                break;
+                                                            case 2:
+                                                            case 6:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (FormExitClearanceActivity.this, R.color.colorGradien3));
+                                                                break;
+                                                            case 3:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (FormExitClearanceActivity.this, R.color.colorGradien4));
+                                                                break;
+                                                            case 4:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (FormExitClearanceActivity.this, R.color.colorGradien5));
+                                                                break;
+                                                            case 5:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (FormExitClearanceActivity.this, R.color.colorGradien6));
+                                                                break;
+                                                        }
+                                                    }
+                                                    public void onFinish() {
+                                                        i = -1;
+                                                        uploadDocuments();
+                                                    }
+                                                }.start();
 
-                                    }
-                                })
-                                .show();
+                                            }
+                                        })
+                                        .show();
+                            }
+
+                        }
+
                     }
                 }
             }
