@@ -26,18 +26,21 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.FilePathimage;
 import com.takisoft.datetimepicker.DatePickerDialog;
@@ -94,8 +97,9 @@ public class FormExitClearanceActivity extends AppCompatActivity {
     RadioGroup alasanGroup;
     RadioButton alasan1, alasan2, alasan3, alasan4, alasan5, alasan6, alasan7, alasan8;
     EditText alasanED, saranED;
-    String tanggalResign = "", permohonanTerkirim = "", alasanResign = "", alasanLainnya = "", saranUntukPerusahaan = "";
+    String idRecord = "", tanggalResign = "", permohonanTerkirim = "", alasanResign = "", alasanLainnya = "", saranUntukPerusahaan = "";
     KAlertDialog pDialog;
+    ImageView successGif;
     private int i = -1;
 
     // In your activity or fragment
@@ -124,6 +128,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
         submitBTN = findViewById(R.id.submit_btn);
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
+        successGif = findViewById(R.id.success_gif);
         alasanLainnyaPart = findViewById(R.id.alasan_lainnya_part);
 
         st1UploadBTN = findViewById(R.id.st_1_upload_btn);
@@ -174,6 +179,10 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
         alasanED = findViewById(R.id.alasan_ed);
         saranED = findViewById(R.id.saran_ed);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.success_ic)
+                .into(successGif);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -357,28 +366,28 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 alasanED.clearFocus();
                 saranED.clearFocus();
                 if(alasan1.isChecked()){
-                    alasanResign = alasan1.getText().toString();
+                    alasanResign = "1";
                     alasanLainnyaPart.setVisibility(View.GONE);
                 } else if (alasan2.isChecked()) {
-                    alasanResign = alasan2.getText().toString();
+                    alasanResign = "2";
                     alasanLainnyaPart.setVisibility(View.GONE);
                 } else if (alasan3.isChecked()) {
-                    alasanResign = alasan3.getText().toString();
+                    alasanResign = "3";
                     alasanLainnyaPart.setVisibility(View.GONE);
                 } else if (alasan4.isChecked()) {
-                    alasanResign = alasan4.getText().toString();
+                    alasanResign = "4";
                     alasanLainnyaPart.setVisibility(View.GONE);
                 } else if (alasan5.isChecked()) {
-                    alasanResign = alasan5.getText().toString();
+                    alasanResign = "5";
                     alasanLainnyaPart.setVisibility(View.GONE);
                 } else if (alasan6.isChecked()) {
-                    alasanResign = alasan6.getText().toString();
+                    alasanResign = "6";
                     alasanLainnyaPart.setVisibility(View.GONE);
                 } else if (alasan7.isChecked()) {
-                    alasanResign = alasan7.getText().toString();
+                    alasanResign = "7";
                     alasanLainnyaPart.setVisibility(View.GONE);
                 } else if (alasan8.isChecked()) {
-                    alasanResign = alasan8.getText().toString();
+                    alasanResign = "8";
                     alasanLainnyaPart.setVisibility(View.VISIBLE);
                 }
             }
@@ -387,6 +396,8 @@ public class FormExitClearanceActivity extends AppCompatActivity {
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saranUntukPerusahaan = saranED.getText().toString();
+                alasanLainnya = alasanED.getText().toString();
                 if(tanggalResign.equals("")){
                     if((st1UriFile==null&&st2UriFile==null&&st3UriFile==null&&st4UriFile==null&&st5UriFile==null&&st6UriFile==null)){
                         if(alasanResign.equals("")){
@@ -1004,8 +1015,89 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
     }
 
+    private void submitRecord(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/exit_clearance_core_upload";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")) {
+                                String id_record = data.getString("id_record");
+                                idRecord = id_record;
+                                uploadDocuments(idRecord);
+                            } else if(status.equals("Available")) {
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Data exit clearance anda telah tersedia, harap periksa kembali")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            } else {
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                        successPart.setVisibility(View.GONE);
+                        formPart.setVisibility(View.VISIBLE);
+                        pDialog.setTitleText("Gagal Terkirim")
+                                .setConfirmText("    OK    ")
+                                .changeAlertType(KAlertDialog.ERROR_TYPE);
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("nomor_frm", "FRM.HRD.01.10/rev-3");
+                params.put("nik", sharedPrefManager.getSpNik());
+                params.put("tgl_keluar", tanggalResign);
+                params.put("alasan_keluar", alasanResign);
+
+                if(alasanResign.equals("8")){
+                    params.put("alasan_lain", alasanLainnya);
+                } else {
+                    params.put("alasan_lain", "");
+                }
+
+                params.put("saran", saranUntukPerusahaan);
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
+
+    }
+
     @SuppressLint("SdCardPath")
-    public void uploadDocuments() {
+    public void uploadDocuments(String id_record) {
         String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran_serah_terima_exit_c";
         Uri[] arrayFile = {st1UriFile, st2UriFile, st3UriFile, st4UriFile, st5UriFile, st6UriFile};
 
@@ -1015,12 +1107,13 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     String uploadId = UUID.randomUUID().toString();
                     MultipartUploadRequest request = new MultipartUploadRequest(this, uploadId, UPLOAD_URL);
                     request.addFileToUpload(String.valueOf(arrayFile[i]), "st_file_"+String.valueOf(i+1));
+                    request.addParameter("id_record", id_record);
                     request.addParameter("NIK", sharedPrefManager.getSpNik());
+                    request.addParameter("st_number", String.valueOf(i+1));
                     request.addParameter("current_time", getDate().substring(8,10)+getDate().substring(5,7)+getDate().substring(0,4));
                     request.setMaxRetries(1);
                     request.startUpload();
                 }
-
                 if(i+1 == arrayFile.length){
                     permohonanTerkirim = "1";
                     pDialog.dismiss();
@@ -1112,7 +1205,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                             if (status.equals("Available")){
                                 String signature = data.getString("data");
                                 String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
-                                uploadDocuments();
+                                submitRecord();
                             } else {
                                 pDialog.setTitleText("Perhatian")
                                         .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")

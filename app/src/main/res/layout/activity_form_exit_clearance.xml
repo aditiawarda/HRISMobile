@@ -1239,7 +1239,7 @@
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:text="Permohonan Terkirim"
+                                            android:text="Data Terkirim"
                                             android:textAlignment="center"
                                             android:textColor="@color/white"
                                             android:textSize="15dp"
