@@ -234,6 +234,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                         alasanLainnya = "";
                         saranUntukPerusahaan = "";
                         alasanGroup.clearCheck();
+                        alasanLainnyaPart.setVisibility(View.GONE);
 
                         alasanED.setText("");
                         saranED.setText("");
