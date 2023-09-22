@@ -56,6 +56,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -1032,7 +1034,30 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                             if(status.equals("Success")) {
                                 String id_record = data.getString("id_record");
                                 idRecord = id_record;
-                                uploadDocuments(idRecord);
+                                Uri[] arrayFile = {st1UriFile, st2UriFile, st3UriFile, st4UriFile, st5UriFile, st6UriFile};
+                                for(int i = 0; i < arrayFile.length; i++){
+                                    if(arrayFile[i]==null){
+                                        String serah_terima = null;
+                                        if(i+1==1){
+                                            serah_terima = "Tugas / Pekerjaan";
+                                        } else if(i+1==2){
+                                            serah_terima = "Kendaraan";
+                                        } else if(i+1==3){
+                                            serah_terima = "Fasilitas IT";
+                                        } else if(i+1==4){
+                                            serah_terima = "Keuangan";
+                                        } else if(i+1==5){
+                                            serah_terima = "Koperasi";
+                                        } else if(i+1==6){
+                                            serah_terima = "Personalia";
+                                        }
+                                        uploadNullValue(idRecord, serah_terima);
+                                    }
+                                    if(i+1 == arrayFile.length){
+                                        uploadDocuments(idRecord);
+                                    }
+                                }
+
                             } else if(status.equals("Available")) {
                                 pDialog.setTitleText("Perhatian")
                                         .setContentText("Data exit clearance anda telah tersedia, harap periksa kembali")
@@ -1093,6 +1118,50 @@ public class FormExitClearanceActivity extends AppCompatActivity {
         DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         postRequest.setRetryPolicy(retryPolicy);
+
+    }
+
+    private void uploadNullValue(String id_record, String serah_terima){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/exit_clearance_bull";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_record", id_record);
+                params.put("serah_terima", serah_terima);
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
 
     }
 
