@@ -23,7 +23,7 @@
                 android:id="@+id/date_layoff_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#207EA8"
+                android:textColor="#3099C8"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:singleLine="true"
