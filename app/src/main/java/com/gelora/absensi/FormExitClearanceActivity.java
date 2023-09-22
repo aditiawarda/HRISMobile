@@ -25,7 +25,10 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,7 +62,7 @@ import java.util.UUID;
 
 public class FormExitClearanceActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backBTN, resignDateBTN, submitBTN, formPart, successPart;
+    LinearLayout actionBar, backBTN, resignDateBTN, submitBTN, formPart, successPart, alasanLainnyaPart;
 
     LinearLayout st1UploadBTN, st1UploadView;
     TextView st1FileTV, st1UploadIc, st1UploadIcChange;
@@ -88,7 +91,10 @@ public class FormExitClearanceActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView namaTV, nikTV, detailTV, tanggalMasukTV, tanggalResignTV;
-    String tanggalResign = "", permohonanTerkirim = "";
+    RadioGroup alasanGroup;
+    RadioButton alasan1, alasan2, alasan3, alasan4, alasan5, alasan6, alasan7, alasan8;
+    EditText alasanED, saranED;
+    String tanggalResign = "", permohonanTerkirim = "", alasanResign = "", saranUntukPerusahaan = "";
     KAlertDialog pDialog;
     private int i = -1;
 
@@ -118,6 +124,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
         submitBTN = findViewById(R.id.submit_btn);
         formPart = findViewById(R.id.form_part);
         successPart = findViewById(R.id.success_submit);
+        alasanLainnyaPart = findViewById(R.id.alasan_lainnya_part);
 
         st1UploadBTN = findViewById(R.id.st_1_upload_btn);
         st1FileTV = findViewById(R.id.st_1_file_tv);
@@ -154,6 +161,19 @@ public class FormExitClearanceActivity extends AppCompatActivity {
         st6UploadView = findViewById(R.id.st_6_upload_view);
         st6UploadIc = findViewById(R.id.st_6_upload_ic);
         st6UploadIcChange = findViewById(R.id.st_6_upload_ic_change);
+
+        alasanGroup = findViewById(R.id.pilihan_alasan_keluar);
+        alasan1 = findViewById(R.id.alasan_keluar_1);
+        alasan2 = findViewById(R.id.alasan_keluar_2);
+        alasan3 = findViewById(R.id.alasan_keluar_3);
+        alasan4 = findViewById(R.id.alasan_keluar_4);
+        alasan5 = findViewById(R.id.alasan_keluar_5);
+        alasan6 = findViewById(R.id.alasan_keluar_6);
+        alasan7 = findViewById(R.id.alasan_keluar_7);
+        alasan8 = findViewById(R.id.alasan_keluar_8);
+
+        alasanED = findViewById(R.id.alasan_ed);
+        saranED = findViewById(R.id.saran_ed);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,6 +229,10 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                         st6UploadView.setVisibility(View.GONE);
                         st6UploadIc.setVisibility(View.VISIBLE);
                         st6UploadIcChange.setVisibility(View.GONE);
+
+                        alasanResign = "";
+                        saranUntukPerusahaan = "";
+                        alasanGroup.clearCheck();
 
                         getDataKaryawan();
                     }
@@ -317,6 +341,41 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     startActivityForResult(Intent.createChooser(intent, "PDF - 6"), PICK_PDF_ST_6);
                 }
 
+            }
+        });
+
+        alasanGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                alasanED.clearFocus();
+                saranED.clearFocus();
+                if(alasan1.isChecked()){
+                    alasanResign = alasan1.getText().toString();
+                    alasanLainnyaPart.setVisibility(View.GONE);
+                } else if (alasan2.isChecked()) {
+                    alasanResign = alasan2.getText().toString();
+                    alasanLainnyaPart.setVisibility(View.GONE);
+                } else if (alasan3.isChecked()) {
+                    alasanResign = alasan3.getText().toString();
+                    alasanLainnyaPart.setVisibility(View.GONE);
+                } else if (alasan4.isChecked()) {
+                    alasanResign = alasan4.getText().toString();
+                    alasanLainnyaPart.setVisibility(View.GONE);
+                } else if (alasan5.isChecked()) {
+                    alasanResign = alasan5.getText().toString();
+                    alasanLainnyaPart.setVisibility(View.GONE);
+                } else if (alasan6.isChecked()) {
+                    alasanResign = alasan6.getText().toString();
+                    alasanLainnyaPart.setVisibility(View.GONE);
+                } else if (alasan7.isChecked()) {
+                    alasanResign = alasan7.getText().toString();
+                    alasanLainnyaPart.setVisibility(View.GONE);
+                } else if (alasan8.isChecked()) {
+                    alasanResign = alasan8.getText().toString();
+                    alasanLainnyaPart.setVisibility(View.VISIBLE);
+                }
             }
         });
 

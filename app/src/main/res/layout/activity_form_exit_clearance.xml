@@ -968,6 +968,226 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Alasan Keluar :"/>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="7dp"
+                                        android:layout_marginTop="2dp"
+                                        android:paddingTop="18dp"
+                                        android:paddingBottom="18dp"
+                                        android:paddingRight="15dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:background="@drawable/shape_ornament_form"
+                                            android:layout_width="30dp"
+                                            android:layout_marginLeft="1dp"
+                                            android:layout_marginRight="15dp"
+                                            android:layout_marginTop="7dp"
+                                            android:layout_marginBottom="7dp"
+                                            android:layout_height="match_parent"/>
+
+                                        <RadioGroup
+                                            android:id="@+id/pilihan_alasan_keluar"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <RadioButton
+                                                android:id="@+id/alasan_keluar_1"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:paddingHorizontal="15dp"
+                                                android:textSize="14dp"
+                                                android:textColor="#4A4A4A"
+                                                android:text="Pekerjaan tidak sesuai harapan"/>
+
+                                            <RadioButton
+                                                android:id="@+id/alasan_keluar_2"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:paddingHorizontal="15dp"
+                                                android:textSize="14dp"
+                                                android:textColor="#4A4A4A"
+                                                android:text="Ketidakcocokan dengan pekerjaan"/>
+
+                                            <RadioButton
+                                                android:id="@+id/alasan_keluar_3"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:paddingHorizontal="15dp"
+                                                android:textSize="14dp"
+                                                android:textColor="#4A4A4A"
+                                                android:text="Kurang bimbingan dan feedback"/>
+
+                                            <RadioButton
+                                                android:id="@+id/alasan_keluar_4"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:paddingHorizontal="15dp"
+                                                android:textSize="14dp"
+                                                android:textColor="#4A4A4A"
+                                                android:text="Tidak berkembang"/>
+
+                                            <RadioButton
+                                                android:id="@+id/alasan_keluar_5"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:paddingHorizontal="15dp"
+                                                android:textSize="14dp"
+                                                android:textColor="#4A4A4A"
+                                                android:text="Kurang dihargai"/>
+
+                                            <RadioButton
+                                                android:id="@+id/alasan_keluar_6"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:paddingHorizontal="15dp"
+                                                android:textSize="14dp"
+                                                android:textColor="#4A4A4A"
+                                                android:text="Beban kerja terlalu berat"/>
+
+                                            <RadioButton
+                                                android:id="@+id/alasan_keluar_7"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:paddingHorizontal="15dp"
+                                                android:textSize="14dp"
+                                                android:textColor="#4A4A4A"
+                                                android:text="Tidak cocok dengan atasan"/>
+
+                                            <RadioButton
+                                                android:id="@+id/alasan_keluar_8"
+                                                android:layout_marginTop="7dp"
+                                                android:layout_marginBottom="7dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:paddingHorizontal="15dp"
+                                                android:textSize="14dp"
+                                                android:textColor="#4A4A4A"
+                                                android:text="Lain-lain"/>
+
+                                        </RadioGroup>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/alasan_lainnya_part"
+                                    android:visibility="gone"
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Alasan Lain :"/>
+
+                                    <EditText
+                                        android:id="@+id/alasan_ed"
+                                        android:layout_width="match_parent"
+                                        android:gravity="top"
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:layout_height="wrap_content"
+                                        android:minHeight="80dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingBottom="13dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:maxLength="255"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:textColor="#595959"
+                                        android:hint=""
+                                        android:textSize="14dp"
+                                        android:textColorHint="#595959"
+                                        android:textColorHighlight="#FFE1BC"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:textSize="12dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:textColor="#696969"
+                                        android:text="Saran Untuk Perusahaan :"/>
+
+                                    <EditText
+                                        android:id="@+id/saran_ed"
+                                        android:layout_width="match_parent"
+                                        android:gravity="top"
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:layout_height="wrap_content"
+                                        android:minHeight="80dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingBottom="13dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:maxLength="255"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:textColor="#595959"
+                                        android:hint=""
+                                        android:textSize="14dp"
+                                        android:textColorHint="#595959"
+                                        android:textColorHighlight="#FFE1BC"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:id="@+id/submit_btn"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
