@@ -1178,7 +1178,6 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("id_record", id_record);
                 params.put("serah_terima", serah_terima);
-
                 return params;
             }
         };
@@ -1216,7 +1215,6 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     formPart.setVisibility(View.GONE);
                 }
             }
-
         } catch (Exception exc) {
             Log.e("PaRSE JSON", exc.toString());
             pDialog.dismiss();
@@ -1346,7 +1344,6 @@ public class FormExitClearanceActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("NIK", sharedPrefManager.getSpNik());
-
                 return params;
             }
         };
