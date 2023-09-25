@@ -683,7 +683,7 @@ public class HomeActivity extends AppCompatActivity {
                 System.out.println(shortName);
             }
         } else {
-            shortName = shortNameArray[1];
+            shortName = shortNameArray[0];
             System.out.println(shortName);
         }
 
@@ -741,7 +741,7 @@ public class HomeActivity extends AppCompatActivity {
                 System.out.println(shortName);
             }
         } else {
-            shortName = shortNameArray[1];
+            shortName = shortNameArray[0];
             System.out.println(shortName);
         }
 
@@ -799,7 +799,7 @@ public class HomeActivity extends AppCompatActivity {
                 System.out.println(shortName);
             }
         } else {
-            shortName = shortNameArray[1];
+            shortName = shortNameArray[0];
             System.out.println(shortName);
         }
 
@@ -857,7 +857,7 @@ public class HomeActivity extends AppCompatActivity {
                 System.out.println(shortName);
             }
         } else {
-            shortName = shortNameArray[1];
+            shortName = shortNameArray[0];
             System.out.println(shortName);
         }
 
@@ -914,7 +914,7 @@ public class HomeActivity extends AppCompatActivity {
                 System.out.println(shortName);
             }
         } else {
-            shortName = shortNameArray[1];
+            shortName = shortNameArray[0];
             System.out.println(shortName);
         }
 
@@ -971,7 +971,7 @@ public class HomeActivity extends AppCompatActivity {
                 System.out.println(shortName);
             }
         } else {
-            shortName = shortNameArray[1];
+            shortName = shortNameArray[0];
             System.out.println(shortName);
         }
 
@@ -1034,7 +1034,7 @@ public class HomeActivity extends AppCompatActivity {
                 System.out.println(shortName);
             }
         } else {
-            shortName = shortNameArray[1];
+            shortName = shortNameArray[0];
             System.out.println(shortName);
         }
 
