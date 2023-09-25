@@ -324,31 +324,60 @@ public class FragmentHome extends Fragment {
         menuPengaduanBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Anda akan terhubung dengan Bagian HRD")
-                        .setCancelText("    BATAL    ")
-                        .setConfirmText("  LANJUT  ")
-                        .showCancelButton(true)
-                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
-                            }
-                        })
-                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        getContact();
-                                    }
-                                }, 500);
-                            }
-                        })
-                        .show();
+                if(sharedPrefManager.getSpIdCor().equals("1")){
+                    new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Anda akan terhubung dengan Bagian HRD")
+                            .setCancelText("    BATAL    ")
+                            .setConfirmText("  LANJUT  ")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            getContact();
+                                        }
+                                    }, 500);
+                                }
+                            })
+                            .show();
+                } else if(sharedPrefManager.getSpIdCor().equals("3")){
+                    new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Anda akan terhubung dengan Bagian IT/EDP")
+                            .setCancelText("    BATAL    ")
+                            .setConfirmText("  LANJUT  ")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            getContact();
+                                        }
+                                    }, 500);
+                                }
+                            })
+                            .show();
+                }
+
             }
         });
 
@@ -1661,7 +1690,7 @@ public class FragmentHome extends Fragment {
                                     e.printStackTrace();
                                     new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
                                             .setTitleText("Perhatian")
-                                            .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian HRD")
+                                            .setContentText("Tidak dapat terhubung ke Whatsapp, anda bisa hubungi secara langsung ke 0"+whatsapp.substring(2, whatsapp.length())+" atas nama Bapak "+nama+" bagian IT/EDP")
                                             .setConfirmText("    OK    ")
                                             .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                                 @Override

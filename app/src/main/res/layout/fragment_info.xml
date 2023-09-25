@@ -1635,9 +1635,19 @@
                                                 android:orientation="horizontal">
 
                                                 <LinearLayout
+                                                    android:id="@+id/help_desk_hrd"
                                                     android:layout_width="55dp"
                                                     android:layout_height="55dp"
-                                                    android:background="@drawable/call_center_img"/>
+                                                    android:background="@drawable/call_center_img"
+                                                    android:orientation="horizontal" />
+
+                                                <LinearLayout
+                                                    android:id="@+id/help_desk_it"
+                                                    android:layout_width="55dp"
+                                                    android:layout_height="55dp"
+                                                    android:visibility="gone"
+                                                    android:background="@drawable/call_center_it_img"
+                                                    android:orientation="horizontal" />
 
                                                 <LinearLayout
                                                     android:layout_width="match_parent"

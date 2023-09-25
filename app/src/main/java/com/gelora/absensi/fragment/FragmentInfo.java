@@ -69,7 +69,7 @@ public class FragmentInfo extends Fragment {
 
     TextView descContactHRDTV, titlePage, dateNowTV, countNotifFingerTV, countNotifIzinTV;
     ExpandableLayout aboutAppField, privacyPolicyField, contactServiceField;
-    LinearLayout newsPart, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
+    LinearLayout helpDeskIT, helpDeskHRD, newsPart, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
     TextView labelNotificationIzin, bagianNameTVSDM, historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     ImageView notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     SwipeRefreshLayout refreshLayout;
@@ -155,6 +155,8 @@ public class FragmentInfo extends Fragment {
         descContactHRDTV = view.findViewById(R.id.desc_contact_hrd_tv);
         newsPart = view.findViewById(R.id.news_part);
         labelNotificationIzin = view.findViewById(R.id.label_notification_izin);
+        helpDeskIT = view.findViewById(R.id.help_desk_it);
+        helpDeskHRD = view.findViewById(R.id.help_desk_hrd);
 
         selectMonth = getBulanTahun();
         dateNowTV.setText(getDate().substring(8,10)+"/"+getDate().substring(5,7)+"/"+getDate().substring(0,4));
@@ -840,10 +842,14 @@ public class FragmentInfo extends Fragment {
                                     sisaCutiBTN.setVisibility(View.GONE);
                                 }
 
-                                if(!id_corporate.equals("1")){ // PT. Gelora Aksara Pratama
+                                if(!id_corporate.equals("1")){
+                                    helpDeskHRD.setVisibility(View.GONE);
+                                    helpDeskIT.setVisibility(View.VISIBLE);
                                     aboutCompanyBTN.setVisibility(View.GONE);
-                                    descContactHRDTV.setText("Untuk layanan pengaduan anda akan terhubung dengan bagian HRD perusahaan");
-                                } else {
+                                    descContactHRDTV.setText("Untuk layanan pengaduan anda akan terhubung dengan bagian IT/EDP perusahaan");
+                                } else { // PT. Gelora Aksara Pratama
+                                    helpDeskHRD.setVisibility(View.VISIBLE);
+                                    helpDeskIT.setVisibility(View.GONE);
                                     aboutCompanyBTN.setVisibility(View.VISIBLE);
                                     descContactHRDTV.setText("Untuk layanan pengaduan anda akan terhubung dengan bagian HRD PT. Gelora Aksara Pratama");
                                 }
