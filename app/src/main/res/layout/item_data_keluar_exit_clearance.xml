@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/parent_part"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/shape_notifikasi"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginBottom="-20dp"
+                android:layout_marginTop="-25dp"
+                android:layout_width="match_parent"
+                android:gravity="right"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/shape_ornament_2"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/status_data_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="-"
+                android:textColor="#C16D02"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/line_limit"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:background="#2DEFB975"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/deskrisi_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:text="Data Exit Clearance"
+                android:textColor="#C16D02"
+                android:textSize="13dp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/tanggal_resign_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Keluar : 20 Sep 2023"
+                android:textColor="#C16D02"
+                android:textSize="12dp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/tanggal_notifikasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:gravity="right"
+                android:text="Senin, 12 Sep 2023 10:45"
+                android:textColor="#C16D02"
+                android:textSize="10dp" />
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="-20dp"
+                android:layout_marginTop="-20dp"
+                android:background="@drawable/shape_ornament_1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

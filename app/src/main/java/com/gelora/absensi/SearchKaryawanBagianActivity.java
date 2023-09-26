@@ -234,6 +234,9 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
         } else if (sharedPrefManager.getSpIdJabatan().equals("35")) {
             choiceBagianBTN.setVisibility(View.GONE);
             attantionDesc.setText("Fitur ini dibuat khusus untuk Kepala Sekolah agar dapat memantau kehadiran karyawan di lingkungan sekolah.");
+        } else if (sharedPrefManager.getSpNik().equals("E1004")) {
+            choiceBagianBTN.setVisibility(View.GONE);
+            attantionDesc.setText("Fitur ini dibuat khusus untuk Administrasi Sekolah agar dapat memantau kehadiran karyawan di lingkungan sekolah.");
         }
 
         dateChoiceForHistory = getDate();

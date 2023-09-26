@@ -87,6 +87,14 @@ public class ExitClearanceActivity extends AppCompatActivity {
             }
         });
 
+        addBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ExitClearanceActivity.this, FormExitClearanceActivity.class);
+                startActivity(intent);
+            }
+        });
+
         dataOutBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

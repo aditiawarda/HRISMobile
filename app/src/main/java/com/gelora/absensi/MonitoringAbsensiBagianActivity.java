@@ -307,6 +307,9 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
         } else if (sharedPrefManager.getSpIdJabatan().equals("35")) {
             pageTitle.setText("KEHADIRAN SEKOLAH");
             choiceBagianBTN.setVisibility(View.GONE);
+        } else if (sharedPrefManager.getSpNik().equals("E1004")) {
+            pageTitle.setText("KEHADIRAN SEKOLAH");
+            choiceBagianBTN.setVisibility(View.VISIBLE);
         }
 
         getKehadiranBagian();
@@ -389,6 +392,9 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                                 } else if (sharedPrefManager.getSpNik().equals("1304101110")) {
                                     namaBagian.setText(data.getString("nama_bagian"));
                                     jumlahKaryawanTV.setText(data.getString("jumlah_karyawan"));
+                                } else if (sharedPrefManager.getSpNik().equals("E1004")) {
+                                    namaBagian.setText(data.getString("desc_departemen"));
+                                    jumlahKaryawanTV.setText(data.getString("jumlah_karyawan_dept"));
                                 }
 
                                 namaDepartemen.setText(data.getString("nama_departemen"));

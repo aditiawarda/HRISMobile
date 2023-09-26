@@ -1073,7 +1073,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                                         } else if(i+1==6){
                                             serah_terima = "Personalia";
                                         }
-                                        uploadNullValue(idRecord, serah_terima);
+                                        uploadNullValue(idRecord, serah_terima, String.valueOf(i+1));
                                     }
                                     if(i+1 == arrayFile.length){
                                         uploadDocuments(idRecord);
@@ -1143,7 +1143,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
     }
 
-    private void uploadNullValue(String id_record, String serah_terima){
+    private void uploadNullValue(String id_record, String serah_terima, String urutan_st){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/exit_clearance_bull";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -1178,6 +1178,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("id_record", id_record);
                 params.put("serah_terima", serah_terima);
+                params.put("urutan_st", urutan_st);
                 return params;
             }
         };
