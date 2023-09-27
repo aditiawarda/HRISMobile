@@ -89,7 +89,7 @@
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Notifikasi tidak tersedia"
+                                        android:text="Exit Clearance tidak tersedia"
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
                                         android:textSize="10dp" />
@@ -187,7 +187,7 @@
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Notifikasi tidak tersedia"
+                                        android:text="Exit Clearance tidak tersedia"
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
                                         android:textSize="10dp" />
