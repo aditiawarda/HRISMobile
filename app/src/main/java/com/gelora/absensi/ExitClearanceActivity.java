@@ -219,6 +219,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
             optionPart.setVisibility(View.GONE);
             dataMasukPart.setVisibility(View.GONE);
             dataKeluarPart.setVisibility(View.VISIBLE);
+            addBTN.setVisibility(View.VISIBLE);
         }
 
         getDataIn(otoritorEC);
