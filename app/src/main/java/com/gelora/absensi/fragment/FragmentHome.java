@@ -576,6 +576,7 @@ public class FragmentHome extends Fragment {
                                 String pengumuman_desc = data.getString("pengumuman_desc");
                                 String pengumuman_time = data.getString("pengumuman_time");
                                 String ototitor_ec = data.getString("ototitor_ec");
+                                String waiting_ec = data.getString("waiting_ec");
 
                                 String id_corporate = data.getString("id_corporate");
                                 String id_cab = data.getString("id_cab");
@@ -816,6 +817,13 @@ public class FragmentHome extends Fragment {
                                     chatBTN.setVisibility(View.GONE);
                                     personalNotifBTN.setVisibility(View.INVISIBLE);
                                     countNotificationPersonalPart.setVisibility(View.INVISIBLE);
+                                }
+
+                                if(Integer.parseInt(waiting_ec)>0 && !ototitor_ec.equals("0")){
+                                    countNotificationClearancePart.setVisibility(View.VISIBLE);
+                                    countNotifClearanceTV.setText(waiting_ec);
+                                } else {
+                                    countNotificationClearancePart.setVisibility(View.GONE);
                                 }
 
                                 getCurrentLocation(weather_key);

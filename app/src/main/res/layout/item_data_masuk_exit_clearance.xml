@@ -80,7 +80,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="#7d7d7d"
+                        android:textColor="#C16D02"
                         android:textSize="13dp" />
 
                     <TextView
@@ -91,7 +91,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="#7d7d7d"
+                        android:textColor="#C16D02"
                         android:textSize="11dp" />
 
                 </LinearLayout>
@@ -115,7 +115,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="#7d7d7d"
+                android:textColor="#C16D02"
                 android:textSize="13dp" />
 
             <TextView
@@ -171,7 +171,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="#7d7d7d"
+                android:textColor="#C16D02"
                 android:textSize="10dp" />
 
             <LinearLayout

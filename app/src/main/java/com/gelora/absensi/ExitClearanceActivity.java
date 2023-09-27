@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -44,8 +45,9 @@ public class ExitClearanceActivity extends AppCompatActivity {
 
     SharedPrefManager sharedPrefManager;
     ImageView loadingDataImg, loadingDataImg2;
-    LinearLayout backBTN, mainPart, actionBar, addBTN, dataInBTN, dataOutBTN, optionPart, dataMasukPart, dataKeluarPart, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
+    LinearLayout countNotificationInPart, backBTN, mainPart, actionBar, addBTN, dataInBTN, dataOutBTN, optionPart, dataMasukPart, dataKeluarPart, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
     SwipeRefreshLayout refreshLayout;
+    TextView countNotificationInTV;
     String otoritorEC;
 
     private RecyclerView dataOutRV, dataInRV;
@@ -62,6 +64,8 @@ public class ExitClearanceActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
+        countNotificationInPart = findViewById(R.id.count_notification_in);
+        countNotificationInTV = findViewById(R.id.count_notif_in_tv);
         noDataPart = findViewById(R.id.no_data_part);
         noDataPart2 = findViewById(R.id.no_data_part_2);
         loadingDataPart = findViewById(R.id.loading_data_part);
@@ -195,7 +199,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
             }
         });
 
-        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpIdJabatan().equals("4") && sharedPrefManager.getSpNik().equals("1309131210"))){
+        if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || !otoritorEC.equals("0")){
             optionPart.setVisibility(View.VISIBLE);
         } else if (sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
             float scale = getResources().getDisplayMetrics().density;
@@ -245,8 +249,11 @@ public class ExitClearanceActivity extends AppCompatActivity {
                                 listDataExitClearanceOuts = gson.fromJson(data_keluar, ListDataExitClearanceOut[].class);
                                 adapterExitClearanceOut = new AdapterExitClearanceOut(listDataExitClearanceOuts,ExitClearanceActivity.this);
                                 dataOutRV.setAdapter(adapterExitClearanceOut);
+                            } else {
+                                noDataPart2.setVisibility(View.VISIBLE);
+                                loadingDataPart2.setVisibility(View.GONE);
+                                dataOutRV.setVisibility(View.GONE);
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -290,15 +297,31 @@ public class ExitClearanceActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
-                                noDataPart.setVisibility(View.GONE);
-                                loadingDataPart.setVisibility(View.GONE);
-                                dataInRV.setVisibility(View.VISIBLE);
-                                String data_masuk = data.getString("data");
-                                GsonBuilder builder = new GsonBuilder();
-                                Gson gson = builder.create();
-                                listDataExitClearanceIns = gson.fromJson(data_masuk, ListDataExitClearanceIn[].class);
-                                adapterExitClearanceIn = new AdapterExitClearanceIn(listDataExitClearanceIns,ExitClearanceActivity.this);
-                                dataInRV.setAdapter(adapterExitClearanceIn);
+                                String all_count = data.getString("waiting_count");
+                                String waiting_count = data.getString("waiting_count");
+
+                                if(Integer.parseInt(waiting_count)>0){
+                                    countNotificationInPart.setVisibility(View.VISIBLE);
+                                    countNotificationInTV.setText(waiting_count);
+                                } else {
+                                    countNotificationInPart.setVisibility(View.GONE);
+                                }
+
+                                if(Integer.parseInt(all_count)>0){
+                                    noDataPart.setVisibility(View.GONE);
+                                    loadingDataPart.setVisibility(View.GONE);
+                                    dataInRV.setVisibility(View.VISIBLE);
+                                    String data_masuk = data.getString("data");
+                                    GsonBuilder builder = new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    listDataExitClearanceIns = gson.fromJson(data_masuk, ListDataExitClearanceIn[].class);
+                                    adapterExitClearanceIn = new AdapterExitClearanceIn(listDataExitClearanceIns,ExitClearanceActivity.this);
+                                    dataInRV.setAdapter(adapterExitClearanceIn);
+                                } else {
+                                    noDataPart.setVisibility(View.VISIBLE);
+                                    loadingDataPart.setVisibility(View.GONE);
+                                    dataInRV.setVisibility(View.GONE);
+                                }
                             }
 
                         } catch (JSONException e) {

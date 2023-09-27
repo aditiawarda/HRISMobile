@@ -63,7 +63,7 @@ public class AdapterExitClearanceIn extends RecyclerView.Adapter<AdapterExitClea
 
         myViewHolder.namaKaryawanTV.setText(listDataExitClearanceIn.getNama().toUpperCase());
         myViewHolder.nikKaryawanTV.setText("NIK "+listDataExitClearanceIn.getNik());
-        myViewHolder.deskrisiExitClearanceTV.setText("Serah Terima "+listDataExitClearanceIn.getSerah_terima());
+        myViewHolder.deskrisiExitClearanceTV.setText("Serah Terima "+listDataExitClearanceIn.getSerah_terima()+" ");
 
         String input_date_keluar = listDataExitClearanceIn.getTgl_keluar();
         String dayDateKeluar = input_date_keluar.substring(8,10);
@@ -115,11 +115,16 @@ public class AdapterExitClearanceIn extends RecyclerView.Adapter<AdapterExitClea
 
         myViewHolder.tglKeluarTV.setText("Keluar : "+String.valueOf(Integer.parseInt(dayDateKeluar))+" "+bulanNameKeluar+" "+yearDateKeluar);
 
-        myViewHolder.statusDataTV.setText(listDataExitClearanceIn.getStatus_data());
+        myViewHolder.statusDataTV.setText(listDataExitClearanceIn.getStatus_data()+" ");
         if(listDataExitClearanceIn.getStatus_data().equals("Menunggu verifikasi")) {
             myViewHolder.statusDataTV.setTextColor(Color.parseColor("#C32424"));
         } else if(listDataExitClearanceIn.getStatus_data().equals("Sudah diverifikasi")){
             myViewHolder.statusDataTV.setTextColor(Color.parseColor("#089b02"));
+            myViewHolder.namaKaryawanTV.setTextColor(Color.parseColor("#7d7d7d"));
+            myViewHolder.nikKaryawanTV.setTextColor(Color.parseColor("#7d7d7d"));
+            myViewHolder.tglKeluarTV.setTextColor(Color.parseColor("#7d7d7d"));
+            myViewHolder.deskrisiExitClearanceTV.setTextColor(Color.parseColor("#7d7d7d"));
+            myViewHolder.tglBuatTV.setTextColor(Color.parseColor("#7d7d7d"));
         }
 
         String input_date = listDataExitClearanceIn.getTime_notifikasi().substring(0,10);

@@ -786,12 +786,15 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     String nama_shift     = detail_keterangan.getString("nama_shift");
                                     String shift_datang   = detail_keterangan.getString("shift_datang");
                                     String shift_pulang   = detail_keterangan.getString("shift_pulang");
+                                    String tanggal_masuk  = detail_keterangan.getString("tanggal_masuk");
 
                                     dStatusAbsen.setVisibility(View.VISIBLE);
                                     dShiftAbsen.setVisibility(View.VISIBLE);
+                                    dTanggalMasuk.setVisibility(View.VISIBLE);
 
                                     dStatusAbsenTV.setText(nama_status+" ("+kode_status+")");
                                     dShiftAbsenTV.setText(nama_shift+" ("+shift_datang+" - "+shift_pulang+")");
+                                    dTanggalMasukTV.setText(tanggal_masuk.substring(8,10)+"/"+tanggal_masuk.substring(5,7)+"/"+tanggal_masuk.substring(0,4));
                                 } else if(keterangan.equals("3")){
                                     detailKeteranganPart.setVisibility(View.VISIBLE);
                                     JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
