@@ -135,23 +135,6 @@
 
                                 </LinearLayout>
 
-<!--                                <LinearLayout-->
-<!--                                    android:layout_width="match_parent"-->
-<!--                                    android:layout_height="wrap_content"-->
-<!--                                    android:orientation="vertical">-->
-
-<!--                                    <include layout="@layout/item_data_masuk_exit_clearance" android:id="@+id/fake_data"/>-->
-<!--                                    <include layout="@layout/item_data_masuk_exit_clearance"/>-->
-<!--                                    <include layout="@layout/item_data_masuk_exit_clearance"/>-->
-<!--                                    <include layout="@layout/item_data_masuk_exit_clearance"/>-->
-<!--                                    <include layout="@layout/item_data_masuk_exit_clearance"/>-->
-<!--                                    <include layout="@layout/item_data_masuk_exit_clearance"/>-->
-<!--                                    <include layout="@layout/item_data_masuk_exit_clearance"/>-->
-<!--                                    <include layout="@layout/item_data_masuk_exit_clearance"/>-->
-<!--                                    <include layout="@layout/item_data_masuk_exit_clearance"/>-->
-
-<!--                                </LinearLayout>-->
-
                             </LinearLayout>
 
                             <LinearLayout

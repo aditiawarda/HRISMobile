@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,9 +23,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.gelora.absensi.adapter.AdapterExitClearanceIn;
 import com.gelora.absensi.adapter.AdapterExitClearanceOut;
 import com.gelora.absensi.adapter.AdapterPermohonanIzin;
 import com.gelora.absensi.adapter.AdapterPermohonanSaya;
+import com.gelora.absensi.model.ListDataExitClearanceIn;
 import com.gelora.absensi.model.ListDataExitClearanceOut;
 import com.gelora.absensi.model.ListPermohonanIzin;
 import com.google.gson.Gson;
@@ -43,11 +46,13 @@ public class ExitClearanceActivity extends AppCompatActivity {
     ImageView loadingDataImg, loadingDataImg2;
     LinearLayout backBTN, mainPart, actionBar, addBTN, dataInBTN, dataOutBTN, optionPart, dataMasukPart, dataKeluarPart, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
     SwipeRefreshLayout refreshLayout;
+    String otoritorEC;
 
-    //private RecyclerView dataNotifikasiRV;
-    private RecyclerView dataOutRV;
+    private RecyclerView dataOutRV, dataInRV;
     private ListDataExitClearanceOut[] listDataExitClearanceOuts;
     private AdapterExitClearanceOut adapterExitClearanceOut;
+    private ListDataExitClearanceIn[] listDataExitClearanceIns;
+    private AdapterExitClearanceIn adapterExitClearanceIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +79,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
         mainPart = findViewById(R.id.main_part);
 
         dataOutRV = findViewById(R.id.data_out_rv);
+        dataInRV = findViewById(R.id.data_in_rv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -87,6 +93,13 @@ public class ExitClearanceActivity extends AppCompatActivity {
         dataOutRV.setHasFixedSize(true);
         dataOutRV.setNestedScrollingEnabled(false);
         dataOutRV.setItemAnimator(new DefaultItemAnimator());
+
+        dataInRV.setLayoutManager(new LinearLayoutManager(this));
+        dataInRV.setHasFixedSize(true);
+        dataInRV.setNestedScrollingEnabled(false);
+        dataInRV.setItemAnimator(new DefaultItemAnimator());
+
+        otoritorEC = getIntent().getExtras().getString("otoritor");
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,13 +115,14 @@ public class ExitClearanceActivity extends AppCompatActivity {
                 loadingDataPart2.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
                 noDataPart2.setVisibility(View.GONE);
-//                dataNotifikasiRV.setVisibility(View.GONE);
+                dataInRV.setVisibility(View.GONE);
                 dataOutRV.setVisibility(View.GONE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-                        getData();
+                        getDataIn(otoritorEC);
+                        getDataOut();
                     }
                 }, 500);
             }
@@ -142,13 +156,13 @@ public class ExitClearanceActivity extends AppCompatActivity {
                 loadingDataPart2.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
                 noDataPart2.setVisibility(View.GONE);
-//                dataNotifikasiRV.setVisibility(View.GONE);
+                dataInRV.setVisibility(View.GONE);
                 dataOutRV.setVisibility(View.GONE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-                         getData();
+                        getDataOut();
                     }
                 }, 300);
 
@@ -168,13 +182,13 @@ public class ExitClearanceActivity extends AppCompatActivity {
                 loadingDataPart2.setVisibility(View.GONE);
                 noDataPart.setVisibility(View.GONE);
                 noDataPart2.setVisibility(View.GONE);
-//                dataNotifikasiRV.setVisibility(View.GONE);
+                dataInRV.setVisibility(View.GONE);
                 dataOutRV.setVisibility(View.GONE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-                         //getData();
+                        getDataIn(otoritorEC);
                     }
                 }, 300);
 
@@ -203,11 +217,12 @@ public class ExitClearanceActivity extends AppCompatActivity {
             dataKeluarPart.setVisibility(View.VISIBLE);
         }
 
-        getData();
+        getDataIn(otoritorEC);
+        getDataOut();
 
     }
 
-    private void getData() {
+    private void getDataOut() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_data_keluar_exit_clearance";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -221,73 +236,15 @@ public class ExitClearanceActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
-//                                String count = data.getString("count");
-//                                String count2 = data.getString("count2");
-//                                String count_data = data.getString("count_data");
-//                                String count2_data = data.getString("count2_data");
-//                                countNotifMasuk.setText(count);
-//                                countNotifSaya.setText(count2);
-
-//                                if (count.equals("0")) {
-//                                    countPartIn.setVisibility(View.GONE);
-//                                    if(count_data.equals("0")){
-//                                        dataNotifikasiRV.setVisibility(View.GONE);
-//                                        noDataPart.setVisibility(View.VISIBLE);
-//                                        loadingDataPart.setVisibility(View.GONE);
-//                                    } else {
-//                                        noDataPart.setVisibility(View.GONE);
-//                                        loadingDataPart.setVisibility(View.GONE);
-//                                        dataNotifikasiRV.setVisibility(View.VISIBLE);
-//                                        String data_permohonan_masuk = data.getString("data");
-//                                        GsonBuilder builder = new GsonBuilder();
-//                                        Gson gson = builder.create();
-//                                        listPermohonanIzins = gson.fromJson(data_permohonan_masuk, ListPermohonanIzin[].class);
-//                                        adapterPermohonanIzin = new AdapterPermohonanIzin(listPermohonanIzins,ListNotifikasiActivity.this);
-//                                        dataNotifikasiRV.setAdapter(adapterPermohonanIzin);
-//                                    }
-//                                } else {
-//                                    countPartIn.setVisibility(View.VISIBLE);
-//                                    noDataPart.setVisibility(View.GONE);
-//                                    loadingDataPart.setVisibility(View.GONE);
-//                                    dataNotifikasiRV.setVisibility(View.VISIBLE);
-//                                    String data_permohonan_masuk = data.getString("data");
-//                                    GsonBuilder builder = new GsonBuilder();
-//                                    Gson gson = builder.create();
-//                                    listPermohonanIzins = gson.fromJson(data_permohonan_masuk, ListPermohonanIzin[].class);
-//                                    adapterPermohonanIzin = new AdapterPermohonanIzin(listPermohonanIzins,ListNotifikasiActivity.this);
-//                                    dataNotifikasiRV.setAdapter(adapterPermohonanIzin);
-//                                }
-//
-//                                if (count2.equals("0")){
-//                                    countPartMe.setVisibility(View.GONE);
-//                                    if(count2_data.equals("0")){
-//                                        dataNotifikasi2RV.setVisibility(View.GONE);
-//                                        noDataPart2.setVisibility(View.VISIBLE);
-//                                        loadingDataPart2.setVisibility(View.GONE);
-//                                    } else {
-                                        noDataPart2.setVisibility(View.GONE);
-                                        loadingDataPart2.setVisibility(View.GONE);
-                                        dataOutRV.setVisibility(View.VISIBLE);
-                                        String data_keluar = data.getString("data");
-                                        GsonBuilder builder = new GsonBuilder();
-                                        Gson gson = builder.create();
-                                        listDataExitClearanceOuts = gson.fromJson(data_keluar, ListDataExitClearanceOut[].class);
-                                        adapterExitClearanceOut = new AdapterExitClearanceOut(listDataExitClearanceOuts,ExitClearanceActivity.this);
-                                        dataOutRV.setAdapter(adapterExitClearanceOut);
-//                                    }
-//                                } else {
-//                                    countPartMe.setVisibility(View.VISIBLE);
-//                                    noDataPart2.setVisibility(View.GONE);
-//                                    loadingDataPart2.setVisibility(View.GONE);
-//                                    dataNotifikasi2RV.setVisibility(View.VISIBLE);
-//                                    String data_permohonan_saya = data.getString("data2");
-//                                    GsonBuilder builder = new GsonBuilder();
-//                                    Gson gson = builder.create();
-//                                    listPermohonanIzins = gson.fromJson(data_permohonan_saya, ListPermohonanIzin[].class);
-//                                    adapterPermohonanSaya = new AdapterPermohonanSaya(listPermohonanIzins,ListNotifikasiActivity.this);
-//                                    dataNotifikasi2RV.setAdapter(adapterPermohonanSaya);
-//                                }
-
+                                noDataPart2.setVisibility(View.GONE);
+                                loadingDataPart2.setVisibility(View.GONE);
+                                dataOutRV.setVisibility(View.VISIBLE);
+                                String data_keluar = data.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                listDataExitClearanceOuts = gson.fromJson(data_keluar, ListDataExitClearanceOut[].class);
+                                adapterExitClearanceOut = new AdapterExitClearanceOut(listDataExitClearanceOuts,ExitClearanceActivity.this);
+                                dataOutRV.setAdapter(adapterExitClearanceOut);
                             }
 
                         } catch (JSONException e) {
@@ -310,10 +267,62 @@ public class ExitClearanceActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-//                params.put("id_departemen", sharedPrefManager.getSpIdHeadDept());
-//                params.put("id_bagian", sharedPrefManager.getSpIdDept());
-//                params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
                 params.put("nik", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void getDataIn(String nomor_st) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_data_masuk_exit_clearance";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                noDataPart.setVisibility(View.GONE);
+                                loadingDataPart.setVisibility(View.GONE);
+                                dataInRV.setVisibility(View.VISIBLE);
+                                String data_masuk = data.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                listDataExitClearanceIns = gson.fromJson(data_masuk, ListDataExitClearanceIn[].class);
+                                adapterExitClearanceIn = new AdapterExitClearanceIn(listDataExitClearanceIns,ExitClearanceActivity.this);
+                                dataInRV.setAdapter(adapterExitClearanceIn);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("nik", sharedPrefManager.getSpNik());
+                params.put("nomor_st", nomor_st);
                 return params;
             }
         };
@@ -329,13 +338,14 @@ public class ExitClearanceActivity extends AppCompatActivity {
         loadingDataPart2.setVisibility(View.VISIBLE);
         noDataPart.setVisibility(View.GONE);
         noDataPart2.setVisibility(View.GONE);
-        //dataNotifikasiRV.setVisibility(View.GONE);
+        dataInRV.setVisibility(View.GONE);
         dataOutRV.setVisibility(View.GONE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 refreshLayout.setRefreshing(false);
-                getData();
+                getDataIn(otoritorEC);
+                getDataOut();
             }
         }, 300);
     }

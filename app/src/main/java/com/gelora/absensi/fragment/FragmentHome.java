@@ -130,7 +130,7 @@ public class FragmentHome extends Fragment {
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
-    String currentDay = "", refeatConfeti = "1", locationNow = "" , musicPlay = "off";
+    String currentDay = "", refeatConfeti = "1", locationNow = "" , musicPlay = "off", otoritorEC = "";
     ResultReceiver resultReceiver;
     Context mContext;
     Activity mActivity;
@@ -449,8 +449,11 @@ public class FragmentHome extends Fragment {
         menuClearanceBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ExitClearanceActivity.class);
-                startActivity(intent);
+                if(!otoritorEC.equals("")){
+                    Intent intent = new Intent(mContext, ExitClearanceActivity.class);
+                    intent.putExtra("otoritor", otoritorEC);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -572,12 +575,15 @@ public class FragmentHome extends Fragment {
                                 String pengumuman_title = data.getString("pengumuman_title");
                                 String pengumuman_desc = data.getString("pengumuman_desc");
                                 String pengumuman_time = data.getString("pengumuman_time");
+                                String ototitor_ec = data.getString("ototitor_ec");
 
                                 String id_corporate = data.getString("id_corporate");
                                 String id_cab = data.getString("id_cab");
                                 String id_dept = data.getString("id_dept");
                                 String id_bagian = data.getString("id_bagian");
                                 String id_jabatan = data.getString("id_jabatan");
+
+                                otoritorEC = ototitor_ec;
 
                                 if(news_part.equals("1")){
                                     newsPart.setVisibility(View.VISIBLE);
