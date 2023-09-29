@@ -8,12 +8,15 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.VibrationEffect;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.application.isradeleon.notify.Notify;
 import com.gelora.absensi.adapter.AdapterPersonalNotification;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataPersonalNotification;
@@ -43,12 +47,14 @@ import java.util.Map;
 
 public class AllMenuActivity extends AppCompatActivity {
 
-    LinearLayout cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
+    LinearLayout countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
     LinearLayout actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
+    TextView countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
+    String otoritorEC = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +95,12 @@ public class AllMenuActivity extends AppCompatActivity {
         menuNewsBTNSub = findViewById(R.id.menu_news_btn_sub);
         menuCalendarBTNSub = findViewById(R.id.menu_calendar_btn_sub);
         menuPengaduanBTNSub = findViewById(R.id.menu_pengaduan_btn_sub);
+        countNotificationPenilaian = findViewById(R.id.count_notification_penilaian);
+        countNotifPenilaianTV = findViewById(R.id.count_notif_penilaian_tv);
+        countNotificationClearancePart = findViewById(R.id.count_notification_clearance);
+        countNotifClearanceTV = findViewById(R.id.count_notif_clearance_tv);
+        countNotificationGMPart = findViewById(R.id.count_notification_gm);
+        countNotifGMTV = findViewById(R.id.count_notif_gm_tv);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +118,6 @@ public class AllMenuActivity extends AppCompatActivity {
                     public void run() {
                         refreshLayout.setRefreshing(false);
                         roleMenu();
-                        //getData();
                     }
                 }, 1000);
             }
@@ -326,8 +337,11 @@ public class AllMenuActivity extends AppCompatActivity {
         menuClearanceBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
-                startActivity(intent);
+                if(!otoritorEC.equals("")){
+                    Intent intent = new Intent(AllMenuActivity.this, ExitClearanceActivity.class);
+                    intent.putExtra("otoritor", otoritorEC);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -473,12 +487,16 @@ public class AllMenuActivity extends AppCompatActivity {
                                 String pengumuman_title = data.getString("pengumuman_title");
                                 String pengumuman_desc = data.getString("pengumuman_desc");
                                 String pengumuman_time = data.getString("pengumuman_time");
+                                String ototitor_ec = data.getString("ototitor_ec");
+                                String waiting_ec = data.getString("waiting_ec");
 
                                 String id_corporate = data.getString("id_corporate");
                                 String id_cab = data.getString("id_cab");
                                 String id_dept = data.getString("id_dept");
                                 String id_bagian = data.getString("id_bagian");
                                 String id_jabatan = data.getString("id_jabatan");
+
+                                otoritorEC = ototitor_ec;
 
                                 menuNewsBTN.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -550,6 +568,19 @@ public class AllMenuActivity extends AppCompatActivity {
                                     }
                                 });
 
+                                if(Integer.parseInt(waiting_ec)>0 && !ototitor_ec.equals("0")){
+                                    countNotificationClearancePart.setVisibility(View.VISIBLE);
+                                    countNotifClearanceTV.setText(waiting_ec);
+                                } else {
+                                    countNotificationClearancePart.setVisibility(View.GONE);
+                                }
+
+                                if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                                    getWaitingConfirm();
+                                }
+
+                                getCountMessageYet();
+
                             }
 
                         } catch (JSONException e) {
@@ -582,6 +613,110 @@ public class AllMenuActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    private void getCountMessageYet() {
+        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_message_yet_read";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                String message_count = data.getString("message_yet");
+                                if (message_count.equals("0")){
+                                    countNotificationGMPart.setVisibility(View.GONE);
+                                } else {
+                                    countNotificationGMPart.setVisibility(View.VISIBLE);
+                                    countNotifGMTV.setText(String.valueOf(Integer.parseInt(message_count)));
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void getWaitingConfirm(){
+        //RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_waiting_data";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")) {
+                                String jumlah_penilaian = data.getString("jumlah_penilaian");
+                                String jumlah_sdm = data.getString("jumlah_sdm");
+                                if(Integer.parseInt(jumlah_penilaian)+Integer.parseInt(jumlah_sdm)>0){
+                                    countNotificationPenilaian.setVisibility(View.VISIBLE);
+                                    countNotifPenilaianTV.setText(String.valueOf(Integer.parseInt(jumlah_penilaian)+Integer.parseInt(jumlah_sdm)));
+                                } else {
+                                    countNotificationPenilaian.setVisibility(View.GONE);
+                                    countNotifPenilaianTV.setText("");
+                                }
+                            } else {
+                                countNotificationPenilaian.setVisibility(View.GONE);
+                                countNotifPenilaianTV.setText("");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("nik", sharedPrefManager.getSpNik());
+                params.put("id_departemen", sharedPrefManager.getSpIdHeadDept());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
     }
 
     private void getContact() {
