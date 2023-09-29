@@ -8,7 +8,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 
-public class DetailExitClearanceActivity extends AppCompatActivity {
+public class DetailFormExitClearanceActivity extends AppCompatActivity {
 
     LinearLayout actionBar, backBTN;
     SwipeRefreshLayout refreshLayout;
@@ -18,7 +18,7 @@ public class DetailExitClearanceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_exit_clearance);
+        setContentView(R.layout.activity_form_detail_exit_clearance);
 
         sharedPrefManager = new SharedPrefManager(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
