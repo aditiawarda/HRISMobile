@@ -80,7 +80,6 @@ public class ExitClearanceActivity extends AppCompatActivity {
         addBTN = findViewById(R.id.add_btn);
         actionBar = findViewById(R.id.action_bar);
         mainPart = findViewById(R.id.main_part);
-        mainPart = findViewById(R.id.main_part);
 
         dataOutRV = findViewById(R.id.data_out_rv);
         dataInRV = findViewById(R.id.data_in_rv);
