@@ -211,7 +211,7 @@ public class AdapterExitClearanceIn extends RecyclerView.Adapter<AdapterExitClea
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, String.valueOf(listDataExitClearanceIn.getId_core()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, String.valueOf(listDataExitClearanceIn.getId_data()), Toast.LENGTH_SHORT).show();
             }
         });
 
