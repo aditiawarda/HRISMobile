@@ -2,6 +2,7 @@ package com.gelora.absensi.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gelora.absensi.DetailDataExitClearanceActivity;
+import com.gelora.absensi.DetailPermohonanIzinActivity;
 import com.gelora.absensi.ExitClearanceActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
@@ -211,7 +214,10 @@ public class AdapterExitClearanceIn extends RecyclerView.Adapter<AdapterExitClea
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, String.valueOf(listDataExitClearanceIn.getId_data()), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, DetailDataExitClearanceActivity.class);
+//                intent.putExtra("kode", "notif");
+//                intent.putExtra("id_izin",listPermohonanIzin.getId());
+                mContext.startActivity(intent);
             }
         });
 
