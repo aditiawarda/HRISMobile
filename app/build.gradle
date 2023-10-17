@@ -3,8 +3,9 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
+    namespace = "com.gelora.absensi"
     compileSdkVersion 34
-    buildToolsVersion "33.0.2"
+    buildToolsVersion "33.0.1"
 
     defaultConfig {
         applicationId "com.gelora.absensi"
