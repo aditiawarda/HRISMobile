@@ -354,7 +354,7 @@ public class FragmentProfile extends Fragment {
                                     String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
                                     Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                             .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                            .resize(110, 110)
+                                            .resize(130, 130)
                                             .into(avatarUser);
 
                                     String shortName;
@@ -450,7 +450,7 @@ public class FragmentProfile extends Fragment {
                                         String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
                                         Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                                 .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                .resize(110, 110)
+                                                .resize(130, 130)
                                                 .into(avatarUser);
 
                                         String shortName;

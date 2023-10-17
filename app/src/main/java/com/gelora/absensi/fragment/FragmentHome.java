@@ -51,7 +51,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.application.isradeleon.notify.Notify;
 import com.bumptech.glide.Glide;
-import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.AllMenuActivity;
 import com.gelora.absensi.CalendarPageActivity;
 import com.gelora.absensi.ChatSplashScreenActivity;
@@ -122,7 +121,6 @@ public class FragmentHome extends Fragment {
     RelativeLayout dataCuaca, dataCuacaEmpty;
 
     MediaPlayer musicUlangTahun;
-    BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -164,7 +162,6 @@ public class FragmentHome extends Fragment {
         sharedPrefAbsen = new SharedPrefAbsen(mContext);
         requestQueue = Volley.newRequestQueue(mContext);
         vibrate = (Vibrator) mActivity.getSystemService(Context.VIBRATOR_SERVICE);
-        bottomSheet = view.findViewById(R.id.bottom_sheet_layout);
         mainParent = view.findViewById(R.id.main_parent);
         refreshLayout = view.findViewById(R.id.swipe_to_refresh_layout);
         countNotificationMessage = view.findViewById(R.id.count_notification_message);
@@ -623,13 +620,13 @@ public class FragmentHome extends Fragment {
                                     String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
                                     Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                        .resize(108, 108)
+                                        .resize(120, 120)
                                         .into(avatarUser);
                                 } else {
                                     String avatarPath = "https://geloraaksara.co.id/absen-online/upload/avatar/"+avatar;
                                     Picasso.get().load(avatarPath).networkPolicy(NetworkPolicy.NO_CACHE)
                                         .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                        .resize(108, 108)
+                                        .resize(120, 120)
                                         .into(avatarUser);
                                 }
 
