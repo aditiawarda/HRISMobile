@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -44,7 +44,8 @@
                     android:gravity="center"
                     android:text="Memuat data..."
                     android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
             </LinearLayout>
 
@@ -66,21 +67,24 @@
                         android:layout_height="wrap_content"
                         android:text="--"
                         android:textColor="@color/white"
-                        android:textSize="35dp" />
+                        android:textSize="35dp"
+                        tools:ignore="HardcodedText,SpUsage" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="°"
                         android:textColor="@color/white"
-                        android:textSize="35dp" />
+                        android:textSize="35dp"
+                        tools:ignore="HardcodedText,SpUsage" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="C"
                         android:textColor="@color/white"
-                        android:textSize="25dp" />
+                        android:textSize="25dp"
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -95,7 +99,8 @@
                         android:layout_height="wrap_content"
                         android:text="Terasa seperti "
                         android:textColor="@color/white"
-                        android:textSize="11dp" />
+                        android:textSize="11dp"
+                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                     <TextView
                         android:id="@+id/feels_like_temp"
@@ -103,21 +108,24 @@
                         android:layout_height="wrap_content"
                         android:text="--"
                         android:textColor="@color/white"
-                        android:textSize="11dp" />
+                        android:textSize="11dp"
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="°"
                         android:textColor="@color/white"
-                        android:textSize="11dp" />
+                        android:textSize="11dp"
+                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="C"
                         android:textColor="@color/white"
-                        android:textSize="8dp" />
+                        android:textSize="8dp"
+                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -137,19 +145,21 @@
                     android:backgroundTint="#80FFFFFF"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/ic_baseline_place"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/location_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingBottom="3dp"
+                    android:singleLine="true"
                     android:text="Memuat data lokasi..."
                     android:textColor="#80FFFFFF"
-                    android:ellipsize="end"
-                    android:paddingBottom="3dp"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
             </LinearLayout>
 
@@ -165,7 +175,8 @@
                 android:layout_marginRight="-2dp"
                 android:layout_marginLeft="-2dp"
                 android:layout_width="match_parent"
-                android:layout_height="70dp">
+                android:layout_height="70dp"
+                tools:ignore="UselessParent,VisualLintBounds">
 
                 <LinearLayout
                     android:id="@+id/back_btn"
@@ -173,13 +184,15 @@
                     android:layout_marginLeft="20dp"
                     android:layout_width="33dp"
                     android:layout_height="33dp"
-                    android:gravity="center">
+                    android:gravity="center"
+                    tools:ignore="RtlHardcoded">
 
                     <TextView
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_marginRight="1.5dp"
-                        android:background="@drawable/ic_baseline_chevron_back"/>
+                        android:background="@drawable/ic_baseline_chevron_back"
+                        tools:ignore="RtlHardcoded" />
 
                 </LinearLayout>
 
@@ -202,7 +215,8 @@
                 android:background="@drawable/shape_weather_more_btn"
                 android:gravity="center"
                 android:paddingTop="15dp"
-                android:paddingBottom="15dp">
+                android:paddingBottom="15dp"
+                tools:ignore="UselessParent">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -212,7 +226,8 @@
                     android:text="Informasi Selengkapnya"
                     android:textColor="@color/white"
                     android:textSize="13dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
             </LinearLayout>
 

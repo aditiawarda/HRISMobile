@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -30,14 +31,16 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="@color/white"
-                    android:textSize="75dp" />
+                    android:textSize="75dp"
+                    tools:ignore="SpUsage" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="3.5dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    tools:ignore="RtlHardcoded">
 
                     <TextView
                         android:id="@+id/month_date"
@@ -45,7 +48,8 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/white"
-                        android:textSize="25dp" />
+                        android:textSize="25dp"
+                        tools:ignore="SpUsage" />
 
                     <TextView
                         android:id="@+id/year_date"
@@ -53,7 +57,8 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/white"
-                        android:textSize="25dp" />
+                        android:textSize="25dp"
+                        tools:ignore="SpUsage" />
 
                 </LinearLayout>
 
@@ -76,7 +81,8 @@
                     android:layout_height="wrap_content"
                     android:text="Memperingati"
                     android:textColor="@color/white"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
                     android:id="@+id/celebrate_tv"
@@ -86,7 +92,8 @@
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:textSize="17dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,SpUsage" />
 
             </LinearLayout>
 
@@ -108,13 +115,15 @@
                     android:layout_height="33dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="17dp"
-                    android:gravity="center">
+                    android:gravity="center"
+                    tools:ignore="RtlHardcoded,UselessParent">
 
                     <TextView
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_marginRight="1.5dp"
-                        android:background="@drawable/ic_baseline_chevron_back" />
+                        android:background="@drawable/ic_baseline_chevron_back"
+                        tools:ignore="RtlHardcoded" />
 
                 </LinearLayout>
 
@@ -140,7 +149,8 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingTop="15dp"
-                        android:paddingBottom="10dp">
+                        android:paddingBottom="10dp"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -163,7 +173,8 @@
                                     android:text="Bulan"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="18dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <TextView
                                     android:id="@+id/year_calender"
@@ -177,7 +188,8 @@
                                     android:text="Tahun"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="18dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                             </RelativeLayout>
 
@@ -209,13 +221,15 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="250dp"
                                     android:gravity="center"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    tools:ignore="DisableBaselineAlignment">
 
                                     <LinearLayout
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight=".50"
-                                        android:gravity="left">
+                                        android:gravity="left"
+                                        tools:ignore="RtlHardcoded,TooDeepLayout">
 
                                         <LinearLayout
                                             android:id="@+id/prevBTN"
@@ -237,7 +251,8 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight=".50"
-                                        android:gravity="right">
+                                        android:gravity="right"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:id="@+id/nextBTN"
@@ -278,7 +293,8 @@
                                 android:fontFamily="sans-serif"
                                 android:text=""
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="13dp" />
+                                android:textSize="13dp"
+                                tools:ignore="SpUsage" />
 
                         </LinearLayout>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -41,7 +41,8 @@
                             android:paddingLeft="25dp"
                             android:paddingTop="20dp"
                             android:paddingRight="25dp"
-                            android:paddingBottom="18dp">
+                            android:paddingBottom="18dp"
+                            tools:ignore="UselessParent">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -52,14 +53,16 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    tools:ignore="DisableBaselineAlignment">
 
                                     <LinearLayout
                                         android:layout_width="0dp"
                                         android:layout_height="90dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
-                                        android:orientation="vertical">
+                                        android:orientation="vertical"
+                                        tools:ignore="RtlHardcoded,TooDeepLayout">
 
                                         <LinearLayout
                                             android:id="@+id/menu_absensi_btn"
@@ -73,7 +76,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_absen" />
+                                                android:src="@drawable/icon_absen"
+                                                tools:ignore="ContentDescription" />
 
                                         </LinearLayout>
 
@@ -87,7 +91,8 @@
                                             android:singleLine="true"
                                             android:text="Absensi"
                                             android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -111,7 +116,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_izin" />
+                                                android:src="@drawable/icon_izin"
+                                                tools:ignore="ContentDescription" />
 
                                         </LinearLayout>
 
@@ -125,7 +131,8 @@
                                             android:singleLine="true"
                                             android:text="Izin"
                                             android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -156,7 +163,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_cuti" />
+                                                    android:src="@drawable/icon_cuti"
+                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                             </LinearLayout>
 
@@ -170,7 +178,8 @@
                                                 android:singleLine="true"
                                                 android:text="Cuti"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -193,7 +202,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_pengaduan" />
+                                                    android:src="@drawable/icon_pengaduan"
+                                                    tools:ignore="ContentDescription" />
 
                                             </LinearLayout>
 
@@ -207,7 +217,8 @@
                                                 android:singleLine="true"
                                                 android:text="Pengaduan"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -218,7 +229,8 @@
                                         android:layout_height="90dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_weight=".25"
-                                        android:orientation="vertical">
+                                        android:orientation="vertical"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:id="@+id/menu_finger_btn"
@@ -232,7 +244,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_fingerscan" />
+                                                android:src="@drawable/icon_fingerscan"
+                                                tools:ignore="ContentDescription" />
 
                                         </LinearLayout>
 
@@ -246,7 +259,8 @@
                                             android:singleLine="true"
                                             android:text="Fingerscan"
                                             android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -264,14 +278,16 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    tools:ignore="DisableBaselineAlignment">
 
                                     <LinearLayout
                                         android:layout_width="0dp"
                                         android:layout_height="90dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
-                                        android:orientation="vertical">
+                                        android:orientation="vertical"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:id="@+id/card_part"
@@ -292,7 +308,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_id_card" />
+                                                    android:src="@drawable/icon_id_card"
+                                                    tools:ignore="ContentDescription" />
 
                                             </LinearLayout>
 
@@ -306,7 +323,8 @@
                                                 android:singleLine="true"
                                                 android:text="ID Card"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -338,7 +356,8 @@
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:scaleType="fitCenter"
-                                                            android:src="@drawable/icon_sdm" />
+                                                            android:src="@drawable/icon_sdm"
+                                                            tools:ignore="ContentDescription" />
 
                                                     </LinearLayout>
 
@@ -352,7 +371,8 @@
                                                         android:singleLine="true"
                                                         android:text="SDM"
                                                         android:textColor="#515151"
-                                                        android:textSize="12dp" />
+                                                        android:textSize="12dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -377,7 +397,8 @@
                                                         android:layout_height="wrap_content"
                                                         android:textColor="@color/white"
                                                         android:textSize="9dp"
-                                                        android:text="0"/>
+                                                        android:text="0"
+                                                        tools:ignore="HardcodedText,SpUsage" />
 
                                                 </LinearLayout>
 
@@ -407,7 +428,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_signature" />
+                                                android:src="@drawable/icon_signature"
+                                                tools:ignore="ContentDescription" />
 
                                         </LinearLayout>
 
@@ -421,7 +443,8 @@
                                             android:singleLine="true"
                                             android:text="Signature"
                                             android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -461,7 +484,8 @@
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:scaleType="fitCenter"
-                                                            android:src="@drawable/icon_exit_clearance" />
+                                                            android:src="@drawable/icon_exit_clearance"
+                                                            tools:ignore="ContentDescription" />
 
                                                     </LinearLayout>
 
@@ -475,7 +499,8 @@
                                                         android:singleLine="true"
                                                         android:text="Exit - C"
                                                         android:textColor="#515151"
-                                                        android:textSize="12dp" />
+                                                        android:textSize="12dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -491,7 +516,8 @@
                                                     android:paddingLeft="3.5dp"
                                                     android:paddingBottom="0.5dp"
                                                     android:gravity="center"
-                                                    android:background="@drawable/shape_notification_mark_info">
+                                                    android:background="@drawable/shape_notification_mark_info"
+                                                    tools:ignore="RtlHardcoded">
 
                                                     <TextView
                                                         android:id="@+id/count_notif_clearance_tv"
@@ -500,7 +526,8 @@
                                                         android:layout_height="wrap_content"
                                                         android:textColor="@color/white"
                                                         android:textSize="9dp"
-                                                        android:text="0"/>
+                                                        android:text="0"
+                                                        tools:ignore="HardcodedText,SpUsage" />
 
                                                 </LinearLayout>
 
@@ -527,7 +554,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_calendar" />
+                                                    android:src="@drawable/icon_calendar"
+                                                    tools:ignore="ContentDescription" />
 
                                             </LinearLayout>
 
@@ -541,7 +569,8 @@
                                                 android:singleLine="true"
                                                 android:text="Kalender"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -552,7 +581,8 @@
                                         android:layout_height="90dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_weight=".25"
-                                        android:orientation="vertical">
+                                        android:orientation="vertical"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:id="@+id/messenger_part"
@@ -582,7 +612,8 @@
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:scaleType="fitCenter"
-                                                            android:src="@drawable/icon_gm" />
+                                                            android:src="@drawable/icon_gm"
+                                                            tools:ignore="ContentDescription" />
 
                                                     </LinearLayout>
 
@@ -596,7 +627,8 @@
                                                         android:singleLine="true"
                                                         android:text="Messenger"
                                                         android:textColor="#515151"
-                                                        android:textSize="12dp" />
+                                                        android:textSize="12dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -621,7 +653,8 @@
                                                         android:layout_height="wrap_content"
                                                         android:textColor="@color/white"
                                                         android:textSize="9dp"
-                                                        android:text="0"/>
+                                                        android:text="0"
+                                                        tools:ignore="HardcodedText,SpUsage" />
 
                                                 </LinearLayout>
 
@@ -648,7 +681,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_news" />
+                                                    android:src="@drawable/icon_news"
+                                                    tools:ignore="ContentDescription" />
 
                                             </LinearLayout>
 
@@ -662,7 +696,8 @@
                                                 android:singleLine="true"
                                                 android:text="News"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -681,14 +716,16 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    tools:ignore="DisableBaselineAlignment">
 
                                     <LinearLayout
                                         android:layout_width="0dp"
                                         android:layout_height="90dp"
                                         android:layout_marginRight="15dp"
                                         android:layout_weight=".25"
-                                        android:orientation="vertical">
+                                        android:orientation="vertical"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:id="@+id/news_part_sub"
@@ -702,13 +739,15 @@
                                                 android:layout_height="65dp"
                                                 android:background="@drawable/shape_menu_1"
                                                 android:orientation="vertical"
-                                                android:padding="10dp">
+                                                android:padding="10dp"
+                                                tools:ignore="TooManyViews">
 
                                                 <ImageView
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_news" />
+                                                    android:src="@drawable/icon_news"
+                                                    tools:ignore="ContentDescription" />
 
                                             </LinearLayout>
 
@@ -722,7 +761,8 @@
                                                 android:singleLine="true"
                                                 android:text="Berita"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -754,7 +794,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_calendar" />
+                                                    android:src="@drawable/icon_calendar"
+                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                             </LinearLayout>
 
@@ -768,7 +809,8 @@
                                                 android:singleLine="true"
                                                 android:text="Kalender"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -800,7 +842,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_pengaduan" />
+                                                    android:src="@drawable/icon_pengaduan"
+                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                             </LinearLayout>
 
@@ -814,7 +857,8 @@
                                                 android:singleLine="true"
                                                 android:text="Pengaduan"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -825,7 +869,8 @@
                                         android:layout_height="90dp"
                                         android:layout_marginLeft="15dp"
                                         android:layout_weight=".25"
-                                        android:orientation="vertical">
+                                        android:orientation="vertical"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:id="@+id/id_card_part_sub"
@@ -845,7 +890,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_id_card" />
+                                                    android:src="@drawable/icon_id_card"
+                                                    tools:ignore="ContentDescription" />
 
                                             </LinearLayout>
 
@@ -859,7 +905,8 @@
                                                 android:singleLine="true"
                                                 android:text="ID Card"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -887,7 +934,8 @@
                         android:layout_marginLeft="-2dp"
                         android:background="@drawable/shape_bar_profile_notify"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:id="@+id/back_btn"
@@ -896,13 +944,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -911,19 +961,21 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
-                                android:gravity="right"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
                                 android:ellipsize="end"
+                                android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:text="MENU"
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 

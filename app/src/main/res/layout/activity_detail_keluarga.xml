@@ -48,7 +48,8 @@
                                 android:layout_marginBottom="5dp"
                                 android:text="Nama Lengkap"
                                 android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:textSize="10dp"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/nama"
@@ -79,7 +80,8 @@
                                 android:layout_marginBottom="5dp"
                                 android:text="Tempat Lahir"
                                 android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:textSize="10dp"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/tempat_lahir"
@@ -111,7 +113,8 @@
                                 android:layout_marginBottom="5dp"
                                 android:text="Tanggal Lahir"
                                 android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:textSize="10dp"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/tanggal_lahir"
@@ -143,7 +146,8 @@
                                 android:layout_marginBottom="5dp"
                                 android:text="Jenis Kelamin"
                                 android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:textSize="10dp"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/jenis_kelamin"
@@ -175,7 +179,8 @@
                                 android:layout_marginBottom="5dp"
                                 android:text="Hubungan"
                                 android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:textSize="10dp"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/hubungan"
@@ -207,7 +212,8 @@
                                 android:layout_marginBottom="5dp"
                                 android:text="Status Pernikahan"
                                 android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:textSize="10dp"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/status_pernikahan"
@@ -239,7 +245,8 @@
                                 android:layout_marginBottom="5dp"
                                 android:text="Agama"
                                 android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:textSize="10dp"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/agama"
@@ -271,7 +278,8 @@
                                 android:layout_marginBottom="5dp"
                                 android:text="Status Bekerja"
                                 android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:textSize="10dp"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/status_bekerja"
@@ -414,16 +422,17 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:gravity="right"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
                                 android:ellipsize="end"
+                                android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:text="DETAIL KELUARGA"
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 

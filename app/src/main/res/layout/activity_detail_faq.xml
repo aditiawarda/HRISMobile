@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -1176,7 +1177,8 @@
                             android:text="Masih perlu bantuan?"
                             android:textColor="#808080"
                             android:textSize="14dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:ignore="TextSizeCheck" />
 
                         <TextView
                             android:id="@+id/hubungi_it"
@@ -1186,7 +1188,8 @@
                             android:text="Hubungi IT/EDP"
                             android:textColor="#B15B3B"
                             android:textSize="14dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -1206,7 +1209,8 @@
                         android:layout_marginLeft="-2dp"
                         android:background="@drawable/shape_bar_profile_notify"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
+                        android:layout_height="70dp"
+                        tools:ignore="VisualLintBounds">
 
                         <LinearLayout
                             android:id="@+id/back_btn"

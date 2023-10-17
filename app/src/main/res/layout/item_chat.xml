@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -8,7 +8,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:id="@+id/date_chat_part"
@@ -30,9 +31,10 @@
                     android:id="@+id/date_chat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Hari ini"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    android:text="Hari ini"/>
+                    tools:ignore="HardcodedText,TextContrastCheck" />
 
             </LinearLayout>
 
@@ -43,7 +45,8 @@
             android:gravity="right"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="RtlHardcoded">
 
             <LinearLayout
                 android:background="@drawable/shape_sender_chat"
@@ -65,14 +68,16 @@
                     android:layout_height="wrap_content"
                     android:textColor="#595959"
                     android:textSize="16dp"
-                    android:text=""/>
+                    android:text=""
+                    tools:ignore="SpUsage" />
 
                 <LinearLayout
                     android:gravity="bottom|right"
                     android:orientation="horizontal"
                     android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlHardcoded">
 
                     <LinearLayout
                         android:id="@+id/send_mark"
@@ -90,12 +95,13 @@
 
                     <TextView
                         android:id="@+id/time_sender"
-                        android:gravity="right"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="12:34"
                         android:textColor="#DE5A5A5A"
                         android:textSize="11dp"
-                        android:text="12:34"/>
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -108,7 +114,8 @@
             android:orientation="vertical"
             android:gravity="left"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="RtlHardcoded">
 
             <LinearLayout
                 android:background="@drawable/shape_receiver_chat"
@@ -130,7 +137,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="#595959"
                     android:textSize="16dp"
-                    android:text=""/>
+                    android:text=""
+                    tools:ignore="SpUsage" />
 
                 <TextView
                     android:id="@+id/time_reciever"
@@ -140,7 +148,8 @@
                     android:textColor="#DE5A5A5A"
                     android:layout_marginTop="3dp"
                     android:textSize="11dp"
-                    android:text=""/>
+                    android:text=""
+                    tools:ignore="SpUsage" />
 
             </LinearLayout>
 
