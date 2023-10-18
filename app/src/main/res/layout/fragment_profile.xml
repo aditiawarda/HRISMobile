@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -58,7 +59,8 @@
                                     android:singleLine="true"
                                     android:text="Profil"
                                     android:textColor="@color/white"
-                                    android:textSize="15dp" />
+                                    android:textSize="15dp"
+                                    tools:ignore="TextSizeCheck" />
 
                             </RelativeLayout>
 
@@ -101,7 +103,8 @@
                                             android:singleLine="true"
                                             android:text="Memuat data..."
                                             android:textColor="@color/white"
-                                            android:textSize="10dp" />
+                                            android:textSize="10dp"
+                                            tools:ignore="TextSizeCheck" />
 
                                         <TextView
                                             android:id="@+id/position_of_user"
@@ -112,7 +115,8 @@
                                             android:singleLine="true"
                                             android:text="Memuat data..."
                                             android:textColor="@color/white"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -455,7 +459,8 @@
                                     android:text="Info Saya"
                                     android:textColor="#E37146"
                                     android:textSize="13dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -498,14 +503,15 @@
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
+                                                android:layout_marginRight="28dp"
                                                 android:ellipsize="end"
+                                                android:gravity="left"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:gravity="left"
-                                                android:layout_marginRight="28dp"
                                                 android:text="Info Personal"
                                                 android:textColor="#CF811F"
-                                                android:textSize="13dp" />
+                                                android:textSize="13dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -586,14 +592,15 @@
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
+                                                android:layout_marginRight="28dp"
                                                 android:ellipsize="end"
+                                                android:gravity="left"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:gravity="left"
-                                                android:layout_marginRight="28dp"
                                                 android:text="Info Pekerjaan"
                                                 android:textColor="#CF811F"
-                                                android:textSize="13dp" />
+                                                android:textSize="13dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -665,14 +672,15 @@
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
+                                                android:layout_marginRight="28dp"
                                                 android:ellipsize="end"
+                                                android:gravity="left"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:gravity="left"
-                                                android:layout_marginRight="28dp"
                                                 android:text="Info Kontak Darurat"
                                                 android:textColor="#CF811F"
-                                                android:textSize="13dp" />
+                                                android:textSize="13dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -775,14 +783,15 @@
                                                 <TextView
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
+                                                    android:layout_marginRight="28dp"
                                                     android:ellipsize="end"
+                                                    android:gravity="left"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
-                                                    android:gravity="left"
-                                                    android:layout_marginRight="28dp"
                                                     android:text="Info Keluarga"
                                                     android:textColor="#CF811F"
-                                                    android:textSize="13dp" />
+                                                    android:textSize="13dp"
+                                                    tools:ignore="TextSizeCheck" />
 
                                             </LinearLayout>
 
@@ -854,14 +863,15 @@
                                                 <TextView
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
+                                                    android:layout_marginRight="28dp"
                                                     android:ellipsize="end"
+                                                    android:gravity="left"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
-                                                    android:gravity="left"
-                                                    android:layout_marginRight="28dp"
                                                     android:text="Info Pengalaman dan Pelatihan"
                                                     android:textColor="#CF811F"
-                                                    android:textSize="13dp" />
+                                                    android:textSize="13dp"
+                                                    tools:ignore="TextSizeCheck" />
 
                                             </LinearLayout>
 
@@ -1016,14 +1026,15 @@
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
+                                                android:layout_marginRight="28dp"
                                                 android:ellipsize="end"
+                                                android:gravity="left"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:gravity="left"
-                                                android:layout_marginRight="28dp"
                                                 android:text="Tanda Tangan Digital"
                                                 android:textColor="#CF811F"
-                                                android:textSize="13dp" />
+                                                android:textSize="13dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -1130,11 +1141,12 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@color/colorPrimaryDark"
                                     android:layout_marginLeft="7dp"
+                                    android:text="LOGOUT"
+                                    android:textColor="@color/colorPrimaryDark"
                                     android:textSize="13dp"
                                     android:textStyle="bold"
-                                    android:text="LOGOUT"/>
+                                    tools:ignore="TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -1150,12 +1162,13 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:textSize="12dp"
                                 android:ellipsize="end"
+                                android:gravity="center"
                                 android:maxLines="1"
+                                android:text="Versi 2.0.7"
                                 android:textColor="#1AB4FF"
-                                android:text="Versi 2.0.7"/>
+                                android:textSize="12dp"
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 

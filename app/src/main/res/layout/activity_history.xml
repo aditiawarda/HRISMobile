@@ -64,13 +64,14 @@
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:textSize="13dp"
                                             android:ellipsize="end"
                                             android:maxLines="1"
                                             android:singleLine="true"
+                                            android:text="RIWAYAT ABSENSI TERAKHIR"
                                             android:textColor="#B1670B"
+                                            android:textSize="13dp"
                                             android:textStyle="bold"
-                                            android:text="RIWAYAT ABSENSI TERAKHIR"/>
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -118,16 +119,17 @@
                                                 android:id="@+id/date_absen_tv"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:textColor="@color/white"
+                                                android:drawableLeft="@drawable/ic_baseline_date"
+                                                android:drawablePadding="10dp"
+                                                android:drawableTint="@color/white"
                                                 android:ellipsize="end"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:drawablePadding="10dp"
-                                                android:drawableTint="@color/white"
-                                                android:drawableLeft="@drawable/ic_baseline_date"
-                                                android:textStyle="bold"
+                                                android:text="---- - -- --"
+                                                android:textColor="@color/white"
                                                 android:textSize="12dp"
-                                                android:text="---- - -- --"/>
+                                                android:textStyle="bold"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -153,38 +155,40 @@
                                                     <TextView
                                                         android:id="@+id/shift_name"
                                                         android:layout_width="0dp"
-                                                        android:layout_weight=".50"
-                                                        android:layout_marginRight="2dp"
                                                         android:layout_height="wrap_content"
-                                                        android:ellipsize="end"
-                                                        android:maxLines="1"
-                                                        android:singleLine="true"
+                                                        android:layout_marginRight="2dp"
+                                                        android:layout_weight=".50"
                                                         android:drawableLeft="@drawable/ic_baseline_work_last_history"
                                                         android:drawablePadding="7dp"
                                                         android:drawableTint="#9E6216"
+                                                        android:ellipsize="end"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
                                                         android:text="---- - ----"
                                                         android:textColor="#9E6216"
                                                         android:textSize="12dp"
-                                                        android:textStyle="bold" />
+                                                        android:textStyle="bold"
+                                                        tools:ignore="TextSizeCheck" />
 
                                                     <TextView
                                                         android:id="@+id/shift_time"
                                                         android:layout_width="0dp"
-                                                        android:layout_weight=".50"
-                                                        android:gravity="right"
-                                                        android:layout_marginRight="2dp"
                                                         android:layout_height="wrap_content"
-                                                        android:ellipsize="end"
-                                                        android:maxLines="1"
-                                                        android:singleLine="true"
                                                         android:layout_alignParentRight="true"
+                                                        android:layout_marginRight="2dp"
+                                                        android:layout_weight=".50"
                                                         android:drawableRight="@drawable/ic_baseline_time_last_history"
                                                         android:drawablePadding="7dp"
                                                         android:drawableTint="#9E6216"
+                                                        android:ellipsize="end"
+                                                        android:gravity="right"
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
                                                         android:text="-- : -- - -- : --"
                                                         android:textColor="#9E6216"
                                                         android:textSize="12dp"
-                                                        android:textStyle="bold" />
+                                                        android:textStyle="bold"
+                                                        tools:ignore="TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -209,18 +213,19 @@
                                                 <TextView
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
-                                                    android:textStyle="bold"
-                                                    android:paddingTop="7dp"
-                                                    android:layout_marginTop="1dp"
                                                     android:layout_marginLeft="1dp"
+                                                    android:layout_marginTop="1dp"
                                                     android:layout_marginRight="1dp"
-                                                    android:paddingBottom="7dp"
-                                                    android:paddingLeft="15dp"
-                                                    android:paddingRight="15dp"
                                                     android:background="#4143C86F"
-                                                    android:textSize="11dp"
+                                                    android:paddingLeft="15dp"
+                                                    android:paddingTop="7dp"
+                                                    android:paddingRight="15dp"
+                                                    android:paddingBottom="7dp"
+                                                    android:text="Check In"
                                                     android:textColor="#147C19"
-                                                    android:text="Check In"/>
+                                                    android:textSize="11dp"
+                                                    android:textStyle="bold"
+                                                    tools:ignore="TextContrastCheck,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="match_parent"
@@ -230,52 +235,55 @@
                                                     android:layout_marginBottom="8dp"/>
 
                                                 <TextView
-                                                    android:layout_marginLeft="15dp"
-                                                    android:layout_marginRight="15dp"
                                                     android:id="@+id/date_checkin_tv"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="15dp"
+                                                    android:layout_marginRight="15dp"
+                                                    android:layout_marginBottom="5dp"
                                                     android:drawableLeft="@drawable/ic_baseline_date_range"
                                                     android:drawablePadding="7dp"
                                                     android:ellipsize="end"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:textSize="11dp"
+                                                    android:text="---- - -- - --"
                                                     android:textColor="#696969"
-                                                    android:text="---- - -- - --"/>
+                                                    android:textSize="11dp"
+                                                    tools:ignore="TextSizeCheck" />
 
                                                 <TextView
-                                                    android:layout_marginLeft="15dp"
-                                                    android:layout_marginRight="15dp"
                                                     android:id="@+id/time_checkin_tv"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="15dp"
+                                                    android:layout_marginRight="15dp"
+                                                    android:layout_marginBottom="5dp"
                                                     android:drawableLeft="@drawable/ic_baseline_time"
                                                     android:drawablePadding="7dp"
                                                     android:ellipsize="end"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:textSize="11dp"
+                                                    android:text="-- : -- : -- ---"
                                                     android:textColor="#696969"
-                                                    android:text="-- : -- : -- ---"/>
+                                                    android:textSize="11dp"
+                                                    tools:ignore="TextSizeCheck" />
 
                                                 <TextView
-                                                    android:layout_marginLeft="15dp"
-                                                    android:layout_marginRight="15dp"
-                                                    android:layout_marginBottom="10dp"
                                                     android:id="@+id/checkin_point_tv"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="15dp"
+                                                    android:layout_marginRight="15dp"
+                                                    android:layout_marginBottom="10dp"
                                                     android:drawableLeft="@drawable/ic_baseline_place"
                                                     android:drawablePadding="7dp"
                                                     android:ellipsize="end"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
-                                                    android:textSize="11dp"
+                                                    android:text="-"
                                                     android:textColor="#696969"
-                                                    android:text="-"/>
+                                                    android:textSize="11dp"
+                                                    tools:ignore="TextSizeCheck" />
 
                                             </LinearLayout>
 
@@ -290,18 +298,19 @@
                                                 <TextView
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
-                                                    android:textStyle="bold"
-                                                    android:paddingTop="7dp"
-                                                    android:layout_marginTop="1dp"
                                                     android:layout_marginLeft="1dp"
+                                                    android:layout_marginTop="1dp"
                                                     android:layout_marginRight="1dp"
-                                                    android:paddingBottom="7dp"
-                                                    android:paddingLeft="15dp"
-                                                    android:paddingRight="15dp"
                                                     android:background="#40FF8080"
-                                                    android:textSize="11dp"
+                                                    android:paddingLeft="15dp"
+                                                    android:paddingTop="7dp"
+                                                    android:paddingRight="15dp"
+                                                    android:paddingBottom="7dp"
+                                                    android:text="Check Out"
                                                     android:textColor="@color/red"
-                                                    android:text="Check Out"/>
+                                                    android:textSize="11dp"
+                                                    android:textStyle="bold"
+                                                    tools:ignore="TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="match_parent"
@@ -311,52 +320,55 @@
                                                     android:layout_marginBottom="8dp" />
 
                                                 <TextView
-                                                    android:layout_marginLeft="15dp"
-                                                    android:layout_marginRight="15dp"
                                                     android:id="@+id/date_checkout_tv"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="15dp"
+                                                    android:layout_marginRight="15dp"
+                                                    android:layout_marginBottom="5dp"
                                                     android:drawableLeft="@drawable/ic_baseline_date_range"
                                                     android:drawablePadding="7dp"
                                                     android:ellipsize="end"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:textSize="11dp"
+                                                    android:text="---- - -- - --"
                                                     android:textColor="#696969"
-                                                    android:text="---- - -- - --"/>
+                                                    android:textSize="11dp"
+                                                    tools:ignore="TextSizeCheck" />
 
                                                 <TextView
-                                                    android:layout_marginLeft="15dp"
-                                                    android:layout_marginRight="15dp"
                                                     android:id="@+id/time_checkout_tv"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="15dp"
+                                                    android:layout_marginRight="15dp"
+                                                    android:layout_marginBottom="5dp"
                                                     android:drawableLeft="@drawable/ic_baseline_time"
                                                     android:drawablePadding="7dp"
                                                     android:ellipsize="end"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:textSize="11dp"
+                                                    android:text="-- : -- : -- ---"
                                                     android:textColor="#696969"
-                                                    android:text="-- : -- : -- ---"/>
+                                                    android:textSize="11dp"
+                                                    tools:ignore="TextSizeCheck" />
 
                                                 <TextView
-                                                    android:layout_marginLeft="15dp"
-                                                    android:layout_marginRight="15dp"
-                                                    android:layout_marginBottom="10dp"
                                                     android:id="@+id/checkout_point_tv"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="15dp"
+                                                    android:layout_marginRight="15dp"
+                                                    android:layout_marginBottom="10dp"
                                                     android:drawableLeft="@drawable/ic_baseline_place"
                                                     android:drawablePadding="7dp"
                                                     android:ellipsize="end"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
-                                                    android:textSize="11dp"
+                                                    android:text="-"
                                                     android:textColor="#696969"
-                                                    android:text="-"/>
+                                                    android:textSize="11dp"
+                                                    tools:ignore="TextSizeCheck" />
 
                                             </LinearLayout>
 
@@ -384,17 +396,18 @@
                                     android:gravity="center">
 
                                     <TextView
-                                        android:drawableLeft="@drawable/ic_baseline_date"
-                                        android:drawablePadding="7dp"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textStyle="bold"
+                                        android:drawableLeft="@drawable/ic_baseline_date"
+                                        android:drawablePadding="7dp"
                                         android:ellipsize="end"
                                         android:maxLines="1"
                                         android:singleLine="true"
-                                        android:textSize="13dp"
+                                        android:text="FILTER RIWAYAT ABSENSI"
                                         android:textColor="@color/white"
-                                        android:text="FILTER RIWAYAT ABSENSI"/>
+                                        android:textSize="13dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -494,20 +507,22 @@
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
+                                            android:text="Panduan :"
                                             android:textColor="#C68D46"
                                             android:textSize="12dp"
                                             android:textStyle="bold"
-                                            android:text="Panduan :"/>
+                                            tools:ignore="TextSizeCheck" />
 
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="10dp"
+                                            android:layout_marginTop="7dp"
+                                            android:lineSpacingExtra="2.5dp"
+                                            android:text="Anda dapat melihat riwayat absensi berdasarkan tanggal yang dipilih (filter tanggal), data yang tampil adalah data riwayat absensi 1 minggu."
                                             android:textColor="#C68D46"
                                             android:textSize="12dp"
-                                            android:lineSpacingExtra="2.5dp"
-                                            android:layout_marginTop="7dp"
-                                            android:text="Anda dapat melihat riwayat absensi berdasarkan tanggal yang dipilih (filter tanggal), data yang tampil adalah data riwayat absensi 1 minggu."/>
+                                            tools:ignore="VisualLintLongText,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -691,16 +706,17 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:gravity="right"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
                                 android:ellipsize="end"
+                                android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:text="RIWAYAT ABSENSI"
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 

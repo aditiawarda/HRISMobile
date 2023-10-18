@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,7 +26,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    tools:ignore="UselessParent">
 
                     <LinearLayout
                         android:id="@+id/gap_header"
@@ -40,7 +41,8 @@
                             android:foregroundGravity="center"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:src="@drawable/glogo_4" />
+                            android:src="@drawable/glogo_4"
+                            tools:ignore="ContentDescription" />
 
                         <LinearLayout
                             android:background="#6BC5907C"
@@ -53,7 +55,8 @@
                             android:foregroundGravity="center"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:src="@drawable/suma_logo" />
+                            android:src="@drawable/suma_logo"
+                            tools:ignore="ContentDescription" />
 
                     </LinearLayout>
 
@@ -70,7 +73,8 @@
                             android:foregroundGravity="center"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:src="@drawable/logo_erlass_2" />
+                            android:src="@drawable/logo_erlass_2"
+                            tools:ignore="ContentDescription" />
 
                         <LinearLayout
                             android:background="#6BC5907C"
@@ -83,7 +87,8 @@
                             android:foregroundGravity="center"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:src="@drawable/logo_erlass" />
+                            android:src="@drawable/logo_erlass"
+                            tools:ignore="ContentDescription" />
 
                     </LinearLayout>
 
@@ -98,7 +103,8 @@
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:foregroundGravity="center"
-                            android:src="@drawable/loading_prog_2" />
+                            android:src="@drawable/loading_prog_2"
+                            tools:ignore="ContentDescription,ImageContrastCheck" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -116,7 +122,8 @@
                                 android:textAlignment="center"
                                 android:textColor="#F15A0A"
                                 android:textSize="18dp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:ignore="SpUsage" />
 
                             <TextView
                                 android:id="@+id/nik_karyawan"
@@ -127,7 +134,8 @@
                                 android:textAlignment="center"
                                 android:textColor="#000"
                                 android:textSize="18dp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:ignore="SpUsage" />
 
                         </LinearLayout>
 
@@ -157,7 +165,8 @@
                                 android:textAlignment="center"
                                 android:textColor="#00659C"
                                 android:textSize="14dp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -165,7 +174,8 @@
                                 android:text="Web &amp; Sheetfed Offset Printing"
                                 android:textAlignment="center"
                                 android:textColor="#000"
-                                android:textSize="14dp" />
+                                android:textSize="14dp"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -173,7 +183,8 @@
                                 android:text="Prepress | Press | Post Press | Publishing"
                                 android:textAlignment="center"
                                 android:textColor="#000"
-                                android:textSize="12dp" />
+                                android:textSize="12dp"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -186,7 +197,8 @@
                                     android:layout_width="55dp"
                                     android:layout_height="4dp"
                                     android:layout_marginRight="2dp"
-                                    android:background="#448AFF" />
+                                    android:background="#448AFF"
+                                    tools:ignore="RtlHardcoded" />
 
                                 <LinearLayout
                                     android:layout_width="55dp"
@@ -206,7 +218,8 @@
                                     android:layout_width="55dp"
                                     android:layout_height="4dp"
                                     android:layout_marginLeft="2dp"
-                                    android:background="#7A7675" />
+                                    android:background="#7A7675"
+                                    tools:ignore="RtlHardcoded" />
 
                             </LinearLayout>
 
@@ -226,7 +239,8 @@
                                 android:textAlignment="center"
                                 android:textColor="#00659C"
                                 android:textSize="14dp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,SpUsage" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -234,7 +248,8 @@
                                 android:text="KB, TK, SD, &amp; Pusat Kreatif Anak"
                                 android:textAlignment="center"
                                 android:textColor="#000"
-                                android:textSize="13dp" />
+                                android:textSize="13dp"
+                                tools:ignore="HardcodedText,SpUsage" />
 
                         </LinearLayout>
 
@@ -259,7 +274,8 @@
                 android:background="@drawable/shape_btn_capture"
                 android:gravity="center"
                 android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="10dp"
+                tools:ignore="UselessParent">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -270,7 +286,8 @@
                     android:text="UNDUH ID CARD"
                     android:textColor="@color/white"
                     android:textSize="13dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
             </LinearLayout>
 
@@ -282,19 +299,21 @@
             android:paddingLeft="76dp"
             android:paddingRight="30dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="RtlHardcoded">
 
             <TextView
-                android:gravity="right"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:ellipsize="end"
+                android:gravity="right"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="ID CARD DIGITAL"
                 android:textColor="@color/white"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
         </LinearLayout>
 
@@ -305,13 +324,15 @@
             android:layout_width="33dp"
             android:layout_height="33dp"
             android:gravity="center"
-            android:background="@drawable/shape_back_2">
+            android:background="@drawable/shape_back_2"
+            tools:ignore="RtlHardcoded">
 
             <TextView
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginRight="1.5dp"
-                android:background="@drawable/ic_baseline_chevron_back"/>
+                android:background="@drawable/ic_baseline_chevron_back"
+                tools:ignore="RtlHardcoded" />
 
         </LinearLayout>
 

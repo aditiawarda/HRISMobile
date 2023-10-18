@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -45,10 +45,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="-1dp"
+                        android:text="H  R  I  S     M  O  B  I  L  E    G  E  L  O  R  A"
+                        android:textColor="@color/white"
                         android:textSize="9dp"
                         android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:text="H  R  I  S     M  O  B  I  L  E    G  E  L  O  R  A"/>
+                        tools:ignore="TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -92,7 +93,8 @@
                             android:textColor="@color/white"
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
-                            android:textSize="17dp" />
+                            android:textSize="17dp"
+                            tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                         <TextView
                             android:id="@+id/namaTV"
@@ -102,20 +104,21 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="30dp"
                             android:layout_marginBottom="10dp"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:singleLine="true"
                             android:background="@drawable/shape_feel_2"
+                            android:ellipsize="end"
                             android:inputType="number"
+                            android:maxLines="1"
                             android:paddingLeft="20dp"
                             android:paddingTop="10dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="10dp"
+                            android:singleLine="true"
                             android:text="Nama Karyawan"
                             android:textColor="@color/white"
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
-                            android:textSize="17dp" />
+                            android:textSize="17dp"
+                            tools:ignore="TouchTargetSizeCheck" />
 
                         <EditText
                             android:id="@+id/passwordED"
@@ -135,7 +138,8 @@
                             android:textColor="@color/white"
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
-                            android:textSize="17dp" />
+                            android:textSize="17dp"
+                            tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                         <EditText
                             android:id="@+id/repasswordED"
@@ -155,7 +159,8 @@
                             android:textColor="@color/white"
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
-                            android:textSize="17dp" />
+                            android:textSize="17dp"
+                            tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -240,7 +245,8 @@
                                 android:text="DAFTAR"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textSize="13dp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -277,7 +283,8 @@
                                     android:text="Login"
                                     android:textColor="@color/white"
                                     android:textSize="15dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -317,20 +324,22 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:textSize="9dp"
-                        android:textColor="@color/colorPrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Layanan"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="9dp"
                         android:textStyle="bold"
-                        android:text="Layanan" />
+                        tools:ignore="TextSizeCheck" />
 
                     <TextView
-                        android:textSize="9dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pengaduan" />
+                        android:text="Pengaduan"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="9dp"
+                        android:textStyle="bold"
+                        tools:ignore="TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -361,12 +370,13 @@
             android:gravity="bottom|center">
 
             <TextView
-                android:layout_marginBottom="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="HRIS Mobile Gelora v 2.0.7"
                 android:textColor="#CBFFFFFF"
                 android:textSize="13dp"
-                android:text="HRIS Mobile Gelora v 2.0.7"/>
+                tools:ignore="TextSizeCheck" />
 
         </LinearLayout>
 

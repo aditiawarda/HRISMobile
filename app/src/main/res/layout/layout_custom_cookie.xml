@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cookie"
     android:layout_width="match_parent"
@@ -20,14 +20,15 @@
         android:paddingBottom="12dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints,UselessParent">
 
         <LinearLayout
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginRight="15dp"
             android:background="@drawable/warning_connection_ss"
-            android:orientation="vertical"/>
+            android:orientation="vertical"
+            tools:ignore="RtlHardcoded" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,22 +40,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
                 android:text="Perhatian"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="15dp"
                 android:textStyle="bold"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/colorPrimaryDark"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="HardcodedText,MissingConstraints,SpUsage,TextSizeCheck" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Koneksi anda terputus!"
-                android:textSize="14dp"
-                android:fontFamily="@font/roboto"
                 android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto"
+                android:text="Koneksi anda terputus!"
                 android:textColor="@color/colorPrimaryDark"
-                tools:ignore="MissingConstraints" />
+                android:textSize="14dp"
+                tools:ignore="HardcodedText,MissingConstraints,SpUsage,TextContrastCheck,TextSizeCheck" />
 
         </LinearLayout>
 

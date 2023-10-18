@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -100,19 +101,21 @@
                                                 android:id="@+id/nik_karyawan_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="13dp"
+                                                android:text="3186150321"
                                                 android:textColor="@color/white"
-                                                android:text="3186150321"/>
+                                                android:textSize="13dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                             <TextView
                                                 android:id="@+id/detail_karyawan_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="12dp"
-                                                android:textColor="@color/white"
                                                 android:layout_marginTop="5dp"
                                                 android:layout_marginBottom="5dp"
-                                                android:text="Memuat data..."/>
+                                                android:text="Memuat data..."
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -128,10 +131,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Tanggal Masuk :"
                                         android:textColor="#696969"
-                                        android:text="Tanggal Masuk :"/>
+                                        android:textSize="12dp"
+                                        tools:ignore="TextSizeCheck,TextSizeCheck" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -150,7 +154,8 @@
                                             android:text="Memuat data..."
                                             android:textColor="#B15735"
                                             android:textSize="13dp"
-                                            android:textStyle="bold" />
+                                            android:textStyle="bold"
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -164,10 +169,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Tanggal Keluar :"
                                         android:textColor="#696969"
-                                        android:text="Tanggal Keluar :"/>
+                                        android:textSize="12dp"
+                                        tools:ignore="TextSizeCheck" />
 
                                     <LinearLayout
                                         android:id="@+id/resign_date_btn"
@@ -232,10 +238,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="13dp"
+                                        android:text="LAMPIRAN SERAH TERIMA"
                                         android:textColor="#C3C3C3"
+                                        android:textSize="13dp"
                                         android:textStyle="bold"
-                                        android:text="LAMPIRAN SERAH TERIMA"/>
+                                        tools:ignore="TextSizeCheck" />
 
                                     <LinearLayout
                                         android:orientation="vertical"
@@ -255,28 +262,31 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="14dp"
                                         android:layout_marginTop="5dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Tugas/Pekerjaan :"
                                         android:textColor="#696969"
+                                        android:textSize="14dp"
                                         android:textStyle="bold"
-                                        android:text="Tugas/Pekerjaan :"/>
+                                        tools:ignore="TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="10dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="(Softcopy, Laporan, Seragam Kerja, Safety Shoes, Kunci Loker)"
                                         android:textColor="#696969"
-                                        android:text="(Softcopy, Laporan, Seragam Kerja, Safety Shoes, Kunci Loker)"/>
+                                        android:textSize="10dp"
+                                        tools:ignore="TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="9dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Mohon dijadikan 1 file PDF"
                                         android:textColor="#BA4A4A"
-                                        android:text="Mohon dijadikan 1 file PDF"/>
+                                        android:textSize="9dp"
+                                        tools:ignore="TextSizeCheck" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -325,14 +335,15 @@
                                                         android:id="@+id/st_1_file_tv"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
-                                                        android:textColor="#B15735"
-                                                        android:textSize="13dp"
                                                         android:ellipsize="end"
                                                         android:gravity="left"
                                                         android:maxLines="1"
                                                         android:singleLine="true"
+                                                        android:text="Unggah PDF..."
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
                                                         android:textStyle="bold"
-                                                        android:text="Unggah PDF..."/>
+                                                        tools:ignore="TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -375,28 +386,31 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="14dp"
                                         android:layout_marginTop="5dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Kendaraan :"
                                         android:textColor="#696969"
+                                        android:textSize="14dp"
                                         android:textStyle="bold"
-                                        android:text="Kendaraan :"/>
+                                        tools:ignore="TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="10dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="(Mobil, Motor)"
                                         android:textColor="#696969"
-                                        android:text="(Mobil, Motor)"/>
+                                        android:textSize="10dp"
+                                        tools:ignore="TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="9dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Mohon dijadikan 1 file PDF"
                                         android:textColor="#BA4A4A"
-                                        android:text="Mohon dijadikan 1 file PDF"/>
+                                        android:textSize="9dp"
+                                        tools:ignore="TextSizeCheck" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -445,14 +459,15 @@
                                                         android:id="@+id/st_2_file_tv"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
-                                                        android:textColor="#B15735"
-                                                        android:textSize="13dp"
                                                         android:ellipsize="end"
                                                         android:gravity="left"
                                                         android:maxLines="1"
                                                         android:singleLine="true"
+                                                        android:text="Unggah PDF..."
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
                                                         android:textStyle="bold"
-                                                        android:text="Unggah PDF..."/>
+                                                        tools:ignore="TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -495,28 +510,31 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="14dp"
                                         android:layout_marginTop="5dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Fasilitas IT :"
                                         android:textColor="#696969"
+                                        android:textSize="14dp"
                                         android:textStyle="bold"
-                                        android:text="Fasilitas IT :"/>
+                                        tools:ignore="TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="10dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="(Notebook, Email)"
                                         android:textColor="#696969"
-                                        android:text="(Notebook, Email)"/>
+                                        android:textSize="10dp"
+                                        tools:ignore="TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="9dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Mohon dijadikan 1 file PDF"
                                         android:textColor="#BA4A4A"
-                                        android:text="Mohon dijadikan 1 file PDF"/>
+                                        android:textSize="9dp"
+                                        tools:ignore="TextSizeCheck" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -565,14 +583,15 @@
                                                         android:id="@+id/st_3_file_tv"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
-                                                        android:textColor="#B15735"
-                                                        android:textSize="13dp"
                                                         android:ellipsize="end"
                                                         android:gravity="left"
                                                         android:maxLines="1"
                                                         android:singleLine="true"
+                                                        android:text="Unggah PDF..."
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
                                                         android:textStyle="bold"
-                                                        android:text="Unggah PDF..."/>
+                                                        tools:ignore="TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -615,20 +634,22 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="14dp"
                                         android:layout_marginTop="5dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="Keuangan :"
                                         android:textColor="#696969"
+                                        android:textSize="14dp"
                                         android:textStyle="bold"
-                                        android:text="Keuangan :"/>
+                                        tools:ignore="TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="10dp"
                                         android:layout_marginBottom="5dp"
+                                        android:text="(Pinjaman Perusahaan)"
                                         android:textColor="#696969"
-                                        android:text="(Pinjaman Perusahaan)"/>
+                                        android:textSize="10dp"
+                                        tools:ignore="TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -1183,7 +1204,8 @@
                                         android:hint=""
                                         android:textSize="14dp"
                                         android:textColorHint="#595959"
-                                        android:textColorHighlight="#FFE1BC"/>
+                                        android:textColorHighlight="#FFE1BC"
+                                        tools:ignore="VisualLintTextFieldSize" />
 
                                 </LinearLayout>
 
@@ -1338,16 +1360,17 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:gravity="right"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="FORM EXIT CLEARANCE"
                                 android:ellipsize="end"
+                                android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
+                                android:text="FORM EXIT CLEARANCE"
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 

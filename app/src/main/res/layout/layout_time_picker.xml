@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -30,7 +30,8 @@
             android:paddingLeft="20dp"
             android:paddingRight="16dp"
             android:paddingTop="23dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="RtlHardcoded">
 
             <LinearLayout
                 android:id="@+id/attantion_part_hadir"
@@ -51,7 +52,8 @@
                     android:gravity="center"
                     android:text="Perhatian, format input adalah 24 jam. Sisi kiri untuk input jam dan sisi kanan untuk input menit."
                     android:textColor="#C68D46"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
             </LinearLayout>
 
@@ -64,7 +66,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
 
                 <LinearLayout
                     android:id="@+id/close_btn"
@@ -77,11 +80,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textSize="13dp"
                         android:fontFamily="@font/roboto"
+                        android:text="BATAL"
                         android:textColor="@color/white"
-                        android:text="BATAL"/>
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -97,11 +101,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textSize="13dp"
                         android:fontFamily="@font/roboto"
+                        android:text="OK"
                         android:textColor="@color/white"
-                        android:text="OK"/>
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 </LinearLayout>
 

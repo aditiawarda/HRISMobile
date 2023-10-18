@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -55,14 +56,16 @@
                                     android:layout_width="100dp"
                                     android:layout_height="19dp"
                                     android:scaleType="fitXY"
-                                    android:src="@drawable/hris_text_logo" />
+                                    android:src="@drawable/hris_text_logo"
+                                    tools:ignore="ContentDescription" />
 
                                 <LinearLayout
                                     android:orientation="horizontal"
                                     android:layout_marginLeft="11dp"
                                     android:layout_alignParentRight="true"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    tools:ignore="RtlHardcoded">
 
                                     <RelativeLayout
                                         android:layout_width="wrap_content"
@@ -161,7 +164,8 @@
                                 android:layout_marginTop="20dp"
                                 android:paddingRight="2dp"
                                 android:gravity="bottom|right"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
@@ -194,7 +198,8 @@
                                             android:singleLine="true"
                                             android:text="Memuat data..."
                                             android:textColor="@color/white"
-                                            android:textSize="10dp" />
+                                            android:textSize="10dp"
+                                            tools:ignore="TextSizeCheck,TextSizeCheck" />
 
                                         <TextView
                                             android:id="@+id/position_of_user"
@@ -205,7 +210,8 @@
                                             android:singleLine="true"
                                             android:text="Memuat data..."
                                             android:textColor="@color/white"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -228,7 +234,8 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:background="@drawable/shape_avatar"
-                                                    android:gravity="center">
+                                                    android:gravity="center"
+                                                    tools:ignore="UselessParent">
 
                                                     <androidx.cardview.widget.CardView
                                                         android:layout_width="match_parent"
@@ -288,15 +295,16 @@
 
                                 <TextView
                                     android:id="@+id/current_address"
-                                    android:textSize="11dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
                                     android:layout_marginLeft="4dp"
                                     android:ellipsize="end"
                                     android:maxLines="1"
                                     android:singleLine="true"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:text="Memuat data lokasi terkini..."
                                     android:textColor="#90B85B3E"
-                                    android:text="Memuat data lokasi terkini..." />
+                                    android:textSize="11dp"
+                                    tools:ignore="TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -334,13 +342,15 @@
                                             android:layout_marginRight="7dp"
                                             android:layout_marginLeft="5dp"
                                             android:gravity="center"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            tools:ignore="RtlHardcoded">
 
                                             <ImageView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="50dp"
                                                 android:scaleType="fitXY"
-                                                android:src="@drawable/birthday_ic" />
+                                                android:src="@drawable/birthday_ic"
+                                                tools:ignore="ContentDescription" />
 
                                         </LinearLayout>
 
@@ -351,7 +361,8 @@
                                             android:layout_marginTop="6dp"
                                             android:layout_marginBottom="9dp"
                                             android:layout_marginRight="35dp"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:id="@+id/ulang_tahun_to"
@@ -431,13 +442,15 @@
                                     android:layout_marginRight="7dp"
                                     android:layout_marginLeft="5dp"
                                     android:gravity="center"
-                                    android:orientation="vertical">
+                                    android:orientation="vertical"
+                                    tools:ignore="RtlHardcoded">
 
                                     <ImageView
                                         android:layout_width="match_parent"
                                         android:layout_height="50dp"
                                         android:scaleType="fitXY"
-                                        android:src="@drawable/suma_good" />
+                                        android:src="@drawable/suma_good"
+                                        tools:ignore="ContentDescription" />
 
                                 </LinearLayout>
 
@@ -496,13 +509,15 @@
                                             android:layout_marginRight="7dp"
                                             android:layout_marginLeft="5dp"
                                             android:gravity="center"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            tools:ignore="RtlHardcoded">
 
                                             <ImageView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="50dp"
                                                 android:scaleType="fitXY"
-                                                android:src="@drawable/pengumuman_ic" />
+                                                android:src="@drawable/pengumuman_ic"
+                                                tools:ignore="ContentDescription" />
 
                                         </LinearLayout>
 
@@ -513,7 +528,8 @@
                                             android:layout_marginTop="6dp"
                                             android:layout_marginBottom="9dp"
                                             android:layout_marginRight="35dp"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:id="@+id/judul_pengumuman"
@@ -549,7 +565,8 @@
                                         android:layout_marginTop="-5dp"
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/ic_baseline_arrow_right_pengumuman"
@@ -582,7 +599,8 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    tools:ignore="DisableBaselineAlignment,UselessParent">
 
                                     <LinearLayout
                                         android:layout_width="0dp"
@@ -603,7 +621,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_absen" />
+                                                android:src="@drawable/icon_absen"
+                                                tools:ignore="ContentDescription" />
 
                                         </LinearLayout>
 
@@ -617,7 +636,8 @@
                                             android:singleLine="true"
                                             android:text="Absensi"
                                             android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -641,7 +661,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_izin" />
+                                                android:src="@drawable/icon_izin"
+                                                tools:ignore="ContentDescription" />
 
                                         </LinearLayout>
 
@@ -655,7 +676,8 @@
                                             android:singleLine="true"
                                             android:text="Izin"
                                             android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -686,7 +708,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_cuti" />
+                                                    android:src="@drawable/icon_cuti"
+                                                    tools:ignore="ContentDescription,TooManyViews" />
 
                                             </LinearLayout>
 
@@ -723,7 +746,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_pengaduan" />
+                                                    android:src="@drawable/icon_pengaduan"
+                                                    tools:ignore="ContentDescription" />
 
                                             </LinearLayout>
 
@@ -737,7 +761,8 @@
                                                 android:singleLine="true"
                                                 android:text="Pengaduan"
                                                 android:textColor="#515151"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="TextSizeCheck,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -762,7 +787,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_fingerscan" />
+                                                android:src="@drawable/icon_fingerscan"
+                                                tools:ignore="ContentDescription" />
 
                                         </LinearLayout>
 
@@ -776,7 +802,8 @@
                                             android:singleLine="true"
                                             android:text="Fingerscan"
                                             android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -793,7 +820,8 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    tools:ignore="DisableBaselineAlignment,UselessParent">
 
                                     <LinearLayout
                                         android:layout_width="0dp"
@@ -821,7 +849,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_id_card" />
+                                                    android:src="@drawable/icon_id_card"
+                                                    tools:ignore="ContentDescription" />
 
                                             </LinearLayout>
 
@@ -867,7 +896,8 @@
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:scaleType="fitCenter"
-                                                            android:src="@drawable/icon_sdm" />
+                                                            android:src="@drawable/icon_sdm"
+                                                            tools:ignore="ContentDescription" />
 
                                                     </LinearLayout>
 
@@ -881,7 +911,8 @@
                                                         android:singleLine="true"
                                                         android:text="SDM"
                                                         android:textColor="#515151"
-                                                        android:textSize="12dp" />
+                                                        android:textSize="12dp"
+                                                        tools:ignore="TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -936,7 +967,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_signature" />
+                                                android:src="@drawable/icon_signature"
+                                                tools:ignore="ContentDescription" />
 
                                         </LinearLayout>
 
@@ -950,7 +982,8 @@
                                             android:singleLine="true"
                                             android:text="Signature"
                                             android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -990,7 +1023,8 @@
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:scaleType="fitCenter"
-                                                            android:src="@drawable/icon_exit_clearance" />
+                                                            android:src="@drawable/icon_exit_clearance"
+                                                            tools:ignore="ContentDescription" />
 
                                                     </LinearLayout>
 
@@ -1004,7 +1038,8 @@
                                                         android:singleLine="true"
                                                         android:text="Exit - C"
                                                         android:textColor="#515151"
-                                                        android:textSize="12dp" />
+                                                        android:textSize="12dp"
+                                                        tools:ignore="TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -1056,7 +1091,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_calendar" />
+                                                    android:src="@drawable/icon_calendar"
+                                                    tools:ignore="ContentDescription" />
 
                                             </LinearLayout>
 
@@ -1095,7 +1131,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_lainnya" />
+                                                android:src="@drawable/icon_lainnya"
+                                                tools:ignore="ContentDescription" />
 
                                         </LinearLayout>
 
@@ -1109,7 +1146,8 @@
                                             android:singleLine="true"
                                             android:text="Lainnya"
                                             android:textColor="#515151"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -1227,7 +1265,8 @@
                                     android:layout_height="match_parent"
                                     android:orientation="horizontal"
                                     android:paddingLeft="5dp"
-                                    android:paddingRight="5dp">
+                                    android:paddingRight="5dp"
+                                    tools:ignore="DisableBaselineAlignment">
 
                                     <LinearLayout
                                         android:layout_width="0dp"
@@ -1244,7 +1283,8 @@
                                             android:text="Pengumuman"
                                             android:textColor="#E37146"
                                             android:textSize="13dp"
-                                            android:textStyle="bold" />
+                                            android:textStyle="bold"
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -1264,7 +1304,8 @@
                                             android:singleLine="true"
                                             android:text="Lihat Semua"
                                             android:textColor="#1895CD"
-                                            android:textSize="13dp" />
+                                            android:textSize="13dp"
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -1359,7 +1400,8 @@
                                             android:textAlignment="center"
                                             android:textColor="#E1BB8A"
                                             android:textSize="12dp"
-                                            android:textStyle="bold" />
+                                            android:textStyle="bold"
+                                            tools:ignore="TextSizeCheck" />
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -1367,7 +1409,8 @@
                                             android:text="Tunggu beberapa saat"
                                             android:textAlignment="center"
                                             android:textColor="#ECC28D"
-                                            android:textSize="10dp" />
+                                            android:textSize="10dp"
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -1422,7 +1465,8 @@
                                                 android:singleLine="true"
                                                 android:text="00/00/0000"
                                                 android:textColor="@color/white"
-                                                android:textSize="11dp" />
+                                                android:textSize="11dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -1440,7 +1484,8 @@
                                                 android:layout_marginRight="1dp"
                                                 android:text="00"
                                                 android:textColor="@color/white"
-                                                android:textSize="11dp" />
+                                                android:textSize="11dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -1448,7 +1493,8 @@
                                                 android:layout_marginBottom="1dp"
                                                 android:text=":"
                                                 android:textColor="@color/white"
-                                                android:textSize="11dp" />
+                                                android:textSize="11dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                             <TextView
                                                 android:id="@+id/m_time"
@@ -1458,7 +1504,8 @@
                                                 android:layout_marginRight="1dp"
                                                 android:text="00"
                                                 android:textColor="@color/white"
-                                                android:textSize="11dp" />
+                                                android:textSize="11dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -1466,7 +1513,8 @@
                                                 android:layout_marginBottom="1dp"
                                                 android:text=":"
                                                 android:textColor="@color/white"
-                                                android:textSize="11dp" />
+                                                android:textSize="11dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                             <TextView
                                                 android:id="@+id/s_time"
@@ -1475,7 +1523,8 @@
                                                 android:layout_marginLeft="1dp"
                                                 android:text="00"
                                                 android:textColor="@color/white"
-                                                android:textSize="11dp" />
+                                                android:textSize="11dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                             <TextView
                                                 android:layout_width="13dp"
@@ -1526,7 +1575,8 @@
                                             android:layout_height="wrap_content"
                                             android:text="Memuat data..."
                                             android:textColor="@color/white"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="SpUsage,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -1538,7 +1588,8 @@
                                         android:gravity="center|right"
                                         android:orientation="vertical"
                                         android:paddingRight="20dp"
-                                        android:paddingBottom="11dp">
+                                        android:paddingBottom="11dp"
+                                        tools:ignore="RtlSymmetry">
 
                                         <LinearLayout
                                             android:layout_width="wrap_content"
@@ -1573,14 +1624,16 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="Terasa seperti --°"
                                                 android:textColor="@color/white"
-                                                android:textSize="11dp" />
+                                                android:textSize="11dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:text="C"
                                                 android:textColor="@color/white"
-                                                android:textSize="8dp" />
+                                                android:textSize="8dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 

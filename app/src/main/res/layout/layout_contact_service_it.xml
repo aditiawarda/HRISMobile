@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -30,7 +30,8 @@
             android:paddingLeft="20dp"
             android:paddingRight="16dp"
             android:paddingTop="13dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="RtlHardcoded">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,21 +56,23 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textSize="15dp"
-                        android:fontFamily="@font/roboto"
-                        android:textColor="@color/colorPrimaryDark"
                         android:layout_marginBottom="5dp"
-                        android:text="Layanan Pengaduan"/>
+                        android:fontFamily="@font/roboto"
+                        android:text="Layanan Pengaduan"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13dp"
                         android:fontFamily="@font/roboto"
                         android:lineSpacingExtra="2dp"
+                        android:text="Untuk layanan pengaduan anda akan terhubung dengan bagian IT/EDP PT. Gelora Aksara Pratama"
                         android:textColor="@color/text_color"
-                        android:text="Untuk layanan pengaduan anda akan terhubung dengan bagian IT/EDP PT. Gelora Aksara Pratama"/>
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -78,7 +81,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
 
                 <LinearLayout
                     android:id="@+id/connect_btn"
@@ -92,14 +96,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
                         android:ellipsize="end"
+                        android:fontFamily="@font/roboto"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textSize="13dp"
-                        android:fontFamily="@font/roboto"
+                        android:text="HUBUNGKAN"
                         android:textColor="@color/white"
-                        android:text="HUBUNGKAN"/>
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -114,14 +119,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textSize="13dp"
                         android:ellipsize="end"
+                        android:fontFamily="@font/roboto"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:fontFamily="@font/roboto"
+                        android:text="BATAL"
                         android:textColor="@color/white"
-                        android:text="BATAL"/>
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 </LinearLayout>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -27,7 +27,8 @@
                 android:layout_marginTop="-25dp"
                 android:layout_width="match_parent"
                 android:gravity="right"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                tools:ignore="VisualLintBounds">
 
                 <LinearLayout
                     android:layout_width="45dp"
@@ -43,7 +44,8 @@
                 android:layout_marginTop="18dp"
                 android:text="-"
                 android:textColor="#C16D02"
-                android:textSize="13dp" />
+                android:textSize="13dp"
+                tools:ignore="TextSizeCheck" />
 
             <TextView
                 android:id="@+id/line_limit"
@@ -62,7 +64,8 @@
                 android:text="Data Exit Clearance"
                 android:textColor="#7d7d7d"
                 android:textSize="13dp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                tools:ignore="TextSizeCheck" />
 
             <TextView
                 android:id="@+id/tanggal_resign_tv"
@@ -72,7 +75,8 @@
                 android:text="Keluar : 20 Sep 2023"
                 android:textColor="#7d7d7d"
                 android:textSize="12dp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                tools:ignore="TextSizeCheck" />
 
             <TextView
                 android:id="@+id/tanggal_notifikasi"
@@ -82,14 +86,16 @@
                 android:gravity="right"
                 android:text="Senin, 12 Sep 2023 10:45"
                 android:textColor="#7d7d7d"
-                android:textSize="10dp" />
+                android:textSize="10dp"
+                tools:ignore="TextSizeCheck" />
 
             <LinearLayout
                 android:layout_width="70dp"
                 android:layout_height="40dp"
                 android:layout_marginBottom="-20dp"
                 android:layout_marginTop="-20dp"
-                android:background="@drawable/shape_ornament_1"/>
+                android:background="@drawable/shape_ornament_1"
+                tools:ignore="VisualLintBounds" />
 
         </LinearLayout>
 

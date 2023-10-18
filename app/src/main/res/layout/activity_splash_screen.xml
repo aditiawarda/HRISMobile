@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SplashScreen"
     android:background="@color/white">
 
@@ -14,7 +14,8 @@
         android:layout_marginTop="-3dp"
         android:layout_marginRight="-3dp"
         android:layout_marginBottom="35dp"
-        android:background="@drawable/shape_bar_chat" />
+        android:background="@drawable/shape_bar_chat"
+        tools:ignore="VisualLintBounds" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_to_refresh_layout"
@@ -32,7 +33,8 @@
                 android:layout_marginTop="-15dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -45,23 +47,26 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:gravity="center"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        tools:ignore="UseCompoundDrawables">
 
                         <TextView
-                            android:textAlignment="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textStyle="italic"
-                            android:textColor="#696969"
                             android:text="Powered by : "
-                            android:textSize="9dp"/>
+                            android:textAlignment="center"
+                            android:textColor="#696969"
+                            android:textSize="9dp"
+                            android:textStyle="italic"
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         <ImageView
                             android:foregroundGravity="center"
                             android:layout_width="125dp"
                             android:layout_height="35dp"
                             android:layout_marginStart="5dp"
-                            android:src="@drawable/logogap" />
+                            android:src="@drawable/logogap"
+                            tools:ignore="ContentDescription" />
 
                     </LinearLayout>
 
@@ -85,7 +90,8 @@
             android:layout_width="143dp"
             android:layout_height="62dp"
             android:scaleType="fitXY"
-            android:src="@drawable/hr_logo" />
+            android:src="@drawable/hr_logo"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -102,7 +108,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginBottom="115dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:id="@+id/refresh_ss_btn"
@@ -133,7 +140,8 @@
                 android:textStyle="bold"
                 android:textSize="13dp"
                 android:textColor="#FFE2DA"
-                android:text="REFRESH"/>
+                android:text="REFRESH"
+                tools:ignore="HardcodedText,SpUsage" />
 
         </LinearLayout>
 
@@ -186,14 +194,16 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:background="@drawable/icon_app_update"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:layout_marginRight="5dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -202,7 +212,8 @@
                             android:textSize="15dp"
                             android:textColor="@color/colorPrimaryDark"
                             android:layout_marginBottom="5dp"
-                            android:text="Update Aplikasi"/>
+                            android:text="Update Aplikasi"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <TextView
                             android:id="@+id/desc_tv"
@@ -211,7 +222,8 @@
                             android:textSize="13dp"
                             android:lineSpacingExtra="2dp"
                             android:textColor="#696969"
-                            android:text="HRIS Mobile Gelora v telah tersedia di Google Play Store"/>
+                            android:text="HRIS Mobile Gelora v telah tersedia di Google Play Store"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                     </LinearLayout>
 
@@ -220,7 +232,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="DisableBaselineAlignment">
 
                     <LinearLayout
                         android:id="@+id/update_btn"
@@ -236,7 +249,8 @@
                             android:textStyle="bold"
                             android:textSize="13dp"
                             android:textColor="@color/white"
-                            android:text="UPDATE SEKARANG"/>
+                            android:text="UPDATE SEKARANG"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                     </LinearLayout>
 
@@ -247,7 +261,8 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/shape_second_btn"
-                        android:gravity="center">
+                        android:gravity="center"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -255,7 +270,8 @@
                             android:textStyle="bold"
                             android:textSize="13dp"
                             android:textColor="@color/white"
-                            android:text="NANTI"/>
+                            android:text="NANTI"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                     </LinearLayout>
 

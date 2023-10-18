@@ -25,7 +25,8 @@
             android:paddingBottom="15dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="VisualLintBounds">
 
             <LinearLayout
                 android:id="@+id/edit_btn"
@@ -106,7 +107,8 @@
                     android:singleLine="true"
                     android:text="Nama Kontak"
                     android:textColor="#4C4C4C"
-                    android:textSize="13.5dp" />
+                    android:textSize="13.5dp"
+                    tools:ignore="TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/hubungan"
@@ -119,7 +121,8 @@
                     android:singleLine="true"
                     android:text="Hubungan"
                     android:textColor="#8F8F8F"
-                    android:textSize="10dp" />
+                    android:textSize="10dp"
+                    tools:ignore="TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/no_kontak"
@@ -131,7 +134,8 @@
                     android:singleLine="true"
                     android:text="No Kontak"
                     android:textColor="#8F8F8F"
-                    android:textSize="11.5dp" />
+                    android:textSize="11.5dp"
+                    tools:ignore="TextSizeCheck" />
 
             </LinearLayout>
 

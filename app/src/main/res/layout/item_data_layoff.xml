@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -23,19 +23,20 @@
                 android:id="@+id/date_layoff_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#3099C8"
+                android:drawableLeft="@drawable/ic_baseline_date_layoff"
+                android:drawablePadding="7dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:singleLine="true"
-                android:drawablePadding="7dp"
-                android:paddingTop="10dp"
                 android:paddingLeft="10dp"
+                android:paddingTop="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp"
-                android:drawableLeft="@drawable/ic_baseline_date_layoff"
-                android:textStyle="bold"
+                android:singleLine="true"
+                android:text="---- - -- - --"
+                android:textColor="#3099C8"
                 android:textSize="12dp"
-                android:text="---- - -- - --"/>
+                android:textStyle="bold"
+                tools:ignore="TextSizeCheck" />
 
         </LinearLayout>
 
@@ -60,21 +61,22 @@
                     android:layout_marginBottom="8dp" />
 
                 <TextView
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
                     android:id="@+id/ket_layoff_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableTint="#919BAC"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="10dp"
                     android:drawableLeft="@drawable/ic_baseline_mark_layoff"
                     android:drawablePadding="7dp"
+                    android:drawableTint="#919BAC"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:layout_marginBottom="10dp"
-                    android:textSize="11dp"
+                    android:text="---- - -- - --"
                     android:textColor="#919BAC"
-                    android:text="---- - -- - --"/>
+                    android:textSize="11dp"
+                    tools:ignore="TextSizeCheck" />
 
 
             </LinearLayout>

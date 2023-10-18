@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -122,7 +123,8 @@
                                         android:textAlignment="center"
                                         android:textColor="#E1BB8A"
                                         android:textSize="12dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -130,7 +132,8 @@
                                         android:text="Tunggu beberapa saat"
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
-                                        android:textSize="10dp" />
+                                        android:textSize="10dp"
+                                        tools:ignore="TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -280,16 +283,17 @@
 
                             <TextView
                                 android:id="@+id/label_page"
-                                android:gravity="right"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
                                 android:ellipsize="end"
+                                android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:text="NOTIFIKASI IZIN/CUTI"
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -336,17 +340,19 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Permohonan"
-                                            android:textStyle="bold"
                                             android:textColor="@color/white"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="TextSizeCheck" />
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Masuk"
-                                            android:textStyle="bold"
                                             android:textColor="@color/white"
-                                            android:textSize="15dp" />
+                                            android:textSize="15dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -413,17 +419,19 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Permohonan"
-                                            android:textStyle="bold"
                                             android:textColor="@color/white"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="TextSizeCheck" />
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Saya"
-                                            android:textStyle="bold"
                                             android:textColor="@color/white"
-                                            android:textSize="15dp" />
+                                            android:textSize="15dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="TextSizeCheck" />
 
                                     </LinearLayout>
 

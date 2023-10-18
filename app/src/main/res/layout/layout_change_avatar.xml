@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -52,14 +53,16 @@
                         android:layout_marginLeft="2dp"
                         app:cardCornerRadius="10dp"
                         app:cardBackgroundColor="#FFF"
-                        android:outlineSpotShadowColor="#BDBDBD">
+                        android:outlineSpotShadowColor="#BDBDBD"
+                        tools:ignore="RtlHardcoded,UnusedAttribute">
 
                         <ImageView
                             android:id="@+id/image_user_bs"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/default_profile"
-                            android:scaleType="centerCrop" />
+                            android:scaleType="centerCrop"
+                            tools:ignore="ContentDescription" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -67,7 +70,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -76,7 +80,8 @@
                             android:textSize="15dp"
                             android:textColor="@color/colorPrimaryDark"
                             android:layout_marginBottom="5dp"
-                            android:text="Foto Profil"/>
+                            android:text="Foto Profil"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <TextView
                             android:id="@+id/desc_available"
@@ -84,7 +89,8 @@
                             android:layout_height="wrap_content"
                             android:textSize="13dp"
                             android:textColor="@color/text_color"
-                            android:text="Halo User, anda bisa atur foto profil sesuai keinginan anda."/>
+                            android:text="Halo User, anda bisa atur foto profil sesuai keinginan anda."
+                            tools:ignore="HardcodedText,SpUsage" />
 
                     </LinearLayout>
 
@@ -95,19 +101,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="3dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textSize="15dp"
-                        android:paddingRight="7dp"
-                        android:paddingLeft="7dp"
-                        android:fontFamily="@font/roboto"
-                        android:textColor="@color/colorPrimaryDark"
                         android:layout_marginBottom="5dp"
-                        android:text="Foto Profil"/>
+                        android:fontFamily="@font/roboto"
+                        android:paddingLeft="7dp"
+                        android:paddingRight="7dp"
+                        android:text="Foto Profil"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     <TextView
                         android:layout_width="40dp"
@@ -115,19 +123,21 @@
                         android:layout_marginLeft="7dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="15dp"
-                        android:background="#ECD2C8"/>
+                        android:background="#ECD2C8"
+                        tools:ignore="RtlHardcoded" />
 
                     <TextView
                         android:id="@+id/desc_empty"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingRight="15dp"
-                        android:paddingLeft="15dp"
-                        android:textSize="13dp"
                         android:fontFamily="@font/roboto"
                         android:lineSpacingExtra="2dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:text="Halo User, anda bisa tambahkan foto profil sesuai keinginan anda."
                         android:textColor="@color/text_color"
-                        android:text="Halo User, anda bisa tambahkan foto profil sesuai keinginan anda."/>
+                        android:textSize="13dp"
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -138,7 +148,8 @@
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
 
                 <LinearLayout
                     android:id="@+id/view_avatar_btn"
@@ -147,14 +158,16 @@
                     android:layout_height="40dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/shape_btn"
-                    android:gravity="center">
+                    android:gravity="center"
+                    tools:ignore="RtlHardcoded">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:textColor="@color/white"
-                        android:text="LIHAT"/>
+                        android:text="LIHAT"
+                        tools:ignore="HardcodedText" />
 
                 </LinearLayout>
 
@@ -173,7 +186,8 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:textColor="@color/white"
-                        android:text="UBAH"/>
+                        android:text="UBAH"
+                        tools:ignore="HardcodedText" />
 
                 </LinearLayout>
 
@@ -184,14 +198,16 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
                     android:background="@drawable/shape_logout"
-                    android:gravity="center">
+                    android:gravity="center"
+                    tools:ignore="RtlHardcoded">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:textColor="@color/red"
-                        android:text="HAPUS"/>
+                        android:text="HAPUS"
+                        tools:ignore="HardcodedText" />
 
                 </LinearLayout>
 
@@ -207,11 +223,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="13dp"
                     android:fontFamily="@font/roboto"
+                    android:text="TAMBAHKAN FOTO PROFIL"
                     android:textColor="@color/white"
-                    android:text="TAMBAHKAN FOTO PROFIL"/>
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
             </LinearLayout>
 
@@ -222,7 +239,8 @@
     <LinearLayout
         android:gravity="right"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="RtlHardcoded">
 
         <LinearLayout
             android:id="@+id/close_bs_btn"
@@ -231,7 +249,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:gravity="center"
-            android:background="@drawable/shape_ring_close">
+            android:background="@drawable/shape_ring_close"
+            tools:ignore="UselessParent">
 
             <TextView
                 android:layout_width="20dp"

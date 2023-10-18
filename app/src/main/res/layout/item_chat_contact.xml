@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:id="@+id/parent_part"
@@ -19,7 +20,8 @@
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="DisableBaselineAlignment">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -36,7 +38,8 @@
                     android:singleLine="true"
                     android:text="-"
                     android:textColor="#424242"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/nik_contact"
@@ -47,7 +50,8 @@
                     android:singleLine="true"
                     android:text="-"
                     android:textColor="#696969"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/detail_contact"
@@ -58,7 +62,8 @@
                     android:singleLine="true"
                     android:text="- | - | -"
                     android:textColor="#696969"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
             </LinearLayout>
 
@@ -66,14 +71,15 @@
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:gravity="center|right"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:ignore="RtlHardcoded">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/avatar_contact"
                     android:layout_width="53dp"
                     android:layout_height="53dp"
                     android:background="@drawable/user_default_image"
-                    tools:ignore="MissingConstraints" />
+                    tools:ignore="MissingConstraints,ImageContrastCheck" />
 
             </LinearLayout>
 

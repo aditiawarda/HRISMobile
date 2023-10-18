@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -50,7 +50,8 @@
                             android:layout_height="wrap_content"
                             android:text="Titik pada maps tidak akurat atau tidak muncul"
                             android:textColor="#4C4C4C"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -95,9 +96,10 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:text="Status absensi atau shift tidak muncul"
                             android:textColor="#4C4C4C"
-                            android:text="Status absensi atau shift tidak muncul"/>
+                            android:textSize="14dp"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -142,9 +144,10 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:text="Cara pengisian form keterangan tidak absen"
                             android:textColor="#4C4C4C"
-                            android:text="Cara pengisian form keterangan tidak absen"/>
+                            android:textSize="14dp"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -189,9 +192,10 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:text="Cara pengisian form izin/sakit"
                             android:textColor="#4C4C4C"
-                            android:text="Cara pengisian form izin/sakit"/>
+                            android:textSize="14dp"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -236,9 +240,10 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:text="Cara pengisian form permohonan cuti"
                             android:textColor="#4C4C4C"
-                            android:text="Cara pengisian form permohonan cuti"/>
+                            android:textSize="14dp"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -283,9 +288,10 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:text="Cara ganti atau pindah perangkat"
                             android:textColor="#4C4C4C"
-                            android:text="Cara ganti atau pindah perangkat"/>
+                            android:textSize="14dp"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -330,9 +336,10 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:text="Lupa password atau ingin mengganti password"
                             android:textColor="#4C4C4C"
-                            android:text="Lupa password atau ingin mengganti password"/>
+                            android:textSize="14dp"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -377,9 +384,10 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:text="Menambahkan atau mengganti tanda tangan digital"
                             android:textColor="#4C4C4C"
-                            android:text="Menambahkan atau mengganti tanda tangan digital"/>
+                            android:textSize="14dp"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -417,7 +425,8 @@
                         android:text="Tanyakan kendala lain?"
                         android:textColor="#808080"
                         android:textSize="14dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="TextSizeCheck" />
 
                     <TextView
                         android:id="@+id/hubungi_it"
@@ -427,7 +436,8 @@
                         android:text="Hubungi IT/EDP"
                         android:textColor="#B15B3B"
                         android:textSize="14dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -474,16 +484,17 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:gravity="right"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
                         android:ellipsize="end"
+                        android:gravity="right"
                         android:maxLines="1"
                         android:singleLine="true"
                         android:text="BANTUAN (FAQ)"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        tools:ignore="TextSizeCheck" />
 
                 </LinearLayout>
 

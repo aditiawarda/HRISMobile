@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -53,7 +54,8 @@
                                     android:layout_marginBottom="5dp"
                                     android:text="Posisi/Jabatan :"
                                     android:textColor="#696969"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <EditText
                                     android:id="@+id/posisi_ed"
@@ -72,7 +74,8 @@
                                     android:textColor="#595959"
                                     android:textColorHighlight="#FFE1BC"
                                     android:textColorHint="#A8A8A8"
-                                    android:textSize="13dp" />
+                                    android:textSize="13dp"
+                                    tools:ignore="TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                             </LinearLayout>
 
@@ -88,7 +91,8 @@
                                     android:layout_marginBottom="5dp"
                                     android:text="Dari Tahun :"
                                     android:textColor="#696969"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/dari_tahun_btn"
@@ -153,7 +157,8 @@
                                     android:layout_marginBottom="5dp"
                                     android:text="Sampai Tahun :"
                                     android:textColor="#696969"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -162,7 +167,8 @@
                                     android:gravity="right"
                                     android:text="Masih menjabat?"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <Switch
                                     android:id="@+id/tahun_akhir_switch"
@@ -171,7 +177,7 @@
                                     android:checked="false"
                                     android:textColor="#676767"
                                     android:textSize="13dp"
-                                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+                                    tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck,VisualLintButtonSize" />
 
                                 <net.cachapa.expandablelayout.ExpandableLayout
                                     android:id="@+id/expandable_tahun_akhir"
@@ -253,7 +259,8 @@
                                     android:text="SIMPAN"
                                     android:textColor="@color/white"
                                     android:textSize="13dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -275,7 +282,8 @@
                                     android:text="HAPUS"
                                     android:textColor="#ED5956"
                                     android:textSize="13dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -408,16 +416,17 @@
 
                             <TextView
                                 android:id="@+id/title_page_tv"
-                                android:gravity="right"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
                                 android:ellipsize="end"
+                                android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:text="FORM DATA PENGALAMAN"
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 

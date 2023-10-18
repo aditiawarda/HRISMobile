@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,7 +15,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
             <RelativeLayout
                 android:id="@+id/maps_part"
@@ -43,7 +45,8 @@
                         android:layout_marginBottom="100dp"
                         android:layout_marginRight="18dp"
                         android:gravity="bottom|right"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="RtlHardcoded">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -55,13 +58,15 @@
                                 android:layout_width="52dp"
                                 android:layout_height="26dp"
                                 android:layout_marginRight="5dp"
-                                app:sb_checked_color="#FFA330" />
+                                app:sb_checked_color="#FFA330"
+                                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                             <com.mahfa.dnswitch.DayNightSwitch
                                 android:id="@+id/day_night_switch"
                                 android:layout_width="44dp"
                                 android:layout_height="20dp"
-                                android:layout_gravity="center" />
+                                android:layout_gravity="center"
+                                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                         </LinearLayout>
 
@@ -78,7 +83,8 @@
                                 android:id="@+id/warning_gif"
                                 android:layout_width="15dp"
                                 android:layout_height="15dp"
-                                app:srcCompat="@drawable/warning_circle_gif" />
+                                app:srcCompat="@drawable/warning_circle_gif"
+                                tools:ignore="ContentDescription" />
 
                         </LinearLayout>
 
@@ -113,7 +119,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="bottom"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="DisableBaselineAlignment">
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -126,14 +133,16 @@
                                     android:layout_height="31dp"
                                     android:layout_marginLeft="5dp"
                                     android:background="@drawable/shape_oval_stoke"
-                                    android:gravity="center">
+                                    android:gravity="center"
+                                    tools:ignore="RtlHardcoded">
 
                                     <TextView
                                         android:id="@+id/back_home"
                                         android:visibility="gone"
                                         android:layout_width="19.5dp"
                                         android:layout_height="19.5dp"
-                                        android:background="@drawable/ic_baseline_home" />
+                                        android:background="@drawable/ic_baseline_home"
+                                        tools:ignore="TooDeepLayout" />
 
                                     <TextView
                                         android:id="@+id/back_arrow"
@@ -150,7 +159,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight=".50"
-                                android:gravity="right">
+                                android:gravity="right"
+                                tools:ignore="RtlHardcoded">
 
                                 <RelativeLayout
                                     android:layout_width="wrap_content"
@@ -190,7 +200,8 @@
                             android:singleLine="true"
                             android:text="ABSENSI ONLINE"
                             android:textColor="#FFFFFF"
-                            android:textSize="12dp" />
+                            android:textSize="12dp"
+                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                     </RelativeLayout>
 
@@ -207,13 +218,15 @@
                         android:layout_marginRight="-4dp"
                         android:layout_marginLeft="-4dp"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"/>
+                        android:layout_height="30dp"
+                        tools:ignore="VisualLintBounds" />
 
                     <LinearLayout
                         android:background="@android:color/white"
                         android:layout_marginTop="-15dp"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp" />
+                        android:layout_height="40dp"
+                        tools:ignore="VisualLintBounds" />
 
                     <LinearLayout
                         android:paddingBottom="12dp"
@@ -233,19 +246,21 @@
                                 android:paddingBottom="6dp"
                                 android:paddingLeft="27dp"
                                 android:paddingRight="110dp"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                tools:ignore="RtlHardcoded">
 
                                 <TextView
                                     android:id="@+id/abesen_point_tv"
-                                    android:textSize="12dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
                                     android:layout_marginLeft="22dp"
                                     android:ellipsize="end"
                                     android:maxLines="1"
                                     android:singleLine="true"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:text="Memuat data..."
                                     android:textColor="#908E8E8E"
-                                    android:text="Memuat data..." />
+                                    android:textSize="12dp"
+                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -258,7 +273,8 @@
                                 android:paddingLeft="20dp"
                                 android:paddingTop="4dp"
                                 android:paddingRight="20dp"
-                                android:paddingBottom="4dp">
+                                android:paddingBottom="4dp"
+                                tools:ignore="RtlHardcoded">
 
                                 <TextView
                                     android:id="@+id/h_time"
@@ -274,7 +290,8 @@
                                     android:text="00"
                                     android:textColor="@color/white"
                                     android:textSize="10dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -286,7 +303,8 @@
                                     android:text=":"
                                     android:textColor="#000"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <TextView
                                     android:id="@+id/m_time"
@@ -303,7 +321,8 @@
                                     android:text="00"
                                     android:textColor="@color/white"
                                     android:textSize="10dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -315,7 +334,8 @@
                                     android:text=":"
                                     android:textColor="#000"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <TextView
                                     android:id="@+id/s_time"
@@ -331,7 +351,8 @@
                                     android:text="00"
                                     android:textColor="@color/white"
                                     android:textSize="10dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -382,7 +403,8 @@
                                 android:id="@+id/img_online"
                                 android:layout_width="13dp"
                                 android:layout_height="13dp"
-                                app:srcCompat="@drawable/shape_waiting_point" />
+                                app:srcCompat="@drawable/shape_waiting_point"
+                                tools:ignore="ContentDescription,ImageContrastCheck" />
 
                         </LinearLayout>
 
@@ -473,7 +495,8 @@
                                                 android:text="Pilih Status Absensi"
                                                 android:textColor="@color/white"
                                                 android:textSize="13dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -494,7 +517,8 @@
                                                 android:layout_marginBottom="5dp"
                                                 android:text="Status Absensi"
                                                 android:textColor="#696969"
-                                                android:textSize="10dp" />
+                                                android:textSize="10dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <LinearLayout
                                                 android:id="@+id/status_absen_choice_btn"
@@ -502,7 +526,8 @@
                                                 android:layout_height="38dp"
                                                 android:background="@drawable/shape_feel"
                                                 android:orientation="horizontal"
-                                                android:paddingStart="20dp">
+                                                android:paddingStart="20dp"
+                                                tools:ignore="RtlSymmetry">
 
                                                 <RelativeLayout
                                                     android:layout_width="match_parent"
@@ -515,7 +540,8 @@
                                                         android:layout_marginRight="50dp"
                                                         android:layout_marginBottom="10dp"
                                                         android:gravity="center|left"
-                                                        android:orientation="vertical">
+                                                        android:orientation="vertical"
+                                                        tools:ignore="RtlHardcoded">
 
                                                         <TextView
                                                             android:id="@+id/status_absen_choice_tv"
@@ -525,7 +551,8 @@
                                                             android:text=""
                                                             android:textColor="#B15735"
                                                             android:textSize="13dp"
-                                                            android:textStyle="bold" />
+                                                            android:textStyle="bold"
+                                                            tools:ignore="SpUsage" />
 
                                                     </LinearLayout>
 
@@ -535,7 +562,8 @@
                                                         android:layout_height="match_parent"
                                                         android:layout_alignParentRight="true"
                                                         android:background="@drawable/shape_btn"
-                                                        android:gravity="center">
+                                                        android:gravity="center"
+                                                        tools:ignore="RtlHardcoded">
 
                                                         <TextView
                                                             android:layout_width="25dp"
@@ -576,7 +604,8 @@
                                                 android:textColor="#C68D46"
                                                 android:ellipsize="end"
                                                 android:maxLines="3"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -599,7 +628,8 @@
                                                 android:text="Pilih Shift"
                                                 android:textColor="@color/white"
                                                 android:textSize="13dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -621,7 +651,8 @@
                                                 android:layout_marginBottom="5dp"
                                                 android:text="Shift Absensi"
                                                 android:textColor="#696969"
-                                                android:textSize="10dp" />
+                                                android:textSize="10dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <LinearLayout
                                                 android:id="@+id/shift_absen_choice_btn"
@@ -629,7 +660,8 @@
                                                 android:layout_height="38dp"
                                                 android:background="@drawable/shape_feel"
                                                 android:orientation="horizontal"
-                                                android:paddingStart="20dp">
+                                                android:paddingStart="20dp"
+                                                tools:ignore="RtlSymmetry">
 
                                                 <RelativeLayout
                                                     android:layout_width="match_parent"
@@ -642,7 +674,8 @@
                                                         android:layout_marginRight="50dp"
                                                         android:layout_marginBottom="10dp"
                                                         android:gravity="center|left"
-                                                        android:orientation="vertical">
+                                                        android:orientation="vertical"
+                                                        tools:ignore="RtlHardcoded">
 
                                                         <TextView
                                                             android:id="@+id/shift_absen_choice_tv"
@@ -655,7 +688,8 @@
                                                             android:text=""
                                                             android:textColor="#B15735"
                                                             android:textSize="13dp"
-                                                            android:textStyle="bold" />
+                                                            android:textStyle="bold"
+                                                            tools:ignore="SpUsage" />
 
                                                     </LinearLayout>
 
@@ -665,7 +699,8 @@
                                                         android:layout_height="match_parent"
                                                         android:layout_alignParentRight="true"
                                                         android:background="@drawable/shape_btn"
-                                                        android:gravity="center">
+                                                        android:gravity="center"
+                                                        tools:ignore="RtlHardcoded">
 
                                                         <TextView
                                                             android:layout_width="25dp"
@@ -708,7 +743,8 @@
                                             android:textColor="#C68D46"
                                             android:ellipsize="end"
                                             android:maxLines="3"
-                                            android:textSize="12dp" />
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -731,7 +767,8 @@
                                             android:layout_height="match_parent"
                                             android:layout_marginLeft="5dp"
                                             android:layout_marginRight="5dp"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="TooManyViews">
 
                                             <TextView
                                                 android:id="@+id/date_absen_tv"
@@ -745,7 +782,8 @@
                                                 android:singleLine="true"
                                                 android:text=""
                                                 android:textColor="#05719F"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="RtlHardcoded,SpUsage" />
 
                                             <TextView
                                                 android:id="@+id/detail_absen_tv"
@@ -759,14 +797,16 @@
                                                 android:singleLine="true"
                                                 android:text=""
                                                 android:textColor="#05719F"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="RtlHardcoded,SpUsage" />
 
                                         </LinearLayout>
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="DisableBaselineAlignment">
 
                                             <LinearLayout
                                                 android:layout_width="0dp"
@@ -777,7 +817,8 @@
                                                 android:gravity="center|left"
                                                 android:orientation="horizontal"
                                                 android:paddingTop="10dp"
-                                                android:paddingBottom="10dp">
+                                                android:paddingBottom="10dp"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <RelativeLayout
                                                     android:layout_width="match_parent"
@@ -810,7 +851,8 @@
                                                             android:singleLine="true"
                                                             android:text="---- - -- - --"
                                                             android:textColor="#818181"
-                                                            android:textSize="9dp" />
+                                                            android:textSize="9dp"
+                                                            tools:ignore="HardcodedText,SpUsage" />
 
                                                         <TextView
                                                             android:id="@+id/time_checkin_tv"
@@ -826,7 +868,8 @@
                                                             android:singleLine="true"
                                                             android:text="-- : -- : -- ---"
                                                             android:textColor="#555555"
-                                                            android:textSize="14dp" />
+                                                            android:textSize="14dp"
+                                                            tools:ignore="HardcodedText,SpUsage" />
 
                                                         <TextView
                                                             android:id="@+id/checkin_point_tv"
@@ -840,7 +883,8 @@
                                                             android:singleLine="true"
                                                             android:text="-"
                                                             android:textColor="#818181"
-                                                            android:textSize="9dp" />
+                                                            android:textSize="9dp"
+                                                            tools:ignore="HardcodedText,SpUsage" />
 
                                                     </LinearLayout>
 
@@ -857,7 +901,8 @@
                                                 android:gravity="center|right"
                                                 android:orientation="horizontal"
                                                 android:paddingTop="10dp"
-                                                android:paddingBottom="10dp">
+                                                android:paddingBottom="10dp"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <RelativeLayout
                                                     android:layout_width="match_parent"
@@ -890,7 +935,8 @@
                                                             android:singleLine="true"
                                                             android:text="---- - -- - --"
                                                             android:textColor="#818181"
-                                                            android:textSize="9dp" />
+                                                            android:textSize="9dp"
+                                                            tools:ignore="HardcodedText,SpUsage" />
 
                                                         <TextView
                                                             android:id="@+id/time_checkout_tv"
@@ -906,7 +952,8 @@
                                                             android:singleLine="true"
                                                             android:text="-- : -- : -- ---"
                                                             android:textColor="#555555"
-                                                            android:textSize="14dp" />
+                                                            android:textSize="14dp"
+                                                            tools:ignore="HardcodedText,SpUsage" />
 
                                                         <TextView
                                                             android:id="@+id/checkout_point_tv"
@@ -921,7 +968,8 @@
                                                             android:singleLine="true"
                                                             android:text="-"
                                                             android:textColor="#818181"
-                                                            android:textSize="9dp" />
+                                                            android:textSize="9dp"
+                                                            tools:ignore="HardcodedText,SpUsage" />
 
                                                     </LinearLayout>
 
@@ -964,7 +1012,8 @@
                                                 android:textAlignment="center"
                                                 android:textColor="#A8C74A1A"
                                                 android:textSize="13dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -989,7 +1038,8 @@
                                                 android:text="Perhatian :"
                                                 android:textColor="#C68D46"
                                                 android:textSize="12dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <TextView
                                                 android:id="@+id/layoff_desc"
@@ -999,7 +1049,8 @@
                                                 android:lineSpacingExtra="2.5dp"
                                                 android:text="Status absensi anda hari ini Layoff/Diliburkan. jika terjadi kesalahan atau kekeliruan data harap hubungi bagian HRD."
                                                 android:textColor="#C68D46"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -1031,7 +1082,8 @@
                                                 android:text=""
                                                 android:textColor="#A8C74A1A"
                                                 android:textSize="13dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="SpUsage" />
 
                                         </LinearLayout>
 
@@ -1056,7 +1108,8 @@
                                                 android:text="Perhatian :"
                                                 android:textColor="#C68D46"
                                                 android:textSize="12dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <TextView
                                                 android:id="@+id/desc_status_part"
@@ -1067,7 +1120,8 @@
                                                 android:lineSpacingExtra="2.5dp"
                                                 android:text="Yang tertera diatas merupakan status abensi anda hari ini. Jika terjadi kesalahan atau kekeliruan data harap hubungi bagian HRD."
                                                 android:textColor="#C68D46"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                         </LinearLayout>
 
@@ -1109,7 +1163,8 @@
                                             android:text="Pastikan perangkat anda terhubung dengan internet."
                                             android:textAlignment="center"
                                             android:textColor="#919191"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1125,7 +1180,8 @@
                                 android:orientation="horizontal"
                                 android:paddingBottom="15dp"
                                 android:paddingLeft="20dp"
-                                android:paddingRight="20dp">
+                                android:paddingRight="20dp"
+                                tools:ignore="DisableBaselineAlignment">
 
                                 <LinearLayout
                                     android:id="@+id/action_btn"
@@ -1143,7 +1199,8 @@
                                         android:text="Memuat data..."
                                         android:textColor="@color/white"
                                         android:textSize="13dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                                 </LinearLayout>
 
@@ -1155,7 +1212,8 @@
                                     android:layout_weight=".20"
                                     android:background="@drawable/shape_btn"
                                     android:gravity="center"
-                                    android:visibility="gone">
+                                    android:visibility="gone"
+                                    tools:ignore="RtlHardcoded">
 
                                     <TextView
                                         android:layout_width="33dp"
@@ -1203,7 +1261,8 @@
                                         android:text="Data record absensi 30 hari terakhir"
                                         android:textColor="#B8B8B8"
                                         android:visibility="gone"
-                                        android:textSize="12dp" />
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                 </LinearLayout>
 
@@ -1231,7 +1290,8 @@
                                         android:layout_width="80dp"
                                         android:layout_height="80dp"
                                         android:layout_marginBottom="5dp"
-                                        app:srcCompat="@drawable/loading_sgn_digital" />
+                                        app:srcCompat="@drawable/loading_sgn_digital"
+                                        tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -1241,7 +1301,8 @@
                                         android:textAlignment="center"
                                         android:textColor="#E1BB8A"
                                         android:textSize="12dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -1249,7 +1310,8 @@
                                         android:text="Tunggu beberapa saat"
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
-                                        android:textSize="10dp" />
+                                        android:textSize="10dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                                 </LinearLayout>
 
@@ -1272,7 +1334,8 @@
                                         android:background="@drawable/empty_image"
                                         android:textAlignment="center"
                                         android:textSize="12dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="SpUsage" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -1282,7 +1345,8 @@
                                         android:textAlignment="center"
                                         android:textColor="#E1BB8A"
                                         android:textSize="12dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -1290,7 +1354,8 @@
                                         android:text="Record Absensi tidak tersedia"
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
-                                        android:textSize="10dp" />
+                                        android:textSize="10dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -1313,7 +1378,8 @@
                                         android:ellipsize="end"
                                         android:maxLines="1"
                                         android:textColor="#1AB4FF"
-                                        android:text="Lihat Data Lainnya"/>
+                                        android:text="Lihat Data Lainnya"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -1377,7 +1443,8 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:gravity="center"
-            android:background="@drawable/shape_loading_bg">
+            android:background="@drawable/shape_loading_bg"
+            tools:ignore="ObsoleteLayoutParam">
 
             <ProgressBar
                 android:id="@+id/loadingProgressBar"

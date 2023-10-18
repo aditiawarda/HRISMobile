@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,15 +26,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/roboto"
+            android:text="Pilih Kategori Berita"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16dp"
-            android:fontFamily="@font/roboto"
             android:textStyle="bold"
-            android:text="Pilih Kategori Berita"/>
+            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
         <TextView
             android:layout_width="match_parent"
@@ -65,7 +68,8 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:background="@drawable/shape_option"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -78,10 +82,11 @@
                                 android:layout_height="wrap_content"
                                 android:paddingTop="17dp"
                                 android:paddingBottom="17dp"
+                                android:text="Teratas"
+                                android:textColor="#C16D02"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                android:textColor="#C16D02"
-                                android:text="Teratas"/>
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -92,7 +97,8 @@
                             android:layout_width="0dp"
                             android:layout_weight=".20"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="20dp"
@@ -112,7 +118,8 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:background="@drawable/shape_option"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -125,10 +132,11 @@
                                 android:layout_height="wrap_content"
                                 android:paddingTop="17dp"
                                 android:paddingBottom="17dp"
+                                android:text="Bisnis"
+                                android:textColor="#C16D02"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                android:textColor="#C16D02"
-                                android:text="Bisnis"/>
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -139,7 +147,8 @@
                             android:layout_width="0dp"
                             android:layout_weight=".20"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="20dp"
@@ -159,7 +168,8 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:background="@drawable/shape_option"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -172,10 +182,11 @@
                                 android:layout_height="wrap_content"
                                 android:paddingTop="17dp"
                                 android:paddingBottom="17dp"
+                                android:text="Lingkungan"
+                                android:textColor="#C16D02"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                android:textColor="#C16D02"
-                                android:text="Lingkungan"/>
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -186,7 +197,8 @@
                             android:layout_width="0dp"
                             android:layout_weight=".20"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="20dp"
@@ -206,7 +218,8 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:background="@drawable/shape_option"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -219,10 +232,11 @@
                                 android:layout_height="wrap_content"
                                 android:paddingTop="17dp"
                                 android:paddingBottom="17dp"
+                                android:text="Hiburan"
+                                android:textColor="#C16D02"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                android:textColor="#C16D02"
-                                android:text="Hiburan"/>
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -233,7 +247,8 @@
                             android:layout_width="0dp"
                             android:layout_weight=".20"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="20dp"
@@ -253,7 +268,8 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:background="@drawable/shape_option"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -266,10 +282,11 @@
                                 android:layout_height="wrap_content"
                                 android:paddingTop="17dp"
                                 android:paddingBottom="17dp"
+                                android:text="Kuliner"
+                                android:textColor="#C16D02"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                android:textColor="#C16D02"
-                                android:text="Kuliner"/>
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -280,7 +297,8 @@
                             android:layout_width="0dp"
                             android:layout_weight=".20"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="20dp"
@@ -300,7 +318,8 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:background="@drawable/shape_option"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -313,10 +332,11 @@
                                 android:layout_height="wrap_content"
                                 android:paddingTop="17dp"
                                 android:paddingBottom="17dp"
+                                android:text="Kesehatan"
+                                android:textColor="#C16D02"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                android:textColor="#C16D02"
-                                android:text="Kesehatan"/>
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -327,7 +347,8 @@
                             android:layout_width="0dp"
                             android:layout_weight=".20"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="20dp"
@@ -347,7 +368,8 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:background="@drawable/shape_option"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -360,10 +382,11 @@
                                 android:layout_height="wrap_content"
                                 android:paddingTop="17dp"
                                 android:paddingBottom="17dp"
+                                android:text="Politik"
+                                android:textColor="#C16D02"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                android:textColor="#C16D02"
-                                android:text="Politik"/>
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -374,7 +397,8 @@
                             android:layout_width="0dp"
                             android:layout_weight=".20"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="20dp"
@@ -394,7 +418,8 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:background="@drawable/shape_option"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -407,10 +432,11 @@
                                 android:layout_height="wrap_content"
                                 android:paddingTop="17dp"
                                 android:paddingBottom="17dp"
+                                android:text="Sains"
+                                android:textColor="#C16D02"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                android:textColor="#C16D02"
-                                android:text="Sains"/>
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -421,7 +447,8 @@
                             android:layout_width="0dp"
                             android:layout_weight=".20"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="20dp"
@@ -441,7 +468,8 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:background="@drawable/shape_option"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -454,10 +482,11 @@
                                 android:layout_height="wrap_content"
                                 android:paddingTop="17dp"
                                 android:paddingBottom="17dp"
+                                android:text="Olahraga"
+                                android:textColor="#C16D02"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                android:textColor="#C16D02"
-                                android:text="Olahraga"/>
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -468,7 +497,8 @@
                             android:layout_width="0dp"
                             android:layout_weight=".20"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="20dp"
@@ -488,7 +518,8 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:background="@drawable/shape_option"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -501,10 +532,11 @@
                                 android:layout_height="wrap_content"
                                 android:paddingTop="17dp"
                                 android:paddingBottom="17dp"
+                                android:text="Teknologi"
+                                android:textColor="#C16D02"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                android:textColor="#C16D02"
-                                android:text="Teknologi"/>
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -515,7 +547,8 @@
                             android:layout_width="0dp"
                             android:layout_weight=".20"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="20dp"
@@ -535,7 +568,8 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:background="@drawable/shape_option"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -548,10 +582,11 @@
                                 android:layout_height="wrap_content"
                                 android:paddingTop="17dp"
                                 android:paddingBottom="17dp"
+                                android:text="Pariwisata"
+                                android:textColor="#C16D02"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                android:textColor="#C16D02"
-                                android:text="Pariwisata"/>
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -562,7 +597,8 @@
                             android:layout_width="0dp"
                             android:layout_weight=".20"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="20dp"
@@ -582,7 +618,8 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:background="@drawable/shape_option"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -595,10 +632,11 @@
                                 android:layout_height="wrap_content"
                                 android:paddingTop="17dp"
                                 android:paddingBottom="17dp"
+                                android:text="Dunia"
+                                android:textColor="#C16D02"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                android:textColor="#C16D02"
-                                android:text="Dunia"/>
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -609,7 +647,8 @@
                             android:layout_width="0dp"
                             android:layout_weight=".20"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="20dp"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -100,19 +100,21 @@
                                                 android:id="@+id/nik_karyawan_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="13dp"
+                                                android:text="-"
                                                 android:textColor="@color/white"
-                                                android:text="-"/>
+                                                android:textSize="13dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                             <TextView
                                                 android:id="@+id/detail_karyawan_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="12dp"
-                                                android:textColor="@color/white"
                                                 android:layout_marginTop="5dp"
                                                 android:layout_marginBottom="5dp"
-                                                android:text="Memuat data..."/>
+                                                android:text="Memuat data..."
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -133,22 +135,24 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textColor="#FFFFFF"
-                                        android:textSize="13dp"
                                         android:ellipsize="end"
                                         android:maxLines="1"
                                         android:singleLine="true"
-                                        android:text="Riwayat Permohonan Keterangan Tidak Absen"/>
+                                        android:text="Riwayat Permohonan Keterangan Tidak Absen"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="13dp"
+                                        tools:ignore="TextSizeCheck" />
 
                                 </LinearLayout>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12dp"
                                     android:layout_marginBottom="5dp"
+                                    android:text="Tanggal Masuk :"
                                     android:textColor="#696969"
-                                    android:text="Tanggal Masuk :"/>
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/date_btn"
@@ -204,10 +208,11 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="3dp"
-                                    android:textSize="12dp"
                                     android:layout_marginBottom="5dp"
+                                    android:text="Keterangan :"
                                     android:textColor="#696969"
-                                    android:text="Keterangan :"/>
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -249,47 +254,51 @@
 
                                         <RadioButton
                                             android:id="@+id/keterangan_2"
-                                            android:layout_marginTop="7dp"
-                                            android:layout_marginBottom="7dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginTop="7dp"
+                                            android:layout_marginBottom="7dp"
                                             android:paddingHorizontal="15dp"
-                                            android:textSize="14dp"
+                                            android:text="Tidak Absen Masuk"
                                             android:textColor="#4A4A4A"
-                                            android:text="Tidak Absen Masuk"/>
+                                            android:textSize="14dp"
+                                            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
 
                                         <RadioButton
                                             android:id="@+id/keterangan_3"
-                                            android:layout_marginTop="7dp"
-                                            android:layout_marginBottom="7dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginTop="7dp"
+                                            android:layout_marginBottom="7dp"
                                             android:paddingHorizontal="15dp"
-                                            android:textSize="14dp"
+                                            android:text="Tidak Absen Pulang"
                                             android:textColor="#4A4A4A"
-                                            android:text="Tidak Absen Pulang"/>
+                                            android:textSize="14dp"
+                                            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
 
                                         <RadioButton
                                             android:id="@+id/keterangan_4"
-                                            android:layout_marginTop="7dp"
-                                            android:layout_marginBottom="7dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginTop="7dp"
+                                            android:layout_marginBottom="7dp"
                                             android:paddingHorizontal="15dp"
-                                            android:textSize="14dp"
+                                            android:text="Datang Terlambat"
                                             android:textColor="#4A4A4A"
-                                            android:text="Datang Terlambat"/>
+                                            android:textSize="14dp"
+                                            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
 
                                         <RadioButton
                                             android:id="@+id/keterangan_5"
-                                            android:layout_marginTop="7dp"
-                                            android:layout_marginBottom="7dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
+                                            android:layout_marginTop="7dp"
+                                            android:layout_marginBottom="7dp"
                                             android:paddingHorizontal="15dp"
-                                            android:textSize="14dp"
+                                            android:text="Pulang Lebih Awal"
                                             android:textColor="#4A4A4A"
-                                            android:text="Pulang Lebih Awal"/>
+                                            android:textSize="14dp"
+                                            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
 
                                         <RadioButton
                                             android:visibility="gone"
@@ -1052,32 +1061,34 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:textSize="12dp"
                                     android:layout_marginBottom="5dp"
+                                    android:text="Alasan :"
                                     android:textColor="#696969"
-                                    android:text="Alasan :"/>
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <EditText
                                     android:id="@+id/alasan_tv"
                                     android:layout_width="match_parent"
-                                    android:gravity="top"
-                                    android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
-                                    android:lineSpacingExtra="3dp"
                                     android:layout_height="wrap_content"
-                                    android:minHeight="80dp"
-                                    android:paddingTop="13dp"
-                                    android:paddingBottom="13dp"
-                                    android:paddingLeft="20dp"
-                                    android:paddingRight="20dp"
-                                    android:maxLength="255"
                                     android:layout_marginBottom="10dp"
                                     android:background="@drawable/shape_input_form"
                                     android:drawablePadding="10dp"
-                                    android:textColor="#595959"
+                                    android:gravity="top"
                                     android:hint=""
-                                    android:textSize="14dp"
+                                    android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLength="255"
+                                    android:minHeight="80dp"
+                                    android:paddingLeft="20dp"
+                                    android:paddingTop="13dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingBottom="13dp"
+                                    android:textColor="#595959"
+                                    android:textColorHighlight="#FFE1BC"
                                     android:textColorHint="#595959"
-                                    android:textColorHighlight="#FFE1BC"/>
+                                    android:textSize="14dp"
+                                    tools:ignore="SpeakableTextPresentCheck" />
 
                                 <LinearLayout
                                     android:visibility="gone"
@@ -1197,13 +1208,14 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textStyle="bold"
                                         android:drawableLeft="@drawable/ic_baseline_send_form"
                                         android:drawablePadding="7dp"
-                                        android:textSize="13dp"
                                         android:drawableTint="@color/white"
+                                        android:text="KIRIM"
                                         android:textColor="@color/white"
-                                        android:text="KIRIM"/>
+                                        android:textSize="13dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -1334,16 +1346,17 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:gravity="right"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="FORM KETERANGAN TIDAK ABSEN"
                                 android:ellipsize="end"
+                                android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
+                                android:text="FORM KETERANGAN TIDAK ABSEN"
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 

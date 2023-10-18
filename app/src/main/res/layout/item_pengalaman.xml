@@ -44,7 +44,8 @@
                             android:maxLines="3"
                             android:text="Posisi"
                             android:textColor="#4C4C4C"
-                            android:textSize="13.5dp" />
+                            android:textSize="13.5dp"
+                            tools:ignore="TextSizeCheck" />
 
                         <TextView
                             android:id="@+id/periode"
@@ -57,7 +58,8 @@
                             android:singleLine="true"
                             android:text="Periode"
                             android:textColor="#8F8F8F"
-                            android:textSize="10dp" />
+                            android:textSize="10dp"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 

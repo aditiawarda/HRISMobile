@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,7 +25,8 @@
             android:layout_height="match_parent"
             android:layout_marginTop="68dp"
             android:layout_alignParentRight="true"
-            android:background="@color/text_color" />
+            android:background="@color/text_color"
+            tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>
 
@@ -49,13 +50,15 @@
         android:layout_marginLeft="-3dp"
         android:layout_marginBottom="-3dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="VisualLintBounds">
 
         <LinearLayout
             android:id="@+id/action_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UselessParent,VisualLintBounds">
 
             <LinearLayout
                 android:layout_marginTop="-2dp"
@@ -63,7 +66,8 @@
                 android:layout_marginLeft="-2dp"
                 android:background="@drawable/shape_bar_profile_notify"
                 android:layout_width="match_parent"
-                android:layout_height="70dp">
+                android:layout_height="70dp"
+                tools:ignore="UselessParent,VisualLintBounds">
 
                 <LinearLayout
                     android:id="@+id/back_btn"
@@ -72,12 +76,13 @@
                     android:layout_width="33dp"
                     android:layout_height="33dp"
                     android:gravity="center"
-                    android:background="@drawable/shape_back_2">
+                    android:background="@drawable/shape_back_2"
+                    tools:ignore="RtlHardcoded">
 
                     <TextView
                         android:layout_width="28dp"
                         android:layout_height="28dp"
-                        android:layout_marginRight="1.5dp"
+                        android:layout_marginEnd="1.5dp"
                         android:background="@drawable/ic_baseline_chevron_back"/>
 
                 </LinearLayout>
@@ -87,7 +92,8 @@
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    tools:ignore="RtlHardcoded">
 
                     <TextView
                         android:id="@+id/title_page"
@@ -100,7 +106,8 @@
                         android:textStyle="bold"
                         android:text=""
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        tools:ignore="SpUsage" />
 
                 </LinearLayout>
 

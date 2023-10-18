@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -53,7 +53,8 @@
                                     android:layout_marginBottom="5dp"
                                     android:text="Nama Lengkap :"
                                     android:textColor="#696969"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <EditText
                                     android:id="@+id/nama_ed"
@@ -71,7 +72,8 @@
                                     android:textColor="#595959"
                                     android:textColorHighlight="#FFDDB3"
                                     android:textColorHint="#AAAAAA"
-                                    android:textSize="13dp" />
+                                    android:textSize="13dp"
+                                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                             </LinearLayout>
 
@@ -87,7 +89,8 @@
                                     android:layout_marginBottom="5dp"
                                     android:text="Tempat Lahir :"
                                     android:textColor="#696969"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <EditText
                                     android:id="@+id/tempat_lahir_ed"
@@ -105,7 +108,8 @@
                                     android:textColor="#595959"
                                     android:textColorHighlight="#FFE1BC"
                                     android:textColorHint="#DA6F46"
-                                    android:textSize="13dp" />
+                                    android:textSize="13dp"
+                                    tools:ignore="TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                             </LinearLayout>
 
@@ -121,7 +125,8 @@
                                     android:layout_marginBottom="5dp"
                                     android:text="Tanggal Lahir :"
                                     android:textColor="#696969"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/tanggal_lahir_btn"
@@ -186,7 +191,8 @@
                                     android:layout_marginBottom="5dp"
                                     android:text="Jenis Kelamin :"
                                     android:textColor="#696969"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/gender_btn"
@@ -251,7 +257,8 @@
                                     android:layout_marginBottom="5dp"
                                     android:text="Hubungan :"
                                     android:textColor="#696969"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/hubungan_btn"
@@ -352,7 +359,8 @@
                                     android:layout_marginBottom="5dp"
                                     android:text="Status Pernikahan :"
                                     android:textColor="#696969"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/status_pernikahan_btn"
@@ -417,7 +425,8 @@
                                     android:layout_marginBottom="5dp"
                                     android:text="Agama :"
                                     android:textColor="#696969"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/agama_btn"
@@ -482,7 +491,8 @@
                                     android:layout_marginBottom="5dp"
                                     android:text="Status Bekerja :"
                                     android:textColor="#696969"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/status_bekerja_btn"
@@ -554,7 +564,8 @@
                                     android:text="SIMPAN"
                                     android:textColor="@color/white"
                                     android:textSize="13dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -687,16 +698,17 @@
 
                             <TextView
                                 android:id="@+id/title_page_tv"
-                                android:gravity="right"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
                                 android:ellipsize="end"
+                                android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:text="FORM INFO KELUARGA"
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 

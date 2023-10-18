@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -85,9 +86,10 @@
                                         android:id="@+id/nama_departemen"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="13dp"
+                                        android:text="Memuat data..."
                                         android:textColor="@color/white"
-                                        android:text="Memuat data..."/>
+                                        android:textSize="13dp"
+                                        tools:ignore="TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -101,9 +103,10 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="10dp"
+                                        android:text="Jumlah Karyawan"
                                         android:textColor="@color/white"
-                                        android:text="Jumlah Karyawan"/>
+                                        android:textSize="10dp"
+                                        tools:ignore="TextSizeCheck" />
 
                                     <TextView
                                         android:id="@+id/jumlah_karyawan_tv"
@@ -262,13 +265,14 @@
                                                 <TextView
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
-                                                    android:textColor="@color/white"
-                                                    android:textStyle="bold"
                                                     android:ellipsize="end"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
+                                                    android:text="Hadir"
+                                                    android:textColor="@color/white"
                                                     android:textSize="10dp"
-                                                    android:text="Hadir"/>
+                                                    android:textStyle="bold"
+                                                    tools:ignore="TextSizeCheck" />
 
                                                 <TextView
                                                     android:visibility="gone"
@@ -334,13 +338,14 @@
                                                 <TextView
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
-                                                    android:textColor="@color/white"
                                                     android:ellipsize="end"
                                                     android:maxLines="1"
                                                     android:singleLine="true"
-                                                    android:textStyle="bold"
+                                                    android:text="Tidak Hadir"
+                                                    android:textColor="@color/white"
                                                     android:textSize="10dp"
-                                                    android:text="Tidak Hadir"/>
+                                                    android:textStyle="bold"
+                                                    tools:ignore="TextSizeCheck" />
 
                                                 <TextView
                                                     android:visibility="gone"
@@ -398,13 +403,14 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Ketik nama karyawan..."
-                                    android:textSize="15dp"
-                                    android:layout_marginTop="9.5dp"
-                                    android:layout_marginBottom="10dp"
                                     android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="9.5dp"
                                     android:layout_marginRight="20dp"
-                                    android:textColor="#DA6F46" />
+                                    android:layout_marginBottom="10dp"
+                                    android:text="Ketik nama karyawan..."
+                                    android:textColor="#DA6F46"
+                                    android:textSize="15dp"
+                                    tools:ignore="TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -444,7 +450,8 @@
                                         android:text="Data Kehadiran"
                                         android:textColor="@color/colorPrimaryDark"
                                         android:textSize="13dp"
-                                        android:textStyle="italic|bold" />
+                                        android:textStyle="italic|bold"
+                                        tools:ignore="TextSizeCheck" />
 
                                     <TextView
                                         android:visibility="gone"
@@ -571,7 +578,8 @@
                                         android:textAlignment="center"
                                         android:textColor="#E1BB8A"
                                         android:textSize="12dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -579,7 +587,8 @@
                                         android:text="Tunggu beberapa saat"
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
-                                        android:textSize="10dp" />
+                                        android:textSize="10dp"
+                                        tools:ignore="TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -776,17 +785,18 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:gravity="right"
                                 android:id="@+id/page_title"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
                                 android:ellipsize="end"
+                                android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:text="KEHADIRAN BAGIAN"
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 

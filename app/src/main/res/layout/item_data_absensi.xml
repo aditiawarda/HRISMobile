@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            tools:ignore="DisableBaselineAlignment">
+            tools:ignore="DisableBaselineAlignment,VisualLintBounds">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -41,11 +41,13 @@
                     android:paddingBottom="10dp"
                     android:layout_marginRight="3.5dp"
                     android:layout_weight=".50"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:layout_width="5dp"
@@ -73,7 +75,8 @@
                                 android:singleLine="true"
                                 android:text="---- - -- - --"
                                 android:textColor="#818181"
-                                android:textSize="9dp" />
+                                android:textSize="9dp"
+                                tools:ignore="HardcodedText,SpUsage" />
 
                             <TextView
                                 android:id="@+id/time_checkin"
@@ -88,7 +91,8 @@
                                 android:singleLine="true"
                                 android:text="-- : -- : -- ---"
                                 android:textColor="#555555"
-                                android:textSize="11dp" />
+                                android:textSize="11dp"
+                                tools:ignore="HardcodedText,SpUsage" />
 
                             <TextView
                                 android:id="@+id/checkin_point"
@@ -101,7 +105,8 @@
                                 android:singleLine="true"
                                 android:text="-"
                                 android:textColor="#818181"
-                                android:textSize="9dp" />
+                                android:textSize="9dp"
+                                tools:ignore="HardcodedText,SpUsage" />
 
                         </LinearLayout>
 
@@ -117,11 +122,13 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:layout_weight=".50"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:layout_alignParentRight="true"
@@ -151,7 +158,8 @@
                                 android:gravity="right"
                                 android:text="---- - -- - --"
                                 android:textColor="#818181"
-                                android:textSize="9dp" />
+                                android:textSize="9dp"
+                                tools:ignore="HardcodedText,SpUsage" />
 
                             <TextView
                                 android:id="@+id/time_checkout"
@@ -166,7 +174,8 @@
                                 android:singleLine="true"
                                 android:text="-- : -- : -- ---"
                                 android:textColor="#555555"
-                                android:textSize="11dp" />
+                                android:textSize="11dp"
+                                tools:ignore="HardcodedText,SpUsage" />
 
                             <TextView
                                 android:id="@+id/checkout_point"
@@ -180,7 +189,8 @@
                                 android:singleLine="true"
                                 android:text="-"
                                 android:textColor="#818181"
-                                android:textSize="9dp" />
+                                android:textSize="9dp"
+                                tools:ignore="HardcodedText,SpUsage" />
 
                         </LinearLayout>
 
@@ -212,7 +222,8 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="#E18482"
-                    android:textSize="8dp" />
+                    android:textSize="8dp"
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
                     android:id="@+id/terlambat_time_tv"
@@ -225,7 +236,8 @@
                     android:singleLine="true"
                     android:text=""
                     android:textColor="#DC6664"
-                    android:textSize="11dp" />
+                    android:textSize="11dp"
+                    tools:ignore="SpUsage" />
 
             </LinearLayout>
 
@@ -251,7 +263,8 @@
                     android:singleLine="true"
                     android:text="Kelebihan Jam"
                     android:textColor="#529BDA"
-                    android:textSize="8dp" />
+                    android:textSize="8dp"
+                    tools:ignore="HardcodedText,SpUsage" />
 
                 <TextView
                     android:id="@+id/overtime_tv"
@@ -264,7 +277,8 @@
                     android:singleLine="true"
                     android:text=""
                     android:textColor="#378AD3"
-                    android:textSize="11dp" />
+                    android:textSize="11dp"
+                    tools:ignore="SpUsage" />
 
             </LinearLayout>
 
@@ -290,7 +304,8 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="#CC8D3E"
-                    android:textSize="11dp" />
+                    android:textSize="11dp"
+                    tools:ignore="HardcodedText,SpUsage" />
 
             </LinearLayout>
 
@@ -316,7 +331,8 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="#DC6664"
-                    android:textSize="11dp" />
+                    android:textSize="11dp"
+                    tools:ignore="HardcodedText,SpUsage" />
 
             </LinearLayout>
 
@@ -332,7 +348,7 @@
             android:orientation="horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            tools:ignore="DisableBaselineAlignment">
+            tools:ignore="DisableBaselineAlignment,VisualLintBounds">
 
             <TextView
                 android:layout_width="match_parent"
@@ -341,7 +357,8 @@
                 android:layout_marginRight="17dp"
                 android:text="Diliburkan/Layoff"
                 android:textColor="#378AD3"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                tools:ignore="HardcodedText,SpUsage" />
 
         </LinearLayout>
 
@@ -355,7 +372,7 @@
             android:orientation="horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            tools:ignore="DisableBaselineAlignment">
+            tools:ignore="DisableBaselineAlignment,VisualLintBounds">
 
             <TextView
                 android:id="@+id/alasan_izin_tv"
@@ -365,7 +382,8 @@
                 android:layout_marginRight="17dp"
                 android:text=""
                 android:textColor="#9172DC"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                tools:ignore="SpUsage" />
 
         </LinearLayout>
 
@@ -379,7 +397,7 @@
             android:orientation="horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            tools:ignore="DisableBaselineAlignment">
+            tools:ignore="DisableBaselineAlignment,VisualLintBounds">
 
             <TextView
                 android:id="@+id/dalam_rangka_tv"
@@ -389,7 +407,8 @@
                 android:layout_marginRight="17dp"
                 android:text=""
                 android:textColor="#CC8D3E"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                tools:ignore="SpUsage" />
 
         </LinearLayout>
 
@@ -403,7 +422,7 @@
             android:orientation="horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            tools:ignore="DisableBaselineAlignment">
+            tools:ignore="DisableBaselineAlignment,VisualLintBounds">
 
             <TextView
                 android:layout_width="match_parent"
@@ -412,7 +431,8 @@
                 android:layout_marginRight="17dp"
                 android:text="Libur Hari Sabtu"
                 android:textColor="#CC8D3E"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                tools:ignore="HardcodedText,SpUsage" />
 
         </LinearLayout>
 
@@ -426,7 +446,7 @@
             android:orientation="horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            tools:ignore="DisableBaselineAlignment">
+            tools:ignore="DisableBaselineAlignment,VisualLintBounds">
 
             <TextView
                 android:layout_width="match_parent"
@@ -435,7 +455,8 @@
                 android:layout_marginRight="17dp"
                 android:text="Libur Hari Minggu"
                 android:textColor="#CC8D3E"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                tools:ignore="HardcodedText,SpUsage" />
 
         </LinearLayout>
 
@@ -449,7 +470,7 @@
             android:orientation="horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            tools:ignore="DisableBaselineAlignment">
+            tools:ignore="DisableBaselineAlignment,VisualLintBounds">
 
             <TextView
                 android:layout_width="match_parent"
@@ -458,7 +479,8 @@
                 android:layout_marginRight="17dp"
                 android:text="Tanpa Keterangan"
                 android:textColor="#DC6664"
-                android:textSize="12dp" />
+                android:textSize="12dp"
+                tools:ignore="HardcodedText,SpUsage" />
 
         </LinearLayout>
 
@@ -487,7 +509,8 @@
                 android:layout_marginTop="-30dp"
                 android:layout_marginBottom="-15dp"
                 android:gravity="right"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="RtlHardcoded,VisualLintBounds">
 
                 <LinearLayout
                     android:layout_width="45dp"
@@ -506,7 +529,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left|center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
 
                     <LinearLayout
                         android:id="@+id/warning_mark"
@@ -527,7 +551,8 @@
                         android:maxLines="2"
                         android:text=""
                         android:textColor="#515151"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        tools:ignore="SpUsage" />
 
                 </LinearLayout>
 
@@ -543,7 +568,8 @@
                     android:singleLine="true"
                     android:text=""
                     android:textColor="#9C9C9C"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    tools:ignore="RtlHardcoded,SpUsage" />
 
             </RelativeLayout>
 
@@ -552,7 +578,8 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="-17dp"
                 android:layout_marginBottom="-50dp"
-                android:background="@drawable/shape_ornament_absensi_record" />
+                android:background="@drawable/shape_ornament_absensi_record"
+                tools:ignore="VisualLintBounds" />
 
         </LinearLayout>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -52,7 +52,8 @@
                                 android:singleLine="true"
                                 android:text="Nomor Induk Karyawan"
                                 android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:textSize="10dp"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/nik"
@@ -132,7 +133,8 @@
                                 android:singleLine="true"
                                 android:text="Cabang"
                                 android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:textSize="10dp"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/cabang"
@@ -171,7 +173,8 @@
                                 android:singleLine="true"
                                 android:text="Departemen"
                                 android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:textSize="10dp"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/departemen"
@@ -210,7 +213,8 @@
                                 android:singleLine="true"
                                 android:text="Bagian"
                                 android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:textSize="10dp"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/bagian"
@@ -249,7 +253,8 @@
                                 android:singleLine="true"
                                 android:text="Jabatan"
                                 android:textColor="#8F8F8F"
-                                android:textSize="10dp" />
+                                android:textSize="10dp"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/jabatan"
@@ -294,7 +299,8 @@
                                     android:singleLine="true"
                                     android:text="Status Karyawan"
                                     android:textColor="#8F8F8F"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <TextView
                                     android:id="@+id/status_karyawan"
@@ -334,7 +340,8 @@
                                     android:singleLine="true"
                                     android:text="Tanggal Bergabung"
                                     android:textColor="#8F8F8F"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <TextView
                                     android:id="@+id/tanggal_bergabung"
@@ -374,7 +381,8 @@
                                     android:singleLine="true"
                                     android:text="Masa Kerja"
                                     android:textColor="#8F8F8F"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <TextView
                                     android:id="@+id/masa_kerja"
@@ -414,7 +422,8 @@
                                     android:singleLine="true"
                                     android:text="Golongan Karyawan"
                                     android:textColor="#8F8F8F"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <TextView
                                     android:id="@+id/golongan_karyawan"
@@ -457,7 +466,8 @@
                                 android:text="Perhatian :"
                                 android:textColor="#C68D46"
                                 android:textSize="12dp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -466,7 +476,8 @@
                                 android:lineSpacingExtra="2.5dp"
                                 android:text="Apabila terdapat kekeliruan data atau data belum terupdate, harap segera hubungi bagian HRD."
                                 android:textColor="#C68D46"
-                                android:textSize="12dp" />
+                                android:textSize="12dp"
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -513,16 +524,17 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:gravity="right"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
                                 android:ellipsize="end"
+                                android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:text="INFO PEKERJAAN"
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -100,38 +102,41 @@
                             android:id="@+id/nama_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="-"
-                            android:textColor="#C16D02"
                             android:layout_marginRight="75dp"
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:singleLine="true"
+                            android:text="-"
+                            android:textColor="#C16D02"
                             android:textSize="13dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:ignore="TextSizeCheck" />
 
                         <TextView
                             android:id="@+id/nik_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="-"
                             android:layout_marginRight="75dp"
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:singleLine="true"
+                            android:text="-"
                             android:textColor="#C16D02"
-                            android:textSize="10dp" />
+                            android:textSize="10dp"
+                            tools:ignore="TextSizeCheck" />
 
                         <TextView
                             android:id="@+id/detail_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="- | - | -"
                             android:layout_marginRight="75dp"
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:singleLine="true"
+                            android:text="- | - | -"
                             android:textColor="#C16D02"
-                            android:textSize="11dp" />
+                            android:textSize="11dp"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -160,7 +165,8 @@
                             android:layout_height="wrap_content"
                             android:text="PREDIKAT"
                             android:textColor="#FFFFFF"
-                            android:textSize="8dp" />
+                            android:textSize="8dp"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -235,16 +241,17 @@
 
                 <TextView
                     android:id="@+id/tanggal_buat_tv"
-                    android:layout_weight=".50"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="Dinilai -"
+                    android:layout_weight=".50"
                     android:ellipsize="end"
+                    android:gravity="right"
                     android:maxLines="1"
                     android:singleLine="true"
+                    android:text="Dinilai -"
                     android:textColor="#939393"
-                    android:textSize="10dp" />
+                    android:textSize="10dp"
+                    tools:ignore="TextSizeCheck" />
 
             </LinearLayout>
 
@@ -255,7 +262,8 @@
             android:layout_height="50dp"
             android:layout_marginBottom="-30dp"
             android:layout_marginTop="-20dp"
-            android:background="@drawable/shape_ornament_2"/>
+            android:background="@drawable/shape_ornament_2"
+            tools:ignore="VisualLintBounds" />
 
     </LinearLayout>
 

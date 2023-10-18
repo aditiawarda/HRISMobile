@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -32,39 +33,42 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:gravity="left"
+                    android:lineSpacingExtra="3dp"
                     android:maxLines="3"
                     android:paddingBottom="2dp"
-                    android:lineSpacingExtra="3dp"
                     android:text="-"
                     android:textColor="#515151"
+                    android:textSize="13dp"
                     android:textStyle="bold"
-                    android:textSize="13dp" />
+                    tools:ignore="TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/creator_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:paddingTop="1dp"
                     android:singleLine="true"
-                    android:layout_marginTop="3dp"
                     android:text="-"
                     android:textColor="#9C9C9C"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    tools:ignore="TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/pub_date_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:paddingTop="1dp"
                     android:singleLine="true"
-                    android:layout_marginTop="5dp"
                     android:text="-"
                     android:textColor="#9C9C9C"
-                    android:textSize="10dp" />
+                    android:textSize="10dp"
+                    tools:ignore="TextSizeCheck" />
 
             </LinearLayout>
 

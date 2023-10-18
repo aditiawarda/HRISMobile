@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -102,7 +102,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="Memuat data..."
                                                 android:textColor="@color/white"
-                                                android:textSize="13dp" />
+                                                android:textSize="13dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                             <TextView
                                                 android:id="@+id/bagian_karyawan_tv"
@@ -112,7 +113,8 @@
                                                 android:layout_marginBottom="5dp"
                                                 android:text="Memuat data..."
                                                 android:textColor="@color/white"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -144,21 +146,23 @@
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="11dp"
                                                 android:layout_marginTop="5dp"
                                                 android:layout_marginBottom="2dp"
+                                                android:text="Mulai Bekerja"
                                                 android:textColor="#9E9E9E"
-                                                android:text="Mulai Bekerja"/>
+                                                android:textSize="11dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                             <TextView
                                                 android:id="@+id/tgl_mulai_kerja_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="14dp"
                                                 android:layout_marginTop="0dp"
                                                 android:layout_marginBottom="5dp"
+                                                android:text="-"
                                                 android:textColor="#696969"
-                                                android:text="-"/>
+                                                android:textSize="14dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -173,21 +177,23 @@
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="11dp"
                                                 android:layout_marginTop="5dp"
                                                 android:layout_marginBottom="2dp"
+                                                android:text="NIK"
                                                 android:textColor="#9E9E9E"
-                                                android:text="NIK"/>
+                                                android:textSize="11dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                             <TextView
                                                 android:id="@+id/nik_karyawan_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="14dp"
                                                 android:layout_marginTop="0dp"
                                                 android:layout_marginBottom="5dp"
+                                                android:text="-"
                                                 android:textColor="#696969"
-                                                android:text="-"/>
+                                                android:textSize="14dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -291,13 +297,14 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginLeft="8dp"
                                         android:layout_marginTop="1dp"
                                         android:layout_marginBottom="2dp"
+                                        android:text="Cuti yang telah diambil :"
                                         android:textColor="#BA6F52"
+                                        android:textSize="12dp"
                                         android:textStyle="bold"
-                                        android:text="Cuti yang telah diambil :"/>
+                                        tools:ignore="TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -325,21 +332,23 @@
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="11dp"
                                                 android:layout_marginTop="5dp"
                                                 android:layout_marginBottom="2dp"
+                                                android:text="Tahun"
                                                 android:textColor="#9E9E9E"
-                                                android:text="Tahun"/>
+                                                android:textSize="11dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                             <TextView
                                                 android:id="@+id/tahun_telah_cuti_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="14dp"
                                                 android:layout_marginTop="0dp"
                                                 android:layout_marginBottom="5dp"
+                                                android:text="-"
                                                 android:textColor="#696969"
-                                                android:text="-"/>
+                                                android:textSize="14dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -354,21 +363,23 @@
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="11dp"
                                                 android:layout_marginTop="5dp"
                                                 android:layout_marginBottom="2dp"
+                                                android:text="Total"
                                                 android:textColor="#9E9E9E"
-                                                android:text="Total"/>
+                                                android:textSize="11dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                             <TextView
                                                 android:id="@+id/total_telah_cuti_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="14dp"
                                                 android:layout_marginTop="0dp"
                                                 android:layout_marginBottom="5dp"
+                                                android:text="-"
                                                 android:textColor="#696969"
-                                                android:text="-"/>
+                                                android:textSize="14dp"
+                                                tools:ignore="TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -392,23 +403,25 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="12dp"
                                         android:layout_marginLeft="8dp"
                                         android:layout_marginTop="1dp"
                                         android:layout_marginBottom="2dp"
+                                        android:text="Cuti yang akan diambil :"
                                         android:textColor="#BA6F52"
+                                        android:textSize="12dp"
                                         android:textStyle="bold"
-                                        android:text="Cuti yang akan diambil :"/>
+                                        tools:ignore="TextSizeCheck" />
 
                                 </LinearLayout>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12dp"
                                     android:layout_marginBottom="5dp"
+                                    android:text="Dari Tanggal :"
                                     android:textColor="#696969"
-                                    android:text="Dari Tanggal :"/>
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/mulai_date"
@@ -463,10 +476,11 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12dp"
                                     android:layout_marginBottom="5dp"
+                                    android:text="Sampai Tanggal :"
                                     android:textColor="#696969"
-                                    android:text="Sampai Tanggal :"/>
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/akhir_date"
@@ -521,10 +535,11 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12dp"
                                     android:layout_marginBottom="5dp"
+                                    android:text="Jumlah Hari :"
                                     android:textColor="#696969"
-                                    android:text="Jumlah Hari :"/>
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -543,7 +558,8 @@
                                         android:text="Tentukan Tanggal..."
                                         android:textColor="#B15735"
                                         android:textSize="13dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -551,20 +567,22 @@
                                     android:id="@+id/note_jumlah_hari"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="9dp"
                                     android:layout_marginTop="-5dp"
                                     android:layout_marginBottom="10dp"
-                                    android:textStyle="italic"
+                                    android:text="*) Hari Minggu/Tanggal Merah/ Libur Cuti Bersama tidak dihitung  "
                                     android:textColor="#696969"
-                                    android:text="*) Hari Minggu/Tanggal Merah/ Libur Cuti Bersama tidak dihitung  "/>
+                                    android:textSize="9dp"
+                                    android:textStyle="italic"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12dp"
                                     android:layout_marginBottom="5dp"
+                                    android:text="Jenis Cuti :"
                                     android:textColor="#696969"
-                                    android:text="Jenis Cuti :"/>
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/jenis_cuti"
@@ -619,10 +637,11 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12dp"
                                     android:layout_marginBottom="5dp"
+                                    android:text="Tipe Cuti :"
                                     android:textColor="#696969"
-                                    android:text="Tipe Cuti :"/>
+                                    android:textSize="12dp"
+                                    tools:ignore="TextSizeCheck" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -641,7 +660,8 @@
                                         android:text="Pilih Jenis Cuti..."
                                         android:textColor="#B15735"
                                         android:textSize="13dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -673,7 +693,8 @@
                                     android:hint=""
                                     android:textSize="14dp"
                                     android:textColorHint="#595959"
-                                    android:textColorHighlight="#FFE1BC"/>
+                                    android:textColorHighlight="#FFE1BC"
+                                    tools:ignore="VisualLintTextFieldSize" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -761,7 +782,8 @@
                                     android:hint=""
                                     android:textSize="14dp"
                                     android:textColorHint="#595959"
-                                    android:textColorHighlight="#FFE1BC"/>
+                                    android:textColorHighlight="#FFE1BC"
+                                    tools:ignore="VisualLintTextFieldSize" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -788,7 +810,8 @@
                                     android:hint=""
                                     android:textSize="14dp"
                                     android:textColorHint="#595959"
-                                    android:textColorHighlight="#FFE1BC"/>
+                                    android:textColorHighlight="#FFE1BC"
+                                    tools:ignore="VisualLintTextFieldSize" />
 
                                 <LinearLayout
                                     android:id="@+id/upload_file_part"
@@ -1044,16 +1067,17 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:gravity="right"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="FORM PERMOHONAN CUTI"
                                 android:ellipsize="end"
+                                android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
+                                android:text="FORM PERMOHONAN CUTI"
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 

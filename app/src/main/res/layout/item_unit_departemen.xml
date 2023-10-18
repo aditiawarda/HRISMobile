@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -14,7 +14,8 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:background="@drawable/shape_option"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="DisableBaselineAlignment,UselessParent">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -26,28 +27,30 @@
                 android:id="@+id/nama_unit_departemen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="13dp"
-                android:paddingBottom="3dp"
-                android:textSize="15dp"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:paddingTop="13dp"
+                android:paddingBottom="3dp"
                 android:singleLine="true"
-                android:textStyle="bold"
+                android:text="UNDEFINED"
                 android:textColor="#C16D02"
-                android:text="UNDEFINED"/>
+                android:textSize="15dp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
             <TextView
                 android:id="@+id/desc_unit_departemen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="13dp"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:paddingBottom="13dp"
                 android:singleLine="true"
-                android:textStyle="italic|bold"
-                android:textSize="13dp"
+                android:text="Undefined"
                 android:textColor="#8C8C8C"
-                android:text="Undefined"/>
+                android:textSize="13dp"
+                android:textStyle="italic|bold"
+                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
         </LinearLayout>
 
@@ -57,7 +60,8 @@
             android:layout_width="0dp"
             android:layout_weight=".20"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="RtlHardcoded">
 
             <TextView
                 android:layout_width="20dp"

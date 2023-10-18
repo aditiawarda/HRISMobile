@@ -284,20 +284,22 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:text="Disclaimer :"
                                 android:textColor="#C68D46"
                                 android:textSize="12dp"
                                 android:textStyle="bold"
-                                android:text="Disclaimer :"/>
+                                tools:ignore="TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/message_kelebihan_jam"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
                                 android:lineSpacingExtra="2.5dp"
+                                android:text="Tanda tangan digital karyawan hanya dipergunakan untuk kepentingan personal pada aplikasi HRIS Mobile Gelora."
                                 android:textColor="#C68D46"
                                 android:textSize="12dp"
-                                android:layout_marginTop="7dp"
-                                android:text="Tanda tangan digital karyawan hanya dipergunakan untuk kepentingan personal pada aplikasi HRIS Mobile Gelora."/>
+                                tools:ignore="TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -319,7 +321,8 @@
                     android:layout_marginLeft="-2dp"
                     android:background="@drawable/shape_bar_chat"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp">
+                    android:layout_height="70dp"
+                    tools:ignore="VisualLintBounds">
 
                     <LinearLayout
                         android:id="@+id/back_btn"
@@ -346,16 +349,17 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:gravity="right"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
+                            android:gravity="right"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:textStyle="bold"
                             android:text="TANDA TANGAN DIGITAL"
                             android:textColor="@color/white"
-                            android:textSize="15dp" />
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 

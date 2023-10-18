@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,7 +29,8 @@
                 android:layout_marginTop="-30dp"
                 android:layout_width="match_parent"
                 android:gravity="right"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                tools:ignore="VisualLintBounds">
 
                 <LinearLayout
                     android:layout_width="70dp"
@@ -76,23 +78,25 @@
                         android:id="@+id/nama_karyawan_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:singleLine="true"
+                        android:text="-"
                         android:textColor="#C16D02"
-                        android:textSize="13dp" />
+                        android:textSize="13dp"
+                        tools:ignore="TextSizeCheck" />
 
                     <TextView
                         android:id="@+id/nik_karyawan_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:singleLine="true"
+                        android:text="-"
                         android:textColor="#C16D02"
-                        android:textSize="11dp" />
+                        android:textSize="11dp"
+                        tools:ignore="TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -112,13 +116,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
-                android:text="-"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textStyle="italic"
+                android:text="-"
                 android:textColor="#C16D02"
-                android:textSize="13dp" />
+                android:textSize="13dp"
+                android:textStyle="italic"
+                tools:ignore="TextSizeCheck" />
 
             <TextView
                 android:id="@+id/tanggal_kirim_permohonan"
@@ -126,20 +131,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:layout_marginBottom="15dp"
-                android:gravity="right"
-                android:text="-"
                 android:ellipsize="end"
+                android:gravity="right"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:text="-"
                 android:textColor="#C16D02"
-                android:textSize="10dp" />
+                android:textSize="10dp"
+                tools:ignore="TextSizeCheck" />
 
             <LinearLayout
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginBottom="-30dp"
                 android:layout_marginTop="-20dp"
-                android:background="@drawable/shape_ornament_2"/>
+                android:background="@drawable/shape_ornament_2"
+                tools:ignore="VisualLintBounds" />
 
         </LinearLayout>
 
