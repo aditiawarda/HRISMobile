@@ -14,7 +14,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
 
             <androidx.core.widget.NestedScrollView
                 android:id="@id/scrollView"
@@ -46,7 +47,8 @@
                             android:text="Pada saat pertama masuk aplikasi, terdapat kasus tampilan maps pada aplikasi tidak muncul, hal ini bisa terjadi karena beberapa faktor diantaranya :"
                             android:textColor="@color/text_color"
                             android:lineSpacingExtra="2dp"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -66,7 +68,8 @@
                                     android:text="1."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -76,7 +79,8 @@
                                     android:text="Pengaturan GPS pada perangkat tidak aktif."
                                     android:textColor="@color/text_color"
                                     android:lineSpacingExtra="2dp"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -92,7 +96,8 @@
                                     android:text="2."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -102,7 +107,8 @@
                                     android:text="Aplikasi tidak diizinkan untuk mengakses lokasi terkini."
                                     android:textColor="@color/text_color"
                                     android:lineSpacingExtra="2dp"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -118,7 +124,8 @@
                                     android:text="3."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -128,7 +135,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Koneksi internet yang lambat atau perangkat tidak terhubung."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -141,7 +149,8 @@
                             android:lineSpacingExtra="2dp"
                             android:text="Untuk mengatasi permasalahan seperti pada poin nomor 1, pastikan lokasi/GPS pada perangkat anda aktif seperti pada gambar dibawah ini :"
                             android:textColor="@color/text_color"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -158,7 +167,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_img_1" />
+                                    android:src="@drawable/faq_img_1"
+                                    tools:ignore="ContentDescription" />
 
                             </androidx.cardview.widget.CardView>
 
@@ -172,7 +182,8 @@
                             android:lineSpacingExtra="2dp"
                             android:text="Untuk mengatasi permsalahan seperti pada poin nomor 2, pastikan saat pertama memasang serta menjalankan aplikasi, izin akses lokasi diizinkan, seperti pada gambar dibawah ini :"
                             android:textColor="@color/text_color"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -189,7 +200,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_img_2" />
+                                    android:src="@drawable/faq_img_2"
+                                    tools:ignore="ContentDescription" />
 
                             </androidx.cardview.widget.CardView>
 
@@ -203,7 +215,8 @@
                             android:lineSpacingExtra="2dp"
                             android:text="Untuk mengatasi permasalahan pada poin nomor 3, Pastikan perangkat anda terkoneksi dengan internet baik menggunkan data seluler ataupun dari wifi."
                             android:textColor="@color/text_color"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                     </LinearLayout>
 
@@ -224,7 +237,8 @@
                             android:lineSpacingExtra="2dp"
                             android:text="Jika anda mengalami kendala terkait status absensi atau shift yang tidak muncul anda bisa melakukan beberapa cara berikut :"
                             android:textColor="@color/text_color"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -244,7 +258,8 @@
                                     android:text="1."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -254,7 +269,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Pastikan perangkat anda terhubung dengan internet."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -270,7 +286,8 @@
                                     android:text="2."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -280,7 +297,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Lakukan clear data/cache pada pengaturan aplikasi di perangkat anda."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -293,7 +311,8 @@
                             android:lineSpacingExtra="2dp"
                             android:text="Untuk melakukan perintah seperti pada poin 2 diatas dapat dilakukan seperti pada gambar dibawah ini :"
                             android:textColor="@color/text_color"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -305,7 +324,8 @@
                                 android:layout_width="129dp"
                                 android:layout_height="275dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/faq_img_3" />
+                                android:src="@drawable/faq_img_3"
+                                tools:ignore="ContentDescription" />
 
                         </LinearLayout>
 
@@ -317,7 +337,8 @@
                             android:lineSpacingExtra="2dp"
                             android:text="Masuk ke pengaturan manajemen aplikasi HRIS Mobile Gelora lalu pilih menu penyimpanan."
                             android:textColor="@color/text_color"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -329,7 +350,8 @@
                                 android:layout_width="129dp"
                                 android:layout_height="275dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/faq_img_4" />
+                                android:src="@drawable/faq_img_4"
+                                tools:ignore="ContentDescription" />
 
                         </LinearLayout>
 
@@ -341,7 +363,8 @@
                             android:lineSpacingExtra="2dp"
                             android:text="Selanjutnya pilih hapus data untuk menghapus cache aplikasi, jika telah berhasil di hapus, buka kembali aplikasi HRIS Mobile Gelora dan login dengan akun anda."
                             android:textColor="@color/text_color"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                     </LinearLayout>
 
@@ -362,7 +385,8 @@
                             android:lineSpacingExtra="2dp"
                             android:text="Pengajuan permohonan izin/sakit dapat dilakukan secara online/digital di HRIS Mobile Gelora, berikut merupakan tahapan-tahapan dalam pengisian form permohonan izin :"
                             android:textColor="@color/text_color"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -382,7 +406,8 @@
                                     android:text="1."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -392,7 +417,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Pilih menu izin pada halaman home."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -407,7 +433,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_izin_2" />
+                                    android:src="@drawable/faq_izin_2"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -423,7 +450,8 @@
                                     android:text="2."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -433,7 +461,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Berikut adalah tampilan halaman form izin, selanjutnya isi semua data pastikan tidak ada yang terlewat, setelah itu tekan tombol kirim."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -448,7 +477,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_izin_3" />
+                                    android:src="@drawable/faq_izin_3"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -464,7 +494,8 @@
                                     android:text="3."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -474,7 +505,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Jika tampilan halaman seperti pada gambar dibawah ini, permohonan izin/sakit anda telah berhasil terkirim."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -489,7 +521,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_izin_4" />
+                                    android:src="@drawable/faq_izin_4"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -514,7 +547,8 @@
                             android:lineSpacingExtra="2dp"
                             android:text="Pengajuan permohonan cuti dapat dilakukan secara online/digital di HRIS Mobile Gelora, berikut merupakan tahapan-tahapan dalam pengisian form permohonan cuti :"
                             android:textColor="@color/text_color"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -534,7 +568,8 @@
                                     android:text="1."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -544,7 +579,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Pilih menu cuti pada halaman home."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -559,7 +595,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_cuti_2" />
+                                    android:src="@drawable/faq_cuti_2"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -575,7 +612,8 @@
                                     android:text="2."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -585,7 +623,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Berikut adalah tampilan halaman form permohonan cuti, selanjutnya isi semua data pastikan tidak ada yang terlewat, setelah itu tekan tombol kirim."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -596,21 +635,24 @@
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="15dp"
                                 android:orientation="horizontal"
-                                android:gravity="center">
+                                android:gravity="center"
+                                tools:ignore="RtlHardcoded">
 
                                 <ImageView
                                     android:layout_marginRight="5dp"
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_cuti_4" />
+                                    android:src="@drawable/faq_cuti_4"
+                                    tools:ignore="ContentDescription,RtlHardcoded" />
 
                                 <ImageView
                                     android:layout_marginLeft="5dp"
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_cuti_5" />
+                                    android:src="@drawable/faq_cuti_5"
+                                    tools:ignore="ContentDescription,RtlHardcoded" />
 
                             </LinearLayout>
 
@@ -626,7 +668,8 @@
                                     android:text="3."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -636,7 +679,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Jika tampilan halaman seperti pada gambar dibawah ini, permohonan cuti anda telah berhasil terkirim."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -652,7 +696,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_cuti_6" />
+                                    android:src="@drawable/faq_cuti_6"
+                                    tools:ignore="ContentDescription,RtlHardcoded" />
 
                             </LinearLayout>
 
@@ -668,7 +713,8 @@
                         android:layout_marginRight="25dp"
                         android:orientation="vertical"
                         android:paddingBottom="10dp"
-                        android:visibility="gone">
+                        android:visibility="gone"
+                        tools:ignore="TooManyViews">
 
                         <com.codesgood.views.JustifiedTextView
                             android:layout_width="match_parent"
@@ -677,7 +723,8 @@
                             android:lineSpacingExtra="2dp"
                             android:text="Pengajuan permohonan fingerscan/form keterangan tidak absen dapat dilakukan secara online/digital di HRIS Mobile Gelora, berikut merupakan tahapan-tahapan dalam pengisian form keterangan tidak absen :"
                             android:textColor="@color/text_color"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -697,7 +744,8 @@
                                     android:text="1."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -707,7 +755,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Pilih menu fingerscan pada halaman home."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -722,7 +771,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_finger_2" />
+                                    android:src="@drawable/faq_finger_2"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -738,7 +788,8 @@
                                     android:text="2."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -748,7 +799,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Berikut adalah tampilan halaman form keterangan tidak absen, selanjutnya isi semua data pastikan tidak ada yang terlewat, setelah itu tekan tombol kirim."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -763,7 +815,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_finger_3" />
+                                    android:src="@drawable/faq_finger_3"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -779,7 +832,8 @@
                                     android:text="3."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -789,7 +843,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Jika tampilan halaman seperti pada gambar dibawah ini, permohonan fingerscan/form keterangan tidak absen anda telah berhasil terkirim."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -804,7 +859,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_finger_4" />
+                                    android:src="@drawable/faq_finger_4"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -829,7 +885,8 @@
                             android:lineSpacingExtra="2dp"
                             android:text="Pergantian perangkat dapat dilakukan dengan cara menghubungi bagian IT/EDP untuk melakukan reset id perangkat. Karyawan juga dapat menghubungi IT/EDP jika menemukan warning di perangkat yang baru pada saat login seperti pada gambar dibawah ini."
                             android:textColor="@color/text_color"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -842,7 +899,8 @@
                                 android:layout_width="129dp"
                                 android:layout_height="275dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/faq_device" />
+                                android:src="@drawable/faq_device"
+                                tools:ignore="ContentDescription" />
 
                         </LinearLayout>
 
@@ -865,7 +923,8 @@
                             android:lineSpacingExtra="2dp"
                             android:text="Jika karyawan terkendala lupa password atau ingin mengganti password. Karyawan dapat menghubungi IT/EDP untuk dilakukan proses reset password, untuk selanjutnya karyawan diharuskan registrasi ulang dengan password yang baru, seperti pada langkah-langkah dibawah ini :"
                             android:textColor="@color/text_color"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -885,7 +944,8 @@
                                     android:text="1."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -895,7 +955,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Pilih menu registrasi pada halaman login."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -910,7 +971,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_password_1" />
+                                    android:src="@drawable/faq_password_1"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -926,7 +988,8 @@
                                     android:text="2."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -936,7 +999,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Berikut adalah tampilan halaman form registrasi akun HRIS Mobile, selanjutnya isi semua data pastikan tidak ada yang terlewat termasuk password yang baru, setelah itu tekan tombol daftar."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -951,7 +1015,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_password_2" />
+                                    android:src="@drawable/faq_password_2"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -967,7 +1032,8 @@
                                     android:text="3."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -977,7 +1043,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Jika tampilan halaman seperti pada gambar dibawah ini, proses registrasi anda telah berhasil, selanjutnya anda bisa melakukan login dengan password yang baru."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -992,7 +1059,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_password_3" />
+                                    android:src="@drawable/faq_password_3"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -1017,7 +1085,8 @@
                             android:lineSpacingExtra="2dp"
                             android:text="Jika karyawan ingin menambahkan atau mengganti tanda tangan digital, karyawan dapat mengikuti langkah-langkah seperti berikut :"
                             android:textColor="@color/text_color"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1037,7 +1106,8 @@
                                     android:text="1."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -1047,7 +1117,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Pilih menu signature pada halaman beranda."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -1062,7 +1133,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_signature_1" />
+                                    android:src="@drawable/faq_signature_1"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -1078,7 +1150,8 @@
                                     android:text="2."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -1088,7 +1161,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Berikut adalah tampilan dari signature pad untuk input tanda tangan digital. Karyawan dapat membubuhkan tanda tangan pada area pad lalu tekan tombol simpan."
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -1103,7 +1177,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_signature_2" />
+                                    android:src="@drawable/faq_signature_2"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -1119,7 +1194,8 @@
                                     android:text="3."
                                     android:lineSpacingExtra="2dp"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -1129,7 +1205,8 @@
                                     android:lineSpacingExtra="2dp"
                                     android:text="Setelah menekan tombol simpan maka tanda tangan digtal akan tersimpan dan tampilan halaman akan seperti pada gambar dibawah ini. Jika karyawan ingin mengganti tanda tangan digital, karyawan dapat menekan tombol ubah tanda tangan dan ulangi step 2"
                                     android:textColor="@color/text_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                             </LinearLayout>
 
@@ -1144,7 +1221,8 @@
                                     android:layout_width="129dp"
                                     android:layout_height="275dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/faq_signature_3" />
+                                    android:src="@drawable/faq_signature_3"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -1178,7 +1256,7 @@
                             android:textColor="#808080"
                             android:textSize="14dp"
                             android:textStyle="bold"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         <TextView
                             android:id="@+id/hubungi_it"
@@ -1189,7 +1267,7 @@
                             android:textColor="#B15B3B"
                             android:textSize="14dp"
                             android:textStyle="bold"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -1210,7 +1288,7 @@
                         android:background="@drawable/shape_bar_profile_notify"
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
-                        tools:ignore="VisualLintBounds">
+                        tools:ignore="UselessParent,VisualLintBounds">
 
                         <LinearLayout
                             android:id="@+id/back_btn"
@@ -1219,13 +1297,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -1234,7 +1314,8 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:id="@+id/title_tv"
@@ -1247,7 +1328,8 @@
                                 android:singleLine="true"
                                 android:text=""
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                tools:ignore="SpUsage" />
 
                         </LinearLayout>
 

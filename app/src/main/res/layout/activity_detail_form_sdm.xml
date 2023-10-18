@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -37,7 +36,8 @@
                             android:layout_height="wrap_content"
                             android:paddingTop="68dp"
                             android:paddingBottom="30dp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            tools:ignore="UselessParent">
 
                             <LinearLayout
                                 android:id="@+id/acc_mark"
@@ -56,7 +56,8 @@
                                     android:singleLine="true"
                                     android:text="A C C E P T E D"
                                     android:textColor="#30A33B"
-                                    android:textSize="15dp" />
+                                    android:textSize="15dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -77,7 +78,8 @@
                                     android:singleLine="true"
                                     android:text="R E J E C T E D"
                                     android:textColor="#E65151"
-                                    android:textSize="15dp" />
+                                    android:textSize="15dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -100,12 +102,12 @@
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:textStyle="bold"
                                         android:gravity="right"
-                                        android:textSize="7dp"
-                                        android:textColor="#515151"
                                         android:text="FRM.HRD.01.01/rev-2"
-                                        tools:ignore="RtlHardcoded,SpUsage" />
+                                        android:textColor="#515151"
+                                        android:textSize="7dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TooDeepLayout" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -117,14 +119,15 @@
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:textStyle="bold"
-                                            android:gravity="center"
-                                            android:ellipsize="end"
-                                            android:maxLines="2"
-                                            android:textSize="9dp"
                                             android:layout_marginBottom="10dp"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="2"
+                                            android:text="FORMULIR SDM"
                                             android:textColor="#515151"
-                                            android:text="FORMULIR SDM"/>
+                                            android:textSize="9dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -134,7 +137,8 @@
                                             <LinearLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:orientation="horizontal">
+                                                android:orientation="horizontal"
+                                                tools:ignore="DisableBaselineAlignment">
 
                                                 <LinearLayout
                                                     android:layout_width="0dp"
@@ -157,21 +161,23 @@
                                                             android:ellipsize="end"
                                                             android:maxLines="1"
                                                             android:gravity="center"
-                                                            android:singleLine="true" />
+                                                            android:singleLine="true"
+                                                            tools:ignore="SpUsage" />
 
                                                     </LinearLayout>
 
                                                     <TextView
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="15dp"
-                                                        android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text="PENERIMAAN"
-                                                        android:textSize="6dp"
-                                                        android:ellipsize="end"
                                                         android:layout_marginLeft="2dp"
-                                                        android:maxLines="1"
+                                                        android:ellipsize="end"
                                                         android:gravity="center"
-                                                        android:singleLine="true" />
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:text="PENERIMAAN"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:textSize="6dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -196,21 +202,23 @@
                                                             android:ellipsize="end"
                                                             android:maxLines="1"
                                                             android:gravity="center"
-                                                            android:singleLine="true" />
+                                                            android:singleLine="true"
+                                                            tools:ignore="SpUsage" />
 
                                                     </LinearLayout>
 
                                                     <TextView
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="15dp"
-                                                        android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text="PENGANGKATAN"
-                                                        android:textSize="6dp"
-                                                        android:ellipsize="end"
                                                         android:layout_marginLeft="2dp"
-                                                        android:maxLines="1"
+                                                        android:ellipsize="end"
                                                         android:gravity="center"
-                                                        android:singleLine="true" />
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:text="PENGANGKATAN"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:textSize="6dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -235,21 +243,23 @@
                                                             android:ellipsize="end"
                                                             android:maxLines="1"
                                                             android:gravity="center"
-                                                            android:singleLine="true" />
+                                                            android:singleLine="true"
+                                                            tools:ignore="SpUsage" />
 
                                                     </LinearLayout>
 
                                                     <TextView
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="15dp"
-                                                        android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text="PENUGASAN KEMBALI"
-                                                        android:textSize="6dp"
-                                                        android:ellipsize="end"
                                                         android:layout_marginLeft="2dp"
-                                                        android:maxLines="1"
+                                                        android:ellipsize="end"
                                                         android:gravity="center"
-                                                        android:singleLine="true" />
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:text="PENUGASAN KEMBALI"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:textSize="6dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -259,7 +269,8 @@
                                                 android:layout_marginTop="5dp"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:orientation="horizontal">
+                                                android:orientation="horizontal"
+                                                tools:ignore="DisableBaselineAlignment">
 
                                                 <LinearLayout
                                                     android:layout_width="0dp"
@@ -282,21 +293,23 @@
                                                             android:ellipsize="end"
                                                             android:maxLines="1"
                                                             android:gravity="center"
-                                                            android:singleLine="true" />
+                                                            android:singleLine="true"
+                                                            tools:ignore="SpUsage" />
 
                                                     </LinearLayout>
 
                                                     <TextView
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="15dp"
-                                                        android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text="PENSIUN/PHK"
-                                                        android:textSize="6dp"
-                                                        android:ellipsize="end"
                                                         android:layout_marginLeft="2dp"
-                                                        android:maxLines="1"
+                                                        android:ellipsize="end"
                                                         android:gravity="center"
-                                                        android:singleLine="true" />
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:text="PENSIUN/PHK"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:textSize="6dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -321,21 +334,23 @@
                                                             android:ellipsize="end"
                                                             android:maxLines="1"
                                                             android:gravity="center"
-                                                            android:singleLine="true" />
+                                                            android:singleLine="true"
+                                                            tools:ignore="SpUsage" />
 
                                                     </LinearLayout>
 
                                                     <TextView
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="15dp"
-                                                        android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text="PROMOSI/MUTASI"
-                                                        android:textSize="6dp"
-                                                        android:ellipsize="end"
                                                         android:layout_marginLeft="2dp"
-                                                        android:maxLines="1"
+                                                        android:ellipsize="end"
                                                         android:gravity="center"
-                                                        android:singleLine="true" />
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:text="PROMOSI/MUTASI"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:textSize="6dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -360,21 +375,23 @@
                                                             android:ellipsize="end"
                                                             android:maxLines="1"
                                                             android:gravity="center"
-                                                            android:singleLine="true" />
+                                                            android:singleLine="true"
+                                                            tools:ignore="SpUsage" />
 
                                                     </LinearLayout>
 
                                                     <TextView
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="15dp"
-                                                        android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text="PENYESUAIAN GAJI"
-                                                        android:textSize="6dp"
-                                                        android:ellipsize="end"
                                                         android:layout_marginLeft="2dp"
-                                                        android:maxLines="1"
+                                                        android:ellipsize="end"
                                                         android:gravity="center"
-                                                        android:singleLine="true" />
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:text="PENYESUAIAN GAJI"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:textSize="6dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -407,21 +424,23 @@
                                                             android:ellipsize="end"
                                                             android:maxLines="1"
                                                             android:gravity="center"
-                                                            android:singleLine="true" />
+                                                            android:singleLine="true"
+                                                            tools:ignore="SpUsage" />
 
                                                     </LinearLayout>
 
                                                     <TextView
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="15dp"
-                                                        android:textAppearance="?android:attr/textAppearanceLarge"
-                                                        android:text="LAIN-LAIN"
-                                                        android:textSize="6dp"
-                                                        android:ellipsize="end"
                                                         android:layout_marginLeft="2dp"
-                                                        android:maxLines="1"
+                                                        android:ellipsize="end"
                                                         android:gravity="center"
-                                                        android:singleLine="true" />
+                                                        android:maxLines="1"
+                                                        android:singleLine="true"
+                                                        android:text="LAIN-LAIN"
+                                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                                        android:textSize="6dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -456,43 +475,46 @@
                                                     android:background="#FFFFFF"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    android:gravity="left"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
-                                                    android:layout_weight=".30"
                                                     android:layout_height="wrap_content"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
-                                                    android:text="BARU"
-                                                    android:textSize="7dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:layout_marginTop="0.5dp"
-                                                    android:layout_marginBottom="0.5dp"
-                                                    android:layout_marginRight="0.5dp"
                                                     android:layout_column="1"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".30"
                                                     android:background="#FFFFFF"
-                                                    android:paddingRight="3dp"
+                                                    android:ellipsize="end"
+                                                    android:gravity="center"
+                                                    android:maxLines="1"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="center" />
+                                                    android:paddingRight="3dp"
+                                                    android:singleLine="true"
+                                                    android:text="BARU"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:textSize="7dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
-                                                    android:layout_weight=".30"
                                                     android:layout_height="wrap_content"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
-                                                    android:text="LAMA"
-                                                    android:textSize="7dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
                                                     android:layout_marginTop="0.5dp"
-                                                    android:layout_marginBottom="0.5dp"
                                                     android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".30"
                                                     android:background="#FFFFFF"
+                                                    android:ellipsize="end"
                                                     android:gravity="center"
-                                                    android:paddingLeft="3dp" />
+                                                    android:maxLines="1"
+                                                    android:paddingLeft="3dp"
+                                                    android:singleLine="true"
+                                                    android:text="LAMA"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:textSize="7dp"
+                                                    tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TextSizeCheck" />
 
                                             </TableRow>
 
@@ -504,23 +526,24 @@
 
                                                 <TextView
                                                     android:layout_width="0dp"
-                                                    android:layout_weight=".20"
                                                     android:layout_height="match_parent"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
-                                                    android:text="NAMA"
-                                                    android:textSize="7dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:layout_marginTop="0.5dp"
-                                                    android:layout_marginBottom="0.5dp"
-                                                    android:layout_marginRight="0.5dp"
-                                                    android:layout_marginLeft="0.5dp"
                                                     android:layout_column="0"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".20"
                                                     android:background="#FFFFFF"
-                                                    android:paddingRight="3dp"
+                                                    android:ellipsize="end"
+                                                    android:gravity="left"
+                                                    android:maxLines="1"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    android:paddingRight="3dp"
+                                                    android:singleLine="true"
+                                                    android:text="NAMA"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:textSize="7dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/nama_baru_tv"
@@ -540,7 +563,8 @@
                                                     android:background="#FFFFFF"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    android:gravity="left"
+                                                    tools:ignore="RtlHardcoded" />
 
                                                 <TextView
                                                     android:id="@+id/nama_lama_tv"
@@ -558,7 +582,8 @@
                                                     android:layout_marginRight="0.5dp"
                                                     android:background="#FFFFFF"
                                                     android:gravity="left"
-                                                    android:paddingLeft="3dp" />
+                                                    android:paddingLeft="3dp"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry,SpUsage" />
 
                                             </TableRow>
 
@@ -570,23 +595,24 @@
 
                                                 <TextView
                                                     android:layout_width="0dp"
-                                                    android:layout_weight=".20"
                                                     android:layout_height="wrap_content"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
-                                                    android:text="UNIT BISNIS"
-                                                    android:textSize="7dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:layout_marginTop="0.5dp"
-                                                    android:layout_marginBottom="0.5dp"
-                                                    android:layout_marginRight="0.5dp"
-                                                    android:layout_marginLeft="0.5dp"
                                                     android:layout_column="0"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".20"
                                                     android:background="#FFFFFF"
-                                                    android:paddingRight="3dp"
+                                                    android:ellipsize="end"
+                                                    android:gravity="left"
+                                                    android:maxLines="1"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    android:paddingRight="3dp"
+                                                    android:singleLine="true"
+                                                    android:text="UNIT BISNIS"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:textSize="7dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/unit_bisnis_baru_tv"
@@ -606,7 +632,8 @@
                                                     android:background="#FFFFFF"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    android:gravity="left"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/unit_bisnis_lama_tv"
@@ -636,23 +663,24 @@
 
                                                 <TextView
                                                     android:layout_width="0dp"
-                                                    android:layout_weight=".20"
                                                     android:layout_height="wrap_content"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
-                                                    android:text="DEPARTEMEN"
-                                                    android:textSize="7dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:layout_marginTop="0.5dp"
-                                                    android:layout_marginBottom="0.5dp"
-                                                    android:layout_marginRight="0.5dp"
-                                                    android:layout_marginLeft="0.5dp"
                                                     android:layout_column="0"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".20"
                                                     android:background="#FFFFFF"
-                                                    android:paddingRight="3dp"
+                                                    android:ellipsize="end"
+                                                    android:gravity="left"
+                                                    android:maxLines="1"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    android:paddingRight="3dp"
+                                                    android:singleLine="true"
+                                                    android:text="DEPARTEMEN"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:textSize="7dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/departemen_baru_tv"
@@ -702,23 +730,24 @@
 
                                                 <TextView
                                                     android:layout_width="0dp"
-                                                    android:layout_weight=".20"
                                                     android:layout_height="wrap_content"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
-                                                    android:text="BAGIAN"
-                                                    android:textSize="7dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:layout_marginTop="0.5dp"
-                                                    android:layout_marginBottom="0.5dp"
-                                                    android:layout_marginRight="0.5dp"
-                                                    android:layout_marginLeft="0.5dp"
                                                     android:layout_column="0"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".20"
                                                     android:background="#FFFFFF"
-                                                    android:paddingRight="3dp"
+                                                    android:ellipsize="end"
+                                                    android:gravity="left"
+                                                    android:maxLines="1"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    android:paddingRight="3dp"
+                                                    android:singleLine="true"
+                                                    android:text="BAGIAN"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:textSize="7dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bagian_baru_tv"
@@ -768,23 +797,24 @@
 
                                                 <TextView
                                                     android:layout_width="0dp"
-                                                    android:layout_weight=".20"
                                                     android:layout_height="wrap_content"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
-                                                    android:text="JABATAN"
-                                                    android:textSize="7dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:layout_marginTop="0.5dp"
-                                                    android:layout_marginBottom="0.5dp"
-                                                    android:layout_marginRight="0.5dp"
-                                                    android:layout_marginLeft="0.5dp"
                                                     android:layout_column="0"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".20"
                                                     android:background="#FFFFFF"
-                                                    android:paddingRight="3dp"
+                                                    android:ellipsize="end"
+                                                    android:gravity="left"
+                                                    android:maxLines="1"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    android:paddingRight="3dp"
+                                                    android:singleLine="true"
+                                                    android:text="JABATAN"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:textSize="7dp"
+                                                    tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/jabatan_baru_tv"
@@ -834,23 +864,24 @@
 
                                                 <TextView
                                                     android:layout_width="0dp"
-                                                    android:layout_weight=".20"
                                                     android:layout_height="wrap_content"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
-                                                    android:text="KOMPONEN GAJI :"
-                                                    android:textSize="7dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:layout_marginTop="0.5dp"
-                                                    android:layout_marginBottom="0.5dp"
-                                                    android:layout_marginRight="0.5dp"
-                                                    android:layout_marginLeft="0.5dp"
                                                     android:layout_column="0"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".20"
                                                     android:background="#FFFFFF"
-                                                    android:paddingRight="3dp"
+                                                    android:ellipsize="end"
+                                                    android:gravity="left"
+                                                    android:maxLines="1"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    android:paddingRight="3dp"
+                                                    android:singleLine="true"
+                                                    android:text="KOMPONEN GAJI :"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:textSize="7dp"
+                                                    tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/komponen_gaji_baru_tv"
@@ -900,23 +931,24 @@
 
                                                 <TextView
                                                     android:layout_width="0dp"
-                                                    android:layout_weight=".20"
                                                     android:layout_height="wrap_content"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:layout_column="0"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".20"
+                                                    android:background="#FFFFFF"
+                                                    android:ellipsize="end"
+                                                    android:gravity="left"
+                                                    android:maxLines="1"
+                                                    android:paddingLeft="3dp"
+                                                    android:paddingRight="3dp"
+                                                    android:singleLine="true"
                                                     android:text="1"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:layout_marginTop="0.5dp"
-                                                    android:layout_marginBottom="0.5dp"
-                                                    android:layout_marginRight="0.5dp"
-                                                    android:layout_marginLeft="0.5dp"
-                                                    android:layout_column="0"
-                                                    android:background="#FFFFFF"
-                                                    android:paddingRight="3dp"
-                                                    android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -935,7 +967,8 @@
                                                     android:background="#FFFFFF"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="center" />
+                                                    android:gravity="center"
+                                                    tools:ignore="TooManyViews" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -952,7 +985,8 @@
                                                     android:layout_marginRight="0.5dp"
                                                     android:background="#FFFFFF"
                                                     android:gravity="left"
-                                                    android:paddingLeft="3dp" />
+                                                    android:paddingLeft="3dp"
+                                                    tools:ignore="RtlSymmetry" />
 
                                             </TableRow>
 
@@ -964,23 +998,24 @@
 
                                                 <TextView
                                                     android:layout_width="0dp"
-                                                    android:layout_weight=".20"
                                                     android:layout_height="wrap_content"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:layout_column="0"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".20"
+                                                    android:background="#FFFFFF"
+                                                    android:ellipsize="end"
+                                                    android:gravity="left"
+                                                    android:maxLines="1"
+                                                    android:paddingLeft="3dp"
+                                                    android:paddingRight="3dp"
+                                                    android:singleLine="true"
                                                     android:text="2"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:layout_marginTop="0.5dp"
-                                                    android:layout_marginBottom="0.5dp"
-                                                    android:layout_marginRight="0.5dp"
-                                                    android:layout_marginLeft="0.5dp"
-                                                    android:layout_column="0"
-                                                    android:background="#FFFFFF"
-                                                    android:paddingRight="3dp"
-                                                    android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1016,7 +1051,8 @@
                                                     android:layout_marginRight="0.5dp"
                                                     android:background="#FFFFFF"
                                                     android:gravity="left"
-                                                    android:paddingLeft="3dp" />
+                                                    android:paddingLeft="3dp"
+                                                    tools:ignore="RtlSymmetry" />
 
                                             </TableRow>
 
@@ -1028,23 +1064,24 @@
 
                                                 <TextView
                                                     android:layout_width="0dp"
-                                                    android:layout_weight=".20"
                                                     android:layout_height="wrap_content"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:layout_column="0"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".20"
+                                                    android:background="#FFFFFF"
+                                                    android:ellipsize="end"
+                                                    android:gravity="left"
+                                                    android:maxLines="1"
+                                                    android:paddingLeft="3dp"
+                                                    android:paddingRight="3dp"
+                                                    android:singleLine="true"
                                                     android:text="3"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:layout_marginTop="0.5dp"
-                                                    android:layout_marginBottom="0.5dp"
-                                                    android:layout_marginRight="0.5dp"
-                                                    android:layout_marginLeft="0.5dp"
-                                                    android:layout_column="0"
-                                                    android:background="#FFFFFF"
-                                                    android:paddingRight="3dp"
-                                                    android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1080,7 +1117,8 @@
                                                     android:layout_marginRight="0.5dp"
                                                     android:background="#FFFFFF"
                                                     android:gravity="left"
-                                                    android:paddingLeft="3dp" />
+                                                    android:paddingLeft="3dp"
+                                                    tools:ignore="RtlSymmetry" />
 
                                             </TableRow>
 
@@ -1092,23 +1130,24 @@
 
                                                 <TextView
                                                     android:layout_width="0dp"
-                                                    android:layout_weight=".20"
                                                     android:layout_height="wrap_content"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:layout_column="0"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".20"
+                                                    android:background="#FFFFFF"
+                                                    android:ellipsize="end"
+                                                    android:gravity="left"
+                                                    android:maxLines="1"
+                                                    android:paddingLeft="3dp"
+                                                    android:paddingRight="3dp"
+                                                    android:singleLine="true"
                                                     android:text="4"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:layout_marginTop="0.5dp"
-                                                    android:layout_marginBottom="0.5dp"
-                                                    android:layout_marginRight="0.5dp"
-                                                    android:layout_marginLeft="0.5dp"
-                                                    android:layout_column="0"
-                                                    android:background="#FFFFFF"
-                                                    android:paddingRight="3dp"
-                                                    android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1144,7 +1183,8 @@
                                                     android:layout_marginRight="0.5dp"
                                                     android:background="#FFFFFF"
                                                     android:gravity="left"
-                                                    android:paddingLeft="3dp" />
+                                                    android:paddingLeft="3dp"
+                                                    tools:ignore="RtlSymmetry" />
 
                                             </TableRow>
 
@@ -1156,23 +1196,24 @@
 
                                                 <TextView
                                                     android:layout_width="0dp"
-                                                    android:layout_weight=".20"
                                                     android:layout_height="wrap_content"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
-                                                    android:text="5"
-                                                    android:textSize="7dp"
-                                                    android:ellipsize="end"
-                                                    android:maxLines="1"
-                                                    android:singleLine="true"
-                                                    android:layout_marginTop="0.5dp"
-                                                    android:layout_marginBottom="0.5dp"
-                                                    android:layout_marginRight="0.5dp"
-                                                    android:layout_marginLeft="0.5dp"
                                                     android:layout_column="0"
+                                                    android:layout_marginLeft="0.5dp"
+                                                    android:layout_marginTop="0.5dp"
+                                                    android:layout_marginRight="0.5dp"
+                                                    android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".20"
                                                     android:background="#FFFFFF"
-                                                    android:paddingRight="3dp"
+                                                    android:ellipsize="end"
+                                                    android:gravity="left"
+                                                    android:maxLines="1"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="left" />
+                                                    android:paddingRight="3dp"
+                                                    android:singleLine="true"
+                                                    android:text="5"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:textSize="7dp"
+                                                    tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1208,7 +1249,8 @@
                                                     android:layout_marginRight="0.5dp"
                                                     android:background="#FFFFFF"
                                                     android:gravity="left"
-                                                    android:paddingLeft="3dp" />
+                                                    android:paddingLeft="3dp"
+                                                    tools:ignore="RtlSymmetry" />
 
                                             </TableRow>
 
@@ -1226,24 +1268,27 @@
                                                 android:layout_marginBottom="5dp"
                                                 android:text="KESIMPULAN"
                                                 android:textColor="#515151"
+                                                android:textSize="7dp"
                                                 android:textStyle="bold"
-                                                android:textSize="7dp" />
+                                                tools:ignore="HardcodedText,TextSizeCheck" />
 
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:layout_marginBottom="5dp"
                                                 android:layout_marginLeft="5dp"
+                                                android:layout_marginBottom="5dp"
                                                 android:text="1  Untuk Penerimaan"
                                                 android:textColor="#515151"
+                                                android:textSize="7dp"
                                                 android:textStyle="bold"
-                                                android:textSize="7dp" />
+                                                tools:ignore="HardcodedText,TextSizeCheck" />
 
                                             <LinearLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginLeft="12dp"
-                                                android:orientation="vertical">
+                                                android:orientation="vertical"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <LinearLayout
                                                     android:layout_width="match_parent"
@@ -1257,7 +1302,8 @@
                                                         android:layout_weight=".35"
                                                         android:text="A. Jabatan/Departemen"
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     <LinearLayout
                                                         android:layout_width="0dp"
@@ -1270,7 +1316,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/jabatan_slash_departemen_tv"
@@ -1278,7 +1325,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text="......................................................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1296,7 +1344,8 @@
                                                         android:layout_weight=".35"
                                                         android:text="B. Deskripsi/Jabatan"
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     <LinearLayout
                                                         android:layout_width="0dp"
@@ -1309,7 +1358,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/deskripsi_slash_jabatan_tv"
@@ -1318,7 +1368,8 @@
                                                             android:lineSpacingExtra="2.5dp"
                                                             android:text="......................................................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1349,7 +1400,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="match_parent"
@@ -1357,7 +1409,8 @@
                                                             android:lineSpacingExtra="2dp"
                                                             android:text="......................................................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1375,7 +1428,8 @@
                                                         android:layout_weight=".35"
                                                         android:text="C. Syarat-syarat penerimaan"
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     <LinearLayout
                                                         android:layout_width="0dp"
@@ -1388,7 +1442,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="8dp" />
+                                                            android:textSize="8dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/syarat_penerimaan_tv"
@@ -1396,7 +1451,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text="......................................................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1427,7 +1483,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="match_parent"
@@ -1435,7 +1492,8 @@
                                                             android:lineSpacingExtra="2dp"
                                                             android:text="......................................................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1466,7 +1524,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="match_parent"
@@ -1474,7 +1533,8 @@
                                                             android:lineSpacingExtra="2dp"
                                                             android:text="......................................................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1505,7 +1565,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="match_parent"
@@ -1513,7 +1574,8 @@
                                                             android:lineSpacingExtra="2dp"
                                                             android:text="......................................................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1531,7 +1593,8 @@
                                                         android:layout_weight=".25"
                                                         android:text="TGL DIBUTUHKAN"
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     <LinearLayout
                                                         android:layout_width="0dp"
@@ -1544,7 +1607,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/tgl_dibutuhkan_1_tv"
@@ -1552,7 +1616,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text="....................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1562,7 +1627,8 @@
                                                         android:layout_weight=".25"
                                                         android:text="TGL PEMENUHAN"
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     <LinearLayout
                                                         android:layout_width="0dp"
@@ -1575,7 +1641,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/tgl_pemenuhan_1_tv"
@@ -1583,7 +1650,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text="....................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1601,19 +1669,21 @@
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
+                                                android:layout_marginLeft="5dp"
                                                 android:layout_marginTop="7dp"
                                                 android:layout_marginBottom="5dp"
-                                                android:layout_marginLeft="5dp"
                                                 android:text="2  Untuk Promosi/Mutasi/Penyesuaian Gaji"
                                                 android:textColor="#515151"
+                                                android:textSize="7dp"
                                                 android:textStyle="bold"
-                                                android:textSize="7dp" />
+                                                tools:ignore="HardcodedText,TextSizeCheck" />
 
                                             <LinearLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginLeft="12dp"
-                                                android:orientation="vertical">
+                                                android:orientation="vertical"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <LinearLayout
                                                     android:layout_width="match_parent"
@@ -1627,7 +1697,8 @@
                                                         android:layout_weight=".35"
                                                         android:text="A.1. Jabatan Lama"
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     <LinearLayout
                                                         android:layout_width="0dp"
@@ -1640,7 +1711,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/jabatan_lama_detail_tv"
@@ -1648,7 +1720,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text="......................................................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1666,7 +1739,8 @@
                                                         android:layout_weight=".35"
                                                         android:text="A.2. Tanggal Pengangkatan"
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     <LinearLayout
                                                         android:layout_width="0dp"
@@ -1679,7 +1753,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/tgl_pengangkatan_jabatan_lama_detail_tv"
@@ -1688,7 +1763,8 @@
                                                             android:lineSpacingExtra="2.5dp"
                                                             android:text="......................................................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1706,7 +1782,8 @@
                                                         android:layout_weight=".35"
                                                         android:text="B.1. Jabatan Baru"
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     <LinearLayout
                                                         android:layout_width="0dp"
@@ -1719,7 +1796,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/jabatan_baru_detail_tv"
@@ -1728,7 +1806,8 @@
                                                             android:lineSpacingExtra="2dp"
                                                             android:text="......................................................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1746,7 +1825,8 @@
                                                         android:layout_weight=".35"
                                                         android:text="B.2. Tanggal Pengangkatan"
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     <LinearLayout
                                                         android:layout_width="0dp"
@@ -1759,7 +1839,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/tgl_pengangkatan_jabatan_baru_detail_tv"
@@ -1767,7 +1848,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text="......................................................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1785,7 +1867,8 @@
                                                         android:layout_weight=".35"
                                                         android:text="B.3. Alasan Pengangkatan"
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     <LinearLayout
                                                         android:layout_width="0dp"
@@ -1798,7 +1881,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/alasan_pengangkatan_tv"
@@ -1807,7 +1891,8 @@
                                                             android:lineSpacingExtra="2dp"
                                                             android:text="......................................................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1825,7 +1910,8 @@
                                                         android:layout_weight=".25"
                                                         android:text="TGL DIBUTUHKAN"
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     <LinearLayout
                                                         android:layout_width="0dp"
@@ -1838,7 +1924,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/tgl_dibutuhkan_2_tv"
@@ -1846,7 +1933,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text="....................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1856,7 +1944,8 @@
                                                         android:layout_weight=".25"
                                                         android:text="TGL PEMENUHAN"
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     <LinearLayout
                                                         android:layout_width="0dp"
@@ -1869,7 +1958,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/tgl_pemenuhan_2_tv"
@@ -1877,7 +1967,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text="....................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     </LinearLayout>
 
@@ -1895,20 +1986,22 @@
                                             <TextView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
+                                                android:layout_marginLeft="5dp"
                                                 android:layout_marginTop="5dp"
                                                 android:layout_marginBottom="5dp"
-                                                android:layout_marginLeft="5dp"
                                                 android:text="3  Pengunduran diri, Penugasan Kembali, Pensiun, PHK"
                                                 android:textColor="#515151"
+                                                android:textSize="7dp"
                                                 android:textStyle="bold"
-                                                android:textSize="7dp" />
+                                                tools:ignore="HardcodedText,TextSizeCheck" />
 
                                             <LinearLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginLeft="12dp"
                                                 android:layout_marginBottom="2dp"
-                                                android:orientation="horizontal">
+                                                android:orientation="horizontal"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1916,7 +2009,8 @@
                                                     android:layout_weight=".35"
                                                     android:text="MEMENUHI SYARAT"
                                                     android:textColor="#515151"
-                                                    android:textSize="7dp" />
+                                                    android:textSize="7dp"
+                                                    tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                 <LinearLayout
                                                     android:layout_width="0dp"
@@ -1926,7 +2020,8 @@
 
                                                     <LinearLayout
                                                         android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content">
+                                                        android:layout_height="wrap_content"
+                                                        tools:ignore="DisableBaselineAlignment">
 
                                                         <LinearLayout
                                                             android:layout_width="0dp"
@@ -1957,11 +2052,12 @@
                                                             <TextView
                                                                 android:layout_width="wrap_content"
                                                                 android:layout_height="15dp"
-                                                                android:text="YA"
                                                                 android:layout_marginLeft="5dp"
-                                                                android:textColor="#515151"
                                                                 android:gravity="center|left"
-                                                                android:textSize="7dp" />
+                                                                android:text="YA"
+                                                                android:textColor="#515151"
+                                                                android:textSize="7dp"
+                                                                tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         </LinearLayout>
 
@@ -1994,11 +2090,12 @@
                                                             <TextView
                                                                 android:layout_width="match_parent"
                                                                 android:layout_height="15dp"
-                                                                android:text="TIDAK"
                                                                 android:layout_marginLeft="5dp"
-                                                                android:textColor="#515151"
                                                                 android:gravity="center|left"
-                                                                android:textSize="7dp" />
+                                                                android:text="TIDAK"
+                                                                android:textColor="#515151"
+                                                                android:textSize="7dp"
+                                                                tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         </LinearLayout>
 
@@ -2024,12 +2121,13 @@
                                                 <TextView
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="5dp"
                                                     android:layout_weight=".35"
                                                     android:text="4  Lain-Lain"
                                                     android:textColor="#515151"
-                                                    android:layout_marginLeft="5dp"
+                                                    android:textSize="7dp"
                                                     android:textStyle="bold"
-                                                    android:textSize="7dp" />
+                                                    tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                 <LinearLayout
                                                     android:layout_width="0dp"
@@ -2042,7 +2140,8 @@
                                                         android:layout_height="wrap_content"
                                                         android:text=":  "
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     <TextView
                                                         android:id="@+id/lain_lain_tv"
@@ -2051,7 +2150,8 @@
                                                         android:lineSpacingExtra="2dp"
                                                         android:text="......................................................."
                                                         android:textColor="#515151"
-                                                        android:textSize="7dp" />
+                                                        android:textSize="7dp"
+                                                        tools:ignore="TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -2062,7 +2162,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginLeft="12dp"
                                                 android:layout_marginBottom="2dp"
-                                                android:orientation="horizontal">
+                                                android:orientation="horizontal"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -2070,7 +2171,8 @@
                                                     android:layout_weight=".35"
                                                     android:text="PERSETUJUAN"
                                                     android:textColor="#515151"
-                                                    android:textSize="7dp" />
+                                                    android:textSize="7dp"
+                                                    tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                 <LinearLayout
                                                     android:layout_width="0dp"
@@ -2080,7 +2182,8 @@
 
                                                     <LinearLayout
                                                         android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content">
+                                                        android:layout_height="wrap_content"
+                                                        tools:ignore="DisableBaselineAlignment">
 
                                                         <LinearLayout
                                                             android:layout_width="0dp"
@@ -2111,11 +2214,12 @@
                                                             <TextView
                                                                 android:layout_width="wrap_content"
                                                                 android:layout_height="15dp"
-                                                                android:text="YA"
                                                                 android:layout_marginLeft="5dp"
-                                                                android:textColor="#515151"
                                                                 android:gravity="center|left"
-                                                                android:textSize="7dp" />
+                                                                android:text="YA"
+                                                                android:textColor="#515151"
+                                                                android:textSize="7dp"
+                                                                tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         </LinearLayout>
 
@@ -2148,11 +2252,12 @@
                                                             <TextView
                                                                 android:layout_width="match_parent"
                                                                 android:layout_height="15dp"
-                                                                android:text="TIDAK"
                                                                 android:layout_marginLeft="5dp"
-                                                                android:textColor="#515151"
                                                                 android:gravity="center|left"
-                                                                android:textSize="7dp" />
+                                                                android:text="TIDAK"
+                                                                android:textColor="#515151"
+                                                                android:textSize="7dp"
+                                                                tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         </LinearLayout>
 
@@ -2174,7 +2279,8 @@
                                                 android:background="#000000"
                                                 android:layout_width="match_parent"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TableLayout
                                                     android:layout_weight=".18"
@@ -2191,18 +2297,19 @@
                                                         <TextView
                                                             android:layout_width="match_parent"
                                                             android:layout_height="match_parent"
-                                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                                            android:text="Pemohon"
-                                                            android:textSize="7dp"
-                                                            android:ellipsize="end"
-                                                            android:maxLines="1"
-                                                            android:singleLine="true"
-                                                            android:layout_marginTop="0.5dp"
                                                             android:layout_marginLeft="0.5dp"
+                                                            android:layout_marginTop="0.5dp"
                                                             android:background="#FFFFFF"
-                                                            android:paddingRight="3dp"
+                                                            android:ellipsize="end"
+                                                            android:gravity="center"
+                                                            android:maxLines="1"
                                                             android:paddingLeft="3dp"
-                                                            android:gravity="center" />
+                                                            android:paddingRight="3dp"
+                                                            android:singleLine="true"
+                                                            android:text="Pemohon"
+                                                            android:textAppearance="?android:attr/textAppearanceLarge"
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2293,23 +2400,24 @@
                                                         android:layout_height="0dp">
 
                                                         <TextView
-                                                            android:layout_weight=".10"
                                                             android:layout_width="0dp"
                                                             android:layout_height="match_parent"
-                                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                                            android:text="Ka. Bagian"
-                                                            android:textSize="7dp"
-                                                            android:ellipsize="end"
-                                                            android:maxLines="1"
-                                                            android:singleLine="true"
-                                                            android:layout_marginTop="0.5dp"
-                                                            android:layout_marginBottom="0.5dp"
                                                             android:layout_marginLeft="0.5dp"
+                                                            android:layout_marginTop="0.5dp"
                                                             android:layout_marginRight="-1.5dp"
+                                                            android:layout_marginBottom="0.5dp"
+                                                            android:layout_weight=".10"
                                                             android:background="#FFFFFF"
+                                                            android:ellipsize="end"
+                                                            android:gravity="center"
+                                                            android:maxLines="1"
                                                             android:paddingLeft="3dp"
                                                             android:paddingRight="3dp"
-                                                            android:gravity="center" />
+                                                            android:singleLine="true"
+                                                            android:text="Ka. Bagian"
+                                                            android:textAppearance="?android:attr/textAppearanceLarge"
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2328,20 +2436,21 @@
                                                         android:layout_height="0dp">
 
                                                         <TextView
-                                                            android:layout_weight=".100"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="match_parent"
-                                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                                            android:text="Mengetahui/Menyetujui"
-                                                            android:textSize="7dp"
-                                                            android:ellipsize="end"
-                                                            android:maxLines="1"
-                                                            android:singleLine="true"
                                                             android:layout_marginTop="0.5dp"
+                                                            android:layout_weight=".100"
                                                             android:background="#FFFFFF"
-                                                            android:paddingRight="3dp"
+                                                            android:ellipsize="end"
+                                                            android:gravity="center"
+                                                            android:maxLines="1"
                                                             android:paddingLeft="3dp"
-                                                            android:gravity="center" />
+                                                            android:paddingRight="3dp"
+                                                            android:singleLine="true"
+                                                            android:text="Mengetahui/Menyetujui"
+                                                            android:textAppearance="?android:attr/textAppearanceLarge"
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2495,41 +2604,43 @@
                                                         android:layout_height="0dp">
 
                                                         <TextView
-                                                            android:layout_weight=".50"
                                                             android:layout_width="0dp"
                                                             android:layout_height="match_parent"
-                                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                                            android:text="Ka. Departemen"
-                                                            android:textSize="7dp"
-                                                            android:ellipsize="end"
-                                                            android:maxLines="1"
-                                                            android:singleLine="true"
                                                             android:layout_marginTop="0.5dp"
                                                             android:layout_marginBottom="0.5dp"
+                                                            android:layout_weight=".50"
                                                             android:background="#FFFFFF"
+                                                            android:ellipsize="end"
+                                                            android:gravity="center"
+                                                            android:maxLines="1"
                                                             android:paddingLeft="3dp"
                                                             android:paddingRight="3dp"
-                                                            android:gravity="center" />
+                                                            android:singleLine="true"
+                                                            android:text="Ka. Departemen"
+                                                            android:textAppearance="?android:attr/textAppearanceLarge"
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/label_direksi"
-                                                            android:layout_weight=".50"
                                                             android:layout_width="0dp"
                                                             android:layout_height="match_parent"
-                                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                                            android:text="Direktur"
-                                                            android:textSize="7dp"
-                                                            android:ellipsize="end"
-                                                            android:maxLines="1"
-                                                            android:singleLine="true"
-                                                            android:layout_marginTop="0.5dp"
-                                                            android:layout_marginBottom="0.5dp"
                                                             android:layout_marginLeft="0.5dp"
+                                                            android:layout_marginTop="0.5dp"
                                                             android:layout_marginRight="-1.5dp"
+                                                            android:layout_marginBottom="0.5dp"
+                                                            android:layout_weight=".50"
                                                             android:background="#FFFFFF"
+                                                            android:ellipsize="end"
+                                                            android:gravity="center"
+                                                            android:maxLines="1"
                                                             android:paddingLeft="3dp"
                                                             android:paddingRight="3dp"
-                                                            android:gravity="center" />
+                                                            android:singleLine="true"
+                                                            android:text="Direktur"
+                                                            android:textAppearance="?android:attr/textAppearanceLarge"
+                                                            android:textSize="7dp"
+                                                            tools:ignore="TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2547,20 +2658,21 @@
                                                         android:layout_height="0dp">
 
                                                         <TextView
-                                                            android:layout_weight=".100"
                                                             android:layout_width="0dp"
                                                             android:layout_height="match_parent"
-                                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                                            android:text="Diterima"
-                                                            android:ellipsize="end"
-                                                            android:maxLines="1"
-                                                            android:singleLine="true"
-                                                            android:textSize="7dp"
                                                             android:layout_marginTop="0.5dp"
+                                                            android:layout_weight=".100"
                                                             android:background="#FFFFFF"
-                                                            android:paddingRight="3dp"
+                                                            android:ellipsize="end"
+                                                            android:gravity="center"
+                                                            android:maxLines="1"
                                                             android:paddingLeft="3dp"
-                                                            android:gravity="center" />
+                                                            android:paddingRight="3dp"
+                                                            android:singleLine="true"
+                                                            android:text="Diterima"
+                                                            android:textAppearance="?android:attr/textAppearanceLarge"
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2598,21 +2710,22 @@
                                                         android:layout_height="0dp">
 
                                                         <TextView
-                                                            android:layout_weight=".100"
                                                             android:layout_width="0dp"
                                                             android:layout_height="match_parent"
-                                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                                            android:text="Departemen SDM"
-                                                            android:textSize="7dp"
-                                                            android:ellipsize="end"
-                                                            android:maxLines="1"
-                                                            android:singleLine="true"
                                                             android:layout_marginTop="0.5dp"
                                                             android:layout_marginBottom="0.5dp"
+                                                            android:layout_weight=".100"
                                                             android:background="#FFFFFF"
+                                                            android:ellipsize="end"
+                                                            android:gravity="left"
+                                                            android:maxLines="1"
                                                             android:paddingLeft="3dp"
                                                             android:paddingRight="3dp"
-                                                            android:gravity="left" />
+                                                            android:singleLine="true"
+                                                            android:text="Departemen SDM"
+                                                            android:textAppearance="?android:attr/textAppearanceLarge"
+                                                            android:textSize="7dp"
+                                                            tools:ignore="HardcodedText,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2624,21 +2737,22 @@
 
                                                         <TextView
                                                             android:id="@+id/tgl_penerimaan_tv"
-                                                            android:layout_weight=".100"
                                                             android:layout_width="0dp"
                                                             android:layout_height="match_parent"
-                                                            android:textAppearance="?android:attr/textAppearanceLarge"
-                                                            android:text="Tgl :"
-                                                            android:textSize="7dp"
-                                                            android:ellipsize="end"
-                                                            android:maxLines="1"
-                                                            android:singleLine="true"
                                                             android:layout_marginTop="0.5dp"
                                                             android:layout_marginBottom="0.5dp"
+                                                            android:layout_weight=".100"
                                                             android:background="#FFFFFF"
+                                                            android:ellipsize="end"
+                                                            android:gravity="left"
+                                                            android:maxLines="1"
                                                             android:paddingLeft="3dp"
                                                             android:paddingRight="3dp"
-                                                            android:gravity="left" />
+                                                            android:singleLine="true"
+                                                            android:text="Tgl :"
+                                                            android:textAppearance="?android:attr/textAppearanceLarge"
+                                                            android:textSize="7dp"
+                                                            tools:ignore="TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2655,17 +2769,18 @@
                                                 android:layout_height="0dp">
 
                                                 <TextView
-                                                    android:layout_weight=".100"
                                                     android:layout_height="wrap_content"
-                                                    android:textAppearance="?android:attr/textAppearanceLarge"
-                                                    android:text="Catatan :"
-                                                    android:textSize="7dp"
                                                     android:layout_marginTop="0.5dp"
                                                     android:layout_marginBottom="0.5dp"
+                                                    android:layout_weight=".100"
                                                     android:background="#FFFFFF"
+                                                    android:gravity="left"
                                                     android:paddingLeft="3dp"
                                                     android:paddingRight="3dp"
-                                                    android:gravity="left" />
+                                                    android:text="Catatan :"
+                                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                                    android:textSize="7dp"
+                                                    tools:ignore="HardcodedText,TextSizeCheck" />
 
                                             </TableRow>
 
@@ -2696,27 +2811,28 @@
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="5dp" />
+                                            android:layout_height="5dp"
+                                            tools:ignore="UselessLeaf" />
 
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:textStyle="bold"
                                             android:gravity="left"
-                                            android:textSize="7dp"
-                                            android:textColor="#515151"
                                             android:text="*Beri tanda ✓ pada kotak pilihan yang sesuai"
-                                            tools:ignore="RtlHardcoded,SpUsage" />
+                                            android:textColor="#515151"
+                                            android:textSize="7dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:textStyle="bold"
                                             android:gravity="left"
-                                            android:textSize="7dp"
-                                            android:textColor="#515151"
                                             android:text="*Coret yang tidak perlu"
-                                            tools:ignore="RtlHardcoded,SpUsage" />
+                                            android:textColor="#515151"
+                                            android:textSize="7dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -2733,13 +2849,14 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textStyle="bold"
+                                        android:drawableLeft="@drawable/ic_baseline_save_permohonan"
                                         android:drawablePadding="7dp"
                                         android:gravity="center"
-                                        android:drawableLeft="@drawable/ic_baseline_save_permohonan"
+                                        android:text="Unduh File"
                                         android:textColor="#CF811F"
                                         android:textSize="13dp"
-                                        android:text="Unduh File"/>
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,TextContrastCheck,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                                 </LinearLayout>
 
@@ -2754,7 +2871,8 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="5dp"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
 
                                         <LinearLayout
                                             android:id="@+id/rejected_btn"
@@ -2845,16 +2963,17 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:gravity="right"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
                                 android:ellipsize="end"
+                                android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:text="DETAIL FORM SDM"
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="TextSizeCheck,TextSizeCheck" />
 
                         </LinearLayout>
 
