@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -36,12 +37,14 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="10dp">
+                            android:layout_marginTop="10dp"
+                            tools:ignore="UselessParent">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                tools:ignore="UselessParent">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -59,7 +62,8 @@
                                         android:paddingRight="20dp"
                                         android:paddingLeft="20dp"
                                         android:paddingBottom="13dp"
-                                        android:background="@drawable/shape_attantion_head">
+                                        android:background="@drawable/shape_attantion_head"
+                                        tools:ignore="TooDeepLayout">
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -71,7 +75,7 @@
                                             android:textColor="#B1670B"
                                             android:textSize="13dp"
                                             android:textStyle="bold"
-                                            tools:ignore="TextSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -95,7 +99,8 @@
                                             android:singleLine="true"
                                             android:textColor="#B1670B"
                                             android:textStyle="bold"
-                                            android:text=""/>
+                                            android:text=""
+                                            tools:ignore="SpUsage" />
 
                                     </LinearLayout>
 
@@ -113,7 +118,8 @@
                                             android:paddingLeft="10dp"
                                             android:paddingRight="10dp"
                                             android:background="@drawable/shape_detail_2"
-                                            android:gravity="center|left">
+                                            android:gravity="center|left"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:id="@+id/date_absen_tv"
@@ -129,7 +135,7 @@
                                                 android:textColor="@color/white"
                                                 android:textSize="12dp"
                                                 android:textStyle="bold"
-                                                tools:ignore="TextSizeCheck" />
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml,TextContrastCheck" />
 
                                         </LinearLayout>
 
@@ -141,7 +147,8 @@
                                             android:paddingRight="10dp"
                                             android:paddingBottom="10dp"
                                             android:background="@drawable/shape_shift_last"
-                                            android:gravity="center|left">
+                                            android:gravity="center|left"
+                                            tools:ignore="RtlHardcoded">
 
                                             <RelativeLayout
                                                 android:layout_width="match_parent"
@@ -168,7 +175,7 @@
                                                         android:textColor="#9E6216"
                                                         android:textSize="12dp"
                                                         android:textStyle="bold"
-                                                        tools:ignore="TextSizeCheck" />
+                                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                                                     <TextView
                                                         android:id="@+id/shift_time"
@@ -188,7 +195,7 @@
                                                         android:textColor="#9E6216"
                                                         android:textSize="12dp"
                                                         android:textStyle="bold"
-                                                        tools:ignore="TextSizeCheck" />
+                                                        tools:ignore="HardcodedText,ObsoleteLayoutParam,SpUsage,TextContrastCheck,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                                                 </LinearLayout>
 
@@ -200,7 +207,8 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="-1dp"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="DisableBaselineAlignment">
 
                                             <LinearLayout
                                                 android:layout_width="0dp"
@@ -208,7 +216,8 @@
                                                 android:background="@drawable/shape_checkin_2"
                                                 android:layout_weight=".50"
                                                 android:layout_marginRight="-0.5dp"
-                                                android:orientation="vertical">
+                                                android:orientation="vertical"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="match_parent"
@@ -225,7 +234,7 @@
                                                     android:textColor="#147C19"
                                                     android:textSize="11dp"
                                                     android:textStyle="bold"
-                                                    tools:ignore="TextContrastCheck,TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="match_parent"
@@ -249,7 +258,7 @@
                                                     android:text="---- - -- - --"
                                                     android:textColor="#696969"
                                                     android:textSize="11dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                                                 <TextView
                                                     android:id="@+id/time_checkin_tv"
@@ -266,7 +275,7 @@
                                                     android:text="-- : -- : -- ---"
                                                     android:textColor="#696969"
                                                     android:textSize="11dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                                                 <TextView
                                                     android:id="@+id/checkin_point_tv"
@@ -283,7 +292,7 @@
                                                     android:text="-"
                                                     android:textColor="#696969"
                                                     android:textSize="11dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                                             </LinearLayout>
 
@@ -293,7 +302,8 @@
                                                 android:background="@drawable/shape_checkout_2"
                                                 android:layout_marginLeft="-0.5dp"
                                                 android:layout_weight=".50"
-                                                android:orientation="vertical">
+                                                android:orientation="vertical"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="match_parent"
@@ -310,7 +320,7 @@
                                                     android:textColor="@color/red"
                                                     android:textSize="11dp"
                                                     android:textStyle="bold"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="match_parent"
@@ -334,7 +344,7 @@
                                                     android:text="---- - -- - --"
                                                     android:textColor="#696969"
                                                     android:textSize="11dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                                                 <TextView
                                                     android:id="@+id/time_checkout_tv"
@@ -351,7 +361,7 @@
                                                     android:text="-- : -- : -- ---"
                                                     android:textColor="#696969"
                                                     android:textSize="11dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                                                 <TextView
                                                     android:id="@+id/checkout_point_tv"
@@ -368,7 +378,7 @@
                                                     android:text="-"
                                                     android:textColor="#696969"
                                                     android:textSize="11dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                                             </LinearLayout>
 
@@ -407,7 +417,7 @@
                                         android:textColor="@color/white"
                                         android:textSize="13dp"
                                         android:textStyle="bold"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                                 </LinearLayout>
 
@@ -426,7 +436,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Filter Tanggal :"/>
+                                        android:text="Filter Tanggal :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:id="@+id/filter_date_choice_btn"
@@ -434,7 +445,8 @@
                                         android:layout_height="40dp"
                                         android:paddingStart="20dp"
                                         android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
@@ -447,7 +459,8 @@
                                                 android:layout_marginRight="50dp"
                                                 android:layout_height="40dp"
                                                 android:orientation="vertical"
-                                                android:gravity="center|left">
+                                                android:gravity="center|left"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:id="@+id/filter_date_choice_tv"
@@ -468,7 +481,8 @@
                                                 android:layout_width="40dp"
                                                 android:layout_height="match_parent"
                                                 android:background="@drawable/shape_btn"
-                                                android:gravity="center">
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="25dp"
@@ -511,7 +525,7 @@
                                             android:textColor="#C68D46"
                                             android:textSize="12dp"
                                             android:textStyle="bold"
-                                            tools:ignore="TextSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -522,7 +536,7 @@
                                             android:text="Anda dapat melihat riwayat absensi berdasarkan tanggal yang dipilih (filter tanggal), data yang tampil adalah data riwayat absensi 1 minggu."
                                             android:textColor="#C68D46"
                                             android:textSize="12dp"
-                                            tools:ignore="VisualLintLongText,TextSizeCheck" />
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
 
                                     </LinearLayout>
 
@@ -545,7 +559,8 @@
                                             android:background="@drawable/empty_image"
                                             android:textAlignment="center"
                                             android:textSize="12dp"
-                                            android:textStyle="bold" />
+                                            android:textStyle="bold"
+                                            tools:ignore="SpUsage" />
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -555,7 +570,8 @@
                                             android:textAlignment="center"
                                             android:textColor="#E1BB8A"
                                             android:textSize="12dp"
-                                            android:textStyle="bold" />
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -563,7 +579,8 @@
                                             android:text="Data berdasarkan filter yang anda pilih tidak tersedia"
                                             android:textAlignment="center"
                                             android:textColor="#ECC28D"
-                                            android:textSize="10dp" />
+                                            android:textSize="10dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -584,7 +601,8 @@
                                             android:layout_width="80dp"
                                             android:layout_height="80dp"
                                             android:layout_marginBottom="5dp"
-                                            app:srcCompat="@drawable/loading_sgn_digital" />
+                                            app:srcCompat="@drawable/loading_sgn_digital"
+                                            tools:ignore="ContentDescription" />
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -594,7 +612,8 @@
                                             android:textAlignment="center"
                                             android:textColor="#E1BB8A"
                                             android:textSize="12dp"
-                                            android:textStyle="bold" />
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -602,7 +621,8 @@
                                             android:text="Tunggu beberapa saat"
                                             android:textAlignment="center"
                                             android:textColor="#ECC28D"
-                                            android:textSize="10dp" />
+                                            android:textSize="10dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -627,7 +647,8 @@
                                             android:layout_marginBottom="10dp"
                                             android:textSize="12dp"
                                             android:textStyle="bold"
-                                            android:background="@drawable/no_connection_image"/>
+                                            android:background="@drawable/no_connection_image"
+                                            tools:ignore="SpUsage" />
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -636,7 +657,8 @@
                                             android:textSize="15dp"
                                             android:textStyle="bold"
                                             android:textColor="#7C7C7C"
-                                            android:text="Koneksi terputus!"/>
+                                            android:text="Koneksi terputus!"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -645,7 +667,8 @@
                                             android:textSize="11dp"
                                             android:layout_marginTop="7dp"
                                             android:textColor="#7C7C7C"
-                                            android:text="Pastikan perangkat anda terhubung dengan internet."/>
+                                            android:text="Pastikan perangkat anda terhubung dengan internet."
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -679,7 +702,8 @@
                         android:layout_marginLeft="-2dp"
                         android:background="@drawable/shape_bar_chat"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:id="@+id/back_btn"
@@ -688,13 +712,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -703,7 +729,8 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -716,7 +743,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 

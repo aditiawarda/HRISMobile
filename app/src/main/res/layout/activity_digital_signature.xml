@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,7 +14,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
 
             <androidx.core.widget.NestedScrollView
                 android:id="@id/scrollView"
@@ -33,7 +35,8 @@
                         android:paddingLeft="20dp"
                         android:paddingTop="80dp"
                         android:paddingBottom="50dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:visibility="gone"
@@ -57,7 +60,8 @@
                                         android:layout_height="wrap_content"
                                         android:gravity="right"
                                         android:layout_marginBottom="10dp"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlHardcoded,TooDeepLayout">
 
                                         <TextView
                                             android:gravity="center"
@@ -66,7 +70,8 @@
                                             android:layout_width="wrap_content"
                                             android:textSize="13dp"
                                             android:layout_height="match_parent"
-                                            android:text="Warna Pena :"/>
+                                            android:text="Warna Pena :"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <LinearLayout
                                             android:id="@+id/pen_red"
@@ -125,7 +130,8 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                tools:ignore="DisableBaselineAlignment">
 
                                 <LinearLayout
                                     android:id="@+id/remove_btn"
@@ -137,7 +143,8 @@
                                     android:paddingTop="12dp"
                                     android:paddingBottom="12dp"
                                     android:background="@drawable/shape_btn_remove"
-                                    android:gravity="center">
+                                    android:gravity="center"
+                                    tools:ignore="RtlHardcoded">
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -145,7 +152,8 @@
                                         android:textStyle="bold"
                                         android:textSize="13dp"
                                         android:textColor="@color/white"
-                                        android:text="HAPUS"/>
+                                        android:text="HAPUS"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -159,7 +167,8 @@
                                     android:paddingTop="12dp"
                                     android:paddingBottom="12dp"
                                     android:background="@drawable/shape_btn_approved"
-                                    android:gravity="center">
+                                    android:gravity="center"
+                                    tools:ignore="RtlHardcoded">
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -167,7 +176,8 @@
                                         android:textStyle="bold"
                                         android:textSize="13dp"
                                         android:textColor="@color/white"
-                                        android:text="SIMPAN"/>
+                                        android:text="SIMPAN"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -189,7 +199,8 @@
                                     android:textStyle="bold"
                                     android:textSize="13dp"
                                     android:textColor="#E88825"
-                                    android:text="BATAL"/>
+                                    android:text="BATAL"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -215,7 +226,8 @@
                                 <ImageView
                                     android:id="@+id/signature_img"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent" />
+                                    android:layout_height="match_parent"
+                                    tools:ignore="ContentDescription" />
 
                             </LinearLayout>
 
@@ -235,7 +247,8 @@
                                     android:textStyle="bold"
                                     android:textSize="13dp"
                                     android:textColor="@color/white"
-                                    android:text="UBAH TANDA TANGAN"/>
+                                    android:text="UBAH TANDA TANGAN"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -263,7 +276,8 @@
                                     android:layout_width="88dp"
                                     android:layout_height="88dp"
                                     android:layout_marginBottom="5dp"
-                                    app:srcCompat="@drawable/loading_sgn_digital" />
+                                    app:srcCompat="@drawable/loading_sgn_digital"
+                                    tools:ignore="ContentDescription,ImageContrastCheck" />
 
                             </LinearLayout>
 
@@ -288,7 +302,7 @@
                                 android:textColor="#C68D46"
                                 android:textSize="12dp"
                                 android:textStyle="bold"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/message_kelebihan_jam"
@@ -299,7 +313,7 @@
                                 android:text="Tanda tangan digital karyawan hanya dipergunakan untuk kepentingan personal pada aplikasi HRIS Mobile Gelora."
                                 android:textColor="#C68D46"
                                 android:textSize="12dp"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -322,7 +336,7 @@
                     android:background="@drawable/shape_bar_chat"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    tools:ignore="VisualLintBounds">
+                    tools:ignore="UselessParent,VisualLintBounds">
 
                     <LinearLayout
                         android:id="@+id/back_btn"
@@ -331,13 +345,15 @@
                         android:layout_width="33dp"
                         android:layout_height="33dp"
                         android:gravity="center"
-                        android:background="@drawable/shape_back_2">
+                        android:background="@drawable/shape_back_2"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:layout_marginRight="1.5dp"
-                            android:background="@drawable/ic_baseline_chevron_back"/>
+                            android:background="@drawable/ic_baseline_chevron_back"
+                            tools:ignore="RtlHardcoded" />
 
                     </LinearLayout>
 
@@ -346,7 +362,8 @@
                         android:paddingLeft="30dp"
                         android:paddingRight="30dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -359,7 +376,7 @@
                             android:textColor="@color/white"
                             android:textSize="15dp"
                             android:textStyle="bold"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
 

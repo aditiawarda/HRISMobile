@@ -32,14 +32,15 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:layout_gravity="center"
                         android:letterSpacing="0.2"
-                        android:textStyle="bold"
+                        android:text="REGISTRASI AKUN"
                         android:textColor="@color/white"
-                        android:text="REGISTRASI AKUN"/>
+                        android:textSize="17dp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -49,7 +50,7 @@
                         android:textColor="@color/white"
                         android:textSize="9dp"
                         android:textStyle="bold"
-                        tools:ignore="TextSizeCheck" />
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -94,7 +95,7 @@
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
                             android:textSize="17dp"
-                            tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                            tools:ignore="Autofill,HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                         <TextView
                             android:id="@+id/namaTV"
@@ -118,7 +119,7 @@
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
                             android:textSize="17dp"
-                            tools:ignore="TouchTargetSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck,TextViewEdits,TouchTargetSizeCheck" />
 
                         <EditText
                             android:id="@+id/passwordED"
@@ -139,7 +140,7 @@
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
                             android:textSize="17dp"
-                            tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                            tools:ignore="Autofill,HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                         <EditText
                             android:id="@+id/repasswordED"
@@ -160,7 +161,7 @@
                             android:textColorHighlight="#EC9426"
                             android:textColorHint="#BFFFF3E9"
                             android:textSize="17dp"
-                            tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                            tools:ignore="Autofill,HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -183,18 +184,21 @@
                                 android:drawablePadding="6dp"
                                 android:text="Show"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="16dp"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="hide"
-                                android:visibility="gone" />
+                                android:visibility="gone"
+                                tools:ignore="HardcodedText" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="right|center">
+                                android:gravity="right|center"
+                                tools:ignore="RtlHardcoded">
 
                                 <TextView
                                     android:id="@+id/match_password"
@@ -208,7 +212,7 @@
                                     android:text=""
                                     android:textColor="@color/white"
                                     android:textSize="15dp"
-                                    tools:ignore="RtlHardcoded" />
+                                    tools:ignore="RtlHardcoded,SpUsage" />
 
                                 <TextView
                                     android:id="@+id/indicator_match_pass"
@@ -237,7 +241,8 @@
                                 android:layout_height="22dp"
                                 android:layout_marginRight="7dp"
                                 android:indeterminateTint="@color/colorPrimaryDark"
-                                android:visibility="gone" />
+                                android:visibility="gone"
+                                tools:ignore="RtlHardcoded" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -246,7 +251,7 @@
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textSize="13dp"
                                 android:textStyle="bold"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -268,7 +273,8 @@
                                 android:paddingLeft="5dp"
                                 android:paddingTop="3dp"
                                 android:paddingRight="5dp"
-                                android:paddingBottom="3dp">
+                                android:paddingBottom="3dp"
+                                tools:ignore="RtlHardcoded,UnusedAttribute,UselessParent">
 
                                 <TextView
                                     android:layout_width="20dp"
@@ -284,7 +290,7 @@
                                     android:textColor="@color/white"
                                     android:textSize="15dp"
                                     android:textStyle="bold"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -302,14 +308,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom|right"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="RtlHardcoded">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginBottom="70dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -330,7 +338,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="9dp"
                         android:textStyle="bold"
-                        tools:ignore="TextSizeCheck" />
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -339,7 +347,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="9dp"
                         android:textStyle="bold"
-                        tools:ignore="TextSizeCheck" />
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                 </LinearLayout>
 
@@ -376,7 +384,7 @@
                 android:text="HRIS Mobile Gelora v 2.0.7"
                 android:textColor="#CBFFFFFF"
                 android:textSize="13dp"
-                tools:ignore="TextSizeCheck" />
+                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
         </LinearLayout>
 

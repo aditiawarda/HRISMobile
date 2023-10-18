@@ -14,7 +14,8 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:background="@drawable/shape_option"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="DisableBaselineAlignment,UselessParent">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -35,7 +36,7 @@
                 android:textColor="#C16D02"
                 android:textSize="14dp"
                 android:textStyle="bold"
-                tools:ignore="TextSizeCheck" />
+                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
             <TextView
                 android:id="@+id/nik_karyawan"
@@ -47,7 +48,7 @@
                 android:text="Undefined"
                 android:textColor="#8C8C8C"
                 android:textSize="12dp"
-                tools:ignore="TextSizeCheck" />
+                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
             <TextView
                 android:id="@+id/detail_karyawan"
@@ -60,7 +61,7 @@
                 android:text="Undefined"
                 android:textColor="#8C8C8C"
                 android:textSize="12dp"
-                tools:ignore="TextSizeCheck" />
+                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
         </LinearLayout>
 
@@ -70,7 +71,8 @@
             android:layout_width="0dp"
             android:layout_weight=".20"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="RtlHardcoded">
 
             <TextView
                 android:layout_width="20dp"

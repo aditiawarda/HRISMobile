@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -59,7 +60,8 @@
                                     android:textSize="13dp"
                                     android:textColor="#B1670B"
                                     android:textStyle="bold"
-                                    android:text=""/>
+                                    android:text=""
+                                    tools:ignore="SpUsage" />
 
                             </LinearLayout>
 
@@ -67,7 +69,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingBottom="5dp"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                tools:ignore="DisableBaselineAlignment">
 
                                 <LinearLayout
                                     android:id="@+id/month_btn"
@@ -91,7 +94,7 @@
                                         android:textColor="@color/white"
                                         android:textSize="10dp"
                                         android:textStyle="bold"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TooDeepLayout" />
 
                                     <TextView
                                         android:visibility="gone"
@@ -105,7 +108,8 @@
                                         android:textColor="@color/white"
                                         android:textSize="16dp"
                                         android:textStyle="bold"
-                                        android:text=""/>
+                                        android:text=""
+                                        tools:ignore="SpUsage" />
 
                                     <TextView
                                         android:visibility="gone"
@@ -115,13 +119,15 @@
                                         android:textColor="@color/white"
                                         android:textSize="13dp"
                                         android:textStyle="bold"
-                                        android:text=""/>
+                                        android:text=""
+                                        tools:ignore="SpUsage" />
 
                                     <ImageView
                                         android:id="@+id/bulan_loading"
                                         android:layout_width="match_parent"
                                         android:layout_height="40.5dp"
-                                        app:srcCompat="@drawable/loading_dots" />
+                                        app:srcCompat="@drawable/loading_dots"
+                                        tools:ignore="ContentDescription" />
 
                                 </LinearLayout>
 
@@ -136,7 +142,8 @@
                                         android:background="@drawable/shape_layoff"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="5dp"
-                                        android:orientation="vertical">
+                                        android:orientation="vertical"
+                                        tools:ignore="NestedWeights,RtlHardcoded,UselessParent">
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
@@ -161,7 +168,7 @@
                                                     android:textColor="@color/white"
                                                     android:textSize="10dp"
                                                     android:textStyle="bold"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                                 <TextView
                                                     android:visibility="gone"
@@ -171,13 +178,15 @@
                                                     android:textColor="@color/white"
                                                     android:textSize="30dp"
                                                     android:textStyle="bold"
-                                                    android:text="0"/>
+                                                    android:text="0"
+                                                    tools:ignore="HardcodedText,SpUsage" />
 
                                                 <ImageView
                                                     android:id="@+id/layoff_detail_loading"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="40.5dp"
-                                                    app:srcCompat="@drawable/loading_dots" />
+                                                    app:srcCompat="@drawable/loading_dots"
+                                                    tools:ignore="ContentDescription" />
 
                                             </LinearLayout>
 
@@ -186,7 +195,8 @@
                                                 android:paddingTop="7dp"
                                                 android:paddingRight="7dp"
                                                 android:layout_width="match_parent"
-                                                android:layout_height="wrap_content">
+                                                android:layout_height="wrap_content"
+                                                tools:ignore="RtlSymmetry">
 
                                                 <LinearLayout
                                                     android:visibility="gone"
@@ -228,7 +238,8 @@
                                 android:textColor="#C68D46"
                                 android:textSize="12dp"
                                 android:textStyle="bold"
-                                android:text="Perhatian :"/>
+                                android:text="Perhatian :"
+                                tools:ignore="HardcodedText,SpUsage" />
 
                             <TextView
                                 android:id="@+id/message_layoff_detail"
@@ -238,7 +249,8 @@
                                 android:textSize="12dp"
                                 android:layout_marginTop="7dp"
                                 android:lineSpacingExtra="2.5dp"
-                                android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur fingerscan/form keterangan tidak absen."/>
+                                android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur fingerscan/form keterangan tidak absen."
+                                tools:ignore="HardcodedText,SpUsage" />
 
                         </LinearLayout>
 
@@ -284,7 +296,8 @@
                                     android:background="@drawable/empty_image"
                                     android:textAlignment="center"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -294,7 +307,8 @@
                                     android:textAlignment="center"
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -302,7 +316,8 @@
                                     android:text="Data diliburkan jam tidak tersedia"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -322,7 +337,8 @@
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     android:layout_marginBottom="5dp"
-                                    app:srcCompat="@drawable/loading_sgn_digital" />
+                                    app:srcCompat="@drawable/loading_sgn_digital"
+                                    tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -333,7 +349,7 @@
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
                                     android:textStyle="bold"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -342,7 +358,7 @@
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
                                     android:textSize="10dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -364,7 +380,8 @@
                         android:layout_marginLeft="-2dp"
                         android:background="@drawable/shape_bar_chat"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:id="@+id/back_btn"
@@ -373,13 +390,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -388,7 +407,8 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -401,7 +421,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 

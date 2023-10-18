@@ -38,7 +38,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="30dp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            tools:ignore="UselessParent">
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/list_kontak_rv"
@@ -68,7 +69,8 @@
                                     android:background="@drawable/empty_image"
                                     android:textAlignment="center"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -78,7 +80,8 @@
                                     android:textAlignment="center"
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -86,7 +89,8 @@
                                     android:text="Harap tambahkan data kontak darurat"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -106,7 +110,8 @@
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     android:layout_marginBottom="5dp"
-                                    app:srcCompat="@drawable/loading_sgn_digital" />
+                                    app:srcCompat="@drawable/loading_sgn_digital"
+                                    tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -117,7 +122,7 @@
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
                                     android:textStyle="bold"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -126,7 +131,7 @@
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
                                     android:textSize="10dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -148,7 +153,8 @@
                         android:layout_marginLeft="-2dp"
                         android:background="@drawable/shape_bar_chat"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:id="@+id/back_btn"
@@ -157,13 +163,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -172,7 +180,8 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -185,7 +194,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -200,7 +209,8 @@
         <LinearLayout
             android:gravity="bottom|right"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="RtlHardcoded">
 
             <LinearLayout
                 android:id="@+id/add_btn"
@@ -210,7 +220,8 @@
                 android:layout_marginBottom="20dp"
                 android:visibility="gone"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
 
                 <LinearLayout
                     android:layout_width="60dp"
@@ -241,7 +252,8 @@
                     android:singleLine="true"
                     android:text="TAMBAH"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="11dp" />
+                    android:textSize="11dp"
+                    tools:ignore="HardcodedText,SpUsage" />
 
             </LinearLayout>
 

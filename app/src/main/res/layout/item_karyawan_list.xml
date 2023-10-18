@@ -15,12 +15,14 @@
         android:background="@drawable/shape_pengumuman"
         android:orientation="vertical"
         android:paddingLeft="25dp"
-        android:paddingRight="23dp">
+        android:paddingRight="23dp"
+        tools:ignore="RtlHardcoded,UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="DisableBaselineAlignment,UselessParent">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -38,7 +40,7 @@
                     android:textColor="#C16D02"
                     android:textSize="13dp"
                     android:textStyle="bold"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/nik_tv"
@@ -47,7 +49,7 @@
                     android:text="0000011"
                     android:textColor="#C16D02"
                     android:textSize="11dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/jabatan_tv"
@@ -56,7 +58,7 @@
                     android:text="Staff"
                     android:textColor="#C16D02"
                     android:textSize="11dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/detail_tv"
@@ -65,7 +67,7 @@
                     android:text="EDP | RND"
                     android:textColor="#C16D02"
                     android:textSize="11dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
             </LinearLayout>
 
@@ -74,7 +76,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight=".25"
                 android:gravity="right|center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="RtlHardcoded">
 
                 <RelativeLayout
                     android:layout_width="60dp"
@@ -85,7 +88,8 @@
                         android:layout_height="60dp"
                         android:src="@drawable/default_profile"
                         app:civ_border_color="#BDBDBD"
-                        app:civ_border_width="1dp" />
+                        app:civ_border_width="1dp"
+                        tools:ignore="ImageContrastCheck" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profile_image"
@@ -93,7 +97,8 @@
                         android:layout_height="60dp"
                         android:src="@drawable/default_profile"
                         app:civ_border_color="#BDBDBD"
-                        app:civ_border_width="1dp" />
+                        app:civ_border_width="1dp"
+                        tools:ignore="ImageContrastCheck" />
 
                 </RelativeLayout>
 

@@ -40,7 +40,8 @@
                             android:paddingLeft="17dp"
                             android:paddingTop="190dp"
                             android:paddingRight="17dp"
-                            android:paddingBottom="20dp">
+                            android:paddingBottom="20dp"
+                            tools:ignore="UselessParent">
 
                             <LinearLayout
                                 android:id="@+id/permohonan_masuk"
@@ -75,7 +76,8 @@
                                         android:background="@drawable/empty_image"
                                         android:textAlignment="center"
                                         android:textSize="12dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="SpUsage,TooDeepLayout" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -85,7 +87,8 @@
                                         android:textAlignment="center"
                                         android:textColor="#E1BB8A"
                                         android:textSize="12dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -93,7 +96,8 @@
                                         android:text="Notifikasi tidak tersedia"
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
-                                        android:textSize="10dp" />
+                                        android:textSize="10dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -113,7 +117,8 @@
                                         android:layout_width="80dp"
                                         android:layout_height="80dp"
                                         android:layout_marginBottom="5dp"
-                                        app:srcCompat="@drawable/loading_sgn_digital" />
+                                        app:srcCompat="@drawable/loading_sgn_digital"
+                                        tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -124,7 +129,7 @@
                                         android:textColor="#E1BB8A"
                                         android:textSize="12dp"
                                         android:textStyle="bold"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -133,7 +138,7 @@
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -173,7 +178,8 @@
                                         android:background="@drawable/empty_image"
                                         android:textAlignment="center"
                                         android:textSize="12dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="SpUsage" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -183,7 +189,8 @@
                                         android:textAlignment="center"
                                         android:textColor="#E1BB8A"
                                         android:textSize="12dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -191,7 +198,8 @@
                                         android:text="Notifikasi tidak tersedia"
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
-                                        android:textSize="10dp" />
+                                        android:textSize="10dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -211,7 +219,8 @@
                                         android:layout_width="80dp"
                                         android:layout_height="80dp"
                                         android:layout_marginBottom="5dp"
-                                        app:srcCompat="@drawable/loading_sgn_digital" />
+                                        app:srcCompat="@drawable/loading_sgn_digital"
+                                        tools:ignore="ContentDescription" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -221,7 +230,8 @@
                                         android:textAlignment="center"
                                         android:textColor="#E1BB8A"
                                         android:textSize="12dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -229,7 +239,8 @@
                                         android:text="Tunggu beberapa saat"
                                         android:textAlignment="center"
                                         android:textColor="#ECC28D"
-                                        android:textSize="10dp" />
+                                        android:textSize="10dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -264,13 +275,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -279,7 +292,8 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:id="@+id/label_page"
@@ -293,7 +307,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -312,7 +326,8 @@
                             android:paddingBottom="15dp"
                             android:orientation="horizontal"
                             android:paddingLeft="20dp"
-                            android:paddingRight="20dp">
+                            android:paddingRight="20dp"
+                            tools:ignore="DisableBaselineAlignment">
 
                             <LinearLayout
                                 android:id="@+id/notify_in_btn"
@@ -322,11 +337,13 @@
                                 android:layout_marginRight="3dp"
                                 android:background="@drawable/shape_notify_choice"
                                 android:gravity="center"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                tools:ignore="RtlHardcoded">
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                    android:layout_height="match_parent"
+                                    tools:ignore="UselessParent">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -343,7 +360,7 @@
                                             android:textColor="@color/white"
                                             android:textSize="12dp"
                                             android:textStyle="bold"
-                                            tools:ignore="TextSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                         <TextView
                                             android:layout_width="wrap_content"
@@ -352,7 +369,7 @@
                                             android:textColor="@color/white"
                                             android:textSize="15dp"
                                             android:textStyle="bold"
-                                            tools:ignore="TextSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -362,7 +379,8 @@
                                         android:paddingRight="5dp"
                                         android:paddingLeft="5dp"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
+                                        android:layout_height="wrap_content"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:id="@+id/count_notification_in"
@@ -384,7 +402,8 @@
                                                 android:gravity="center"
                                                 android:text="0"
                                                 android:textColor="@color/white"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -401,11 +420,13 @@
                                 android:layout_weight=".50"
                                 android:layout_marginLeft="3dp"
                                 android:background="@drawable/shape_notify"
-                                android:gravity="center">
+                                android:gravity="center"
+                                tools:ignore="RtlHardcoded">
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                    android:layout_height="match_parent"
+                                    tools:ignore="UselessParent">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -422,7 +443,7 @@
                                             android:textColor="@color/white"
                                             android:textSize="12dp"
                                             android:textStyle="bold"
-                                            tools:ignore="TextSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                         <TextView
                                             android:layout_width="wrap_content"
@@ -431,7 +452,7 @@
                                             android:textColor="@color/white"
                                             android:textSize="15dp"
                                             android:textStyle="bold"
-                                            tools:ignore="TextSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -441,7 +462,8 @@
                                         android:paddingRight="5dp"
                                         android:paddingLeft="5dp"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
+                                        android:layout_height="wrap_content"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:id="@+id/count_notification_me"
@@ -463,7 +485,8 @@
                                                 android:gravity="center"
                                                 android:text="0"
                                                 android:textColor="@color/white"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 

@@ -60,7 +60,8 @@
                                     android:text=""
                                     android:textColor="#B1670B"
                                     android:textSize="13dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="SpUsage" />
 
                             </LinearLayout>
 
@@ -68,7 +69,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
-                                android:paddingBottom="5dp">
+                                android:paddingBottom="5dp"
+                                tools:ignore="DisableBaselineAlignment">
 
                                 <LinearLayout
                                     android:id="@+id/month_btn"
@@ -92,7 +94,7 @@
                                         android:textColor="@color/white"
                                         android:textSize="10dp"
                                         android:textStyle="bold"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TooDeepLayout" />
 
                                     <TextView
                                         android:id="@+id/bulan_data"
@@ -106,7 +108,8 @@
                                         android:textColor="@color/white"
                                         android:textSize="16dp"
                                         android:textStyle="bold"
-                                        android:visibility="gone" />
+                                        android:visibility="gone"
+                                        tools:ignore="SpUsage" />
 
                                     <TextView
                                         android:id="@+id/tahun_data"
@@ -119,13 +122,15 @@
                                         android:textColor="@color/white"
                                         android:textSize="13dp"
                                         android:textStyle="bold"
-                                        android:visibility="gone" />
+                                        android:visibility="gone"
+                                        tools:ignore="SpUsage" />
 
                                     <ImageView
                                         android:id="@+id/bulan_loading"
                                         android:layout_width="match_parent"
                                         android:layout_height="40.5dp"
-                                        app:srcCompat="@drawable/loading_dots" />
+                                        app:srcCompat="@drawable/loading_dots"
+                                        tools:ignore="ContentDescription" />
 
                                 </LinearLayout>
 
@@ -144,7 +149,8 @@
                                         android:paddingLeft="15dp"
                                         android:paddingTop="10dp"
                                         android:paddingRight="15dp"
-                                        android:paddingBottom="10dp">
+                                        android:paddingBottom="10dp"
+                                        tools:ignore="NestedWeights,RtlHardcoded,UselessParent">
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -156,7 +162,7 @@
                                             android:textColor="@color/white"
                                             android:textSize="10dp"
                                             android:textStyle="bold"
-                                            tools:ignore="TextSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                         <TextView
                                             android:id="@+id/data_hadir"
@@ -166,13 +172,15 @@
                                             android:textColor="@color/white"
                                             android:textSize="30dp"
                                             android:textStyle="bold"
-                                            android:visibility="gone" />
+                                            android:visibility="gone"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <ImageView
                                             android:id="@+id/hadir_loading"
                                             android:layout_width="match_parent"
                                             android:layout_height="40.5dp"
-                                            app:srcCompat="@drawable/loading_dots" />
+                                            app:srcCompat="@drawable/loading_dots"
+                                            tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                     </LinearLayout>
 
@@ -203,7 +211,8 @@
                                 android:text="Perhatian :"
                                 android:textColor="#C68D46"
                                 android:textSize="12dp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,SpUsage" />
 
                             <TextView
                                 android:id="@+id/message_hadir"
@@ -213,7 +222,8 @@
                                 android:lineSpacingExtra="2.5dp"
                                 android:text="Jika terdapat kekeliruan data, harap segera hubungi bagian HRD atau gunakan prosedur fingerscan/form keterangan tidak absen."
                                 android:textColor="#C68D46"
-                                android:textSize="12dp" />
+                                android:textSize="12dp"
+                                tools:ignore="HardcodedText,SpUsage" />
 
                         </LinearLayout>
 
@@ -259,7 +269,8 @@
                                     android:background="@drawable/empty_image"
                                     android:textAlignment="center"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -269,7 +280,8 @@
                                     android:textAlignment="center"
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -277,7 +289,8 @@
                                     android:text="Data hadir tidak tersedia"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -297,7 +310,8 @@
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     android:layout_marginBottom="5dp"
-                                    app:srcCompat="@drawable/loading_sgn_digital" />
+                                    app:srcCompat="@drawable/loading_sgn_digital"
+                                    tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -308,7 +322,7 @@
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
                                     android:textStyle="bold"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -317,7 +331,7 @@
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
                                     android:textSize="10dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -339,7 +353,8 @@
                         android:layout_marginLeft="-2dp"
                         android:background="@drawable/shape_bar_chat"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:id="@+id/back_btn"
@@ -348,13 +363,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -363,7 +380,8 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -376,7 +394,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 

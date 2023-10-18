@@ -11,17 +11,20 @@
         android:layout_height="wrap_content"
         android:background="@drawable/shape_btn_effect"
         android:orientation="vertical"
-        android:paddingLeft="30dp">
+        android:paddingLeft="30dp"
+        tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="17dp">
+                android:paddingTop="17dp"
+                tools:ignore="UselessParent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -44,7 +47,7 @@
                             android:text="Nama Pelatihan"
                             android:textColor="#4C4C4C"
                             android:textSize="13.5dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                         <TextView
                             android:id="@+id/lembaga_pelatihan"
@@ -58,7 +61,7 @@
                             android:text="Lembaga"
                             android:textColor="#8F8F8F"
                             android:textSize="10dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                         <TextView
                             android:id="@+id/tahun"
@@ -72,7 +75,7 @@
                             android:text="Tahun"
                             android:textColor="#8F8F8F"
                             android:textSize="10dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                     </LinearLayout>
 

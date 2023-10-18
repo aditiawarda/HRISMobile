@@ -36,7 +36,8 @@
                             android:layout_height="wrap_content"
                             android:paddingTop="68dp"
                             android:paddingBottom="30dp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            tools:ignore="UselessParent">
 
                             <LinearLayout
                                 android:id="@+id/acc_mark"
@@ -55,7 +56,8 @@
                                     android:singleLine="true"
                                     android:text="A C C E P T E D"
                                     android:textColor="#30A33B"
-                                    android:textSize="15dp" />
+                                    android:textSize="15dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -76,7 +78,8 @@
                                     android:singleLine="true"
                                     android:text="R E J E C T E D"
                                     android:textColor="#E65151"
-                                    android:textSize="15dp" />
+                                    android:textSize="15dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -102,7 +105,8 @@
                                         android:layout_height="wrap_content"
                                         android:paddingLeft="15dp"
                                         android:paddingRight="15dp"
-                                        android:orientation="vertical">
+                                        android:orientation="vertical"
+                                        tools:ignore="TooDeepLayout">
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -114,7 +118,7 @@
                                             android:textColor="#515151"
                                             android:textSize="9dp"
                                             android:textStyle="bold"
-                                            tools:ignore="TextSizeCheck" />
+                                            tools:ignore="SpUsage,TextSizeCheck" />
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -126,7 +130,7 @@
                                             android:textColor="#515151"
                                             android:textSize="8dp"
                                             android:textStyle="bold"
-                                            tools:ignore="RtlHardcoded,SpUsage,TextSizeCheck" />
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                         <TableLayout
                                             android:layout_width="match_parent"
@@ -138,7 +142,8 @@
                                                 android:background="#000000"
                                                 android:layout_width="match_parent"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -158,7 +163,7 @@
                                                     android:text="Nama Karyawan"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/kar_nama"
@@ -177,7 +182,8 @@
                                                     android:background="#FFFFFF"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="center" />
+                                                    android:gravity="center"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -195,7 +201,7 @@
                                                     android:text="Dept. / Bagian"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/kar_depbag"
@@ -215,7 +221,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -224,7 +231,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -244,7 +252,7 @@
                                                     android:text="Jabatan"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/kar_jabatan"
@@ -263,7 +271,8 @@
                                                     android:background="#FFFFFF"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="center" />
+                                                    android:gravity="center"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -281,7 +290,7 @@
                                                     android:text="Tgl Masuk Kerja"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/kar_tglmasuk"
@@ -301,7 +310,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -309,7 +319,8 @@
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="10dp" />
+                                            android:layout_height="10dp"
+                                            tools:ignore="UselessLeaf" />
 
                                         <TableLayout
                                             android:layout_width="match_parent"
@@ -321,7 +332,8 @@
                                                 android:background="#000000"
                                                 android:layout_width="match_parent"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -340,7 +352,7 @@
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
                                                     android:textStyle="bold"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -358,7 +370,7 @@
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
                                                     android:textStyle="bold"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -375,7 +387,7 @@
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
                                                     android:textStyle="bold"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -394,7 +406,7 @@
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
                                                     android:textStyle="bold"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -412,7 +424,7 @@
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
                                                     android:textStyle="bold"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             </TableRow>
 
@@ -421,7 +433,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -439,7 +452,7 @@
                                                     android:text="1"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -456,7 +469,7 @@
                                                     android:text="Pengetahuan Teknis dan Keterampilan kerja"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck,TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_1"
@@ -472,7 +485,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_1"
@@ -490,7 +504,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_1"
@@ -507,7 +522,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -516,7 +532,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -534,7 +551,7 @@
                                                     android:text="2"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck,TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -551,7 +568,7 @@
                                                     android:text="Kualitas kerja"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck,TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_2"
@@ -567,7 +584,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_2"
@@ -585,7 +603,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_2"
@@ -602,7 +621,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -611,7 +631,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -629,7 +650,7 @@
                                                     android:text="3"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -646,7 +667,7 @@
                                                     android:text="Kuantitas &amp; produktifitas kerja"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_3"
@@ -662,7 +683,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_3"
@@ -680,7 +702,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_3"
@@ -697,7 +720,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -706,7 +730,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -724,7 +749,7 @@
                                                     android:text="4"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -741,7 +766,7 @@
                                                     android:text="Hubungan dan kerjasama dalam pekerjaan"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_4"
@@ -757,7 +782,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_4"
@@ -775,7 +801,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_4"
@@ -792,7 +819,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -801,7 +829,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -819,7 +848,7 @@
                                                     android:text="5"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -836,7 +865,7 @@
                                                     android:text="Inisiatif dalam pekerjaan"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_5"
@@ -852,7 +881,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_5"
@@ -870,7 +900,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_5"
@@ -887,7 +918,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -896,7 +928,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -914,7 +947,7 @@
                                                     android:text="6"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck,TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -931,7 +964,7 @@
                                                     android:text="Kepatuhan pada peraturan / disiplin"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_6"
@@ -947,7 +980,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_6"
@@ -965,7 +999,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_6"
@@ -982,7 +1017,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -991,7 +1027,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1009,7 +1046,7 @@
                                                     android:text="7"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1026,7 +1063,7 @@
                                                     android:text="Tanggung jawab pada pekerjaan"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_7"
@@ -1042,7 +1079,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_7"
@@ -1060,7 +1098,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_7"
@@ -1077,7 +1116,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -1086,7 +1126,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1104,7 +1145,7 @@
                                                     android:text="8"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1121,7 +1162,7 @@
                                                     android:text="Kepedulian pada 5 R &amp; keselamatan kerja"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TooManyViews" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_8"
@@ -1137,7 +1178,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_8"
@@ -1155,7 +1197,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_8"
@@ -1172,7 +1215,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -1181,7 +1225,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1199,7 +1244,7 @@
                                                     android:text="9"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1216,7 +1261,7 @@
                                                     android:text="Motivasi kerja"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_9"
@@ -1232,7 +1277,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_9"
@@ -1250,7 +1296,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_9"
@@ -1267,7 +1314,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -1276,7 +1324,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1294,7 +1343,7 @@
                                                     android:text="10"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1311,7 +1360,7 @@
                                                     android:text="Antusias dan kemampuan menerima pembelajaran"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck,TextSizeCheck,TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_10"
@@ -1327,7 +1376,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_10"
@@ -1345,7 +1395,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_10"
@@ -1362,7 +1413,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -1371,7 +1423,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1389,7 +1442,7 @@
                                                     android:text="11"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1406,7 +1459,7 @@
                                                     android:text="Leadership"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_11"
@@ -1422,7 +1475,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_11"
@@ -1440,7 +1494,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_11"
@@ -1457,7 +1512,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -1466,7 +1522,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1484,7 +1541,7 @@
                                                     android:text="12"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1501,7 +1558,7 @@
                                                     android:text="Kemampuan Analisa / problem solving"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck,TextSizeCheck,TextSizeCheck,TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck,TextSizeCheck,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_12"
@@ -1517,7 +1574,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_12"
@@ -1535,7 +1593,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_12"
@@ -1552,7 +1611,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -1561,7 +1621,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1579,7 +1640,7 @@
                                                     android:text="13"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck,TextSizeCheck,TextSizeCheck,TextSizeCheck,TextSizeCheck,TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck,TextSizeCheck,TextSizeCheck,TextSizeCheck,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1596,7 +1657,7 @@
                                                     android:text="Kerajinan/kerapihan"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_13"
@@ -1612,7 +1673,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_13"
@@ -1630,7 +1692,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_13"
@@ -1647,7 +1710,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -1656,7 +1720,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1674,7 +1739,7 @@
                                                     android:text="14"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1691,7 +1756,7 @@
                                                     android:text="Kepribadian"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/bobot_14"
@@ -1707,7 +1772,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/rate_14"
@@ -1725,7 +1791,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/nilai_14"
@@ -1742,7 +1809,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -1751,7 +1819,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_weight="1"
@@ -1768,7 +1837,8 @@
                                                     android:background="#FFFFFF"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="center" />
+                                                    android:gravity="center"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -1786,7 +1856,7 @@
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
                                                     android:textStyle="bold"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:id="@+id/total_bobot"
@@ -1802,7 +1872,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="2" />
+                                                    android:layout_column="2"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:layout_weight="1"
@@ -1819,7 +1890,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="3" />
+                                                    android:layout_column="3"
+                                                    tools:ignore="SpUsage" />
 
                                                 <TextView
                                                     android:id="@+id/total_nilai"
@@ -1836,7 +1908,8 @@
                                                     android:gravity="center"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:layout_column="4" />
+                                                    android:layout_column="4"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -1845,7 +1918,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_weight=".100"
@@ -1862,7 +1936,8 @@
                                                     android:background="#FFFFFF"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="center" />
+                                                    android:gravity="center"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -1904,7 +1979,7 @@
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
                                                             android:textStyle="bold"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -1921,7 +1996,7 @@
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
                                                             android:textStyle="bold"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -1946,7 +2021,7 @@
                                                             android:text="Baik sekali"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -1963,7 +2038,7 @@
                                                             android:text="BS"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -1981,7 +2056,7 @@
                                                             android:text="401 - 500"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -1997,7 +2072,7 @@
                                                             android:text="5"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2014,7 +2089,7 @@
                                                             android:text="Istimewa, sangat baik"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2028,7 +2103,7 @@
                                                             android:layout_width="0dp"
                                                             android:layout_height="match_parent"
                                                             android:layout_column="0"
-                                                            android:layout_marginLeft="0.5dp"
+                                                            android:layout_marginStart="0.5dp"
                                                             android:layout_marginTop="0.5dp"
                                                             android:layout_marginBottom="0.5dp"
                                                             android:layout_weight="2"
@@ -2039,7 +2114,7 @@
                                                             android:text="Baik"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2056,7 +2131,7 @@
                                                             android:text="B"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck,TextSizeCheck,TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextSizeCheck,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2074,7 +2149,7 @@
                                                             android:text="301 - 400"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2090,7 +2165,7 @@
                                                             android:text="4"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2107,7 +2182,7 @@
                                                             android:text="Baik"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2132,7 +2207,7 @@
                                                             android:text="Cukup"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2149,7 +2224,7 @@
                                                             android:text="C"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck,TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2167,7 +2242,7 @@
                                                             android:text="201 - 300"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2183,7 +2258,7 @@
                                                             android:text="3"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2200,7 +2275,7 @@
                                                             android:text="Rata-rata"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2225,7 +2300,7 @@
                                                             android:text="Kurang"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2242,7 +2317,7 @@
                                                             android:text="K"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck,TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2260,7 +2335,7 @@
                                                             android:text="101 - 200"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck,TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2276,7 +2351,7 @@
                                                             android:text="2"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2293,7 +2368,7 @@
                                                             android:text="Dibawah rata-rata"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2318,7 +2393,7 @@
                                                             android:text="Kurang sekali"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2335,7 +2410,7 @@
                                                             android:text="KS"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2353,7 +2428,7 @@
                                                             android:text="s.d. 100"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2369,7 +2444,7 @@
                                                             android:text="1"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:layout_width="0dp"
@@ -2386,7 +2461,7 @@
                                                             android:text="Kurang sekali/jelek"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2411,7 +2486,8 @@
                                                         android:layout_marginRight="0.5dp"
                                                         android:layout_marginLeft="0.5dp"
                                                         android:background="#FFFFFF"
-                                                        android:gravity="center"/>
+                                                        android:gravity="center"
+                                                        tools:ignore="SpUsage" />
 
                                                 </LinearLayout>
 
@@ -2428,7 +2504,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_span="1"
@@ -2446,7 +2523,8 @@
                                                     android:background="#FFFFFF"
                                                     android:paddingRight="3dp"
                                                     android:paddingLeft="3dp"
-                                                    android:gravity="center" />
+                                                    android:gravity="center"
+                                                    tools:ignore="SpUsage" />
 
                                             </TableRow>
 
@@ -2461,7 +2539,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -2481,7 +2560,7 @@
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
                                                     android:textStyle="bold"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             </TableRow>
 
@@ -2497,7 +2576,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
                                                 android:paddingRight="0.5dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                 <TableLayout
                                                     android:layout_weight=".46"
@@ -2527,7 +2607,7 @@
                                                             android:text="Rekomendasi : (berikan tanda &quot;✓&quot; )"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2554,7 +2634,7 @@
                                                             android:text="LULUS percobaan/kontrak/OJT"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/mark_lulus"
@@ -2574,7 +2654,8 @@
                                                             android:background="#FFFFFF"
                                                             android:paddingLeft="3dp"
                                                             android:paddingRight="3dp"
-                                                            android:gravity="left" />
+                                                            android:gravity="left"
+                                                            tools:ignore="SpUsage" />
 
                                                     </TableRow>
 
@@ -2602,7 +2683,7 @@
                                                             android:text="TIDAK LULUS percobaan/kontrak/OJT"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/mark_tidak_lulus"
@@ -2622,7 +2703,8 @@
                                                             android:background="#FFFFFF"
                                                             android:paddingLeft="3dp"
                                                             android:paddingRight="3dp"
-                                                            android:gravity="left" />
+                                                            android:gravity="left"
+                                                            tools:ignore="SpUsage" />
 
                                                     </TableRow>
 
@@ -2647,7 +2729,8 @@
                                                             android:background="#FFFFFF"
                                                             android:paddingLeft="3dp"
                                                             android:paddingRight="3dp"
-                                                            android:gravity="left" />
+                                                            android:gravity="left"
+                                                            tools:ignore="SpUsage" />
 
                                                     </TableRow>
 
@@ -2672,7 +2755,8 @@
                                                             android:background="#FFFFFF"
                                                             android:paddingLeft="3dp"
                                                             android:paddingRight="3dp"
-                                                            android:gravity="left" />
+                                                            android:gravity="left"
+                                                            tools:ignore="SpUsage" />
 
                                                     </TableRow>
 
@@ -2705,7 +2789,7 @@
                                                             android:text="Penilai"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2731,7 +2815,7 @@
                                                             android:text="Tanda Tangan"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck,TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                                         <LinearLayout
                                                             android:layout_weight=".57"
@@ -2750,7 +2834,8 @@
                                                                 android:scaleType="fitXY"
                                                                 android:layout_marginRight="4dp"
                                                                 android:layout_width="match_parent"
-                                                                android:layout_height="18dp" />
+                                                                android:layout_height="18dp"
+                                                                tools:ignore="ContentDescription" />
 
                                                         </LinearLayout>
 
@@ -2779,7 +2864,7 @@
                                                             android:text="Nama"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/nama_penilai"
@@ -2800,7 +2885,7 @@
                                                             android:text=" "
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck,TextSizeCheck,SpeakableTextPresentCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2827,7 +2912,7 @@
                                                             android:text="Tanggal"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/tgl_penilai"
@@ -2848,7 +2933,7 @@
                                                             android:text=" "
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="SpeakableTextPresentCheck,TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,SpeakableTextPresentCheck,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2880,7 +2965,7 @@
                                                             android:text="Atasan Penilai"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2905,7 +2990,7 @@
                                                             android:text="Tanda Tangan"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <LinearLayout
                                                             android:layout_weight=".57"
@@ -2924,7 +3009,8 @@
                                                                 android:scaleType="fitXY"
                                                                 android:layout_marginRight="4dp"
                                                                 android:layout_width="match_parent"
-                                                                android:layout_height="18dp" />
+                                                                android:layout_height="18dp"
+                                                                tools:ignore="ContentDescription" />
 
                                                         </LinearLayout>
 
@@ -2952,7 +3038,7 @@
                                                             android:text="Nama"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/nama_atasan_penilai"
@@ -2973,7 +3059,7 @@
                                                             android:text=" "
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck,SpeakableTextPresentCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,SpeakableTextPresentCheck,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -2999,7 +3085,7 @@
                                                             android:text="Tanggal"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/tgl_atasan_penilai"
@@ -3020,7 +3106,7 @@
                                                             android:text=" "
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
-                                                            tools:ignore="TextSizeCheck,SpeakableTextPresentCheck" />
+                                                            tools:ignore="HardcodedText,SpUsage,SpeakableTextPresentCheck,TextSizeCheck" />
 
                                                     </TableRow>
 
@@ -3048,7 +3134,7 @@
                                                     android:text="Catatan HRD :"
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                             </TableRow>
 
@@ -3073,7 +3159,8 @@
                                                     android:background="#FFFFFF"
                                                     android:paddingLeft="3dp"
                                                     android:paddingRight="3dp"
-                                                    android:gravity="left" />
+                                                    android:gravity="left"
+                                                    tools:ignore="RtlHardcoded,SpUsage" />
 
                                             </TableRow>
 
@@ -3097,7 +3184,7 @@
                                                     android:text=" "
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck,SpeakableTextPresentCheck" />
+                                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,TextSizeCheck" />
 
                                             </TableRow>
 
@@ -3121,7 +3208,7 @@
                                                     android:text=" "
                                                     android:textAppearance="?android:attr/textAppearanceLarge"
                                                     android:textSize="7dp"
-                                                    tools:ignore="TextSizeCheck,SpeakableTextPresentCheck" />
+                                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,TextSizeCheck" />
 
                                             </TableRow>
 
@@ -3149,7 +3236,7 @@
                                         android:textColor="#CF811F"
                                         android:textSize="13dp"
                                         android:textStyle="bold"
-                                        tools:ignore="TextSizeCheck,TextSizeCheck,TextSizeCheck" />
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,TextSizeCheck,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                                 </LinearLayout>
 
@@ -3158,7 +3245,8 @@
                                     android:id="@+id/action_part"
                                     android:orientation="horizontal"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    tools:ignore="DisableBaselineAlignment">
 
                                     <LinearLayout
                                         android:id="@+id/rejected_btn"
@@ -3167,7 +3255,8 @@
                                         android:layout_marginRight="5dp"
                                         android:layout_height="40dp"
                                         android:background="@drawable/shape_btn_rejected"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <TextView
                                             android:layout_width="wrap_content"
@@ -3175,7 +3264,8 @@
                                             android:textStyle="bold"
                                             android:textColor="@color/white"
                                             android:textSize="13dp"
-                                            android:text="TOLAK"/>
+                                            android:text="TOLAK"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -3186,7 +3276,8 @@
                                         android:layout_marginLeft="5dp"
                                         android:layout_height="40dp"
                                         android:background="@drawable/shape_btn_approved"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <TextView
                                             android:layout_width="wrap_content"
@@ -3194,7 +3285,8 @@
                                             android:textStyle="bold"
                                             android:textColor="@color/white"
                                             android:textSize="13dp"
-                                            android:text="KONFIRMASI"/>
+                                            android:text="KONFIRMASI"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -3220,7 +3312,8 @@
                         android:layout_marginLeft="-2dp"
                         android:background="@drawable/shape_bar_chat"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:id="@+id/back_btn"
@@ -3229,13 +3322,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -3244,7 +3339,8 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -3257,7 +3353,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 

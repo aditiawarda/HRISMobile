@@ -35,7 +35,8 @@
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:gravity="center"
-                    android:background="@drawable/shape_item_faq">
+                    android:background="@drawable/shape_item_faq"
+                    tools:ignore="DisableBaselineAlignment">
 
                     <LinearLayout
                         android:layout_marginLeft="27dp"
@@ -43,7 +44,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="50dp"
                         android:layout_weight=".90"
-                        android:gravity="center">
+                        android:gravity="center"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -51,7 +53,7 @@
                             android:text="Titik pada maps tidak akurat atau tidak muncul"
                             android:textColor="#4C4C4C"
                             android:textSize="14dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -61,7 +63,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginRight="20dp"
                         android:layout_weight=".10"
-                        android:gravity="center">
+                        android:gravity="center"
+                        tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
 
                         <LinearLayout
                             android:layout_width="30dp"
@@ -83,7 +86,8 @@
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:gravity="center"
-                    android:background="@drawable/shape_item_faq">
+                    android:background="@drawable/shape_item_faq"
+                    tools:ignore="DisableBaselineAlignment">
 
                     <LinearLayout
                         android:layout_marginLeft="27dp"
@@ -91,7 +95,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".90"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -99,7 +104,7 @@
                             android:text="Status absensi atau shift tidak muncul"
                             android:textColor="#4C4C4C"
                             android:textSize="14dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -109,7 +114,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".10"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
 
                         <LinearLayout
                             android:background="@drawable/ic_baseline_arrow_right"
@@ -131,7 +137,8 @@
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:gravity="center"
-                    android:background="@drawable/shape_item_faq">
+                    android:background="@drawable/shape_item_faq"
+                    tools:ignore="DisableBaselineAlignment">
 
                     <LinearLayout
                         android:layout_marginLeft="27dp"
@@ -139,7 +146,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".90"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -147,7 +155,7 @@
                             android:text="Cara pengisian form keterangan tidak absen"
                             android:textColor="#4C4C4C"
                             android:textSize="14dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -157,7 +165,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".10"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
 
                         <LinearLayout
                             android:background="@drawable/ic_baseline_arrow_right"
@@ -179,7 +188,8 @@
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:gravity="center"
-                    android:background="@drawable/shape_item_faq">
+                    android:background="@drawable/shape_item_faq"
+                    tools:ignore="DisableBaselineAlignment">
 
                     <LinearLayout
                         android:layout_marginLeft="27dp"
@@ -187,7 +197,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".90"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -195,7 +206,7 @@
                             android:text="Cara pengisian form izin/sakit"
                             android:textColor="#4C4C4C"
                             android:textSize="14dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -205,7 +216,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".10"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
 
                         <LinearLayout
                             android:background="@drawable/ic_baseline_arrow_right"
@@ -227,7 +239,8 @@
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:gravity="center"
-                    android:background="@drawable/shape_item_faq">
+                    android:background="@drawable/shape_item_faq"
+                    tools:ignore="DisableBaselineAlignment">
 
                     <LinearLayout
                         android:layout_marginLeft="27dp"
@@ -235,7 +248,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".90"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -243,7 +257,7 @@
                             android:text="Cara pengisian form permohonan cuti"
                             android:textColor="#4C4C4C"
                             android:textSize="14dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -253,7 +267,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".10"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
 
                         <LinearLayout
                             android:background="@drawable/ic_baseline_arrow_right"
@@ -275,7 +290,8 @@
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:gravity="center"
-                    android:background="@drawable/shape_item_faq">
+                    android:background="@drawable/shape_item_faq"
+                    tools:ignore="DisableBaselineAlignment">
 
                     <LinearLayout
                         android:layout_marginLeft="27dp"
@@ -283,7 +299,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".90"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -291,7 +308,7 @@
                             android:text="Cara ganti atau pindah perangkat"
                             android:textColor="#4C4C4C"
                             android:textSize="14dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -301,7 +318,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".10"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
 
                         <LinearLayout
                             android:background="@drawable/ic_baseline_arrow_right"
@@ -323,7 +341,8 @@
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:gravity="center"
-                    android:background="@drawable/shape_item_faq">
+                    android:background="@drawable/shape_item_faq"
+                    tools:ignore="DisableBaselineAlignment">
 
                     <LinearLayout
                         android:layout_marginLeft="27dp"
@@ -331,7 +350,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".90"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -339,7 +359,7 @@
                             android:text="Lupa password atau ingin mengganti password"
                             android:textColor="#4C4C4C"
                             android:textSize="14dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -349,7 +369,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".10"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
 
                         <LinearLayout
                             android:background="@drawable/ic_baseline_arrow_right"
@@ -371,7 +392,8 @@
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:gravity="center"
-                    android:background="@drawable/shape_item_faq">
+                    android:background="@drawable/shape_item_faq"
+                    tools:ignore="DisableBaselineAlignment">
 
                     <LinearLayout
                         android:layout_marginLeft="27dp"
@@ -379,7 +401,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".90"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -387,7 +410,7 @@
                             android:text="Menambahkan atau mengganti tanda tangan digital"
                             android:textColor="#4C4C4C"
                             android:textSize="14dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -397,7 +420,8 @@
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_weight=".10"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
 
                         <LinearLayout
                             android:background="@drawable/ic_baseline_arrow_right"
@@ -426,7 +450,7 @@
                         android:textColor="#808080"
                         android:textSize="14dp"
                         android:textStyle="bold"
-                        tools:ignore="TextSizeCheck" />
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     <TextView
                         android:id="@+id/hubungi_it"
@@ -437,7 +461,7 @@
                         android:textColor="#B15B3B"
                         android:textSize="14dp"
                         android:textStyle="bold"
-                        tools:ignore="TextSizeCheck" />
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -457,7 +481,8 @@
                 android:layout_marginLeft="-2dp"
                 android:background="@drawable/shape_bar_profile_notify"
                 android:layout_width="match_parent"
-                android:layout_height="70dp">
+                android:layout_height="70dp"
+                tools:ignore="UselessParent,VisualLintBounds">
 
                 <LinearLayout
                     android:id="@+id/back_btn"
@@ -466,13 +491,15 @@
                     android:layout_width="33dp"
                     android:layout_height="33dp"
                     android:gravity="center"
-                    android:background="@drawable/shape_back_2">
+                    android:background="@drawable/shape_back_2"
+                    tools:ignore="RtlHardcoded">
 
                     <TextView
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_marginRight="1.5dp"
-                        android:background="@drawable/ic_baseline_chevron_back"/>
+                        android:background="@drawable/ic_baseline_chevron_back"
+                        tools:ignore="RtlHardcoded" />
 
                 </LinearLayout>
 
@@ -481,7 +508,8 @@
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    tools:ignore="RtlHardcoded">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -494,7 +522,7 @@
                         android:textColor="@color/white"
                         android:textSize="15dp"
                         android:textStyle="bold"
-                        tools:ignore="TextSizeCheck" />
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 </LinearLayout>
 

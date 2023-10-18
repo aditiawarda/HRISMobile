@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -34,7 +33,8 @@
                         android:orientation="vertical"
                         android:paddingLeft="20dp"
                         android:paddingTop="75dp"
-                        android:paddingBottom="25dp">
+                        android:paddingBottom="25dp"
+                        tools:ignore="RtlHardcoded,RtlSymmetry">
 
                         <LinearLayout
                             android:id="@+id/empty_warning_btn"
@@ -54,7 +54,8 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                tools:ignore="UselessParent">
 
                                 <LinearLayout
                                     android:orientation="horizontal"
@@ -66,13 +67,15 @@
                                         android:layout_height="match_parent"
                                         android:layout_marginRight="7dp"
                                         android:gravity="center"
-                                        android:orientation="vertical">
+                                        android:orientation="vertical"
+                                        tools:ignore="TooDeepLayout">
 
                                         <ImageView
                                             android:layout_width="match_parent"
                                             android:layout_height="25dp"
                                             android:scaleType="fitXY"
-                                            android:src="@drawable/warning_connection_white" />
+                                            android:src="@drawable/warning_connection_white"
+                                            tools:ignore="ContentDescription" />
 
                                     </LinearLayout>
 
@@ -95,7 +98,8 @@
                                             android:singleLine="true"
                                             android:text="Harap lengkapi info personal anda"
                                             android:textColor="@color/white"
-                                            android:textSize="13dp" />
+                                            android:textSize="13dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -132,7 +136,7 @@
                                 android:text="Nama Lengkap"
                                 android:textColor="#8F8F8F"
                                 android:textSize="10dp"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                             <TextView
                                 android:id="@+id/nama"
@@ -140,7 +144,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="60dp"
                                 android:textColor="#555555"
-                                android:textSize="13dp" />
+                                android:textSize="13dp"
+                                tools:ignore="SpUsage" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -159,7 +164,8 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                tools:ignore="UselessParent">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -173,7 +179,7 @@
                                         android:text="Email"
                                         android:textColor="#8F8F8F"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     <TextView
                                         android:id="@+id/email"
@@ -182,7 +188,8 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#555555"
-                                        android:textSize="13dp" />
+                                        android:textSize="13dp"
+                                        tools:ignore="SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -223,7 +230,8 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                tools:ignore="UselessParent">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -237,7 +245,7 @@
                                         android:text="Jenis Kelamin"
                                         android:textColor="#8F8F8F"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     <TextView
                                         android:id="@+id/jenis_kelamin"
@@ -246,7 +254,8 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#555555"
-                                        android:textSize="13dp" />
+                                        android:textSize="13dp"
+                                        tools:ignore="SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -287,7 +296,8 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                tools:ignore="UselessParent">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -301,7 +311,7 @@
                                         android:text="Tempat Lahir"
                                         android:textColor="#8F8F8F"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     <TextView
                                         android:id="@+id/tempat_lahir"
@@ -310,7 +320,8 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#555555"
-                                        android:textSize="13dp" />
+                                        android:textSize="13dp"
+                                        tools:ignore="SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -351,7 +362,8 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                tools:ignore="UselessParent">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -365,7 +377,7 @@
                                         android:text="Tanggal Lahir"
                                         android:textColor="#8F8F8F"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     <TextView
                                         android:id="@+id/tanggal_lahir"
@@ -374,7 +386,8 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#555555"
-                                        android:textSize="13dp" />
+                                        android:textSize="13dp"
+                                        tools:ignore="SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -415,7 +428,8 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                tools:ignore="UselessParent">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -429,7 +443,7 @@
                                         android:text="No Handphone"
                                         android:textColor="#8F8F8F"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     <TextView
                                         android:id="@+id/handphone"
@@ -438,7 +452,8 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#555555"
-                                        android:textSize="13dp" />
+                                        android:textSize="13dp"
+                                        tools:ignore="SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -479,7 +494,8 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                tools:ignore="UselessParent">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -493,7 +509,7 @@
                                         android:text="Status Pernikahan"
                                         android:textColor="#8F8F8F"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     <TextView
                                         android:id="@+id/status_pernikahan"
@@ -502,7 +518,8 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#555555"
-                                        android:textSize="13dp" />
+                                        android:textSize="13dp"
+                                        tools:ignore="SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -543,7 +560,8 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                tools:ignore="UselessParent">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -557,7 +575,7 @@
                                         android:text="Agama"
                                         android:textColor="#8F8F8F"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     <TextView
                                         android:id="@+id/agama"
@@ -566,7 +584,8 @@
                                         android:layout_marginRight="60dp"
                                         android:text=""
                                         android:textColor="#555555"
-                                        android:textSize="13dp" />
+                                        android:textSize="13dp"
+                                        tools:ignore="SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -607,7 +626,8 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                tools:ignore="UselessParent">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -621,7 +641,7 @@
                                         android:text="Alamat KTP"
                                         android:textColor="#8F8F8F"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     <TextView
                                         android:id="@+id/alamat_ktp"
@@ -631,7 +651,8 @@
                                         android:text=""
                                         android:lineSpacingExtra="2.5dp"
                                         android:textColor="#555555"
-                                        android:textSize="13dp" />
+                                        android:textSize="13dp"
+                                        tools:ignore="SpUsage,TooManyViews" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -673,7 +694,8 @@
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                tools:ignore="UselessParent">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -687,7 +709,7 @@
                                         android:text="Alamat Domisili"
                                         android:textColor="#8F8F8F"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     <TextView
                                         android:id="@+id/alamat_domisili"
@@ -697,7 +719,8 @@
                                         android:text=""
                                         android:lineSpacingExtra="2.5dp"
                                         android:textColor="#555555"
-                                        android:textSize="13dp" />
+                                        android:textSize="13dp"
+                                        tools:ignore="SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -747,7 +770,8 @@
                                 android:gravity="center"
                                 android:textColor="#CF811F"
                                 android:textSize="13dp"
-                                android:text="Ubah Info Personal"/>
+                                android:text="Ubah Info Personal"
+                                tools:ignore="HardcodedText,SpUsage" />
 
                         </LinearLayout>
 
@@ -767,7 +791,8 @@
                         android:layout_marginLeft="-2dp"
                         android:background="@drawable/shape_bar_chat"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:id="@+id/back_btn"
@@ -776,13 +801,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -791,7 +818,8 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -804,7 +832,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 

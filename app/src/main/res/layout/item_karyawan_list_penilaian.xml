@@ -16,7 +16,8 @@
         android:orientation="vertical"
         android:paddingLeft="23dp"
         android:paddingTop="8dp"
-        android:paddingRight="23dp">
+        android:paddingRight="23dp"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +27,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left">
+                android:gravity="left"
+                tools:ignore="RtlHardcoded">
 
                 <LinearLayout
                     android:id="@+id/waiting_mark"
@@ -53,7 +55,8 @@
                         android:singleLine="true"
                         android:text="Menunggu Konfirmasi"
                         android:textColor="#D32F2F"
-                        android:textSize="11dp" />
+                        android:textSize="11dp"
+                        tools:ignore="HardcodedText,RtlSymmetry,SpUsage" />
 
                 </LinearLayout>
 
@@ -67,7 +70,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left|center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
 
                     <RelativeLayout
                         android:layout_width="50dp"
@@ -78,7 +82,8 @@
                             android:layout_height="50dp"
                             android:src="@drawable/default_profile"
                             app:civ_border_color="#BDBDBD"
-                            app:civ_border_width="1dp" />
+                            app:civ_border_width="1dp"
+                            tools:ignore="ImageContrastCheck" />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profile_image"
@@ -86,7 +91,8 @@
                             android:layout_height="50dp"
                             android:src="@drawable/default_profile"
                             app:civ_border_color="#BDBDBD"
-                            app:civ_border_width="1dp" />
+                            app:civ_border_width="1dp"
+                            tools:ignore="ImageContrastCheck" />
 
                     </RelativeLayout>
 
@@ -96,7 +102,8 @@
                         android:orientation="vertical"
                         android:paddingLeft="15dp"
                         android:paddingTop="18dp"
-                        android:paddingBottom="18dp">
+                        android:paddingBottom="18dp"
+                        tools:ignore="RtlSymmetry">
 
                         <TextView
                             android:id="@+id/nama_tv"
@@ -110,7 +117,7 @@
                             android:textColor="#C16D02"
                             android:textSize="13dp"
                             android:textStyle="bold"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                         <TextView
                             android:id="@+id/nik_tv"
@@ -123,7 +130,7 @@
                             android:text="-"
                             android:textColor="#C16D02"
                             android:textSize="10dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                         <TextView
                             android:id="@+id/detail_tv"
@@ -136,7 +143,7 @@
                             android:text="- | - | -"
                             android:textColor="#C16D02"
                             android:textSize="11dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                     </LinearLayout>
 
@@ -148,7 +155,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:gravity="center">
+                    android:gravity="center"
+                    tools:ignore="RtlHardcoded">
 
                     <LinearLayout
                         android:background="@drawable/shape_nilai_label"
@@ -166,7 +174,7 @@
                             android:text="PREDIKAT"
                             android:textColor="#FFFFFF"
                             android:textSize="8dp"
-                            tools:ignore="TextSizeCheck" />
+                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     </LinearLayout>
 
@@ -187,7 +195,8 @@
                             android:layout_height="wrap_content"
                             android:text=""
                             android:textColor="#020202"
-                            android:textSize="13dp" />
+                            android:textSize="13dp"
+                            tools:ignore="SpUsage" />
 
                     </LinearLayout>
 
@@ -220,7 +229,8 @@
                         android:textStyle="bold"
                         android:textColor="#26982B"
                         android:visibility="gone"
-                        android:textSize="11dp" />
+                        android:textSize="11dp"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                     <TextView
                         android:id="@+id/rej_mark"
@@ -235,7 +245,8 @@
                         android:textColor="#CD4135"
                         android:textStyle="bold"
                         android:visibility="gone"
-                        android:textSize="11dp" />
+                        android:textSize="11dp"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                 </LinearLayout>
 
@@ -251,7 +262,7 @@
                     android:text="Dinilai -"
                     android:textColor="#939393"
                     android:textSize="10dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
             </LinearLayout>
 

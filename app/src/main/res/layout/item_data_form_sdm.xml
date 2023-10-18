@@ -11,11 +11,13 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/shape_notifikasi"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:gravity="right"
                     android:layout_height="wrap_content"
-                    tools:ignore="VisualLintBounds">
+                    tools:ignore="RtlHardcoded,VisualLintBounds">
 
                     <LinearLayout
                         android:layout_width="45dp"
@@ -45,7 +47,8 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="28dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlHardcoded">
 
                     <TextView
                         android:id="@+id/keterangan_data_tv"
@@ -54,13 +57,15 @@
                         android:layout_marginBottom="0.5dp"
                         android:text=""
                         android:textColor="#C16D02"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        tools:ignore="SpUsage" />
 
                     <LinearLayout
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="RtlHardcoded">
 
                         <TextView
                             android:id="@+id/acc_mark"
@@ -74,7 +79,8 @@
                             android:textStyle="bold"
                             android:textColor="#41B847"
                             android:visibility="gone"
-                            android:textSize="12dp" />
+                            android:textSize="12dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <TextView
                             android:id="@+id/rej_mark"
@@ -88,7 +94,8 @@
                             android:textColor="#DD5043"
                             android:textStyle="bold"
                             android:visibility="gone"
-                            android:textSize="12dp" />
+                            android:textSize="12dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                         <TextView
                             android:id="@+id/pro_mark"
@@ -102,7 +109,8 @@
                             android:textColor="#CC8D0F"
                             android:textStyle="bold"
                             android:visibility="gone"
-                            android:textSize="12dp" />
+                            android:textSize="12dp"
+                            tools:ignore="HardcodedText,SpUsage" />
 
                     </LinearLayout>
 
@@ -118,7 +126,8 @@
                     android:layout_marginBottom="0.5dp"
                     android:text=""
                     android:textColor="#C16D02"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    tools:ignore="RtlHardcoded,SpUsage" />
 
                 <TextView
                     android:id="@+id/line_limit"
@@ -129,7 +138,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:background="#2DEFB975"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    tools:ignore="RtlHardcoded,SpUsage" />
 
                 <TextView
                     android:id="@+id/detail_tv"
@@ -142,19 +152,21 @@
                     android:textColor="#BF7517"
                     android:textSize="13dp"
                     android:textStyle="italic"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 <RelativeLayout
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="28dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlHardcoded">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="left">
+                        android:gravity="left"
+                        tools:ignore="RtlHardcoded">
 
                         <LinearLayout
                             android:id="@+id/waiting_mark"
@@ -181,7 +193,8 @@
                                 android:singleLine="true"
                                 android:text="Menunggu Persetujuan"
                                 android:textColor="#D32F2F"
-                                android:textSize="11dp" />
+                                android:textSize="11dp"
+                                tools:ignore="HardcodedText,RtlSymmetry,SpUsage" />
 
                         </LinearLayout>
 
@@ -197,7 +210,7 @@
                         android:text="-"
                         android:textColor="#979797"
                         android:textSize="10dp"
-                        tools:ignore="TextSizeCheck" />
+                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 </RelativeLayout>
 
@@ -219,7 +232,8 @@
                 android:layout_marginTop="14dp"
                 android:layout_marginLeft="1dp"
                 android:gravity="left|center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="RtlHardcoded">
 
                 <LinearLayout
                     android:id="@+id/point_1"

@@ -14,7 +14,8 @@
         android:paddingLeft="25dp"
         android:paddingBottom="15dp"
         app:el_duration="300"
-        app:el_expanded="false">
+        app:el_expanded="false"
+        tools:ignore="RtlHardcoded,RtlSymmetry">
 
         <LinearLayout
             android:background="@drawable/shape_bg_expand_kontak_menu"
@@ -26,7 +27,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:orientation="horizontal"
-            tools:ignore="VisualLintBounds">
+            tools:ignore="DisableBaselineAlignment,VisualLintBounds">
 
             <LinearLayout
                 android:id="@+id/edit_btn"
@@ -47,7 +48,8 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="12dp"
-                    android:text="Edit"/>
+                    android:text="Edit"
+                    tools:ignore="HardcodedText,SpUsage" />
 
             </LinearLayout>
 
@@ -69,7 +71,8 @@
                     android:singleLine="true"
                     android:textSize="12dp"
                     android:textColor="#ED5956"
-                    android:text="Hapus"/>
+                    android:text="Hapus"
+                    tools:ignore="HardcodedText,SpUsage" />
 
             </LinearLayout>
 
@@ -83,18 +86,21 @@
         android:layout_width="match_parent"
         android:layout_height="88dp"
         android:orientation="vertical"
-        android:paddingLeft="25dp">
+        android:paddingLeft="25dp"
+        tools:ignore="RtlHardcoded,RtlSymmetry">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="120dp"
                 android:orientation="vertical"
-                android:paddingTop="17dp">
+                android:paddingTop="17dp"
+                tools:ignore="RtlHardcoded">
 
                 <TextView
                     android:id="@+id/nama_kontak"
@@ -108,7 +114,7 @@
                     android:text="Nama Kontak"
                     android:textColor="#4C4C4C"
                     android:textSize="13.5dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/hubungan"
@@ -122,7 +128,7 @@
                     android:text="Hubungan"
                     android:textColor="#8F8F8F"
                     android:textSize="10dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/no_kontak"
@@ -135,7 +141,7 @@
                     android:text="No Kontak"
                     android:textColor="#8F8F8F"
                     android:textSize="11.5dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
             </LinearLayout>
 

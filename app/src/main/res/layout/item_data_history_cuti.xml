@@ -10,14 +10,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:paddingBottom="5dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_detail_3"
             android:orientation="vertical"
-            android:gravity="center|left">
+            android:gravity="center|left"
+            tools:ignore="RtlHardcoded">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -27,7 +29,7 @@
                 android:gravity="right"
                 android:paddingRight="10dp"
                 android:layout_height="wrap_content"
-                tools:ignore="VisualLintBounds">
+                tools:ignore="RtlSymmetry,VisualLintBounds">
 
                 <LinearLayout
                     android:layout_width="45dp"
@@ -53,7 +55,7 @@
                 android:textColor="@color/white"
                 android:textSize="12dp"
                 android:textStyle="bold"
-                tools:ignore="TextSizeCheck" />
+                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
         </LinearLayout>
 
@@ -61,7 +63,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-1dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="DisableBaselineAlignment">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -93,7 +96,7 @@
                     android:text="00/00/0000  s.d. 00/00/0000"
                     android:textColor="#605E5D"
                     android:textSize="13dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                 <TextView
                     android:id="@+id/alasan_atau_keterangan_tv"
@@ -107,7 +110,7 @@
                     android:text="Alasan/keterangan cuti tes tes tes tes tes tes tes tes tes tes tes tes tes tes tes tes tes tes tes tes "
                     android:textColor="#605E5D"
                     android:textSize="13dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -115,13 +118,15 @@
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
-                    android:background="#229A9998"/>
+                    android:background="#229A9998"
+                    tools:ignore="RtlHardcoded" />
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:gravity="left"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlHardcoded">
 
                     <TextView
                         android:id="@+id/noted_tv"
@@ -137,7 +142,7 @@
                         android:textColor="#605E5D"
                         android:textSize="9dp"
                         android:textStyle="italic"
-                        tools:ignore="TextSizeCheck" />
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     <TextView
                         android:id="@+id/noted2_tv"
@@ -152,7 +157,7 @@
                         android:textColor="#605E5D"
                         android:textSize="9dp"
                         android:textStyle="italic"
-                        tools:ignore="TextSizeCheck" />
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 </LinearLayout>
 

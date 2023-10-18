@@ -15,13 +15,15 @@
         android:background="@drawable/shape_notifikasi"
         android:orientation="horizontal"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:paddingRight="20dp"
+        tools:ignore="DisableBaselineAlignment,UselessParent">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".80"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -30,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:gravity="right"
                 android:layout_height="wrap_content"
-                tools:ignore="VisualLintBounds">
+                tools:ignore="RtlHardcoded,VisualLintBounds">
 
                 <LinearLayout
                     android:layout_width="70dp"
@@ -45,7 +47,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|left"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="RtlHardcoded">
 
                 <RelativeLayout
                     android:layout_width="42dp"
@@ -55,16 +58,18 @@
                         android:layout_width="42dp"
                         android:layout_height="42dp"
                         android:src="@drawable/default_profile"
+                        app:civ_border_color="#BDBDBD"
                         app:civ_border_width="0.8dp"
-                        app:civ_border_color="#BDBDBD"/>
+                        tools:ignore="ImageContrastCheck" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profile_image"
                         android:layout_width="42dp"
                         android:layout_height="42dp"
                         android:src="@drawable/default_profile"
+                        app:civ_border_color="#BDBDBD"
                         app:civ_border_width="0.8dp"
-                        app:civ_border_color="#BDBDBD"/>
+                        tools:ignore="ImageContrastCheck" />
 
                 </RelativeLayout>
 
@@ -84,7 +89,7 @@
                         android:text="-"
                         android:textColor="#C16D02"
                         android:textSize="13dp"
-                        tools:ignore="TextSizeCheck" />
+                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                     <TextView
                         android:id="@+id/nik_karyawan_tv"
@@ -96,7 +101,7 @@
                         android:text="-"
                         android:textColor="#C16D02"
                         android:textSize="11dp"
-                        tools:ignore="TextSizeCheck" />
+                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -109,7 +114,8 @@
                 android:layout_marginTop="7dp"
                 android:layout_marginBottom="7dp"
                 android:background="#2DEFB975"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                tools:ignore="SpUsage" />
 
             <TextView
                 android:id="@+id/deskrisi_permohonan"
@@ -123,7 +129,7 @@
                 android:textColor="#C16D02"
                 android:textSize="13dp"
                 android:textStyle="italic"
-                tools:ignore="TextSizeCheck" />
+                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
             <TextView
                 android:id="@+id/tanggal_kirim_permohonan"
@@ -138,7 +144,7 @@
                 android:text="-"
                 android:textColor="#C16D02"
                 android:textSize="10dp"
-                tools:ignore="TextSizeCheck" />
+                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
             <LinearLayout
                 android:layout_width="40dp"

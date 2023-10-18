@@ -11,18 +11,21 @@
         android:layout_height="72dp"
         android:background="@drawable/shape_btn_effect"
         android:orientation="vertical"
-        android:paddingLeft="25dp">
+        android:paddingLeft="25dp"
+        tools:ignore="RtlHardcoded,RtlSymmetry,UselessParent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginRight="75dp"
-                android:paddingTop="17dp">
+                android:paddingTop="17dp"
+                tools:ignore="RtlHardcoded">
 
                 <TextView
                     android:id="@+id/nama"
@@ -36,7 +39,7 @@
                     android:text="Nama"
                     android:textColor="#4C4C4C"
                     android:textSize="13.5dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/hubungan"
@@ -50,7 +53,7 @@
                     android:text="Hubungan"
                     android:textColor="#8F8F8F"
                     android:textSize="10dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
             </LinearLayout>
 

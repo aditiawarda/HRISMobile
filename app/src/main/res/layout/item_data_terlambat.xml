@@ -10,14 +10,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:paddingBottom="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_detail_3"
             android:orientation="vertical"
-            android:gravity="center|left">
+            android:gravity="center|left"
+            tools:ignore="RtlHardcoded">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -27,7 +29,7 @@
                 android:gravity="right"
                 android:paddingRight="10dp"
                 android:layout_height="wrap_content"
-                tools:ignore="VisualLintBounds">
+                tools:ignore="RtlSymmetry,VisualLintBounds">
 
                 <LinearLayout
                     android:layout_width="45dp"
@@ -54,7 +56,7 @@
                 android:textColor="@color/white"
                 android:textSize="12dp"
                 android:textStyle="bold"
-                tools:ignore="TextSizeCheck" />
+                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
         </LinearLayout>
 
@@ -92,7 +94,7 @@
                         android:textColor="#9E6216"
                         android:textSize="12dp"
                         android:textStyle="bold"
-                        tools:ignore="TextSizeCheck" />
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                     <TextView
                         android:id="@+id/jam_shift_late"
@@ -112,7 +114,7 @@
                         android:textColor="#9E6216"
                         android:textSize="12dp"
                         android:textStyle="bold"
-                        tools:ignore="TextSizeCheck" />
+                        tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                 </LinearLayout>
 
@@ -124,7 +126,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-1dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="DisableBaselineAlignment">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -148,7 +151,7 @@
                     android:textColor="@color/green"
                     android:textSize="11dp"
                     android:textStyle="bold"
-                    tools:ignore="TextContrastCheck,TextSizeCheck" />
+                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -172,7 +175,7 @@
                     android:text="---- - -- - --"
                     android:textColor="#696969"
                     android:textSize="11dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                 <TextView
                     android:id="@+id/time_checkin_tv_late"
@@ -189,7 +192,7 @@
                     android:text="-- : -- : --"
                     android:textColor="#696969"
                     android:textSize="11dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                 <TextView
                     android:id="@+id/checkin_point_tv_late"
@@ -206,7 +209,7 @@
                     android:text="-"
                     android:textColor="#696969"
                     android:textSize="11dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UseCompatTextViewDrawableXml" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -220,7 +223,7 @@
                     android:text="Keterlambatan :"
                     android:textColor="#696969"
                     android:textSize="11dp"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/keterlambatan_tv"
@@ -239,7 +242,7 @@
                     android:textColor="#FF1A1A"
                     android:textSize="11dp"
                     android:textStyle="bold"
-                    tools:ignore="TextSizeCheck" />
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
             </LinearLayout>
 
