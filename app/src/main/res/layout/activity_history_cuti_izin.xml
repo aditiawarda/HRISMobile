@@ -60,7 +60,8 @@
                                     android:text=""
                                     android:textColor="#B1670B"
                                     android:textSize="13dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="SpUsage" />
 
                             </LinearLayout>
 
@@ -79,14 +80,16 @@
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
+                                        android:layout_height="wrap_content"
+                                        tools:ignore="TooDeepLayout,UselessParent">
 
                                         <LinearLayout
                                             android:layout_width="40dp"
                                             android:layout_height="match_parent"
                                             android:layout_alignParentEnd="true"
                                             android:background="@drawable/shape_background_cuti_2_part"
-                                            android:gravity="right|center" />
+                                            android:gravity="right|center"
+                                            tools:ignore="RtlHardcoded" />
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
@@ -107,7 +110,7 @@
                                                 android:textColor="@color/white"
                                                 android:textSize="10dp"
                                                 android:textStyle="bold"
-                                                tools:ignore="TextSizeCheck" />
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             <RelativeLayout
                                                 android:id="@+id/periode_data_part"
@@ -127,7 +130,8 @@
                                                     android:text="00/00/0000 s.d. 00/00/0000"
                                                     android:textColor="@color/white"
                                                     android:textSize="14dp"
-                                                    android:textStyle="bold" />
+                                                    android:textStyle="bold"
+                                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                                 <LinearLayout
                                                     android:layout_width="85dp"
@@ -135,13 +139,15 @@
                                                     android:layout_alignParentRight="true"
                                                     android:background="@drawable/shape_tidak_hadir"
                                                     android:gravity="center"
-                                                    android:orientation="horizontal">
+                                                    android:orientation="horizontal"
+                                                    tools:ignore="RtlHardcoded">
 
                                                     <LinearLayout
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"
-                                                        android:orientation="horizontal">
+                                                        android:orientation="horizontal"
+                                                        tools:ignore="UselessParent">
 
                                                         <TextView
                                                             android:id="@+id/hak_cuti_tv"
@@ -151,7 +157,8 @@
                                                             android:text="0"
                                                             android:textColor="@color/white"
                                                             android:textSize="17dp"
-                                                            android:textStyle="bold" />
+                                                            android:textStyle="bold"
+                                                            tools:ignore="HardcodedText,SpUsage" />
 
                                                         <TextView
                                                             android:layout_width="wrap_content"
@@ -159,7 +166,8 @@
                                                             android:text="Hari"
                                                             android:textColor="@color/white"
                                                             android:textSize="10dp"
-                                                            android:textStyle="bold" />
+                                                            android:textStyle="bold"
+                                                            tools:ignore="HardcodedText,SpUsage" />
 
                                                     </LinearLayout>
 
@@ -172,7 +180,8 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="40.5dp"
                                                 android:visibility="visible"
-                                                app:srcCompat="@drawable/loading_dots" />
+                                                app:srcCompat="@drawable/loading_dots"
+                                                tools:ignore="ContentDescription" />
 
                                         </LinearLayout>
 
@@ -200,7 +209,8 @@
                                         android:text="Perhatian :"
                                         android:textColor="#C68D46"
                                         android:textSize="12dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -209,7 +219,8 @@
                                         android:text="Hak cuti tahunan sudah terpotong 2 hari secara otomatis dari 12 untuk cuti bersama akhir tahun dan cuti bersama lebaran."
                                         android:textColor="#C68D46"
                                         android:lineSpacingExtra="2.5dp"
-                                        android:textSize="12dp" />
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -217,7 +228,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    tools:ignore="DisableBaselineAlignment">
 
                                     <LinearLayout
                                         android:layout_width="0dp"
@@ -229,7 +241,8 @@
                                         android:paddingLeft="15dp"
                                         android:paddingTop="10dp"
                                         android:paddingRight="15dp"
-                                        android:paddingBottom="10dp">
+                                        android:paddingBottom="10dp"
+                                        tools:ignore="RtlHardcoded">
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -241,7 +254,7 @@
                                             android:textColor="@color/white"
                                             android:textSize="10dp"
                                             android:textStyle="bold"
-                                            tools:ignore="TextSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                         <LinearLayout
                                             android:id="@+id/data_diambil_part"
@@ -254,7 +267,8 @@
                                             <LinearLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:orientation="horizontal">
+                                                android:orientation="horizontal"
+                                                tools:ignore="UselessParent">
 
                                                 <TextView
                                                     android:id="@+id/data_diambil_tv"
@@ -263,7 +277,8 @@
                                                     android:text="0"
                                                     android:textColor="@color/white"
                                                     android:textSize="30dp"
-                                                    android:textStyle="bold" />
+                                                    android:textStyle="bold"
+                                                    tools:ignore="HardcodedText,SpUsage" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
@@ -272,7 +287,8 @@
                                                     android:text="Hari"
                                                     android:textColor="@color/white"
                                                     android:textSize="17dp"
-                                                    android:textStyle="bold" />
+                                                    android:textStyle="bold"
+                                                    tools:ignore="HardcodedText,SpUsage" />
 
                                             </LinearLayout>
 
@@ -282,7 +298,8 @@
                                             android:id="@+id/diambil_loading"
                                             android:layout_width="match_parent"
                                             android:layout_height="40.5dp"
-                                            app:srcCompat="@drawable/loading_dots" />
+                                            app:srcCompat="@drawable/loading_dots"
+                                            tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                     </LinearLayout>
 
@@ -296,7 +313,8 @@
                                         android:paddingLeft="15dp"
                                         android:paddingTop="10dp"
                                         android:paddingRight="15dp"
-                                        android:paddingBottom="10dp">
+                                        android:paddingBottom="10dp"
+                                        tools:ignore="RtlHardcoded">
 
                                         <TextView
                                             android:layout_width="match_parent"
@@ -308,7 +326,7 @@
                                             android:textColor="@color/white"
                                             android:textSize="10dp"
                                             android:textStyle="bold"
-                                            tools:ignore="TextSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                         <LinearLayout
                                             android:id="@+id/data_sisa_part"
@@ -325,7 +343,8 @@
                                                 android:text="0"
                                                 android:textColor="@color/white"
                                                 android:textSize="30dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -334,7 +353,8 @@
                                                 android:text="Hari"
                                                 android:textColor="@color/white"
                                                 android:textSize="17dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -342,7 +362,8 @@
                                             android:id="@+id/sisa_loading"
                                             android:layout_width="match_parent"
                                             android:layout_height="40.5dp"
-                                            app:srcCompat="@drawable/loading_dots" />
+                                            app:srcCompat="@drawable/loading_dots"
+                                            tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                     </LinearLayout>
 
@@ -373,17 +394,20 @@
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    tools:ignore="UselessParent">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:gravity="center|left">
+                                        android:gravity="center|left"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            tools:ignore="UselessParent">
 
                                             <TextView
                                                 android:layout_width="match_parent"
@@ -396,7 +420,7 @@
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="14dp"
                                                 android:textStyle="bold"
-                                                tools:ignore="TextSizeCheck" />
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             <TextView
                                                 android:layout_width="match_parent"
@@ -409,7 +433,7 @@
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="10dp"
                                                 android:textStyle="italic"
-                                                tools:ignore="TextSizeCheck" />
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -420,7 +444,8 @@
                                         android:layout_height="match_parent"
                                         android:layout_alignParentRight="true"
                                         android:background="@drawable/shape_detail_tidak_hadir"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <TextView
                                             android:id="@+id/total_data_cuti"
@@ -463,7 +488,8 @@
                                     android:background="@drawable/empty_image"
                                     android:textAlignment="center"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -473,7 +499,8 @@
                                     android:textAlignment="center"
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -481,7 +508,8 @@
                                     android:text="Data riwayat cuti tidak tersedia"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -501,7 +529,8 @@
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     android:layout_marginBottom="5dp"
-                                    app:srcCompat="@drawable/loading_sgn_digital" />
+                                    app:srcCompat="@drawable/loading_sgn_digital"
+                                    tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -512,7 +541,7 @@
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
                                     android:textStyle="bold"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -521,7 +550,7 @@
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
                                     android:textSize="10dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                             </LinearLayout>
 
@@ -547,7 +576,8 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical">
+                                    android:orientation="vertical"
+                                    tools:ignore="UselessParent">
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
@@ -559,7 +589,8 @@
                                             android:layout_marginLeft="20dp"
                                             android:layout_marginTop="10dp"
                                             android:layout_marginRight="20dp"
-                                            android:gravity="center|left">
+                                            android:gravity="center|left"
+                                            tools:ignore="RtlHardcoded">
 
                                             <LinearLayout
                                                 android:layout_width="match_parent"
@@ -577,7 +608,7 @@
                                                     android:textColor="@color/colorPrimaryDark"
                                                     android:textSize="14dp"
                                                     android:textStyle="bold"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 <TextView
                                                     android:layout_width="match_parent"
@@ -590,7 +621,7 @@
                                                     android:textColor="@color/colorPrimaryDark"
                                                     android:textSize="10dp"
                                                     android:textStyle="italic"
-                                                    tools:ignore="TextSizeCheck" />
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             </LinearLayout>
 
@@ -604,7 +635,8 @@
                                             android:layout_marginTop="10dp"
                                             android:layout_marginRight="20dp"
                                             android:background="@drawable/shape_detail_tidak_hadir"
-                                            android:gravity="center">
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:id="@+id/total_data_izin"
@@ -622,7 +654,8 @@
                                             android:layout_marginLeft="13dp"
                                             android:layout_marginTop="5dp"
                                             android:layout_marginRight="13dp"
-                                            android:gravity="right">
+                                            android:gravity="right"
+                                            tools:ignore="RtlHardcoded">
 
                                             <LinearLayout
                                                 android:id="@+id/marker_warning_alpha_detail"
@@ -635,7 +668,8 @@
                                                     android:id="@+id/warning_gif_absen_nocheckout_detail"
                                                     android:layout_width="15dp"
                                                     android:layout_height="15dp"
-                                                    app:srcCompat="@drawable/ic_warning_notification_gif_main" />
+                                                    app:srcCompat="@drawable/ic_warning_notification_gif_main"
+                                                    tools:ignore="ContentDescription" />
 
                                             </LinearLayout>
 
@@ -676,7 +710,8 @@
                                     android:background="@drawable/empty_image"
                                     android:textAlignment="center"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -686,7 +721,8 @@
                                     android:textAlignment="center"
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -694,7 +730,8 @@
                                     android:text="Data riwayat izin tidak tersedia"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -714,7 +751,8 @@
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     android:layout_marginBottom="5dp"
-                                    app:srcCompat="@drawable/loading_sgn_digital" />
+                                    app:srcCompat="@drawable/loading_sgn_digital"
+                                    tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -724,7 +762,8 @@
                                     android:textAlignment="center"
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage,TooManyViews" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -732,7 +771,8 @@
                                     android:text="Tunggu beberapa saat"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -759,17 +799,20 @@
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    tools:ignore="UselessParent">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:gravity="center|left">
+                                        android:gravity="center|left"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            tools:ignore="UselessParent">
 
                                             <TextView
                                                 android:layout_width="match_parent"
@@ -781,7 +824,8 @@
                                                 android:text="CUTI BERSAMA"
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="14dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <TextView
                                                 android:layout_width="match_parent"
@@ -793,7 +837,8 @@
                                                 android:text="Data Cuti Bersama"
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="10dp"
-                                                android:textStyle="italic" />
+                                                android:textStyle="italic"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -804,7 +849,8 @@
                                         android:layout_height="match_parent"
                                         android:layout_alignParentRight="true"
                                         android:background="@drawable/shape_detail_tidak_hadir"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <TextView
                                             android:id="@+id/total_data_cuti_bersama"
@@ -847,7 +893,8 @@
                                     android:background="@drawable/empty_image"
                                     android:textAlignment="center"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -857,7 +904,8 @@
                                     android:textAlignment="center"
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -865,7 +913,8 @@
                                     android:text="Data riwayat cuti bersama tidak tersedia"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -885,7 +934,8 @@
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     android:layout_marginBottom="5dp"
-                                    app:srcCompat="@drawable/loading_sgn_digital" />
+                                    app:srcCompat="@drawable/loading_sgn_digital"
+                                    tools:ignore="ContentDescription" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -895,7 +945,8 @@
                                     android:textAlignment="center"
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -903,7 +954,8 @@
                                     android:text="Tunggu beberapa saat"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -931,17 +983,20 @@
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    tools:ignore="UselessParent">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:gravity="center|left">
+                                        android:gravity="center|left"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            tools:ignore="UselessParent">
 
                                             <TextView
                                                 android:layout_width="match_parent"
@@ -953,7 +1008,8 @@
                                                 android:text="PENAMBAHAN HAK CUTI"
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="14dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <TextView
                                                 android:layout_width="match_parent"
@@ -965,7 +1021,8 @@
                                                 android:text="Riwayat Penambahan Hak Cuti"
                                                 android:textColor="@color/colorPrimaryDark"
                                                 android:textSize="10dp"
-                                                android:textStyle="italic" />
+                                                android:textStyle="italic"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -976,7 +1033,8 @@
                                         android:layout_height="match_parent"
                                         android:layout_alignParentRight="true"
                                         android:background="@drawable/shape_detail_tidak_hadir"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <TextView
                                             android:id="@+id/total_data_penambahan_cuti"
@@ -1019,7 +1077,8 @@
                                     android:background="@drawable/empty_image"
                                     android:textAlignment="center"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -1029,7 +1088,8 @@
                                     android:textAlignment="center"
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -1037,7 +1097,8 @@
                                     android:text="Data riwayat penambahan cuti tidak tersedia"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -1057,7 +1118,8 @@
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     android:layout_marginBottom="5dp"
-                                    app:srcCompat="@drawable/loading_sgn_digital" />
+                                    app:srcCompat="@drawable/loading_sgn_digital"
+                                    tools:ignore="ContentDescription" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -1067,7 +1129,8 @@
                                     android:textAlignment="center"
                                     android:textColor="#E1BB8A"
                                     android:textSize="12dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -1075,7 +1138,8 @@
                                     android:text="Tunggu beberapa saat"
                                     android:textAlignment="center"
                                     android:textColor="#ECC28D"
-                                    android:textSize="10dp" />
+                                    android:textSize="10dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -1097,7 +1161,8 @@
                         android:layout_marginLeft="-2dp"
                         android:background="@drawable/shape_bar_chat"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:id="@+id/back_btn"
@@ -1106,13 +1171,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -1121,7 +1188,8 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -1134,7 +1202,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 

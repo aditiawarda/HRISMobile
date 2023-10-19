@@ -137,7 +137,8 @@
                                             android:layout_marginTop="10dp"
                                             android:layout_marginBottom="10dp"
                                             android:gravity="center|left"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            tools:ignore="RelativeOverlap">
 
                                             <TextView
                                                 android:id="@+id/gender_pilih_tv"

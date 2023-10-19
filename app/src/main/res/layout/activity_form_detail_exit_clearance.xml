@@ -103,7 +103,8 @@
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
                                         android:paddingLeft="15dp"
-                                        android:paddingRight="15dp">
+                                        android:paddingRight="15dp"
+                                        tools:ignore="TooDeepLayout">
 
                                         <TextView
                                             android:layout_width="match_parent"
