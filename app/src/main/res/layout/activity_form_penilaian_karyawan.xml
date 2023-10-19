@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -54,7 +53,8 @@
                                     android:layout_marginBottom="5dp"
                                     android:text="Penilaian Untuk :"
                                     android:textColor="#696969"
-                                    android:textSize="12dp" />
+                                    android:textSize="12dp"
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/pilih_karyawan_part"
@@ -62,7 +62,8 @@
                                     android:layout_height="40dp"
                                     android:paddingStart="20dp"
                                     android:background="@drawable/shape_feel"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    tools:ignore="RtlSymmetry">
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
@@ -85,7 +86,8 @@
                                                 android:textColor="#B15735"
                                                 android:textSize="13dp"
                                                 android:textStyle="bold"
-                                                android:text=""/>
+                                                android:text=""
+                                                tools:ignore="SpUsage" />
 
                                         </LinearLayout>
 
@@ -94,7 +96,8 @@
                                             android:layout_width="40dp"
                                             android:layout_height="match_parent"
                                             android:background="@drawable/shape_btn"
-                                            android:gravity="center">
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:layout_width="25dp"
@@ -135,7 +138,8 @@
                                         android:text="RATING"
                                         android:textColor="@color/colorPrimaryDark"
                                         android:textSize="13dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -150,7 +154,7 @@
                                         android:layout_marginRight="17dp"
                                         android:layout_marginBottom="5dp"
                                         android:orientation="vertical"
-                                        tools:ignore="UselessParent">
+                                        tools:ignore="RtlHardcoded,UselessParent">
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
@@ -178,18 +182,20 @@
                                                         android:layout_height="wrap_content"
                                                         android:text="5"
                                                         android:textColor="#FFFFFF"
-                                                        android:textSize="14dp" />
+                                                        android:textSize="14dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                                                 </LinearLayout>
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
-                                                    android:lineSpacingExtra="2.5dp"
                                                     android:layout_marginLeft="3dp"
+                                                    android:lineSpacingExtra="2.5dp"
                                                     android:text="Istimewa, sangat baik"
                                                     android:textColor="#494949"
-                                                    android:textSize="14dp" />
+                                                    android:textSize="14dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             </LinearLayout>
 
@@ -227,7 +233,8 @@
                                                         android:layout_height="wrap_content"
                                                         android:text="4"
                                                         android:textColor="#FFFFFF"
-                                                        android:textSize="14dp" />
+                                                        android:textSize="14dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                                                 </LinearLayout>
 
@@ -238,7 +245,8 @@
                                                     android:lineSpacingExtra="2.5dp"
                                                     android:text="Baik"
                                                     android:textColor="#494949"
-                                                    android:textSize="14dp" />
+                                                    android:textSize="14dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             </LinearLayout>
 
@@ -276,18 +284,20 @@
                                                         android:layout_height="wrap_content"
                                                         android:text="3"
                                                         android:textColor="#FFFFFF"
-                                                        android:textSize="14dp" />
+                                                        android:textSize="14dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                                 </LinearLayout>
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
-                                                    android:lineSpacingExtra="2.5dp"
                                                     android:layout_marginLeft="3dp"
+                                                    android:lineSpacingExtra="2.5dp"
                                                     android:text="Rata-rata"
                                                     android:textColor="#494949"
-                                                    android:textSize="14dp" />
+                                                    android:textSize="14dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                             </LinearLayout>
 
@@ -325,18 +335,20 @@
                                                         android:layout_height="wrap_content"
                                                         android:text="2"
                                                         android:textColor="#FFFFFF"
-                                                        android:textSize="14dp" />
+                                                        android:textSize="14dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                                                 </LinearLayout>
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
-                                                    android:lineSpacingExtra="2.5dp"
                                                     android:layout_marginLeft="3dp"
+                                                    android:lineSpacingExtra="2.5dp"
                                                     android:text="Dibawah rata-rata"
                                                     android:textColor="#494949"
-                                                    android:textSize="14dp" />
+                                                    android:textSize="14dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             </LinearLayout>
 
@@ -374,18 +386,20 @@
                                                         android:layout_height="wrap_content"
                                                         android:text="1"
                                                         android:textColor="#FFFFFF"
-                                                        android:textSize="14dp" />
+                                                        android:textSize="14dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
-                                                    android:lineSpacingExtra="2.5dp"
                                                     android:layout_marginLeft="3dp"
+                                                    android:lineSpacingExtra="2.5dp"
                                                     android:text="Kurang sekali/jelek"
                                                     android:textColor="#494949"
-                                                    android:textSize="14dp" />
+                                                    android:textSize="14dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                             </LinearLayout>
 
@@ -421,7 +435,7 @@
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
                                     android:gravity="center|left"
-                                    tools:ignore="RtlSymmetry">
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -438,7 +452,8 @@
                                             android:layout_height="wrap_content"
                                             android:text="1"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -448,7 +463,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Pengetahuan Teknis dan Keterampilan kerja"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -463,50 +479,55 @@
                                         android:id="@+id/rgf_1_rating_5"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:paddingHorizontal="3dp"
                                         android:layout_marginRight="10dp"
-                                        android:textSize="13dp"
+                                        android:paddingHorizontal="3dp"
+                                        android:text="5"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextSizeCheck,DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_1_rating_4"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:paddingHorizontal="3dp"
                                         android:layout_marginRight="10dp"
-                                        android:textSize="13dp"
+                                        android:paddingHorizontal="3dp"
+                                        android:text="4"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_1_rating_3"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:paddingHorizontal="3dp"
                                         android:layout_marginRight="10dp"
-                                        android:textSize="13dp"
+                                        android:paddingHorizontal="3dp"
+                                        android:text="3"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_1_rating_2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:paddingHorizontal="3dp"
                                         android:layout_marginRight="10dp"
-                                        android:textSize="13dp"
+                                        android:paddingHorizontal="3dp"
+                                        android:text="2"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_1_rating_1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
-                                        android:textSize="13dp"
+                                        android:text="1"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
                                 </RadioGroup>
 
@@ -522,7 +543,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -539,7 +561,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -560,7 +583,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -576,10 +600,11 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:lineSpacingExtra="2.5dp"
-                                            android:textStyle="italic"
                                             android:text="Bobot : 10  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            android:textStyle="italic"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -605,7 +630,7 @@
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
                                     android:gravity="center|left"
-                                    tools:ignore="RtlSymmetry">
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -622,7 +647,8 @@
                                             android:layout_height="wrap_content"
                                             android:text="2"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -632,7 +658,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Kualitas kerja"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -647,50 +674,55 @@
                                         android:id="@+id/rgf_2_rating_5"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:paddingHorizontal="3dp"
                                         android:layout_marginRight="10dp"
-                                        android:textSize="13dp"
+                                        android:paddingHorizontal="3dp"
+                                        android:text="5"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TouchTargetSizeCheck" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_2_rating_4"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:paddingHorizontal="3dp"
                                         android:layout_marginRight="10dp"
-                                        android:textSize="13dp"
+                                        android:paddingHorizontal="3dp"
+                                        android:text="4"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TouchTargetSizeCheck" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_2_rating_3"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:paddingHorizontal="3dp"
                                         android:layout_marginRight="10dp"
-                                        android:textSize="13dp"
+                                        android:paddingHorizontal="3dp"
+                                        android:text="3"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TouchTargetSizeCheck" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_2_rating_2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:paddingHorizontal="3dp"
                                         android:layout_marginRight="10dp"
-                                        android:textSize="13dp"
+                                        android:paddingHorizontal="3dp"
+                                        android:text="2"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TouchTargetSizeCheck" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_2_rating_1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
-                                        android:textSize="13dp"
+                                        android:text="1"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TooManyViews,TouchTargetSizeCheck" />
 
                                 </RadioGroup>
 
@@ -706,7 +738,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -723,7 +756,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -744,7 +778,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -763,7 +798,8 @@
                                             android:textStyle="italic"
                                             android:text="Bobot : 10  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -789,7 +825,7 @@
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
                                     android:gravity="center|left"
-                                    tools:ignore="RtlSymmetry">
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -799,14 +835,16 @@
                                         android:paddingRight="11dp"
                                         android:paddingBottom="6dp"
                                         android:layout_marginRight="8dp"
-                                        android:background="@drawable/shape_number">
+                                        android:background="@drawable/shape_number"
+                                        tools:ignore="RtlHardcoded">
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="3"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -816,7 +854,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Kuantitas &amp; produktifitas kerja"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -835,7 +874,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:text="5"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_3_rating_4"
@@ -845,7 +885,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:text="4"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_3_rating_3"
@@ -855,7 +896,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:text="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_3_rating_2"
@@ -865,7 +907,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:text="2"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_3_rating_1"
@@ -874,7 +917,8 @@
                                         android:paddingHorizontal="3dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:text="1"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </RadioGroup>
 
@@ -890,7 +934,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -907,7 +952,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -928,7 +974,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -947,7 +994,8 @@
                                             android:textStyle="italic"
                                             android:text="Bobot : 10  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -973,7 +1021,7 @@
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
                                     android:gravity="center|left"
-                                    tools:ignore="RtlSymmetry">
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -983,14 +1031,16 @@
                                         android:paddingRight="11dp"
                                         android:paddingBottom="6dp"
                                         android:layout_marginRight="8dp"
-                                        android:background="@drawable/shape_number">
+                                        android:background="@drawable/shape_number"
+                                        tools:ignore="RtlHardcoded">
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="4"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1000,7 +1050,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Hubungan dan kerjasama dalam pekerjaan"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -1019,7 +1070,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:text="5"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_4_rating_4"
@@ -1029,7 +1081,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:text="4"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_4_rating_3"
@@ -1039,7 +1092,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:text="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_4_rating_2"
@@ -1049,7 +1103,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:text="2"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_4_rating_1"
@@ -1058,7 +1113,8 @@
                                         android:paddingHorizontal="3dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:text="1"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </RadioGroup>
 
@@ -1074,7 +1130,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -1091,7 +1148,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -1112,7 +1170,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -1131,7 +1190,8 @@
                                             android:textStyle="italic"
                                             android:text="Bobot : 5  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1157,7 +1217,7 @@
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
                                     android:gravity="center|left"
-                                    tools:ignore="RtlSymmetry">
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -1174,7 +1234,8 @@
                                             android:layout_height="wrap_content"
                                             android:text="5"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1184,7 +1245,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Inisiatif dalam pekerjaan"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -1203,17 +1265,19 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:text="5"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_5_rating_4"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:paddingHorizontal="3dp"
-                                        android:layout_marginRight="10dp"
+                                        android:layout_marginEnd="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:text="4"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_5_rating_3"
@@ -1223,7 +1287,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:text="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_5_rating_2"
@@ -1233,7 +1298,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:text="2"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_5_rating_1"
@@ -1242,7 +1308,8 @@
                                         android:paddingHorizontal="3dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:text="1"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </RadioGroup>
 
@@ -1258,7 +1325,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -1275,7 +1343,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -1296,7 +1365,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -1315,7 +1385,8 @@
                                             android:textStyle="italic"
                                             android:text="Bobot : 5  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1341,7 +1412,7 @@
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
                                     android:gravity="center|left"
-                                    tools:ignore="RtlSymmetry">
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -1358,7 +1429,8 @@
                                             android:layout_height="wrap_content"
                                             android:text="6"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1368,7 +1440,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Kepatuhan pada peraturan / disiplin"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -1387,7 +1460,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:text="5"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_6_rating_4"
@@ -1397,7 +1471,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:text="4"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_6_rating_3"
@@ -1407,7 +1482,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:text="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_6_rating_2"
@@ -1417,7 +1493,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:text="2"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_6_rating_1"
@@ -1426,7 +1503,8 @@
                                         android:paddingHorizontal="3dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:text="1"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </RadioGroup>
 
@@ -1442,7 +1520,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -1459,7 +1538,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -1480,7 +1560,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -1499,7 +1580,8 @@
                                             android:textStyle="italic"
                                             android:text="Bobot : 5  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1524,7 +1606,8 @@
                                     android:layout_marginBottom="20dp"
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
-                                    android:gravity="center|left">
+                                    android:gravity="center|left"
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -1541,7 +1624,8 @@
                                             android:layout_height="wrap_content"
                                             android:text="7"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1551,7 +1635,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Tanggung jawab pada pekerjaan"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -1570,7 +1655,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:text="5"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_7_rating_4"
@@ -1580,7 +1666,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:text="4"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_7_rating_3"
@@ -1590,7 +1677,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:text="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_7_rating_2"
@@ -1600,7 +1688,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:text="2"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_7_rating_1"
@@ -1609,7 +1698,8 @@
                                         android:paddingHorizontal="3dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:text="1"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </RadioGroup>
 
@@ -1625,7 +1715,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -1642,7 +1733,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -1663,7 +1755,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -1682,7 +1775,8 @@
                                             android:textStyle="italic"
                                             android:text="Bobot : 10  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1707,7 +1801,8 @@
                                     android:layout_marginBottom="20dp"
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
-                                    android:gravity="center|left">
+                                    android:gravity="center|left"
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -1724,7 +1819,8 @@
                                             android:layout_height="wrap_content"
                                             android:text="8"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1734,7 +1830,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Kepedulian pada 5 R &amp; keselamatan kerja"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -1753,7 +1850,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:text="5"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_8_rating_4"
@@ -1763,7 +1861,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:text="4"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_8_rating_3"
@@ -1773,7 +1872,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:text="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_8_rating_2"
@@ -1783,7 +1883,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:text="2"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_8_rating_1"
@@ -1792,7 +1893,8 @@
                                         android:paddingHorizontal="3dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:text="1"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </RadioGroup>
 
@@ -1808,7 +1910,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -1825,7 +1928,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -1846,7 +1950,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -1865,7 +1970,8 @@
                                             android:textStyle="italic"
                                             android:text="Bobot : 5  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1890,7 +1996,8 @@
                                     android:layout_marginBottom="20dp"
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
-                                    android:gravity="center|left">
+                                    android:gravity="center|left"
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -1907,7 +2014,8 @@
                                             android:layout_height="wrap_content"
                                             android:text="9"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1917,7 +2025,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Motivasi kerja"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -1936,7 +2045,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:text="5"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_9_rating_4"
@@ -1946,7 +2056,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:text="4"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_9_rating_3"
@@ -1956,7 +2067,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:text="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_9_rating_2"
@@ -1966,7 +2078,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:text="2"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_9_rating_1"
@@ -1975,7 +2088,8 @@
                                         android:paddingHorizontal="3dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:text="1"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </RadioGroup>
 
@@ -1991,7 +2105,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -2008,7 +2123,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -2029,7 +2145,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -2048,7 +2165,8 @@
                                             android:textStyle="italic"
                                             android:text="Bobot : 5  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -2073,7 +2191,8 @@
                                     android:layout_marginBottom="20dp"
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
-                                    android:gravity="center|left">
+                                    android:gravity="center|left"
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -2090,7 +2209,8 @@
                                             android:layout_height="wrap_content"
                                             android:text="10"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -2100,7 +2220,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Antusias dan kemampuan menerima pembelajaran"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -2119,7 +2240,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:text="5"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_10_rating_4"
@@ -2129,7 +2251,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:text="4"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_10_rating_3"
@@ -2139,7 +2262,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:text="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_10_rating_2"
@@ -2149,7 +2273,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:text="2"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_10_rating_1"
@@ -2158,7 +2283,8 @@
                                         android:paddingHorizontal="3dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:text="1"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </RadioGroup>
 
@@ -2174,7 +2300,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -2191,7 +2318,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -2212,7 +2340,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -2231,7 +2360,8 @@
                                             android:textStyle="italic"
                                             android:text="Bobot : 5  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -2256,7 +2386,8 @@
                                     android:layout_marginBottom="20dp"
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
-                                    android:gravity="center|left">
+                                    android:gravity="center|left"
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -2266,14 +2397,16 @@
                                         android:paddingRight="8dp"
                                         android:paddingBottom="6dp"
                                         android:layout_marginRight="8dp"
-                                        android:background="@drawable/shape_number">
+                                        android:background="@drawable/shape_number"
+                                        tools:ignore="RtlHardcoded">
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="11"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -2283,7 +2416,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Leadership"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -2302,7 +2436,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:text="5"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_11_rating_4"
@@ -2312,7 +2447,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:text="4"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_11_rating_3"
@@ -2322,7 +2458,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:text="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_11_rating_2"
@@ -2332,7 +2469,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:text="2"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_11_rating_1"
@@ -2341,7 +2479,8 @@
                                         android:paddingHorizontal="3dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:text="1"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </RadioGroup>
 
@@ -2357,7 +2496,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -2374,7 +2514,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -2395,7 +2536,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -2414,7 +2556,8 @@
                                             android:textStyle="italic"
                                             android:text="Bobot : 10  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -2439,7 +2582,8 @@
                                     android:layout_marginBottom="20dp"
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
-                                    android:gravity="center|left">
+                                    android:gravity="center|left"
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -2456,7 +2600,8 @@
                                             android:layout_height="wrap_content"
                                             android:text="12"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -2466,7 +2611,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Kemampuan Analisa / problem solving"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -2485,7 +2631,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:text="5"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_12_rating_4"
@@ -2495,7 +2642,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:text="4"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_12_rating_3"
@@ -2505,7 +2653,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:text="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_12_rating_2"
@@ -2515,7 +2664,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:text="2"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_12_rating_1"
@@ -2524,7 +2674,8 @@
                                         android:paddingHorizontal="3dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:text="1"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </RadioGroup>
 
@@ -2540,7 +2691,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -2557,7 +2709,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -2578,7 +2731,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -2597,7 +2751,8 @@
                                             android:textStyle="italic"
                                             android:text="Bobot : 10  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -2622,7 +2777,8 @@
                                     android:layout_marginBottom="20dp"
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
-                                    android:gravity="center|left">
+                                    android:gravity="center|left"
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -2639,7 +2795,8 @@
                                             android:layout_height="wrap_content"
                                             android:text="13"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -2649,7 +2806,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Kerajinan/kerapihan"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -2668,7 +2826,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:text="5"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_13_rating_4"
@@ -2678,7 +2837,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:text="4"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_13_rating_3"
@@ -2688,7 +2848,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:text="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_13_rating_2"
@@ -2698,7 +2859,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:text="2"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_13_rating_1"
@@ -2707,7 +2869,8 @@
                                         android:paddingHorizontal="3dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:text="1"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </RadioGroup>
 
@@ -2723,7 +2886,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -2740,7 +2904,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -2761,7 +2926,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -2780,7 +2946,8 @@
                                             android:textStyle="italic"
                                             android:text="Bobot : 5  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -2805,7 +2972,8 @@
                                     android:layout_marginBottom="20dp"
                                     android:paddingRight="10dp"
                                     android:orientation="horizontal"
-                                    android:gravity="center|left">
+                                    android:gravity="center|left"
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -2822,7 +2990,8 @@
                                             android:layout_height="wrap_content"
                                             android:text="14"
                                             android:textColor="#FFFFFF"
-                                            android:textSize="14dp" />
+                                            android:textSize="14dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -2832,7 +3001,8 @@
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Kepribadian"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -2851,7 +3021,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="5"/>
+                                        android:text="5"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_14_rating_4"
@@ -2861,7 +3032,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="4"/>
+                                        android:text="4"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_14_rating_3"
@@ -2871,7 +3043,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="3"/>
+                                        android:text="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_14_rating_2"
@@ -2881,7 +3054,8 @@
                                         android:layout_marginRight="10dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="2"/>
+                                        android:text="2"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/rgf_14_rating_1"
@@ -2890,7 +3064,8 @@
                                         android:paddingHorizontal="3dp"
                                         android:textSize="13dp"
                                         android:textColor="#4A4A4A"
-                                        android:text="1"/>
+                                        android:text="1"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </RadioGroup>
 
@@ -2906,7 +3081,8 @@
                                         android:layout_alignParentRight="true"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical"
-                                        android:gravity="center">
+                                        android:gravity="center"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_nilai_label"
@@ -2923,7 +3099,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="NILAI"
                                                 android:textColor="#FFFFFF"
-                                                android:textSize="9dp" />
+                                                android:textSize="9dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -2944,7 +3121,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="0"
                                                 android:textColor="#020202"
-                                                android:textSize="12dp" />
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
 
@@ -2963,7 +3141,8 @@
                                             android:textStyle="italic"
                                             android:text="Bobot : 5  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -2991,7 +3170,8 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:gravity="right">
+                                        android:gravity="right"
+                                        tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
                                             android:layout_width="80dp"
@@ -3015,7 +3195,8 @@
                                                     android:layout_height="wrap_content"
                                                     android:text="TOTAL NILAI"
                                                     android:textColor="#FFFFFF"
-                                                    android:textSize="10dp" />
+                                                    android:textSize="10dp"
+                                                    tools:ignore="HardcodedText,SpUsage" />
 
                                             </LinearLayout>
 
@@ -3036,7 +3217,8 @@
                                                     android:layout_height="wrap_content"
                                                     android:text="0"
                                                     android:textColor="#020202"
-                                                    android:textSize="17dp" />
+                                                    android:textSize="17dp"
+                                                    tools:ignore="HardcodedText,SpUsage" />
 
                                             </LinearLayout>
 
@@ -3056,7 +3238,8 @@
                                                 android:paddingBottom="5dp"
                                                 android:layout_width="match_parent"
                                                 android:gravity="center"
-                                                android:layout_height="match_parent">
+                                                android:layout_height="match_parent"
+                                                tools:ignore="UselessParent">
 
                                                 <TextView
                                                     android:id="@+id/fp_predikat"
@@ -3065,7 +3248,8 @@
                                                     android:textStyle="bold"
                                                     android:text="-"
                                                     android:textColor="#020202"
-                                                    android:textSize="16dp" />
+                                                    android:textSize="16dp"
+                                                    tools:ignore="HardcodedText,SpUsage" />
 
                                             </LinearLayout>
 
@@ -3085,7 +3269,8 @@
                                             android:text="HASIL PENILAIAN"
                                             android:textStyle="bold"
                                             android:textColor="@color/colorPrimaryDark"
-                                            android:textSize="15dp" />
+                                            android:textSize="15dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <TextView
                                             android:layout_width="wrap_content"
@@ -3093,7 +3278,8 @@
                                             android:lineSpacingExtra="2.5dp"
                                             android:text="Total Bobot : 100  "
                                             android:textColor="#494949"
-                                            android:textSize="11dp" />
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <TextView
                                             android:layout_width="wrap_content"
@@ -3102,7 +3288,8 @@
                                             android:layout_marginTop="5dp"
                                             android:text="Predikat :"
                                             android:textColor="#494949"
-                                            android:textSize="9dp" />
+                                            android:textSize="9dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <TextView
                                             android:id="@+id/desc_predikat"
@@ -3111,7 +3298,8 @@
                                             android:lineSpacingExtra="2.5dp"
                                             android:text="-"
                                             android:textColor="#494949"
-                                            android:textSize="13dp" />
+                                            android:textSize="13dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -3146,7 +3334,8 @@
                                             android:text="SKALA PENILAIAN"
                                             android:textColor="@color/colorPrimaryDark"
                                             android:textSize="13dp"
-                                            android:textStyle="bold" />
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -3177,7 +3366,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="left" />
+                                                android:gravity="left"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                             <TextView
                                                 android:layout_weight="1"
@@ -3193,7 +3383,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="center" />
+                                                android:gravity="center"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                             <TextView
                                                 android:layout_weight="1.5"
@@ -3210,7 +3401,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="right" />
+                                                android:gravity="right"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                         </TableRow>
 
@@ -3233,7 +3425,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="left" />
+                                                android:gravity="left"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                             <TextView
                                                 android:layout_weight="1"
@@ -3249,7 +3442,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="center" />
+                                                android:gravity="center"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                             <TextView
                                                 android:layout_weight="1.5"
@@ -3266,7 +3460,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="right" />
+                                                android:gravity="right"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                         </TableRow>
 
@@ -3289,7 +3484,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="left" />
+                                                android:gravity="left"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                             <TextView
                                                 android:layout_weight="1"
@@ -3305,7 +3501,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="center" />
+                                                android:gravity="center"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                             <TextView
                                                 android:layout_weight="1.5"
@@ -3322,7 +3519,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="right" />
+                                                android:gravity="right"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                         </TableRow>
 
@@ -3345,7 +3543,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="left" />
+                                                android:gravity="left"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                             <TextView
                                                 android:layout_weight="1"
@@ -3361,7 +3560,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="center" />
+                                                android:gravity="center"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                             <TextView
                                                 android:layout_weight="1.5"
@@ -3378,7 +3578,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="right" />
+                                                android:gravity="right"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                         </TableRow>
 
@@ -3401,7 +3602,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="left" />
+                                                android:gravity="left"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                             <TextView
                                                 android:layout_weight="1"
@@ -3417,7 +3619,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="center" />
+                                                android:gravity="center"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                             <TextView
                                                 android:layout_weight="1.5"
@@ -3434,7 +3637,8 @@
                                                 android:background="#FFFFFF"
                                                 android:paddingRight="3dp"
                                                 android:paddingLeft="3dp"
-                                                android:gravity="right" />
+                                                android:gravity="right"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                         </TableRow>
 
@@ -3459,7 +3663,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="20dp"
                                     android:orientation="horizontal"
-                                    android:gravity="center|left">
+                                    android:gravity="center|left"
+                                    tools:ignore="RtlHardcoded">
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -3468,7 +3673,8 @@
                                         android:layout_marginLeft="20dp"
                                         android:text="Percobaan/Kontrak/OJT"
                                         android:textColor="#494949"
-                                        android:textSize="14dp" />
+                                        android:textSize="14dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -3488,7 +3694,8 @@
                                         android:textSize="13dp"
                                         android:textStyle="bold"
                                         android:textColor="#4A4A4A"
-                                        android:text="LULUS"/>
+                                        android:text="LULUS"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     <RadioButton
                                         android:id="@+id/ko_tidak_lulus"
@@ -3499,7 +3706,8 @@
                                         android:textSize="13dp"
                                         android:textStyle="bold"
                                         android:textColor="#4A4A4A"
-                                        android:text="TIDAK LULUS"/>
+                                        android:text="TIDAK LULUS"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                 </RadioGroup>
 
@@ -3524,7 +3732,8 @@
                                     android:text="SUBMIT"
                                     android:textColor="@color/white"
                                     android:textSize="13dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                             </LinearLayout>
 
@@ -3563,7 +3772,8 @@
                                         android:textAlignment="center"
                                         android:textColor="@color/white"
                                         android:textSize="15dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <TextView
                                         android:id="@+id/message_tv"
@@ -3573,7 +3783,8 @@
                                         android:text="Penilaian atas nama - dengan NIK - telah berhasil."
                                         android:textAlignment="center"
                                         android:textColor="@color/white"
-                                        android:textSize="13dp" />
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -3587,7 +3798,8 @@
                                         android:layout_width="60dp"
                                         android:layout_height="60dp"
                                         android:background="@drawable/shape_ring_success"
-                                        android:src="@drawable/success_ic" />
+                                        android:src="@drawable/success_ic"
+                                        tools:ignore="ContentDescription" />
 
                                 </LinearLayout>
 
@@ -3607,7 +3819,8 @@
                                     android:textStyle="bold"
                                     android:textSize="13dp"
                                     android:textColor="@color/white"
-                                    android:text="LIHAT HASIL PENILAIAN"/>
+                                    android:text="LIHAT HASIL PENILAIAN"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -3629,7 +3842,8 @@
                         android:layout_marginLeft="-2dp"
                         android:background="@drawable/shape_bar_chat"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:id="@+id/back_btn"
@@ -3638,13 +3852,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -3653,19 +3869,21 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
-                                android:gravity="right"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
                                 android:ellipsize="end"
+                                android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
                                 android:text="FORM PENILAIAN SDM"
                                 android:textColor="@color/white"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                         </LinearLayout>
 
