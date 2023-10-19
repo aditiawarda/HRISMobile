@@ -386,7 +386,8 @@
                                                             android:layout_height="wrap_content"
                                                             android:text=":  "
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="TextSizeCheck" />
 
                                                         <TextView
                                                             android:id="@+id/nik_tv"
@@ -446,12 +447,14 @@
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="10dp" />
+                                            android:layout_height="10dp"
+                                            tools:ignore="UselessLeaf" />
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="DisableBaselineAlignment">
 
                                             <LinearLayout
                                                 android:layout_width="0dp"
@@ -1168,7 +1171,8 @@
                                                 android:layout_marginLeft="-1dp"
                                                 android:layout_weight=".20"
                                                 android:background="#000000"
-                                                android:orientation="vertical">
+                                                android:orientation="vertical"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="match_parent"
@@ -1205,7 +1209,8 @@
                                                         <ImageView
 
                                                             android:layout_width="40dp"
-                                                            android:layout_height="40dp" />
+                                                            android:layout_height="40dp"
+                                                            tools:ignore="ContentDescription" />
 
                                                     </LinearLayout>
 
@@ -1266,7 +1271,8 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="DisableBaselineAlignment">
 
                                             <LinearLayout
                                                 android:layout_width="0dp"
@@ -1278,7 +1284,8 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:gravity="center"
-                                                    android:stretchColumns="0,1,2,3">
+                                                    android:stretchColumns="0,1,2,3"
+                                                    tools:ignore="UselessParent">
 
                                                     <TableRow
                                                         android:layout_width="match_parent"

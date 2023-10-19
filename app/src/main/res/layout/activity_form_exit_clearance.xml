@@ -37,7 +37,8 @@
                             android:paddingRight="20dp"
                             android:paddingLeft="20dp"
                             android:paddingTop="90dp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            tools:ignore="UselessParent">
 
                             <LinearLayout
                                 android:id="@+id/form_part"
@@ -54,12 +55,14 @@
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="match_parent"
+                                        tools:ignore="TooDeepLayout">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
-                                            android:gravity="bottom|right">
+                                            android:gravity="bottom|right"
+                                            tools:ignore="RtlHardcoded">
 
                                             <LinearLayout
                                                 android:layout_width="85dp"
@@ -87,7 +90,7 @@
                                                 android:text="ADITIA WARDANI"
                                                 android:textColor="@color/white"
                                                 android:textSize="16dp"
-                                                tools:ignore="TextSizeCheck" />
+                                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                             <TextView
                                                 android:layout_marginTop="7dp"
@@ -95,7 +98,8 @@
                                                 android:layout_width="25dp"
                                                 android:layout_height="1dp"
                                                 android:textSize="13dp"
-                                                android:background="@color/white"/>
+                                                android:background="@color/white"
+                                                tools:ignore="SpUsage" />
 
                                             <TextView
                                                 android:id="@+id/nik_karyawan_tv"
@@ -104,7 +108,7 @@
                                                 android:text="3186150321"
                                                 android:textColor="@color/white"
                                                 android:textSize="13dp"
-                                                tools:ignore="TextSizeCheck" />
+                                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                             <TextView
                                                 android:id="@+id/detail_karyawan_tv"
@@ -115,7 +119,7 @@
                                                 android:text="Memuat data..."
                                                 android:textColor="@color/white"
                                                 android:textSize="12dp"
-                                                tools:ignore="TextSizeCheck" />
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                                         </LinearLayout>
 
@@ -135,7 +139,7 @@
                                         android:text="Tanggal Masuk :"
                                         android:textColor="#696969"
                                         android:textSize="12dp"
-                                        tools:ignore="TextSizeCheck,TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextSizeCheck" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -145,7 +149,8 @@
                                         android:gravity="center|left"
                                         android:orientation="horizontal"
                                         android:paddingStart="20dp"
-                                        android:paddingEnd="20dp">
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
 
                                         <TextView
                                             android:id="@+id/tanggal_masuk_tv"
@@ -155,7 +160,7 @@
                                             android:textColor="#B15735"
                                             android:textSize="13dp"
                                             android:textStyle="bold"
-                                            tools:ignore="TextSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     </LinearLayout>
 
@@ -173,7 +178,7 @@
                                         android:text="Tanggal Keluar :"
                                         android:textColor="#696969"
                                         android:textSize="12dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <LinearLayout
                                         android:id="@+id/resign_date_btn"
@@ -182,7 +187,8 @@
                                         android:paddingStart="20dp"
                                         android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
@@ -195,7 +201,7 @@
                                                 android:layout_height="40dp"
                                                 android:orientation="vertical"
                                                 android:gravity="center|left"
-                                                tools:ignore="RelativeOverlap">
+                                                tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                                 <TextView
                                                     android:id="@+id/resign_date_pilih"
@@ -204,7 +210,8 @@
                                                     android:textColor="#B15735"
                                                     android:textSize="13dp"
                                                     android:textStyle="bold"
-                                                    android:text=""/>
+                                                    android:text=""
+                                                    tools:ignore="SpUsage" />
 
                                             </LinearLayout>
 
@@ -213,7 +220,8 @@
                                                 android:layout_width="40dp"
                                                 android:layout_height="match_parent"
                                                 android:background="@drawable/shape_btn"
-                                                android:gravity="center">
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="25dp"
@@ -243,7 +251,7 @@
                                         android:textColor="#C3C3C3"
                                         android:textSize="13dp"
                                         android:textStyle="bold"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     <LinearLayout
                                         android:orientation="vertical"
@@ -251,7 +259,8 @@
                                         android:layout_marginTop="4.5dp"
                                         android:layout_marginLeft="-1dp"
                                         android:layout_width="match_parent"
-                                        android:layout_height="1dp"/>
+                                        android:layout_height="1dp"
+                                        tools:ignore="RtlHardcoded" />
 
                                 </LinearLayout>
 
@@ -269,7 +278,7 @@
                                         android:textColor="#696969"
                                         android:textSize="14dp"
                                         android:textStyle="bold"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -278,7 +287,7 @@
                                         android:text="(Softcopy, Laporan, Seragam Kerja, Safety Shoes, Kunci Loker)"
                                         android:textColor="#696969"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -287,7 +296,7 @@
                                         android:text="Mohon dijadikan 1 file PDF"
                                         android:textColor="#BA4A4A"
                                         android:textSize="9dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -301,7 +310,8 @@
                                             android:layout_marginRight="7dp"
                                             android:background="@drawable/shape_second_btn"
                                             android:visibility="gone"
-                                            android:gravity="center">
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:layout_width="25dp"
@@ -317,7 +327,8 @@
                                             android:paddingStart="20dp"
                                             android:layout_marginBottom="10dp"
                                             android:background="@drawable/shape_feel"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
 
                                             <RelativeLayout
                                                 android:layout_width="match_parent"
@@ -330,7 +341,8 @@
                                                     android:paddingRight="60dp"
                                                     android:layout_height="40dp"
                                                     android:orientation="vertical"
-                                                    android:gravity="center|left">
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                     <TextView
                                                         android:id="@+id/st_1_file_tv"
@@ -344,7 +356,7 @@
                                                         android:textColor="#B15735"
                                                         android:textSize="13dp"
                                                         android:textStyle="bold"
-                                                        tools:ignore="TextSizeCheck" />
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -353,7 +365,8 @@
                                                     android:layout_height="match_parent"
                                                     android:layout_alignParentRight="true"
                                                     android:background="@drawable/shape_btn"
-                                                    android:gravity="center">
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
 
                                                     <TextView
                                                         android:id="@+id/st_1_upload_ic"
@@ -393,7 +406,7 @@
                                         android:textColor="#696969"
                                         android:textSize="14dp"
                                         android:textStyle="bold"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -402,7 +415,7 @@
                                         android:text="(Mobil, Motor)"
                                         android:textColor="#696969"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -411,7 +424,7 @@
                                         android:text="Mohon dijadikan 1 file PDF"
                                         android:textColor="#BA4A4A"
                                         android:textSize="9dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -425,7 +438,8 @@
                                             android:layout_marginRight="7dp"
                                             android:background="@drawable/shape_second_btn"
                                             android:visibility="gone"
-                                            android:gravity="center">
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:layout_width="25dp"
@@ -441,7 +455,8 @@
                                             android:paddingStart="20dp"
                                             android:layout_marginBottom="10dp"
                                             android:background="@drawable/shape_feel"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
 
                                             <RelativeLayout
                                                 android:layout_width="match_parent"
@@ -454,7 +469,8 @@
                                                     android:paddingRight="60dp"
                                                     android:layout_height="40dp"
                                                     android:orientation="vertical"
-                                                    android:gravity="center|left">
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                     <TextView
                                                         android:id="@+id/st_2_file_tv"
@@ -468,7 +484,7 @@
                                                         android:textColor="#B15735"
                                                         android:textSize="13dp"
                                                         android:textStyle="bold"
-                                                        tools:ignore="TextSizeCheck" />
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -477,7 +493,8 @@
                                                     android:layout_height="match_parent"
                                                     android:layout_alignParentRight="true"
                                                     android:background="@drawable/shape_btn"
-                                                    android:gravity="center">
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
 
                                                     <TextView
                                                         android:id="@+id/st_2_upload_ic"
@@ -517,7 +534,7 @@
                                         android:textColor="#696969"
                                         android:textSize="14dp"
                                         android:textStyle="bold"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -526,7 +543,7 @@
                                         android:text="(Notebook, Email)"
                                         android:textColor="#696969"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -535,7 +552,7 @@
                                         android:text="Mohon dijadikan 1 file PDF"
                                         android:textColor="#BA4A4A"
                                         android:textSize="9dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -549,7 +566,8 @@
                                             android:layout_marginRight="7dp"
                                             android:background="@drawable/shape_second_btn"
                                             android:visibility="gone"
-                                            android:gravity="center">
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:layout_width="25dp"
@@ -565,7 +583,8 @@
                                             android:paddingStart="20dp"
                                             android:layout_marginBottom="10dp"
                                             android:background="@drawable/shape_feel"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
 
                                             <RelativeLayout
                                                 android:layout_width="match_parent"
@@ -578,7 +597,8 @@
                                                     android:paddingRight="60dp"
                                                     android:layout_height="40dp"
                                                     android:orientation="vertical"
-                                                    android:gravity="center|left">
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                     <TextView
                                                         android:id="@+id/st_3_file_tv"
@@ -592,7 +612,7 @@
                                                         android:textColor="#B15735"
                                                         android:textSize="13dp"
                                                         android:textStyle="bold"
-                                                        tools:ignore="TextSizeCheck" />
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                 </LinearLayout>
 
@@ -601,7 +621,8 @@
                                                     android:layout_height="match_parent"
                                                     android:layout_alignParentRight="true"
                                                     android:background="@drawable/shape_btn"
-                                                    android:gravity="center">
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
 
                                                     <TextView
                                                         android:id="@+id/st_3_upload_ic"
@@ -641,7 +662,7 @@
                                         android:textColor="#696969"
                                         android:textSize="14dp"
                                         android:textStyle="bold"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -650,7 +671,7 @@
                                         android:text="(Pinjaman Perusahaan)"
                                         android:textColor="#696969"
                                         android:textSize="10dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -658,7 +679,8 @@
                                         android:textSize="9dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#BA4A4A"
-                                        android:text="Mohon dijadikan 1 file PDF"/>
+                                        android:text="Mohon dijadikan 1 file PDF"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -672,7 +694,8 @@
                                             android:layout_marginRight="7dp"
                                             android:background="@drawable/shape_second_btn"
                                             android:visibility="gone"
-                                            android:gravity="center">
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded,TooManyViews">
 
                                             <TextView
                                                 android:layout_width="25dp"
@@ -688,7 +711,8 @@
                                             android:paddingStart="20dp"
                                             android:layout_marginBottom="10dp"
                                             android:background="@drawable/shape_feel"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
 
                                             <RelativeLayout
                                                 android:layout_width="match_parent"
@@ -701,7 +725,8 @@
                                                     android:paddingRight="60dp"
                                                     android:layout_height="40dp"
                                                     android:orientation="vertical"
-                                                    android:gravity="center|left">
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                     <TextView
                                                         android:id="@+id/st_4_file_tv"
@@ -714,7 +739,8 @@
                                                         android:maxLines="1"
                                                         android:singleLine="true"
                                                         android:textStyle="bold"
-                                                        android:text="Unggah PDF..."/>
+                                                        android:text="Unggah PDF..."
+                                                        tools:ignore="HardcodedText,SpUsage" />
 
                                                 </LinearLayout>
 
@@ -723,7 +749,8 @@
                                                     android:layout_height="match_parent"
                                                     android:layout_alignParentRight="true"
                                                     android:background="@drawable/shape_btn"
-                                                    android:gravity="center">
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
 
                                                     <TextView
                                                         android:id="@+id/st_4_upload_ic"
@@ -762,7 +789,8 @@
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
                                         android:textStyle="bold"
-                                        android:text="Koperasi :"/>
+                                        android:text="Koperasi :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -770,7 +798,8 @@
                                         android:textSize="10dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="(Pinjaman Koperasi)"/>
+                                        android:text="(Pinjaman Koperasi)"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -778,7 +807,8 @@
                                         android:textSize="9dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#BA4A4A"
-                                        android:text="Mohon dijadikan 1 file PDF"/>
+                                        android:text="Mohon dijadikan 1 file PDF"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -792,7 +822,8 @@
                                             android:layout_marginRight="7dp"
                                             android:background="@drawable/shape_second_btn"
                                             android:visibility="gone"
-                                            android:gravity="center">
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:layout_width="25dp"
@@ -808,7 +839,8 @@
                                             android:paddingStart="20dp"
                                             android:layout_marginBottom="10dp"
                                             android:background="@drawable/shape_feel"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
 
                                             <RelativeLayout
                                                 android:layout_width="match_parent"
@@ -821,7 +853,8 @@
                                                     android:paddingRight="60dp"
                                                     android:layout_height="40dp"
                                                     android:orientation="vertical"
-                                                    android:gravity="center|left">
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                     <TextView
                                                         android:id="@+id/st_5_file_tv"
@@ -834,7 +867,8 @@
                                                         android:maxLines="1"
                                                         android:singleLine="true"
                                                         android:textStyle="bold"
-                                                        android:text="Unggah PDF..."/>
+                                                        android:text="Unggah PDF..."
+                                                        tools:ignore="HardcodedText,SpUsage" />
 
                                                 </LinearLayout>
 
@@ -843,7 +877,8 @@
                                                     android:layout_height="match_parent"
                                                     android:layout_alignParentRight="true"
                                                     android:background="@drawable/shape_btn"
-                                                    android:gravity="center">
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
 
                                                     <TextView
                                                         android:id="@+id/st_5_upload_ic"
@@ -882,7 +917,8 @@
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
                                         android:textStyle="bold"
-                                        android:text="Personalia :"/>
+                                        android:text="Personalia :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -890,7 +926,8 @@
                                         android:textSize="10dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="(Ijazah, ID Card, Ikatan Dinas)"/>
+                                        android:text="(Ijazah, ID Card, Ikatan Dinas)"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -898,7 +935,8 @@
                                         android:textSize="9dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#BA4A4A"
-                                        android:text="Mohon dijadikan 1 file PDF"/>
+                                        android:text="Mohon dijadikan 1 file PDF"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -912,7 +950,8 @@
                                             android:layout_marginRight="7dp"
                                             android:background="@drawable/shape_second_btn"
                                             android:visibility="gone"
-                                            android:gravity="center">
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:layout_width="25dp"
@@ -928,7 +967,8 @@
                                             android:paddingStart="20dp"
                                             android:layout_marginBottom="10dp"
                                             android:background="@drawable/shape_feel"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
 
                                             <RelativeLayout
                                                 android:layout_width="match_parent"
@@ -941,7 +981,8 @@
                                                     android:paddingRight="60dp"
                                                     android:layout_height="40dp"
                                                     android:orientation="vertical"
-                                                    android:gravity="center|left">
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                     <TextView
                                                         android:id="@+id/st_6_file_tv"
@@ -954,7 +995,8 @@
                                                         android:maxLines="1"
                                                         android:singleLine="true"
                                                         android:textStyle="bold"
-                                                        android:text="Unggah PDF..."/>
+                                                        android:text="Unggah PDF..."
+                                                        tools:ignore="HardcodedText,SpUsage" />
 
                                                 </LinearLayout>
 
@@ -963,7 +1005,8 @@
                                                     android:layout_height="match_parent"
                                                     android:layout_alignParentRight="true"
                                                     android:background="@drawable/shape_btn"
-                                                    android:gravity="center">
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
 
                                                     <TextView
                                                         android:id="@+id/st_6_upload_ic"
@@ -1009,7 +1052,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Alasan Keluar :"/>
+                                        android:text="Alasan Keluar :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -1020,7 +1064,8 @@
                                         android:paddingBottom="18dp"
                                         android:paddingRight="15dp"
                                         android:background="@drawable/shape_input_form"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                         <LinearLayout
                                             android:background="@drawable/shape_ornament_form"
@@ -1046,7 +1091,8 @@
                                                 android:paddingHorizontal="15dp"
                                                 android:textSize="14dp"
                                                 android:textColor="#4A4A4A"
-                                                android:text="Pekerjaan tidak sesuai harapan"/>
+                                                android:text="Pekerjaan tidak sesuai harapan"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <RadioButton
                                                 android:id="@+id/alasan_keluar_2"
@@ -1057,7 +1103,8 @@
                                                 android:paddingHorizontal="15dp"
                                                 android:textSize="14dp"
                                                 android:textColor="#4A4A4A"
-                                                android:text="Ketidakcocokan dengan pekerjaan"/>
+                                                android:text="Ketidakcocokan dengan pekerjaan"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <RadioButton
                                                 android:id="@+id/alasan_keluar_3"
@@ -1068,7 +1115,8 @@
                                                 android:paddingHorizontal="15dp"
                                                 android:textSize="14dp"
                                                 android:textColor="#4A4A4A"
-                                                android:text="Kurang bimbingan dan feedback"/>
+                                                android:text="Kurang bimbingan dan feedback"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <RadioButton
                                                 android:id="@+id/alasan_keluar_4"
@@ -1079,7 +1127,8 @@
                                                 android:paddingHorizontal="15dp"
                                                 android:textSize="14dp"
                                                 android:textColor="#4A4A4A"
-                                                android:text="Tidak berkembang"/>
+                                                android:text="Tidak berkembang"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <RadioButton
                                                 android:id="@+id/alasan_keluar_5"
@@ -1090,7 +1139,8 @@
                                                 android:paddingHorizontal="15dp"
                                                 android:textSize="14dp"
                                                 android:textColor="#4A4A4A"
-                                                android:text="Kurang dihargai"/>
+                                                android:text="Kurang dihargai"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <RadioButton
                                                 android:id="@+id/alasan_keluar_6"
@@ -1101,7 +1151,8 @@
                                                 android:paddingHorizontal="15dp"
                                                 android:textSize="14dp"
                                                 android:textColor="#4A4A4A"
-                                                android:text="Beban kerja terlalu berat"/>
+                                                android:text="Beban kerja terlalu berat"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <RadioButton
                                                 android:id="@+id/alasan_keluar_7"
@@ -1112,7 +1163,8 @@
                                                 android:paddingHorizontal="15dp"
                                                 android:textSize="14dp"
                                                 android:textColor="#4A4A4A"
-                                                android:text="Tidak cocok dengan atasan"/>
+                                                android:text="Tidak cocok dengan atasan"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                             <RadioButton
                                                 android:id="@+id/alasan_keluar_8"
@@ -1123,7 +1175,8 @@
                                                 android:paddingHorizontal="15dp"
                                                 android:textSize="14dp"
                                                 android:textColor="#4A4A4A"
-                                                android:text="Lain-lain"/>
+                                                android:text="Lain-lain"
+                                                tools:ignore="HardcodedText,SpUsage" />
 
                                         </RadioGroup>
 
@@ -1145,7 +1198,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Alasan Lain :"/>
+                                        android:text="Alasan Lain :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <EditText
                                         android:id="@+id/alasan_ed"
@@ -1167,7 +1221,8 @@
                                         android:hint=""
                                         android:textSize="14dp"
                                         android:textColorHint="#595959"
-                                        android:textColorHighlight="#FFE1BC"/>
+                                        android:textColorHighlight="#FFE1BC"
+                                        tools:ignore="Autofill,LabelFor,SpUsage" />
 
                                 </LinearLayout>
 
@@ -1183,7 +1238,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Saran Untuk Perusahaan :"/>
+                                        android:text="Saran Untuk Perusahaan :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <EditText
                                         android:id="@+id/saran_ed"
@@ -1206,7 +1262,7 @@
                                         android:textSize="14dp"
                                         android:textColorHint="#595959"
                                         android:textColorHighlight="#FFE1BC"
-                                        tools:ignore="VisualLintTextFieldSize" />
+                                        tools:ignore="Autofill,LabelFor,SpUsage,VisualLintTextFieldSize" />
 
                                 </LinearLayout>
 
@@ -1230,7 +1286,8 @@
                                         android:textSize="13dp"
                                         android:drawableTint="@color/white"
                                         android:textColor="@color/white"
-                                        android:text="KIRIM"/>
+                                        android:text="KIRIM"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                                 </LinearLayout>
 
@@ -1266,7 +1323,8 @@
                                             android:textAlignment="center"
                                             android:textColor="@color/white"
                                             android:textSize="15dp"
-                                            android:textStyle="bold" />
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <TextView
                                             android:id="@+id/message_tv"
@@ -1276,7 +1334,8 @@
                                             android:text="Data anda telah terkirim dan disampaikan kepada stakeholder terkait untuk verifikasi."
                                             android:textAlignment="center"
                                             android:textColor="@color/white"
-                                            android:textSize="13dp" />
+                                            android:textSize="13dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1290,7 +1349,8 @@
                                             android:id="@+id/success_gif"
                                             android:layout_width="60dp"
                                             android:layout_height="60dp"
-                                            android:src="@drawable/success_ic" />
+                                            android:src="@drawable/success_ic"
+                                            tools:ignore="ContentDescription" />
 
                                     </LinearLayout>
 
@@ -1310,7 +1370,8 @@
                                         android:textStyle="bold"
                                         android:textSize="13dp"
                                         android:textColor="@color/white"
-                                        android:text="LIHAT DETAIL DATA"/>
+                                        android:text="LIHAT DETAIL DATA"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -1334,7 +1395,8 @@
                         android:layout_marginLeft="-2dp"
                         android:background="@drawable/shape_bar_chat"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:id="@+id/back_btn"
@@ -1343,13 +1405,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -1358,7 +1422,8 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -1371,7 +1436,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 

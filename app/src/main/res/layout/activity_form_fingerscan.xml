@@ -37,7 +37,8 @@
                             android:paddingRight="20dp"
                             android:paddingLeft="20dp"
                             android:paddingTop="90dp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            tools:ignore="UselessParent">
 
                             <LinearLayout
                                 android:id="@+id/form_part"
@@ -54,12 +55,14 @@
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="match_parent"
+                                        tools:ignore="TooDeepLayout">
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
-                                            android:gravity="bottom|right">
+                                            android:gravity="bottom|right"
+                                            tools:ignore="RtlHardcoded">
 
                                             <LinearLayout
                                                 android:layout_width="85dp"
@@ -87,7 +90,7 @@
                                                 android:text="-"
                                                 android:textColor="@color/white"
                                                 android:textSize="16dp"
-                                                tools:ignore="TextSizeCheck" />
+                                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                             <TextView
                                                 android:layout_marginTop="7dp"
@@ -95,7 +98,8 @@
                                                 android:layout_width="25dp"
                                                 android:layout_height="1dp"
                                                 android:textSize="13dp"
-                                                android:background="@color/white"/>
+                                                android:background="@color/white"
+                                                tools:ignore="SpUsage" />
 
                                             <TextView
                                                 android:id="@+id/nik_karyawan_tv"
@@ -104,7 +108,7 @@
                                                 android:text="-"
                                                 android:textColor="@color/white"
                                                 android:textSize="13dp"
-                                                tools:ignore="TextSizeCheck" />
+                                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                             <TextView
                                                 android:id="@+id/detail_karyawan_tv"
@@ -115,7 +119,7 @@
                                                 android:text="Memuat data..."
                                                 android:textColor="@color/white"
                                                 android:textSize="12dp"
-                                                tools:ignore="TextSizeCheck" />
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                                         </LinearLayout>
 
@@ -142,7 +146,7 @@
                                         android:text="Riwayat Permohonan Keterangan Tidak Absen"
                                         android:textColor="#FFFFFF"
                                         android:textSize="13dp"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                 </LinearLayout>
 
@@ -153,7 +157,7 @@
                                     android:text="Tanggal Masuk :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/date_btn"
@@ -162,7 +166,8 @@
                                     android:paddingStart="20dp"
                                     android:layout_marginBottom="10dp"
                                     android:background="@drawable/shape_feel"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    tools:ignore="RtlSymmetry">
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
@@ -174,7 +179,8 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="40dp"
                                             android:orientation="vertical"
-                                            android:gravity="center|left">
+                                            android:gravity="center|left"
+                                            tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                             <TextView
                                                 android:id="@+id/date_pilih"
@@ -183,7 +189,8 @@
                                                 android:textColor="#B15735"
                                                 android:textSize="13dp"
                                                 android:textStyle="bold"
-                                                android:text=""/>
+                                                android:text=""
+                                                tools:ignore="SpUsage" />
 
                                         </LinearLayout>
 
@@ -192,7 +199,8 @@
                                             android:layout_width="40dp"
                                             android:layout_height="match_parent"
                                             android:background="@drawable/shape_btn"
-                                            android:gravity="center">
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:layout_width="25dp"
@@ -213,7 +221,7 @@
                                     android:text="Keterangan :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -224,7 +232,8 @@
                                     android:paddingBottom="18dp"
                                     android:paddingRight="15dp"
                                     android:background="@drawable/shape_input_form"
-                                    android:orientation="horizontal">
+                                    android:orientation="horizontal"
+                                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                     <LinearLayout
                                         android:background="@drawable/shape_ornament_form"
@@ -233,7 +242,8 @@
                                         android:layout_marginRight="15dp"
                                         android:layout_marginTop="7dp"
                                         android:layout_marginBottom="7dp"
-                                        android:layout_height="match_parent"/>
+                                        android:layout_height="match_parent"
+                                        tools:ignore="RtlHardcoded" />
 
                                     <RadioGroup
                                         android:id="@+id/pilihan_keterangan"
@@ -251,7 +261,8 @@
                                             android:paddingHorizontal="15dp"
                                             android:textSize="14dp"
                                             android:textColor="#4A4A4A"
-                                            android:text="Tidak Absen Masuk dan Pulang"/>
+                                            android:text="Tidak Absen Masuk dan Pulang"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <RadioButton
                                             android:id="@+id/keterangan_2"
@@ -263,7 +274,7 @@
                                             android:text="Tidak Absen Masuk"
                                             android:textColor="#4A4A4A"
                                             android:textSize="14dp"
-                                            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck" />
 
                                         <RadioButton
                                             android:id="@+id/keterangan_3"
@@ -275,7 +286,7 @@
                                             android:text="Tidak Absen Pulang"
                                             android:textColor="#4A4A4A"
                                             android:textSize="14dp"
-                                            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck" />
 
                                         <RadioButton
                                             android:id="@+id/keterangan_4"
@@ -287,7 +298,7 @@
                                             android:text="Datang Terlambat"
                                             android:textColor="#4A4A4A"
                                             android:textSize="14dp"
-                                            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck" />
 
                                         <RadioButton
                                             android:id="@+id/keterangan_5"
@@ -299,7 +310,7 @@
                                             android:text="Pulang Lebih Awal"
                                             android:textColor="#4A4A4A"
                                             android:textSize="14dp"
-                                            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck" />
 
                                         <RadioButton
                                             android:visibility="gone"
@@ -311,7 +322,8 @@
                                             android:paddingHorizontal="15dp"
                                             android:textSize="14dp"
                                             android:textColor="#4A4A4A"
-                                            android:text="Salah Pilih Shift"/>
+                                            android:text="Salah Pilih Shift"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <RadioButton
                                             android:visibility="gone"
@@ -323,7 +335,8 @@
                                             android:paddingHorizontal="15dp"
                                             android:textSize="14dp"
                                             android:textColor="#4A4A4A"
-                                            android:text="Tidak Absen Diliburkan"/>
+                                            android:text="Tidak Absen Diliburkan"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </RadioGroup>
 
@@ -338,7 +351,8 @@
                                     android:textSize="12dp"
                                     android:layout_marginBottom="5dp"
                                     android:textColor="#696969"
-                                    android:text="Detail :"/>
+                                    android:text="Detail :"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                                 <LinearLayout
                                     android:id="@+id/detail_keterangan_1"
@@ -360,7 +374,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Status Absensi :"/>
+                                        android:text="Status Absensi :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:id="@+id/status_absensi_btn_k1"
@@ -369,7 +384,8 @@
                                         android:paddingStart="20dp"
                                         android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
@@ -381,7 +397,8 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="40dp"
                                                 android:orientation="vertical"
-                                                android:gravity="center|left">
+                                                android:gravity="center|left"
+                                                tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                                 <TextView
                                                     android:id="@+id/status_absensi_pilih_k1"
@@ -390,7 +407,8 @@
                                                     android:textColor="#B15735"
                                                     android:textSize="13dp"
                                                     android:textStyle="bold"
-                                                    android:text=""/>
+                                                    android:text=""
+                                                    tools:ignore="SpUsage" />
 
                                             </LinearLayout>
 
@@ -399,7 +417,8 @@
                                                 android:layout_width="40dp"
                                                 android:layout_height="match_parent"
                                                 android:background="@drawable/shape_btn"
-                                                android:gravity="center">
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="25dp"
@@ -420,7 +439,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Shift Absensi :"/>
+                                        android:text="Shift Absensi :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:id="@+id/shift_absensi_btn_k1"
@@ -429,7 +449,8 @@
                                         android:paddingStart="20dp"
                                         android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
@@ -441,7 +462,8 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="40dp"
                                                 android:orientation="vertical"
-                                                android:gravity="center|left">
+                                                android:gravity="center|left"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:id="@+id/shift_absensi_pilih_k1"
@@ -450,7 +472,8 @@
                                                     android:textColor="#B15735"
                                                     android:textSize="13dp"
                                                     android:textStyle="bold"
-                                                    android:text="Tentukan Status Absensi..."/>
+                                                    android:text="Tentukan Status Absensi..."
+                                                    tools:ignore="HardcodedText,SpUsage" />
 
                                             </LinearLayout>
 
@@ -459,7 +482,8 @@
                                                 android:layout_width="40dp"
                                                 android:layout_height="match_parent"
                                                 android:background="@drawable/shape_btn"
-                                                android:gravity="center">
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="25dp"
@@ -480,7 +504,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Jam Masuk :"/>
+                                        android:text="Jam Masuk :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -490,7 +515,8 @@
                                         android:gravity="center|left"
                                         android:orientation="horizontal"
                                         android:paddingStart="20dp"
-                                        android:paddingEnd="20dp">
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
 
                                         <TextView
                                             android:id="@+id/jam_masuk_tv_k1"
@@ -499,7 +525,8 @@
                                             android:text="Tentukan Shift Absensi..."
                                             android:textColor="#B15735"
                                             android:textSize="13dp"
-                                            android:textStyle="bold" />
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -516,7 +543,8 @@
                                             android:textSize="12dp"
                                             android:layout_marginBottom="5dp"
                                             android:textColor="#696969"
-                                            android:text="Tanggal Pulang :"/>
+                                            android:text="Tanggal Pulang :"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <LinearLayout
                                             android:id="@+id/tgl_pulang_btn_k1"
@@ -525,7 +553,8 @@
                                             android:paddingStart="20dp"
                                             android:layout_marginBottom="10dp"
                                             android:background="@drawable/shape_feel"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
 
                                             <RelativeLayout
                                                 android:layout_width="match_parent"
@@ -537,7 +566,8 @@
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="40dp"
                                                     android:orientation="vertical"
-                                                    android:gravity="center|left">
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                                     <TextView
                                                         android:id="@+id/tgl_pulang_pilih_k1"
@@ -546,7 +576,8 @@
                                                         android:textColor="#B15735"
                                                         android:textSize="13dp"
                                                         android:textStyle="bold"
-                                                        android:text=""/>
+                                                        android:text=""
+                                                        tools:ignore="SpUsage" />
 
                                                 </LinearLayout>
 
@@ -555,7 +586,8 @@
                                                     android:layout_width="40dp"
                                                     android:layout_height="match_parent"
                                                     android:background="@drawable/shape_btn"
-                                                    android:gravity="center">
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
 
                                                     <TextView
                                                         android:layout_width="25dp"
@@ -577,7 +609,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Jam Pulang :"/>
+                                        android:text="Jam Pulang :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:id="@+id/jam_pulang_btn_k1"
@@ -586,7 +619,8 @@
                                         android:paddingStart="20dp"
                                         android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
@@ -598,7 +632,8 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="40dp"
                                                 android:orientation="vertical"
-                                                android:gravity="center|left">
+                                                android:gravity="center|left"
+                                                tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                                 <TextView
                                                     android:id="@+id/jam_pulang_pilih_k1"
@@ -607,7 +642,8 @@
                                                     android:textColor="#B15735"
                                                     android:textSize="13dp"
                                                     android:textStyle="bold"
-                                                    android:text=""/>
+                                                    android:text=""
+                                                    tools:ignore="SpUsage" />
 
                                             </LinearLayout>
 
@@ -616,7 +652,8 @@
                                                 android:layout_width="40dp"
                                                 android:layout_height="match_parent"
                                                 android:background="@drawable/shape_btn"
-                                                android:gravity="center">
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="20dp"
@@ -636,7 +673,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Titik Absensi :"/>
+                                        android:text="Titik Absensi :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:id="@+id/titik_btn_k1"
@@ -645,7 +683,8 @@
                                         android:paddingStart="20dp"
                                         android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
@@ -657,7 +696,8 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="40dp"
                                                 android:orientation="vertical"
-                                                android:gravity="center|left">
+                                                android:gravity="center|left"
+                                                tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                                 <TextView
                                                     android:id="@+id/titik_pilih_k1"
@@ -666,7 +706,8 @@
                                                     android:textColor="#B15735"
                                                     android:textSize="13dp"
                                                     android:textStyle="bold"
-                                                    android:text=""/>
+                                                    android:text=""
+                                                    tools:ignore="SpUsage" />
 
                                             </LinearLayout>
 
@@ -675,7 +716,8 @@
                                                 android:layout_width="40dp"
                                                 android:layout_height="match_parent"
                                                 android:background="@drawable/shape_btn"
-                                                android:gravity="center">
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="20dp"
@@ -711,7 +753,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Shift Absensi :"/>
+                                        android:text="Shift Absensi :"
+                                        tools:ignore="HardcodedText,SpUsage,TooManyViews" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -721,7 +764,8 @@
                                         android:gravity="center|left"
                                         android:orientation="horizontal"
                                         android:paddingStart="20dp"
-                                        android:paddingEnd="20dp">
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
 
                                         <TextView
                                             android:id="@+id/shift_tv_k3"
@@ -730,7 +774,8 @@
                                             android:text="Tentukan Tanggal Masuk..."
                                             android:textColor="#B15735"
                                             android:textSize="13dp"
-                                            android:textStyle="bold" />
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -748,7 +793,8 @@
                                             android:textSize="12dp"
                                             android:layout_marginBottom="5dp"
                                             android:textColor="#696969"
-                                            android:text="Tanggal Pulang :"/>
+                                            android:text="Tanggal Pulang :"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <LinearLayout
                                             android:id="@+id/tgl_pulang_btn_k3"
@@ -757,7 +803,8 @@
                                             android:paddingStart="20dp"
                                             android:layout_marginBottom="10dp"
                                             android:background="@drawable/shape_feel"
-                                            android:orientation="horizontal">
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
 
                                             <RelativeLayout
                                                 android:layout_width="match_parent"
@@ -769,7 +816,8 @@
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="40dp"
                                                     android:orientation="vertical"
-                                                    android:gravity="center|left">
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                                     <TextView
                                                         android:id="@+id/tgl_pulang_pilih_k3"
@@ -778,7 +826,8 @@
                                                         android:textColor="#B15735"
                                                         android:textSize="13dp"
                                                         android:textStyle="bold"
-                                                        android:text=""/>
+                                                        android:text=""
+                                                        tools:ignore="SpUsage" />
 
                                                 </LinearLayout>
 
@@ -787,7 +836,8 @@
                                                     android:layout_width="40dp"
                                                     android:layout_height="match_parent"
                                                     android:background="@drawable/shape_btn"
-                                                    android:gravity="center">
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
 
                                                     <TextView
                                                         android:layout_width="25dp"
@@ -809,7 +859,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Jam Pulang :"/>
+                                        android:text="Jam Pulang :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:id="@+id/jam_pulang_btn_k3"
@@ -818,7 +869,8 @@
                                         android:paddingStart="20dp"
                                         android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
@@ -830,7 +882,8 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="40dp"
                                                 android:orientation="vertical"
-                                                android:gravity="center|left">
+                                                android:gravity="center|left"
+                                                tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                                 <TextView
                                                     android:id="@+id/jam_pulang_pilih_k3"
@@ -839,7 +892,8 @@
                                                     android:textColor="#B15735"
                                                     android:textSize="13dp"
                                                     android:textStyle="bold"
-                                                    android:text=""/>
+                                                    android:text=""
+                                                    tools:ignore="SpUsage" />
 
                                             </LinearLayout>
 
@@ -848,7 +902,8 @@
                                                 android:layout_width="40dp"
                                                 android:layout_height="match_parent"
                                                 android:background="@drawable/shape_btn"
-                                                android:gravity="center">
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="25dp"
@@ -868,7 +923,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Titik Absensi :"/>
+                                        android:text="Titik Absensi :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:id="@+id/titik_btn_k3"
@@ -877,7 +933,8 @@
                                         android:paddingStart="20dp"
                                         android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
@@ -889,7 +946,8 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="40dp"
                                                 android:orientation="vertical"
-                                                android:gravity="center|left">
+                                                android:gravity="center|left"
+                                                tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                                 <TextView
                                                     android:id="@+id/titik_pilih_k3"
@@ -898,12 +956,13 @@
                                                     android:textColor="#B15735"
                                                     android:textSize="13dp"
                                                     android:textStyle="bold"
-                                                    android:text=""/>
+                                                    android:text=""
+                                                    tools:ignore="SpUsage" />
 
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:layout_alignParentRight="true"
+                                                android:layout_alignParentEnd="true"
                                                 android:layout_width="40dp"
                                                 android:layout_height="match_parent"
                                                 android:background="@drawable/shape_btn"
@@ -943,7 +1002,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Status Absensi :"/>
+                                        android:text="Status Absensi :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:id="@+id/status_absensi_btn_k6"
@@ -952,7 +1012,8 @@
                                         android:paddingStart="20dp"
                                         android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
@@ -964,7 +1025,8 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="40dp"
                                                 android:orientation="vertical"
-                                                android:gravity="center|left">
+                                                android:gravity="center|left"
+                                                tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                                 <TextView
                                                     android:id="@+id/status_absensi_pilih_k6"
@@ -973,7 +1035,8 @@
                                                     android:textColor="#B15735"
                                                     android:textSize="13dp"
                                                     android:textStyle="bold"
-                                                    android:text=""/>
+                                                    android:text=""
+                                                    tools:ignore="SpUsage" />
 
                                             </LinearLayout>
 
@@ -982,7 +1045,8 @@
                                                 android:layout_width="40dp"
                                                 android:layout_height="match_parent"
                                                 android:background="@drawable/shape_btn"
-                                                android:gravity="center">
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="25dp"
@@ -1003,7 +1067,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Shift Absensi :"/>
+                                        android:text="Shift Absensi :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:id="@+id/shift_absensi_btn_k6"
@@ -1012,7 +1077,8 @@
                                         android:paddingStart="20dp"
                                         android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal">
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
@@ -1024,7 +1090,8 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="40dp"
                                                 android:orientation="vertical"
-                                                android:gravity="center|left">
+                                                android:gravity="center|left"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:id="@+id/shift_absensi_pilih_k6"
@@ -1033,7 +1100,8 @@
                                                     android:textColor="#B15735"
                                                     android:textSize="13dp"
                                                     android:textStyle="bold"
-                                                    android:text="Tentukan Status Absensi..."/>
+                                                    android:text="Tentukan Status Absensi..."
+                                                    tools:ignore="HardcodedText,SpUsage" />
 
                                             </LinearLayout>
 
@@ -1042,7 +1110,8 @@
                                                 android:layout_width="40dp"
                                                 android:layout_height="match_parent"
                                                 android:background="@drawable/shape_btn"
-                                                android:gravity="center">
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
 
                                                 <TextView
                                                     android:layout_width="25dp"
@@ -1066,7 +1135,7 @@
                                     android:text="Alasan :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <EditText
                                     android:id="@+id/alasan_tv"
@@ -1089,7 +1158,7 @@
                                     android:textColorHighlight="#FFE1BC"
                                     android:textColorHint="#595959"
                                     android:textSize="14dp"
-                                    tools:ignore="SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+                                    tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
                                 <LinearLayout
                                     android:visibility="gone"
@@ -1106,7 +1175,8 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Surat Sakit :"/>
+                                        android:text="Surat Sakit :"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
                                         android:orientation="horizontal"
@@ -1137,7 +1207,8 @@
                                                 android:layout_height="wrap_content"
                                                 android:textSize="13dp"
                                                 android:textColor="#696969"
-                                                android:text="Belum diunggah"/>
+                                                android:text="Belum diunggah"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                         </LinearLayout>
 
@@ -1145,7 +1216,8 @@
                                             android:layout_width="0dp"
                                             android:layout_weight=".50"
                                             android:gravity="right"
-                                            android:layout_height="wrap_content">
+                                            android:layout_height="wrap_content"
+                                            tools:ignore="RtlHardcoded">
 
                                             <LinearLayout
                                                 android:id="@+id/upload_btn"
@@ -1166,7 +1238,8 @@
                                                     android:textSize="12dp"
                                                     android:drawableLeft="@drawable/ic_baseline_upload_file"
                                                     android:layout_height="wrap_content"
-                                                    android:text="Unggah"/>
+                                                    android:text="Unggah"
+                                                    tools:ignore="HardcodedText,SpUsage,UseCompatTextViewDrawableXml" />
 
                                             </LinearLayout>
 
@@ -1217,7 +1290,7 @@
                                         android:textColor="@color/white"
                                         android:textSize="13dp"
                                         android:textStyle="bold"
-                                        tools:ignore="TextSizeCheck" />
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                                 </LinearLayout>
 
@@ -1253,7 +1326,8 @@
                                             android:textAlignment="center"
                                             android:textColor="@color/white"
                                             android:textSize="15dp"
-                                            android:textStyle="bold" />
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                         <TextView
                                             android:id="@+id/message_tv"
@@ -1263,7 +1337,8 @@
                                             android:text="Permohonan anda telah terkirim dan disampaikan kepada Kepala Bagian / Supervisor untuk persetujuan."
                                             android:textAlignment="center"
                                             android:textColor="@color/white"
-                                            android:textSize="13dp" />
+                                            android:textSize="13dp"
+                                            tools:ignore="HardcodedText,SpUsage" />
 
                                     </LinearLayout>
 
@@ -1277,7 +1352,8 @@
                                             android:id="@+id/success_gif"
                                             android:layout_width="60dp"
                                             android:layout_height="60dp"
-                                            android:src="@drawable/success_ic" />
+                                            android:src="@drawable/success_ic"
+                                            tools:ignore="ContentDescription" />
 
                                     </LinearLayout>
 
@@ -1297,7 +1373,8 @@
                                         android:textStyle="bold"
                                         android:textSize="13dp"
                                         android:textColor="@color/white"
-                                        android:text="LIHAT PERMOHONAN"/>
+                                        android:text="LIHAT PERMOHONAN"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -1321,7 +1398,8 @@
                         android:layout_marginLeft="-2dp"
                         android:background="@drawable/shape_bar_chat"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:id="@+id/back_btn"
@@ -1330,13 +1408,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -1345,7 +1425,8 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -1358,7 +1439,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
