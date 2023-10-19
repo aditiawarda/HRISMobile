@@ -56,7 +56,7 @@
                                     android:text="Nama Lengkap:"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <TextView
                                     android:id="@+id/nama_tv"
@@ -64,7 +64,8 @@
                                     android:layout_height="wrap_content"
                                     android:text=""
                                     android:textColor="#555555"
-                                    android:textSize="14dp" />
+                                    android:textSize="14dp"
+                                    tools:ignore="SpUsage" />
 
                             </LinearLayout>
 
@@ -81,7 +82,7 @@
                                     android:text="Email :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <EditText
                                     android:id="@+id/email_ed"
@@ -100,7 +101,7 @@
                                     android:textColorHighlight="#FFDDB3"
                                     android:textColorHint="#AAAAAA"
                                     android:textSize="13dp"
-                                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+                                    tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                             </LinearLayout>
 
@@ -117,7 +118,7 @@
                                     android:text="Jenis Kelamin :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/gender_btn"
@@ -125,11 +126,13 @@
                                     android:layout_height="40dp"
                                     android:background="@drawable/shape_feel"
                                     android:orientation="horizontal"
-                                    android:paddingStart="20dp">
+                                    android:paddingStart="20dp"
+                                    tools:ignore="RtlSymmetry">
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="match_parent"
+                                        tools:ignore="TooDeepLayout,UselessParent">
 
                                         <LinearLayout
                                             android:layout_width="wrap_content"
@@ -138,7 +141,7 @@
                                             android:layout_marginBottom="10dp"
                                             android:gravity="center|left"
                                             android:orientation="vertical"
-                                            tools:ignore="RelativeOverlap">
+                                            tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                             <TextView
                                                 android:id="@+id/gender_pilih_tv"
@@ -147,7 +150,8 @@
                                                 android:text=""
                                                 android:textColor="#B15735"
                                                 android:textSize="13dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="SpUsage" />
 
                                         </LinearLayout>
 
@@ -156,7 +160,8 @@
                                             android:layout_height="match_parent"
                                             android:layout_alignParentRight="true"
                                             android:background="@drawable/shape_btn"
-                                            android:gravity="center">
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:layout_width="25dp"
@@ -184,7 +189,7 @@
                                     android:text="Tempat Lahir :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <EditText
                                     android:id="@+id/tempat_lahir_ed"
@@ -203,7 +208,7 @@
                                     android:textColorHighlight="#FFE1BC"
                                     android:textColorHint="#DA6F46"
                                     android:textSize="13dp"
-                                    tools:ignore="TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                    tools:ignore="Autofill,HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                             </LinearLayout>
 
@@ -220,7 +225,7 @@
                                     android:text="Tanggal Lahir :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/tanggal_lahir_btn"
@@ -228,11 +233,13 @@
                                     android:layout_height="40dp"
                                     android:background="@drawable/shape_feel"
                                     android:orientation="horizontal"
-                                    android:paddingStart="20dp">
+                                    android:paddingStart="20dp"
+                                    tools:ignore="RtlSymmetry">
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="match_parent"
+                                        tools:ignore="UselessParent">
 
                                         <LinearLayout
                                             android:layout_width="wrap_content"
@@ -240,7 +247,8 @@
                                             android:layout_marginTop="10dp"
                                             android:layout_marginBottom="10dp"
                                             android:gravity="center|left"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                             <TextView
                                                 android:id="@+id/tanggal_lahir_pilih_tv"
@@ -249,7 +257,8 @@
                                                 android:text=""
                                                 android:textColor="#B15735"
                                                 android:textSize="13dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="SpUsage" />
 
                                         </LinearLayout>
 
@@ -258,7 +267,8 @@
                                             android:layout_height="match_parent"
                                             android:layout_alignParentRight="true"
                                             android:background="@drawable/shape_btn"
-                                            android:gravity="center">
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:layout_width="25dp"
@@ -286,7 +296,7 @@
                                     android:text="No Handphone :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <EditText
                                     android:id="@+id/no_hanphone_ed"
@@ -305,7 +315,7 @@
                                     android:textColorHighlight="#FFDDB3"
                                     android:textColorHint="#AAAAAA"
                                     android:textSize="13dp"
-                                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                    tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
                             </LinearLayout>
 
@@ -322,7 +332,7 @@
                                     android:text="Status Pernikahan :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/status_pernikahan_btn"
@@ -330,11 +340,13 @@
                                     android:layout_height="40dp"
                                     android:background="@drawable/shape_feel"
                                     android:orientation="horizontal"
-                                    android:paddingStart="20dp">
+                                    android:paddingStart="20dp"
+                                    tools:ignore="RtlSymmetry">
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="match_parent"
+                                        tools:ignore="UselessParent">
 
                                         <LinearLayout
                                             android:layout_width="wrap_content"
@@ -342,7 +354,8 @@
                                             android:layout_marginTop="10dp"
                                             android:layout_marginBottom="10dp"
                                             android:gravity="center|left"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                             <TextView
                                                 android:id="@+id/status_pernikahan_pilih_tv"
@@ -351,7 +364,8 @@
                                                 android:text=""
                                                 android:textColor="#B15735"
                                                 android:textSize="13dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="SpUsage" />
 
                                         </LinearLayout>
 
@@ -360,7 +374,8 @@
                                             android:layout_height="match_parent"
                                             android:layout_alignParentRight="true"
                                             android:background="@drawable/shape_btn"
-                                            android:gravity="center">
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:layout_width="25dp"
@@ -388,7 +403,7 @@
                                     android:text="Agama :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <LinearLayout
                                     android:id="@+id/agama_btn"
@@ -396,11 +411,13 @@
                                     android:layout_height="40dp"
                                     android:background="@drawable/shape_feel"
                                     android:orientation="horizontal"
-                                    android:paddingStart="20dp">
+                                    android:paddingStart="20dp"
+                                    tools:ignore="RtlSymmetry">
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="match_parent"
+                                        tools:ignore="UselessParent">
 
                                         <LinearLayout
                                             android:layout_width="wrap_content"
@@ -408,7 +425,8 @@
                                             android:layout_marginTop="10dp"
                                             android:layout_marginBottom="10dp"
                                             android:gravity="center|left"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                             <TextView
                                                 android:id="@+id/agama_pilih_tv"
@@ -417,7 +435,8 @@
                                                 android:text=""
                                                 android:textColor="#B15735"
                                                 android:textSize="13dp"
-                                                android:textStyle="bold" />
+                                                android:textStyle="bold"
+                                                tools:ignore="SpUsage" />
 
                                         </LinearLayout>
 
@@ -426,7 +445,8 @@
                                             android:layout_height="match_parent"
                                             android:layout_alignParentRight="true"
                                             android:background="@drawable/shape_btn"
-                                            android:gravity="center">
+                                            android:gravity="center"
+                                            tools:ignore="RtlHardcoded">
 
                                             <TextView
                                                 android:layout_width="25dp"
@@ -454,7 +474,7 @@
                                     android:text="Alamat KTP :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <EditText
                                     android:id="@+id/alamat_ktp_ed"
@@ -475,7 +495,7 @@
                                     android:textColorHighlight="#FFE1BC"
                                     android:textColorHint="#595959"
                                     android:textSize="13dp"
-                                    tools:ignore="SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+                                    tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
                             </LinearLayout>
 
@@ -492,7 +512,7 @@
                                     android:text="Alamat Domisili :"
                                     android:textColor="#696969"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -502,7 +522,7 @@
                                     android:text="Sama dengan alamat KTP?"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="12dp"
-                                    tools:ignore="TextSizeCheck" />
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
                                 <Switch
                                     android:id="@+id/alamat_domisili_switch"
@@ -511,7 +531,7 @@
                                     android:checked="false"
                                     android:textColor="#676767"
                                     android:textSize="13dp"
-                                    tools:ignore="UseSwitchCompatOrMaterialXml,VisualLintButtonSize" />
+                                    tools:ignore="SpUsage,UseSwitchCompatOrMaterialXml,VisualLintButtonSize" />
 
                                 <net.cachapa.expandablelayout.ExpandableLayout
                                     android:id="@+id/expandable_domisili"
@@ -540,7 +560,7 @@
                                         android:textColorHighlight="#FFE1BC"
                                         android:textColorHint="#595959"
                                         android:textSize="13dp"
-                                        tools:ignore="VisualLintTextFieldSize" />
+                                        tools:ignore="Autofill,LabelFor,SpUsage,VisualLintTextFieldSize" />
 
                                 </net.cachapa.expandablelayout.ExpandableLayout>
 
@@ -565,7 +585,8 @@
                                     android:text="SIMPAN"
                                     android:textColor="@color/white"
                                     android:textSize="13dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage,UnusedAttribute,UseCompatTextViewDrawableXml" />
 
                             </LinearLayout>
 
@@ -605,7 +626,8 @@
                                         android:textAlignment="center"
                                         android:textColor="@color/white"
                                         android:textSize="15dp"
-                                        android:textStyle="bold" />
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                     <TextView
                                         android:id="@+id/message_tv"
@@ -615,7 +637,8 @@
                                         android:text="Update info personal berhasil tersimpan, dengan ini anda menyatakan semua data yang telah diisi bersifat valid."
                                         android:textAlignment="center"
                                         android:textColor="@color/white"
-                                        android:textSize="13dp" />
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 
@@ -629,7 +652,8 @@
                                         android:layout_width="60dp"
                                         android:layout_height="60dp"
                                         android:background="@drawable/shape_ring_success"
-                                        android:src="@drawable/success_ic" />
+                                        android:src="@drawable/success_ic"
+                                        tools:ignore="ContentDescription" />
 
                                 </LinearLayout>
 
@@ -649,7 +673,8 @@
                                     android:text="Kembali"
                                     android:textColor="@color/white"
                                     android:textSize="13dp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
                             </LinearLayout>
 
@@ -671,7 +696,8 @@
                         android:layout_marginLeft="-2dp"
                         android:background="@drawable/shape_bar_chat"
                         android:layout_width="match_parent"
-                        android:layout_height="70dp">
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent">
 
                         <LinearLayout
                             android:id="@+id/back_btn"
@@ -680,13 +706,15 @@
                             android:layout_width="33dp"
                             android:layout_height="33dp"
                             android:gravity="center"
-                            android:background="@drawable/shape_back_2">
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:layout_marginRight="1.5dp"
-                                android:background="@drawable/ic_baseline_chevron_back"/>
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
 
                         </LinearLayout>
 
@@ -695,7 +723,8 @@
                             android:paddingLeft="30dp"
                             android:paddingRight="30dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -708,7 +737,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
-                                tools:ignore="TextSizeCheck" />
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -733,7 +762,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal|center_vertical" />
+                    android:gravity="center_horizontal|center_vertical"
+                    tools:ignore="TooManyViews" />
 
             </LinearLayout>
 

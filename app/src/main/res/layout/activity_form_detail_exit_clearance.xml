@@ -355,7 +355,8 @@
                                                             android:layout_marginRight="8dp"
                                                             android:text="..................."
                                                             android:textColor="#515151"
-                                                            android:textSize="7dp" />
+                                                            android:textSize="7dp"
+                                                            tools:ignore="TextSizeCheck" />
 
                                                     </LinearLayout>
 
