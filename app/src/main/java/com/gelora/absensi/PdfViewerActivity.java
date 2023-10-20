@@ -3,7 +3,9 @@ package com.gelora.absensi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -12,10 +14,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gelora.absensi.kalert.KAlertDialog;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class PdfViewerActivity extends AppCompatActivity {
 
@@ -37,6 +53,7 @@ public class PdfViewerActivity extends AppCompatActivity {
         scrollIndicator = findViewById(R.id.scrollIndicator);
         loadingPart = findViewById(R.id.loading_part);
 
+        String initialisasi = getIntent().getExtras().getString("initialisasi");
         String kodeST = getIntent().getExtras().getString("kode_st");
         String uriFile = getIntent().getExtras().getString("uri");
         File pdfFile = new File(uriFile);
@@ -68,36 +85,54 @@ public class PdfViewerActivity extends AppCompatActivity {
             titlePage.setText("SERAH TERIMA PERSONALIA");
         }
 
-        if (pdfFile.exists()) {
-            loadingPart.setVisibility(View.GONE);
-            pdfView.fromFile(pdfFile)
-                    .defaultPage(0)
-                    .enableSwipe(true)
-                    .swipeHorizontal(false)
-                    .onPageChange(new OnPageChangeListener() {
-                        @Override
-                        public void onPageChanged(int page, int pageCount) {
-                            // Update scroll indicator based on the current page
-                            if(pageCount<=1){
-                                scrollIndicator.setVisibility(View.GONE);
-                            } else {
-                                scrollIndicator.setVisibility(View.VISIBLE);
+        if(initialisasi.equals("form")){
+            if (pdfFile.exists()) {
+                loadingPart.setVisibility(View.GONE);
+                pdfView.fromFile(pdfFile)
+                        .defaultPage(0)
+                        .enableSwipe(true)
+                        .swipeHorizontal(false)
+                        .onPageChange(new OnPageChangeListener() {
+                            @Override
+                            public void onPageChanged(int page, int pageCount) {
+                                if(pageCount<=1){
+                                    scrollIndicator.setVisibility(View.GONE);
+                                } else {
+                                    scrollIndicator.setVisibility(View.VISIBLE);
+                                }
+                                updateScrollIndicator(page, pageCount);
                             }
-                            updateScrollIndicator(page, pageCount);
-                        }
-                    })
-                    .load();
-        } else {
-            Toast.makeText(this, "Kosong", Toast.LENGTH_SHORT).show();
+                        })
+                        .load();
+            } else {
+                Toast.makeText(this, "Kosong", Toast.LENGTH_SHORT).show();
+            }
+
+        } else if(initialisasi.equals("detail")){
+            Intent webIntent = new Intent(Intent.ACTION_VIEW); webIntent.setData(Uri.parse(uriFile));
+            try {
+                startActivity(webIntent);
+                finish();
+            } catch (SecurityException e) {
+                e.printStackTrace();
+                new KAlertDialog(PdfViewerActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Tidak dapat membuka browser")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
         }
 
     }
 
     private void updateScrollIndicator(int currentPage, int pageCount) {
-        // Calculate the percentage of progress based on the current page
         float progress = (float) (currentPage + 1) / pageCount;
-
-        // Update the width of the scroll indicator
         int indicatorHeight = (int) (pdfView.getHeight() * progress);
         scrollIndicator.getLayoutParams().height = indicatorHeight;
         scrollIndicator.requestLayout();

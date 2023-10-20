@@ -810,6 +810,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Uri fileUri = Uri.parse(String.valueOf(tempFile));
                         Intent intent = new Intent(FormExitClearanceActivity.this, PdfViewerActivity.class);
+                        intent.putExtra("initialisasi", "form");
                         intent.putExtra("kode_st", "1");
                         intent.putExtra("uri", String.valueOf(tempFile));
                         startActivity(intent);
@@ -831,6 +832,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Uri fileUri = Uri.parse(String.valueOf(tempFile));
                         Intent intent = new Intent(FormExitClearanceActivity.this, PdfViewerActivity.class);
+                        intent.putExtra("initialisasi", "form");
                         intent.putExtra("kode_st", "2");
                         intent.putExtra("uri", String.valueOf(tempFile));
                         startActivity(intent);
@@ -852,6 +854,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Uri fileUri = Uri.parse(String.valueOf(tempFile));
                         Intent intent = new Intent(FormExitClearanceActivity.this, PdfViewerActivity.class);
+                        intent.putExtra("initialisasi", "form");
                         intent.putExtra("kode_st", "3");
                         intent.putExtra("uri", String.valueOf(tempFile));
                         startActivity(intent);
@@ -873,6 +876,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Uri fileUri = Uri.parse(String.valueOf(tempFile));
                         Intent intent = new Intent(FormExitClearanceActivity.this, PdfViewerActivity.class);
+                        intent.putExtra("initialisasi", "form");
                         intent.putExtra("kode_st", "4");
                         intent.putExtra("uri", String.valueOf(tempFile));
                         startActivity(intent);
@@ -894,6 +898,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Uri fileUri = Uri.parse(String.valueOf(tempFile));
                         Intent intent = new Intent(FormExitClearanceActivity.this, PdfViewerActivity.class);
+                        intent.putExtra("initialisasi", "form");
                         intent.putExtra("kode_st", "5");
                         intent.putExtra("uri", String.valueOf(tempFile));
                         startActivity(intent);
@@ -915,6 +920,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Uri fileUri = Uri.parse(String.valueOf(tempFile));
                         Intent intent = new Intent(FormExitClearanceActivity.this, PdfViewerActivity.class);
+                        intent.putExtra("initialisasi", "form");
                         intent.putExtra("kode_st", "6");
                         intent.putExtra("uri", String.valueOf(tempFile));
                         startActivity(intent);
@@ -944,7 +950,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("status");
 

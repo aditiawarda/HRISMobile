@@ -206,10 +206,8 @@ public class AdapterExitClearanceOut extends RecyclerView.Adapter<AdapterExitCle
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetailDataExitClearanceActivity.class);
-//                intent.putExtra("kode", "notif");
-//                intent.putExtra("id_izin",listPermohonanIzin.getId());
+                intent.putExtra("id_record",String.valueOf(listDataExitClearanceOut.getId_core()));
                 mContext.startActivity(intent);
-                Toast.makeText(mContext, String.valueOf(listDataExitClearanceOut.getId_core()), Toast.LENGTH_SHORT).show();
             }
         });
 

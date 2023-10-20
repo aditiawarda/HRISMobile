@@ -214,10 +214,10 @@ public class AdapterExitClearanceIn extends RecyclerView.Adapter<AdapterExitClea
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, DetailDataExitClearanceActivity.class);
+//                Intent intent = new Intent(mContext, DetailDataExitClearanceActivity.class);
 //                intent.putExtra("kode", "notif");
 //                intent.putExtra("id_izin",listPermohonanIzin.getId());
-                mContext.startActivity(intent);
+//                mContext.startActivity(intent);
             }
         });
 
