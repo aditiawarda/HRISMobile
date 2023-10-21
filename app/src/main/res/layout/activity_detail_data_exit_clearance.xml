@@ -361,11 +361,19 @@
                                             android:text="Tanggal Approve"
                                             android:textColor="#279A2B"
                                             android:textSize="10dp"
-                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                                     </LinearLayout>
 
                                 </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
 
                                 <LinearLayout
                                     android:orientation="vertical"
@@ -488,11 +496,19 @@
                                             android:text="Tanggal Approve"
                                             android:textColor="#279A2B"
                                             android:textSize="10dp"
-                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                                     </LinearLayout>
 
                                 </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
 
                                 <LinearLayout
                                     android:orientation="vertical"
@@ -516,6 +532,7 @@
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         <TextView
+                                            android:id="@+id/status_tv_3"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
@@ -541,14 +558,14 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
+                                        android:layout_marginBottom="10dp"
+                                        android:orientation="vertical">
 
                                         <LinearLayout
                                             android:id="@+id/st_3_upload_btn"
                                             android:layout_width="match_parent"
                                             android:layout_height="40dp"
                                             android:paddingStart="20dp"
-                                            android:layout_marginBottom="10dp"
                                             android:background="@drawable/shape_feel"
                                             android:orientation="horizontal"
                                             tools:ignore="RtlSymmetry">
@@ -606,9 +623,27 @@
 
                                         </LinearLayout>
 
+                                        <TextView
+                                            android:id="@+id/tgl_approve_tv_3"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:text="Tanggal Approve"
+                                            android:textColor="#279A2B"
+                                            android:textSize="10dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
                                     </LinearLayout>
 
                                 </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
 
                                 <LinearLayout
                                     android:orientation="vertical"
@@ -632,6 +667,7 @@
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         <TextView
+                                            android:id="@+id/status_tv_4"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
@@ -657,14 +693,14 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
+                                        android:layout_marginBottom="10dp"
+                                        android:orientation="vertical">
 
                                         <LinearLayout
                                             android:id="@+id/st_4_upload_btn"
                                             android:layout_width="match_parent"
                                             android:layout_height="40dp"
                                             android:paddingStart="20dp"
-                                            android:layout_marginBottom="10dp"
                                             android:background="@drawable/shape_feel"
                                             android:orientation="horizontal"
                                             tools:ignore="RtlSymmetry">
@@ -696,7 +732,7 @@
                                                         android:textColor="#B15735"
                                                         android:textSize="13dp"
                                                         android:textStyle="bold"
-                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TooManyViews" />
 
                                                 </LinearLayout>
 
@@ -722,14 +758,33 @@
 
                                         </LinearLayout>
 
+                                        <TextView
+                                            android:id="@+id/tgl_approve_tv_4"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:text="Tanggal Approve"
+                                            android:textColor="#279A2B"
+                                            android:textSize="10dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
                                     </LinearLayout>
 
                                 </LinearLayout>
 
                                 <LinearLayout
                                     android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="1dp"/>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:ignore="TooManyViews">
 
                                     <LinearLayout
                                         android:orientation="horizontal"
@@ -748,6 +803,7 @@
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         <TextView
+                                            android:id="@+id/status_tv_5"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
@@ -773,14 +829,14 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
+                                        android:layout_marginBottom="10dp"
+                                        android:orientation="vertical">
 
                                         <LinearLayout
                                             android:id="@+id/st_5_upload_btn"
                                             android:layout_width="match_parent"
                                             android:layout_height="40dp"
                                             android:paddingStart="20dp"
-                                            android:layout_marginBottom="10dp"
                                             android:background="@drawable/shape_feel"
                                             android:orientation="horizontal"
                                             tools:ignore="RtlSymmetry">
@@ -839,9 +895,27 @@
 
                                         </LinearLayout>
 
+                                        <TextView
+                                            android:id="@+id/tgl_approve_tv_5"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:text="Tanggal Approve"
+                                            android:textColor="#279A2B"
+                                            android:textSize="10dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
                                     </LinearLayout>
 
                                 </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
 
                                 <LinearLayout
                                     android:orientation="vertical"
@@ -865,6 +939,7 @@
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TooManyViews" />
 
                                         <TextView
+                                            android:id="@+id/status_tv_6"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
@@ -890,14 +965,14 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
+                                        android:layout_marginBottom="10dp"
+                                        android:orientation="vertical">
 
                                         <LinearLayout
                                             android:id="@+id/st_6_upload_btn"
                                             android:layout_width="match_parent"
                                             android:layout_height="40dp"
                                             android:paddingStart="20dp"
-                                            android:layout_marginBottom="10dp"
                                             android:background="@drawable/shape_feel"
                                             android:orientation="horizontal"
                                             tools:ignore="RtlSymmetry">
@@ -955,6 +1030,16 @@
 
                                         </LinearLayout>
 
+                                        <TextView
+                                            android:id="@+id/tgl_approve_tv_6"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:text="Tanggal Approve"
+                                            android:textColor="#279A2B"
+                                            android:textSize="10dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
                                     </LinearLayout>
 
                                 </LinearLayout>
@@ -962,7 +1047,7 @@
                                 <LinearLayout
                                     android:orientation="vertical"
                                     android:background="#CFCFCF"
-                                    android:layout_marginTop="20dp"
+                                    android:layout_marginTop="13dp"
                                     android:layout_marginBottom="20dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"/>

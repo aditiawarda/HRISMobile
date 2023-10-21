@@ -40,6 +40,14 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
     LinearLayout st1UploadIcBTN;
     TextView st2FileTV, statusTV2, tglApprove2TV;
     LinearLayout st2UploadIcBTN;
+    TextView st3FileTV, statusTV3, tglApprove3TV;
+    LinearLayout st3UploadIcBTN;
+    TextView st4FileTV, statusTV4, tglApprove4TV;
+    LinearLayout st4UploadIcBTN;
+    TextView st5FileTV, statusTV5, tglApprove5TV;
+    LinearLayout st5UploadIcBTN;
+    TextView st6FileTV, statusTV6, tglApprove6TV;
+    LinearLayout st6UploadIcBTN;
     SharedPrefManager sharedPrefManager;
     String idData;
 
@@ -69,6 +77,26 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
         st2UploadIcBTN = findViewById(R.id.st_2_upload_ic_btn);
         statusTV2 = findViewById(R.id.status_tv_2);
         tglApprove2TV = findViewById(R.id.tgl_approve_tv_2);
+
+        st3FileTV = findViewById(R.id.st_3_file_tv);
+        st3UploadIcBTN = findViewById(R.id.st_3_upload_ic_btn);
+        statusTV3 = findViewById(R.id.status_tv_3);
+        tglApprove3TV = findViewById(R.id.tgl_approve_tv_3);
+
+        st4FileTV = findViewById(R.id.st_4_file_tv);
+        st4UploadIcBTN = findViewById(R.id.st_4_upload_ic_btn);
+        statusTV4 = findViewById(R.id.status_tv_4);
+        tglApprove4TV = findViewById(R.id.tgl_approve_tv_4);
+
+        st5FileTV = findViewById(R.id.st_5_file_tv);
+        st5UploadIcBTN = findViewById(R.id.st_5_upload_ic_btn);
+        statusTV5 = findViewById(R.id.status_tv_5);
+        tglApprove5TV = findViewById(R.id.tgl_approve_tv_5);
+
+        st6FileTV = findViewById(R.id.st_6_file_tv);
+        st6UploadIcBTN = findViewById(R.id.st_6_upload_ic_btn);
+        statusTV6 = findViewById(R.id.status_tv_6);
+        tglApprove6TV = findViewById(R.id.tgl_approve_tv_6);
 
         idData = getIntent().getExtras().getString("id_record");
 
@@ -240,28 +268,44 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                     String tgl_approval = data_serah_terima.getString("tgl_approval");
 
                                     if(urutan_st.equals("1")){
-                                        st1FileTV.setText(lampiran);
-                                        if(!approval.equals("null") && approval!=null && !approval.equals("")){
-                                            statusTV1.setText("Disetujui");
-                                            statusTV1.setTextColor(Color.parseColor("#279A2B"));
-                                            tglApprove1TV.setTextColor(Color.parseColor("#279A2B"));
-                                            tglApprove1TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
-                                        } else {
-                                            statusTV1.setText("Diperoses");
-                                            statusTV1.setTextColor(Color.parseColor("#D37E00"));
-                                            tglApprove1TV.setTextColor(Color.parseColor("#D37E00"));
-                                            tglApprove1TV.setText("Menunggu verifikasi");
-                                        }
-                                        st1UploadIcBTN.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                Intent intent = new Intent(DetailDataExitClearanceActivity.this, PdfViewerActivity.class);
-                                                intent.putExtra("initialisasi", "detail");
-                                                intent.putExtra("kode_st", urutan_st);
-                                                intent.putExtra("uri", "https://geloraaksara.co.id/absen-online/upload/exit_clearance/"+lampiran);
-                                                startActivity(intent);
+                                        if(!lampiran.equals("null") && lampiran!=null && !lampiran.equals("")){
+                                            st1FileTV.setText(lampiran);
+                                            if(!approval.equals("null") && approval!=null && !approval.equals("")){
+                                                statusTV1.setText("Disetujui");
+                                                statusTV1.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove1TV.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove1TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
+                                            } else {
+                                                statusTV1.setText("Diperoses");
+                                                statusTV1.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove1TV.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove1TV.setText("Menunggu verifikasi");
                                             }
-                                        });
+                                            st1UploadIcBTN.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailDataExitClearanceActivity.this, PdfViewerActivity.class);
+                                                    intent.putExtra("initialisasi", "detail");
+                                                    intent.putExtra("kode_st", urutan_st);
+                                                    intent.putExtra("uri", "https://geloraaksara.co.id/absen-online/upload/exit_clearance/"+lampiran);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        } else {
+                                            st1FileTV.setText("Tidak tersedia");
+                                            if(!approval.equals("null") && approval!=null && !approval.equals("")){
+                                                statusTV1.setText("Disetujui");
+                                                statusTV1.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove1TV.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove1TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
+                                            } else {
+                                                statusTV1.setText("Diperoses");
+                                                statusTV1.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove1TV.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove1TV.setText("Menunggu verifikasi");
+                                            }
+                                            st1UploadIcBTN.setVisibility(View.GONE);
+                                        }
                                     } else if(urutan_st.equals("2")){
                                         if(!lampiran.equals("null") && lampiran!=null && !lampiran.equals("")){
                                             st2FileTV.setText(lampiran);
@@ -288,20 +332,177 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             });
                                         } else {
                                             st2FileTV.setText("Tidak tersedia");
-                                            statusTV2.setVisibility(View.INVISIBLE);
-                                            tglApprove2TV.setVisibility(View.GONE);
+                                            if(!approval.equals("null") && approval!=null && !approval.equals("")){
+                                                statusTV2.setText("Disetujui");
+                                                statusTV2.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove2TV.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove2TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
+                                            } else {
+                                                statusTV2.setText("Diperoses");
+                                                statusTV2.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove2TV.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove2TV.setText("Menunggu verifikasi");
+                                            }
                                             st2UploadIcBTN.setVisibility(View.GONE);
                                         }
                                     } else if(urutan_st.equals("3")){
-
+                                        if(!lampiran.equals("null") && lampiran!=null && !lampiran.equals("")){
+                                            st3FileTV.setText(lampiran);
+                                            if(!approval.equals("null") && approval!=null && !approval.equals("")){
+                                                statusTV3.setText("Disetujui");
+                                                statusTV3.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove3TV.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove3TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
+                                            } else {
+                                                statusTV3.setText("Diperoses");
+                                                statusTV3.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove3TV.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove3TV.setText("Menunggu verifikasi");
+                                            }
+                                            st3UploadIcBTN.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailDataExitClearanceActivity.this, PdfViewerActivity.class);
+                                                    intent.putExtra("initialisasi", "detail");
+                                                    intent.putExtra("kode_st", urutan_st);
+                                                    intent.putExtra("uri", "https://geloraaksara.co.id/absen-online/upload/exit_clearance/"+lampiran);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        } else {
+                                            st3FileTV.setText("Tidak tersedia");
+                                            if(!approval.equals("null") && approval!=null && !approval.equals("")){
+                                                statusTV3.setText("Disetujui");
+                                                statusTV3.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove3TV.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove3TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
+                                            } else {
+                                                statusTV3.setText("Diperoses");
+                                                statusTV3.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove3TV.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove3TV.setText("Menunggu verifikasi");
+                                            }
+                                            st3UploadIcBTN.setVisibility(View.GONE);
+                                        }
                                     } else if(urutan_st.equals("4")){
-
+                                        if(!lampiran.equals("null") && lampiran!=null && !lampiran.equals("")){
+                                            st4FileTV.setText(lampiran);
+                                            if(!approval.equals("null") && approval!=null && !approval.equals("")){
+                                                statusTV4.setText("Disetujui");
+                                                statusTV4.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove4TV.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove4TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
+                                            } else {
+                                                statusTV4.setText("Diperoses");
+                                                statusTV4.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove4TV.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove4TV.setText("Menunggu verifikasi");
+                                            }
+                                            st4UploadIcBTN.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailDataExitClearanceActivity.this, PdfViewerActivity.class);
+                                                    intent.putExtra("initialisasi", "detail");
+                                                    intent.putExtra("kode_st", urutan_st);
+                                                    intent.putExtra("uri", "https://geloraaksara.co.id/absen-online/upload/exit_clearance/"+lampiran);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        } else {
+                                            st4FileTV.setText("Tidak tersedia");
+                                            if(!approval.equals("null") && approval!=null && !approval.equals("")){
+                                                statusTV4.setText("Disetujui");
+                                                statusTV4.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove4TV.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove4TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
+                                            } else {
+                                                statusTV4.setText("Diperoses");
+                                                statusTV4.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove4TV.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove4TV.setText("Menunggu verifikasi");
+                                            }
+                                            st4UploadIcBTN.setVisibility(View.GONE);
+                                        }
                                     } else if(urutan_st.equals("5")){
-
+                                        if(!lampiran.equals("null") && lampiran!=null && !lampiran.equals("")){
+                                            st5FileTV.setText(lampiran);
+                                            if(!approval.equals("null") && approval!=null && !approval.equals("")){
+                                                statusTV5.setText("Disetujui");
+                                                statusTV5.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove5TV.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove5TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
+                                            } else {
+                                                statusTV5.setText("Diperoses");
+                                                statusTV5.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove5TV.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove5TV.setText("Menunggu verifikasi");
+                                            }
+                                            st5UploadIcBTN.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailDataExitClearanceActivity.this, PdfViewerActivity.class);
+                                                    intent.putExtra("initialisasi", "detail");
+                                                    intent.putExtra("kode_st", urutan_st);
+                                                    intent.putExtra("uri", "https://geloraaksara.co.id/absen-online/upload/exit_clearance/"+lampiran);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        } else {
+                                            st5FileTV.setText("Tidak tersedia");
+                                            if(!approval.equals("null") && approval!=null && !approval.equals("")){
+                                                statusTV5.setText("Disetujui");
+                                                statusTV5.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove5TV.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove5TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
+                                            } else {
+                                                statusTV5.setText("Diperoses");
+                                                statusTV5.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove5TV.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove5TV.setText("Menunggu verifikasi");
+                                            }
+                                            st5UploadIcBTN.setVisibility(View.GONE);
+                                        }
                                     } else if(urutan_st.equals("6")){
+                                        if(!lampiran.equals("null") && lampiran!=null && !lampiran.equals("")){
+                                            st6FileTV.setText(lampiran);
+                                            if(!approval.equals("null") && approval!=null && !approval.equals("")){
+                                                statusTV6.setText("Disetujui");
+                                                statusTV6.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove6TV.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove6TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
+                                            } else {
+                                                statusTV6.setText("Diperoses");
+                                                statusTV6.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove6TV.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove6TV.setText("Menunggu verifikasi");
+                                            }
+                                            st6UploadIcBTN.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailDataExitClearanceActivity.this, PdfViewerActivity.class);
+                                                    intent.putExtra("initialisasi", "detail");
+                                                    intent.putExtra("kode_st", urutan_st);
+                                                    intent.putExtra("uri", "https://geloraaksara.co.id/absen-online/upload/exit_clearance/"+lampiran);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        } else {
+                                            st6FileTV.setText("Tidak tersedia");
+                                            if(!approval.equals("null") && approval!=null && !approval.equals("")){
+                                                statusTV6.setText("Disetujui");
+                                                statusTV6.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove6TV.setTextColor(Color.parseColor("#279A2B"));
+                                                tglApprove6TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
+                                            } else {
+                                                statusTV6.setText("Diperoses");
+                                                statusTV6.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove6TV.setTextColor(Color.parseColor("#D37E00"));
+                                                tglApprove6TV.setText("Menunggu verifikasi");
+                                            }
+                                            st6UploadIcBTN.setVisibility(View.GONE);
+                                        }
 
                                     }
-
 
                                 }
 
