@@ -276,7 +276,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                 tglApprove1TV.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove1TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                             } else {
-                                                statusTV1.setText("Diperoses");
+                                                statusTV1.setText("Diproses");
                                                 statusTV1.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove1TV.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove1TV.setText("Menunggu verifikasi");
@@ -292,14 +292,14 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                 }
                                             });
                                         } else {
-                                            st1FileTV.setText("Tidak tersedia");
+                                            st1FileTV.setText("Lampiran tidak tersedia");
                                             if(!approval.equals("null") && approval!=null && !approval.equals("")){
                                                 statusTV1.setText("Disetujui");
                                                 statusTV1.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove1TV.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove1TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                             } else {
-                                                statusTV1.setText("Diperoses");
+                                                statusTV1.setText("Diproses");
                                                 statusTV1.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove1TV.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove1TV.setText("Menunggu verifikasi");
@@ -315,7 +315,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                 tglApprove2TV.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove2TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                             } else {
-                                                statusTV2.setText("Diperoses");
+                                                statusTV2.setText("Diproses");
                                                 statusTV2.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove2TV.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove2TV.setText("Menunggu verifikasi");
@@ -331,14 +331,14 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                 }
                                             });
                                         } else {
-                                            st2FileTV.setText("Tidak tersedia");
+                                            st2FileTV.setText("Lampiran tidak tersedia");
                                             if(!approval.equals("null") && approval!=null && !approval.equals("")){
                                                 statusTV2.setText("Disetujui");
                                                 statusTV2.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove2TV.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove2TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                             } else {
-                                                statusTV2.setText("Diperoses");
+                                                statusTV2.setText("Diproses");
                                                 statusTV2.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove2TV.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove2TV.setText("Menunggu verifikasi");
@@ -354,7 +354,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                 tglApprove3TV.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove3TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                             } else {
-                                                statusTV3.setText("Diperoses");
+                                                statusTV3.setText("Diproses");
                                                 statusTV3.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove3TV.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove3TV.setText("Menunggu verifikasi");
@@ -370,14 +370,14 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                 }
                                             });
                                         } else {
-                                            st3FileTV.setText("Tidak tersedia");
+                                            st3FileTV.setText("Lampiran tidak tersedia");
                                             if(!approval.equals("null") && approval!=null && !approval.equals("")){
                                                 statusTV3.setText("Disetujui");
                                                 statusTV3.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove3TV.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove3TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                             } else {
-                                                statusTV3.setText("Diperoses");
+                                                statusTV3.setText("Diproses");
                                                 statusTV3.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove3TV.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove3TV.setText("Menunggu verifikasi");
@@ -393,7 +393,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                 tglApprove4TV.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove4TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                             } else {
-                                                statusTV4.setText("Diperoses");
+                                                statusTV4.setText("Diproses");
                                                 statusTV4.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove4TV.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove4TV.setText("Menunggu verifikasi");
@@ -409,14 +409,14 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                 }
                                             });
                                         } else {
-                                            st4FileTV.setText("Tidak tersedia");
+                                            st4FileTV.setText("Lampiran tidak tersedia");
                                             if(!approval.equals("null") && approval!=null && !approval.equals("")){
                                                 statusTV4.setText("Disetujui");
                                                 statusTV4.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove4TV.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove4TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                             } else {
-                                                statusTV4.setText("Diperoses");
+                                                statusTV4.setText("Diproses");
                                                 statusTV4.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove4TV.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove4TV.setText("Menunggu verifikasi");
@@ -432,7 +432,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                 tglApprove5TV.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove5TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                             } else {
-                                                statusTV5.setText("Diperoses");
+                                                statusTV5.setText("Diproses");
                                                 statusTV5.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove5TV.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove5TV.setText("Menunggu verifikasi");
@@ -448,14 +448,14 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                 }
                                             });
                                         } else {
-                                            st5FileTV.setText("Tidak tersedia");
+                                            st5FileTV.setText("Lampiran tidak tersedia");
                                             if(!approval.equals("null") && approval!=null && !approval.equals("")){
                                                 statusTV5.setText("Disetujui");
                                                 statusTV5.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove5TV.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove5TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                             } else {
-                                                statusTV5.setText("Diperoses");
+                                                statusTV5.setText("Diproses");
                                                 statusTV5.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove5TV.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove5TV.setText("Menunggu verifikasi");
@@ -471,7 +471,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                 tglApprove6TV.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove6TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                             } else {
-                                                statusTV6.setText("Diperoses");
+                                                statusTV6.setText("Diproses");
                                                 statusTV6.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove6TV.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove6TV.setText("Menunggu verifikasi");
@@ -487,14 +487,14 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                                 }
                                             });
                                         } else {
-                                            st6FileTV.setText("Tidak tersedia");
+                                            st6FileTV.setText("Lampiran tidak tersedia");
                                             if(!approval.equals("null") && approval!=null && !approval.equals("")){
                                                 statusTV6.setText("Disetujui");
                                                 statusTV6.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove6TV.setTextColor(Color.parseColor("#279A2B"));
                                                 tglApprove6TV.setText("Disetujui tanggal "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                             } else {
-                                                statusTV6.setText("Diperoses");
+                                                statusTV6.setText("Diproses");
                                                 statusTV6.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove6TV.setTextColor(Color.parseColor("#D37E00"));
                                                 tglApprove6TV.setText("Menunggu verifikasi");

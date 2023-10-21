@@ -4134,7 +4134,7 @@
                                                                 android:id="@+id/pemohon_tv"
                                                                 android:layout_width="wrap_content"
                                                                 android:layout_height="wrap_content"
-                                                                android:text="Aditia Wardani"
+                                                                android:text="Nama Karyawan"
                                                                 android:textColor="#515151"
                                                                 android:textSize="7dp"
                                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
