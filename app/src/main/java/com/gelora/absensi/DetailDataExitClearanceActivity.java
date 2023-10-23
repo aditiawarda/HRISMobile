@@ -436,7 +436,9 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                         viewDetailBTN1.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                Toast.makeText(DetailDataExitClearanceActivity.this, id, Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(DetailDataExitClearanceActivity.this, DetailDataSerahTerimaExitClearanceActivity.class);
+                                                intent.putExtra("role", "me");
+                                                startActivity(intent);
                                             }
                                         });
                                     } else if(urutan_st.equals("2")){
@@ -481,7 +483,9 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                         viewDetailBTN2.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                Toast.makeText(DetailDataExitClearanceActivity.this, id, Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(DetailDataExitClearanceActivity.this, DetailDataSerahTerimaExitClearanceActivity.class);
+                                                intent.putExtra("role", "me");
+                                                startActivity(intent);
                                             }
                                         });
                                     } else if(urutan_st.equals("3")){
@@ -526,7 +530,9 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                         viewDetailBTN3.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                Toast.makeText(DetailDataExitClearanceActivity.this, id, Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(DetailDataExitClearanceActivity.this, DetailDataSerahTerimaExitClearanceActivity.class);
+                                                intent.putExtra("role", "me");
+                                                startActivity(intent);
                                             }
                                         });
                                     } else if(urutan_st.equals("4")){
@@ -571,7 +577,9 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                         viewDetailBTN4.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                Toast.makeText(DetailDataExitClearanceActivity.this, id, Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(DetailDataExitClearanceActivity.this, DetailDataSerahTerimaExitClearanceActivity.class);
+                                                intent.putExtra("role", "me");
+                                                startActivity(intent);
                                             }
                                         });
                                     } else if(urutan_st.equals("5")){
@@ -616,7 +624,9 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                         viewDetailBTN5.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                Toast.makeText(DetailDataExitClearanceActivity.this, id, Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(DetailDataExitClearanceActivity.this, DetailDataSerahTerimaExitClearanceActivity.class);
+                                                intent.putExtra("role", "me");
+                                                startActivity(intent);
                                             }
                                         });
                                     } else if(urutan_st.equals("6")){
@@ -661,7 +671,9 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                         viewDetailBTN6.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                Toast.makeText(DetailDataExitClearanceActivity.this, id, Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(DetailDataExitClearanceActivity.this, DetailDataSerahTerimaExitClearanceActivity.class);
+                                                intent.putExtra("role", "me");
+                                                startActivity(intent);
                                             }
                                         });
 

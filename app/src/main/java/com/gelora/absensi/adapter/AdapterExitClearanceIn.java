@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DetailDataExitClearanceActivity;
+import com.gelora.absensi.DetailDataSerahTerimaExitClearanceActivity;
 import com.gelora.absensi.DetailPermohonanIzinActivity;
 import com.gelora.absensi.ExitClearanceActivity;
 import com.gelora.absensi.R;
@@ -214,10 +215,9 @@ public class AdapterExitClearanceIn extends RecyclerView.Adapter<AdapterExitClea
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(mContext, DetailDataExitClearanceActivity.class);
-//                intent.putExtra("kode", "notif");
-//                intent.putExtra("id_izin",listPermohonanIzin.getId());
-//                mContext.startActivity(intent);
+                Intent intent = new Intent(mContext, DetailDataSerahTerimaExitClearanceActivity.class);
+                intent.putExtra("role", "approval");
+                mContext.startActivity(intent);
             }
         });
 

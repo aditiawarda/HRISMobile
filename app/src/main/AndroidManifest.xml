@@ -54,6 +54,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".DetailDataSerahTerimaExitClearanceActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".DetailDataExitClearanceActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
