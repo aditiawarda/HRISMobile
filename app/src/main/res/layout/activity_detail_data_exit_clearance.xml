@@ -64,15 +64,18 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
-                                            android:gravity="bottom|right"
+                                            android:gravity="center|right"
                                             tools:ignore="RtlHardcoded">
 
-                                            <LinearLayout
-                                                android:layout_width="85dp"
-                                                android:layout_height="100dp"
-                                                android:layout_marginRight="8dp"
-                                                android:layout_marginBottom="-20dp"
-                                                android:background="@drawable/ic_documents" />
+                                            <ImageView
+                                                android:id="@+id/status_gif"
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginRight="25dp"
+                                                android:background="@drawable/shape_ring_success"
+                                                android:padding="1dp"
+                                                android:src="@drawable/process_ic"
+                                                tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                         </LinearLayout>
 
@@ -90,7 +93,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:drawablePadding="5dp"
-                                                android:text=""
+                                                android:text="Menuat data..."
                                                 android:textColor="@color/white"
                                                 android:textSize="16dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
@@ -108,7 +111,7 @@
                                                 android:id="@+id/nik_karyawan_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="3186150321"
+                                                android:text="Menuat data..."
                                                 android:textColor="@color/white"
                                                 android:textSize="13dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
@@ -268,7 +271,7 @@
                                             android:layout_marginTop="5dp"
                                             android:layout_marginBottom="5dp"
                                             android:gravity="right"
-                                            android:text="Diproses"
+                                            android:text="Memuat..."
                                             android:textColor="#D37E00"
                                             android:textSize="13dp"
                                             android:textStyle="bold"
@@ -358,10 +361,30 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
-                                            android:text="Tanggal Approve"
+                                            android:text="Memuat data..."
                                             android:textColor="#279A2B"
                                             android:textSize="10dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                        <LinearLayout
+                                            android:id="@+id/view_detail_btn_1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="38dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:layout_marginTop="10dp"
+                                            android:background="@drawable/shape_btn"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Lihat Detail"
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,UnusedAttribute,UseCompatTextViewDrawableXml,TextSizeCheck" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -403,7 +426,7 @@
                                             android:layout_marginTop="5dp"
                                             android:layout_marginBottom="5dp"
                                             android:gravity="right"
-                                            android:text="Diproses"
+                                            android:text="Memuat..."
                                             android:textColor="#D37E00"
                                             android:textSize="13dp"
                                             android:textStyle="bold"
@@ -493,10 +516,30 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
-                                            android:text="Tanggal Approve"
+                                            android:text="Memuat data..."
                                             android:textColor="#279A2B"
                                             android:textSize="10dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                        <LinearLayout
+                                            android:id="@+id/view_detail_btn_2"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="38dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:layout_marginTop="10dp"
+                                            android:background="@drawable/shape_btn"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Lihat Detail"
+                                                android:textColor="@color/white"
+                                                android:textSize="12dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,UnusedAttribute,UseCompatTextViewDrawableXml,TextSizeCheck" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -538,7 +581,7 @@
                                             android:layout_marginTop="5dp"
                                             android:layout_marginBottom="5dp"
                                             android:gravity="right"
-                                            android:text="Diproses"
+                                            android:text="Memuat..."
                                             android:textColor="#D37E00"
                                             android:textSize="13dp"
                                             android:textStyle="bold"
@@ -628,10 +671,30 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
-                                            android:text="Tanggal Approve"
+                                            android:text="Memuat data..."
                                             android:textColor="#279A2B"
                                             android:textSize="10dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                        <LinearLayout
+                                            android:id="@+id/view_detail_btn_3"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="38dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:layout_marginTop="10dp"
+                                            android:background="@drawable/shape_btn"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textStyle="bold"
+                                                android:textSize="12dp"
+                                                android:textColor="@color/white"
+                                                android:text="Lihat Detail"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -673,11 +736,11 @@
                                             android:layout_marginTop="5dp"
                                             android:layout_marginBottom="5dp"
                                             android:gravity="right"
-                                            android:text="Diproses"
+                                            android:text="Memuat..."
                                             android:textColor="#D37E00"
                                             android:textSize="13dp"
                                             android:textStyle="bold"
-                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextContrastCheck" />
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,TooManyViews" />
 
                                     </LinearLayout>
 
@@ -763,10 +826,30 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
-                                            android:text="Tanggal Approve"
+                                            android:text="Memuat data..."
                                             android:textColor="#279A2B"
                                             android:textSize="10dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                        <LinearLayout
+                                            android:id="@+id/view_detail_btn_4"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="38dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:layout_marginTop="10dp"
+                                            android:background="@drawable/shape_btn"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textStyle="bold"
+                                                android:textSize="12dp"
+                                                android:textColor="@color/white"
+                                                android:text="Lihat Detail"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -809,7 +892,7 @@
                                             android:layout_marginTop="5dp"
                                             android:layout_marginBottom="5dp"
                                             android:gravity="right"
-                                            android:text="Diproses"
+                                            android:text="Memuat..."
                                             android:textColor="#D37E00"
                                             android:textSize="13dp"
                                             android:textStyle="bold"
@@ -900,10 +983,30 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
-                                            android:text="Tanggal Approve"
+                                            android:text="Memuat data..."
                                             android:textColor="#279A2B"
                                             android:textSize="10dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                        <LinearLayout
+                                            android:id="@+id/view_detail_btn_5"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="38dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:layout_marginTop="10dp"
+                                            android:background="@drawable/shape_btn"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textStyle="bold"
+                                                android:textSize="12dp"
+                                                android:textColor="@color/white"
+                                                android:text="Lihat Detail"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -945,7 +1048,7 @@
                                             android:layout_marginTop="5dp"
                                             android:layout_marginBottom="5dp"
                                             android:gravity="right"
-                                            android:text="Diproses"
+                                            android:text="Memuat..."
                                             android:textColor="#D37E00"
                                             android:textSize="13dp"
                                             android:textStyle="bold"
@@ -1035,10 +1138,30 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
-                                            android:text="Tanggal Approve"
+                                            android:text="Memuat data..."
                                             android:textColor="#279A2B"
                                             android:textSize="10dp"
                                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                        <LinearLayout
+                                            android:id="@+id/view_detail_btn_6"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="38dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:layout_marginTop="10dp"
+                                            android:background="@drawable/shape_btn"
+                                            android:gravity="center">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textStyle="bold"
+                                                android:textSize="12dp"
+                                                android:textColor="@color/white"
+                                                android:text="Lihat Detail"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -1131,6 +1254,69 @@
                                             tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                     </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/waiting_approve_hrd"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:paddingBottom="15dp"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="13dp"
+                                    android:orientation="vertical"
+                                    android:background="@drawable/shape_attantion">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="#C68D46"
+                                        android:textSize="13dp"
+                                        android:gravity="center"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Menunggu verifikasi dari bagian HRD"
+                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/approve_hrd"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:paddingBottom="15dp"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="13dp"
+                                    android:orientation="vertical"
+                                    android:visibility="visible"
+                                    android:background="@drawable/shape_attantion_green">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="#36A63B"
+                                        android:textSize="13dp"
+                                        android:gravity="center"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Sudah diverifikasi bagian HRD"
+                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                    <TextView
+                                        android:id="@+id/tgl_approve_hrd"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="#36A63B"
+                                        android:textSize="8dp"
+                                        android:gravity="center"
+                                        android:layout_marginTop="3dp"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Tanggal verifikasi : 00/00/0000"
+                                        tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
 

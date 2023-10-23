@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,36 +21,35 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DetailDataExitClearanceActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backBTN;
+    LinearLayout actionBar, backBTN, approveHRD, waitingApproveHRD;
     SwipeRefreshLayout refreshLayout;
-    TextView namaKaryawanTV, nikKaryawanTV, detailKaryawanTV, tanggalMasukTV, tanggalKeluarTV, alasanTV, saranTV;
+    ImageView statusGif;
+    TextView namaKaryawanTV, nikKaryawanTV, detailKaryawanTV, tanggalMasukTV, tanggalKeluarTV, alasanTV, saranTV, tglApproveHRD;
     TextView st1FileTV, statusTV1, tglApprove1TV;
-    LinearLayout st1UploadIcBTN;
+    LinearLayout st1UploadIcBTN, viewDetailBTN1;
     TextView st2FileTV, statusTV2, tglApprove2TV;
-    LinearLayout st2UploadIcBTN;
+    LinearLayout st2UploadIcBTN, viewDetailBTN2;
     TextView st3FileTV, statusTV3, tglApprove3TV;
-    LinearLayout st3UploadIcBTN;
+    LinearLayout st3UploadIcBTN, viewDetailBTN3;
     TextView st4FileTV, statusTV4, tglApprove4TV;
-    LinearLayout st4UploadIcBTN;
+    LinearLayout st4UploadIcBTN, viewDetailBTN4;
     TextView st5FileTV, statusTV5, tglApprove5TV;
-    LinearLayout st5UploadIcBTN;
+    LinearLayout st5UploadIcBTN, viewDetailBTN5;
     TextView st6FileTV, statusTV6, tglApprove6TV;
-    LinearLayout st6UploadIcBTN;
+    LinearLayout st6UploadIcBTN, viewDetailBTN6;
     SharedPrefManager sharedPrefManager;
-    String idData;
+    String idData, finalApprove = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +60,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         actionBar = findViewById(R.id.action_bar);
         backBTN = findViewById(R.id.back_btn);
+        statusGif = findViewById(R.id.status_gif);
         namaKaryawanTV = findViewById(R.id.nama_karyawan_tv);
         nikKaryawanTV = findViewById(R.id.nik_karyawan_tv);
         detailKaryawanTV = findViewById(R.id.detail_karyawan_tv);
@@ -67,36 +68,45 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
         tanggalKeluarTV = findViewById(R.id.tanggal_keluar_tv);
         alasanTV = findViewById(R.id.alasan_tv);
         saranTV = findViewById(R.id.saran_tv);
+        approveHRD = findViewById(R.id.approve_hrd);
+        waitingApproveHRD = findViewById(R.id.waiting_approve_hrd);
+        tglApproveHRD = findViewById(R.id.tgl_approve_hrd);
 
         st1FileTV = findViewById(R.id.st_1_file_tv);
         st1UploadIcBTN = findViewById(R.id.st_1_upload_ic_btn);
         statusTV1 = findViewById(R.id.status_tv_1);
         tglApprove1TV = findViewById(R.id.tgl_approve_tv_1);
+        viewDetailBTN1 = findViewById(R.id.view_detail_btn_1);
 
         st2FileTV = findViewById(R.id.st_2_file_tv);
         st2UploadIcBTN = findViewById(R.id.st_2_upload_ic_btn);
         statusTV2 = findViewById(R.id.status_tv_2);
         tglApprove2TV = findViewById(R.id.tgl_approve_tv_2);
+        viewDetailBTN2 = findViewById(R.id.view_detail_btn_2);
 
         st3FileTV = findViewById(R.id.st_3_file_tv);
         st3UploadIcBTN = findViewById(R.id.st_3_upload_ic_btn);
         statusTV3 = findViewById(R.id.status_tv_3);
         tglApprove3TV = findViewById(R.id.tgl_approve_tv_3);
+        viewDetailBTN3 = findViewById(R.id.view_detail_btn_3);
 
         st4FileTV = findViewById(R.id.st_4_file_tv);
         st4UploadIcBTN = findViewById(R.id.st_4_upload_ic_btn);
         statusTV4 = findViewById(R.id.status_tv_4);
         tglApprove4TV = findViewById(R.id.tgl_approve_tv_4);
+        viewDetailBTN4 = findViewById(R.id.view_detail_btn_4);
 
         st5FileTV = findViewById(R.id.st_5_file_tv);
         st5UploadIcBTN = findViewById(R.id.st_5_upload_ic_btn);
         statusTV5 = findViewById(R.id.status_tv_5);
         tglApprove5TV = findViewById(R.id.tgl_approve_tv_5);
+        viewDetailBTN5 = findViewById(R.id.view_detail_btn_5);
 
         st6FileTV = findViewById(R.id.st_6_file_tv);
         st6UploadIcBTN = findViewById(R.id.st_6_upload_ic_btn);
         statusTV6 = findViewById(R.id.status_tv_6);
         tglApprove6TV = findViewById(R.id.tgl_approve_tv_6);
+        viewDetailBTN6 = findViewById(R.id.view_detail_btn_6);
 
         idData = getIntent().getExtras().getString("id_record");
 
@@ -151,6 +161,8 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                 String tanggal_keluar = detail.getString("tanggal_keluar");
                                 String alasan_keluar = detail.getString("alasan_keluar");
                                 String saran = detail.getString("saran");
+                                String approve_hrd = detail.getString("approve_hrd");
+                                String tgl_approve_hrd = detail.getString("tgl_approve_hrd");
 
                                 namaKaryawanTV.setText(nama.toUpperCase());
                                 nikKaryawanTV.setText(NIK);
@@ -262,10 +274,17 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                 JSONArray serah_terima = data.getJSONArray("serah_terima");
                                 for (int i = 0; i < serah_terima.length(); i++) {
                                     JSONObject data_serah_terima = serah_terima.getJSONObject(i);
+                                    String id = data_serah_terima.getString("id");
                                     String urutan_st = data_serah_terima.getString("urutan_st");
                                     String lampiran = data_serah_terima.getString("lampiran");
                                     String approval = data_serah_terima.getString("approval");
                                     String tgl_approval = data_serah_terima.getString("tgl_approval");
+
+                                    if(!approval.equals("null") && approval!=null && !approval.equals("")){
+                                        finalApprove = "1";
+                                    } else {
+                                        finalApprove = "0";
+                                    }
 
                                     if(urutan_st.equals("1")){
                                         if(!lampiran.equals("null") && lampiran!=null && !lampiran.equals("")){
@@ -306,6 +325,12 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             }
                                             st1UploadIcBTN.setVisibility(View.GONE);
                                         }
+                                        viewDetailBTN1.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Toast.makeText(DetailDataExitClearanceActivity.this, id, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                     } else if(urutan_st.equals("2")){
                                         if(!lampiran.equals("null") && lampiran!=null && !lampiran.equals("")){
                                             st2FileTV.setText(lampiran);
@@ -345,6 +370,12 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             }
                                             st2UploadIcBTN.setVisibility(View.GONE);
                                         }
+                                        viewDetailBTN2.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Toast.makeText(DetailDataExitClearanceActivity.this, id, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                     } else if(urutan_st.equals("3")){
                                         if(!lampiran.equals("null") && lampiran!=null && !lampiran.equals("")){
                                             st3FileTV.setText(lampiran);
@@ -384,6 +415,12 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             }
                                             st3UploadIcBTN.setVisibility(View.GONE);
                                         }
+                                        viewDetailBTN3.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Toast.makeText(DetailDataExitClearanceActivity.this, id, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                     } else if(urutan_st.equals("4")){
                                         if(!lampiran.equals("null") && lampiran!=null && !lampiran.equals("")){
                                             st4FileTV.setText(lampiran);
@@ -423,6 +460,12 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             }
                                             st4UploadIcBTN.setVisibility(View.GONE);
                                         }
+                                        viewDetailBTN4.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Toast.makeText(DetailDataExitClearanceActivity.this, id, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                     } else if(urutan_st.equals("5")){
                                         if(!lampiran.equals("null") && lampiran!=null && !lampiran.equals("")){
                                             st5FileTV.setText(lampiran);
@@ -462,6 +505,12 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             }
                                             st5UploadIcBTN.setVisibility(View.GONE);
                                         }
+                                        viewDetailBTN5.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Toast.makeText(DetailDataExitClearanceActivity.this, id, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                     } else if(urutan_st.equals("6")){
                                         if(!lampiran.equals("null") && lampiran!=null && !lampiran.equals("")){
                                             st6FileTV.setText(lampiran);
@@ -501,9 +550,32 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             }
                                             st6UploadIcBTN.setVisibility(View.GONE);
                                         }
+                                        viewDetailBTN6.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Toast.makeText(DetailDataExitClearanceActivity.this, id, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
 
                                     }
 
+                                }
+
+                                if(finalApprove.equals("1") && (!approve_hrd.equals("") && !approve_hrd.equals("null") && approve_hrd!=null)){
+                                    approveHRD.setVisibility(View.VISIBLE);
+                                    waitingApproveHRD.setVisibility(View.GONE);
+                                    tglApproveHRD.setText("Tanggal verifikasi : "+tgl_approve_hrd.substring(8,10)+"/"+tgl_approve_hrd.substring(5,7)+"/"+tgl_approve_hrd.substring(0,4));
+                                    statusGif.setPadding(0,0,0,0);
+                                    Glide.with(getApplicationContext())
+                                            .load(R.drawable.success_ic)
+                                            .into(statusGif);
+                                } else if(finalApprove.equals("0")){
+                                    approveHRD.setVisibility(View.GONE);
+                                    waitingApproveHRD.setVisibility(View.VISIBLE);
+                                    statusGif.setPadding(2,2,2,2);
+                                    Glide.with(getApplicationContext())
+                                            .load(R.drawable.process_ic)
+                                            .into(statusGif);
                                 }
 
                             }
