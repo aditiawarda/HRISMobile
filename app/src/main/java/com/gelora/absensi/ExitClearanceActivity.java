@@ -149,7 +149,6 @@ public class ExitClearanceActivity extends AppCompatActivity {
         dataOutBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addBTN.setVisibility(View.VISIBLE);
                 dataOutBTN.setBackground(ContextCompat.getDrawable(ExitClearanceActivity.this, R.drawable.shape_notify_choice));
                 dataInBTN.setBackground(ContextCompat.getDrawable(ExitClearanceActivity.this, R.drawable.shape_notify));
                 dataMasukPart.setVisibility(View.GONE);
@@ -218,7 +217,6 @@ public class ExitClearanceActivity extends AppCompatActivity {
             optionPart.setVisibility(View.GONE);
             dataMasukPart.setVisibility(View.GONE);
             dataKeluarPart.setVisibility(View.VISIBLE);
-            addBTN.setVisibility(View.VISIBLE);
         }
 
         getDataIn(otoritorEC);
@@ -240,6 +238,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
+                                addBTN.setVisibility(View.GONE);
                                 noDataPart2.setVisibility(View.GONE);
                                 loadingDataPart2.setVisibility(View.GONE);
                                 dataOutRV.setVisibility(View.VISIBLE);
@@ -250,6 +249,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
                                 adapterExitClearanceOut = new AdapterExitClearanceOut(listDataExitClearanceOuts,ExitClearanceActivity.this);
                                 dataOutRV.setAdapter(adapterExitClearanceOut);
                             } else {
+                                addBTN.setVisibility(View.VISIBLE);
                                 noDataPart2.setVisibility(View.VISIBLE);
                                 loadingDataPart2.setVisibility(View.GONE);
                                 dataOutRV.setVisibility(View.GONE);

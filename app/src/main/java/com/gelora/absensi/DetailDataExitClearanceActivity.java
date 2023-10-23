@@ -7,6 +7,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -36,7 +37,7 @@ import java.util.Map;
 
 public class DetailDataExitClearanceActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backBTN, approveHRD, waitingApproveHRD, cancelBTN;
+    LinearLayout actionBar, backBTN, approveHRD, waitingApproveHRD, cancelBTN, downloadBTN;
     SwipeRefreshLayout refreshLayout;
     ImageView statusGif;
     TextView namaKaryawanTV, nikKaryawanTV, detailKaryawanTV, tanggalMasukTV, tanggalKeluarTV, alasanTV, saranTV, tglApproveHRD;
@@ -78,6 +79,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
         waitingApproveHRD = findViewById(R.id.waiting_approve_hrd);
         tglApproveHRD = findViewById(R.id.tgl_approve_hrd);
         cancelBTN = findViewById(R.id.cancel_btn);
+        downloadBTN = findViewById(R.id.download_btn);
 
         st1FileTV = findViewById(R.id.st_1_file_tv);
         st1UploadIcBTN = findViewById(R.id.st_1_upload_ic_btn);
@@ -138,6 +140,38 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
         });
 
         backBTN.setOnClickListener(v -> onBackPressed());
+
+        downloadBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String file_url = "https://geloraaksara.co.id/absen-online/Backend/pdf_clearance_form/"+idData;
+                new KAlertDialog(DetailDataExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Unduh File?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
+                                try {
+                                    startActivity(browserIntent);
+                                } catch (SecurityException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        })
+                        .show();
+            }
+        });
 
         cancelBTN.setOnClickListener(new View.OnClickListener() {
             @Override
