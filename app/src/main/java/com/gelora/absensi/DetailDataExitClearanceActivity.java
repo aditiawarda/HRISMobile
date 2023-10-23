@@ -1,12 +1,14 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +24,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.gelora.absensi.kalert.KAlertDialog;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +36,7 @@ import java.util.Map;
 
 public class DetailDataExitClearanceActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backBTN, approveHRD, waitingApproveHRD;
+    LinearLayout actionBar, backBTN, approveHRD, waitingApproveHRD, cancelBTN;
     SwipeRefreshLayout refreshLayout;
     ImageView statusGif;
     TextView namaKaryawanTV, nikKaryawanTV, detailKaryawanTV, tanggalMasukTV, tanggalKeluarTV, alasanTV, saranTV, tglApproveHRD;
@@ -50,6 +54,8 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
     LinearLayout st6UploadIcBTN, viewDetailBTN6;
     SharedPrefManager sharedPrefManager;
     String idData, finalApprove = "0";
+    KAlertDialog pDialog;
+    private int i = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +77,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
         approveHRD = findViewById(R.id.approve_hrd);
         waitingApproveHRD = findViewById(R.id.waiting_approve_hrd);
         tglApproveHRD = findViewById(R.id.tgl_approve_hrd);
+        cancelBTN = findViewById(R.id.cancel_btn);
 
         st1FileTV = findViewById(R.id.st_1_file_tv);
         st1UploadIcBTN = findViewById(R.id.st_1_upload_ic_btn);
@@ -126,11 +133,78 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                         refreshLayout.setRefreshing(false);
                         getData();
                     }
-                }, 500);
+                }, 2000);
             }
         });
 
         backBTN.setOnClickListener(v -> onBackPressed());
+
+        cancelBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailDataExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Yakin untuk membatalkan exit clearance?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+
+                                pDialog = new KAlertDialog(DetailDataExitClearanceActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1000, 500) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataExitClearanceActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataExitClearanceActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataExitClearanceActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataExitClearanceActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataExitClearanceActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataExitClearanceActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+
+                                    public void onFinish() {
+                                        i = -1;
+                                        cancelPermohonan(idData);
+                                    }
+                                }.start();
+
+                            }
+                        })
+                        .show();
+            }
+        });
 
         getData();
 
@@ -562,6 +636,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                 }
 
                                 if(finalApprove.equals("1") && (!approve_hrd.equals("") && !approve_hrd.equals("null") && approve_hrd!=null)){
+                                    cancelBTN.setVisibility(View.GONE);
                                     approveHRD.setVisibility(View.VISIBLE);
                                     waitingApproveHRD.setVisibility(View.GONE);
                                     tglApproveHRD.setText("Tanggal verifikasi : "+tgl_approve_hrd.substring(8,10)+"/"+tgl_approve_hrd.substring(5,7)+"/"+tgl_approve_hrd.substring(0,4));
@@ -570,6 +645,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             .load(R.drawable.success_ic)
                                             .into(statusGif);
                                 } else if(finalApprove.equals("0")){
+                                    cancelBTN.setVisibility(View.VISIBLE);
                                     approveHRD.setVisibility(View.GONE);
                                     waitingApproveHRD.setVisibility(View.VISIBLE);
                                     statusGif.setPadding(2,2,2,2);
@@ -591,7 +667,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
@@ -607,6 +683,79 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    private void cancelPermohonan(String id){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cancel_exit_clearance";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                pDialog.setTitleText("Permohonan Dibatalkan")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                onBackPressed();
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            } else {
+                                pDialog.setTitleText("Permohonan Gagal Dibatalkan")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        pDialog.dismiss();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_record", id);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void connectionFailed(){
+        CookieBar.build(DetailDataExitClearanceActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
     }
 
 }
