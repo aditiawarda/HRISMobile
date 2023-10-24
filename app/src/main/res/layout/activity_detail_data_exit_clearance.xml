@@ -1293,7 +1293,7 @@
                                     android:paddingRight="20dp"
                                     android:paddingTop="13dp"
                                     android:orientation="vertical"
-                                    android:visibility="gone"
+
                                     android:background="@drawable/shape_attantion_green">
 
                                     <TextView
@@ -1311,11 +1311,23 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:textColor="#36A63B"
-                                        android:textSize="8dp"
+                                        android:textSize="10dp"
                                         android:gravity="center"
                                         android:layout_marginTop="3dp"
                                         android:lineSpacingExtra="2.5dp"
                                         android:text="Tanggal verifikasi : 00/00/0000"
+                                        tools:ignore="HardcodedText,SpUsage" />
+
+                                    <TextView
+                                        android:id="@+id/approver_hrd"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="#36A63B"
+                                        android:textSize="10dp"
+                                        android:gravity="center"
+                                        android:layout_marginTop="3dp"
+                                        android:lineSpacingExtra="2.5dp"
+                                        android:text="Oleh : Nama Verifikator"
                                         tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>

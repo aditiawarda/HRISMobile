@@ -217,6 +217,8 @@ public class AdapterExitClearanceIn extends RecyclerView.Adapter<AdapterExitClea
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetailDataSerahTerimaExitClearanceActivity.class);
                 intent.putExtra("role", "approval");
+                intent.putExtra("id_st", listDataExitClearanceIn.getId_data());
+                intent.putExtra("nama", listDataExitClearanceIn.getNama());
                 mContext.startActivity(intent);
             }
         });

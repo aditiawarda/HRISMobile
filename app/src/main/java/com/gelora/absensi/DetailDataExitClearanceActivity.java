@@ -40,7 +40,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
     LinearLayout actionBar, backBTN, approveHRD, waitingApproveHRD, cancelBTN, downloadBTN;
     SwipeRefreshLayout refreshLayout;
     ImageView statusGif;
-    TextView namaKaryawanTV, nikKaryawanTV, detailKaryawanTV, tanggalMasukTV, tanggalKeluarTV, alasanTV, saranTV, tglApproveHRD;
+    TextView namaKaryawanTV, nikKaryawanTV, detailKaryawanTV, tanggalMasukTV, tanggalKeluarTV, alasanTV, saranTV, tglApproveHRD, approverHRD;
     TextView st1FileTV, statusTV1, tglApprove1TV;
     LinearLayout st1UploadIcBTN, viewDetailBTN1;
     TextView st2FileTV, statusTV2, tglApprove2TV;
@@ -78,6 +78,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
         approveHRD = findViewById(R.id.approve_hrd);
         waitingApproveHRD = findViewById(R.id.waiting_approve_hrd);
         tglApproveHRD = findViewById(R.id.tgl_approve_hrd);
+        approverHRD = findViewById(R.id.approver_hrd);
         cancelBTN = findViewById(R.id.cancel_btn);
         downloadBTN = findViewById(R.id.download_btn);
 
@@ -271,6 +272,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                 String saran = detail.getString("saran");
                                 String approve_hrd = detail.getString("approve_hrd");
                                 String tgl_approve_hrd = detail.getString("tgl_approve_hrd");
+                                String nama_hrd = detail.getString("nama_hrd");
 
                                 namaKaryawanTV.setText(nama.toUpperCase());
                                 nikKaryawanTV.setText(NIK);
@@ -438,6 +440,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             public void onClick(View v) {
                                                 Intent intent = new Intent(DetailDataExitClearanceActivity.this, DetailDataSerahTerimaExitClearanceActivity.class);
                                                 intent.putExtra("role", "me");
+                                                intent.putExtra("id_st", id);
                                                 startActivity(intent);
                                             }
                                         });
@@ -485,6 +488,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             public void onClick(View v) {
                                                 Intent intent = new Intent(DetailDataExitClearanceActivity.this, DetailDataSerahTerimaExitClearanceActivity.class);
                                                 intent.putExtra("role", "me");
+                                                intent.putExtra("id_st", id);
                                                 startActivity(intent);
                                             }
                                         });
@@ -532,6 +536,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             public void onClick(View v) {
                                                 Intent intent = new Intent(DetailDataExitClearanceActivity.this, DetailDataSerahTerimaExitClearanceActivity.class);
                                                 intent.putExtra("role", "me");
+                                                intent.putExtra("id_st", id);
                                                 startActivity(intent);
                                             }
                                         });
@@ -579,6 +584,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             public void onClick(View v) {
                                                 Intent intent = new Intent(DetailDataExitClearanceActivity.this, DetailDataSerahTerimaExitClearanceActivity.class);
                                                 intent.putExtra("role", "me");
+                                                intent.putExtra("id_st", id);
                                                 startActivity(intent);
                                             }
                                         });
@@ -626,6 +632,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             public void onClick(View v) {
                                                 Intent intent = new Intent(DetailDataExitClearanceActivity.this, DetailDataSerahTerimaExitClearanceActivity.class);
                                                 intent.putExtra("role", "me");
+                                                intent.putExtra("id_st", id);
                                                 startActivity(intent);
                                             }
                                         });
@@ -673,6 +680,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                             public void onClick(View v) {
                                                 Intent intent = new Intent(DetailDataExitClearanceActivity.this, DetailDataSerahTerimaExitClearanceActivity.class);
                                                 intent.putExtra("role", "me");
+                                                intent.putExtra("id_st", id);
                                                 startActivity(intent);
                                             }
                                         });
@@ -686,6 +694,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                     approveHRD.setVisibility(View.VISIBLE);
                                     waitingApproveHRD.setVisibility(View.GONE);
                                     tglApproveHRD.setText("Tanggal verifikasi : "+tgl_approve_hrd.substring(8,10)+"/"+tgl_approve_hrd.substring(5,7)+"/"+tgl_approve_hrd.substring(0,4));
+                                    approverHRD.setText(nama_hrd);
                                     statusGif.setPadding(0,0,0,0);
                                     Glide.with(getApplicationContext())
                                             .load(R.drawable.success_ic)
