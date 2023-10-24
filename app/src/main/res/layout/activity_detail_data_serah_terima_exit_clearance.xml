@@ -31,7 +31,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:paddingTop="75dp"
-                        android:paddingBottom="3dp"
+                        android:paddingBottom="30dp"
                         tools:ignore="UselessLeaf">
 
                         <LinearLayout
@@ -43,7 +43,92 @@
                             tools:ignore="UselessParent">
 
                             <LinearLayout
-                                android:id="@+id/name_card"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginTop="15dp"
+                                android:orientation="horizontal"
+                                android:background="@drawable/shape_exit_clearance_form">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    tools:ignore="TooDeepLayout,UselessParent">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center|right"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <ImageView
+                                            android:id="@+id/status_gif"
+                                            android:layout_width="60dp"
+                                            android:layout_height="60dp"
+                                            android:layout_marginRight="25dp"
+                                            android:background="@drawable/shape_ring_success"
+                                            android:padding="1dp"
+                                            android:src="@drawable/process_ic"
+                                            tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_marginTop="15dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="20dp"
+                                        android:orientation="vertical"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:id="@+id/nama_karyawan_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:drawablePadding="5dp"
+                                            android:text="Menuat data..."
+                                            android:textColor="@color/white"
+                                            android:textSize="16dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                        <TextView
+                                            android:layout_marginTop="7dp"
+                                            android:layout_marginBottom="7dp"
+                                            android:layout_width="25dp"
+                                            android:layout_height="1dp"
+                                            android:textSize="13dp"
+                                            android:background="@color/white"
+                                            tools:ignore="SpUsage" />
+
+                                        <TextView
+                                            android:id="@+id/nik_karyawan_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Menuat data..."
+                                            android:textColor="@color/white"
+                                            android:textSize="13dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                        <TextView
+                                            android:id="@+id/detail_karyawan_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="Memuat data..."
+                                            android:textColor="@color/white"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/status_card"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="10dp"
@@ -51,17 +136,17 @@
                                 android:paddingLeft="20dp"
                                 android:paddingBottom="10dp"
                                 android:layout_marginBottom="10dp"
-                                android:layout_marginTop="15dp"
+                                android:gravity="center"
                                 android:background="@drawable/shape_attantion">
 
                                 <TextView
-                                    android:id="@+id/name_of_user"
-                                    android:layout_width="match_parent"
+                                    android:id="@+id/status_tv"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:ellipsize="end"
                                     android:maxLines="1"
                                     android:singleLine="true"
-                                    android:text="ADITI WARDANI"
+                                    android:text="Memuat data..."
                                     android:textColor="#B1670B"
                                     android:textSize="13dp"
                                     android:textStyle="bold"
@@ -152,44 +237,24 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
+                                android:layout_marginTop="20dp"
                                 android:layout_marginBottom="2dp"
                                 android:text="Serah Terima Exit Clearance"
                                 android:textColor="#696969"
                                 android:textSize="10dp"
                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                            <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:id="@+id/serah_terima_tv"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Memuat data..."
-                                    android:textColor="#696969"
-                                    android:textSize="14dp"
-                                    android:textStyle="bold"
-                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                <TextView
-                                    android:id="@+id/status_tv"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:gravity="right"
-                                    android:text="Memuat..."
-                                    android:textColor="#D37E00"
-                                    android:textSize="13dp"
-                                    android:textStyle="bold"
-                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,TextContrastCheck" />
-
-                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/serah_terima_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="8dp"
+                                android:text="Memuat data..."
+                                android:textColor="#696969"
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                             <LinearLayout
                                 android:id="@+id/st_1_upload_btn"
@@ -250,6 +315,1750 @@
                                     </LinearLayout>
 
                                 </RelativeLayout>
+
+                            </LinearLayout>
+
+
+                            <!-- ST 1 -->
+                            <LinearLayout
+                                android:id="@+id/st_rincian_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 1 - 1 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="Softcopy"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 1 - 2 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="Laporan"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 1 - 3 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="Seragam Kerja"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 1 - 4 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="Safety Shoes"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TooManyViews" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 1 - 5 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="Kunci Loker"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <!-- ST 2 -->
+                            <LinearLayout
+                                android:id="@+id/st_rincian_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 2 - 1 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="Mobil"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:id="@+id/sk_2_1"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:id="@+id/sm_2_1"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 2 - 2 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="Motor"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:id="@+id/sm_2_2"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:id="@+id/sk_2_2"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <!-- ST 3 -->
+                            <LinearLayout
+                                android:id="@+id/st_rincian_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 3 - 1 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="Notebook"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:id="@+id/sm_3_1"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:id="@+id/sk_3_1"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+                                        android:id="@+id/ket_3_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 3 - 2 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="Email"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:id="@+id/sm_3_2"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:id="@+id/sk_3_2"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+                                        android:id="@+id/ket_3_2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <!-- ST 4 -->
+                            <LinearLayout
+                                android:id="@+id/st_rincian_4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 4 - 1 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="Pinjaman Perusahaan"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <!-- ST 5 -->
+                            <LinearLayout
+                                android:id="@+id/st_rincian_5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 5 - 1 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="Pinjaman Koperasi"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <!-- ST 6 -->
+                            <LinearLayout
+                                android:id="@+id/st_rincian_6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 6 - 1 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="Ijazah"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 6 - 2 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="ID Card"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <!-- ST 6 - 3 -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:text="Ikatan Dinas"
+                                        android:textColor="#B15735"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        tools:ignore="DisableBaselineAlignment">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Masuk"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight=".50"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Saat Keluar"
+                                                android:textColor="#595959"
+                                                android:layout_marginBottom="15dp"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <CheckBox
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:scaleX="1.40"
+                                                android:scaleY="1.40"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint="Ketik keterangan..."
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/verif_part"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:background="#CFCFCF"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="13dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"/>
+
+                                <LinearLayout
+                                    android:id="@+id/verif_btn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="20dp"
+                                    android:background="@drawable/shape_btn_approved"
+                                    android:gravity="center"
+                                    tools:ignore="RtlHardcoded">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="VERIFIKASI"
+                                        android:textColor="@color/white"
+                                        android:textSize="13dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                </LinearLayout>
 
                             </LinearLayout>
 
@@ -327,7 +2136,8 @@
         <com.flipboard.bottomsheet.BottomSheetLayout
             android:id="@+id/bottom_sheet_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="TooManyViews">
 
             <LinearLayout
                 android:orientation="vertical"

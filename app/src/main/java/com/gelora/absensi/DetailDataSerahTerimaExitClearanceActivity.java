@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,10 +37,14 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
 
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
-    LinearLayout actionBar, backBTN, nameCard, lampiranBTN;
-    TextView nameUser, serahTerimaTV, statusTV, tglMasukTV, tglKeluarTV, lampiranTV;
-
-    String role, id_st;
+    LinearLayout actionBar, backBTN, statusCard, lampiranBTN, verifBTN, verifPart;
+    LinearLayout stRincian1, stRincian2, stRincian3, stRincian4, stRincian5, stRincian6;
+    TextView namaKaryawanTV, nikKaryawanTV, detailKaryawanTV, serahTerimaTV, statusTV, tglMasukTV, tglKeluarTV, lampiranTV;
+    ImageView statusGif;
+    String role, id_st, finalApprove;
+    CheckBox sM21, sK21, sM22, sK22;
+    CheckBox sM31, sK31, sM32, sK32;
+    EditText ket31, ket32;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +56,14 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
         actionBar = findViewById(R.id.action_bar);
         backBTN = findViewById(R.id.back_btn);
 
-        nameCard = findViewById(R.id.name_card);
-        nameUser = findViewById(R.id.name_of_user);
+        namaKaryawanTV = findViewById(R.id.nama_karyawan_tv);
+        nikKaryawanTV = findViewById(R.id.nik_karyawan_tv);
+        detailKaryawanTV = findViewById(R.id.detail_karyawan_tv);
+        statusGif = findViewById(R.id.status_gif);
+        verifBTN = findViewById(R.id.verif_btn);
+        verifPart = findViewById(R.id.verif_part);
+
+        statusCard = findViewById(R.id.status_card);
         tglMasukTV = findViewById(R.id.tgl_masuk);
         tglKeluarTV = findViewById(R.id.tgl_keluar);
         serahTerimaTV = findViewById(R.id.serah_terima_tv);
@@ -58,14 +71,33 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
         lampiranBTN = findViewById(R.id.lampiran_btn);
         lampiranTV = findViewById(R.id.lampiran_tv);
 
+        stRincian1 = findViewById(R.id.st_rincian_1);
+        stRincian2 = findViewById(R.id.st_rincian_2);
+        stRincian3 = findViewById(R.id.st_rincian_3);
+        stRincian4 = findViewById(R.id.st_rincian_4);
+        stRincian5 = findViewById(R.id.st_rincian_5);
+        stRincian6 = findViewById(R.id.st_rincian_6);
+
+        sK21 = findViewById(R.id.sk_2_1);
+        sM21 = findViewById(R.id.sm_2_1);
+        sK22 = findViewById(R.id.sk_2_2);
+        sM22 = findViewById(R.id.sm_2_2);
+        ket31 = findViewById(R.id.ket_3_1);
+        ket32 = findViewById(R.id.ket_3_2);
+
+        sK31 = findViewById(R.id.sk_3_1);
+        sM31 = findViewById(R.id.sm_3_1);
+        sK32 = findViewById(R.id.sk_3_2);
+        sM32 = findViewById(R.id.sm_3_2);
+
         role = getIntent().getExtras().getString("role");
         id_st = getIntent().getExtras().getString("id_st");
 
         if(role.equals("me")){
-            nameUser.setText(sharedPrefManager.getSpNama().toUpperCase());
+            namaKaryawanTV.setText(sharedPrefManager.getSpNama().toUpperCase());
         } else if(role.equals("approval")){
             String nama = getIntent().getExtras().getString("nama");
-            nameUser.setText(nama.toUpperCase());
+            namaKaryawanTV.setText(nama.toUpperCase());
         }
 
         actionBar.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +149,10 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                                 JSONObject detail = data.getJSONObject("data");
                                 String id = detail.getString("id");
                                 String id_core = detail.getString("id_core");
+                                String nik_requester = detail.getString("nik_requester");
+                                String jabatan_requester = detail.getString("jabatan_requester");
+                                String bagian_requester = detail.getString("bagian_requester");
+                                String departemen_requester = detail.getString("departemen_requester");
                                 String tgl_masuk = detail.getString("tgl_masuk");
                                 String tgl_keluar = detail.getString("tgl_keluar");
                                 String urutan_st = detail.getString("urutan_st");
@@ -129,24 +165,44 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                                 String bagian_approval = detail.getString("bagian_approval");
                                 String departemen_approval = detail.getString("departemen_approval");
 
+                                nikKaryawanTV.setText(nik_requester);
+                                detailKaryawanTV.setText(jabatan_requester+" | "+bagian_requester+" | "+departemen_requester);
+
                                 tglMasukTV.setText(tgl_masuk.substring(8,10)+"/"+tgl_masuk.substring(5,7)+"/"+tgl_masuk.substring(0,4));
                                 tglKeluarTV.setText(tgl_keluar.substring(8,10)+"/"+tgl_keluar.substring(5,7)+"/"+tgl_keluar.substring(0,4));
 
                                 serahTerimaTV.setText(serah_terima);
                                 if(!approval.equals("null") && approval!=null && !approval.equals("")){
-                                    statusTV.setText("Disetujui");
+                                    finalApprove = "1";
+                                    statusTV.setText("Sudah Diverifikasi");
                                     statusTV.setTextColor(Color.parseColor("#279A2B"));
-                                    nameUser.setTextColor(Color.parseColor("#279A2B"));
-                                    nameCard.setBackgroundResource(R.drawable.shape_attantion_green);
+                                    statusCard.setBackgroundResource(R.drawable.shape_attantion_green);
+                                    statusGif.setPadding(0,0,0,0);
+                                    Glide.with(getApplicationContext())
+                                            .load(R.drawable.success_ic)
+                                            .into(statusGif);
+                                    verifPart.setVisibility(View.GONE);
                                 } else {
+                                    finalApprove = "0";
                                     if(role.equals("me")){
-                                        statusTV.setText("Diproses");
+                                        statusTV.setText("Sedang Diproses");
+                                        verifPart.setVisibility(View.GONE);
                                     } else if(role.equals("approval")){
-                                        statusTV.setText("Menunggu");
+                                        statusTV.setText("Menunggu Verifikasi");
+                                        verifPart.setVisibility(View.VISIBLE);
+                                        verifBTN.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                onBackPressed();
+                                            }
+                                        });
                                     }
                                     statusTV.setTextColor(Color.parseColor("#D37E00"));
-                                    nameUser.setTextColor(Color.parseColor("#D37E00"));
-                                    nameCard.setBackgroundResource(R.drawable.shape_attantion);
+                                    statusCard.setBackgroundResource(R.drawable.shape_attantion);
+                                    statusGif.setPadding(2,2,2,2);
+                                    Glide.with(getApplicationContext())
+                                            .load(R.drawable.process_ic)
+                                            .into(statusGif);
                                 }
 
                                 if(!lampiran.equals("null") && lampiran!=null && !lampiran.equals("")){
@@ -165,6 +221,95 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                                 } else {
                                     lampiranBTN.setVisibility(View.GONE);
                                     lampiranTV.setText("Lampiran tidak tersedia");
+                                }
+
+                                if (urutan_st.equals("1")){
+                                    stRincian1.setVisibility(View.VISIBLE);
+                                    stRincian2.setVisibility(View.GONE);
+                                    stRincian3.setVisibility(View.GONE);
+                                    stRincian4.setVisibility(View.GONE);
+                                    stRincian5.setVisibility(View.GONE);
+                                    stRincian6.setVisibility(View.GONE);
+                                } else if (urutan_st.equals("2")){
+                                    stRincian1.setVisibility(View.GONE);
+                                    stRincian2.setVisibility(View.VISIBLE);
+                                    stRincian3.setVisibility(View.GONE);
+                                    stRincian4.setVisibility(View.GONE);
+                                    stRincian5.setVisibility(View.GONE);
+                                    stRincian6.setVisibility(View.GONE);
+                                    if(finalApprove.equals("1")){
+                                        sK21.setEnabled(false);
+                                        sM21.setEnabled(false);
+                                        sK22.setEnabled(false);
+                                        sM22.setEnabled(false);
+                                    } else {
+                                        if(role.equals("approval")){
+                                            sK21.setEnabled(true);
+                                            sM21.setEnabled(true);
+                                            sK22.setEnabled(true);
+                                            sM22.setEnabled(true);
+                                        } else {
+                                            sK21.setEnabled(false);
+                                            sM21.setEnabled(false);
+                                            sK22.setEnabled(false);
+                                            sM22.setEnabled(false);
+                                        }
+                                    }
+                                } else if (urutan_st.equals("3")){
+                                    stRincian1.setVisibility(View.GONE);
+                                    stRincian2.setVisibility(View.GONE);
+                                    stRincian3.setVisibility(View.VISIBLE);
+                                    stRincian4.setVisibility(View.GONE);
+                                    stRincian5.setVisibility(View.GONE);
+                                    stRincian6.setVisibility(View.GONE);
+                                    if(finalApprove.equals("1")){
+                                        sK31.setEnabled(false);
+                                        sM31.setEnabled(false);
+                                        sK32.setEnabled(false);
+                                        sM32.setEnabled(false);
+
+                                        ket31.setEnabled(false);
+                                        ket32.setEnabled(false);
+                                    } else {
+                                        if(role.equals("approval")){
+                                            sK31.setEnabled(true);
+                                            sM31.setEnabled(true);
+                                            sK32.setEnabled(true);
+                                            sM32.setEnabled(true);
+
+                                            ket31.setEnabled(true);
+                                            ket32.setEnabled(true);
+                                        } else {
+                                            sK31.setEnabled(false);
+                                            sM31.setEnabled(false);
+                                            sK32.setEnabled(false);
+                                            sM32.setEnabled(false);
+
+                                            ket31.setEnabled(false);
+                                            ket32.setEnabled(false);
+                                        }
+                                    }
+                                } else if (urutan_st.equals("4")){
+                                    stRincian1.setVisibility(View.GONE);
+                                    stRincian2.setVisibility(View.GONE);
+                                    stRincian3.setVisibility(View.GONE);
+                                    stRincian4.setVisibility(View.VISIBLE);
+                                    stRincian5.setVisibility(View.GONE);
+                                    stRincian6.setVisibility(View.GONE);
+                                } else if (urutan_st.equals("5")){
+                                    stRincian1.setVisibility(View.GONE);
+                                    stRincian2.setVisibility(View.GONE);
+                                    stRincian3.setVisibility(View.GONE);
+                                    stRincian4.setVisibility(View.GONE);
+                                    stRincian5.setVisibility(View.VISIBLE);
+                                    stRincian6.setVisibility(View.GONE);
+                                } else if (urutan_st.equals("6")){
+                                    stRincian1.setVisibility(View.GONE);
+                                    stRincian2.setVisibility(View.GONE);
+                                    stRincian3.setVisibility(View.GONE);
+                                    stRincian4.setVisibility(View.GONE);
+                                    stRincian5.setVisibility(View.GONE);
+                                    stRincian6.setVisibility(View.VISIBLE);
                                 }
 
                             }
