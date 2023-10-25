@@ -996,7 +996,6 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
         };
 
         requestQueue.add(postRequest);
-
         DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         postRequest.setRetryPolicy(retryPolicy);
