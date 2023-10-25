@@ -145,7 +145,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
         downloadBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String file_url = "https://geloraaksara.co.id/absen-online/Backend/pdf_clearance_form/"+idData;
+                String file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_clearance_form/"+idData;
                 new KAlertDialog(DetailDataExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Perhatian")
                         .setContentText("Unduh File?")
