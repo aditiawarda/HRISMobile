@@ -1293,7 +1293,7 @@
                                     android:paddingRight="20dp"
                                     android:paddingTop="13dp"
                                     android:orientation="vertical"
-
+                                    android:visibility="gone"
                                     android:background="@drawable/shape_attantion_green">
 
                                     <TextView

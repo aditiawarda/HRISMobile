@@ -1,6 +1,9 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
@@ -24,6 +27,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.gelora.absensi.adapter.AdapterDataAlpa;
+import com.gelora.absensi.adapter.AdapterDataDetailSerahTerima;
+import com.gelora.absensi.model.DataAlpa;
+import com.gelora.absensi.model.DataDetailSerahTerima;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
@@ -37,14 +46,23 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
 
     SwipeRefreshLayout refreshLayout;
     SharedPrefManager sharedPrefManager;
-    LinearLayout actionBar, backBTN, statusCard, lampiranBTN, verifBTN, verifPart;
+    LinearLayout actionBar, backBTN, statusCard, lampiranBTN, verifBTN, verifPart, waitingApproval, doneApproval;
     LinearLayout stRincian1, stRincian2, stRincian3, stRincian4, stRincian5, stRincian6;
     TextView namaKaryawanTV, nikKaryawanTV, detailKaryawanTV, serahTerimaTV, statusTV, tglMasukTV, tglKeluarTV, lampiranTV;
     ImageView statusGif;
     String role, id_st, finalApprove;
+    CheckBox sM11, sK11, sM12, sK12, sM13, sK13, sM14, sK14, sM15, sK15;
     CheckBox sM21, sK21, sM22, sK22;
     CheckBox sM31, sK31, sM32, sK32;
-    EditText ket31, ket32;
+    CheckBox sM41, sK41;
+    CheckBox sM51, sK51;
+    CheckBox sM61, sK61, sM62, sK62, sM63, sK63;
+    EditText ket11, ket12, ket13, ket14, ket15, ket21, ket22, ket31, ket32, ket41, ket51, ket61, ket62, ket63;
+
+    RecyclerView serahTerimaRV;
+    TextView tglVerifTV, verifikatorTV;
+    private DataDetailSerahTerima[] dataDetailSerahTerimas;
+    private AdapterDataDetailSerahTerima adapterDataDetailSerahTerima;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +89,9 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
         lampiranBTN = findViewById(R.id.lampiran_btn);
         lampiranTV = findViewById(R.id.lampiran_tv);
 
+        waitingApproval = findViewById(R.id.waiting_approval);
+        doneApproval = findViewById(R.id.done_approval);
+
         stRincian1 = findViewById(R.id.st_rincian_1);
         stRincian2 = findViewById(R.id.st_rincian_2);
         stRincian3 = findViewById(R.id.st_rincian_3);
@@ -78,17 +99,69 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
         stRincian5 = findViewById(R.id.st_rincian_5);
         stRincian6 = findViewById(R.id.st_rincian_6);
 
-        sK21 = findViewById(R.id.sk_2_1);
+        sM11 = findViewById(R.id.sm_1_1);
+        sK11 = findViewById(R.id.sk_1_1);
+        ket11 = findViewById(R.id.ket_1_1);
+
+        sM12 = findViewById(R.id.sm_1_2);
+        sK12 = findViewById(R.id.sk_1_2);
+        ket12 = findViewById(R.id.ket_1_2);
+
+        sM13 = findViewById(R.id.sm_1_3);
+        sK13 = findViewById(R.id.sk_1_3);
+        ket13 = findViewById(R.id.ket_1_3);
+
+        sM14 = findViewById(R.id.sm_1_4);
+        sK14 = findViewById(R.id.sk_1_4);
+        ket14 = findViewById(R.id.ket_1_4);
+
+        sM15 = findViewById(R.id.sm_1_5);
+        sK15 = findViewById(R.id.sk_1_5);
+        ket15 = findViewById(R.id.ket_1_5);
+
         sM21 = findViewById(R.id.sm_2_1);
-        sK22 = findViewById(R.id.sk_2_2);
+        sK21 = findViewById(R.id.sk_2_1);
+        ket21 = findViewById(R.id.ket_2_1);
+
         sM22 = findViewById(R.id.sm_2_2);
+        sK22 = findViewById(R.id.sk_2_2);
+        ket22 = findViewById(R.id.ket_2_2);
+
+        sM31 = findViewById(R.id.sm_3_1);
+        sK31 = findViewById(R.id.sk_3_1);
         ket31 = findViewById(R.id.ket_3_1);
+
+        sM32 = findViewById(R.id.sm_3_2);
+        sK32 = findViewById(R.id.sk_3_2);
         ket32 = findViewById(R.id.ket_3_2);
 
-        sK31 = findViewById(R.id.sk_3_1);
-        sM31 = findViewById(R.id.sm_3_1);
-        sK32 = findViewById(R.id.sk_3_2);
-        sM32 = findViewById(R.id.sm_3_2);
+        sM41 = findViewById(R.id.sm_4_1);
+        sK41 = findViewById(R.id.sk_4_1);
+        ket41 = findViewById(R.id.ket_4_1);
+
+        sM51 = findViewById(R.id.sm_5_1);
+        sK51 = findViewById(R.id.sk_5_1);
+        ket51 = findViewById(R.id.ket_5_1);
+
+        sM61 = findViewById(R.id.sm_6_1);
+        sK61 = findViewById(R.id.sk_6_1);
+        ket61 = findViewById(R.id.ket_6_1);
+
+        sM62 = findViewById(R.id.sm_6_2);
+        sK62 = findViewById(R.id.sk_6_2);
+        ket62 = findViewById(R.id.ket_6_2);
+
+        sM63 = findViewById(R.id.sm_6_3);
+        sK63 = findViewById(R.id.sk_6_3);
+        ket63 = findViewById(R.id.ket_6_3);
+
+        serahTerimaRV = findViewById(R.id.serah_terima_rv);
+        tglVerifTV = findViewById(R.id.tgl_verifikasi_tv);
+        verifikatorTV = findViewById(R.id.verifikator_tv);
+        serahTerimaRV.setLayoutManager(new LinearLayoutManager(this));
+        serahTerimaRV.setHasFixedSize(true);
+        serahTerimaRV.setNestedScrollingEnabled(false);
+        serahTerimaRV.setItemAnimator(new DefaultItemAnimator());
 
         role = getIntent().getExtras().getString("role");
         id_st = getIntent().getExtras().getString("id_st");
@@ -223,93 +296,260 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                                     lampiranTV.setText("Lampiran tidak tersedia");
                                 }
 
-                                if (urutan_st.equals("1")){
-                                    stRincian1.setVisibility(View.VISIBLE);
-                                    stRincian2.setVisibility(View.GONE);
-                                    stRincian3.setVisibility(View.GONE);
-                                    stRincian4.setVisibility(View.GONE);
-                                    stRincian5.setVisibility(View.GONE);
-                                    stRincian6.setVisibility(View.GONE);
-                                } else if (urutan_st.equals("2")){
-                                    stRincian1.setVisibility(View.GONE);
-                                    stRincian2.setVisibility(View.VISIBLE);
-                                    stRincian3.setVisibility(View.GONE);
-                                    stRincian4.setVisibility(View.GONE);
-                                    stRincian5.setVisibility(View.GONE);
-                                    stRincian6.setVisibility(View.GONE);
+                                if(role.equals("approval")){
                                     if(finalApprove.equals("1")){
-                                        sK21.setEnabled(false);
-                                        sM21.setEnabled(false);
-                                        sK22.setEnabled(false);
-                                        sM22.setEnabled(false);
+                                        doneApproval.setVisibility(View.VISIBLE);
+                                        waitingApproval.setVisibility(View.GONE);
+                                        getApprovedData(id_st, urutan_st);
+                                        tglVerifTV.setText("Tanggal verifikasi : "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
+                                        verifikatorTV.setText("Oleh : "+nama_approval);
                                     } else {
-                                        if(role.equals("approval")){
-                                            sK21.setEnabled(true);
-                                            sM21.setEnabled(true);
-                                            sK22.setEnabled(true);
-                                            sM22.setEnabled(true);
-                                        } else {
-                                            sK21.setEnabled(false);
+                                        doneApproval.setVisibility(View.GONE);
+                                        waitingApproval.setVisibility(View.VISIBLE);
+                                        if (urutan_st.equals("1")){
+                                            stRincian1.setVisibility(View.VISIBLE);
+                                            stRincian2.setVisibility(View.GONE);
+                                            stRincian3.setVisibility(View.GONE);
+                                            stRincian4.setVisibility(View.GONE);
+                                            stRincian5.setVisibility(View.GONE);
+                                            stRincian6.setVisibility(View.GONE);
+                                        } else if (urutan_st.equals("2")){
+                                            stRincian1.setVisibility(View.GONE);
+                                            stRincian2.setVisibility(View.VISIBLE);
+                                            stRincian3.setVisibility(View.GONE);
+                                            stRincian4.setVisibility(View.GONE);
+                                            stRincian5.setVisibility(View.GONE);
+                                            stRincian6.setVisibility(View.GONE);
+                                        } else if (urutan_st.equals("3")){
+                                            stRincian1.setVisibility(View.GONE);
+                                            stRincian2.setVisibility(View.GONE);
+                                            stRincian3.setVisibility(View.VISIBLE);
+                                            stRincian4.setVisibility(View.GONE);
+                                            stRincian5.setVisibility(View.GONE);
+                                            stRincian6.setVisibility(View.GONE);
+                                        } else if (urutan_st.equals("4")){
+                                            stRincian1.setVisibility(View.GONE);
+                                            stRincian2.setVisibility(View.GONE);
+                                            stRincian3.setVisibility(View.GONE);
+                                            stRincian4.setVisibility(View.VISIBLE);
+                                            stRincian5.setVisibility(View.GONE);
+                                            stRincian6.setVisibility(View.GONE);
+                                        } else if (urutan_st.equals("5")){
+                                            stRincian1.setVisibility(View.GONE);
+                                            stRincian2.setVisibility(View.GONE);
+                                            stRincian3.setVisibility(View.GONE);
+                                            stRincian4.setVisibility(View.GONE);
+                                            stRincian5.setVisibility(View.VISIBLE);
+                                            stRincian6.setVisibility(View.GONE);
+                                        } else if (urutan_st.equals("6")){
+                                            stRincian1.setVisibility(View.GONE);
+                                            stRincian2.setVisibility(View.GONE);
+                                            stRincian3.setVisibility(View.GONE);
+                                            stRincian4.setVisibility(View.GONE);
+                                            stRincian5.setVisibility(View.GONE);
+                                            stRincian6.setVisibility(View.VISIBLE);
+                                        }
+                                    }
+                                } else if(role.equals("me")){
+                                    if(finalApprove.equals("1")){
+                                        doneApproval.setVisibility(View.VISIBLE);
+                                        waitingApproval.setVisibility(View.GONE);
+                                        getApprovedData(id_st, urutan_st);
+                                        tglVerifTV.setText("Tanggal verifikasi : "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
+                                        verifikatorTV.setText("Oleh : "+nama_approval);
+                                    } else {
+                                        doneApproval.setVisibility(View.GONE);
+                                        waitingApproval.setVisibility(View.VISIBLE);
+                                        if (urutan_st.equals("1")){
+                                            stRincian1.setVisibility(View.VISIBLE);
+                                            stRincian2.setVisibility(View.GONE);
+                                            stRincian3.setVisibility(View.GONE);
+                                            stRincian4.setVisibility(View.GONE);
+                                            stRincian5.setVisibility(View.GONE);
+                                            stRincian6.setVisibility(View.GONE);
+
+                                            sM11.setEnabled(false);
+                                            sK11.setEnabled(false);
+                                            ket11.setEnabled(false);
+                                            ket11.setHint("Belum tersedia...");
+
+                                            sM12.setEnabled(false);
+                                            sK12.setEnabled(false);
+                                            ket12.setEnabled(false);
+                                            ket12.setHint("Belum tersedia...");
+
+                                            sM13.setEnabled(false);
+                                            sK13.setEnabled(false);
+                                            ket13.setEnabled(false);
+                                            ket13.setHint("Belum tersedia...");
+
+                                            sM14.setEnabled(false);
+                                            sK14.setEnabled(false);
+                                            ket14.setEnabled(false);
+                                            ket14.setHint("Belum tersedia...");
+
+                                            sM15.setEnabled(false);
+                                            sK15.setEnabled(false);
+                                            ket15.setEnabled(false);
+                                            ket15.setHint("Belum tersedia...");
+
+                                        } else if (urutan_st.equals("2")){
+                                            stRincian1.setVisibility(View.GONE);
+                                            stRincian2.setVisibility(View.VISIBLE);
+                                            stRincian3.setVisibility(View.GONE);
+                                            stRincian4.setVisibility(View.GONE);
+                                            stRincian5.setVisibility(View.GONE);
+                                            stRincian6.setVisibility(View.GONE);
+
                                             sM21.setEnabled(false);
-                                            sK22.setEnabled(false);
+                                            sK21.setEnabled(false);
+                                            ket21.setEnabled(false);
+                                            ket21.setHint("Belum tersedia...");
+
                                             sM22.setEnabled(false);
-                                        }
-                                    }
-                                } else if (urutan_st.equals("3")){
-                                    stRincian1.setVisibility(View.GONE);
-                                    stRincian2.setVisibility(View.GONE);
-                                    stRincian3.setVisibility(View.VISIBLE);
-                                    stRincian4.setVisibility(View.GONE);
-                                    stRincian5.setVisibility(View.GONE);
-                                    stRincian6.setVisibility(View.GONE);
-                                    if(finalApprove.equals("1")){
-                                        sK31.setEnabled(false);
-                                        sM31.setEnabled(false);
-                                        sK32.setEnabled(false);
-                                        sM32.setEnabled(false);
+                                            sK22.setEnabled(false);
+                                            ket22.setEnabled(false);
+                                            ket22.setHint("Belum tersedia...");
 
-                                        ket31.setEnabled(false);
-                                        ket32.setEnabled(false);
-                                    } else {
-                                        if(role.equals("approval")){
-                                            sK31.setEnabled(true);
-                                            sM31.setEnabled(true);
-                                            sK32.setEnabled(true);
-                                            sM32.setEnabled(true);
+                                        } else if (urutan_st.equals("3")){
+                                            stRincian1.setVisibility(View.GONE);
+                                            stRincian2.setVisibility(View.GONE);
+                                            stRincian3.setVisibility(View.VISIBLE);
+                                            stRincian4.setVisibility(View.GONE);
+                                            stRincian5.setVisibility(View.GONE);
+                                            stRincian6.setVisibility(View.GONE);
 
-                                            ket31.setEnabled(true);
-                                            ket32.setEnabled(true);
-                                        } else {
-                                            sK31.setEnabled(false);
                                             sM31.setEnabled(false);
-                                            sK32.setEnabled(false);
-                                            sM32.setEnabled(false);
-
+                                            sK31.setEnabled(false);
                                             ket31.setEnabled(false);
+                                            ket31.setHint("Belum tersedia...");
+
+                                            sM32.setEnabled(false);
+                                            sK32.setEnabled(false);
                                             ket32.setEnabled(false);
+                                            ket32.setHint("Belum tersedia...");
+
+                                        } else if (urutan_st.equals("4")){
+                                            stRincian1.setVisibility(View.GONE);
+                                            stRincian2.setVisibility(View.GONE);
+                                            stRincian3.setVisibility(View.GONE);
+                                            stRincian4.setVisibility(View.VISIBLE);
+                                            stRincian5.setVisibility(View.GONE);
+                                            stRincian6.setVisibility(View.GONE);
+
+                                            sM41.setEnabled(false);
+                                            sK41.setEnabled(false);
+                                            ket41.setEnabled(false);
+                                            ket41.setHint("Belum tersedia...");
+
+                                        } else if (urutan_st.equals("5")){
+                                            stRincian1.setVisibility(View.GONE);
+                                            stRincian2.setVisibility(View.GONE);
+                                            stRincian3.setVisibility(View.GONE);
+                                            stRincian4.setVisibility(View.GONE);
+                                            stRincian5.setVisibility(View.VISIBLE);
+                                            stRincian6.setVisibility(View.GONE);
+
+                                            sM51.setEnabled(false);
+                                            sK51.setEnabled(false);
+                                            ket51.setEnabled(false);
+                                            ket51.setHint("Belum tersedia...");
+
+                                        } else if (urutan_st.equals("6")){
+                                            stRincian1.setVisibility(View.GONE);
+                                            stRincian2.setVisibility(View.GONE);
+                                            stRincian3.setVisibility(View.GONE);
+                                            stRincian4.setVisibility(View.GONE);
+                                            stRincian5.setVisibility(View.GONE);
+                                            stRincian6.setVisibility(View.VISIBLE);
+
+                                            sM61.setEnabled(false);
+                                            sK61.setEnabled(false);
+                                            ket61.setEnabled(false);
+                                            ket61.setHint("Belum tersedia...");
+
+                                            sM62.setEnabled(false);
+                                            sK62.setEnabled(false);
+                                            ket62.setEnabled(false);
+                                            ket62.setHint("Belum tersedia...");
+
+                                            sM63.setEnabled(false);
+                                            sK63.setEnabled(false);
+                                            ket63.setEnabled(false);
+                                            ket63.setHint("Belum tersedia...");
+
                                         }
+
                                     }
-                                } else if (urutan_st.equals("4")){
-                                    stRincian1.setVisibility(View.GONE);
-                                    stRincian2.setVisibility(View.GONE);
-                                    stRincian3.setVisibility(View.GONE);
-                                    stRincian4.setVisibility(View.VISIBLE);
-                                    stRincian5.setVisibility(View.GONE);
-                                    stRincian6.setVisibility(View.GONE);
-                                } else if (urutan_st.equals("5")){
-                                    stRincian1.setVisibility(View.GONE);
-                                    stRincian2.setVisibility(View.GONE);
-                                    stRincian3.setVisibility(View.GONE);
-                                    stRincian4.setVisibility(View.GONE);
-                                    stRincian5.setVisibility(View.VISIBLE);
-                                    stRincian6.setVisibility(View.GONE);
-                                } else if (urutan_st.equals("6")){
-                                    stRincian1.setVisibility(View.GONE);
-                                    stRincian2.setVisibility(View.GONE);
-                                    stRincian3.setVisibility(View.GONE);
-                                    stRincian4.setVisibility(View.GONE);
-                                    stRincian5.setVisibility(View.GONE);
-                                    stRincian6.setVisibility(View.VISIBLE);
+                                }
+
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("id_st", id);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void getApprovedData(String id, String urutan) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_ec_approved_data";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response);
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")){
+                                if(urutan.equals("3")){
+                                    String data_st = data.getString("data");
+
+                                    GsonBuilder builder =new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    dataDetailSerahTerimas = gson.fromJson(data_st, DataDetailSerahTerima[].class);
+                                    adapterDataDetailSerahTerima = new AdapterDataDetailSerahTerima(dataDetailSerahTerimas,DetailDataSerahTerimaExitClearanceActivity.this);
+                                    serahTerimaRV.setAdapter(adapterDataDetailSerahTerima);
+
+//                                    JSONArray serah_terima = data.getJSONArray("data");
+//                                    for (int i = 0; i < serah_terima.length(); i++) {
+//                                        JSONObject detail_serah_terima = serah_terima.getJSONObject(i);
+//                                        String id_detail_st = detail_serah_terima.getString("id");
+//                                        String id_st = detail_serah_terima.getString("id_st");
+//                                        String id_core = detail_serah_terima.getString("id_core");
+//                                        String serah_terima_detail = detail_serah_terima.getString("serah_terima_detail");
+//
+//                                        Toast.makeText(DetailDataSerahTerimaExitClearanceActivity.this, serah_terima_detail, Toast.LENGTH_SHORT).show();
+//
+//                                    }
                                 }
 
                             }
@@ -325,7 +565,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        //connectionFailed();
+                        connectionFailed();
                     }
                 }
         )
