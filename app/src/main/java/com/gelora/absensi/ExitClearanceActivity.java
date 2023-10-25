@@ -198,7 +198,18 @@ public class ExitClearanceActivity extends AppCompatActivity {
         });
 
         if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || !otoritorEC.equals("0")){
-            optionPart.setVisibility(View.VISIBLE);
+            if(sharedPrefManager.getSpNik().equals("000112092023")){
+                float scale = getResources().getDisplayMetrics().density;
+                int side = (int) (17*scale + 0.5f);
+                int top = (int) (85*scale + 0.5f);
+                int bottom = (int) (20*scale + 0.5f);
+                mainPart.setPadding(side,top,side,bottom);
+                optionPart.setVisibility(View.GONE);
+                dataMasukPart.setVisibility(View.VISIBLE);
+                dataKeluarPart.setVisibility(View.GONE);
+            } else {
+                optionPart.setVisibility(View.VISIBLE);
+            }
         } else if (sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
             float scale = getResources().getDisplayMetrics().density;
             int side = (int) (17*scale + 0.5f);

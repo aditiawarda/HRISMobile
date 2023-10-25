@@ -183,7 +183,18 @@ public class ListNotifikasiFingerscanActivity extends AppCompatActivity {
         });
 
         if (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpIdJabatan().equals("4") && sharedPrefManager.getSpNik().equals("1309131210")) || sharedPrefManager.getSpIdJabatan().equals("33") || sharedPrefManager.getSpIdJabatan().equals("35")){
-            optionPart.setVisibility(View.VISIBLE);
+            if(sharedPrefManager.getSpNik().equals("000112092023")){
+                float scale = getResources().getDisplayMetrics().density;
+                int side = (int) (17*scale + 0.5f);
+                int top = (int) (85*scale + 0.5f);
+                int bottom = (int) (20*scale + 0.5f);
+                mainPart.setPadding(side,top,side,bottom);
+                optionPart.setVisibility(View.GONE);
+                permohonanMasukPart.setVisibility(View.VISIBLE);
+                permohonanSayaPart.setVisibility(View.GONE);
+            } else {
+                optionPart.setVisibility(View.VISIBLE);
+            }
         } else if (sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")) {
             float scale = getResources().getDisplayMetrics().density;
             int side = (int) (17*scale + 0.5f);
