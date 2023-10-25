@@ -293,11 +293,11 @@ public class ExitClearanceActivity extends AppCompatActivity {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
-                                String all_count = data.getString("waiting_count");
+                                String all_count = data.getString("all_count");
                                 String waiting_count = data.getString("waiting_count");
 
                                 if(Integer.parseInt(waiting_count)>0){

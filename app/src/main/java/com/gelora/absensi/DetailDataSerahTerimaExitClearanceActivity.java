@@ -1,6 +1,7 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,6 +32,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterDataAlpa;
 import com.gelora.absensi.adapter.AdapterDataDetailSerahTerima;
+import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataAlpa;
 import com.gelora.absensi.model.DataDetailSerahTerima;
 import com.google.gson.Gson;
@@ -50,7 +54,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
     LinearLayout stRincian1, stRincian2, stRincian3, stRincian4, stRincian5, stRincian6;
     TextView namaKaryawanTV, nikKaryawanTV, detailKaryawanTV, serahTerimaTV, statusTV, tglMasukTV, tglKeluarTV, lampiranTV;
     ImageView statusGif;
-    String role, id_st, finalApprove;
+    String role, id_st, finalApprove, urutanST, idCore;
     CheckBox sM11, sK11, sM12, sK12, sM13, sK13, sM14, sK14, sM15, sK15;
     CheckBox sM21, sK21, sM22, sK22;
     CheckBox sM31, sK31, sM32, sK32;
@@ -63,6 +67,8 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
     TextView tglVerifTV, verifikatorTV;
     private DataDetailSerahTerima[] dataDetailSerahTerimas;
     private AdapterDataDetailSerahTerima adapterDataDetailSerahTerima;
+    KAlertDialog pDialog;
+    private int i = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,6 +206,74 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
             }
         });
 
+        verifBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(DetailDataSerahTerimaExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Verifikasi?")
+                        .setContentText("Yakin untuk diverifikasi sekarang?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+
+                                pDialog = new KAlertDialog(DetailDataSerahTerimaExitClearanceActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1000, 500) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataSerahTerimaExitClearanceActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataSerahTerimaExitClearanceActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataSerahTerimaExitClearanceActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataSerahTerimaExitClearanceActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataSerahTerimaExitClearanceActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (DetailDataSerahTerimaExitClearanceActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+
+                                    public void onFinish() {
+                                        i = -1;
+                                        checkSignature();
+                                    }
+                                }.start();
+
+                            }
+                        })
+                        .show();
+
+            }
+        });
+
         getData(id_st);
 
     }
@@ -237,6 +311,8 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                                 String jabatan_aproval = detail.getString("jabatan_aproval");
                                 String bagian_approval = detail.getString("bagian_approval");
                                 String departemen_approval = detail.getString("departemen_approval");
+                                urutanST = urutan_st;
+                                idCore = id_core;
 
                                 nikKaryawanTV.setText(nik_requester);
                                 detailKaryawanTV.setText(jabatan_requester+" | "+bagian_requester+" | "+departemen_requester);
@@ -263,12 +339,6 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                                     } else if(role.equals("approval")){
                                         statusTV.setText("Menunggu Verifikasi");
                                         verifPart.setVisibility(View.VISIBLE);
-                                        verifBTN.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                onBackPressed();
-                                            }
-                                        });
                                     }
                                     statusTV.setTextColor(Color.parseColor("#D37E00"));
                                     statusCard.setBackgroundResource(R.drawable.shape_attantion);
@@ -565,6 +635,371 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
         };
 
         requestQueue.add(postRequest);
+
+    }
+
+    private void checkSignature(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cek_ttd_digital";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if (status.equals("Available")){
+                                String signature = data.getString("data");
+                                String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
+                                updateApproved();
+                            } else {
+                                pDialog.setTitleText("Perhatian")
+                                        .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")
+                                        .setCancelText(" BATAL ")
+                                        .setConfirmText("LANJUT")
+                                        .showCancelButton(true)
+                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                Intent intent = new Intent(DetailDataSerahTerimaExitClearanceActivity.this, DigitalSignatureActivity.class);
+                                                intent.putExtra("kode", "form");
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.WARNING_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("NIK", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void updateApproved(){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/approval_st_exit_clearance";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                getData(id_st);
+                                pDialog.setTitleText("Berhasil Disetujui")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            } else {
+                                pDialog.setTitleText("Gagal Disetujui")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("urutan_st", urutanST);
+                params.put("id_core", idCore);
+                params.put("id_st", id_st);
+                params.put("NIK", sharedPrefManager.getSpNik());
+
+                if(urutanST.equals("1")){
+                    String sm11, sk11;
+                    if(sM11.isChecked()){
+                        sm11 = "1";
+                    } else {
+                        sm11 = "0";
+                    }
+
+                    if(sK11.isChecked()){
+                        sk11 = "1";
+                    } else {
+                        sk11 = "0";
+                    }
+
+                    String valueString11 = "Softcopy"+"-"+sm11+"-"+sk11+"-"+ket11.getText().toString();
+                    params.put("value_string_11", valueString11);
+
+                    String sm12, sk12;
+                    if(sM12.isChecked()){
+                        sm12 = "1";
+                    } else {
+                        sm12 = "0";
+                    }
+
+                    if(sK12.isChecked()){
+                        sk12 = "1";
+                    } else {
+                        sk12 = "0";
+                    }
+
+                    String valueString12 = "Laporan"+"-"+sm12+"-"+sk12+"-"+ket12.getText().toString();
+                    params.put("value_string_12", valueString12);
+
+                    String sm13, sk13;
+                    if(sM13.isChecked()){
+                        sm13 = "1";
+                    } else {
+                        sm13 = "0";
+                    }
+
+                    if(sK13.isChecked()){
+                        sk13 = "1";
+                    } else {
+                        sk13 = "0";
+                    }
+
+                    String valueString13 = "Seragam Kerja"+"-"+sm13+"-"+sk13+"-"+ket13.getText().toString();
+                    params.put("value_string_13", valueString13);
+
+                    String sm14, sk14;
+                    if(sM14.isChecked()){
+                        sm14 = "1";
+                    } else {
+                        sm14 = "0";
+                    }
+
+                    if(sK14.isChecked()){
+                        sk14 = "1";
+                    } else {
+                        sk14 = "0";
+                    }
+
+                    String valueString14 = "Safety Shoes"+"-"+sm14+"-"+sk14+"-"+ket14.getText().toString();
+                    params.put("value_string_14", valueString14);
+
+                    String sm15, sk15;
+                    if(sM15.isChecked()){
+                        sm15 = "1";
+                    } else {
+                        sm15 = "0";
+                    }
+
+                    if(sK15.isChecked()){
+                        sk15 = "1";
+                    } else {
+                        sk15 = "0";
+                    }
+
+                    String valueString15 = "Kunci Loker"+"-"+sm15+"-"+sk15+"-"+ket15.getText().toString();
+                    params.put("value_string_15", valueString15);
+
+                } else if(urutanST.equals("2")){
+                    String sm21, sk21;
+                    if(sM21.isChecked()){
+                        sm21 = "1";
+                    } else {
+                        sm21 = "0";
+                    }
+
+                    if(sK21.isChecked()){
+                        sk21 = "1";
+                    } else {
+                        sk21 = "0";
+                    }
+
+                    String valueString21 = "Mobil"+"-"+sm21+"-"+sk21+"-"+ket21.getText().toString();
+                    params.put("value_string_21", valueString21);
+
+                    String sm22, sk22;
+                    if(sM22.isChecked()){
+                        sm22 = "1";
+                    } else {
+                        sm22 = "0";
+                    }
+
+                    if(sK22.isChecked()){
+                        sk22 = "1";
+                    } else {
+                        sk22 = "0";
+                    }
+
+                    String valueString22 = "Motor"+"-"+sm22+"-"+sk22+"-"+ket22.getText().toString();
+                    params.put("value_string_22", valueString22);
+
+                } else if(urutanST.equals("3")){
+                    String sm31, sk31;
+                    if(sM31.isChecked()){
+                        sm31 = "1";
+                    } else {
+                        sm31 = "0";
+                    }
+
+                    if(sK31.isChecked()){
+                        sk31 = "1";
+                    } else {
+                        sk31 = "0";
+                    }
+
+                    String valueString31 = "Notebook"+"-"+sm31+"-"+sk31+"-"+ket31.getText().toString();
+                    params.put("value_string_31", valueString31);
+
+                    String sm32, sk32;
+                    if(sM32.isChecked()){
+                        sm32 = "1";
+                    } else {
+                        sm32 = "0";
+                    }
+
+                    if(sK32.isChecked()){
+                        sk32 = "1";
+                    } else {
+                        sk32 = "0";
+                    }
+
+                    String valueString32 = "Email"+"-"+sm32+"-"+sk32+"-"+ket32.getText().toString();
+                    params.put("value_string_32", valueString32);
+
+                } else if(urutanST.equals("4")){
+                    String sm41, sk41;
+                    if(sM41.isChecked()){
+                        sm41 = "1";
+                    } else {
+                        sm41 = "0";
+                    }
+
+                    if(sK41.isChecked()){
+                        sk41 = "1";
+                    } else {
+                        sk41 = "0";
+                    }
+
+                    String valueString41 = "Pinjaman Perusahaan"+"-"+sm41+"-"+sk41+"-"+ket41.getText().toString();
+                    params.put("value_string_41", valueString41);
+
+                } else if(urutanST.equals("5")){
+                    String sm51, sk51;
+                    if(sM51.isChecked()){
+                        sm51 = "1";
+                    } else {
+                        sm51 = "0";
+                    }
+
+                    if(sK51.isChecked()){
+                        sk51 = "1";
+                    } else {
+                        sk51 = "0";
+                    }
+
+                    String valueString51 = "Pinjaman Koperasi"+"-"+sm51+"-"+sk51+"-"+ket51.getText().toString();
+                    params.put("value_string_51", valueString51);
+
+                } else if(urutanST.equals("6")){
+                    String sm61, sk61;
+                    if(sM61.isChecked()){
+                        sm61 = "1";
+                    } else {
+                        sm61 = "0";
+                    }
+
+                    if(sK61.isChecked()){
+                        sk61 = "1";
+                    } else {
+                        sk61 = "0";
+                    }
+
+                    String valueString61 = "Ijazah"+"-"+sm61+"-"+sk61+"-"+ket61.getText().toString();
+                    params.put("value_string_61", valueString61);
+
+                    String sm62, sk62;
+                    if(sM62.isChecked()){
+                        sm62 = "1";
+                    } else {
+                        sm62 = "0";
+                    }
+
+                    if(sK62.isChecked()){
+                        sk62 = "1";
+                    } else {
+                        sk62 = "0";
+                    }
+
+                    String valueString62 = "ID Card"+"-"+sm62+"-"+sk62+"-"+ket62.getText().toString();
+                    params.put("value_string_62", valueString62);
+
+                    String sm63, sk63;
+                    if(sM63.isChecked()){
+                        sm63 = "1";
+                    } else {
+                        sm63 = "0";
+                    }
+
+                    if(sK63.isChecked()){
+                        sk63 = "1";
+                    } else {
+                        sk63 = "0";
+                    }
+
+                    String valueString63 = "Ikatan Dinas"+"-"+sm63+"-"+sk63+"-"+ket63.getText().toString();
+                    params.put("value_string_63", valueString63);
+
+                }
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
 
     }
 
