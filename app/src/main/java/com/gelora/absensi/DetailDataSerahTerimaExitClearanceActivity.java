@@ -300,7 +300,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                                     if(finalApprove.equals("1")){
                                         doneApproval.setVisibility(View.VISIBLE);
                                         waitingApproval.setVisibility(View.GONE);
-                                        getApprovedData(id_st, urutan_st);
+                                        getApprovedData(id_st);
                                         tglVerifTV.setText("Tanggal verifikasi : "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                         verifikatorTV.setText("Oleh : "+nama_approval);
                                     } else {
@@ -354,7 +354,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                                     if(finalApprove.equals("1")){
                                         doneApproval.setVisibility(View.VISIBLE);
                                         waitingApproval.setVisibility(View.GONE);
-                                        getApprovedData(id_st, urutan_st);
+                                        getApprovedData(id_st);
                                         tglVerifTV.setText("Tanggal verifikasi : "+tgl_approval.substring(8,10)+"/"+tgl_approval.substring(5,7)+"/"+tgl_approval.substring(0,4));
                                         verifikatorTV.setText("Oleh : "+nama_approval);
                                     } else {
@@ -481,8 +481,8 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                                         }
 
                                     }
-                                }
 
+                                }
 
                             }
 
@@ -515,7 +515,7 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
 
     }
 
-    private void getApprovedData(String id, String urutan) {
+    private void getApprovedData(String id) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_ec_approved_data";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -530,30 +530,15 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
-                                if(urutan.equals("3")){
-                                    String data_st = data.getString("data");
-
-                                    GsonBuilder builder =new GsonBuilder();
-                                    Gson gson = builder.create();
-                                    dataDetailSerahTerimas = gson.fromJson(data_st, DataDetailSerahTerima[].class);
-                                    adapterDataDetailSerahTerima = new AdapterDataDetailSerahTerima(dataDetailSerahTerimas,DetailDataSerahTerimaExitClearanceActivity.this);
-                                    serahTerimaRV.setAdapter(adapterDataDetailSerahTerima);
-
-//                                    JSONArray serah_terima = data.getJSONArray("data");
-//                                    for (int i = 0; i < serah_terima.length(); i++) {
-//                                        JSONObject detail_serah_terima = serah_terima.getJSONObject(i);
-//                                        String id_detail_st = detail_serah_terima.getString("id");
-//                                        String id_st = detail_serah_terima.getString("id_st");
-//                                        String id_core = detail_serah_terima.getString("id_core");
-//                                        String serah_terima_detail = detail_serah_terima.getString("serah_terima_detail");
-//
-//                                        Toast.makeText(DetailDataSerahTerimaExitClearanceActivity.this, serah_terima_detail, Toast.LENGTH_SHORT).show();
-//
-//                                    }
-                                }
-
+                                String data_st = data.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                dataDetailSerahTerimas = gson.fromJson(data_st, DataDetailSerahTerima[].class);
+                                adapterDataDetailSerahTerima = new AdapterDataDetailSerahTerima(dataDetailSerahTerimas,DetailDataSerahTerimaExitClearanceActivity.this);
+                                serahTerimaRV.setAdapter(adapterDataDetailSerahTerima);
+                            } else {
+                                connectionFailed();
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
