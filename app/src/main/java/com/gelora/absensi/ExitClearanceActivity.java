@@ -333,6 +333,10 @@ public class ExitClearanceActivity extends AppCompatActivity {
                                     loadingDataPart.setVisibility(View.GONE);
                                     dataInRV.setVisibility(View.GONE);
                                 }
+                            } else {
+                                noDataPart.setVisibility(View.VISIBLE);
+                                loadingDataPart.setVisibility(View.GONE);
+                                dataInRV.setVisibility(View.GONE);
                             }
 
                         } catch (JSONException e) {

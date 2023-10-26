@@ -1391,7 +1391,7 @@
                                                 <LinearLayout
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_marginBottom="2dp"
+                                                    android:layout_marginBottom="8dp"
                                                     android:orientation="horizontal">
 
                                                     <TextView
@@ -1421,6 +1421,7 @@
                                                             android:id="@+id/syarat_penerimaan_tv"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
+                                                            android:lineSpacingExtra="3dp"
                                                             android:text="......................................................."
                                                             android:textColor="#515151"
                                                             android:textSize="7dp"
