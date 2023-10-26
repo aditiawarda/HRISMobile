@@ -725,11 +725,11 @@ public class DetailDataSerahTerimaExitClearanceActivity extends AppCompatActivit
 
                             if(status.equals("Success")){
                                 getData(id_st);
-                                pDialog.setTitleText("Berhasil Disetujui")
+                                pDialog.setTitleText("Berhasil Diverifikasi")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.SUCCESS_TYPE);
                             } else {
-                                pDialog.setTitleText("Gagal Disetujui")
+                                pDialog.setTitleText("Gagal Diverifikasi")
                                         .setConfirmText("    OK    ")
                                         .changeAlertType(KAlertDialog.ERROR_TYPE);
                             }

@@ -2091,7 +2091,7 @@
                                             android:id="@+id/verifikasi_part"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginTop="15dp"
+                                            android:layout_marginTop="8dp"
                                             android:layout_marginBottom="10dp"
                                             android:paddingBottom="15dp"
                                             android:paddingLeft="20dp"
@@ -2161,7 +2161,7 @@
                                     android:id="@+id/verif_btn"
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
-                                    android:layout_marginTop="20dp"
+                                    android:layout_marginTop="10dp"
                                     android:background="@drawable/shape_btn_approved"
                                     android:gravity="center"
                                     tools:ignore="RtlHardcoded">

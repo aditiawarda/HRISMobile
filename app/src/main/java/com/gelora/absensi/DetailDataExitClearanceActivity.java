@@ -694,7 +694,7 @@ public class DetailDataExitClearanceActivity extends AppCompatActivity {
                                     approveHRD.setVisibility(View.VISIBLE);
                                     waitingApproveHRD.setVisibility(View.GONE);
                                     tglApproveHRD.setText("Tanggal verifikasi : "+tgl_approve_hrd.substring(8,10)+"/"+tgl_approve_hrd.substring(5,7)+"/"+tgl_approve_hrd.substring(0,4));
-                                    approverHRD.setText(nama_hrd);
+                                    approverHRD.setText("Oleh : "+nama_hrd);
                                     statusGif.setPadding(0,0,0,0);
                                     Glide.with(getApplicationContext())
                                             .load(R.drawable.success_ic)
