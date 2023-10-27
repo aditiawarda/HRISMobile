@@ -416,6 +416,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String persetujuan             = dataArray.getString("persetujuan");
                                 String id_departemen           = dataArray.getString("id_departemen");
                                 String id_bagian               = dataArray.getString("id_bagian");
+                                String id_penilaian               = dataArray.getString("id_penilaian");
 
                                 if(catatan.equals("null")){
                                     catatan = "";
@@ -626,12 +627,31 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             }
                                         }
 
+                                        if(keterangan.equals("2")){
+                                            lihatPenilaianBTN.setVisibility(View.VISIBLE);
+                                            lihatPenilaianBTN.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailFormSdmActivity.this, DetailPenilaianKaryawanActivity.class);
+                                                    intent.putExtra("id_penilaian",id_penilaian);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        } else {
+                                            lihatPenilaianBTN.setVisibility(View.GONE);
+                                        }
+
                                     } else if(status_approve_kabag.equals("2")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
                                     } else if(status_approve_kabag.equals("0")){
                                         if(keterangan.equals("2")){
-                                            cekPenilaianKaryawan(nik);
+                                            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")){
+                                                cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record);
+                                            } else {
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.GONE);
+                                            }
                                         } else {
                                             accMark.setVisibility(View.GONE);
                                             rejMark.setVisibility(View.GONE);
@@ -873,7 +893,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
     }
 
-    private void cekPenilaianKaryawan(String nik){
+    private void cekPenilaianKaryawan(String nik, String nama, String id_bagian, String id_departemen, String id_form){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/cek_data_penilaian_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -887,10 +907,38 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Available")) {
+                                String last_id = data.getString("last_id");
                                 penilaianBTN.setVisibility(View.GONE);
                                 lihatPenilaianBTN.setVisibility(View.VISIBLE);
+                                lihatPenilaianBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(DetailFormSdmActivity.this, DetailPenilaianKaryawanActivity.class);
+                                        intent.putExtra("id_penilaian",last_id);
+                                        startActivity(intent);
+                                    }
+                                });
+
+                                accMark.setVisibility(View.GONE);
+                                rejMark.setVisibility(View.GONE);
+                                if(sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
+                                    actionPart.setVisibility(View.VISIBLE);
+                                } else {
+                                    actionPart.setVisibility(View.GONE);
+                                }
+
                             } else {
                                 penilaianBTN.setVisibility(View.VISIBLE);
+                                penilaianBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(DetailFormSdmActivity.this, FormPenilaianKaryawanActivity.class);
+                                        intent.putExtra("nik_karyawan", nik);
+                                        intent.putExtra("nama_karyawan", nama);
+                                        intent.putExtra("id_form_sdm", id_form);
+                                        startActivity(intent);
+                                    }
+                                });
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -1113,6 +1161,12 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
     }
 
 }

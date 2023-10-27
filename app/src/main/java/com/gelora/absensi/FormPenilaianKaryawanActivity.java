@@ -181,7 +181,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
     TextView fp_total_nilai;
     TextView fp_predikat;
     int totalNilai = 0;
-    String listRating = "";
+    String listRating = "", idFormSDM = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -332,6 +332,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
 
         nikKaryawan = getIntent().getExtras().getString("nik_karyawan");
         namaKaryawan = getIntent().getExtras().getString("nama_karyawan");
+        idFormSDM = getIntent().getExtras().getString("id_form_sdm");
 
         if(!nikKaryawan.equals("") && !namaKaryawan.equals("")){
             namaKaryawanTV.setText(namaKaryawan.toUpperCase());
@@ -1261,6 +1262,7 @@ public class FormPenilaianKaryawanActivity extends AppCompatActivity {
                 params.put("status", statusKelulusan);
                 params.put("no_frm", "FRM.HRD.01.04/ rev-1");
                 params.put("list_rating", listRating);
+                params.put("id_form_sdm", idFormSDM);
 
                 return params;
             }

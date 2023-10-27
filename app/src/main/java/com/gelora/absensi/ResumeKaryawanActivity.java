@@ -204,6 +204,7 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                             Intent intent = new Intent(ResumeKaryawanActivity.this, FormPenilaianKaryawanActivity.class);
                                             intent.putExtra("nik_karyawan", nik);
                                             intent.putExtra("nama_karyawan", nama);
+                                            intent.putExtra("id_form_sdm", "0");
                                             startActivity(intent);
                                         }
                                     });
@@ -216,6 +217,7 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                                 Intent intent = new Intent(ResumeKaryawanActivity.this, FormPenilaianKaryawanActivity.class);
                                                 intent.putExtra("nik_karyawan", nik);
                                                 intent.putExtra("nama_karyawan", nama);
+                                                intent.putExtra("id_form_sdm", "0");
                                                 startActivity(intent);
                                             }
                                         });

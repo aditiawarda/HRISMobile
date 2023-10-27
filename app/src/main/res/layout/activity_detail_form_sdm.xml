@@ -108,7 +108,7 @@
                                         android:textSize="13dp"
                                         android:textColor="@color/white"
                                         android:text="ISI PENILAIAN SDM"
-                                        tools:ignore="HardcodedText,SpUsage" />
+                                        tools:ignore="HardcodedText,SpUsage,TooDeepLayout" />
 
                                 </LinearLayout>
 
@@ -957,7 +957,8 @@
                                                 android:background="#000000"
                                                 android:layout_width="match_parent"
                                                 android:layout_marginTop="-1dp"
-                                                android:layout_height="0dp">
+                                                android:layout_height="0dp"
+                                                tools:ignore="TooManyViews">
 
                                                 <TextView
                                                     android:layout_width="0dp"
@@ -2750,6 +2751,7 @@
                                     android:id="@+id/lihat_penilaian_btn"
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
+                                    android:layout_marginBottom="15dp"
                                     android:background="@drawable/shape_btn_edit_permohonan"
                                     android:gravity="center"
                                     android:visibility="gone"
