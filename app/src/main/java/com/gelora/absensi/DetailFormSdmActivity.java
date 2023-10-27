@@ -958,6 +958,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("NIK", nik);
+                params.put("id_form", id_form);
                 return params;
             }
         };

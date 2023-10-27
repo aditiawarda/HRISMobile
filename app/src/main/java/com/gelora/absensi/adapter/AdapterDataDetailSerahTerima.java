@@ -66,7 +66,7 @@ public class AdapterDataDetailSerahTerima extends RecyclerView.Adapter<AdapterDa
         }
 
         if(String.valueOf(dataDetailSerahTerima.getKeterangan()).equals("null") || String.valueOf(dataDetailSerahTerima.getKeterangan()).equals("")){
-            myViewHolder.ketTV.setText("Tidak tersedia");
+            myViewHolder.ketTV.setText("");
         } else {
             myViewHolder.ketTV.setText(dataDetailSerahTerima.getKeterangan());
         }
