@@ -6,6 +6,7 @@ public class DataFormSDM {
     private String id;
     private String keterangan;
     private String nama;
+    private String penerimaan_jabatan;
     private String status_approve_kabag;
     private String status_approve_kadept;
     private String status_approve_direktur;
@@ -35,6 +36,14 @@ public class DataFormSDM {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public String getPenerimaan_jabatan() {
+        return penerimaan_jabatan;
+    }
+
+    public void setPenerimaan_jabatan(String penerimaan_jabatan) {
+        this.penerimaan_jabatan = penerimaan_jabatan;
     }
 
     public String getStatus_approve_kabag() {

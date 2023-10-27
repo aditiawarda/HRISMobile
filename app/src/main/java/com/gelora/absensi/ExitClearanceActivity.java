@@ -220,6 +220,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
             dataMasukPart.setVisibility(View.VISIBLE);
             dataKeluarPart.setVisibility(View.GONE);
         } else {
+            addBTN.setVisibility(View.VISIBLE);
             float scale = getResources().getDisplayMetrics().density;
             int side = (int) (17*scale + 0.5f);
             int top = (int) (85*scale + 0.5f);
@@ -260,7 +261,11 @@ public class ExitClearanceActivity extends AppCompatActivity {
                                 adapterExitClearanceOut = new AdapterExitClearanceOut(listDataExitClearanceOuts,ExitClearanceActivity.this);
                                 dataOutRV.setAdapter(adapterExitClearanceOut);
                             } else {
-                                addBTN.setVisibility(View.VISIBLE);
+                                if(String.valueOf(dataMasukPart.getVisibility()).equals("0")){
+                                    addBTN.setVisibility(View.GONE);
+                                } else {
+                                    addBTN.setVisibility(View.VISIBLE);
+                                }
                                 noDataPart2.setVisibility(View.VISIBLE);
                                 loadingDataPart2.setVisibility(View.GONE);
                                 dataOutRV.setVisibility(View.GONE);

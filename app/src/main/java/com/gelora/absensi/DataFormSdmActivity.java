@@ -121,19 +121,32 @@ public class DataFormSdmActivity extends AppCompatActivity {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
                                 String jumlah = data.getString("jumlah");
-                                String waiting = data.getString("waiting");
-                                if(Integer.parseInt(waiting)>0){
-                                    countWaitingBTN.setVisibility(View.VISIBLE);
-                                    countWaitingTV.setText(waiting);
-                                } else {
-                                    countWaitingBTN.setVisibility(View.GONE);
-                                    countWaitingTV.setText("");
+                                String waiting_kadep = data.getString("waiting_kadep");
+                                String waiting_kabag = data.getString("waiting_kabag");
+
+                                if(sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")){
+                                    if(Integer.parseInt(waiting_kadep)>0){
+                                        countWaitingBTN.setVisibility(View.VISIBLE);
+                                        countWaitingTV.setText(waiting_kadep);
+                                    } else {
+                                        countWaitingBTN.setVisibility(View.GONE);
+                                        countWaitingTV.setText("");
+                                    }
+                                } else if(sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
+                                    if(Integer.parseInt(waiting_kabag)>0){
+                                        countWaitingBTN.setVisibility(View.VISIBLE);
+                                        countWaitingTV.setText(waiting_kabag);
+                                    } else {
+                                        countWaitingBTN.setVisibility(View.GONE);
+                                        countWaitingTV.setText("");
+                                    }
                                 }
+
                                 if(Integer.parseInt(jumlah)>0){
                                     noDataPart.setVisibility(View.GONE);
                                     loadingDataPart.setVisibility(View.GONE);

@@ -43,9 +43,9 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:layout_marginTop="23dp"
+                    android:layout_marginTop="17dp"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="28dp"
+                    android:layout_marginRight="23dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:ignore="RtlHardcoded">
@@ -56,6 +56,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="0.5dp"
                         android:text=""
+                        android:textStyle="bold"
                         android:textColor="#C16D02"
                         android:textSize="12dp"
                         tools:ignore="SpUsage" />
@@ -118,9 +119,9 @@
 
                 <TextView
                     android:id="@+id/atas_nama_tv"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="28dp"
+                    android:layout_marginRight="23dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="0.5dp"
@@ -132,7 +133,7 @@
                 <TextView
                     android:id="@+id/line_limit"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="28dp"
+                    android:layout_marginRight="23dp"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="10dp"
@@ -146,16 +147,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginRight="23dp"
+                    android:layout_marginBottom="10dp"
                     android:text="-"
                     android:textColor="#BF7517"
                     android:textSize="13dp"
                     android:textStyle="italic"
-                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 <RelativeLayout
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="28dp"
                     android:layout_width="match_parent"
@@ -172,7 +173,7 @@
                             android:id="@+id/waiting_mark"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="2dp"
                             android:orientation="horizontal"
                             android:visibility="gone"
                             android:gravity="center">
@@ -204,9 +205,8 @@
                         android:id="@+id/timestamp_data_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="18dp"
-                        android:gravity="right"
+                        android:gravity="right|bottom"
                         android:text="-"
                         android:textColor="#979797"
                         android:textSize="10dp"

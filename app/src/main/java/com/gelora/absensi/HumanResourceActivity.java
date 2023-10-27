@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class HumanResourceActivity extends AppCompatActivity {
 
-    LinearLayout countNotificationSDM, searchOtherPart, backBTN, formSdmBTN, penilaianSdmBTN, loadingDataPart, noDataPart, countNotificationPenilaian;
+    LinearLayout listSdmPart, countNotificationSDM, searchOtherPart, backBTN, formSdmBTN, penilaianSdmBTN, loadingDataPart, noDataPart, countNotificationPenilaian;
     TextView titleSDM, dataSelengkapnyaBTN, searchOtherBTN, countNotifPenilaianTV, countNotifSdmTV;
     ImageView loadingDataRecord;
     SharedPrefManager sharedPrefManager;
@@ -69,6 +69,7 @@ public class HumanResourceActivity extends AppCompatActivity {
         countNotifPenilaianTV = findViewById(R.id.count_notif_penilaian_tv);
         countNotificationSDM = findViewById(R.id.count_notification_sdm);
         countNotifSdmTV = findViewById(R.id.count_notif_sdm_tv);
+        listSdmPart = findViewById(R.id.list_sdm_part);
 
         dataListKaryawanRV = findViewById(R.id.data_absensi_rv);
 
@@ -80,6 +81,14 @@ public class HumanResourceActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
                 .into(loadingDataRecord);
+
+        String list_sdm_visibity = getIntent().getExtras().getString("list_sdm_visibity");
+
+        if(list_sdm_visibity.equals("1")){
+            listSdmPart.setVisibility(View.VISIBLE);
+        } else {
+            listSdmPart.setVisibility(View.GONE);
+        }
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -146,7 +155,7 @@ public class HumanResourceActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void getData() {
 
-        if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){
+        if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")){
             getWaitingConfirm();
         }
 
@@ -168,7 +177,7 @@ public class HumanResourceActivity extends AppCompatActivity {
                         JSONObject data = null;
                         try {
                             searchOtherBTN.setVisibility(View.VISIBLE);
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
@@ -228,7 +237,7 @@ public class HumanResourceActivity extends AppCompatActivity {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
@@ -276,6 +285,7 @@ public class HumanResourceActivity extends AppCompatActivity {
         };
 
         requestQueue.add(postRequest);
+
     }
 
     private void connectionFailed(){

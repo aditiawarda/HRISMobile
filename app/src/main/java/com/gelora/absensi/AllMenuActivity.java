@@ -406,13 +406,30 @@ public class AllMenuActivity extends AppCompatActivity {
                 idCardPartSub.setVisibility(View.VISIBLE);
                 pengaduanPartSub.setVisibility(View.VISIBLE);
             } else {
-                cardPart.setVisibility(View.VISIBLE);
-                sdmPart.setVisibility(View.GONE);
+                if(sharedPrefManager.getSpIdJabatan().equals("1")){
+                    cardPart.setVisibility(View.GONE);
+                    sdmPart.setVisibility(View.VISIBLE);
 
-                newsPartSub.setVisibility(View.VISIBLE);
-                calendarPartSub.setVisibility(View.VISIBLE);
-                idCardPartSub.setVisibility(View.GONE);
-                pengaduanPartSub.setVisibility(View.VISIBLE);
+                    newsPartSub.setVisibility(View.VISIBLE);
+                    calendarPartSub.setVisibility(View.VISIBLE);
+                    idCardPartSub.setVisibility(View.VISIBLE);
+                    pengaduanPartSub.setVisibility(View.VISIBLE);
+                    menuSdmBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(AllMenuActivity.this, DataFormSdmActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                } else {
+                    cardPart.setVisibility(View.VISIBLE);
+                    sdmPart.setVisibility(View.GONE);
+
+                    newsPartSub.setVisibility(View.VISIBLE);
+                    calendarPartSub.setVisibility(View.VISIBLE);
+                    idCardPartSub.setVisibility(View.GONE);
+                    pengaduanPartSub.setVisibility(View.VISIBLE);
+                }
             }
 
         } else {

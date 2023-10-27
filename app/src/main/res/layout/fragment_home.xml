@@ -983,46 +983,6 @@
                                         android:orientation="vertical">
 
                                         <LinearLayout
-                                            android:id="@+id/menu_signature_btn"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="65dp"
-                                            android:background="@drawable/shape_menu_4"
-                                            android:orientation="vertical"
-                                            android:padding="10dp">
-
-                                            <ImageView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:scaleType="fitCenter"
-                                                android:src="@drawable/icon_signature"
-                                                tools:ignore="ContentDescription" />
-
-                                        </LinearLayout>
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="3dp"
-                                            android:ellipsize="end"
-                                            android:gravity="center"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="Signature"
-                                            android:textColor="#515151"
-                                            android:textSize="12dp"
-                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="90dp"
-                                        android:layout_marginLeft="15dp"
-                                        android:layout_marginRight="15dp"
-                                        android:layout_weight=".25"
-                                        android:orientation="vertical">
-
-                                        <LinearLayout
                                             android:id="@+id/clearance_part"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
@@ -1042,7 +1002,7 @@
                                                         android:id="@+id/menu_clearance_btn"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="65dp"
-                                                        android:background="@drawable/shape_menu_1"
+                                                        android:background="@drawable/shape_menu_4"
                                                         android:orientation="vertical"
                                                         android:padding="10dp">
 
@@ -1112,7 +1072,7 @@
                                                 android:id="@+id/menu_calendar_btn"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="65dp"
-                                                android:background="@drawable/shape_menu_1"
+                                                android:background="@drawable/shape_menu_4"
                                                 android:orientation="vertical"
                                                 android:padding="10dp">
 
@@ -1139,6 +1099,46 @@
                                                 tools:ignore="HardcodedText,SpUsage" />
 
                                         </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="90dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_weight=".25"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:id="@+id/menu_signature_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="65dp"
+                                            android:background="@drawable/shape_menu_1"
+                                            android:orientation="vertical"
+                                            android:padding="10dp">
+
+                                            <ImageView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:scaleType="fitCenter"
+                                                android:src="@drawable/icon_signature"
+                                                tools:ignore="ContentDescription" />
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Signature"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     </LinearLayout>
 

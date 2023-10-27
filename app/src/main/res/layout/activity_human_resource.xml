@@ -325,186 +325,195 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/list_sdm_part"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="horizontal"
-                                    android:layout_marginTop="20dp"
-                                    android:layout_marginLeft="20dp"
-                                    android:layout_marginRight="20dp"
-                                    android:paddingLeft="5dp"
-                                    android:paddingRight="5dp"
-                                    tools:ignore="DisableBaselineAlignment">
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:orientation="vertical">
 
                                     <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight=".50">
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="horizontal"
+                                        android:layout_marginTop="20dp"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="20dp"
+                                        android:paddingLeft="5dp"
+                                        android:paddingRight="5dp"
+                                        tools:ignore="DisableBaselineAlignment">
 
-                                        <TextView
-                                            android:id="@+id/title_sdm"
-                                            android:layout_width="wrap_content"
+                                        <LinearLayout
+                                            android:layout_width="0dp"
                                             android:layout_height="wrap_content"
-                                            android:ellipsize="end"
-                                            android:gravity="left"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="List SDM"
-                                            android:textColor="#E37146"
-                                            android:textSize="13dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+                                            android:layout_weight=".50">
+
+                                            <TextView
+                                                android:id="@+id/title_sdm"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:ellipsize="end"
+                                                android:gravity="left"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="List SDM"
+                                                android:textColor="#E37146"
+                                                android:textSize="13dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="right"
+                                            android:layout_weight=".50"
+                                            tools:ignore="RtlHardcoded">
+
+                                            <TextView
+                                                android:id="@+id/pengumuman_selengkapnya_btn"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:ellipsize="end"
+                                                android:gravity="right"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Selengkapnya"
+                                                android:textColor="#1895CD"
+                                                android:textSize="13dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
                                     <LinearLayout
-                                        android:layout_width="0dp"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:gravity="right"
-                                        android:layout_weight=".50"
-                                        tools:ignore="RtlHardcoded">
+                                        android:paddingTop="15dp"
+                                        android:paddingBottom="20dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:orientation="vertical">
+
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/data_absensi_rv"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="vertical"
+                                            android:visibility="gone">
+                                        </androidx.recyclerview.widget.RecyclerView>
+
+                                        <LinearLayout
+                                            android:id="@+id/loading_data_part"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="vertical"
+                                            android:paddingLeft="20dp"
+                                            android:paddingTop="60dp"
+                                            android:paddingRight="20dp"
+                                            android:paddingBottom="35dp">
+
+                                            <ImageView
+                                                android:id="@+id/loading_data"
+                                                android:layout_width="80dp"
+                                                android:layout_height="80dp"
+                                                android:layout_marginBottom="5dp"
+                                                app:srcCompat="@drawable/loading_sgn_digital"
+                                                tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="-8dp"
+                                                android:text="Memuat data"
+                                                android:textAlignment="center"
+                                                android:textColor="#E1BB8A"
+                                                android:textSize="12dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="Tunggu beberapa saat"
+                                                android:textAlignment="center"
+                                                android:textColor="#ECC28D"
+                                                android:textSize="10dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/no_data_part"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:orientation="vertical"
+                                            android:paddingLeft="20dp"
+                                            android:paddingRight="20dp"
+                                            android:paddingTop="55dp"
+                                            android:paddingBottom="35dp"
+                                            android:visibility="gone">
+
+                                            <TextView
+                                                android:layout_width="85dp"
+                                                android:layout_height="85dp"
+                                                android:layout_marginBottom="5dp"
+                                                android:background="@drawable/empty_image"
+                                                android:textAlignment="center"
+                                                android:textSize="12dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="SpUsage" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="-8dp"
+                                                android:text="Data tidak tersedia"
+                                                android:textAlignment="center"
+                                                android:textColor="#E1BB8A"
+                                                android:textSize="12dp"
+                                                android:textStyle="bold"
+                                                tools:ignore="HardcodedText,SpUsage" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:text="Record Absensi tidak tersedia"
+                                                android:textAlignment="center"
+                                                android:textColor="#ECC28D"
+                                                android:textSize="10dp"
+                                                tools:ignore="HardcodedText,SpUsage" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/search_other_part"
+                                        android:gravity="center"
+                                        android:paddingTop="5dp"
+                                        android:paddingBottom="35dp"
+                                        android:visibility="gone"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
 
                                         <TextView
-                                            android:id="@+id/pengumuman_selengkapnya_btn"
+                                            android:id="@+id/search_other_btn"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:ellipsize="end"
                                             android:gravity="right"
                                             android:maxLines="1"
                                             android:singleLine="true"
-                                            android:text="Selengkapnya"
+                                            android:text="Cari Data SDM Lainnya"
                                             android:textColor="#1895CD"
                                             android:textSize="13dp"
-                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     </LinearLayout>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:paddingTop="15dp"
-                                    android:paddingBottom="20dp"
-                                    android:paddingLeft="20dp"
-                                    android:paddingRight="20dp"
-                                    android:orientation="vertical">
-
-                                    <androidx.recyclerview.widget.RecyclerView
-                                        android:id="@+id/data_absensi_rv"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:orientation="vertical"
-                                        android:visibility="gone">
-                                    </androidx.recyclerview.widget.RecyclerView>
-
-                                    <LinearLayout
-                                        android:id="@+id/loading_data_part"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="vertical"
-                                        android:paddingLeft="20dp"
-                                        android:paddingTop="60dp"
-                                        android:paddingRight="20dp"
-                                        android:paddingBottom="35dp">
-
-                                        <ImageView
-                                            android:id="@+id/loading_data"
-                                            android:layout_width="80dp"
-                                            android:layout_height="80dp"
-                                            android:layout_marginBottom="5dp"
-                                            app:srcCompat="@drawable/loading_sgn_digital"
-                                            tools:ignore="ContentDescription,ImageContrastCheck" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="-8dp"
-                                            android:text="Memuat data"
-                                            android:textAlignment="center"
-                                            android:textColor="#E1BB8A"
-                                            android:textSize="12dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text="Tunggu beberapa saat"
-                                            android:textAlignment="center"
-                                            android:textColor="#ECC28D"
-                                            android:textSize="10dp"
-                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:id="@+id/no_data_part"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="vertical"
-                                        android:paddingLeft="20dp"
-                                        android:paddingRight="20dp"
-                                        android:paddingTop="55dp"
-                                        android:paddingBottom="35dp"
-                                        android:visibility="gone">
-
-                                        <TextView
-                                            android:layout_width="85dp"
-                                            android:layout_height="85dp"
-                                            android:layout_marginBottom="5dp"
-                                            android:background="@drawable/empty_image"
-                                            android:textAlignment="center"
-                                            android:textSize="12dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="SpUsage" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="-8dp"
-                                            android:text="Data tidak tersedia"
-                                            android:textAlignment="center"
-                                            android:textColor="#E1BB8A"
-                                            android:textSize="12dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="HardcodedText,SpUsage" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text="Record Absensi tidak tersedia"
-                                            android:textAlignment="center"
-                                            android:textColor="#ECC28D"
-                                            android:textSize="10dp"
-                                            tools:ignore="HardcodedText,SpUsage" />
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/search_other_part"
-                                    android:gravity="center"
-                                    android:paddingTop="5dp"
-                                    android:paddingBottom="35dp"
-                                    android:visibility="gone"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/search_other_btn"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:gravity="right"
-                                        android:maxLines="1"
-                                        android:singleLine="true"
-                                        android:text="Cari Data SDM Lainnya"
-                                        android:textColor="#1895CD"
-                                        android:textSize="13dp"
-                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                 </LinearLayout>
 

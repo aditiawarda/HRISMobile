@@ -90,9 +90,8 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
         }
 
         if(dataFormSDM.getKeterangan().equals("1")){
-            myViewHolder.atasNamaTV.setVisibility(View.GONE);
+            myViewHolder.atasNamaTV.setText(dataFormSDM.getPenerimaan_jabatan().toUpperCase());
         } else {
-            myViewHolder.atasNamaTV.setVisibility(View.VISIBLE);
             myViewHolder.atasNamaTV.setText(dataFormSDM.getNama().toUpperCase());
         }
 
@@ -101,13 +100,22 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             myViewHolder.accMark.setVisibility(View.GONE);
             myViewHolder.rejMark.setVisibility(View.GONE);
             myViewHolder.proMark.setVisibility(View.VISIBLE);
+            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")){
+                myViewHolder.waitingMark.setVisibility(View.VISIBLE);
+            } else {
+                myViewHolder.waitingMark.setVisibility(View.GONE);
+            }
         } else if(dataFormSDM.getStatus_approve_kabag().equals("1")){
             if(dataFormSDM.getStatus_approve_kadept().equals("0")){
                 myViewHolder.detailTV.setText("Menunggu verifikasi Kepala Departemen");
-                myViewHolder.waitingMark.setVisibility(View.VISIBLE);
                 myViewHolder.accMark.setVisibility(View.GONE);
                 myViewHolder.rejMark.setVisibility(View.GONE);
                 myViewHolder.proMark.setVisibility(View.VISIBLE);
+                if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")){
+                    myViewHolder.waitingMark.setVisibility(View.VISIBLE);
+                } else {
+                    myViewHolder.waitingMark.setVisibility(View.GONE);
+                }
             } else if(dataFormSDM.getStatus_approve_kadept().equals("1")){
                 if(dataFormSDM.getKeterangan().equals("1")||dataFormSDM.getKeterangan().equals("2")){
                     if(dataFormSDM.getStatus_approve_direktur().equals("0")){
@@ -115,6 +123,11 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
                         myViewHolder.accMark.setVisibility(View.GONE);
                         myViewHolder.rejMark.setVisibility(View.GONE);
                         myViewHolder.proMark.setVisibility(View.VISIBLE);
+                        if(sharedPrefManager.getSpIdJabatan().equals("8")){
+                            myViewHolder.waitingMark.setVisibility(View.VISIBLE);
+                        } else {
+                            myViewHolder.waitingMark.setVisibility(View.GONE);
+                        }
                     } else if(dataFormSDM.getStatus_approve_direktur().equals("1")){
                         if(dataFormSDM.getStatus_approve_hrd().equals("0")){
                             myViewHolder.detailTV.setText("Menunggu verifikasi HRD");

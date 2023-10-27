@@ -67,7 +67,7 @@ import java.util.UUID;
 
 public class FormExitClearanceActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backBTN, resignDateBTN, submitBTN, formPart, successPart, alasanLainnyaPart;
+    LinearLayout viewBTN, actionBar, backBTN, resignDateBTN, submitBTN, formPart, successPart, alasanLainnyaPart;
 
     LinearLayout st1UploadBTN, st1UploadView;
     TextView st1FileTV, st1UploadIc, st1UploadIcChange;
@@ -181,6 +181,8 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
         alasanED = findViewById(R.id.alasan_ed);
         saranED = findViewById(R.id.saran_ed);
+
+        viewBTN = findViewById(R.id.view_permohonan_btn);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
@@ -654,6 +656,13 @@ public class FormExitClearanceActivity extends AppCompatActivity {
             }
         });
 
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         getDataKaryawan();
 
     }
@@ -1055,7 +1064,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
 
@@ -1201,6 +1210,38 @@ public class FormExitClearanceActivity extends AppCompatActivity {
     public void uploadDocuments(String id_record) {
         String UPLOAD_URL = "https://geloraaksara.co.id/absen-online/api/upload_lampiran_serah_terima_exit_c";
         Uri[] arrayFile = {st1UriFile, st2UriFile, st3UriFile, st4UriFile, st5UriFile, st6UriFile};
+
+        viewBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String file_url = "https://geloraaksara.co.id/absen-online/absen/pdf_clearance_form/"+id_record;
+                new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Unduh File?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
+                                try {
+                                    startActivity(browserIntent);
+                                } catch (SecurityException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        })
+                        .show();
+            }
+        });
 
         try {
             for(int i = 0; i < arrayFile.length; i++){

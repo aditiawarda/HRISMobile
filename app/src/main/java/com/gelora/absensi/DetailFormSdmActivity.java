@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class DetailFormSdmActivity extends AppCompatActivity {
 
-    LinearLayout ttdDireksiPart, downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
+    LinearLayout lihatPenilaianBTN, penilaianBTN, ttdDireksiPart, downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
     TextView labelDireksi, markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
@@ -131,6 +131,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         actionPart = findViewById(R.id.action_part);
         appovedBTN = findViewById(R.id.appoved_btn);
         rejectedBTN = findViewById(R.id.rejected_btn);
+        penilaianBTN = findViewById(R.id.penilaian_btn);
+        lihatPenilaianBTN = findViewById(R.id.lihat_penilaian_btn);
 
         idData = getIntent().getExtras().getString("id_data");
         urlDownload = "https://geloraaksara.co.id/absen-online/absen/pdf_formulir_sdm/"+idData;
@@ -342,7 +344,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
@@ -413,6 +415,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String lain_lain               = dataArray.getString("lain_lain");
                                 String persetujuan             = dataArray.getString("persetujuan");
                                 String id_departemen           = dataArray.getString("id_departemen");
+                                String id_bagian               = dataArray.getString("id_bagian");
 
                                 if(catatan.equals("null")){
                                     catatan = "";
@@ -485,7 +488,9 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             accMark.setVisibility(View.GONE);
                                             rejMark.setVisibility(View.VISIBLE);
                                         } else if(status_approve_kadept.equals("0")){
-                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && sharedPrefManager.getSpIdJabatan().equals("10")){
+                                            accMark.setVisibility(View.GONE);
+                                            rejMark.setVisibility(View.GONE);
+                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
                                                 actionPart.setVisibility(View.VISIBLE);
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
@@ -495,6 +500,14 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(status_approve_kabag.equals("2")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
+                                    } else if(status_approve_kabag.equals("0")){
+                                        accMark.setVisibility(View.GONE);
+                                        rejMark.setVisibility(View.GONE);
+                                        if(sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
+                                            actionPart.setVisibility(View.VISIBLE);
+                                        } else {
+                                            actionPart.setVisibility(View.GONE);
+                                        }
                                     }
 
                                     catatanTV.setText(catatan);
@@ -604,7 +617,9 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             accMark.setVisibility(View.GONE);
                                             rejMark.setVisibility(View.VISIBLE);
                                         } else if(status_approve_kadept.equals("0")){
-                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && sharedPrefManager.getSpIdJabatan().equals("10")){
+                                            accMark.setVisibility(View.GONE);
+                                            rejMark.setVisibility(View.GONE);
+                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
                                                 actionPart.setVisibility(View.VISIBLE);
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
@@ -614,6 +629,18 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(status_approve_kabag.equals("2")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
+                                    } else if(status_approve_kabag.equals("0")){
+                                        if(keterangan.equals("2")){
+                                            cekPenilaianKaryawan(nik);
+                                        } else {
+                                            accMark.setVisibility(View.GONE);
+                                            rejMark.setVisibility(View.GONE);
+                                            if(sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
+                                                actionPart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                actionPart.setVisibility(View.GONE);
+                                            }
+                                        }
                                     }
 
                                     catatanTV.setText(catatan);
@@ -688,7 +715,9 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             accMark.setVisibility(View.GONE);
                                             rejMark.setVisibility(View.VISIBLE);
                                         } else if(status_approve_kadept.equals("0")){
-                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && sharedPrefManager.getSpIdJabatan().equals("10")){
+                                            accMark.setVisibility(View.GONE);
+                                            rejMark.setVisibility(View.GONE);
+                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
                                                 actionPart.setVisibility(View.VISIBLE);
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
@@ -698,6 +727,14 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(status_approve_kabag.equals("2")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
+                                    } else if(status_approve_kadept.equals("0")){
+                                        accMark.setVisibility(View.GONE);
+                                        rejMark.setVisibility(View.GONE);
+                                        if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                            actionPart.setVisibility(View.VISIBLE);
+                                        } else {
+                                            actionPart.setVisibility(View.GONE);
+                                        }
                                     }
 
                                     catatanTV.setText(catatan);
@@ -767,7 +804,9 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             accMark.setVisibility(View.GONE);
                                             rejMark.setVisibility(View.VISIBLE);
                                         } else if(status_approve_kadept.equals("0")){
-                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && sharedPrefManager.getSpIdJabatan().equals("10")){
+                                            accMark.setVisibility(View.GONE);
+                                            rejMark.setVisibility(View.GONE);
+                                            if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
                                                 actionPart.setVisibility(View.VISIBLE);
                                             } else {
                                                 actionPart.setVisibility(View.GONE);
@@ -777,6 +816,14 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(status_approve_kabag.equals("2")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
+                                    } else if(status_approve_kadept.equals("0")){
+                                        accMark.setVisibility(View.GONE);
+                                        rejMark.setVisibility(View.GONE);
+                                        if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                            actionPart.setVisibility(View.VISIBLE);
+                                        } else {
+                                            actionPart.setVisibility(View.GONE);
+                                        }
                                     }
 
                                     catatanTV.setText(catatan);
@@ -818,6 +865,51 @@ public class DetailFormSdmActivity extends AppCompatActivity {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("id", idData);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void cekPenilaianKaryawan(String nik){
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cek_data_penilaian_karyawan";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response);
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Available")) {
+                                penilaianBTN.setVisibility(View.GONE);
+                                lihatPenilaianBTN.setVisibility(View.VISIBLE);
+                            } else {
+                                penilaianBTN.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("NIK", nik);
                 return params;
             }
         };

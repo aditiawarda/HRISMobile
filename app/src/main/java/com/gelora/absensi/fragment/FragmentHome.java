@@ -54,6 +54,7 @@ import com.bumptech.glide.Glide;
 import com.gelora.absensi.AllMenuActivity;
 import com.gelora.absensi.CalendarPageActivity;
 import com.gelora.absensi.ChatSplashScreenActivity;
+import com.gelora.absensi.DataFormSdmActivity;
 import com.gelora.absensi.DetailCuacaActivity;
 import com.gelora.absensi.DetailPengumumanActivity;
 import com.gelora.absensi.DigitalCardActivity;
@@ -124,7 +125,7 @@ public class FragmentHome extends Fragment {
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
-    String currentDay = "", refeatConfeti = "1", locationNow = "" , musicPlay = "off", otoritorEC = "";
+    String currentDay = "", refeatConfeti = "1", locationNow = "" , musicPlay = "off", otoritorEC = "", listSDM = "0";
     ResultReceiver resultReceiver;
     Context mContext;
     Activity mActivity;
@@ -427,6 +428,7 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, HumanResourceActivity.class);
+                intent.putExtra("list_sdm_visibity", listSDM);
                 startActivity(intent);
             }
         });
@@ -527,9 +529,27 @@ public class FragmentHome extends Fragment {
             }
         }
 
-        if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpNik().equals("1309131210")){
+        if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpNik().equals("1309131210")){
             cardPart.setVisibility(View.GONE);
             sdmPart.setVisibility(View.VISIBLE);
+            if(sharedPrefManager.getSpIdJabatan().equals("1")){
+                menuSdmBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext, DataFormSdmActivity.class);
+                        startActivity(intent);
+                    }
+                });
+            } else {
+                menuSdmBTN.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext, HumanResourceActivity.class);
+                        intent.putExtra("list_sdm_visibity", listSDM);
+                        startActivity(intent);
+                    }
+                });
+            }
         } else {
             cardPart.setVisibility(View.VISIBLE);
             sdmPart.setVisibility(View.GONE);
@@ -545,7 +565,7 @@ public class FragmentHome extends Fragment {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
@@ -559,6 +579,7 @@ public class FragmentHome extends Fragment {
                                 String weather_key = data.getString("weather_key");
                                 String chat_room = data.getString("chat_room");
                                 String news_part = data.getString("news_part");
+                                String list_sdm = data.getString("list_sdm");
                                 String base_news_api = data.getString("base_news_api");
                                 String defaut_news_category = data.getString("defaut_news_category");
                                 String fitur_pengumuman = data.getString("fitur_pengumuman");
@@ -578,6 +599,7 @@ public class FragmentHome extends Fragment {
                                 String id_jabatan = data.getString("id_jabatan");
 
                                 otoritorEC = ototitor_ec;
+                                listSDM = list_sdm;
 
                                 if(news_part.equals("1")){
                                     newsPart.setVisibility(View.VISIBLE);
@@ -823,7 +845,7 @@ public class FragmentHome extends Fragment {
                                 getDataPengumumanNew();
                                 getCountPersonalNotif();
 
-                                if(sharedPrefManager.getSpIdJabatan().equals("10")){
+                                if(sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")){
                                     getWaitingConfirm();
                                 }
 
@@ -1889,7 +1911,7 @@ public class FragmentHome extends Fragment {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
