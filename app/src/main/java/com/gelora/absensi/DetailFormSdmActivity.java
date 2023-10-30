@@ -38,10 +38,10 @@ import java.util.Map;
 
 public class DetailFormSdmActivity extends AppCompatActivity {
 
-    LinearLayout lihatPenilaianBTN, penilaianBTN, ttdDireksiPart, downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
+    LinearLayout lihatPenilaianPart, lihatPenilaianBTN, penilaianBTN, ttdDireksiPart, downloadBTN, backBTN, actionBar, accMark, rejMark, actionPart, rejectedBTN, appovedBTN;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
-    TextView labelDireksi, markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
+    TextView warningPenilaian, labelDireksi, markCeklis1, markCeklis2, markCeklis3, markCeklis4, markCeklis5, markCeklis6, markCeklis7;
     TextView namaBaruTV, unitBisnisBaruTV, departemenBaruTV, bagianBaruTV, jabatanBaruTV, komponenGajiBaruTV;
     TextView namaLamaTV, unitBisnisLamaTV, departemenLamaTV, bagianLamaTV, jabatanLamaTV, komponenGajiLamaTV;
     TextView jabatanSlashDepartemenTV, deskripsiSlashJabatanTV, syaratPenerimaanTV, tglDibutuhkan1TV, tglPemenuhan1TV, tglDibutuhkan2TV, tglPemenuhan2TV;
@@ -132,7 +132,9 @@ public class DetailFormSdmActivity extends AppCompatActivity {
         appovedBTN = findViewById(R.id.appoved_btn);
         rejectedBTN = findViewById(R.id.rejected_btn);
         penilaianBTN = findViewById(R.id.penilaian_btn);
+        lihatPenilaianPart = findViewById(R.id.lihat_penilaian_part);
         lihatPenilaianBTN = findViewById(R.id.lihat_penilaian_btn);
+        warningPenilaian = findViewById(R.id.warning_penilaian);
 
         idData = getIntent().getExtras().getString("id_data");
         urlDownload = "https://geloraaksara.co.id/absen-online/absen/pdf_formulir_sdm/"+idData;
@@ -416,7 +418,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 String persetujuan             = dataArray.getString("persetujuan");
                                 String id_departemen           = dataArray.getString("id_departemen");
                                 String id_bagian               = dataArray.getString("id_bagian");
-                                String id_penilaian               = dataArray.getString("id_penilaian");
+                                String id_penilaian            = dataArray.getString("id_penilaian");
+                                String approval_penilaian      = dataArray.getString("approval_penilaian");
 
                                 if(catatan.equals("null")){
                                     catatan = "";
@@ -627,7 +630,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             }
                                         }
 
-                                        if(keterangan.equals("2")){
+                                        if(keterangan.equals("2")||keterangan.equals("3")||keterangan.equals("4")){
+                                            lihatPenilaianPart.setVisibility(View.VISIBLE);
                                             lihatPenilaianBTN.setVisibility(View.VISIBLE);
                                             lihatPenilaianBTN.setOnClickListener(new View.OnClickListener() {
                                                 @Override
@@ -637,16 +641,23 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                     startActivity(intent);
                                                 }
                                             });
+                                            if(approval_penilaian.equals("0") && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                                warningPenilaian.setVisibility(View.VISIBLE);
+                                            } else {
+                                                warningPenilaian.setVisibility(View.GONE);
+                                            }
                                         } else {
+                                            lihatPenilaianPart.setVisibility(View.GONE);
                                             lihatPenilaianBTN.setVisibility(View.GONE);
+                                            warningPenilaian.setVisibility(View.GONE);
                                         }
 
                                     } else if(status_approve_kabag.equals("2")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
                                     } else if(status_approve_kabag.equals("0")){
-                                        if(keterangan.equals("2")){
-                                            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")){
+                                        if(keterangan.equals("2")||keterangan.equals("3")||keterangan.equals("4")){
+                                            if(sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
                                                 cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record);
                                             } else {
                                                 accMark.setVisibility(View.GONE);
@@ -744,16 +755,47 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                             }
                                         }
 
+                                        if(keterangan.equals("5")||keterangan.equals("6")){
+                                            lihatPenilaianPart.setVisibility(View.VISIBLE);
+                                            lihatPenilaianBTN.setVisibility(View.VISIBLE);
+                                            lihatPenilaianBTN.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent intent = new Intent(DetailFormSdmActivity.this, DetailPenilaianKaryawanActivity.class);
+                                                    intent.putExtra("id_penilaian",id_penilaian);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                            if(approval_penilaian.equals("0") && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                                warningPenilaian.setVisibility(View.VISIBLE);
+                                            } else {
+                                                warningPenilaian.setVisibility(View.GONE);
+                                            }
+                                        } else {
+                                            lihatPenilaianPart.setVisibility(View.GONE);
+                                            lihatPenilaianBTN.setVisibility(View.GONE);
+                                            warningPenilaian.setVisibility(View.GONE);
+                                        }
+
                                     } else if(status_approve_kabag.equals("2")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
                                     } else if(status_approve_kadept.equals("0")){
-                                        accMark.setVisibility(View.GONE);
-                                        rejMark.setVisibility(View.GONE);
-                                        if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
-                                            actionPart.setVisibility(View.VISIBLE);
+                                        if(keterangan.equals("5")||keterangan.equals("6")){
+                                            if(sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
+                                                cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record);
+                                            } else {
+                                                accMark.setVisibility(View.GONE);
+                                                rejMark.setVisibility(View.GONE);
+                                            }
                                         } else {
-                                            actionPart.setVisibility(View.GONE);
+                                            accMark.setVisibility(View.GONE);
+                                            rejMark.setVisibility(View.GONE);
+                                            if(sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
+                                                actionPart.setVisibility(View.VISIBLE);
+                                            } else {
+                                                actionPart.setVisibility(View.GONE);
+                                            }
                                         }
                                     }
 

@@ -2748,23 +2748,43 @@
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:id="@+id/lihat_penilaian_btn"
+                                    android:id="@+id/lihat_penilaian_part"
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="wrap_content"
                                     android:layout_marginBottom="15dp"
-                                    android:background="@drawable/shape_btn_edit_permohonan"
-                                    android:gravity="center"
                                     android:visibility="gone"
-                                    tools:ignore="RtlHardcoded">
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:id="@+id/lihat_penilaian_btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_btn_edit_permohonan"
+                                        android:gravity="center"
+                                        android:layout_marginBottom="5dp"
+                                        android:visibility="gone"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textStyle="bold"
+                                            android:textSize="13dp"
+                                            android:textColor="@color/white"
+                                            android:text="HASIL PENILAIAN SDM"
+                                            tools:ignore="HardcodedText,SpUsage" />
+
+                                    </LinearLayout>
 
                                     <TextView
+                                        android:id="@+id/warning_penilaian"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textStyle="bold"
-                                        android:textSize="13dp"
-                                        android:textColor="@color/white"
-                                        android:text="HASIL PENILAIAN SDM"
-                                        tools:ignore="HardcodedText,SpUsage" />
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Penilaian menunggu verifikasi"
+                                        android:textColor="#BA4A4A"
+                                        android:textSize="10dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                 </LinearLayout>
 
