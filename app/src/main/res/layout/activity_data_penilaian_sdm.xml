@@ -258,9 +258,11 @@
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <LinearLayout
+            android:id="@+id/add_btn_part"
             android:gravity="bottom|right"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             tools:ignore="RtlHardcoded">
 
             <LinearLayout

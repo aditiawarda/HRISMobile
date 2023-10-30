@@ -526,15 +526,21 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(keterangan.equals("3")){
                                         markCeklis3.setText("✓");
                                         labelDireksi.setText("");
-                                        ttdDireksiPart.setVisibility(View.GONE);
-                                        namaDirekturTV.setVisibility(View.GONE);
-                                        labelDireksi.setVisibility(View.GONE);
+                                        // ttdDireksiPart.setVisibility(View.GONE);
+                                        // namaDirekturTV.setVisibility(View.GONE);
+                                        // labelDireksi.setVisibility(View.GONE);
+                                        ttdDireksiPart.setVisibility(View.VISIBLE);
+                                        namaDirekturTV.setVisibility(View.VISIBLE);
+                                        labelDireksi.setVisibility(View.VISIBLE);
                                     } else if(keterangan.equals("4")){
                                         markCeklis4.setText("✓");
                                         labelDireksi.setText("");
-                                        ttdDireksiPart.setVisibility(View.GONE);
-                                        namaDirekturTV.setVisibility(View.GONE);
-                                        labelDireksi.setVisibility(View.GONE);
+                                        // ttdDireksiPart.setVisibility(View.GONE);
+                                        // namaDirekturTV.setVisibility(View.GONE);
+                                        // labelDireksi.setVisibility(View.GONE);
+                                        ttdDireksiPart.setVisibility(View.VISIBLE);
+                                        namaDirekturTV.setVisibility(View.VISIBLE);
+                                        labelDireksi.setVisibility(View.VISIBLE);
                                     }
 
                                     namaBaruTV.setText(nama);
@@ -680,15 +686,21 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     if(keterangan.equals("5")){
                                         markCeklis5.setText("✓");
                                         labelDireksi.setText("");
-                                        ttdDireksiPart.setVisibility(View.GONE);
-                                        namaDirekturTV.setVisibility(View.GONE);
-                                        labelDireksi.setVisibility(View.GONE);
+                                        // ttdDireksiPart.setVisibility(View.GONE);
+                                        // namaDirekturTV.setVisibility(View.GONE);
+                                        // labelDireksi.setVisibility(View.GONE);
+                                        ttdDireksiPart.setVisibility(View.VISIBLE);
+                                        namaDirekturTV.setVisibility(View.VISIBLE);
+                                        labelDireksi.setVisibility(View.VISIBLE);
                                     } else if(keterangan.equals("6")){
                                         markCeklis6.setText("✓");
                                         labelDireksi.setText("");
-                                        ttdDireksiPart.setVisibility(View.GONE);
-                                        namaDirekturTV.setVisibility(View.GONE);
-                                        labelDireksi.setVisibility(View.GONE);
+                                        // ttdDireksiPart.setVisibility(View.GONE);
+                                        // namaDirekturTV.setVisibility(View.GONE);
+                                        // labelDireksi.setVisibility(View.GONE);
+                                        ttdDireksiPart.setVisibility(View.VISIBLE);
+                                        namaDirekturTV.setVisibility(View.VISIBLE);
+                                        labelDireksi.setVisibility(View.VISIBLE);
                                     }
 
                                     namaBaruTV.setText(nama);
@@ -780,7 +792,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(status_approve_kabag.equals("2")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
-                                    } else if(status_approve_kadept.equals("0")){
+                                    } else if(status_approve_kabag.equals("0")){
                                         if(keterangan.equals("5")||keterangan.equals("6")){
                                             if(sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
                                                 cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record);
@@ -804,9 +816,12 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 } else if(keterangan.equals("7")){
                                     markCeklis7.setText("✓");
                                     labelDireksi.setText("");
-                                    ttdDireksiPart.setVisibility(View.GONE);
-                                    namaDirekturTV.setVisibility(View.GONE);
-                                    labelDireksi.setVisibility(View.GONE);
+                                    // ttdDireksiPart.setVisibility(View.GONE);
+                                    // namaDirekturTV.setVisibility(View.GONE);
+                                    // labelDireksi.setVisibility(View.GONE);
+                                    ttdDireksiPart.setVisibility(View.VISIBLE);
+                                    namaDirekturTV.setVisibility(View.VISIBLE);
+                                    labelDireksi.setVisibility(View.VISIBLE);
 
                                     namaBaruTV.setText(nama);
                                     unitBisnisBaruTV.setText(nama_unit_bisnis);
@@ -878,10 +893,10 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(status_approve_kabag.equals("2")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.VISIBLE);
-                                    } else if(status_approve_kadept.equals("0")){
+                                    } else if(status_approve_kabag.equals("0")){
                                         accMark.setVisibility(View.GONE);
                                         rejMark.setVisibility(View.GONE);
-                                        if(sharedPrefManager.getSpIdHeadDept().equals(id_departemen) && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                        if(sharedPrefManager.getSpIdJabatan().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
                                             actionPart.setVisibility(View.VISIBLE);
                                         } else {
                                             actionPart.setVisibility(View.GONE);
@@ -951,6 +966,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                             if (status.equals("Available")) {
                                 String last_id = data.getString("last_id");
                                 penilaianBTN.setVisibility(View.GONE);
+                                lihatPenilaianPart.setVisibility(View.VISIBLE);
                                 lihatPenilaianBTN.setVisibility(View.VISIBLE);
                                 lihatPenilaianBTN.setOnClickListener(new View.OnClickListener() {
                                     @Override

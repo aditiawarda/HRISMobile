@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class DataPenilaianSdmActivity extends AppCompatActivity {
 
-    LinearLayout addBTN, backBTN, loadingDataPart, noDataPart, countWaitingBTN;
+    LinearLayout addBTN, backBTN, loadingDataPart, noDataPart, countWaitingBTN, addBtnPart;
     ImageView loadingData;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -63,6 +63,7 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
         noDataPart = findViewById(R.id.no_data_part);
         countWaitingBTN = findViewById(R.id.count_waiting_btn);
         countWaitingTV = findViewById(R.id.count_waiting_tv);
+        addBtnPart = findViewById(R.id.add_btn_part);
 
         dataPenilaianSDMRV.setLayoutManager(new LinearLayoutManager(this));
         dataPenilaianSDMRV.setHasFixedSize(true);
