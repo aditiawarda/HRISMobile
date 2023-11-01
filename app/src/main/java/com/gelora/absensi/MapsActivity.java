@@ -123,7 +123,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double userLat, userLong;
     SwipeRefreshLayout refreshLayout;
     ImageView loadingDataRecord, weatherIconPart, onlineGif, warningGif;
-    TextView backArrow, backHome, viewMoreBTN, titleRecordTV, userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
+    TextView warningLabelIzin, warningLabelLayoff, backArrow, backHome, viewMoreBTN, titleRecordTV, userTV, markTitleShift, markTitleStatus, descStatusPart, layoffDesc, descStart, izinDesc, currentDatePart, mainWeatherPart, tempWeatherPart, feelLikeTempPart, currentAddress, dateCheckinTV, dateCheckoutTV, eventCalender, monthTV, yearTV, detailAbsenTV, dateCurrentAbsensiTV, timeCheckinTV, checkinPointTV, timeCheckoutTV, checkoutPointTV, actionTV, hTime, mTime, sTime, absenPoint, statusAbsenChoiceTV, shiftAbsenChoiceTV;
     LinearLayout attantionLayoffPart, viewMorePart, mapBTN, noDataPart, loadingRecordPart, backBTN, reminderCongrat, openSessionBTN, skeletonLayout, closeBTNPart, prevBTN, nextBTN, warningPart, closeBTN, connectionSuccess, connectionFailed, loadingLayout, userBTNPart, izinPart, layoffPart, attantionPart, recordAbsenPart, inputAbsenPart, actionBTN, statusAbsenBTN, shiftBTN, statusAbsenChoice, changeStatusAbsen, shiftAbsenChoice, changeShiftAbsen, statusAbsenChoiceBTN, shiftAbsenChoiceBTN;
     BottomSheetLayout bottomSheet;
     SharedPrefManager sharedPrefManager;
@@ -261,6 +261,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         attantionLayoffPart = findViewById(R.id.attantion_layoff_part);
         backArrow = findViewById(R.id.back_arrow);
         backHome = findViewById(R.id.back_home);
+        warningLabelIzin = findViewById(R.id.warning_label_izin);
+        warningLabelLayoff = findViewById(R.id.warning_label_layoff);
 
         dataAbsensiRV = findViewById(R.id.data_absensi_rv);
         dataAbsensiRV.setLayoutManager(new LinearLayoutManager(this));
@@ -287,12 +289,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             checkoutPointTV.setTypeface(typeface);
             descStart.setTypeface(typeface);
             layoffDesc.setTypeface(typeface);
+            izinDesc.setTypeface(typeface);
             descStatusPart.setTypeface(typeface);
             markTitleStatus.setTypeface(typeface);
             markTitleShift.setTypeface(typeface);
             dateCurrentAbsensiTV.setTypeface(typeface);
             detailAbsenTV.setTypeface(typeface);
             actionTV.setTypeface(typeface);
+            warningLabelIzin.setTypeface(typeface);
+            warningLabelLayoff.setTypeface(typeface);
+            hTime.setTypeface(typeface);
+            mTime.setTypeface(typeface);
+            sTime.setTypeface(typeface);
         }
 
         if(fromIntent.equals("home")){

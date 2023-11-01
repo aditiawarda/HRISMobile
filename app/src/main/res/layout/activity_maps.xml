@@ -1032,6 +1032,7 @@
                                             android:paddingBottom="20dp">
 
                                             <TextView
+                                                android:id="@+id/warning_label_layoff"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:fontFamily="sans-serif"
@@ -1102,6 +1103,7 @@
                                             android:paddingBottom="20dp">
 
                                             <TextView
+                                                android:id="@+id/warning_label_izin"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:fontFamily="sans-serif"
