@@ -74,7 +74,7 @@ public class FragmentInfo extends Fragment {
     TextView labelNotificationIzin, bagianNameTVSDM, historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     ImageView hrisLogo, notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     SwipeRefreshLayout refreshLayout;
-    String selectMonth = "", statusFiturIzinCuti = "1", statusFiturFinger = "1", currentDay = "", otoritorEC = "";
+    String selectMonth = "", statusFiturIzinCuti = "1", statusFiturFinger = "1", currentDay = "", otoritorEC = "", listSDM = "";
     Context mContext;
     Activity mActivity;
     SharedPrefManager sharedPrefManager;
@@ -468,7 +468,7 @@ public class FragmentInfo extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, HumanResourceActivity.class);
-                intent.putExtra("list_sdm_visibity", "1");
+                intent.putExtra("list_sdm_visibity", listSDM);
                 startActivity(intent);
             }
         });
@@ -787,6 +787,9 @@ public class FragmentInfo extends Fragment {
                                 String base_news_api = data.getString("base_news_api");
                                 String defaut_news_category = data.getString("defaut_news_category");
                                 String ototitor_ec = data.getString("ototitor_ec");
+                                String list_sdm = data.getString("list_sdm");
+
+                                listSDM = list_sdm;
                                 otoritorEC = ototitor_ec;
 
                                 statusFiturIzinCuti = fitur_izin;
