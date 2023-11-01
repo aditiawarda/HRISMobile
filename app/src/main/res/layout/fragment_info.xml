@@ -1302,7 +1302,7 @@
                                 android:layout_marginRight="20dp"
                                 android:background="@drawable/shape_ec"
                                 android:gravity="center"
-                                android:visibility="visible">
+                                android:visibility="gone">
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
