@@ -81,16 +81,16 @@
                                         android:text="Info"
                                         android:textColor="@color/white"
                                         android:textSize="15dp"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TooDeepLayout" />
 
                                     <ImageView
                                         android:id="@+id/hris_logo"
-                                        android:foregroundGravity="center"
                                         android:layout_width="100dp"
                                         android:layout_height="19dp"
+                                        android:foregroundGravity="center"
                                         android:scaleType="fitXY"
                                         android:src="@drawable/hris_text_logo"
-                                        tools:ignore="ContentDescription" />
+                                        tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                 </LinearLayout>
 
@@ -754,7 +754,8 @@
                                                     android:paddingLeft="15dp"
                                                     android:paddingTop="10dp"
                                                     android:paddingRight="15dp"
-                                                    android:paddingBottom="10dp">
+                                                    android:paddingBottom="10dp"
+                                                    tools:ignore="TooManyViews">
 
                                                     <TextView
                                                         android:layout_width="match_parent"
@@ -1136,95 +1137,6 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/news_part"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginBottom="15dp"
-                                android:background="@drawable/shape_news_home"
-                                android:gravity="center"
-                                android:visibility="gone"
-                                android:orientation="vertical">
-
-                                <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    tools:ignore="UselessParent">
-
-                                    <LinearLayout
-                                        android:layout_width="110dp"
-                                        android:layout_height="117dp"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_marginTop="-27dp"
-                                        android:layout_marginRight="40dp"
-                                        android:layout_marginBottom="-25dp"
-                                        android:background="@drawable/shape_ornament_news_1"
-                                        android:text=""
-                                        android:textStyle="bold"
-                                        tools:ignore="RtlHardcoded" />
-
-                                    <LinearLayout
-                                        android:layout_width="110dp"
-                                        android:layout_height="108dp"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_marginRight="8dp"
-                                        android:layout_marginBottom="-22dp"
-                                        android:layout_marginTop="-22dp"
-                                        android:background="@drawable/shape_ornament_news_2"
-                                        android:text=""
-                                        android:textStyle="bold"
-                                        tools:ignore="RtlHardcoded" />
-
-                                    <LinearLayout
-                                        android:layout_width="105dp"
-                                        android:layout_height="103dp"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_marginRight="5dp"
-                                        android:layout_marginBottom="-35dp"
-                                        android:background="@drawable/news_bg_img"
-                                        android:text=""
-                                        android:textStyle="bold"
-                                        tools:ignore="RtlHardcoded" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="19.5dp"
-                                            android:layout_marginTop="15dp"
-                                            android:layout_marginRight="110dp"
-                                            android:letterSpacing="0.05"
-                                            android:text="BERITA TERKINI"
-                                            android:textColor="#FFF3F1"
-                                            android:textSize="16dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="20dp"
-                                            android:layout_marginRight="110dp"
-                                            android:ellipsize="end"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="Update informasi di portal berita"
-                                            android:textColor="#FFF3F1"
-                                            android:textSize="11dp"
-                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
-
-                                    </LinearLayout>
-
-                                </RelativeLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
                                 android:id="@+id/monitoring_staff_btn"
                                 android:layout_marginBottom="15dp"
                                 android:layout_width="match_parent"
@@ -1373,6 +1285,172 @@
                                             android:textSize="9dp"
                                             android:textStyle="italic"
                                             tools:ignore="HardcodedText,SpUsage" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/ec_btn"
+                                android:layout_marginBottom="15dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="13dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@drawable/shape_ec"
+                                android:gravity="center"
+                                android:visibility="visible">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    tools:ignore="UselessParent">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="bottom|right"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:layout_marginBottom="-5dp"
+                                            android:layout_width="100dp"
+                                            android:layout_marginRight="5dp"
+                                            android:layout_height="68dp"
+                                            android:textStyle="bold"
+                                            android:background="@drawable/ec_img"
+                                            android:text=""/>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="13dp"
+                                        android:gravity="center|left"
+                                        android:orientation="vertical"
+                                        android:paddingLeft="25dp"
+                                        android:paddingRight="10dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Exit Clearance*"
+                                            android:textColor="@color/white"
+                                            android:textSize="18dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                        <TextView
+                                            android:id="@+id/bagian_name_tv_ec"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="@color/white"
+                                            android:textSize="12dp"
+                                            tools:ignore="SpUsage" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="10dp"
+                                            android:text="*List Data Permohonan"
+                                            android:textColor="@color/white"
+                                            android:textSize="9dp"
+                                            android:textStyle="italic"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/news_part"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginBottom="15dp"
+                                android:background="@drawable/shape_news_home"
+                                android:gravity="center"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    tools:ignore="UselessParent">
+
+                                    <LinearLayout
+                                        android:layout_width="110dp"
+                                        android:layout_height="117dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginTop="-27dp"
+                                        android:layout_marginRight="40dp"
+                                        android:layout_marginBottom="-25dp"
+                                        android:background="@drawable/shape_ornament_news_1"
+                                        android:text=""
+                                        android:textStyle="bold"
+                                        tools:ignore="RtlHardcoded" />
+
+                                    <LinearLayout
+                                        android:layout_width="110dp"
+                                        android:layout_height="108dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginRight="8dp"
+                                        android:layout_marginBottom="-22dp"
+                                        android:layout_marginTop="-22dp"
+                                        android:background="@drawable/shape_ornament_news_2"
+                                        android:text=""
+                                        android:textStyle="bold"
+                                        tools:ignore="RtlHardcoded" />
+
+                                    <LinearLayout
+                                        android:layout_width="105dp"
+                                        android:layout_height="103dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_marginBottom="-35dp"
+                                        android:background="@drawable/news_bg_img"
+                                        android:text=""
+                                        android:textStyle="bold"
+                                        tools:ignore="RtlHardcoded" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="19.5dp"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_marginRight="110dp"
+                                            android:letterSpacing="0.05"
+                                            android:text="BERITA TERKINI"
+                                            android:textColor="#FFF3F1"
+                                            android:textSize="16dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="110dp"
+                                            android:ellipsize="end"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Update informasi di portal berita"
+                                            android:textColor="#FFF3F1"
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                     </LinearLayout>
 
