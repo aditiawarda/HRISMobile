@@ -55,7 +55,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
     private int i = -1;
 
     LinearLayout dStatusAbsen, dShiftAbsen, dTanggalMasuk, dJamMasuk, dTanggalPulang, dJamPulang, dTitikAbsen, dKetLembur;
-    TextView dStatusAbsenTV, dShiftAbsenTV, dTanggalMasukTV, dJamMasukTV, dTanggalPulangTV, dJamPulangTV, dTitikAbsenTV, dKetLemburTV;
+    TextView dTanggalMasukTVLabel, dStatusAbsenTV, dShiftAbsenTV, dTanggalMasukTV, dJamMasukTV, dTanggalPulangTV, dJamPulangTV, dTitikAbsenTV, dKetLemburTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +106,7 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
         dStatusAbsenTV = findViewById(R.id.d_status_absen_tv);
         dShiftAbsenTV = findViewById(R.id.d_shift_absen_tv);
         dTanggalMasukTV = findViewById(R.id.d_tanggal_masuk_tv);
+        dTanggalMasukTVLabel = findViewById(R.id.d_tanggal_masuk_label_tv);
         dJamMasukTV = findViewById(R.id.d_jam_masuk_tv);
         dTanggalPulangTV = findViewById(R.id.d_tanggal_pulang_tv);
         dJamPulangTV = findViewById(R.id.d_jam_pulang_tv);
@@ -877,7 +878,16 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     dStatusAbsenTV.setText(nama_status+" ("+kode_status+")");
                                     dShiftAbsenTV.setText(nama_shift+" ("+shift_datang+" - "+shift_pulang+")");
                                 } else if(keterangan.equals("7")){
-                                    detailKeteranganPart.setVisibility(View.GONE);
+                                    detailKeteranganPart.setVisibility(View.VISIBLE);
+                                    JSONObject detail_keterangan = data.getJSONObject("detail_keterangan");
+                                    String tanggal_masuk  = detail_keterangan.getString("tanggal_masuk");
+
+                                    dStatusAbsen.setVisibility(View.VISIBLE);
+                                    dTanggalMasuk.setVisibility(View.VISIBLE);
+
+                                    dStatusAbsenTV.setText("Diliburkan (DL)");
+                                    dTanggalMasukTVLabel.setText("TANGGAL DL");
+                                    dTanggalMasukTV.setText(tanggal_masuk.substring(8,10)+"/"+tanggal_masuk.substring(5,7)+"/"+tanggal_masuk.substring(0,4));
                                 }
 
                             }

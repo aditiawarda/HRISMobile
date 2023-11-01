@@ -750,6 +750,7 @@
                                         android:orientation="horizontal">
 
                                         <TextView
+                                            android:id="@+id/d_tanggal_masuk_label_tv"
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="7dp"
