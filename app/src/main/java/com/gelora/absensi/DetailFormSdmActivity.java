@@ -777,20 +777,29 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                         }
 
                                         if(keterangan.equals("5")||keterangan.equals("6")){
-                                            lihatPenilaianPart.setVisibility(View.VISIBLE);
-                                            lihatPenilaianBTN.setVisibility(View.VISIBLE);
-                                            lihatPenilaianBTN.setOnClickListener(new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View v) {
-                                                    Intent intent = new Intent(DetailFormSdmActivity.this, DetailPenilaianKaryawanActivity.class);
-                                                    intent.putExtra("id_penilaian",id_penilaian);
-                                                    startActivity(intent);
-                                                }
-                                            });
-                                            if(approval_penilaian.equals("0") && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
-                                                warningPenilaian.setVisibility(View.VISIBLE);
-                                            } else {
+                                            if(id_penilaian.equals("null")){
+                                                lihatPenilaianPart.setVisibility(View.GONE);
+                                                lihatPenilaianBTN.setVisibility(View.GONE);
                                                 warningPenilaian.setVisibility(View.GONE);
+                                                if(sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
+                                                    cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record);
+                                                }
+                                            } else {
+                                                lihatPenilaianPart.setVisibility(View.VISIBLE);
+                                                lihatPenilaianBTN.setVisibility(View.VISIBLE);
+                                                lihatPenilaianBTN.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        Intent intent = new Intent(DetailFormSdmActivity.this, DetailPenilaianKaryawanActivity.class);
+                                                        intent.putExtra("id_penilaian",id_penilaian);
+                                                        startActivity(intent);
+                                                    }
+                                                });
+                                                if(approval_penilaian.equals("0") && (sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3"))){
+                                                    warningPenilaian.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    warningPenilaian.setVisibility(View.GONE);
+                                                }
                                             }
                                         } else {
                                             lihatPenilaianPart.setVisibility(View.GONE);

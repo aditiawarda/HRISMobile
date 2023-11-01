@@ -728,7 +728,6 @@ public class AllMenuActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("nik", sharedPrefManager.getSpNik());
-                params.put("id_departemen", sharedPrefManager.getSpIdHeadDept());
                 return params;
             }
         };
