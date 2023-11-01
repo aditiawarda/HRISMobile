@@ -69,9 +69,9 @@ public class FragmentInfo extends Fragment {
 
     TextView descContactHRDTV, titlePage, dateNowTV, countNotifFingerTV, countNotifIzinTV;
     ExpandableLayout aboutAppField, privacyPolicyField, contactServiceField;
-    LinearLayout helpDeskIT, helpDeskHRD, newsPart, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
+    LinearLayout menuPermohonanPart, headerPart, helpDeskIT, helpDeskHRD, newsPart, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
     TextView labelNotificationIzin, bagianNameTVSDM, historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
-    ImageView notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
+    ImageView hrisLogo, notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     SwipeRefreshLayout refreshLayout;
     String selectMonth = "", statusFiturIzinCuti = "1", statusFiturFinger = "1", currentDay = "";
     Context mContext;
@@ -157,6 +157,9 @@ public class FragmentInfo extends Fragment {
         labelNotificationIzin = view.findViewById(R.id.label_notification_izin);
         helpDeskIT = view.findViewById(R.id.help_desk_it);
         helpDeskHRD = view.findViewById(R.id.help_desk_hrd);
+        hrisLogo = view.findViewById(R.id.hris_logo);
+        headerPart = view.findViewById(R.id.header_part);
+        menuPermohonanPart = view.findViewById(R.id.menu_permohonan_part);
 
         selectMonth = getBulanTahun();
         dateNowTV.setText(getDate().substring(8,10)+"/"+getDate().substring(5,7)+"/"+getDate().substring(0,4));
@@ -529,10 +532,47 @@ public class FragmentInfo extends Fragment {
         });
 
         if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
+            int left = 25;
+            int top = 30;
+            int top2 = 10;
+            int right = 25;
+            int bottom = 10;
+            int paddingLeft = dpToPixels(left, getContext());
+            int paddingTop = dpToPixels(top, getContext());
+            int paddingRight = dpToPixels(right, getContext());
+            int paddingBottom = dpToPixels(bottom, getContext());
+            headerPart.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
+            int topPer = 10;
+            int leftPer = 20;
+            int rightPer = 20;
+            int paddingTopPer = dpToPixels(topPer, getContext());
+            int paddingLeftPer = dpToPixels(leftPer, getContext());
+            int paddingRightPer = dpToPixels(rightPer, getContext());
+            menuPermohonanPart.setPadding(paddingLeftPer,paddingTopPer,paddingRightPer,0);
+
+            titlePage.setVisibility(View.GONE);
+            hrisLogo.setVisibility(View.VISIBLE);
             titlePage.setText("HRIS Mobile");
             dasboardStatistikAbsen.setVisibility(View.GONE);
             faqBTN.setVisibility(View.GONE);
         } else {
+            int left = 25;
+            int top = 25;
+            int right = 25;
+            int bottom = 10;
+            int paddingLeft = dpToPixels(left, getContext());
+            int paddingTop = dpToPixels(top, getContext());
+            int paddingRight = dpToPixels(right, getContext());
+            int paddingBottom = dpToPixels(bottom, getContext());
+            headerPart.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
+            int leftPer = 20;
+            int rightPer = 20;
+            int paddingLeftPer = dpToPixels(leftPer, getContext());
+            int paddingRightPer = dpToPixels(rightPer, getContext());
+            menuPermohonanPart.setPadding(paddingLeftPer,0,paddingRightPer,0);
+
+            titlePage.setVisibility(View.VISIBLE);
+            hrisLogo.setVisibility(View.GONE);
             titlePage.setText("Info");
             dasboardStatistikAbsen.setVisibility(View.VISIBLE);
             faqBTN.setVisibility(View.VISIBLE);
@@ -542,6 +582,11 @@ public class FragmentInfo extends Fragment {
         getCurrentDay();
 
         return view;
+    }
+
+    public int dpToPixels(int dp, Context context) {
+        float density = context.getResources().getDisplayMetrics().density;
+        return (int) (dp * density + 0.5f); // Adding 0.5 for better rounding to the nearest integer
     }
 
     private void getDataAbsensi() {

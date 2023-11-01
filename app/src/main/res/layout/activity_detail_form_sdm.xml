@@ -2751,7 +2751,7 @@
                                     android:id="@+id/lihat_penilaian_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginBottom="10dp"
                                     android:visibility="gone"
                                     android:orientation="vertical">
 
@@ -2780,7 +2780,6 @@
                                         android:id="@+id/warning_penilaian"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="5dp"
                                         android:text="Penilaian menunggu verifikasi penilaian SDM"
                                         android:textColor="#BA4A4A"
                                         android:textSize="10dp"
@@ -2792,6 +2791,7 @@
                                     android:visibility="gone"
                                     android:id="@+id/action_part"
                                     android:orientation="vertical"
+                                    android:layout_marginBottom="15dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
