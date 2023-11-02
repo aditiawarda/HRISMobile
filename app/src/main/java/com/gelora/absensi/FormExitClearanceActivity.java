@@ -285,8 +285,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 saranED.clearFocus();
                 if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
-                }
-                else {
+                } else {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("application/pdf");
                     startActivityForResult(Intent.createChooser(intent, "PDF - 1"), PICK_PDF_ST_1);
@@ -303,8 +302,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 saranED.clearFocus();
                 if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
-                }
-                else {
+                } else {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("application/pdf");
                     startActivityForResult(Intent.createChooser(intent, "PDF - 2"), PICK_PDF_ST_2);
@@ -321,8 +319,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 saranED.clearFocus();
                 if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
-                }
-                else {
+                } else {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("application/pdf");
                     startActivityForResult(Intent.createChooser(intent, "PDF - 3"), PICK_PDF_ST_3);
@@ -339,8 +336,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 saranED.clearFocus();
                 if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
-                }
-                else {
+                } else {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("application/pdf");
                     startActivityForResult(Intent.createChooser(intent, "PDF - 4"), PICK_PDF_ST_4);
@@ -357,8 +353,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 saranED.clearFocus();
                 if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
-                }
-                else {
+                } else {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("application/pdf");
                     startActivityForResult(Intent.createChooser(intent, "PDF - 5"), PICK_PDF_ST_5);
@@ -375,8 +370,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 saranED.clearFocus();
                 if (ActivityCompat.checkSelfPermission(FormExitClearanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(FormExitClearanceActivity.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
-                }
-                else {
+                } else {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("application/pdf");
                     startActivityForResult(Intent.createChooser(intent, "PDF - 6"), PICK_PDF_ST_6);
@@ -667,6 +661,18 @@ public class FormExitClearanceActivity extends AppCompatActivity {
 
     }
 
+    private long getFileSize(Uri uri) {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        if (cursor != null) {
+            int sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE);
+            cursor.moveToFirst();
+            long size = cursor.getLong(sizeIndex);
+            cursor.close();
+            return size;
+        }
+        return 0; // Default to 0 if the size can't be determined
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -674,28 +680,136 @@ public class FormExitClearanceActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == PICK_PDF_ST_1) {
                 Uri selectedPdfUri = data.getData();
-                String pdfFilePath = selectedPdfUri.getPath();
-                processDocument(selectedPdfUri, "1");
+                if (selectedPdfUri!= null) {
+                    long fileSize = getFileSize(selectedPdfUri);
+                    final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB Max
+                    if (fileSize <= MAX_FILE_SIZE) {
+                        String pdfFilePath = selectedPdfUri.getPath();
+                        processDocument(selectedPdfUri, "1");
+                    } else {
+                        new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Ukuran file terlalu besar, batas maksimum ukuran file adalah 5 MB")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }
             } else if (requestCode == PICK_PDF_ST_2) {
                 Uri selectedPdfUri = data.getData();
-                String pdfFilePath = selectedPdfUri.getPath();
-                processDocument(selectedPdfUri, "2");
+                if (selectedPdfUri!= null) {
+                    long fileSize = getFileSize(selectedPdfUri);
+                    final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB Max
+                    if (fileSize <= MAX_FILE_SIZE) {
+                        String pdfFilePath = selectedPdfUri.getPath();
+                        processDocument(selectedPdfUri, "2");
+                    } else {
+                        new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Ukuran file terlalu besar, batas maksimum ukuran file adalah 5 MB")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }
             } else if (requestCode == PICK_PDF_ST_3) {
                 Uri selectedPdfUri = data.getData();
-                String pdfFilePath = selectedPdfUri.getPath();
-                processDocument(selectedPdfUri, "3");
+                if (selectedPdfUri!= null) {
+                    long fileSize = getFileSize(selectedPdfUri);
+                    final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB Max
+                    if (fileSize <= MAX_FILE_SIZE) {
+                        String pdfFilePath = selectedPdfUri.getPath();
+                        processDocument(selectedPdfUri, "3");
+                    } else {
+                        new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Ukuran file terlalu besar, batas maksimum ukuran file adalah 5 MB")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }
             } else if (requestCode == PICK_PDF_ST_4) {
                 Uri selectedPdfUri = data.getData();
-                String pdfFilePath = selectedPdfUri.getPath();
-                processDocument(selectedPdfUri, "4");
+                if (selectedPdfUri!= null) {
+                    long fileSize = getFileSize(selectedPdfUri);
+                    final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB Max
+                    if (fileSize <= MAX_FILE_SIZE) {
+                        String pdfFilePath = selectedPdfUri.getPath();
+                        processDocument(selectedPdfUri, "4");
+                    } else {
+                        new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Ukuran file terlalu besar, batas maksimum ukuran file adalah 5 MB")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }
             } else if (requestCode == PICK_PDF_ST_5) {
                 Uri selectedPdfUri = data.getData();
-                String pdfFilePath = selectedPdfUri.getPath();
-                processDocument(selectedPdfUri, "5");
+                if (selectedPdfUri!= null) {
+                    long fileSize = getFileSize(selectedPdfUri);
+                    final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB Max
+                    if (fileSize <= MAX_FILE_SIZE) {
+                        String pdfFilePath = selectedPdfUri.getPath();
+                        processDocument(selectedPdfUri, "5");
+                    } else {
+                        new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Ukuran file terlalu besar, batas maksimum ukuran file adalah 5 MB")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }
             } else if (requestCode == PICK_PDF_ST_6) {
                 Uri selectedPdfUri = data.getData();
-                String pdfFilePath = selectedPdfUri.getPath();
-                processDocument(selectedPdfUri, "6");
+                if (selectedPdfUri!= null) {
+                    long fileSize = getFileSize(selectedPdfUri);
+                    final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB Max
+                    if (fileSize <= MAX_FILE_SIZE) {
+                        String pdfFilePath = selectedPdfUri.getPath();
+                        processDocument(selectedPdfUri, "6");
+                    } else {
+                        new KAlertDialog(FormExitClearanceActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Ukuran file terlalu besar, batas maksimum ukuran file adalah 5 MB")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                }
             }
         }
 
