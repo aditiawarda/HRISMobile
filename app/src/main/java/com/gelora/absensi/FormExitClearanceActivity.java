@@ -1257,10 +1257,15 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     request.startUpload();
                 }
                 if(i+1 == arrayFile.length){
-                    permohonanTerkirim = "1";
-                    pDialog.dismiss();
-                    successPart.setVisibility(View.VISIBLE);
-                    formPart.setVisibility(View.GONE);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            permohonanTerkirim = "1";
+                            pDialog.dismiss();
+                            successPart.setVisibility(View.VISIBLE);
+                            formPart.setVisibility(View.GONE);
+                        }
+                    }, 5000);
                 }
             }
         } catch (Exception exc) {

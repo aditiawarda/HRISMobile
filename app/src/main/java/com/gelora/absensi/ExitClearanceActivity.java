@@ -339,6 +339,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
                                     dataInRV.setVisibility(View.GONE);
                                 }
                             } else {
+                                countNotificationInPart.setVisibility(View.GONE);
                                 noDataPart.setVisibility(View.VISIBLE);
                                 loadingDataPart.setVisibility(View.GONE);
                                 dataInRV.setVisibility(View.GONE);
