@@ -171,6 +171,7 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                             String status = data.getString("status");
                             if (status.equals("Success")){
                                 String akses_penilai = data.getString("akses_penilai");
+                                String add_penilaian = data.getString("add_penilaian");
                                 JSONObject dataArray = data.getJSONObject("data");
                                 String avatar = dataArray.getString("avatar");
                                 String nama = dataArray.getString("nama");
@@ -197,7 +198,11 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                 String hubungan_lainnya = dataArray.getString("hubungan_lainnya");
 
                                 if(akses_penilai.equals("1")){
-                                    penilaianBTN.setVisibility(View.VISIBLE);
+                                    if(add_penilaian.equals("1")){
+                                        penilaianBTN.setVisibility(View.VISIBLE);
+                                    } else {
+                                        penilaianBTN.setVisibility(View.GONE);
+                                    }
                                     penilaianBTN.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -210,7 +215,11 @@ public class ResumeKaryawanActivity extends AppCompatActivity {
                                     });
                                 } else {
                                     if(!status_karyawan.equals("Tetap")){
-                                        penilaianBTN.setVisibility(View.VISIBLE);
+                                        if(add_penilaian.equals("1")){
+                                            penilaianBTN.setVisibility(View.VISIBLE);
+                                        } else {
+                                            penilaianBTN.setVisibility(View.GONE);
+                                        }
                                         penilaianBTN.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {

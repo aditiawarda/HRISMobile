@@ -1,11 +1,14 @@
 package com.gelora.absensi;
 
+import static java.security.AccessController.getContext;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,7 +41,7 @@ import java.util.Map;
 
 public class DataPenilaianSdmActivity extends AppCompatActivity {
 
-    LinearLayout addBTN, backBTN, loadingDataPart, noDataPart, countWaitingBTN, addBtnPart;
+    LinearLayout areaPart, addBTN, backBTN, loadingDataPart, noDataPart, countWaitingBTN, addBtnPart;
     ImageView loadingData;
     SharedPrefManager sharedPrefManager;
     SwipeRefreshLayout refreshLayout;
@@ -64,6 +67,7 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
         countWaitingBTN = findViewById(R.id.count_waiting_btn);
         countWaitingTV = findViewById(R.id.count_waiting_tv);
         addBtnPart = findViewById(R.id.add_btn_part);
+        areaPart = findViewById(R.id.area_part);
 
         dataPenilaianSDMRV.setLayoutManager(new LinearLayoutManager(this));
         dataPenilaianSDMRV.setHasFixedSize(true);
@@ -128,6 +132,24 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
                             String status = data.getString("status");
                             if (status.equals("Success")) {
                                 String jumlah = data.getString("jumlah");
+                                String add_penilaian = data.getString("add_penilaian");
+
+                                if(add_penilaian.equals("1")){
+                                    addBtnPart.setVisibility(View.VISIBLE);
+                                    int top = 65;
+                                    int bottom = 100;
+                                    int paddingTop = dpToPixels(top, getBaseContext());
+                                    int paddingBottom = dpToPixels(bottom, getBaseContext());
+                                    areaPart.setPadding(0,paddingTop,0,paddingBottom);
+                                } else {
+                                    int top = 65;
+                                    int bottom = 10;
+                                    int paddingTop = dpToPixels(top, getBaseContext());
+                                    int paddingBottom = dpToPixels(bottom, getBaseContext());
+                                    addBtnPart.setVisibility(View.GONE);
+                                    areaPart.setPadding(0,paddingTop,0,paddingBottom);
+                                }
+
                                 if(Integer.parseInt(jumlah)>0){
                                     countWaitingBTN.setVisibility(View.VISIBLE);
                                     countWaitingTV.setText(jumlah);
@@ -176,6 +198,11 @@ public class DataPenilaianSdmActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    public int dpToPixels(int dp, Context context) {
+        float density = context.getResources().getDisplayMetrics().density;
+        return (int) (dp * density + 0.5f); // Adding 0.5 for better rounding to the nearest integer
     }
 
     private void connectionFailed(){
