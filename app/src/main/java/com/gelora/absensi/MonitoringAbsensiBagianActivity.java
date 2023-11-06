@@ -874,16 +874,13 @@ public class MonitoringAbsensiBagianActivity extends AppCompatActivity {
                         // response
                         try {
                             Log.d("Success.Response", response);
-
                             JSONObject data = new JSONObject(response);
                             String data_bagian = data.getString("data_bagian");
-
                             GsonBuilder builder = new GsonBuilder();
                             Gson gson = builder.create();
                             bagians = gson.fromJson(data_bagian, Bagian[].class);
                             adapterBagian = new AdapterBagian(bagians,MonitoringAbsensiBagianActivity.this);
                             bagianRV.setAdapter(adapterBagian);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
