@@ -338,7 +338,7 @@ public class SearchSdmActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
 
                             JSONObject data = new JSONObject(response);
                             String data_bagian = data.getString("data_bagian");
