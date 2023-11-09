@@ -1,4 +1,4 @@
-# HRIS Mobile
+# HRIS Mobile Gelora
 Special application for PT Gelora Aksara Pratama employees.
 HRIS Mobile can facilitate employees in :
 1. Carrying out work attendance
