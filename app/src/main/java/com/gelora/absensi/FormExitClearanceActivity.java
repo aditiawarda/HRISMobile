@@ -112,6 +112,8 @@ public class FormExitClearanceActivity extends AppCompatActivity {
     private static final int PICK_PDF_ST_5 = 5;
     private static final int PICK_PDF_ST_6 = 6;
 
+    String nikKaryawan, namaKaryawan, idBagian, idDepartemen, idJabatan;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -187,6 +189,12 @@ public class FormExitClearanceActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.success_ic)
                 .into(successGif);
+
+        nikKaryawan  = getIntent().getExtras().getString("nik");;
+        namaKaryawan = getIntent().getExtras().getString("nama");;
+        idBagian     = getIntent().getExtras().getString("id_bagian");;
+        idDepartemen = getIntent().getExtras().getString("id_dept");;
+        idJabatan    = getIntent().getExtras().getString("id_jabatan");;
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1057,8 +1065,8 @@ public class FormExitClearanceActivity extends AppCompatActivity {
     }
 
     private void getDataKaryawan(){
-        namaTV.setText(sharedPrefManager.getSpNama().toUpperCase());
-        nikTV.setText(sharedPrefManager.getSpNik());
+        namaTV.setText(namaKaryawan.toUpperCase());
+        nikTV.setText(nikKaryawan);
         getDataKaryawanDetail();
     }
 
@@ -1156,10 +1164,10 @@ public class FormExitClearanceActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("id_department", sharedPrefManager.getSpIdHeadDept());
-                params.put("id_bagian", sharedPrefManager.getSpIdDept());
-                params.put("id_jabatan", sharedPrefManager.getSpIdJabatan());
-                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("id_department", idDepartemen);
+                params.put("id_bagian", idBagian);
+                params.put("id_jabatan", idJabatan);
+                params.put("NIK", nikKaryawan);
                 return params;
             }
         };
@@ -1248,7 +1256,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
             {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("nomor_frm", "FRM.HRD.01.10/rev-3");
-                params.put("nik", sharedPrefManager.getSpNik());
+                params.put("nik", nikKaryawan);
                 params.put("tgl_keluar", tanggalResign);
                 params.put("alasan_keluar", alasanResign);
 
@@ -1259,6 +1267,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                 }
 
                 params.put("saran", saranUntukPerusahaan);
+                params.put("dibuat_oleh", sharedPrefManager.getSpNik());
 
                 return params;
             }
@@ -1364,7 +1373,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     MultipartUploadRequest request = new MultipartUploadRequest(this, uploadId, UPLOAD_URL);
                     request.addFileToUpload(String.valueOf(arrayFile[i]), "st_file_"+String.valueOf(i+1));
                     request.addParameter("id_record", id_record);
-                    request.addParameter("NIK", sharedPrefManager.getSpNik());
+                    request.addParameter("NIK", nikKaryawan);
                     request.addParameter("st_number", String.valueOf(i+1));
                     request.addParameter("current_time", getDate().substring(8,10)+getDate().substring(5,7)+getDate().substring(0,4));
                     request.setMaxRetries(1);
@@ -1458,7 +1467,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
 
@@ -1467,27 +1476,65 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                                 String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
                                 submitRecord();
                             } else {
-                                pDialog.setTitleText("Perhatian")
-                                        .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")
-                                        .setCancelText(" BATAL ")
-                                        .setConfirmText("LANJUT")
-                                        .showCancelButton(true)
-                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                            @Override
-                                            public void onClick(KAlertDialog sDialog) {
-                                                sDialog.dismiss();
-                                            }
-                                        })
-                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                            @Override
-                                            public void onClick(KAlertDialog sDialog) {
-                                                sDialog.dismiss();
-                                                Intent intent = new Intent(FormExitClearanceActivity.this, DigitalSignatureActivity.class);
-                                                intent.putExtra("kode", "form");
-                                                startActivity(intent);
-                                            }
-                                        })
-                                        .changeAlertType(KAlertDialog.WARNING_TYPE);
+                                if(sharedPrefManager.getSpIdJabatan().equals("1")){
+                                    if (sharedPrefManager.getSpNik().equals(nikKaryawan)){
+                                        pDialog.setTitleText("Perhatian")
+                                                .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")
+                                                .setCancelText(" BATAL ")
+                                                .setConfirmText("LANJUT")
+                                                .showCancelButton(true)
+                                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                        Intent intent = new Intent(FormExitClearanceActivity.this, DigitalSignatureActivity.class);
+                                                        intent.putExtra("kode", "form");
+                                                        startActivity(intent);
+                                                    }
+                                                })
+                                                .changeAlertType(KAlertDialog.WARNING_TYPE);
+                                    } else {
+                                        pDialog.setTitleText("Perhatian")
+                                                .setContentText("Karyawan yang bersangkutan belum mengisi tanda tangan digital, harap isi terlebih dahulu")
+                                                .setConfirmText("TUTUP")
+                                                .showCancelButton(true)
+                                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                    @Override
+                                                    public void onClick(KAlertDialog sDialog) {
+                                                        sDialog.dismiss();
+                                                    }
+                                                })
+                                                .changeAlertType(KAlertDialog.WARNING_TYPE);
+                                    }
+                                } else {
+                                    pDialog.setTitleText("Perhatian")
+                                            .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")
+                                            .setCancelText(" BATAL ")
+                                            .setConfirmText("LANJUT")
+                                            .showCancelButton(true)
+                                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                                @Override
+                                                public void onClick(KAlertDialog sDialog) {
+                                                    sDialog.dismiss();
+                                                }
+                                            })
+                                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                                @Override
+                                                public void onClick(KAlertDialog sDialog) {
+                                                    sDialog.dismiss();
+                                                    Intent intent = new Intent(FormExitClearanceActivity.this, DigitalSignatureActivity.class);
+                                                    intent.putExtra("kode", "form");
+                                                    startActivity(intent);
+                                                }
+                                            })
+                                            .changeAlertType(KAlertDialog.WARNING_TYPE);
+                                }
                             }
 
                         } catch (JSONException e) {
@@ -1510,7 +1557,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("NIK", sharedPrefManager.getSpNik());
+                params.put("NIK", nikKaryawan);
                 return params;
             }
         };

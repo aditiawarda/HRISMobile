@@ -2,16 +2,30 @@ package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,10 +38,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterExitClearanceIn;
 import com.gelora.absensi.adapter.AdapterExitClearanceOut;
+import com.gelora.absensi.adapter.AdapterKaryawanClearance;
+import com.gelora.absensi.adapter.AdapterKaryawanPengganti;
 import com.gelora.absensi.adapter.AdapterPermohonanIzin;
 import com.gelora.absensi.adapter.AdapterPermohonanSaya;
+import com.gelora.absensi.model.KaryawanClearance;
+import com.gelora.absensi.model.KaryawanPengganti;
 import com.gelora.absensi.model.ListDataExitClearanceIn;
 import com.gelora.absensi.model.ListDataExitClearanceOut;
 import com.gelora.absensi.model.ListPermohonanIzin;
@@ -44,17 +63,20 @@ import java.util.Map;
 public class ExitClearanceActivity extends AppCompatActivity {
 
     SharedPrefManager sharedPrefManager;
-    ImageView loadingDataImg, loadingDataImg2;
-    LinearLayout countNotificationInPart, backBTN, mainPart, actionBar, addBTN, dataInBTN, dataOutBTN, optionPart, dataMasukPart, dataKeluarPart, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
+    ImageView loadingDataImg, loadingDataImg2, loadingGif;
+    LinearLayout startAttantionPart, countNotificationInPart, backBTN, mainPart, actionBar, addBTN, dataInBTN, dataOutBTN, optionPart, dataMasukPart, dataKeluarPart, noDataPart, noDataPart2, loadingDataPart, loadingDataPart2;
     SwipeRefreshLayout refreshLayout;
     TextView countNotificationInTV;
     String otoritorEC;
-
-    private RecyclerView dataOutRV, dataInRV;
+    BottomSheetLayout bottomSheet;
+    EditText keywordKaryawan;
+    private KaryawanClearance[] karyawanClearances;
+    private RecyclerView dataOutRV, dataInRV, karyawanRV;
     private ListDataExitClearanceOut[] listDataExitClearanceOuts;
     private AdapterExitClearanceOut adapterExitClearanceOut;
     private ListDataExitClearanceIn[] listDataExitClearanceIns;
     private AdapterExitClearanceIn adapterExitClearanceIn;
+    private AdapterKaryawanClearance adapterKaryawanClearance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +102,7 @@ public class ExitClearanceActivity extends AppCompatActivity {
         addBTN = findViewById(R.id.add_btn);
         actionBar = findViewById(R.id.action_bar);
         mainPart = findViewById(R.id.main_part);
+        bottomSheet = findViewById(R.id.bottom_sheet_layout);
 
         dataOutRV = findViewById(R.id.data_out_rv);
         dataInRV = findViewById(R.id.data_in_rv);
@@ -103,6 +126,8 @@ public class ExitClearanceActivity extends AppCompatActivity {
         dataInRV.setItemAnimator(new DefaultItemAnimator());
 
         otoritorEC = getIntent().getExtras().getString("otoritor");
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(karyawanBoard, new IntentFilter("karyawan_broad"));
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,8 +166,17 @@ public class ExitClearanceActivity extends AppCompatActivity {
         addBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ExitClearanceActivity.this, FormExitClearanceActivity.class);
-                startActivity(intent);
+                if(sharedPrefManager.getSpIdJabatan().equals("1")){
+                    pilihKaryawan();
+                } else {
+                    Intent intent = new Intent(ExitClearanceActivity.this, FormExitClearanceActivity.class);
+                    intent.putExtra("nik", sharedPrefManager.getSpNik());
+                    intent.putExtra("nama", sharedPrefManager.getSpNama());
+                    intent.putExtra("id_bagian", sharedPrefManager.getSpIdDept());
+                    intent.putExtra("id_dept", sharedPrefManager.getSpIdHeadDept());
+                    intent.putExtra("id_jabatan", sharedPrefManager.getSpIdJabatan());
+                    startActivity(intent);
+                }
             }
         });
 
@@ -236,6 +270,154 @@ public class ExitClearanceActivity extends AppCompatActivity {
 
     }
 
+    private void pilihKaryawan(){
+        bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_karyawan_clearance, bottomSheet, false));
+        keywordKaryawan = findViewById(R.id.keyword_user_ed);
+        keywordKaryawan.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+        karyawanRV = findViewById(R.id.karyawan_rv);
+        startAttantionPart = findViewById(R.id.attantion_data_part);
+        noDataPart = findViewById(R.id.no_data_part);
+        loadingDataPart = findViewById(R.id.loading_data_part);
+        loadingGif = findViewById(R.id.loading_data);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(loadingGif);
+
+        karyawanRV.setLayoutManager(new LinearLayoutManager(this));
+        karyawanRV.setHasFixedSize(true);
+        karyawanRV.setNestedScrollingEnabled(false);
+        karyawanRV.setItemAnimator(new DefaultItemAnimator());
+
+        keywordKaryawan.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String keyWordSearch = keywordKaryawan.getText().toString();
+
+                startAttantionPart.setVisibility(View.GONE);
+                loadingDataPart.setVisibility(View.VISIBLE);
+                noDataPart.setVisibility(View.GONE);
+                karyawanRV.setVisibility(View.GONE);
+
+                if(!keyWordSearch.equals("")){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getDataKaryawan(keyWordSearch);
+                        }
+                    }, 500);
+                }
+            }
+
+        });
+
+        keywordKaryawan.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    String keyWordSearch = keywordKaryawan.getText().toString();
+                    getDataKaryawan(keyWordSearch);
+
+                    InputMethodManager imm = (InputMethodManager) ExitClearanceActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    View view = ExitClearanceActivity.this.getCurrentFocus();
+                    if (view == null) {
+                        view = new View(ExitClearanceActivity.this);
+                    }
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+    }
+
+    public BroadcastReceiver karyawanBoard = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            bottomSheet.dismissSheet();
+        }
+    };
+
+    private void getDataKaryawan(String keyword) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/cari_karyawan_clearance";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response);
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if (status.equals("Success")) {
+                                startAttantionPart.setVisibility(View.GONE);
+                                loadingDataPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.GONE);
+                                karyawanRV.setVisibility(View.VISIBLE);
+
+                                String data_list = data.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                karyawanClearances = gson.fromJson(data_list, KaryawanClearance[].class);
+                                adapterKaryawanClearance = new AdapterKaryawanClearance(karyawanClearances, ExitClearanceActivity.this);
+                                karyawanRV.setAdapter(adapterKaryawanClearance);
+                            } else {
+                                startAttantionPart.setVisibility(View.GONE);
+                                loadingDataPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.VISIBLE);
+                                karyawanRV.setVisibility(View.GONE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+
+                        startAttantionPart.setVisibility(View.GONE);
+                        loadingDataPart.setVisibility(View.GONE);
+                        noDataPart.setVisibility(View.VISIBLE);
+                        karyawanRV.setVisibility(View.GONE);
+
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                params.put("nik", sharedPrefManager.getSpNik());
+                params.put("keyword_karyawan", keyword);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
     private void getDataOut() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_data_keluar_exit_clearance";
@@ -250,7 +432,11 @@ public class ExitClearanceActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")){
-                                addBTN.setVisibility(View.GONE);
+                                if(sharedPrefManager.getSpIdJabatan().equals("1")){
+                                    addBTN.setVisibility(View.VISIBLE);
+                                } else {
+                                    addBTN.setVisibility(View.GONE);
+                                }
                                 noDataPart2.setVisibility(View.GONE);
                                 loadingDataPart2.setVisibility(View.GONE);
                                 dataOutRV.setVisibility(View.VISIBLE);
@@ -404,6 +590,15 @@ public class ExitClearanceActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (bottomSheet.isSheetShowing()){
+            bottomSheet.dismissSheet();
+        } else {
+            super.onBackPressed();
+        }
     }
 
 }

@@ -58,6 +58,7 @@ public class AdapterExitClearanceOut extends RecyclerView.Adapter<AdapterExitCle
         final ListDataExitClearanceOut listDataExitClearanceOut = data[i];
 
         myViewHolder.statusDataTV.setText(listDataExitClearanceOut.getStatus_notifikasi());
+        myViewHolder.atasNamaTV.setText(listDataExitClearanceOut.getNama_karyawan());
 
         if(listDataExitClearanceOut.getStatus_notifikasi().equals("Menunggu verifikasi atasan langsung")) {
             myViewHolder.statusDataTV.setTextColor(Color.parseColor("#C16D02"));
@@ -219,11 +220,12 @@ public class AdapterExitClearanceOut extends RecyclerView.Adapter<AdapterExitCle
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView statusDataTV, tglKeluarTV, tanggalNotifikasi, lineLimit;
+        TextView atasNamaTV, statusDataTV, tglKeluarTV, tanggalNotifikasi, lineLimit;
         LinearLayout parentPart;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             statusDataTV = itemView.findViewById(R.id.status_data_tv);
+            atasNamaTV = itemView.findViewById(R.id.atas_nama_tv);
             tglKeluarTV = itemView.findViewById(R.id.tanggal_resign_tv);
             tanggalNotifikasi = itemView.findViewById(R.id.tanggal_notifikasi);
             lineLimit = itemView.findViewById(R.id.line_limit);

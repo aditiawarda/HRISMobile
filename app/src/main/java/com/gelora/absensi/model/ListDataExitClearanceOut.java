@@ -5,6 +5,7 @@ public class ListDataExitClearanceOut {
 
     private String id_core;
     private String NIK;
+    private String nama_karyawan;
     private String tgl_keluar;
     private String status_notifikasi;
     private String time_notifikasi;
@@ -49,4 +50,11 @@ public class ListDataExitClearanceOut {
         this.time_notifikasi = time_notifikasi;
     }
 
+    public String getNama_karyawan() {
+        return nama_karyawan;
+    }
+
+    public void setNama_karyawan(String nama_karyawan) {
+        this.nama_karyawan = nama_karyawan;
+    }
 }
