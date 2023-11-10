@@ -58,6 +58,7 @@ public class AdapterBagian extends RecyclerView.Adapter<AdapterBagian.MyViewHold
         }
 
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
 
