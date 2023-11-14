@@ -1830,7 +1830,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4VerifPersetujuanGroup.clearCheck();
                 f4CatatanTV.setText("");
 
-                if(sharedPrefManager.getSpIdJabatan().equals("1")){
+                if(sharedPrefManager.getSpIdJabatan().equals("1") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
                     f1UnitBisnisPart.setVisibility(View.GONE);
                     f1UnitBisnisDisableMode.setVisibility(View.VISIBLE);
                     f1DepartemenPart.setVisibility(View.GONE);
@@ -1842,6 +1842,19 @@ public class FormSdmActivity extends AppCompatActivity {
                     f1IdUnitBisnis = "1";
                     f1IdDepartemen = sharedPrefManager.getSpIdHeadDept();
                     f1IdBagian = sharedPrefManager.getSpIdDept();
+
+                    getBagianDepartemen();
+                } else if(sharedPrefManager.getSpIdJabatan().equals("10") || sharedPrefManager.getSpIdJabatan().equals("3")){
+                    f1UnitBisnisPart.setVisibility(View.GONE);
+                    f1UnitBisnisDisableMode.setVisibility(View.VISIBLE);
+                    f1DepartemenPart.setVisibility(View.GONE);
+                    f1DepartemenDisableMode.setVisibility(View.VISIBLE);
+                    f1BagianPart.setVisibility(View.VISIBLE);
+                    f1BagianDisableMode.setVisibility(View.GONE);
+
+                    f1UnitBisnisDisableModeTV.setText("PT. Gelora Aksara Pratama");
+                    f1IdUnitBisnis = "1";
+                    f1IdDepartemen = sharedPrefManager.getSpIdHeadDept();
 
                     getBagianDepartemen();
                 }
@@ -8183,7 +8196,9 @@ public class FormSdmActivity extends AppCompatActivity {
                                 String departemen = data.getString("departemen");
                                 String bagian = data.getString("bagian");
                                 f1DepartemenDisableModeTV.setText(departemen);
-                                f1BagianDisableModeTV.setText(bagian);
+                                if(sharedPrefManager.getSpIdJabatan().equals("1") || sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25")){
+                                    f1BagianDisableModeTV.setText(bagian);
+                                }
                             } else {
                                 new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")
@@ -8218,7 +8233,11 @@ public class FormSdmActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("id_bagian", f1IdBagian);
+                if(!f1IdBagian.equals("")){
+                    params.put("id_bagian", f1IdBagian);
+                } else {
+                    params.put("id_bagian", sharedPrefManager.getSpIdDept());
+                }
                 params.put("id_departemen", f1IdDepartemen);
                 return params;
             }
