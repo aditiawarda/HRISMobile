@@ -84,11 +84,11 @@
                                                 android:id="@+id/keterangan_tv"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
+                                                android:text="Pilih keterangan..."
                                                 android:textColor="#B15735"
                                                 android:textSize="13dp"
                                                 android:textStyle="bold"
-                                                android:text="Pilih keterangan..."
-                                                tools:ignore="SpUsage" />
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                         </LinearLayout>
 
@@ -745,7 +745,7 @@
                                         android:textSize="14dp"
                                         android:textColorHint="#595959"
                                         android:textColorHighlight="#FFE1BC"
-                                        tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage" />
+                                        tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,TooManyViews" />
 
                                 </LinearLayout>
 
