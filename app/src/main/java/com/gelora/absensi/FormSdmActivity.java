@@ -3323,7 +3323,7 @@ public class FormSdmActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
 
                             JSONObject data = new JSONObject(response);
                             String jabatan = data.getString("data");
