@@ -1,6 +1,5 @@
 package com.gelora.absensi;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -26,16 +24,10 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterDataAlpa;
 import com.gelora.absensi.adapter.AdapterDataIzin;
-import com.gelora.absensi.adapter.AdapterHistoryAbsen;
 import com.gelora.absensi.model.DataAlpa;
 import com.gelora.absensi.model.DataIzin;
-import com.gelora.absensi.model.HistoryAbsen;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.kal.rackmonthpicker.RackMonthPicker;
-import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
-import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
-import com.shasin.notificationbanner.Banner;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import org.aviran.cookiebar2.CookieBar;
@@ -47,7 +39,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class DetailTidakHadirActivity extends AppCompatActivity {
@@ -279,7 +270,7 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("message");
                             if (status.equals("Success")){
@@ -342,12 +333,13 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
         final String url = "https://geloraaksara.co.id/absen-online/api/detail_tidak_hadir";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("message");
                             if (status.equals("Success")){
