@@ -87,7 +87,7 @@
                                                 android:textColor="#B15735"
                                                 android:textSize="13dp"
                                                 android:textStyle="bold"
-                                                android:text=""
+                                                android:text="Pilih keterangan..."
                                                 tools:ignore="SpUsage" />
 
                                         </LinearLayout>
@@ -339,6 +339,29 @@
 
                                     </LinearLayout>
 
+                                    <LinearLayout
+                                        android:id="@+id/f1_unit_bisnis_disable_mode"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/f1_unit_bisnis_disable_mode_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SpUsage" />
+
+                                    </LinearLayout>
+
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -410,6 +433,29 @@
 
                                     </LinearLayout>
 
+                                    <LinearLayout
+                                        android:id="@+id/f1_departemen_disable_mode"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/f1_departemen_disable_mode_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SpUsage" />
+
+                                    </LinearLayout>
+
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -478,6 +524,29 @@
                                             </LinearLayout>
 
                                         </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/f1_bagian_disable_mode"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/f1_bagian_disable_mode_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SpUsage" />
 
                                     </LinearLayout>
 
@@ -571,26 +640,59 @@
                                         android:text="Komponen Gaji :"
                                         tools:ignore="HardcodedText,SpUsage" />
 
-                                    <EditText
-                                        android:id="@+id/f1_komponen_gaji_tv"
+                                    <LinearLayout
+                                        android:id="@+id/f1_komponen_gaji_part"
                                         android:layout_width="match_parent"
-                                        android:gravity="center|left"
-                                        android:imeOptions="actionDone"
                                         android:layout_height="40dp"
-                                        android:paddingTop="10dp"
-                                        android:paddingBottom="10dp"
-                                        android:paddingLeft="20dp"
-                                        android:paddingRight="20dp"
-                                        android:inputType="textCapSentences|text"
-                                        android:layout_marginBottom="10dp"
-                                        android:background="@drawable/shape_input_form"
-                                        android:drawablePadding="10dp"
-                                        android:textColor="#595959"
-                                        android:hint=""
-                                        android:textSize="14dp"
-                                        android:textColorHint="#595959"
-                                        android:textColorHighlight="#FFE1BC"
-                                        tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage" />
+                                        android:paddingStart="20dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            tools:ignore="UselessParent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left"
+                                                tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                <TextView
+                                                    android:id="@+id/f1_komponen_gaji_pilih_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""
+                                                    tools:ignore="SpUsage" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_down"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
 
