@@ -122,10 +122,10 @@ public class FormSdmActivity extends AppCompatActivity {
     private AdapterKomponenGaji adapterKomponenGaji;
 
     //Form 2 3 4
-    LinearLayout f2NamaKaryawanPart, f2UnitBisnisPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
-    LinearLayout f2NamaKaryawanLamaPart, f2UnitBisnisLamaPart, f2StartAttantionKaryawanLamaPart, f2NoDataKaryawanLamaPart, f2loadingDataKaryawanLamaPart;
+    LinearLayout f2UnitBisnisDisableMode, f2NamaKaryawanPart, f2UnitBisnisPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
+    LinearLayout f2UnitBisnisDisableModeLama, f2NamaKaryawanLamaPart, f2UnitBisnisLamaPart, f2StartAttantionKaryawanLamaPart, f2NoDataKaryawanLamaPart, f2loadingDataKaryawanLamaPart;
     ImageView f2loadingGif, f2loadingLamaGif;
-    TextView f2NamaKaryawanTV, f2UnitBisnisTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
+    TextView f2UnitBisnisDisableModeLamaTV, f2UnitBisnisDisableModeTV, f2NamaKaryawanTV, f2UnitBisnisTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
     TextView f2NamaKaryawanLamaTV, f2UnitBisnisLamaTV, f2DepartemenLamaTV, f2BagianLamaTV, f2JabatanLamaTV;
     EditText f2keywordKaryawanBaru, f2KomponenGajiTV;
     EditText f2keywordKaryawanLama, f2KomponenGajiLamaTV, f2CatatanTV;
@@ -272,6 +272,10 @@ public class FormSdmActivity extends AppCompatActivity {
         f2NamaKaryawanPart = findViewById(R.id.f2_nama_karyawan_part);
         f2NamaKaryawanTV = findViewById(R.id.f2_nama_karyawan_tv);
         f2UnitBisnisPart = findViewById(R.id.f2_unit_bisnis_part);
+        f2UnitBisnisDisableMode = findViewById(R.id.f2_unit_bisnis_disable_mode);
+        f2UnitBisnisDisableModeLama = findViewById(R.id.f2_unit_bisnis_disable_mode_lama);
+        f2UnitBisnisDisableModeTV = findViewById(R.id.f2_unit_bisnis_disable_mode_tv);
+        f2UnitBisnisDisableModeLamaTV = findViewById(R.id.f2_unit_bisnis_disable_mode_tv_lama);
         f2UnitBisnisTV = findViewById(R.id.f2_unit_bisnis_tv);
         f2DepartemenTV = findViewById(R.id.f2_departemen_tv);
         f2BagianTV = findViewById(R.id.f2_bagian_tv);
@@ -370,6 +374,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onRefresh() {
 
@@ -2048,6 +2053,11 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4VerifPersetujuanGroup.clearCheck();
                 f4CatatanTV.setText("");
 
+                f2UnitBisnisPart.setVisibility(View.GONE);
+                f2UnitBisnisDisableMode.setVisibility(View.VISIBLE);
+                f2UnitBisnisLamaPart.setVisibility(View.GONE);
+                f2UnitBisnisDisableModeLama.setVisibility(View.VISIBLE);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -2236,6 +2246,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4Persetujuan = "";
                 f4VerifPersetujuanGroup.clearCheck();
                 f4CatatanTV.setText("");
+
+                f2UnitBisnisPart.setVisibility(View.GONE);
+                f2UnitBisnisDisableMode.setVisibility(View.VISIBLE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -5605,6 +5618,9 @@ public class FormSdmActivity extends AppCompatActivity {
             String jabatan_karyawan_baru = intent.getStringExtra("jabatan_karyawan_baru");
             String id_jabatan_karyawan_baru = intent.getStringExtra("id_jabatan_karyawan_baru");
 
+            f2UnitBisnisDisableModeTV.setText("PT. Gelora Aksara Pratama");
+            f2IdUnitBisnis = "1";
+
             f2NikBaru = nik_karyawan_baru;
             f2NamaKaryawanTV.setText(nama_karyawan_baru);
             f2DepartemenBaru = id_departemen_karyawan_baru;
@@ -5868,6 +5884,9 @@ public class FormSdmActivity extends AppCompatActivity {
             String id_bagian_karyawan_lama = intent.getStringExtra("id_bagian_karyawan_lama");
             String jabatan_karyawan_lama = intent.getStringExtra("jabatan_karyawan_lama");
             String id_jabatan_karyawan_lama = intent.getStringExtra("id_jabatan_karyawan_lama");
+
+            f2UnitBisnisDisableModeLamaTV.setText("PT. Gelora Aksara Pratama");
+            f2IdUnitBisnisLama = "1";
 
             f2NikLama = nik_karyawan_lama;
             f2NamaKaryawanLamaTV.setText(nama_karyawan_lama);
