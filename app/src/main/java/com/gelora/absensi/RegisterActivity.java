@@ -22,13 +22,11 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,7 +38,6 @@ import com.android.volley.toolbox.Volley;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.support.StatusBarColorManager;
-import com.shasin.notificationbanner.Banner;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
@@ -48,8 +45,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -94,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 new Handler().postDelayed(new Runnable() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
@@ -198,7 +194,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
-            @SuppressLint("SetTextI18n")
+            @SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
             @Override
             public void afterTextChanged(Editable s) {
                 if (!passwordED.getText().toString().equals("")||!repasswordED.getText().toString().equals("")) {
@@ -228,7 +224,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
-            @SuppressLint("SetTextI18n")
+            @SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
             @Override
             public void afterTextChanged(Editable s) {
                 if (!passwordED.getText().toString().equals("")||!repasswordED.getText().toString().equals("")){
@@ -645,7 +641,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
 
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
@@ -715,7 +711,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
 

@@ -7,17 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,9 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.gelora.absensi.adapter.AdapterListPelatihan;
 import com.gelora.absensi.adapter.AdapterListPelatihanResume;
-import com.gelora.absensi.adapter.AdapterListPengalaman;
 import com.gelora.absensi.adapter.AdapterListPengalamanResume;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataPelatihan;

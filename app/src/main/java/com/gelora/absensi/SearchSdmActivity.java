@@ -12,7 +12,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -28,27 +27,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
-import com.gelora.absensi.adapter.AdapterBagianSearch;
 import com.gelora.absensi.adapter.AdapterBagianSearchSDM;
-import com.gelora.absensi.adapter.AdapterKehadiranBagianSearch;
-import com.gelora.absensi.adapter.AdapterKetidakhadiranBagianSearch;
-import com.gelora.absensi.adapter.AdapterListSDM;
 import com.gelora.absensi.adapter.AdapterListSDMSearch;
-import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.Bagian;
-import com.gelora.absensi.model.DataMonitoringKehadiranBagian;
-import com.gelora.absensi.model.DataMonitoringKetidakhadiranBagian;
 import com.gelora.absensi.model.HumanResource;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -283,7 +273,7 @@ public class SearchSdmActivity extends AppCompatActivity {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
@@ -398,7 +388,7 @@ public class SearchSdmActivity extends AppCompatActivity {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {

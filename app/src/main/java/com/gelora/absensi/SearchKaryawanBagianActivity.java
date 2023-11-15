@@ -593,7 +593,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
                         // response
                         JSONObject data = null;
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
@@ -703,7 +703,7 @@ public class SearchKaryawanBagianActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         try {
-                            Log.d("Success.Response", response.toString());
+                            Log.d("Success.Response", response);
 
                             JSONObject data = new JSONObject(response);
                             String data_bagian = data.getString("data_bagian");
