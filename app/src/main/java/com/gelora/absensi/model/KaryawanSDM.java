@@ -11,6 +11,7 @@ public class KaryawanSDM {
     private String id_bagian;
     private String departemen;
     private String id_departemen;
+    private String status_karyawan;
 
     public String getNIK() {
         return NIK;
@@ -75,4 +76,13 @@ public class KaryawanSDM {
     public void setId_departemen(String id_departemen) {
         this.id_departemen = id_departemen;
     }
+
+    public String getStatus_karyawan() {
+        return status_karyawan;
+    }
+
+    public void setStatus_karyawan(String status_karyawan) {
+        this.status_karyawan = status_karyawan;
+    }
+
 }

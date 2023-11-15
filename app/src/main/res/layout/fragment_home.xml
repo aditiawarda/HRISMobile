@@ -1023,7 +1023,7 @@
                                                         android:gravity="center"
                                                         android:maxLines="1"
                                                         android:singleLine="true"
-                                                        android:text="Exit - C"
+                                                        android:text="Clearance"
                                                         android:textColor="#515151"
                                                         android:textSize="12dp"
                                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />

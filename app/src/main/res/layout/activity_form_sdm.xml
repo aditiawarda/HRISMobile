@@ -1299,6 +1299,29 @@
                                         android:text="Komponen Gaji :"
                                         tools:ignore="HardcodedText,SpUsage" />
 
+                                    <LinearLayout
+                                        android:id="@+id/f2_komponen_gaji_disable_mode_lama"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/f2_komponen_gaji_disable_mode_tv_lama"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SpUsage" />
+
+                                    </LinearLayout>
+
                                     <EditText
                                         android:id="@+id/f2_komponen_gaji_lama_tv"
                                         android:imeOptions="actionDone"
@@ -1402,6 +1425,29 @@
                                             </LinearLayout>
 
                                         </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/f2_nama_karyawan_disable_mode"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/f2_nama_karyawan_disable_mode_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SpUsage" />
 
                                     </LinearLayout>
 
@@ -1635,6 +1681,29 @@
                                         android:text="Komponen Gaji :"
                                         tools:ignore="HardcodedText,SpUsage" />
 
+                                    <LinearLayout
+                                        android:id="@+id/f2_komponen_gaji_disable_mode"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/f2_komponen_gaji_disable_mode_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SpUsage" />
+
+                                    </LinearLayout>
+
                                     <EditText
                                         android:id="@+id/f2_komponen_gaji_tv"
                                         android:layout_width="match_parent"
@@ -1659,6 +1728,7 @@
                                 </LinearLayout>
 
                                 <TextView
+                                    android:id="@+id/f2_label_point"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:ellipsize="end"

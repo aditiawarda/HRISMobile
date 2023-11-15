@@ -122,11 +122,11 @@ public class FormSdmActivity extends AppCompatActivity {
     private AdapterKomponenGaji adapterKomponenGaji;
 
     //Form 2 3 4
-    LinearLayout f2UnitBisnisDisableMode, f2NamaKaryawanPart, f2UnitBisnisPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
-    LinearLayout f2UnitBisnisDisableModeLama, f2NamaKaryawanLamaPart, f2UnitBisnisLamaPart, f2StartAttantionKaryawanLamaPart, f2NoDataKaryawanLamaPart, f2loadingDataKaryawanLamaPart;
+    LinearLayout f2KomponenGajiDisableMode, f2NamaKaryawanDisableMode, f2UnitBisnisDisableMode, f2NamaKaryawanPart, f2UnitBisnisPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
+    LinearLayout f2KomponenGajiDisableModeLama, f2UnitBisnisDisableModeLama, f2NamaKaryawanLamaPart, f2UnitBisnisLamaPart, f2StartAttantionKaryawanLamaPart, f2NoDataKaryawanLamaPart, f2loadingDataKaryawanLamaPart;
     ImageView f2loadingGif, f2loadingLamaGif;
-    TextView f2UnitBisnisDisableModeLamaTV, f2UnitBisnisDisableModeTV, f2NamaKaryawanTV, f2UnitBisnisTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
-    TextView f2NamaKaryawanLamaTV, f2UnitBisnisLamaTV, f2DepartemenLamaTV, f2BagianLamaTV, f2JabatanLamaTV;
+    TextView f2LabelPoint, f2KomponenGajiDisableModeTV, f2NamaKaryawanDisableModeTV, f2UnitBisnisDisableModeLamaTV, f2UnitBisnisDisableModeTV, f2NamaKaryawanTV, f2UnitBisnisTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
+    TextView f2KomponenGajiDisableModeLamaTV, f2NamaKaryawanLamaTV, f2UnitBisnisLamaTV, f2DepartemenLamaTV, f2BagianLamaTV, f2JabatanLamaTV;
     EditText f2keywordKaryawanBaru, f2KomponenGajiTV;
     EditText f2keywordKaryawanLama, f2KomponenGajiLamaTV, f2CatatanTV;
     String f2NikBaru = "", f2IdUnitBisnis = "", f2DepartemenBaru = "", f2BagianBaru = "", f2JabatanBaru = "";
@@ -270,6 +270,8 @@ public class FormSdmActivity extends AppCompatActivity {
 
         //Form 2 3 4
         f2NamaKaryawanPart = findViewById(R.id.f2_nama_karyawan_part);
+        f2NamaKaryawanDisableMode = findViewById(R.id.f2_nama_karyawan_disable_mode);
+        f2NamaKaryawanDisableModeTV = findViewById(R.id.f2_nama_karyawan_disable_mode_tv);
         f2NamaKaryawanTV = findViewById(R.id.f2_nama_karyawan_tv);
         f2UnitBisnisPart = findViewById(R.id.f2_unit_bisnis_part);
         f2UnitBisnisDisableMode = findViewById(R.id.f2_unit_bisnis_disable_mode);
@@ -289,6 +291,11 @@ public class FormSdmActivity extends AppCompatActivity {
         f2BagianLamaTV = findViewById(R.id.f2_bagian_lama_tv);
         f2JabatanLamaTV = findViewById(R.id.f2_jabatan_lama_tv);
         f2KomponenGajiLamaTV = findViewById(R.id.f2_komponen_gaji_lama_tv);
+        f2KomponenGajiDisableMode = findViewById(R.id.f2_komponen_gaji_disable_mode);
+        f2KomponenGajiDisableModeLama = findViewById(R.id.f2_komponen_gaji_disable_mode_lama);
+        f2KomponenGajiDisableModeTV = findViewById(R.id.f2_komponen_gaji_disable_mode_tv);
+        f2KomponenGajiDisableModeLamaTV = findViewById(R.id.f2_komponen_gaji_disable_mode_tv_lama);
+        f2LabelPoint = findViewById(R.id.f2_label_point);
         f2VerifSyaratGroup = findViewById(R.id.f2_option);
         f2OptionYa = findViewById(R.id.f2_option_ya);
         f2OptionTidak = findViewById(R.id.f2_option_tidak);
@@ -416,6 +423,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f2DepartemenBaru = "";
@@ -425,8 +433,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2KomponenGajiDisableModeTV.setText("");
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
+                f2UnitBisnisDisableModeTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
                 f2NamaKaryawanLamaTV.setText("");
                 f2NikLama = "";
@@ -438,9 +448,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
                 f2KomponenGajiLamaTV.setText("");
+                f2KomponenGajiDisableModeLamaTV.setText("");
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
+                f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
@@ -784,15 +797,15 @@ public class FormSdmActivity extends AppCompatActivity {
                         f3TglPengangkatanJabatanLama = String.format("%d", year) + "-" + String.format("%02d", month + 1) + "-" + String.format("%02d", dayOfMonth);
 
                         String input_date = f3TglPengangkatanJabatanLama;
-                        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                        @SuppressLint("SimpleDateFormat") SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                         Date dt1 = null;
                         try {
                             dt1 = format1.parse(input_date);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        DateFormat format2 = new SimpleDateFormat("EEE");
-                        DateFormat getweek = new SimpleDateFormat("W");
+                        @SuppressLint("SimpleDateFormat") DateFormat format2 = new SimpleDateFormat("EEE");
+                        @SuppressLint("SimpleDateFormat") DateFormat getweek = new SimpleDateFormat("W");
                         String finalDay = format2.format(dt1);
                         String week = getweek.format(dt1);
                         String hariName = "";
@@ -876,15 +889,15 @@ public class FormSdmActivity extends AppCompatActivity {
                         f3TglPengangkatanJabatanLama = String.format("%d", year) + "-" + String.format("%02d", month + 1) + "-" + String.format("%02d", dayOfMonth);
 
                         String input_date = f3TglPengangkatanJabatanLama;
-                        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                        @SuppressLint("SimpleDateFormat") SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                         Date dt1 = null;
                         try {
                             dt1 = format1.parse(input_date);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        DateFormat format2 = new SimpleDateFormat("EEE");
-                        DateFormat getweek = new SimpleDateFormat("W");
+                        @SuppressLint("SimpleDateFormat") DateFormat format2 = new SimpleDateFormat("EEE");
+                        @SuppressLint("SimpleDateFormat") DateFormat getweek = new SimpleDateFormat("W");
                         String finalDay = format2.format(dt1);
                         String week = getweek.format(dt1);
                         String hariName = "";
@@ -977,15 +990,15 @@ public class FormSdmActivity extends AppCompatActivity {
                         f3TglPengangkatanJabatanBaru = String.format("%d", year) + "-" + String.format("%02d", month + 1) + "-" + String.format("%02d", dayOfMonth);
 
                         String input_date = f3TglPengangkatanJabatanBaru;
-                        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                        @SuppressLint("SimpleDateFormat") SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                         Date dt1 = null;
                         try {
                             dt1 = format1.parse(input_date);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        DateFormat format2 = new SimpleDateFormat("EEE");
-                        DateFormat getweek = new SimpleDateFormat("W");
+                        @SuppressLint("SimpleDateFormat") DateFormat format2 = new SimpleDateFormat("EEE");
+                        @SuppressLint("SimpleDateFormat") DateFormat getweek = new SimpleDateFormat("W");
                         String finalDay = format2.format(dt1);
                         String week = getweek.format(dt1);
                         String hariName = "";
@@ -1069,15 +1082,15 @@ public class FormSdmActivity extends AppCompatActivity {
                         f3TglPengangkatanJabatanBaru = String.format("%d", year) + "-" + String.format("%02d", month + 1) + "-" + String.format("%02d", dayOfMonth);
 
                         String input_date = f3TglPengangkatanJabatanBaru;
-                        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                        @SuppressLint("SimpleDateFormat") SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                         Date dt1 = null;
                         try {
                             dt1 = format1.parse(input_date);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        DateFormat format2 = new SimpleDateFormat("EEE");
-                        DateFormat getweek = new SimpleDateFormat("W");
+                        @SuppressLint("SimpleDateFormat") DateFormat format2 = new SimpleDateFormat("EEE");
+                        @SuppressLint("SimpleDateFormat") DateFormat getweek = new SimpleDateFormat("W");
                         String finalDay = format2.format(dt1);
                         String week = getweek.format(dt1);
                         String hariName = "";
@@ -1290,7 +1303,7 @@ public class FormSdmActivity extends AppCompatActivity {
                     }
                 }
                 else if(kodeKeterangan.equals("2")||kodeKeterangan.equals("3")||kodeKeterangan.equals("4")){ //Form 2 3 4
-                    if (f2NikBaru.equals("") || f2IdUnitBisnis.equals("") || f2KomponenGajiTV.getText().toString().equals("") || f2NikLama.equals("") || f2IdUnitBisnisLama.equals("") || f2KomponenGajiLamaTV.getText().toString().equals("") || f2VerifSyaratGroup.equals("")) {
+                    if (f2NikBaru.equals("") || f2IdUnitBisnis.equals("") || f2KomponenGajiDisableModeTV.getText().toString().equals("") || f2NikLama.equals("") || f2IdUnitBisnisLama.equals("") || f2KomponenGajiDisableModeLamaTV.getText().toString().equals("") || f2VerifSyaratGroup.equals("")) {
                         new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
                                 .setTitleText("Perhatian")
                                 .setContentText("Pastikan kolom nama, unit bisnis, komponen gaji dan pemenuhan syarat terisi!")
@@ -1727,6 +1740,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f2DepartemenBaru = "";
@@ -1736,8 +1750,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2KomponenGajiDisableModeTV.setText("");
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
+                f2UnitBisnisDisableModeTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
                 f2NamaKaryawanLamaTV.setText("");
                 f2NikLama = "";
@@ -1749,9 +1765,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
                 f2KomponenGajiLamaTV.setText("");
+                f2KomponenGajiDisableModeLamaTV.setText("");
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
+                f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
@@ -1792,6 +1811,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
+                f3TglPengangkatanJabatanLama = "";
+                f3TglPengangkatanJabatanLamaTV.setText("");
+                f3JabatanBaruDetail = "";
                 f3JabatanBaruDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_BARU_DETAIL, "");
                 f3TglPengangkatanJabatanBaru = "";
@@ -1945,6 +1967,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f2DepartemenBaru = "";
@@ -1954,8 +1977,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2KomponenGajiDisableModeTV.setText("");
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
+                f2UnitBisnisDisableModeTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
                 f2NamaKaryawanLamaTV.setText("");
                 f2NikLama = "";
@@ -1967,9 +1992,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
                 f2KomponenGajiLamaTV.setText("");
+                f2KomponenGajiDisableModeLamaTV.setText("");
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
+                f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2LabelPoint.setText("Pengangkatan");
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
@@ -2010,6 +2038,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
+                f3TglPengangkatanJabatanLama = "";
+                f3TglPengangkatanJabatanLamaTV.setText("");
+                f3JabatanBaruDetail = "";
                 f3JabatanBaruDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_BARU_DETAIL, "");
                 f3TglPengangkatanJabatanBaru = "";
@@ -2053,10 +2084,16 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4VerifPersetujuanGroup.clearCheck();
                 f4CatatanTV.setText("");
 
+                f2NamaKaryawanPart.setVisibility(View.GONE);
+                f2NamaKaryawanDisableMode.setVisibility(View.VISIBLE);
                 f2UnitBisnisPart.setVisibility(View.GONE);
                 f2UnitBisnisDisableMode.setVisibility(View.VISIBLE);
                 f2UnitBisnisLamaPart.setVisibility(View.GONE);
                 f2UnitBisnisDisableModeLama.setVisibility(View.VISIBLE);
+                f2KomponenGajiTV.setVisibility(View.GONE);
+                f2KomponenGajiDisableMode.setVisibility(View.VISIBLE);
+                f2KomponenGajiLamaTV.setVisibility(View.GONE);
+                f2KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -2139,6 +2176,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f2DepartemenBaru = "";
@@ -2148,8 +2186,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2KomponenGajiDisableModeTV.setText("");
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
+                f2UnitBisnisDisableModeTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
                 f2NamaKaryawanLamaTV.setText("");
                 f2NikLama = "";
@@ -2161,9 +2201,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
                 f2KomponenGajiLamaTV.setText("");
+                f2KomponenGajiDisableModeLamaTV.setText("");
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
+                f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2LabelPoint.setText("Penugasan Kembali");
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
@@ -2204,6 +2247,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
+                f3TglPengangkatanJabatanLama = "";
+                f3TglPengangkatanJabatanLamaTV.setText("");
+                f3JabatanBaruDetail = "";
                 f3JabatanBaruDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_BARU_DETAIL, "");
                 f3TglPengangkatanJabatanBaru = "";
@@ -2247,8 +2293,16 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4VerifPersetujuanGroup.clearCheck();
                 f4CatatanTV.setText("");
 
+                f2NamaKaryawanPart.setVisibility(View.GONE);
+                f2NamaKaryawanDisableMode.setVisibility(View.VISIBLE);
                 f2UnitBisnisPart.setVisibility(View.GONE);
                 f2UnitBisnisDisableMode.setVisibility(View.VISIBLE);
+                f2UnitBisnisLamaPart.setVisibility(View.GONE);
+                f2UnitBisnisDisableModeLama.setVisibility(View.VISIBLE);
+                f2KomponenGajiTV.setVisibility(View.GONE);
+                f2KomponenGajiDisableMode.setVisibility(View.VISIBLE);
+                f2KomponenGajiLamaTV.setVisibility(View.GONE);
+                f2KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -2320,7 +2374,6 @@ public class FormSdmActivity extends AppCompatActivity {
                 f1IdJabatan = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI, "");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI, "");
                 f1KomponenGajiPilihTV.setText("");
                 f1DeskripsiJabatanTV.setText("");
                 f1SyaratTV.setText("");
@@ -2332,6 +2385,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f2DepartemenBaru = "";
@@ -2341,8 +2395,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2KomponenGajiDisableModeTV.setText("");
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
+                f2UnitBisnisDisableModeTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
                 f2NamaKaryawanLamaTV.setText("");
                 f2NikLama = "";
@@ -2354,9 +2410,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
                 f2KomponenGajiLamaTV.setText("");
+                f2KomponenGajiDisableModeLamaTV.setText("");
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
+                f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2LabelPoint.setText("Pensiun/PHK");
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
@@ -2397,6 +2456,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
+                f3TglPengangkatanJabatanLama = "";
+                f3TglPengangkatanJabatanLamaTV.setText("");
+                f3JabatanBaruDetail = "";
                 f3JabatanBaruDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_BARU_DETAIL, "");
                 f3TglPengangkatanJabatanBaru = "";
@@ -2439,6 +2501,17 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4Persetujuan = "";
                 f4VerifPersetujuanGroup.clearCheck();
                 f4CatatanTV.setText("");
+
+                f2NamaKaryawanPart.setVisibility(View.GONE);
+                f2NamaKaryawanDisableMode.setVisibility(View.VISIBLE);
+                f2UnitBisnisPart.setVisibility(View.GONE);
+                f2UnitBisnisDisableMode.setVisibility(View.VISIBLE);
+                f2UnitBisnisLamaPart.setVisibility(View.GONE);
+                f2UnitBisnisDisableModeLama.setVisibility(View.VISIBLE);
+                f2KomponenGajiTV.setVisibility(View.GONE);
+                f2KomponenGajiDisableMode.setVisibility(View.VISIBLE);
+                f2KomponenGajiLamaTV.setVisibility(View.GONE);
+                f2KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -2521,6 +2594,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f2DepartemenBaru = "";
@@ -2530,8 +2604,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2KomponenGajiDisableModeTV.setText("");
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
+                f2UnitBisnisDisableModeTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
                 f2NamaKaryawanLamaTV.setText("");
                 f2NikLama = "";
@@ -2543,9 +2619,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
                 f2KomponenGajiLamaTV.setText("");
+                f2KomponenGajiDisableModeLamaTV.setText("");
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
+                f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
@@ -2586,6 +2665,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
+                f3TglPengangkatanJabatanLama = "";
+                f3TglPengangkatanJabatanLamaTV.setText("");
+                f3JabatanBaruDetail = "";
                 f3JabatanBaruDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_BARU_DETAIL, "");
                 f3TglPengangkatanJabatanBaru = "";
@@ -2711,6 +2793,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f2DepartemenBaru = "";
@@ -2720,8 +2803,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2KomponenGajiDisableModeTV.setText("");
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
+                f2UnitBisnisDisableModeTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
                 f2NamaKaryawanLamaTV.setText("");
                 f2NikLama = "";
@@ -2733,9 +2818,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
                 f2KomponenGajiLamaTV.setText("");
+                f2KomponenGajiDisableModeLamaTV.setText("");
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
+                f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
@@ -2776,6 +2864,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
+                f3TglPengangkatanJabatanLama = "";
+                f3TglPengangkatanJabatanLamaTV.setText("");
+                f3JabatanBaruDetail = "";
                 f3JabatanBaruDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_BARU_DETAIL, "");
                 f3TglPengangkatanJabatanBaru = "";
@@ -2901,6 +2992,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 2 3 4
                 f2NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f2NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f2DepartemenBaru = "";
@@ -2910,8 +3002,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanBaru = "";
                 f2JabatanTV.setText("");
                 f2KomponenGajiTV.setText("");
+                f2KomponenGajiDisableModeTV.setText("");
                 f2UnitBisnisTV.setText("");
                 f2IdUnitBisnis = "";
+                f2UnitBisnisDisableModeTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
                 f2NamaKaryawanLamaTV.setText("");
                 f2NikLama = "";
@@ -2923,9 +3017,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2JabatanLama = "";
                 f2JabatanLamaTV.setText("");
                 f2KomponenGajiLamaTV.setText("");
+                f2KomponenGajiDisableModeLamaTV.setText("");
                 f2UnitBisnisLamaTV.setText("");
                 f2IdUnitBisnisLama = "";
+                f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+                f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
@@ -2966,6 +3063,9 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
+                f3TglPengangkatanJabatanLama = "";
+                f3TglPengangkatanJabatanLamaTV.setText("");
+                f3JabatanBaruDetail = "";
                 f3JabatanBaruDetailTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_BARU_DETAIL, "");
                 f3TglPengangkatanJabatanBaru = "";
@@ -5884,6 +5984,9 @@ public class FormSdmActivity extends AppCompatActivity {
             String id_bagian_karyawan_lama = intent.getStringExtra("id_bagian_karyawan_lama");
             String jabatan_karyawan_lama = intent.getStringExtra("jabatan_karyawan_lama");
             String id_jabatan_karyawan_lama = intent.getStringExtra("id_jabatan_karyawan_lama");
+            String status_karyawan_lama = intent.getStringExtra("status_karyawan_lama");
+
+            //Lama
 
             f2UnitBisnisDisableModeLamaTV.setText("PT. Gelora Aksara Pratama");
             f2IdUnitBisnisLama = "1";
@@ -5896,6 +5999,39 @@ public class FormSdmActivity extends AppCompatActivity {
             f2BagianLamaTV.setText(bagian_karyawan_lama);
             f2JabatanLama = id_jabatan_karyawan_lama;
             f2JabatanLamaTV.setText(jabatan_karyawan_lama);
+            f2KomponenGajiDisableModeLamaTV.setText(status_karyawan_lama);
+
+            //Baru
+
+            f2NikBaru = nik_karyawan_lama;
+            f2NamaKaryawanDisableModeTV.setText(nama_karyawan_lama);
+
+            f2UnitBisnisDisableModeTV.setText("PT. Gelora Aksara Pratama");
+            f2IdUnitBisnis = "1";
+
+            f2NamaKaryawanTV.setText(nama_karyawan_lama);
+            f2DepartemenBaru = id_departemen_karyawan_lama;
+            f2DepartemenTV.setText(departemen_karyawan_lama);
+            f2BagianBaru = id_bagian_karyawan_lama;
+            f2BagianTV.setText(bagian_karyawan_lama);
+            f2JabatanBaru = id_jabatan_karyawan_lama;
+            f2JabatanTV.setText(jabatan_karyawan_lama);
+
+            if(kodeKeterangan.equals("2")){
+                if(status_karyawan_lama.equals("Harian")){
+                    f2KomponenGajiDisableModeTV.setText("Kontrak");
+                } else if(status_karyawan_lama.equals("Kontrak")){
+                    f2KomponenGajiDisableModeTV.setText("Tetap");
+                } else if(status_karyawan_lama.equals("Percobaan")){
+                    f2KomponenGajiDisableModeTV.setText("Tetap");
+                } else if(status_karyawan_lama.equals("OJT")){
+                    f2KomponenGajiDisableModeTV.setText("Percobaan");
+                } else {
+                    f2KomponenGajiDisableModeTV.setText(status_karyawan_lama);
+                }
+            } else if(kodeKeterangan.equals("3")||kodeKeterangan.equals("4")){
+                f2KomponenGajiDisableModeTV.setText(status_karyawan_lama);
+            }
 
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -6071,7 +6207,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 params.put("departemen_baru", f2DepartemenBaru);
                 params.put("bagian_baru", f2BagianBaru);
                 params.put("jabatan_baru", f2JabatanBaru);
-                params.put("komponen_gaji_baru", f2KomponenGajiTV.getText().toString());
+                params.put("komponen_gaji_baru", f2KomponenGajiDisableModeTV.getText().toString());
 
                 //LAMA
                 params.put("nik_lama", f2NikLama);
@@ -6079,7 +6215,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 params.put("departemen_lama", f2DepartemenLama);
                 params.put("bagian_lama", f2BagianLama);
                 params.put("jabatan_lama", f2JabatanLama);
-                params.put("komponen_gaji_lama", f2KomponenGajiLamaTV.getText().toString());
+                params.put("komponen_gaji_lama", f2KomponenGajiDisableModeLamaTV.getText().toString());
 
                 params.put("memenuhi_syarat", f2PemenuhanSyarat);
                 params.put("catatan", f2CatatanTV.getText().toString());
