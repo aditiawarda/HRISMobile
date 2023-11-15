@@ -14,11 +14,9 @@ import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.FormPermohonanCutiActivity;
 import com.gelora.absensi.FormSdmActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
-import com.gelora.absensi.model.KaryawanPengganti;
 import com.gelora.absensi.model.KaryawanSDM;
 
 public class AdapterKaryawanBaruSDM extends RecyclerView.Adapter<AdapterKaryawanBaruSDM.MyViewHolder> {
