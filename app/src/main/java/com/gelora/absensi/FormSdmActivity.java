@@ -89,9 +89,14 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class FormSdmActivity extends AppCompatActivity {
 
@@ -123,14 +128,14 @@ public class FormSdmActivity extends AppCompatActivity {
 
     //Form 2 3 4
     LinearLayout f2DurasiKontrakPart, f2KomponenGajiDisableMode, f2NamaKaryawanDisableMode, f2UnitBisnisDisableMode, f2NamaKaryawanPart, f2UnitBisnisPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
-    LinearLayout f2KomponenGajiDisableModeLama, f2UnitBisnisDisableModeLama, f2NamaKaryawanLamaPart, f2UnitBisnisLamaPart, f2StartAttantionKaryawanLamaPart, f2NoDataKaryawanLamaPart, f2loadingDataKaryawanLamaPart;
+    LinearLayout f2StartDatePart, f2EndDatePart, f2KomponenGajiDisableModeLama, f2UnitBisnisDisableModeLama, f2NamaKaryawanLamaPart, f2UnitBisnisLamaPart, f2StartAttantionKaryawanLamaPart, f2NoDataKaryawanLamaPart, f2loadingDataKaryawanLamaPart;
     ImageView f2loadingGif, f2loadingLamaGif;
     TextView f2LabelPoint, f2KomponenGajiDisableModeTV, f2NamaKaryawanDisableModeTV, f2UnitBisnisDisableModeLamaTV, f2UnitBisnisDisableModeTV, f2NamaKaryawanTV, f2UnitBisnisTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
-    TextView f2KomponenGajiDisableModeLamaTV, f2NamaKaryawanLamaTV, f2UnitBisnisLamaTV, f2DepartemenLamaTV, f2BagianLamaTV, f2JabatanLamaTV;
+    TextView f2DurasiKontrak, f2StartDatePilih, f2EndDatePilih, f2KomponenGajiDisableModeLamaTV, f2NamaKaryawanLamaTV, f2UnitBisnisLamaTV, f2DepartemenLamaTV, f2BagianLamaTV, f2JabatanLamaTV;
     EditText f2keywordKaryawanBaru, f2KomponenGajiTV;
     EditText f2keywordKaryawanLama, f2KomponenGajiLamaTV, f2CatatanTV;
     String f2NikBaru = "", f2IdUnitBisnis = "", f2DepartemenBaru = "", f2BagianBaru = "", f2JabatanBaru = "";
-    String f2NikLama = "", f2IdUnitBisnisLama = "", f2DepartemenLama = "", f2BagianLama = "", f2JabatanLama= "", f2PemenuhanSyarat = "";
+    String f2DateChoiceMulai = "", f2DateChoiceAkhir = "", f2NikLama = "", f2IdUnitBisnisLama = "", f2DepartemenLama = "", f2BagianLama = "", f2JabatanLama= "", f2PemenuhanSyarat = "";
     private RecyclerView f2KaryawanBaruRV, f2KaryawanLamaRV, f2UnitBisnisRV, f2UnitBisnisLamaRV;
     private KaryawanSDM[] f2KaryawanSDMS;
     private AdapterKaryawanBaruSDM f2AdapterKaryawanBaruSDM;
@@ -300,7 +305,12 @@ public class FormSdmActivity extends AppCompatActivity {
         f2OptionYa = findViewById(R.id.f2_option_ya);
         f2OptionTidak = findViewById(R.id.f2_option_tidak);
         f2DurasiKontrakPart = findViewById(R.id.f2_durasi_kontrak_part);
+        f2StartDatePart = findViewById(R.id.f2_start_date_part);
+        f2EndDatePart = findViewById(R.id.f2_end_date_part);
         f2CatatanTV = findViewById(R.id.f2_catatan_tv);
+        f2StartDatePilih = findViewById(R.id.f2_start_date_pilih);
+        f2EndDatePilih = findViewById(R.id.f2_end_date_pilih);
+        f2DurasiKontrak = findViewById(R.id.f2_durasi_kontrak);
 
         f2KomponenGajiTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         f2KomponenGajiLamaTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
@@ -458,6 +468,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
+                f2StartDatePilih.setText("");
+                f2EndDatePilih.setText("");
+                f2DateChoiceMulai = "";
+                f2DateChoiceAkhir = "";
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
@@ -676,6 +690,18 @@ public class FormSdmActivity extends AppCompatActivity {
                 } else if (f2OptionTidak.isChecked()) {
                     f2PemenuhanSyarat = "2";
                 }
+            }
+        });
+        f2StartDatePart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dateMulai();
+            }
+        });
+        f2EndDatePart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dateAkhir();
             }
         });
         //End Form 2 3 4
@@ -1775,6 +1801,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
+                f2StartDatePilih.setText("");
+                f2EndDatePilih.setText("");
+                f2DateChoiceMulai = "";
+                f2DateChoiceAkhir = "";
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
@@ -2002,6 +2032,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
+                f2StartDatePilih.setText("");
+                f2EndDatePilih.setText("");
+                f2DateChoiceMulai = "";
+                f2DateChoiceAkhir = "";
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
@@ -2213,6 +2247,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
+                f2StartDatePilih.setText("");
+                f2EndDatePilih.setText("");
+                f2DateChoiceMulai = "";
+                f2DateChoiceAkhir = "";
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
@@ -2424,6 +2462,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
+                f2StartDatePilih.setText("");
+                f2EndDatePilih.setText("");
+                f2DateChoiceMulai = "";
+                f2DateChoiceAkhir = "";
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
@@ -2635,6 +2677,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
+                f2StartDatePilih.setText("");
+                f2EndDatePilih.setText("");
+                f2DateChoiceMulai = "";
+                f2DateChoiceAkhir = "";
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
@@ -2834,6 +2880,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
+                f2StartDatePilih.setText("");
+                f2EndDatePilih.setText("");
+                f2DateChoiceMulai = "";
+                f2DateChoiceAkhir = "";
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
@@ -3033,6 +3083,10 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2PemenuhanSyarat = "";
                 f2VerifSyaratGroup.clearCheck();
                 f2CatatanTV.setText("");
+                f2StartDatePilih.setText("");
+                f2EndDatePilih.setText("");
+                f2DateChoiceMulai = "";
+                f2DateChoiceAkhir = "";
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
@@ -8406,6 +8460,976 @@ public class FormSdmActivity extends AppCompatActivity {
 
         requestQueue.add(postRequest);
 
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private void dateMulai(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(FormSdmActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                f2DateChoiceMulai = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                if (!f2DateChoiceAkhir.equals("")){
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date = null;
+                    Date date2 = null;
+                    try {
+                        date = sdf.parse(String.valueOf(f2DateChoiceMulai));
+                        date2 = sdf.parse(String.valueOf(f2DateChoiceAkhir));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    long mulai = date.getTime();
+                    long akhir = date2.getTime();
+
+                    if (mulai<=akhir){
+                        String input_date = f2DateChoiceMulai;
+                        SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                        Date dt1= null;
+                        try {
+                            dt1 = format1.parse(input_date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        DateFormat format2 = new SimpleDateFormat("EEE");
+                        String finalDay = format2.format(dt1);
+                        String hariName = "";
+
+                        if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                            hariName = "Senin";
+                        } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                            hariName = "Selasa";
+                        } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                            hariName = "Rabu";
+                        } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                            hariName = "Kamis";
+                        } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                            hariName = "Jumat";
+                        } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                            hariName = "Sabtu";
+                        } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                            hariName = "Minggu";
+                        }
+
+                        String dayDate = input_date.substring(8,10);
+                        String yearDate = input_date.substring(0,4);
+                        String bulanValue = input_date.substring(5,7);
+                        String bulanName;
+
+                        switch (bulanValue) {
+                            case "01":
+                                bulanName = "Januari";
+                                break;
+                            case "02":
+                                bulanName = "Februari";
+                                break;
+                            case "03":
+                                bulanName = "Maret";
+                                break;
+                            case "04":
+                                bulanName = "April";
+                                break;
+                            case "05":
+                                bulanName = "Mei";
+                                break;
+                            case "06":
+                                bulanName = "Juni";
+                                break;
+                            case "07":
+                                bulanName = "Juli";
+                                break;
+                            case "08":
+                                bulanName = "Agustus";
+                                break;
+                            case "09":
+                                bulanName = "September";
+                                break;
+                            case "10":
+                                bulanName = "Oktober";
+                                break;
+                            case "11":
+                                bulanName = "November";
+                                break;
+                            case "12":
+                                bulanName = "Desember";
+                                break;
+                            default:
+                                bulanName = "Not found!";
+                                break;
+                        }
+
+                        f2StartDatePilih.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                        if(!f2DateChoiceMulai.equals("") && !f2DateChoiceAkhir.equals("")){
+                            countDuration();
+                        }
+
+                    } else {
+                        f2StartDatePilih.setText("Pilih Kembali !");
+                        f2DateChoiceMulai = "";
+                        f2DurasiKontrak.setText("Tentukan Tanggal...");
+
+                        new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Tanggal mulai tidak bisa lebih besar dari tanggal akhir. Harap ulangi!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+
+                    }
+
+                }
+
+                else {
+                    String input_date = f2DateChoiceMulai;
+                    SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                    Date dt1= null;
+                    try {
+                        dt1 = format1.parse(input_date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    DateFormat format2 = new SimpleDateFormat("EEE");
+                    String finalDay = format2.format(dt1);
+                    String hariName = "";
+
+                    if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                        hariName = "Senin";
+                    } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                        hariName = "Selasa";
+                    } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                        hariName = "Rabu";
+                    } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                        hariName = "Kamis";
+                    } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                        hariName = "Jumat";
+                    } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                        hariName = "Sabtu";
+                    } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                        hariName = "Minggu";
+                    }
+
+                    String dayDate = input_date.substring(8,10);
+                    String yearDate = input_date.substring(0,4);
+                    String bulanValue = input_date.substring(5,7);
+                    String bulanName;
+
+                    switch (bulanValue) {
+                        case "01":
+                            bulanName = "Januari";
+                            break;
+                        case "02":
+                            bulanName = "Februari";
+                            break;
+                        case "03":
+                            bulanName = "Maret";
+                            break;
+                        case "04":
+                            bulanName = "April";
+                            break;
+                        case "05":
+                            bulanName = "Mei";
+                            break;
+                        case "06":
+                            bulanName = "Juni";
+                            break;
+                        case "07":
+                            bulanName = "Juli";
+                            break;
+                        case "08":
+                            bulanName = "Agustus";
+                            break;
+                        case "09":
+                            bulanName = "September";
+                            break;
+                        case "10":
+                            bulanName = "Oktober";
+                            break;
+                        case "11":
+                            bulanName = "November";
+                            break;
+                        case "12":
+                            bulanName = "Desember";
+                            break;
+                        default:
+                            bulanName = "Not found!";
+                            break;
+                    }
+
+                    f2StartDatePilih.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                }
+
+            }, cal.get(android.icu.util.Calendar.YEAR), cal.get(android.icu.util.Calendar.MONTH), cal.get(android.icu.util.Calendar.DATE));
+            dpd.show();
+        } else {
+            int y = Integer.parseInt(getDateY());
+            int m = Integer.parseInt(getDateM());
+            int d = Integer.parseInt(getDateD());
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(FormSdmActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                f2DateChoiceMulai = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                if (!f2DateChoiceAkhir.equals("")){
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date = null;
+                    Date date2 = null;
+                    try {
+                        date = sdf.parse(String.valueOf(f2DateChoiceMulai));
+                        date2 = sdf.parse(String.valueOf(f2DateChoiceAkhir));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    long mulai = date.getTime();
+                    long akhir = date2.getTime();
+
+                    if (mulai<=akhir){
+                        String input_date = f2DateChoiceMulai;
+                        SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                        Date dt1= null;
+                        try {
+                            dt1 = format1.parse(input_date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        DateFormat format2 = new SimpleDateFormat("EEE");
+                        String finalDay = format2.format(dt1);
+                        String hariName = "";
+
+                        if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                            hariName = "Senin";
+                        } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                            hariName = "Selasa";
+                        } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                            hariName = "Rabu";
+                        } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                            hariName = "Kamis";
+                        } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                            hariName = "Jumat";
+                        } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                            hariName = "Sabtu";
+                        } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                            hariName = "Minggu";
+                        }
+
+                        String dayDate = input_date.substring(8,10);
+                        String yearDate = input_date.substring(0,4);
+                        String bulanValue = input_date.substring(5,7);
+                        String bulanName;
+
+                        switch (bulanValue) {
+                            case "01":
+                                bulanName = "Januari";
+                                break;
+                            case "02":
+                                bulanName = "Februari";
+                                break;
+                            case "03":
+                                bulanName = "Maret";
+                                break;
+                            case "04":
+                                bulanName = "April";
+                                break;
+                            case "05":
+                                bulanName = "Mei";
+                                break;
+                            case "06":
+                                bulanName = "Juni";
+                                break;
+                            case "07":
+                                bulanName = "Juli";
+                                break;
+                            case "08":
+                                bulanName = "Agustus";
+                                break;
+                            case "09":
+                                bulanName = "September";
+                                break;
+                            case "10":
+                                bulanName = "Oktober";
+                                break;
+                            case "11":
+                                bulanName = "November";
+                                break;
+                            case "12":
+                                bulanName = "Desember";
+                                break;
+                            default:
+                                bulanName = "Not found!";
+                                break;
+                        }
+
+                        f2StartDatePilih.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                        if(!f2DateChoiceMulai.equals("") && !f2DateChoiceAkhir.equals("")){
+                            countDuration();
+                        }
+
+                    } else {
+                        f2StartDatePilih.setText("Pilih Kembali !");
+                        f2DateChoiceMulai = "";
+                        f2DurasiKontrak.setText("Tentukan Tanggal...");
+
+                        new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Tanggal mulai tidak bisa lebih besar dari tanggal akhir. Harap ulangi!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+
+                    }
+
+                }
+
+                else {
+                    String input_date = f2DateChoiceMulai;
+                    SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                    Date dt1= null;
+                    try {
+                        dt1 = format1.parse(input_date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    DateFormat format2 = new SimpleDateFormat("EEE");
+                    String finalDay = format2.format(dt1);
+                    String hariName = "";
+
+                    if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                        hariName = "Senin";
+                    } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                        hariName = "Selasa";
+                    } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                        hariName = "Rabu";
+                    } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                        hariName = "Kamis";
+                    } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                        hariName = "Jumat";
+                    } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                        hariName = "Sabtu";
+                    } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                        hariName = "Minggu";
+                    }
+
+                    String dayDate = input_date.substring(8,10);
+                    String yearDate = input_date.substring(0,4);
+                    String bulanValue = input_date.substring(5,7);
+                    String bulanName;
+
+                    switch (bulanValue) {
+                        case "01":
+                            bulanName = "Januari";
+                            break;
+                        case "02":
+                            bulanName = "Februari";
+                            break;
+                        case "03":
+                            bulanName = "Maret";
+                            break;
+                        case "04":
+                            bulanName = "April";
+                            break;
+                        case "05":
+                            bulanName = "Mei";
+                            break;
+                        case "06":
+                            bulanName = "Juni";
+                            break;
+                        case "07":
+                            bulanName = "Juli";
+                            break;
+                        case "08":
+                            bulanName = "Agustus";
+                            break;
+                        case "09":
+                            bulanName = "September";
+                            break;
+                        case "10":
+                            bulanName = "Oktober";
+                            break;
+                        case "11":
+                            bulanName = "November";
+                            break;
+                        case "12":
+                            bulanName = "Desember";
+                            break;
+                        default:
+                            bulanName = "Not found!";
+                            break;
+                    }
+
+                    f2StartDatePilih.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                }
+
+            }, y,m-1,d);
+            dpd.show();
+        }
+
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private void dateAkhir(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(FormSdmActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                f2DateChoiceAkhir = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                if (!f2DateChoiceMulai.equals("")){
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date = null;
+                    Date date2 = null;
+                    try {
+                        date = sdf.parse(String.valueOf(f2DateChoiceMulai));
+                        date2 = sdf.parse(String.valueOf(f2DateChoiceAkhir));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    long mulai = date.getTime();
+                    long akhir = date2.getTime();
+
+                    if (mulai<=akhir){
+                        String input_date = f2DateChoiceAkhir;
+                        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                        Date dt1= null;
+                        try {
+                            dt1 = format1.parse(input_date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        DateFormat format2 = new SimpleDateFormat("EEE");
+                        String finalDay = format2.format(dt1);
+                        String hariName = "";
+
+                        if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                            hariName = "Senin";
+                        } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                            hariName = "Selasa";
+                        } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                            hariName = "Rabu";
+                        } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                            hariName = "Kamis";
+                        } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                            hariName = "Jumat";
+                        } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                            hariName = "Sabtu";
+                        } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                            hariName = "Minggu";
+                        }
+
+                        String dayDate = input_date.substring(8,10);
+                        String yearDate = input_date.substring(0,4);
+                        String bulanValue = input_date.substring(5,7);
+                        String bulanName;
+
+                        switch (bulanValue) {
+                            case "01":
+                                bulanName = "Januari";
+                                break;
+                            case "02":
+                                bulanName = "Februari";
+                                break;
+                            case "03":
+                                bulanName = "Maret";
+                                break;
+                            case "04":
+                                bulanName = "April";
+                                break;
+                            case "05":
+                                bulanName = "Mei";
+                                break;
+                            case "06":
+                                bulanName = "Juni";
+                                break;
+                            case "07":
+                                bulanName = "Juli";
+                                break;
+                            case "08":
+                                bulanName = "Agustus";
+                                break;
+                            case "09":
+                                bulanName = "September";
+                                break;
+                            case "10":
+                                bulanName = "Oktober";
+                                break;
+                            case "11":
+                                bulanName = "November";
+                                break;
+                            case "12":
+                                bulanName = "Desember";
+                                break;
+                            default:
+                                bulanName = "Not found!";
+                                break;
+                        }
+
+                        f2EndDatePilih.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                        if(!f2DateChoiceMulai.equals("") && !f2DateChoiceAkhir.equals("")){
+                            countDuration();
+                        }
+
+                    } else {
+                        f2EndDatePilih.setText("Pilih Kembali !");
+                        f2DateChoiceAkhir = "";
+                        f2DurasiKontrak.setText("Tentukan Tanggal...");
+
+                        new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Tanggal akhir tidak bisa lebih kecil dari tanggal mulai. Harap ulangi!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+
+                    }
+
+                }
+
+                else {
+                    String input_date = f2DateChoiceAkhir;
+                    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                    Date dt1= null;
+                    try {
+                        dt1 = format1.parse(input_date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    DateFormat format2 = new SimpleDateFormat("EEE");
+                    String finalDay = format2.format(dt1);
+                    String hariName = "";
+
+                    if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                        hariName = "Senin";
+                    } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                        hariName = "Selasa";
+                    } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                        hariName = "Rabu";
+                    } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                        hariName = "Kamis";
+                    } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                        hariName = "Jumat";
+                    } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                        hariName = "Sabtu";
+                    } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                        hariName = "Minggu";
+                    }
+
+                    String dayDate = input_date.substring(8,10);
+                    String yearDate = input_date.substring(0,4);
+                    String bulanValue = input_date.substring(5,7);
+                    String bulanName;
+
+                    switch (bulanValue) {
+                        case "01":
+                            bulanName = "Januari";
+                            break;
+                        case "02":
+                            bulanName = "Februari";
+                            break;
+                        case "03":
+                            bulanName = "Maret";
+                            break;
+                        case "04":
+                            bulanName = "April";
+                            break;
+                        case "05":
+                            bulanName = "Mei";
+                            break;
+                        case "06":
+                            bulanName = "Juni";
+                            break;
+                        case "07":
+                            bulanName = "Juli";
+                            break;
+                        case "08":
+                            bulanName = "Agustus";
+                            break;
+                        case "09":
+                            bulanName = "September";
+                            break;
+                        case "10":
+                            bulanName = "Oktober";
+                            break;
+                        case "11":
+                            bulanName = "November";
+                            break;
+                        case "12":
+                            bulanName = "Desember";
+                            break;
+                        default:
+                            bulanName = "Not found!";
+                            break;
+                    }
+
+                    f2EndDatePilih.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                }
+
+            }, cal.get(android.icu.util.Calendar.YEAR), cal.get(android.icu.util.Calendar.MONTH), cal.get(android.icu.util.Calendar.DATE));
+            dpd.show();
+        } else {
+            int y = Integer.parseInt(getDateY());
+            int m = Integer.parseInt(getDateM());
+            int d = Integer.parseInt(getDateD());
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(FormSdmActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                f2DateChoiceAkhir = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                if (!f2DateChoiceMulai.equals("")){
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date = null;
+                    Date date2 = null;
+                    try {
+                        date = sdf.parse(String.valueOf(f2DateChoiceMulai));
+                        date2 = sdf.parse(String.valueOf(f2DateChoiceAkhir));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    long mulai = date.getTime();
+                    long akhir = date2.getTime();
+
+                    if (mulai<=akhir){
+                        String input_date = f2DateChoiceAkhir;
+                        SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                        Date dt1= null;
+                        try {
+                            dt1 = format1.parse(input_date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        DateFormat format2 = new SimpleDateFormat("EEE");
+                        String finalDay = format2.format(dt1);
+                        String hariName = "";
+
+                        if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                            hariName = "Senin";
+                        } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                            hariName = "Selasa";
+                        } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                            hariName = "Rabu";
+                        } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                            hariName = "Kamis";
+                        } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                            hariName = "Jumat";
+                        } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                            hariName = "Sabtu";
+                        } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                            hariName = "Minggu";
+                        }
+
+                        String dayDate = input_date.substring(8,10);
+                        String yearDate = input_date.substring(0,4);
+                        String bulanValue = input_date.substring(5,7);
+                        String bulanName;
+
+                        switch (bulanValue) {
+                            case "01":
+                                bulanName = "Januari";
+                                break;
+                            case "02":
+                                bulanName = "Februari";
+                                break;
+                            case "03":
+                                bulanName = "Maret";
+                                break;
+                            case "04":
+                                bulanName = "April";
+                                break;
+                            case "05":
+                                bulanName = "Mei";
+                                break;
+                            case "06":
+                                bulanName = "Juni";
+                                break;
+                            case "07":
+                                bulanName = "Juli";
+                                break;
+                            case "08":
+                                bulanName = "Agustus";
+                                break;
+                            case "09":
+                                bulanName = "September";
+                                break;
+                            case "10":
+                                bulanName = "Oktober";
+                                break;
+                            case "11":
+                                bulanName = "November";
+                                break;
+                            case "12":
+                                bulanName = "Desember";
+                                break;
+                            default:
+                                bulanName = "Not found!";
+                                break;
+                        }
+
+                        f2EndDatePilih.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                        if(!f2DateChoiceMulai.equals("") && !f2DateChoiceAkhir.equals("")){
+                            countDuration();
+                        }
+
+                    } else {
+                        f2EndDatePilih.setText("Pilih Kembali !");
+                        f2DateChoiceAkhir = "";
+                        f2DurasiKontrak.setText("Tentukan Tanggal...");
+
+                        new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                .setTitleText("Perhatian")
+                                .setContentText("Tanggal akhir tidak bisa lebih kecil dari tanggal mulai. Harap ulangi!")
+                                .setConfirmText("    OK    ")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismiss();
+                                    }
+                                })
+                                .show();
+
+                    }
+
+                }
+
+                else {
+                    String input_date = f2DateChoiceAkhir;
+                    SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                    Date dt1= null;
+                    try {
+                        dt1 = format1.parse(input_date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    DateFormat format2 = new SimpleDateFormat("EEE");
+                    String finalDay = format2.format(dt1);
+                    String hariName = "";
+
+                    if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                        hariName = "Senin";
+                    } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                        hariName = "Selasa";
+                    } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                        hariName = "Rabu";
+                    } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                        hariName = "Kamis";
+                    } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                        hariName = "Jumat";
+                    } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                        hariName = "Sabtu";
+                    } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                        hariName = "Minggu";
+                    }
+
+                    String dayDate = input_date.substring(8,10);
+                    String yearDate = input_date.substring(0,4);
+                    String bulanValue = input_date.substring(5,7);
+                    String bulanName;
+
+                    switch (bulanValue) {
+                        case "01":
+                            bulanName = "Januari";
+                            break;
+                        case "02":
+                            bulanName = "Februari";
+                            break;
+                        case "03":
+                            bulanName = "Maret";
+                            break;
+                        case "04":
+                            bulanName = "April";
+                            break;
+                        case "05":
+                            bulanName = "Mei";
+                            break;
+                        case "06":
+                            bulanName = "Juni";
+                            break;
+                        case "07":
+                            bulanName = "Juli";
+                            break;
+                        case "08":
+                            bulanName = "Agustus";
+                            break;
+                        case "09":
+                            bulanName = "September";
+                            break;
+                        case "10":
+                            bulanName = "Oktober";
+                            break;
+                        case "11":
+                            bulanName = "November";
+                            break;
+                        case "12":
+                            bulanName = "Desember";
+                            break;
+                        default:
+                            bulanName = "Not found!";
+                            break;
+                    }
+
+                    f2EndDatePilih.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+                }
+
+            }, y,m-1,d);
+            dpd.show();
+        }
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void countDuration(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            // Define two date strings
+            String startDateString = f2DateChoiceMulai;
+            String endDateString = f2DateChoiceAkhir;
+
+            // Parse the date strings to Calendar objects
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            try {
+                Date startDate = sdf.parse(startDateString);
+                Date endDate = sdf.parse(endDateString);
+
+                Calendar startCalendar = Calendar.getInstance();
+                startCalendar.setTime(startDate);
+
+                Calendar endCalendar = Calendar.getInstance();
+                endCalendar.setTime(endDate);
+
+                // Calculate the duration between two dates
+                int years = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
+                int months = endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
+                int days = endCalendar.get(Calendar.DAY_OF_MONTH) - startCalendar.get(Calendar.DAY_OF_MONTH);
+
+                // Adjust for negative values
+                if (days < 0) {
+                    months--;
+                    days += startCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+                }
+                if (months < 0) {
+                    years--;
+                    months += 12;
+                }
+
+                // Print the resulting duration
+                if (years == 0){
+                    if(months == 0){
+                        if(days == 0){
+                            f2DurasiKontrak.setText("-");
+                        } else {
+                            f2DurasiKontrak.setText(days +" Hari");
+                        }
+                    } else {
+                        if(days == 0){
+                            f2DurasiKontrak.setText(months + " Bulan");
+                        } else {
+                            f2DurasiKontrak.setText(months + " Bulan " + days + " Hari");
+                        }
+                    }
+                } else {
+                    if(months == 0){
+                        if(days == 0){
+                            f2DurasiKontrak.setText(years + " Tahun");
+                        } else {
+                            f2DurasiKontrak.setText(years + " Tahun " + days + " Hari");
+                        }
+                    } else {
+                        if(days == 0){
+                            f2DurasiKontrak.setText(years + " Tahun " + months + " Bulan");
+                        } else {
+                            f2DurasiKontrak.setText(years + " Tahun " + months + " Bulan " + days + " Hari");
+                        }
+                    }
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        } else {
+            String startDateString = f2DateChoiceMulai;
+            String endDateString = f2DateChoiceAkhir;
+
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date1 = null;
+            Date date2 = null;
+            try {
+                date1 = format.parse(endDateString);
+                date2 = format.parse(startDateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            long waktu1 = date1.getTime();
+            long waktu2 = date2.getTime();
+            long selisih_waktu = waktu1 - waktu2;
+
+            long diffDays = selisih_waktu / (24 * 60 * 60 * 1000);
+
+            long years = (diffDays / 365);
+            long months = (diffDays - (years * 365)) / 30;
+            long days = (diffDays - ((years * 365) + (months * 30)));
+
+            // Print the resulting duration
+            if (years == 0){
+                if(months == 0){
+                    if(days == 0){
+                        f2DurasiKontrak.setText("-");
+                    } else {
+                        f2DurasiKontrak.setText(days +" Hari");
+                    }
+                } else {
+                    if(days == 0){
+                        f2DurasiKontrak.setText(months + " Bulan");
+                    } else {
+                        f2DurasiKontrak.setText(months + " Bulan " + days + " Hari");
+                    }
+                }
+            } else {
+                if(months == 0){
+                    if(days == 0){
+                        f2DurasiKontrak.setText(years + " Tahun");
+                    } else {
+                        f2DurasiKontrak.setText(years + " Tahun " + days + " Hari");
+                    }
+                } else {
+                    if(days == 0){
+                        f2DurasiKontrak.setText(years + " Tahun " + months + " Bulan");
+                    } else {
+                        f2DurasiKontrak.setText(years + " Tahun " + months + " Bulan " + days + " Hari");
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    private String getTime() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     @Override
