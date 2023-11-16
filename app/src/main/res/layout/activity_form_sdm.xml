@@ -1911,7 +1911,7 @@
                                                 tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                                 <TextView
-                                                    android:id="@+id/f2_start_date_pilih"
+                                                    android:id="@+id/f2_end_date_pilih"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:textColor="#B15735"
