@@ -1809,6 +1809,172 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/f2_durasi_kontrak_part"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Kontrak Dari Tanggal :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:id="@+id/f2_start_date_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:paddingStart="20dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left"
+                                                tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                <TextView
+                                                    android:id="@+id/f2_start_date_pilih"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""
+                                                    tools:ignore="SpUsage" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_date_mulai"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Sampai Tanggal :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:id="@+id/f2_end_date_part"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:paddingStart="20dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left"
+                                                tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                <TextView
+                                                    android:id="@+id/f2_start_date_pilih"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""
+                                                    tools:ignore="SpUsage" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_date_akhir"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Durasi Kontrak :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/f2_durasi_kontrak"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Tentukan Tanggal..."
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="25dp"

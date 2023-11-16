@@ -122,7 +122,7 @@ public class FormSdmActivity extends AppCompatActivity {
     private AdapterKomponenGaji adapterKomponenGaji;
 
     //Form 2 3 4
-    LinearLayout f2KomponenGajiDisableMode, f2NamaKaryawanDisableMode, f2UnitBisnisDisableMode, f2NamaKaryawanPart, f2UnitBisnisPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
+    LinearLayout f2DurasiKontrakPart, f2KomponenGajiDisableMode, f2NamaKaryawanDisableMode, f2UnitBisnisDisableMode, f2NamaKaryawanPart, f2UnitBisnisPart, f2StartAttantionKaryawanBaruPart, f2NoDataKaryawanBaruPart, f2loadingDataKaryawanBaruPart;
     LinearLayout f2KomponenGajiDisableModeLama, f2UnitBisnisDisableModeLama, f2NamaKaryawanLamaPart, f2UnitBisnisLamaPart, f2StartAttantionKaryawanLamaPart, f2NoDataKaryawanLamaPart, f2loadingDataKaryawanLamaPart;
     ImageView f2loadingGif, f2loadingLamaGif;
     TextView f2LabelPoint, f2KomponenGajiDisableModeTV, f2NamaKaryawanDisableModeTV, f2UnitBisnisDisableModeLamaTV, f2UnitBisnisDisableModeTV, f2NamaKaryawanTV, f2UnitBisnisTV, f2DepartemenTV, f2BagianTV, f2JabatanTV;
@@ -299,6 +299,7 @@ public class FormSdmActivity extends AppCompatActivity {
         f2VerifSyaratGroup = findViewById(R.id.f2_option);
         f2OptionYa = findViewById(R.id.f2_option_ya);
         f2OptionTidak = findViewById(R.id.f2_option_tidak);
+        f2DurasiKontrakPart = findViewById(R.id.f2_durasi_kontrak_part);
         f2CatatanTV = findViewById(R.id.f2_catatan_tv);
 
         f2KomponenGajiTV.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
@@ -2095,6 +2096,8 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2KomponenGajiLamaTV.setVisibility(View.GONE);
                 f2KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
 
+                f2DurasiKontrakPart.setVisibility(View.GONE);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -2304,6 +2307,8 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2KomponenGajiLamaTV.setVisibility(View.GONE);
                 f2KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
 
+                f2DurasiKontrakPart.setVisibility(View.VISIBLE);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -2512,6 +2517,8 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2KomponenGajiDisableMode.setVisibility(View.VISIBLE);
                 f2KomponenGajiLamaTV.setVisibility(View.GONE);
                 f2KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
+
+                f2DurasiKontrakPart.setVisibility(View.GONE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -5651,7 +5658,6 @@ public class FormSdmActivity extends AppCompatActivity {
                             data = new JSONObject(response);
                             String status = data.getString("status");
                             if (status.equals("Success")) {
-
                                 f2StartAttantionKaryawanBaruPart.setVisibility(View.GONE);
                                 f2loadingDataKaryawanBaruPart.setVisibility(View.GONE);
                                 f2NoDataKaryawanBaruPart.setVisibility(View.GONE);
@@ -5781,7 +5787,7 @@ public class FormSdmActivity extends AppCompatActivity {
                             JSONObject data = new JSONObject(response);
                             String unit = data.getString("data");
 
-                            GsonBuilder builder =new GsonBuilder();
+                            GsonBuilder builder = new GsonBuilder();
                             Gson gson = builder.create();
                             unitBisnis = gson.fromJson(unit, UnitBisnis[].class);
                             f2AdapterUnitBisnis = new AdapterUnitBisnis2(unitBisnis,FormSdmActivity.this);
