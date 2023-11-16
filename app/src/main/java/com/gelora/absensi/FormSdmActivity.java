@@ -1330,79 +1330,156 @@ public class FormSdmActivity extends AppCompatActivity {
                     }
                 }
                 else if(kodeKeterangan.equals("2")||kodeKeterangan.equals("3")||kodeKeterangan.equals("4")){ //Form 2 3 4
-                    if (f2NikBaru.equals("") || f2IdUnitBisnis.equals("") || f2KomponenGajiDisableModeTV.getText().toString().equals("") || f2NikLama.equals("") || f2IdUnitBisnisLama.equals("") || f2KomponenGajiDisableModeLamaTV.getText().toString().equals("") || f2VerifSyaratGroup.equals("")) {
-                        new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
-                                .setTitleText("Perhatian")
-                                .setContentText("Pastikan kolom nama, unit bisnis, komponen gaji dan pemenuhan syarat terisi!")
-                                .setConfirmText("    OK    ")
-                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                    @Override
-                                    public void onClick(KAlertDialog sDialog) {
-                                        sDialog.dismiss();
-                                    }
-                                })
-                                .show();
-                    } else {
-                        new KAlertDialog(FormSdmActivity.this, KAlertDialog.WARNING_TYPE)
-                                .setTitleText("Perhatian")
-                                .setContentText("Kirim data sekarang?")
-                                .setCancelText("TIDAK")
-                                .setConfirmText("   YA   ")
-                                .showCancelButton(true)
-                                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                    @Override
-                                    public void onClick(KAlertDialog sDialog) {
-                                        sDialog.dismiss();
-                                    }
-                                })
-                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                    @Override
-                                    public void onClick(KAlertDialog sDialog) {
-                                        sDialog.dismiss();
-                                        pDialog = new KAlertDialog(FormSdmActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
-                                        pDialog.show();
-                                        pDialog.setCancelable(false);
-                                        new CountDownTimer(1300, 800) {
-                                            public void onTick(long millisUntilFinished) {
-                                                i++;
-                                                switch (i) {
-                                                    case 0:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormSdmActivity.this, R.color.colorGradien));
-                                                        break;
-                                                    case 1:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormSdmActivity.this, R.color.colorGradien2));
-                                                        break;
-                                                    case 2:
-                                                    case 6:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormSdmActivity.this, R.color.colorGradien3));
-                                                        break;
-                                                    case 3:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormSdmActivity.this, R.color.colorGradien4));
-                                                        break;
-                                                    case 4:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormSdmActivity.this, R.color.colorGradien5));
-                                                        break;
-                                                    case 5:
-                                                        pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
-                                                                (FormSdmActivity.this, R.color.colorGradien6));
-                                                        break;
+                    if(kodeKeterangan.equals("3")){
+                        if (f2NikBaru.equals("") || f2IdUnitBisnis.equals("") || f2KomponenGajiDisableModeTV.getText().toString().equals("") || f2NikLama.equals("") || f2IdUnitBisnisLama.equals("") || f2KomponenGajiDisableModeLamaTV.getText().toString().equals("") || f2VerifSyaratGroup.equals("") || f2DateChoiceMulai.equals("") || f2DateChoiceAkhir.equals("")) {
+                            new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Pastikan kolom nama, unit bisnis, komponen gaji, pemenuhan syarat, durasi kontrak terisi!")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        } else {
+                            new KAlertDialog(FormSdmActivity.this, KAlertDialog.WARNING_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Kirim data sekarang?")
+                                    .setCancelText("TIDAK")
+                                    .setConfirmText("   YA   ")
+                                    .showCancelButton(true)
+                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                            pDialog = new KAlertDialog(FormSdmActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                            pDialog.show();
+                                            pDialog.setCancelable(false);
+                                            new CountDownTimer(1300, 800) {
+                                                public void onTick(long millisUntilFinished) {
+                                                    i++;
+                                                    switch (i) {
+                                                        case 0:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormSdmActivity.this, R.color.colorGradien));
+                                                            break;
+                                                        case 1:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormSdmActivity.this, R.color.colorGradien2));
+                                                            break;
+                                                        case 2:
+                                                        case 6:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormSdmActivity.this, R.color.colorGradien3));
+                                                            break;
+                                                        case 3:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormSdmActivity.this, R.color.colorGradien4));
+                                                            break;
+                                                        case 4:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormSdmActivity.this, R.color.colorGradien5));
+                                                            break;
+                                                        case 5:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormSdmActivity.this, R.color.colorGradien6));
+                                                            break;
+                                                    }
                                                 }
-                                            }
 
-                                            public void onFinish() {
-                                                i = -1;
-                                                checkSignature();
-                                            }
-                                        }.start();
+                                                public void onFinish() {
+                                                    i = -1;
+                                                    checkSignature();
+                                                }
+                                            }.start();
 
-                                    }
-                                })
-                                .show();
+                                        }
+                                    })
+                                    .show();
+                        }
+                    } else {
+                        if (f2NikBaru.equals("") || f2IdUnitBisnis.equals("") || f2KomponenGajiDisableModeTV.getText().toString().equals("") || f2NikLama.equals("") || f2IdUnitBisnisLama.equals("") || f2KomponenGajiDisableModeLamaTV.getText().toString().equals("") || f2VerifSyaratGroup.equals("")) {
+                            new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Pastikan kolom nama, unit bisnis, komponen gaji dan pemenuhan syarat terisi!")
+                                    .setConfirmText("    OK    ")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        } else {
+                            new KAlertDialog(FormSdmActivity.this, KAlertDialog.WARNING_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Kirim data sekarang?")
+                                    .setCancelText("TIDAK")
+                                    .setConfirmText("   YA   ")
+                                    .showCancelButton(true)
+                                    .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                            pDialog = new KAlertDialog(FormSdmActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                            pDialog.show();
+                                            pDialog.setCancelable(false);
+                                            new CountDownTimer(1300, 800) {
+                                                public void onTick(long millisUntilFinished) {
+                                                    i++;
+                                                    switch (i) {
+                                                        case 0:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormSdmActivity.this, R.color.colorGradien));
+                                                            break;
+                                                        case 1:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormSdmActivity.this, R.color.colorGradien2));
+                                                            break;
+                                                        case 2:
+                                                        case 6:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormSdmActivity.this, R.color.colorGradien3));
+                                                            break;
+                                                        case 3:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormSdmActivity.this, R.color.colorGradien4));
+                                                            break;
+                                                        case 4:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormSdmActivity.this, R.color.colorGradien5));
+                                                            break;
+                                                        case 5:
+                                                            pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                    (FormSdmActivity.this, R.color.colorGradien6));
+                                                            break;
+                                                    }
+                                                }
+
+                                                public void onFinish() {
+                                                    i = -1;
+                                                    checkSignature();
+                                                }
+                                            }.start();
+
+                                        }
+                                    })
+                                    .show();
+                        }
                     }
                 } else if(kodeKeterangan.equals("5")||kodeKeterangan.equals("6")) {
                     if (f3NikBaru.equals("") || f3DepartemenBaru.equals("") || f3BagianBaru.equals("") || f3JabatanBaru.equals("") || f3IdUnitBisnis.equals("") || f3KomponenGajiTV.getText().toString().equals("") || f3NikLama.equals("") || f3IdUnitBisnisLama.equals("") || f3DepartemenLama.equals("") || f3BagianLama.equals("") || f3JabatanLama.equals("") || f3KomponenGajiLamaTV.getText().toString().equals("") || f3JabatanLamaDetail.equals("") || f3TglPengangkatanJabatanLama.equals("") || f3JabatanBaruDetail.equals("") || f3TglPengangkatanJabatanBaru.equals("") || f3AlasanPengangkatanTV.getText().toString().equals("") || f3TglDibutuhkan.equals("") || f3TglPemenuhan.equals("")) {
