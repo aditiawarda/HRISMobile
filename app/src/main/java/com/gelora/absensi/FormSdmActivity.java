@@ -6355,7 +6355,12 @@ public class FormSdmActivity extends AppCompatActivity {
                 params.put("komponen_gaji_lama", f2KomponenGajiDisableModeLamaTV.getText().toString());
 
                 params.put("memenuhi_syarat", f2PemenuhanSyarat);
-                params.put("catatan", f2CatatanTV.getText().toString());
+
+                if(kodeKeterangan.equals("3")){
+                    params.put("catatan", "Durasi Kontrak : "+f2DurasiKontrak.getText().toString()+" ("+f2StartDatePilih.getText().toString()+" s.d. "+f2EndDatePilih.getText().toString()+") "+f2CatatanTV.getText().toString());
+                } else {
+                    params.put("catatan", f2CatatanTV.getText().toString());
+                }
 
                 return params;
             }
