@@ -1,27 +1,20 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,19 +25,15 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterHistoryAbsen;
-import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.model.HistoryAbsen;
-import com.gelora.absensi.model.StatusAbsen;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.shasin.notificationbanner.Banner;
 import com.takisoft.datetimepicker.DatePickerDialog;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.CookieHandler;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
