@@ -9,24 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DataFormSdmActivity;
-import com.gelora.absensi.DataPenilaianSdmActivity;
 import com.gelora.absensi.DetailFormSdmActivity;
-import com.gelora.absensi.DetailPenilaianKaryawanActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataFormSDM;
-import com.gelora.absensi.model.DataPenilaianSDM;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListDataFormSDM.MyViewHolder> {
 

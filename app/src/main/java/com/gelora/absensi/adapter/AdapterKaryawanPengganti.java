@@ -18,7 +18,6 @@ import com.gelora.absensi.FormPermohonanCutiActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.model.KaryawanPengganti;
-import com.gelora.absensi.model.KategoriIzin;
 
 public class AdapterKaryawanPengganti extends RecyclerView.Adapter<AdapterKaryawanPengganti.MyViewHolder> {
 

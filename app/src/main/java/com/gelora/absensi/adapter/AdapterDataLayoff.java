@@ -11,11 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DetailLayoffActivity;
-import com.gelora.absensi.DetailTidakHadirActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
-import com.gelora.absensi.model.DataIzin;
 import com.gelora.absensi.model.DataLayoff;
 
 import java.text.DateFormat;

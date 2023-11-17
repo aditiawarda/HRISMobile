@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.MapsActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.RecordAbsensiActivity;
 import com.gelora.absensi.SharedPrefAbsen;

@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.HumanResourceActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.ResumeKaryawanActivity;
 import com.gelora.absensi.SearchSdmActivity;

@@ -4,45 +4,23 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.gelora.absensi.DetailPengumumanActivity;
 import com.gelora.absensi.FormKontakDaruratActivity;
 import com.gelora.absensi.InfoKontakDaruratActivity;
-import com.gelora.absensi.ListAllPengumumanActivity;
-import com.gelora.absensi.LoginActivity;
-import com.gelora.absensi.PersonalChatActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
-import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataKontakDarurat;
-import com.gelora.absensi.model.DataPengumumanAll;
-
 import net.cachapa.expandablelayout.ExpandableLayout;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class AdapterListKontakDarurat extends RecyclerView.Adapter<AdapterListKontakDarurat.MyViewHolder> {
 

@@ -10,18 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.DetailTidakHadirActivity;
 import com.gelora.absensi.HistoryCutiIzinActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
-import com.gelora.absensi.model.DataAlpa;
 import com.gelora.absensi.model.DataHistoryCuti;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class AdapterDataHistoryCuti extends RecyclerView.Adapter<AdapterDataHistoryCuti.MyViewHolder> {
 

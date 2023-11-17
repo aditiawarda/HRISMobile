@@ -3,17 +3,12 @@ package com.gelora.absensi.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,15 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gelora.absensi.HumanResourceActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.ResumeKaryawanActivity;
-import com.gelora.absensi.ViewImageActivity;
 import com.gelora.absensi.model.HumanResource;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.net.URL;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

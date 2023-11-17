@@ -22,14 +22,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.DetailPermohonanCutiActivity;
-import com.gelora.absensi.DetailPermohonanIzinActivity;
-import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.PersonalNotificationActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataPersonalNotification;
-import com.gelora.absensi.model.ListPermohonanIzin;
 
 import org.json.JSONException;
 import org.json.JSONObject;

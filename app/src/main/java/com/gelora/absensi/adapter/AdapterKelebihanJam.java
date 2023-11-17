@@ -11,12 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DetailKelebihanJamActivity;
-import com.gelora.absensi.DetailPulangCepatActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataKelebihanJam;
-import com.gelora.absensi.model.DataPulangCepat;
 
 import java.text.DateFormat;
 import java.text.ParseException;

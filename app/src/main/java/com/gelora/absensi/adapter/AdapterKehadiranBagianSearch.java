@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.MonitoringAbsensiBagianActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SearchKaryawanBagianActivity;
 import com.gelora.absensi.SharedPrefAbsen;

@@ -20,7 +20,6 @@ import com.gelora.absensi.FormSdmActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.model.KomponenGaji;
-import com.gelora.absensi.model.UnitJabatan;
 
 public class AdapterKomponenGaji extends RecyclerView.Adapter<AdapterKomponenGaji.MyViewHolder> {
 

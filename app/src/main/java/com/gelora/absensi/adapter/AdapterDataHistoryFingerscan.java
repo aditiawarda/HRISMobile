@@ -11,13 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.DetailTerlambatActivity;
 import com.gelora.absensi.HistoryFingerscanActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataHistoryFinger;
-import com.gelora.absensi.model.DataTerlambat;
 
 import java.text.DateFormat;
 import java.text.ParseException;

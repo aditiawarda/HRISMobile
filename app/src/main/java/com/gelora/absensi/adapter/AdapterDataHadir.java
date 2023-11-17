@@ -11,12 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DetailHadirActivity;
-import com.gelora.absensi.HistoryActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataHadir;
-import com.gelora.absensi.model.HistoryAbsen;
 
 import java.text.DateFormat;
 import java.text.ParseException;

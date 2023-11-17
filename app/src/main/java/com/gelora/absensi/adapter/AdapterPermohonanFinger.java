@@ -14,17 +14,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.DetailPermohonanCutiActivity;
 import com.gelora.absensi.DetailPermohonanFingerscanActivity;
-import com.gelora.absensi.DetailPermohonanIzinActivity;
-import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.ListNotifikasiFingerscanActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.ListPermohonanFingerscan;
-import com.gelora.absensi.model.ListPermohonanFingerscanMasuk;
-import com.gelora.absensi.model.ListPermohonanIzin;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;

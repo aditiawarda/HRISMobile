@@ -14,7 +14,6 @@ import com.gelora.absensi.HistoryCutiIzinActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
-import com.gelora.absensi.model.DataHistoryCuti;
 import com.gelora.absensi.model.DataHistoryIzin;
 
 public class AdapterDataHistoryIzin extends RecyclerView.Adapter<AdapterDataHistoryIzin.MyViewHolder> {

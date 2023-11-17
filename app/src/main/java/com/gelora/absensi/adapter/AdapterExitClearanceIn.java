@@ -9,20 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.DetailDataExitClearanceActivity;
 import com.gelora.absensi.DetailDataSerahTerimaExitClearanceActivity;
-import com.gelora.absensi.DetailPermohonanIzinActivity;
 import com.gelora.absensi.ExitClearanceActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.ListDataExitClearanceIn;
-import com.gelora.absensi.model.ListDataExitClearanceOut;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;

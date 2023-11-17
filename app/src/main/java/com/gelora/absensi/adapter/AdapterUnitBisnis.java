@@ -16,11 +16,9 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.FormFingerscanActivity;
 import com.gelora.absensi.FormSdmActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
-import com.gelora.absensi.model.TitikAbsensi;
 import com.gelora.absensi.model.UnitBisnis;
 
 public class AdapterUnitBisnis extends RecyclerView.Adapter<AdapterUnitBisnis.MyViewHolder> {

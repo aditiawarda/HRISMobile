@@ -17,7 +17,6 @@ import com.gelora.absensi.ListAllPengumumanActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
-import com.gelora.absensi.model.DataPengumuman;
 import com.gelora.absensi.model.DataPengumumanAll;
 
 import java.text.DateFormat;

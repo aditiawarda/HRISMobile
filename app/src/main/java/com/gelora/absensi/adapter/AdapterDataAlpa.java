@@ -15,7 +15,6 @@ import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataAlpa;
-import com.gelora.absensi.model.DataIzin;
 
 import java.text.DateFormat;
 import java.text.ParseException;

@@ -20,7 +20,6 @@ import com.gelora.absensi.FormSdmActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.model.UnitBagian;
-import com.gelora.absensi.model.UnitDepartemen;
 
 public class AdapterUnitBagian extends RecyclerView.Adapter<AdapterUnitBagian.MyViewHolder> {
 

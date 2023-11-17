@@ -11,18 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.DetailPulangCepatActivity;
 import com.gelora.absensi.MonitoringAbsensiBagianActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataMonitoringKehadiranBagian;
-import com.gelora.absensi.model.DataPulangCepat;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class AdapterKehadiranBagian extends RecyclerView.Adapter<AdapterKehadiranBagian.MyViewHolder> {
 

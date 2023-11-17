@@ -2,7 +2,6 @@ package com.gelora.absensi.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DetailTidakHadirActivity;
-import com.gelora.absensi.HistoryActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataIzin;
-import com.gelora.absensi.model.HistoryAbsen;
 
 import java.text.DateFormat;
 import java.text.ParseException;

@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gelora.absensi.FormSdmActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
-import com.gelora.absensi.model.UnitBisnis;
 import com.gelora.absensi.model.UnitJabatan;
 
 public class AdapterUnitJabatan extends RecyclerView.Adapter<AdapterUnitJabatan.MyViewHolder> {

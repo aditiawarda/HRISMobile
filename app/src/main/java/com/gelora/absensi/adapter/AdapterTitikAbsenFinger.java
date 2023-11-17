@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gelora.absensi.FormFingerscanActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
-import com.gelora.absensi.model.ShiftAbsen;
 import com.gelora.absensi.model.TitikAbsensi;
 
 public class AdapterTitikAbsenFinger extends RecyclerView.Adapter<AdapterTitikAbsenFinger.MyViewHolder> {

@@ -15,7 +15,6 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.R;
-import com.gelora.absensi.SearchKaryawanBagianActivity;
 import com.gelora.absensi.SearchSdmActivity;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.model.Bagian;

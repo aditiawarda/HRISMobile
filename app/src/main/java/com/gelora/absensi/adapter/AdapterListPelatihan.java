@@ -13,13 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.FormInfoPelatihanActivity;
-import com.gelora.absensi.FormInfoPengalamanActivity;
 import com.gelora.absensi.InfoPengalamanDanPelatihanActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataPelatihan;
-import com.gelora.absensi.model.DataPengalaman;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

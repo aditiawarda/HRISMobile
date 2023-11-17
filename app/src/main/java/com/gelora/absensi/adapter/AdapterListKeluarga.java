@@ -3,7 +3,6 @@ package com.gelora.absensi.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +10,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DetailKeluargaActivity;
-import com.gelora.absensi.FormKontakDaruratActivity;
 import com.gelora.absensi.InfoKeluargaActivity;
-import com.gelora.absensi.InfoKontakDaruratActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.DataKeluarga;
-import com.gelora.absensi.model.DataKontakDarurat;
-
-import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

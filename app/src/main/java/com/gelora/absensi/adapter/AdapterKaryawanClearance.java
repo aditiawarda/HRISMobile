@@ -16,11 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.ExitClearanceActivity;
 import com.gelora.absensi.FormExitClearanceActivity;
-import com.gelora.absensi.FormPermohonanCutiActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.model.KaryawanClearance;
-import com.gelora.absensi.model.KaryawanPengganti;
 
 public class AdapterKaryawanClearance extends RecyclerView.Adapter<AdapterKaryawanClearance.MyViewHolder> {
 
