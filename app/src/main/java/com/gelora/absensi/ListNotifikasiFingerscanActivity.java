@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -26,7 +25,6 @@ import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterPermohonanFinger;
 import com.gelora.absensi.adapter.AdapterPermohonanFingerSaya;
 import com.gelora.absensi.model.ListPermohonanFingerscan;
-import com.gelora.absensi.model.ListPermohonanFingerscanMasuk;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

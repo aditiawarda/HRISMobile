@@ -23,7 +23,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.google.zxing.WriterException;
@@ -32,7 +31,6 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.shasin.notificationbanner.Banner;
 
 import org.aviran.cookiebar2.CookieBar;
 

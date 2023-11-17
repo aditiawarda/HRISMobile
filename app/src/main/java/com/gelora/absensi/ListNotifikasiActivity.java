@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -29,7 +28,6 @@ import com.gelora.absensi.adapter.AdapterPermohonanSaya;
 import com.gelora.absensi.model.ListPermohonanIzin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.shasin.notificationbanner.Banner;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONException;

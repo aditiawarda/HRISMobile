@@ -30,16 +30,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.gelora.absensi.adapter.AdapterDataAlpa;
 import com.gelora.absensi.adapter.AdapterDataDetailSerahTerima;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.DataAlpa;
 import com.gelora.absensi.model.DataDetailSerahTerima;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.aviran.cookiebar2.CookieBar;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

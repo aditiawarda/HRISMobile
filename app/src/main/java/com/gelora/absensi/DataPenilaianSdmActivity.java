@@ -1,7 +1,5 @@
 package com.gelora.absensi;
 
-import static java.security.AccessController.getContext;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,9 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.gelora.absensi.adapter.AdapterDataHadir;
 import com.gelora.absensi.adapter.AdapterListDataPenilaianSDM;
-import com.gelora.absensi.model.DataHadir;
 import com.gelora.absensi.model.DataPenilaianSDM;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

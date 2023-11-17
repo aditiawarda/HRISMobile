@@ -1,6 +1,5 @@
 package com.gelora.absensi;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -28,9 +26,6 @@ import com.gelora.absensi.adapter.AdapterDataHistoryFingerscan;
 import com.gelora.absensi.model.DataHistoryFinger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.kal.rackmonthpicker.RackMonthPicker;
-import com.kal.rackmonthpicker.listener.DateMonthDialogListener;
-import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import org.aviran.cookiebar2.CookieBar;
@@ -42,7 +37,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class HistoryFingerscanActivity extends AppCompatActivity {

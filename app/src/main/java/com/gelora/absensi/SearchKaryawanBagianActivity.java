@@ -36,18 +36,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
-import com.gelora.absensi.adapter.AdapterBagian;
 import com.gelora.absensi.adapter.AdapterBagianSearch;
-import com.gelora.absensi.adapter.AdapterKehadiranBagian;
 import com.gelora.absensi.adapter.AdapterKehadiranBagianSearch;
-import com.gelora.absensi.adapter.AdapterKetidakhadiranBagian;
 import com.gelora.absensi.adapter.AdapterKetidakhadiranBagianSearch;
 import com.gelora.absensi.model.Bagian;
 import com.gelora.absensi.model.DataMonitoringKehadiranBagian;
 import com.gelora.absensi.model.DataMonitoringKetidakhadiranBagian;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.shasin.notificationbanner.Banner;
 import com.takisoft.datetimepicker.DatePickerDialog;
 
 import org.aviran.cookiebar2.CookieBar;

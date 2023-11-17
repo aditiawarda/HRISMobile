@@ -23,9 +23,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterListDataFormSDM;
-import com.gelora.absensi.adapter.AdapterListDataPenilaianSDM;
 import com.gelora.absensi.model.DataFormSDM;
-import com.gelora.absensi.model.DataPenilaianSDM;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

@@ -20,11 +20,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.gelora.absensi.adapter.AdapterPermohonanIzin;
-import com.gelora.absensi.adapter.AdapterPermohonanSaya;
 import com.gelora.absensi.adapter.AdapterPersonalNotification;
 import com.gelora.absensi.model.DataPersonalNotification;
-import com.gelora.absensi.model.ListPermohonanIzin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

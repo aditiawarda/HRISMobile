@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,10 +29,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterListKontakDarurat;
-import com.gelora.absensi.adapter.AdapterListPengumuman;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataKontakDarurat;
-import com.gelora.absensi.model.DataPengumumanAll;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

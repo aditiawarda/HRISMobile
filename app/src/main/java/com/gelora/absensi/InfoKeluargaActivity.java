@@ -22,10 +22,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterListKeluarga;
-import com.gelora.absensi.adapter.AdapterListKontakDarurat;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataKeluarga;
-import com.gelora.absensi.model.DataKontakDarurat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

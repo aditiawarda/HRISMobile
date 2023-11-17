@@ -42,14 +42,9 @@ import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterExitClearanceIn;
 import com.gelora.absensi.adapter.AdapterExitClearanceOut;
 import com.gelora.absensi.adapter.AdapterKaryawanClearance;
-import com.gelora.absensi.adapter.AdapterKaryawanPengganti;
-import com.gelora.absensi.adapter.AdapterPermohonanIzin;
-import com.gelora.absensi.adapter.AdapterPermohonanSaya;
 import com.gelora.absensi.model.KaryawanClearance;
-import com.gelora.absensi.model.KaryawanPengganti;
 import com.gelora.absensi.model.ListDataExitClearanceIn;
 import com.gelora.absensi.model.ListDataExitClearanceOut;
-import com.gelora.absensi.model.ListPermohonanIzin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

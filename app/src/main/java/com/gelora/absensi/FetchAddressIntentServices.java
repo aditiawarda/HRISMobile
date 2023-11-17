@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 
-
 public class FetchAddressIntentServices extends IntentService {
     ResultReceiver resultReceiver;
 

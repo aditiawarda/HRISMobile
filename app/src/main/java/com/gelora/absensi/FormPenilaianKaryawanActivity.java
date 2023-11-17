@@ -32,7 +32,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -43,10 +42,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
-import com.gelora.absensi.adapter.AdapterKaryawanPengganti;
 import com.gelora.absensi.adapter.AdapterKaryawanPenilaian;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.KaryawanPengganti;
 import com.gelora.absensi.model.KaryawanPenilaian;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
