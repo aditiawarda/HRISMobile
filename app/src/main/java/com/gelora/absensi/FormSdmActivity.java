@@ -140,12 +140,12 @@ public class FormSdmActivity extends AppCompatActivity {
     RadioButton f2OptionYa, f2OptionTidak;
 
     //Form 5 6
-    LinearLayout f3TglDibutuhkanPart, f3TglPemenuhanPart, f3TglPengangkatanJabatanBaruPart, f3NamaKaryawanPart, f3UnitBisnisPart, f3DepartemenPart, f3BagianPart, f3JabatanPart, f3DepartemenLamaPart, f3BagianLamaPart, f3JabatanLamaPart, f3StartAttantionKaryawanBaruPart, f3NoDataKaryawanBaruPart, f3loadingDataKaryawanBaruPart;
-    LinearLayout f3JabatanBaruDetailPart, f3TglPengangkatanJabatanLamaPart, f3JabatanLamaDetailPart, f3NamaKaryawanLamaPart, f3UnitBisnisLamaPart, f3StartAttantionKaryawanLamaPart, f3NoDataKaryawanLamaPart, f3loadingDataKaryawanLamaPart;
+    LinearLayout f3NamaKaryawanDisableMode, f3TglDibutuhkanPart, f3TglPemenuhanPart, f3TglPengangkatanJabatanBaruPart, f3NamaKaryawanPart, f3UnitBisnisPart, f3DepartemenPart, f3BagianPart, f3JabatanPart, f3DepartemenLamaPart, f3BagianLamaPart, f3JabatanLamaPart, f3StartAttantionKaryawanBaruPart, f3NoDataKaryawanBaruPart, f3loadingDataKaryawanBaruPart;
+    LinearLayout f3KomponenGajiDisableModeLama, f3JabatanDisableModeLama, f3BagianDisableModeLama, f3DepartemenDisableModeLama, f3UnitBisnisDisableModeLama, f3JabatanBaruDetailPart, f3TglPengangkatanJabatanLamaPart, f3JabatanLamaDetailPart, f3NamaKaryawanLamaPart, f3UnitBisnisLamaPart, f3StartAttantionKaryawanLamaPart, f3NoDataKaryawanLamaPart, f3loadingDataKaryawanLamaPart;
     ImageView f3loadingGif, f3loadingLamaGif;
     EditText f3AlasanPengangkatanTV;
-    TextView f3TglDibutuhkanTV, f3TglPemenuhanTV, f3TglPengangkatanJabatanBaruTV, f3JabatanBaruDetailTV, f3TglPengangkatanJabatanLamaTV, f3JabatanLamaDetailTV, f3NamaKaryawanTV, f3UnitBisnisTV, f3DepartemenTV, f3BagianTV, f3JabatanTV;
-    TextView f3NamaKaryawanLamaTV, f3UnitBisnisLamaTV, f3DepartemenLamaTV, f3BagianLamaTV, f3JabatanLamaTV;
+    TextView f3NamaKaryawanDisableModeTV, f3KomponenGajiDisableModeLamaTV, f3JabatanDisableModeLamaTV, f3TglDibutuhkanTV, f3TglPemenuhanTV, f3TglPengangkatanJabatanBaruTV, f3JabatanBaruDetailTV, f3TglPengangkatanJabatanLamaTV, f3JabatanLamaDetailTV, f3NamaKaryawanTV, f3UnitBisnisTV, f3DepartemenTV, f3BagianTV, f3JabatanTV;
+    TextView f3BagianDisableModeLamaTV, f3DepartemenDisableModeLamaTV, f3UnitBisnisDisableModeLamaTV, f3NamaKaryawanLamaTV, f3UnitBisnisLamaTV, f3DepartemenLamaTV, f3BagianLamaTV, f3JabatanLamaTV;
     EditText f3keywordKaryawanBaru, f3KomponenGajiTV;
     EditText f3keywordKaryawanLama, f3KomponenGajiLamaTV, f3CatatanTV;
     String f3JabatanBaruDetail = "", f3NikBaru = "", f3IdUnitBisnis = "", f3DepartemenBaru = "", f3BagianBaru = "", f3JabatanBaru = "";
@@ -312,15 +312,27 @@ public class FormSdmActivity extends AppCompatActivity {
         //Form 5 6
         f3NamaKaryawanPart = findViewById(R.id.f3_nama_karyawan_part);
         f3NamaKaryawanTV = findViewById(R.id.f3_nama_karyawan_tv);
+        f3NamaKaryawanDisableMode = findViewById(R.id.f3_nama_karyawan_disable_mode);
+        f3NamaKaryawanDisableModeTV = findViewById(R.id.f3_nama_karyawan_disable_mode_tv);
         f3UnitBisnisPart = findViewById(R.id.f3_unit_bisnis_part);
+        f3UnitBisnisDisableModeLama = findViewById(R.id.f3_unit_bisnis_disable_mode_lama);
+        f3UnitBisnisDisableModeLamaTV = findViewById(R.id.f3_unit_bisnis_disable_mode_tv_lama);
         f3UnitBisnisTV = findViewById(R.id.f3_unit_bisnis_tv);
         f3DepartemenPart = findViewById(R.id.f3_departemen_part);
+        f3DepartemenDisableModeLama = findViewById(R.id.f3_departemen_disable_mode_lama);
+        f3DepartemenDisableModeLamaTV = findViewById(R.id.f3_departemen_disable_mode_tv_lama);
         f3DepartemenTV = findViewById(R.id.f3_departemen_tv);
         f3BagianPart = findViewById(R.id.f3_bagian_part);
+        f3BagianDisableModeLama = findViewById(R.id.f3_bagian_disable_mode_lama);
+        f3BagianDisableModeLamaTV = findViewById(R.id.f3_bagian_disable_mode_tv_lama);
         f3BagianTV = findViewById(R.id.f3_bagian_tv);
         f3JabatanPart = findViewById(R.id.f3_jabatan_part);
+        f3JabatanDisableModeLama = findViewById(R.id.f3_jabatan_disable_mode_lama);
+        f3JabatanDisableModeLamaTV = findViewById(R.id.f3_jabatan_disable_mode_tv_lama);
         f3JabatanTV = findViewById(R.id.f3_jabatan_tv);
         f3KomponenGajiTV = findViewById(R.id.f3_komponen_gaji_tv);
+        f3KomponenGajiDisableModeLama = findViewById(R.id.f3_komponen_gaji_disable_mode_lama);
+        f3KomponenGajiDisableModeLamaTV = findViewById(R.id.f3_komponen_gaji_disable_mode_tv_lama);
         f3NamaKaryawanLamaPart = findViewById(R.id.f3_nama_karyawan_lama_part);
         f3NamaKaryawanLamaTV = findViewById(R.id.f3_nama_karyawan_lama_tv);
         f3UnitBisnisLamaPart = findViewById(R.id.f3_unit_bisnis_lama_part);
@@ -469,6 +481,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
+                f3NamaKaryawanDisableModeTV.setText("");
                 f3NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f3DepartemenBaru = "";
@@ -489,16 +502,21 @@ public class FormSdmActivity extends AppCompatActivity {
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
                 f3DepartemenLama = "";
                 f3DepartemenLamaTV.setText("");
+                f3DepartemenDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
                 f3BagianLama = "";
                 f3BagianLamaTV.setText("");
+                f3BagianDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
                 f3JabatanLama = "";
                 f3JabatanLamaTV.setText("");
+                f3JabatanDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
                 f3KomponenGajiLamaTV.setText("");
+                f3KomponenGajiDisableModeLamaTV.setText("");
                 f3UnitBisnisLamaTV.setText("");
                 f3IdUnitBisnisLama = "";
+                f3UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
@@ -1879,6 +1897,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f3NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f3DepartemenBaru = "";
@@ -1899,16 +1918,21 @@ public class FormSdmActivity extends AppCompatActivity {
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
                 f3DepartemenLama = "";
                 f3DepartemenLamaTV.setText("");
+                f3DepartemenDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
                 f3BagianLama = "";
                 f3BagianLamaTV.setText("");
+                f3BagianDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
                 f3JabatanLama = "";
                 f3JabatanLamaTV.setText("");
+                f3JabatanDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
                 f3KomponenGajiLamaTV.setText("");
+                f3KomponenGajiDisableModeLamaTV.setText("");
                 f3UnitBisnisLamaTV.setText("");
                 f3IdUnitBisnisLama = "";
+                f3UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
@@ -2110,6 +2134,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f3NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f3DepartemenBaru = "";
@@ -2130,16 +2155,21 @@ public class FormSdmActivity extends AppCompatActivity {
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
                 f3DepartemenLama = "";
                 f3DepartemenLamaTV.setText("");
+                f3DepartemenDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
                 f3BagianLama = "";
                 f3BagianLamaTV.setText("");
+                f3BagianDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
                 f3JabatanLama = "";
                 f3JabatanLamaTV.setText("");
+                f3JabatanDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
                 f3KomponenGajiLamaTV.setText("");
+                f3KomponenGajiDisableModeLamaTV.setText("");
                 f3UnitBisnisLamaTV.setText("");
                 f3IdUnitBisnisLama = "";
+                f3UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
@@ -2325,6 +2355,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f3NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f3DepartemenBaru = "";
@@ -2345,16 +2376,21 @@ public class FormSdmActivity extends AppCompatActivity {
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
                 f3DepartemenLama = "";
                 f3DepartemenLamaTV.setText("");
+                f3DepartemenDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
                 f3BagianLama = "";
                 f3BagianLamaTV.setText("");
+                f3BagianDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
                 f3JabatanLama = "";
                 f3JabatanLamaTV.setText("");
+                f3JabatanDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
                 f3KomponenGajiLamaTV.setText("");
+                f3KomponenGajiDisableModeLamaTV.setText("");
                 f3UnitBisnisLamaTV.setText("");
                 f3IdUnitBisnisLama = "";
+                f3UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
@@ -2540,6 +2576,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f3NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f3DepartemenBaru = "";
@@ -2560,16 +2597,21 @@ public class FormSdmActivity extends AppCompatActivity {
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
                 f3DepartemenLama = "";
                 f3DepartemenLamaTV.setText("");
+                f3DepartemenDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
                 f3BagianLama = "";
                 f3BagianLamaTV.setText("");
+                f3BagianDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
                 f3JabatanLama = "";
                 f3JabatanLamaTV.setText("");
+                f3JabatanDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
                 f3KomponenGajiLamaTV.setText("");
+                f3KomponenGajiDisableModeLamaTV.setText("");
                 f3UnitBisnisLamaTV.setText("");
                 f3IdUnitBisnisLama = "";
+                f3UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
@@ -2755,6 +2797,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f3NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f3DepartemenBaru = "";
@@ -2775,16 +2818,21 @@ public class FormSdmActivity extends AppCompatActivity {
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
                 f3DepartemenLama = "";
                 f3DepartemenLamaTV.setText("");
+                f3DepartemenDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
                 f3BagianLama = "";
                 f3BagianLamaTV.setText("");
+                f3BagianDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
                 f3JabatanLama = "";
                 f3JabatanLamaTV.setText("");
+                f3JabatanDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
                 f3KomponenGajiLamaTV.setText("");
+                f3KomponenGajiDisableModeLamaTV.setText("");
                 f3UnitBisnisLamaTV.setText("");
                 f3IdUnitBisnisLama = "";
+                f3UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
@@ -2834,6 +2882,19 @@ public class FormSdmActivity extends AppCompatActivity {
                 f4Persetujuan = "";
                 f4VerifPersetujuanGroup.clearCheck();
                 f4CatatanTV.setText("");
+
+                f3UnitBisnisLamaPart.setVisibility(View.GONE);
+                f3UnitBisnisDisableModeLama.setVisibility(View.VISIBLE);
+                f3DepartemenLamaPart.setVisibility(View.GONE);
+                f3DepartemenDisableModeLama.setVisibility(View.VISIBLE);
+                f3BagianLamaPart.setVisibility(View.GONE);
+                f3BagianDisableModeLama.setVisibility(View.VISIBLE);
+                f3JabatanLamaPart.setVisibility(View.GONE);
+                f3JabatanDisableModeLama.setVisibility(View.VISIBLE);
+                f3KomponenGajiLamaTV.setVisibility(View.GONE);
+                f3KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
+                f3NamaKaryawanPart.setVisibility(View.GONE);
+                f3NamaKaryawanDisableMode.setVisibility(View.VISIBLE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -2958,6 +3019,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f3NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f3DepartemenBaru = "";
@@ -2978,16 +3040,21 @@ public class FormSdmActivity extends AppCompatActivity {
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
                 f3DepartemenLama = "";
                 f3DepartemenLamaTV.setText("");
+                f3DepartemenDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
                 f3BagianLama = "";
                 f3BagianLamaTV.setText("");
+                f3BagianDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
                 f3JabatanLama = "";
                 f3JabatanLamaTV.setText("");
+                f3JabatanDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
                 f3KomponenGajiLamaTV.setText("");
+                f3KomponenGajiDisableModeLamaTV.setText("");
                 f3UnitBisnisLamaTV.setText("");
                 f3IdUnitBisnisLama = "";
+                f3UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
@@ -3161,6 +3228,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 //Form 5 6
                 f3NamaKaryawanTV.setText("");
+                f2NamaKaryawanDisableModeTV.setText("");
                 f3NikBaru = "";
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
                 f3DepartemenBaru = "";
@@ -3181,16 +3249,21 @@ public class FormSdmActivity extends AppCompatActivity {
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
                 f3DepartemenLama = "";
                 f3DepartemenLamaTV.setText("");
+                f3DepartemenDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
                 f3BagianLama = "";
                 f3BagianLamaTV.setText("");
+                f3BagianDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
                 f3JabatanLama = "";
                 f3JabatanLamaTV.setText("");
+                f3JabatanDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
                 f3KomponenGajiLamaTV.setText("");
+                f3KomponenGajiDisableModeLamaTV.setText("");
                 f3UnitBisnisLamaTV.setText("");
                 f3IdUnitBisnisLama = "";
+                f3UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f3JabatanLamaDetail = "";
                 f3JabatanLamaDetailTV.setText("");
@@ -7054,9 +7127,25 @@ public class FormSdmActivity extends AppCompatActivity {
             String id_bagian_karyawan_lama = intent.getStringExtra("id_bagian_karyawan_lama");
             String jabatan_karyawan_lama = intent.getStringExtra("jabatan_karyawan_lama");
             String id_jabatan_karyawan_lama = intent.getStringExtra("id_jabatan_karyawan_lama");
+            String status_karyawan_lama = intent.getStringExtra("status_karyawan_lama");
 
             f3NikLama = nik_karyawan_lama;
             f3NamaKaryawanLamaTV.setText(nama_karyawan_lama);
+
+            f3UnitBisnisDisableModeLamaTV.setText("PT. Gelora Aksara Pratama");
+            f3IdUnitBisnisLama = "1";
+
+            f3NikLama = nik_karyawan_lama;
+            f3DepartemenLama = id_departemen_karyawan_lama;
+            f3DepartemenDisableModeLamaTV.setText(departemen_karyawan_lama);
+            f3BagianLama = id_bagian_karyawan_lama;
+            f3BagianDisableModeLamaTV.setText(bagian_karyawan_lama);
+            f3JabatanLama = id_jabatan_karyawan_lama;
+            f3JabatanDisableModeLamaTV.setText(jabatan_karyawan_lama);
+            f3KomponenGajiDisableModeLamaTV.setText(status_karyawan_lama);
+
+            f3NikBaru = nik_karyawan_lama;
+            f3NamaKaryawanDisableModeTV.setText(nama_karyawan_lama);
 
             new Handler().postDelayed(new Runnable() {
                 @Override
