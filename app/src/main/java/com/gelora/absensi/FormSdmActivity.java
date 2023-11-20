@@ -52,6 +52,7 @@ import com.gelora.absensi.adapter.AdapterKaryawanLamaSDM;
 import com.gelora.absensi.adapter.AdapterKaryawanLamaSDM2;
 import com.gelora.absensi.adapter.AdapterKaryawanLamaSDM3;
 import com.gelora.absensi.adapter.AdapterKomponenGaji;
+import com.gelora.absensi.adapter.AdapterKomponenGaji3;
 import com.gelora.absensi.adapter.AdapterUnitBagian;
 import com.gelora.absensi.adapter.AdapterUnitBagian2;
 import com.gelora.absensi.adapter.AdapterUnitBagianLama;
@@ -73,6 +74,7 @@ import com.gelora.absensi.adapter.AdapterUnitJabatanLamaDetail;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.KaryawanSDM;
 import com.gelora.absensi.model.KomponenGaji;
+import com.gelora.absensi.model.KomponenGaji3;
 import com.gelora.absensi.model.UnitBagian;
 import com.gelora.absensi.model.UnitBisnis;
 import com.gelora.absensi.model.UnitDepartemen;
@@ -140,11 +142,11 @@ public class FormSdmActivity extends AppCompatActivity {
     RadioButton f2OptionYa, f2OptionTidak;
 
     //Form 5 6
-    LinearLayout f3NamaKaryawanDisableMode, f3TglDibutuhkanPart, f3TglPemenuhanPart, f3TglPengangkatanJabatanBaruPart, f3NamaKaryawanPart, f3UnitBisnisPart, f3DepartemenPart, f3BagianPart, f3JabatanPart, f3DepartemenLamaPart, f3BagianLamaPart, f3JabatanLamaPart, f3StartAttantionKaryawanBaruPart, f3NoDataKaryawanBaruPart, f3loadingDataKaryawanBaruPart;
+    LinearLayout f3KomponenGajiPart, f3NamaKaryawanDisableMode, f3TglDibutuhkanPart, f3TglPemenuhanPart, f3TglPengangkatanJabatanBaruPart, f3NamaKaryawanPart, f3UnitBisnisPart, f3DepartemenPart, f3BagianPart, f3JabatanPart, f3DepartemenLamaPart, f3BagianLamaPart, f3JabatanLamaPart, f3StartAttantionKaryawanBaruPart, f3NoDataKaryawanBaruPart, f3loadingDataKaryawanBaruPart;
     LinearLayout f3KomponenGajiDisableModeLama, f3JabatanDisableModeLama, f3BagianDisableModeLama, f3DepartemenDisableModeLama, f3UnitBisnisDisableModeLama, f3JabatanBaruDetailPart, f3TglPengangkatanJabatanLamaPart, f3JabatanLamaDetailPart, f3NamaKaryawanLamaPart, f3UnitBisnisLamaPart, f3StartAttantionKaryawanLamaPart, f3NoDataKaryawanLamaPart, f3loadingDataKaryawanLamaPart;
     ImageView f3loadingGif, f3loadingLamaGif;
     EditText f3AlasanPengangkatanTV;
-    TextView f3NamaKaryawanDisableModeTV, f3KomponenGajiDisableModeLamaTV, f3JabatanDisableModeLamaTV, f3TglDibutuhkanTV, f3TglPemenuhanTV, f3TglPengangkatanJabatanBaruTV, f3JabatanBaruDetailTV, f3TglPengangkatanJabatanLamaTV, f3JabatanLamaDetailTV, f3NamaKaryawanTV, f3UnitBisnisTV, f3DepartemenTV, f3BagianTV, f3JabatanTV;
+    TextView f3KomponenGajiPilihTV, f3NamaKaryawanDisableModeTV, f3KomponenGajiDisableModeLamaTV, f3JabatanDisableModeLamaTV, f3TglDibutuhkanTV, f3TglPemenuhanTV, f3TglPengangkatanJabatanBaruTV, f3JabatanBaruDetailTV, f3TglPengangkatanJabatanLamaTV, f3JabatanLamaDetailTV, f3NamaKaryawanTV, f3UnitBisnisTV, f3DepartemenTV, f3BagianTV, f3JabatanTV;
     TextView f3BagianDisableModeLamaTV, f3DepartemenDisableModeLamaTV, f3UnitBisnisDisableModeLamaTV, f3NamaKaryawanLamaTV, f3UnitBisnisLamaTV, f3DepartemenLamaTV, f3BagianLamaTV, f3JabatanLamaTV;
     EditText f3keywordKaryawanBaru, f3KomponenGajiTV;
     EditText f3keywordKaryawanLama, f3KomponenGajiLamaTV, f3CatatanTV;
@@ -180,6 +182,9 @@ public class FormSdmActivity extends AppCompatActivity {
     private RecyclerView f3JabatanBaruDetailRV;
     private UnitJabatan[] f3UnitJabatanBaruDetails;
     private AdapterUnitJabatanBaruDetail f3AdapterUnitJabatanBaruDetail;
+    private RecyclerView f3KomponenGajiRV;
+    private KomponenGaji3[] komponenGajis3;
+    private AdapterKomponenGaji3 adapterKomponenGaji3;
 
     //Form 7
     LinearLayout f4NamaKaryawanPart, f4UnitBisnisPart, f4StartAttantionKaryawanBaruPart, f4NoDataKaryawanBaruPart, f4loadingDataKaryawanBaruPart;
@@ -331,6 +336,8 @@ public class FormSdmActivity extends AppCompatActivity {
         f3JabatanDisableModeLamaTV = findViewById(R.id.f3_jabatan_disable_mode_tv_lama);
         f3JabatanTV = findViewById(R.id.f3_jabatan_tv);
         f3KomponenGajiTV = findViewById(R.id.f3_komponen_gaji_tv);
+        f3KomponenGajiPart = findViewById(R.id.f3_komponen_gaji_part);
+        f3KomponenGajiPilihTV = findViewById(R.id.f3_komponen_gaji_pilih_tv);
         f3KomponenGajiDisableModeLama = findViewById(R.id.f3_komponen_gaji_disable_mode_lama);
         f3KomponenGajiDisableModeLamaTV = findViewById(R.id.f3_komponen_gaji_disable_mode_tv_lama);
         f3NamaKaryawanLamaPart = findViewById(R.id.f3_nama_karyawan_lama_part);
@@ -534,6 +541,8 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3TglPemenuhan = "";
                 f3TglPemenuhanTV.setText("");
                 f3CatatanTV.setText("");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
+                f3KomponenGajiPilihTV.setText("");
 
                 //Form 7
                 f4NamaKaryawanTV.setText("");
@@ -731,6 +740,8 @@ public class FormSdmActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(f3JabatanLamaBoard, new IntentFilter("f3_jabatan_lama_board"));
         LocalBroadcastManager.getInstance(this).registerReceiver(f3JabatanLamaDetailBoard, new IntentFilter("f3_jabatan_lama_detail_board"));
         LocalBroadcastManager.getInstance(this).registerReceiver(f3JabatanBaruDetailBoard, new IntentFilter("f3_jabatan_baru_detail_board"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(f3KomponenGajiBoard, new IntentFilter("f3_komponen_gaji_board"));
+
         f3NamaKaryawanPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -817,6 +828,12 @@ public class FormSdmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 f3JabatanLamaWay();
+            }
+        });
+        f3KomponenGajiPart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f3KomponenGajiWay();
             }
         });
         f3JabatanLamaDetailPart.setOnClickListener(new View.OnClickListener() {
@@ -1950,6 +1967,8 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3TglPemenuhan = "";
                 f3TglPemenuhanTV.setText("");
                 f3CatatanTV.setText("");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
+                f3KomponenGajiPilihTV.setText("");
 
                 //Form 7
                 f4NamaKaryawanTV.setText("");
@@ -2187,6 +2206,8 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3TglPemenuhan = "";
                 f3TglPemenuhanTV.setText("");
                 f3CatatanTV.setText("");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
+                f3KomponenGajiPilihTV.setText("");
 
                 //Form 7
                 f4NamaKaryawanTV.setText("");
@@ -2408,6 +2429,8 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3TglPemenuhan = "";
                 f3TglPemenuhanTV.setText("");
                 f3CatatanTV.setText("");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
+                f3KomponenGajiPilihTV.setText("");
 
                 //Form 7
                 f4NamaKaryawanTV.setText("");
@@ -2629,6 +2652,8 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3TglPemenuhan = "";
                 f3TglPemenuhanTV.setText("");
                 f3CatatanTV.setText("");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
+                f3KomponenGajiPilihTV.setText("");
 
                 //Form 7
                 f4NamaKaryawanTV.setText("");
@@ -2850,6 +2875,8 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3TglPemenuhan = "";
                 f3TglPemenuhanTV.setText("");
                 f3CatatanTV.setText("");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
+                f3KomponenGajiPilihTV.setText("");
 
                 //Form 7
                 f4NamaKaryawanTV.setText("");
@@ -2895,6 +2922,8 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
                 f3NamaKaryawanPart.setVisibility(View.GONE);
                 f3NamaKaryawanDisableMode.setVisibility(View.VISIBLE);
+                f3KomponenGajiTV.setVisibility(View.GONE);
+                f3KomponenGajiPart.setVisibility(View.VISIBLE);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -3072,6 +3101,8 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3TglPemenuhan = "";
                 f3TglPemenuhanTV.setText("");
                 f3CatatanTV.setText("");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
+                f3KomponenGajiPilihTV.setText("");
 
                 //Form 7
                 f4NamaKaryawanTV.setText("");
@@ -3281,6 +3312,8 @@ public class FormSdmActivity extends AppCompatActivity {
                 f3TglPemenuhan = "";
                 f3TglPemenuhanTV.setText("");
                 f3CatatanTV.setText("");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
+                f3KomponenGajiPilihTV.setText("");
 
                 //Form 7
                 f4NamaKaryawanTV.setText("");
@@ -3788,6 +3821,91 @@ public class FormSdmActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String nama_komponen_gaji = intent.getStringExtra("nama_komponen_gaji");
             f1KomponenGajiPilihTV.setText(nama_komponen_gaji);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bottomSheet.dismissSheet();
+                }
+            }, 300);
+        }
+    };
+
+    private void f3KomponenGajiWay(){
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_komponen_gaji, bottomSheet, false));
+                f3KomponenGajiRV = findViewById(R.id.komponen_gaji_rv);
+                f3KomponenGajiRV.setLayoutManager(new LinearLayoutManager(this));
+                f3KomponenGajiRV.setHasFixedSize(true);
+                f3KomponenGajiRV.setNestedScrollingEnabled(false);
+                f3KomponenGajiRV.setItemAnimator(new DefaultItemAnimator());
+                f3GetKomponenGaji();
+            } else {
+                bottomSheet.showWithSheetView(LayoutInflater.from(this).inflate(R.layout.layout_komponen_gaji, bottomSheet, false));
+                f3KomponenGajiRV = findViewById(R.id.komponen_gaji_rv);
+                f3KomponenGajiRV.setLayoutManager(new LinearLayoutManager(this));
+                f3KomponenGajiRV.setHasFixedSize(true);
+                f3KomponenGajiRV.setNestedScrollingEnabled(false);
+                f3KomponenGajiRV.setItemAnimator(new DefaultItemAnimator());
+                f3GetKomponenGaji();
+            }
+        } catch (InflateException e){
+            e.printStackTrace();
+        }
+    }
+    private void f3GetKomponenGaji() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_komponen_gaji";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response);
+                            JSONObject data = new JSONObject(response);
+                            String komponen_gaji = data.getString("data");
+
+                            GsonBuilder builder =new GsonBuilder();
+                            Gson gson = builder.create();
+                            komponenGajis3 = gson.fromJson(komponen_gaji, KomponenGaji3[].class);
+                            adapterKomponenGaji3 = new AdapterKomponenGaji3(komponenGajis3,FormSdmActivity.this);
+                            f3KomponenGajiRV.setAdapter(adapterKomponenGaji3);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("request", "request");
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+    public BroadcastReceiver f3KomponenGajiBoard = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String nama_komponen_gaji = intent.getStringExtra("nama_komponen_gaji");
+            f3KomponenGajiPilihTV.setText(nama_komponen_gaji);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
