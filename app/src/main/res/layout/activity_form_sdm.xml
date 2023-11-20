@@ -3038,6 +3038,7 @@
                                 </LinearLayout>
 
                                 <TextView
+                                    android:id="@+id/f3_label_point"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:ellipsize="end"
@@ -3120,6 +3121,29 @@
 
                                     </LinearLayout>
 
+                                    <LinearLayout
+                                        android:id="@+id/f3_jabatan_lama_d_disable_mode"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/f3_jabatan_lama_d_disable_mode_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SpUsage" />
+
+                                    </LinearLayout>
+
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -3134,7 +3158,7 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Tanggal Pengangkatan :"
+                                        android:text="Tanggal Pengangkatan Jabatan Lama :"
                                         tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
@@ -3262,6 +3286,29 @@
 
                                     </LinearLayout>
 
+                                    <LinearLayout
+                                        android:id="@+id/f3_jabatan_baru_d_disable_mode"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/f3_jabatan_baru_d_disable_mode_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SpUsage" />
+
+                                    </LinearLayout>
+
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -3276,7 +3323,7 @@
                                         android:textSize="12dp"
                                         android:layout_marginBottom="5dp"
                                         android:textColor="#696969"
-                                        android:text="Tanggal Pengangkatan :"
+                                        android:text="Tanggal Pengangkatan Jabatan Baru :"
                                         tools:ignore="HardcodedText,SpUsage" />
 
                                     <LinearLayout
