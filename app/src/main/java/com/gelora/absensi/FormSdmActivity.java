@@ -7957,7 +7957,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 params.put("departemen_baru", f3DepartemenBaru);
                 params.put("bagian_baru", f3BagianBaru);
                 params.put("jabatan_baru", f3JabatanBaru);
-                params.put("komponen_gaji_baru", f3KomponenGajiTV.getText().toString());
+                params.put("komponen_gaji_baru", f3KomponenGajiPilihTV.getText().toString());
 
                 //LAMA
                 params.put("nik_lama", f3NikLama);
@@ -7965,7 +7965,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 params.put("departemen_lama", f3DepartemenLama);
                 params.put("bagian_lama", f3BagianLama);
                 params.put("jabatan_lama", f3JabatanLama);
-                params.put("komponen_gaji_lama", f3KomponenGajiLamaTV.getText().toString());
+                params.put("komponen_gaji_lama", f3KomponenGajiDisableModeLamaTV.getText().toString());
 
                 //DETAIL
                 params.put("jabatan_lama_detail", f3JabatanLamaDetail);
