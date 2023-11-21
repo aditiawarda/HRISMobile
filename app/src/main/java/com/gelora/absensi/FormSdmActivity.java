@@ -8837,7 +8837,6 @@ public class FormSdmActivity extends AppCompatActivity {
                                         })
                                         .show();
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
