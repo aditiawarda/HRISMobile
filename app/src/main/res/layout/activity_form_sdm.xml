@@ -645,6 +645,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:paddingStart="20dp"
+                                        android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_feel"
                                         android:orientation="horizontal"
                                         tools:ignore="RtlSymmetry">
@@ -1308,6 +1309,7 @@
                                         android:orientation="horizontal"
                                         android:paddingStart="20dp"
                                         android:paddingEnd="20dp"
+                                        android:layout_marginBottom="10dp"
                                         tools:ignore="RtlHardcoded">
 
                                         <TextView
@@ -1690,6 +1692,7 @@
                                         android:orientation="horizontal"
                                         android:paddingStart="20dp"
                                         android:paddingEnd="20dp"
+                                        android:layout_marginBottom="10dp"
                                         tools:ignore="RtlHardcoded">
 
                                         <TextView
@@ -1836,7 +1839,8 @@
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="match_parent">
+                                            android:layout_height="match_parent"
+                                            tools:ignore="UselessParent">
 
                                             <LinearLayout
                                                 android:layout_marginTop="10dp"
@@ -1899,7 +1903,8 @@
 
                                         <RelativeLayout
                                             android:layout_width="match_parent"
-                                            android:layout_height="match_parent">
+                                            android:layout_height="match_parent"
+                                            tools:ignore="UselessParent">
 
                                             <LinearLayout
                                                 android:layout_marginTop="10dp"
@@ -2535,6 +2540,7 @@
                                         android:orientation="horizontal"
                                         android:paddingStart="20dp"
                                         android:paddingEnd="20dp"
+                                        android:layout_marginBottom="10dp"
                                         tools:ignore="RtlHardcoded">
 
                                         <TextView
@@ -2986,6 +2992,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:paddingStart="20dp"
+                                        android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_feel"
                                         android:orientation="horizontal"
                                         tools:ignore="RtlSymmetry">
@@ -3772,6 +3779,29 @@
 
                                     </LinearLayout>
 
+                                    <LinearLayout
+                                        android:id="@+id/f4_unit_bisnis_disable_mode_lama"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/f4_unit_bisnis_disable_mode_tv_lama"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SpUsage" />
+
+                                    </LinearLayout>
+
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -3919,7 +3949,6 @@
                                         android:paddingLeft="20dp"
                                         android:paddingRight="20dp"
                                         android:inputType="textCapSentences|text"
-                                        android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_input_form"
                                         android:drawablePadding="10dp"
                                         android:textColor="#595959"
@@ -3928,6 +3957,30 @@
                                         android:textColorHint="#595959"
                                         android:textColorHighlight="#FFE1BC"
                                         tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage" />
+
+                                    <LinearLayout
+                                        android:id="@+id/f4_komponen_gaji_disable_mode_lama"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="DuplicateIds,RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/f4_komponen_gaji_disable_mode_tv_lama"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SpUsage" />
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
 
@@ -4085,6 +4138,29 @@
 
                                     </LinearLayout>
 
+                                    <LinearLayout
+                                        android:id="@+id/f4_unit_bisnis_disable_mode"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/f4_unit_bisnis_disable_mode_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SpUsage" />
+
+                                    </LinearLayout>
+
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -4232,7 +4308,6 @@
                                         android:paddingLeft="20dp"
                                         android:paddingRight="20dp"
                                         android:inputType="textCapSentences|text"
-                                        android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_input_form"
                                         android:drawablePadding="10dp"
                                         android:textColor="#595959"
@@ -4241,6 +4316,30 @@
                                         android:textColorHint="#595959"
                                         android:textColorHighlight="#FFE1BC"
                                         tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage" />
+
+                                    <LinearLayout
+                                        android:id="@+id/f4_komponen_gaji_disable_mode"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/shape_feel_disable"
+                                        android:gravity="center|left"
+                                        android:orientation="horizontal"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="20dp"
+                                        android:layout_marginBottom="10dp"
+                                        tools:ignore="RtlHardcoded">
+
+                                        <TextView
+                                            android:id="@+id/f4_komponen_gaji_disable_mode_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#B15735"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SpUsage" />
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
 

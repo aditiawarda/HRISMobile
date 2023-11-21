@@ -71,6 +71,7 @@ public class AdapterKaryawanBaruSDM3 extends RecyclerView.Adapter<AdapterKaryawa
                 intent.putExtra("id_bagian_karyawan_baru",karyawanSDM.getId_bagian());
                 intent.putExtra("jabatan_karyawan_baru",karyawanSDM.getJabatan());
                 intent.putExtra("id_jabatan_karyawan_baru",karyawanSDM.getId_jabatan());
+                intent.putExtra("status_karyawan_baru",karyawanSDM.getStatus_karyawan());
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, karyawanSDM.getNIK());
