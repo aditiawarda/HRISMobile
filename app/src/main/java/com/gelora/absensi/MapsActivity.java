@@ -3588,7 +3588,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void detailAbsen(String id_status, String id_shift){
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/detail_absen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -3686,7 +3685,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             checkout_point = absenPoint.getText().toString();
         }
 
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/checkout";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -3821,7 +3819,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void checkoutRecord(String id_checkout){
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/checkout_record";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -4501,7 +4498,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void checkLibur(String date) {
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/checking_libur";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -4638,7 +4634,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void deviceIdFunction() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/check_device_id";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -4722,7 +4717,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void checkTime() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/server_time";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
