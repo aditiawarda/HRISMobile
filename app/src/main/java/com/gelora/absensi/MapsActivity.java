@@ -683,7 +683,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void getAction() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/aksi_absen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -757,7 +756,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void getLocation() {
         String url = "https://geloraaksara.co.id/absen-online/api/lokasi";
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>()
                 {
@@ -814,7 +812,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("07:00:00");
     }
 
     private String getTime() {
@@ -822,7 +819,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("07:00:00");
     }
 
     private String getTimeH() {
@@ -830,7 +826,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("HH");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("01");
     }
 
     private String getTimeM() {
@@ -838,7 +833,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("mm");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("00");
     }
 
     private String getTimeS() {
@@ -846,7 +840,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("ss");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("00");
     }
 
     private String getDate() {
@@ -854,7 +847,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-06-03");
     }
 
     private String getDateTime() {
@@ -862,7 +854,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-06-03");
     }
 
     private String getDayMonth() {
@@ -870,7 +861,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("2022-06-03");
     }
 
     private String getDateD() {
@@ -878,7 +868,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DateFormat dateFormat = new SimpleDateFormat("dd");
         Date date = new Date();
         return dateFormat.format(date);
-        //return ("26");
     }
 
     private String getDateM() {
@@ -1016,7 +1005,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void getStatusAbsenBagian() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/status_absen_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -1070,7 +1058,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void getShiftAbsenBagian() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/shift_absen_bagian";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -1391,7 +1378,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             checkin_point = absenPoint.getText().toString();
         }
 
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/checkin";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -1646,7 +1632,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void checkLayoff(){
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/check_layoff";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -1707,7 +1692,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void actionLayoff(){
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/layoff";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -1769,7 +1753,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void checkAbsen(){
-        //RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/check_absen";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
