@@ -4854,7 +4854,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     viewMorePart.setVisibility(View.GONE);
                                 }
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
