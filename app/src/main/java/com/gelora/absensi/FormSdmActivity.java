@@ -92,8 +92,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
+
 public class FormSdmActivity extends AppCompatActivity {
 
     LinearLayout viewBTN, backBTN, pilihKeteranganPart, actionBar, submitBTN, attantionNoForm, loadingFormPart, formPart, successPart, warningNoForm;
@@ -131,15 +131,13 @@ public class FormSdmActivity extends AppCompatActivity {
     EditText f2keywordKaryawanBaru, f2KomponenGajiTV;
     EditText f2keywordKaryawanLama, f2KomponenGajiLamaTV, f2CatatanTV;
     String f2NikBaru = "", f2IdUnitBisnis = "", f2DepartemenBaru = "", f2BagianBaru = "", f2JabatanBaru = "";
-    String f2DateChoiceMulai = "", f2DateChoiceAkhir = "", f2NikLama = "", f2IdUnitBisnisLama = "", f2DepartemenLama = "", f2BagianLama = "", f2JabatanLama= "", f2PemenuhanSyarat = "";
+    String f2DateChoiceMulai = "", f2DateChoiceAkhir = "", f2NikLama = "", f2IdUnitBisnisLama = "", f2DepartemenLama = "", f2BagianLama = "", f2JabatanLama= "", f2PemenuhanSyarat = "1";
     private RecyclerView f2KaryawanBaruRV, f2KaryawanLamaRV, f2UnitBisnisRV, f2UnitBisnisLamaRV;
     private KaryawanSDM[] f2KaryawanSDMS;
     private AdapterKaryawanBaruSDM f2AdapterKaryawanBaruSDM;
     private AdapterKaryawanLamaSDM f2AdapterKaryawanLamaSDM;
     private AdapterUnitBisnis2 f2AdapterUnitBisnis;
     private AdapterUnitBisnis2Lama f2AdapterUnitBisnisLama;
-    RadioGroup f2VerifSyaratGroup;
-    RadioButton f2OptionYa, f2OptionTidak;
 
     //Form 5 6
     LinearLayout f4UnitBisnisDisableMode, f3JabatanBaruDetailDisableMode, f3JabatanLamaDetailDisableMode, f3KomponenGajiPart, f3NamaKaryawanDisableMode, f3TglDibutuhkanPart, f3TglPemenuhanPart, f3TglPengangkatanJabatanBaruPart, f3NamaKaryawanPart, f3UnitBisnisPart, f3DepartemenPart, f3BagianPart, f3JabatanPart, f3DepartemenLamaPart, f3BagianLamaPart, f3JabatanLamaPart, f3StartAttantionKaryawanBaruPart, f3NoDataKaryawanBaruPart, f3loadingDataKaryawanBaruPart;
@@ -300,9 +298,6 @@ public class FormSdmActivity extends AppCompatActivity {
         f2KomponenGajiDisableModeTV = findViewById(R.id.f2_komponen_gaji_disable_mode_tv);
         f2KomponenGajiDisableModeLamaTV = findViewById(R.id.f2_komponen_gaji_disable_mode_tv_lama);
         f2LabelPoint = findViewById(R.id.f2_label_point);
-        f2VerifSyaratGroup = findViewById(R.id.f2_option);
-        f2OptionYa = findViewById(R.id.f2_option_ya);
-        f2OptionTidak = findViewById(R.id.f2_option_tidak);
         f2DurasiKontrakPart = findViewById(R.id.f2_durasi_kontrak_part);
         f2StartDatePart = findViewById(R.id.f2_start_date_part);
         f2EndDatePart = findViewById(R.id.f2_end_date_part);
@@ -491,8 +486,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
-                f2PemenuhanSyarat = "";
-                f2VerifSyaratGroup.clearCheck();
+                f2LabelPoint.setVisibility(View.VISIBLE);
                 f2CatatanTV.setText("");
                 f2StartDatePilih.setText("");
                 f2EndDatePilih.setText("");
@@ -720,18 +714,6 @@ public class FormSdmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 f2UnitBisnisLamaWay();
-            }
-        });
-        f2VerifSyaratGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
-                if (f2OptionYa.isChecked()) {
-                    f2PemenuhanSyarat = "1";
-                } else if (f2OptionTidak.isChecked()) {
-                    f2PemenuhanSyarat = "2";
-                }
             }
         });
         f2StartDatePart.setOnClickListener(new View.OnClickListener() {
@@ -1293,7 +1275,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
                 if (f4OptionYa.isChecked()) {
                     f4Persetujuan = "1";
-                } else if (f2OptionTidak.isChecked()) {
+                } else if (f4OptionTidak.isChecked()) {
                     f4Persetujuan = "2";
                 }
             }
@@ -1381,7 +1363,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 }
                 else if(kodeKeterangan.equals("2")||kodeKeterangan.equals("3")||kodeKeterangan.equals("4")){ //Form 2 3 4
                     if(kodeKeterangan.equals("3")){
-                        if (f2NikBaru.equals("") || f2IdUnitBisnis.equals("") || f2KomponenGajiDisableModeTV.getText().toString().equals("") || f2NikLama.equals("") || f2IdUnitBisnisLama.equals("") || f2KomponenGajiDisableModeLamaTV.getText().toString().equals("") || f2VerifSyaratGroup.equals("") || f2DateChoiceMulai.equals("") || f2DateChoiceAkhir.equals("")) {
+                        if (f2NikBaru.equals("") || f2IdUnitBisnis.equals("") || f2KomponenGajiDisableModeTV.getText().toString().equals("") || f2NikLama.equals("") || f2IdUnitBisnisLama.equals("") || f2KomponenGajiDisableModeLamaTV.getText().toString().equals("") || f2DateChoiceMulai.equals("") || f2DateChoiceAkhir.equals("")) {
                             new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Pastikan kolom nama, unit bisnis, komponen gaji, pemenuhan syarat, durasi kontrak terisi!")
@@ -1456,7 +1438,7 @@ public class FormSdmActivity extends AppCompatActivity {
                                     .show();
                         }
                     } else {
-                        if (f2NikBaru.equals("") || f2IdUnitBisnis.equals("") || f2KomponenGajiDisableModeTV.getText().toString().equals("") || f2NikLama.equals("") || f2IdUnitBisnisLama.equals("") || f2KomponenGajiDisableModeLamaTV.getText().toString().equals("") || f2VerifSyaratGroup.equals("")) {
+                        if (f2NikBaru.equals("") || f2IdUnitBisnis.equals("") || f2KomponenGajiDisableModeTV.getText().toString().equals("") || f2NikLama.equals("") || f2IdUnitBisnisLama.equals("") || f2KomponenGajiDisableModeLamaTV.getText().toString().equals("")) {
                             new KAlertDialog(FormSdmActivity.this, KAlertDialog.ERROR_TYPE)
                                     .setTitleText("Perhatian")
                                     .setContentText("Pastikan kolom nama, unit bisnis, komponen gaji dan pemenuhan syarat terisi!")
@@ -1925,8 +1907,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
-                f2PemenuhanSyarat = "";
-                f2VerifSyaratGroup.clearCheck();
+                f2LabelPoint.setVisibility(View.VISIBLE);
                 f2CatatanTV.setText("");
                 f2StartDatePilih.setText("");
                 f2EndDatePilih.setText("");
@@ -2172,8 +2153,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f2LabelPoint.setText("Pengangkatan");
-                f2PemenuhanSyarat = "";
-                f2VerifSyaratGroup.clearCheck();
+                f2LabelPoint.setVisibility(View.GONE);
                 f2CatatanTV.setText("");
                 f2StartDatePilih.setText("");
                 f2EndDatePilih.setText("");
@@ -2403,8 +2383,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f2LabelPoint.setText("Penugasan Kembali");
-                f2PemenuhanSyarat = "";
-                f2VerifSyaratGroup.clearCheck();
+                f2LabelPoint.setVisibility(View.VISIBLE);
                 f2CatatanTV.setText("");
                 f2StartDatePilih.setText("");
                 f2EndDatePilih.setText("");
@@ -2634,8 +2613,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f2LabelPoint.setText("Pensiun/PHK");
-                f2PemenuhanSyarat = "";
-                f2VerifSyaratGroup.clearCheck();
+                f2LabelPoint.setVisibility(View.GONE);
                 f2CatatanTV.setText("");
                 f2StartDatePilih.setText("");
                 f2EndDatePilih.setText("");
@@ -2865,8 +2843,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 f2UnitBisnisDisableModeLamaTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
                 f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
-                f2PemenuhanSyarat = "";
-                f2VerifSyaratGroup.clearCheck();
+                f2LabelPoint.setVisibility(View.VISIBLE);
                 f2CatatanTV.setText("");
                 f2StartDatePilih.setText("");
                 f2EndDatePilih.setText("");
@@ -3017,471 +2994,469 @@ public class FormSdmActivity extends AppCompatActivity {
             }
         });
 
-        ket6BTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                markKet1.setVisibility(View.GONE);
-                markKet2.setVisibility(View.GONE);
-                markKet3.setVisibility(View.GONE);
-                markKet4.setVisibility(View.GONE);
-                markKet5.setVisibility(View.GONE);
-                markKet6.setVisibility(View.VISIBLE);
-                markKet7.setVisibility(View.GONE);
-                ket1BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-                ket2BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-                ket3BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-                ket4BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-                ket5BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-                ket6BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option_choice));
-                ket7BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-                kodeKeterangan = "6";
-                keteranganTV.setText("Penyesuaian Gaji");
-
-                warningNoForm.setVisibility(View.GONE);
-                loadingFormPart.setVisibility(View.VISIBLE);
-                attantionNoForm.setVisibility(View.GONE);
-                submitBTN.setVisibility(View.GONE);
-                f1Part.setVisibility(View.GONE);
-                f2Part.setVisibility(View.GONE);
-                f3Part.setVisibility(View.GONE);
-                f4Part.setVisibility(View.GONE);
-
-                //Form 1
-                f1UnitBisnisTV.setText("");
-                f1IdUnitBisnis = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-                f1DepartemenTV.setText("");
-                f1IdDepartemen = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
-                f1BagianTV.setText("");
-                f1IdBagian = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
-                f1JabatanTV.setText("");
-                f1IdJabatan = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI, "");
-                f1KomponenGajiPilihTV.setText("");
-                f1DeskripsiJabatanTV.setText("");
-                f1SyaratTV.setText("");
-                f1TglDibutuhkan = "";
-                f1TglDibutuhkanTV.setText("");
-                f1TglPemenuhan = "";
-                f1TglPemenuhanTV.setText("");
-                f1CatatanTV.setText("");
-
-                //Form 2 3 4
-                f2NamaKaryawanTV.setText("");
-                f2NamaKaryawanDisableModeTV.setText("");
-                f2NikBaru = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
-                f2DepartemenBaru = "";
-                f2DepartemenTV.setText("");
-                f2BagianBaru = "";
-                f2BagianTV.setText("");
-                f2JabatanBaru = "";
-                f2JabatanTV.setText("");
-                f2KomponenGajiTV.setText("");
-                f2KomponenGajiDisableModeTV.setText("");
-                f2UnitBisnisTV.setText("");
-                f2IdUnitBisnis = "";
-                f2UnitBisnisDisableModeTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-                f2NamaKaryawanLamaTV.setText("");
-                f2NikLama = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
-                f2DepartemenLama = "";
-                f2DepartemenLamaTV.setText("");
-                f2BagianLama = "";
-                f2BagianLamaTV.setText("");
-                f2JabatanLama = "";
-                f2JabatanLamaTV.setText("");
-                f2KomponenGajiLamaTV.setText("");
-                f2KomponenGajiDisableModeLamaTV.setText("");
-                f2UnitBisnisLamaTV.setText("");
-                f2IdUnitBisnisLama = "";
-                f2UnitBisnisDisableModeLamaTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
-                f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
-                f2PemenuhanSyarat = "";
-                f2VerifSyaratGroup.clearCheck();
-                f2CatatanTV.setText("");
-                f2StartDatePilih.setText("");
-                f2EndDatePilih.setText("");
-                f2DateChoiceMulai = "";
-                f2DateChoiceAkhir = "";
-
-                //Form 5 6
-                f3NamaKaryawanTV.setText("");
-                f2NamaKaryawanDisableModeTV.setText("");
-                f3NikBaru = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
-                f3DepartemenBaru = "";
-                f3DepartemenTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
-                f3BagianBaru = "";
-                f3BagianTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
-                f3JabatanBaru = "";
-                f3JabatanTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
-                f3KomponenGajiTV.setText("");
-                f3UnitBisnisTV.setText("");
-                f3IdUnitBisnis = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-                f3NamaKaryawanLamaTV.setText("");
-                f3NikLama = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
-                f3DepartemenLama = "";
-                f3DepartemenLamaTV.setText("");
-                f3DepartemenDisableModeLamaTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
-                f3BagianLama = "";
-                f3BagianLamaTV.setText("");
-                f3BagianDisableModeLamaTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
-                f3JabatanLama = "";
-                f3JabatanLamaTV.setText("");
-                f3JabatanDisableModeLamaTV.setText("");
-                f3JabatanLamaDetailDisableModeTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
-                f3KomponenGajiLamaTV.setText("");
-                f3KomponenGajiDisableModeLamaTV.setText("");
-                f3UnitBisnisLamaTV.setText("");
-                f3IdUnitBisnisLama = "";
-                f3UnitBisnisDisableModeLamaTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
-                f3JabatanLamaDetail = "";
-                f3JabatanLamaDetailTV.setText("");
-                f3JabatanLamaDetailDisableModeTV.setText("");
-                f3JabatanBaruDetailDisableModeTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
-                f3TglPengangkatanJabatanLama = "";
-                f3TglPengangkatanJabatanLamaTV.setText("");
-                f3JabatanBaruDetail = "";
-                f3JabatanBaruDetailTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_BARU_DETAIL, "");
-                f3TglPengangkatanJabatanBaru = "";
-                f3TglPengangkatanJabatanBaruTV.setText("");
-                f3AlasanPengangkatanTV.setText("");
-                f3TglDibutuhkan = "";
-                f3TglDibutuhkanTV.setText("");
-                f3TglPemenuhan = "";
-                f3TglPemenuhanTV.setText("");
-                f3CatatanTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
-                f3KomponenGajiPilihTV.setText("");
-                f3LabelPoint.setText("Untuk Penyesuaian Gaji");
-
-                //Form 7
-                f4NamaKaryawanTV.setText("");
-                f4NikBaru = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
-                f4DepartemenBaru = "";
-                f4DepartemenTV.setText("");
-                f4BagianBaru = "";
-                f4BagianTV.setText("");
-                f4JabatanBaru = "";
-                f4JabatanTV.setText("");
-                f4KomponenGajiTV.setText("");
-                f4UnitBisnisTV.setText("");
-                f4IdUnitBisnis = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-                f4NamaKaryawanLamaTV.setText("");
-                f4NikLama = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
-                f4DepartemenLama = "";
-                f4DepartemenLamaTV.setText("");
-                f4BagianLama = "";
-                f4BagianLamaTV.setText("");
-                f4JabatanLama = "";
-                f4JabatanLamaTV.setText("");
-                f4KomponenGajiLamaTV.setText("");
-                f4UnitBisnisLamaTV.setText("");
-                f4IdUnitBisnisLama = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
-                f4LainlainTV.setText("");
-                f4Persetujuan = "";
-                f4VerifPersetujuanGroup.clearCheck();
-                f4CatatanTV.setText("");
-                f4UnitBisnisDisableModeLamaTV.setText("");
-                f4KomponenGajiDisableModeLamaTV.setText("");
-                f4UnitBisnisDisableModeTV.setText("");
-                f4KomponenGajiDisableModeTV.setText("");
-
-                f3UnitBisnisLamaPart.setVisibility(View.GONE);
-                f3UnitBisnisDisableModeLama.setVisibility(View.VISIBLE);
-                f3DepartemenLamaPart.setVisibility(View.GONE);
-                f3DepartemenDisableModeLama.setVisibility(View.VISIBLE);
-                f3BagianLamaPart.setVisibility(View.GONE);
-                f3BagianDisableModeLama.setVisibility(View.VISIBLE);
-                f3JabatanLamaPart.setVisibility(View.GONE);
-                f3JabatanDisableModeLama.setVisibility(View.VISIBLE);
-                f3KomponenGajiLamaTV.setVisibility(View.GONE);
-                f3KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
-                f3NamaKaryawanPart.setVisibility(View.GONE);
-                f3NamaKaryawanDisableMode.setVisibility(View.VISIBLE);
-                f3KomponenGajiTV.setVisibility(View.GONE);
-                f3KomponenGajiPart.setVisibility(View.VISIBLE);
-                f3JabatanLamaDetailPart.setVisibility(View.GONE);
-                f3JabatanLamaDetailDisableMode.setVisibility(View.VISIBLE);
-                f3JabatanBaruDetailPart.setVisibility(View.GONE);
-                f3JabatanBaruDetailDisableMode.setVisibility(View.VISIBLE);
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
-
-                        loadingFormPart.setVisibility(View.VISIBLE);
-                        attantionNoForm.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                warningNoForm.setVisibility(View.GONE);
-
-                                loadingFormPart.setVisibility(View.GONE);
-                                attantionNoForm.setVisibility(View.GONE);
-
-                                submitBTN.setVisibility(View.VISIBLE);
-                                f1Part.setVisibility(View.GONE);
-                                f2Part.setVisibility(View.GONE);
-                                f3Part.setVisibility(View.VISIBLE);
-                                f4Part.setVisibility(View.GONE);
-                            }
-                        }, 1500);
-                    }
-                }, 300);
-            }
-        });
-
-        ket7BTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                markKet1.setVisibility(View.GONE);
-                markKet2.setVisibility(View.GONE);
-                markKet3.setVisibility(View.GONE);
-                markKet4.setVisibility(View.GONE);
-                markKet5.setVisibility(View.GONE);
-                markKet6.setVisibility(View.GONE);
-                markKet7.setVisibility(View.VISIBLE);
-                ket1BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-                ket2BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-                ket3BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-                ket4BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-                ket5BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-                ket6BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
-                ket7BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option_choice));
-                kodeKeterangan = "7";
-                keteranganTV.setText("Lain-lain");
-
-                warningNoForm.setVisibility(View.GONE);
-                loadingFormPart.setVisibility(View.VISIBLE);
-                attantionNoForm.setVisibility(View.GONE);
-                submitBTN.setVisibility(View.GONE);
-                f1Part.setVisibility(View.GONE);
-                f2Part.setVisibility(View.GONE);
-                f3Part.setVisibility(View.GONE);
-                f4Part.setVisibility(View.GONE);
-
-                //Form 1
-                f1UnitBisnisTV.setText("");
-                f1IdUnitBisnis = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-                f1DepartemenTV.setText("");
-                f1IdDepartemen = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
-                f1BagianTV.setText("");
-                f1IdBagian = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
-                f1JabatanTV.setText("");
-                f1IdJabatan = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI, "");
-                f1KomponenGajiPilihTV.setText("");
-                f1DeskripsiJabatanTV.setText("");
-                f1SyaratTV.setText("");
-                f1TglDibutuhkan = "";
-                f1TglDibutuhkanTV.setText("");
-                f1TglPemenuhan = "";
-                f1TglPemenuhanTV.setText("");
-                f1CatatanTV.setText("");
-
-                //Form 2 3 4
-                f2NamaKaryawanTV.setText("");
-                f2NamaKaryawanDisableModeTV.setText("");
-                f2NikBaru = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
-                f2DepartemenBaru = "";
-                f2DepartemenTV.setText("");
-                f2BagianBaru = "";
-                f2BagianTV.setText("");
-                f2JabatanBaru = "";
-                f2JabatanTV.setText("");
-                f2KomponenGajiTV.setText("");
-                f2KomponenGajiDisableModeTV.setText("");
-                f2UnitBisnisTV.setText("");
-                f2IdUnitBisnis = "";
-                f2UnitBisnisDisableModeTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-                f2NamaKaryawanLamaTV.setText("");
-                f2NikLama = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
-                f2DepartemenLama = "";
-                f2DepartemenLamaTV.setText("");
-                f2BagianLama = "";
-                f2BagianLamaTV.setText("");
-                f2JabatanLama = "";
-                f2JabatanLamaTV.setText("");
-                f2KomponenGajiLamaTV.setText("");
-                f2KomponenGajiDisableModeLamaTV.setText("");
-                f2UnitBisnisLamaTV.setText("");
-                f2IdUnitBisnisLama = "";
-                f2UnitBisnisDisableModeLamaTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
-                f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
-                f2PemenuhanSyarat = "";
-                f2VerifSyaratGroup.clearCheck();
-                f2CatatanTV.setText("");
-                f2StartDatePilih.setText("");
-                f2EndDatePilih.setText("");
-                f2DateChoiceMulai = "";
-                f2DateChoiceAkhir = "";
-
-                //Form 5 6
-                f3NamaKaryawanTV.setText("");
-                f2NamaKaryawanDisableModeTV.setText("");
-                f3NikBaru = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
-                f3DepartemenBaru = "";
-                f3DepartemenTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
-                f3BagianBaru = "";
-                f3BagianTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
-                f3JabatanBaru = "";
-                f3JabatanTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
-                f3KomponenGajiTV.setText("");
-                f3UnitBisnisTV.setText("");
-                f3IdUnitBisnis = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-                f3NamaKaryawanLamaTV.setText("");
-                f3NikLama = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
-                f3DepartemenLama = "";
-                f3DepartemenLamaTV.setText("");
-                f3DepartemenDisableModeLamaTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
-                f3BagianLama = "";
-                f3BagianLamaTV.setText("");
-                f3BagianDisableModeLamaTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
-                f3JabatanLama = "";
-                f3JabatanLamaTV.setText("");
-                f3JabatanDisableModeLamaTV.setText("");
-                f3JabatanLamaDetailDisableModeTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
-                f3KomponenGajiLamaTV.setText("");
-                f3KomponenGajiDisableModeLamaTV.setText("");
-                f3UnitBisnisLamaTV.setText("");
-                f3IdUnitBisnisLama = "";
-                f3UnitBisnisDisableModeLamaTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
-                f3JabatanLamaDetail = "";
-                f3JabatanLamaDetailTV.setText("");
-                f3JabatanLamaDetailDisableModeTV.setText("");
-                f3JabatanBaruDetailDisableModeTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
-                f3TglPengangkatanJabatanLama = "";
-                f3TglPengangkatanJabatanLamaTV.setText("");
-                f3JabatanBaruDetail = "";
-                f3JabatanBaruDetailTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_BARU_DETAIL, "");
-                f3TglPengangkatanJabatanBaru = "";
-                f3TglPengangkatanJabatanBaruTV.setText("");
-                f3AlasanPengangkatanTV.setText("");
-                f3TglDibutuhkan = "";
-                f3TglDibutuhkanTV.setText("");
-                f3TglPemenuhan = "";
-                f3TglPemenuhanTV.setText("");
-                f3CatatanTV.setText("");
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
-                f3KomponenGajiPilihTV.setText("");
-                f3LabelPoint.setText("Untuk Promosi/Mutasi/Penyesuaian Gaji");
-
-                //Form 7
-                f4NamaKaryawanTV.setText("");
-                f4NikBaru = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
-                f4DepartemenBaru = "";
-                f4DepartemenTV.setText("");
-                f4BagianBaru = "";
-                f4BagianTV.setText("");
-                f4JabatanBaru = "";
-                f4JabatanTV.setText("");
-                f4KomponenGajiTV.setText("");
-                f4UnitBisnisTV.setText("");
-                f4IdUnitBisnis = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
-                f4NamaKaryawanLamaTV.setText("");
-                f4NikLama = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
-                f4DepartemenLama = "";
-                f4DepartemenLamaTV.setText("");
-                f4BagianLama = "";
-                f4BagianLamaTV.setText("");
-                f4JabatanLama = "";
-                f4JabatanLamaTV.setText("");
-                f4KomponenGajiLamaTV.setText("");
-                f4UnitBisnisLamaTV.setText("");
-                f4IdUnitBisnisLama = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
-                f4LainlainTV.setText("");
-                f4Persetujuan = "";
-                f4VerifPersetujuanGroup.clearCheck();
-                f4CatatanTV.setText("");
-                f4UnitBisnisDisableModeLamaTV.setText("");
-                f4KomponenGajiDisableModeLamaTV.setText("");
-                f4UnitBisnisDisableModeTV.setText("");
-                f4KomponenGajiDisableModeTV.setText("");
-
-                f4UnitBisnisLamaPart.setVisibility(View.GONE);
-                f4UnitBisnisDisableModeLama.setVisibility(View.VISIBLE);
-                f4KomponenGajiLamaTV.setVisibility(View.GONE);
-                f4KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
-                f4UnitBisnisPart.setVisibility(View.GONE);
-                f4UnitBisnisDisableMode.setVisibility(View.VISIBLE);
-                f4KomponenGajiTV.setVisibility(View.GONE);
-                f4KomponenGajiDisableMode.setVisibility(View.VISIBLE);
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
-
-                        loadingFormPart.setVisibility(View.VISIBLE);
-                        attantionNoForm.setVisibility(View.GONE);
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                warningNoForm.setVisibility(View.GONE);
-
-                                loadingFormPart.setVisibility(View.GONE);
-                                attantionNoForm.setVisibility(View.GONE);
-
-                                submitBTN.setVisibility(View.VISIBLE);
-                                f1Part.setVisibility(View.GONE);
-                                f2Part.setVisibility(View.GONE);
-                                f3Part.setVisibility(View.GONE);
-                                f4Part.setVisibility(View.VISIBLE);
-                            }
-                        }, 1500);
-                    }
-                }, 300);
-            }
-        });
+        //ket6BTN.setOnClickListener(new View.OnClickListener() {
+        //    @SuppressLint("SetTextI18n")
+        //    @Override
+        //    public void onClick(View v) {
+        //        markKet1.setVisibility(View.GONE);
+        //        markKet2.setVisibility(View.GONE);
+        //        markKet3.setVisibility(View.GONE);
+        //        markKet4.setVisibility(View.GONE);
+        //        markKet5.setVisibility(View.GONE);
+        //        markKet6.setVisibility(View.VISIBLE);
+        //        markKet7.setVisibility(View.GONE);
+        //        ket1BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
+        //        ket2BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
+        //        ket3BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
+        //        ket4BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
+        //        ket5BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
+        //        ket6BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option_choice));
+        //        ket7BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
+        //        kodeKeterangan = "6";
+        //        keteranganTV.setText("Penyesuaian Gaji");
+        //
+        //        warningNoForm.setVisibility(View.GONE);
+        //        loadingFormPart.setVisibility(View.VISIBLE);
+        //        attantionNoForm.setVisibility(View.GONE);
+        //        submitBTN.setVisibility(View.GONE);
+        //        f1Part.setVisibility(View.GONE);
+        //        f2Part.setVisibility(View.GONE);
+        //        f3Part.setVisibility(View.GONE);
+        //        f4Part.setVisibility(View.GONE);
+        //
+        //        //Form 1
+        //        f1UnitBisnisTV.setText("");
+        //        f1IdUnitBisnis = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+        //        f1DepartemenTV.setText("");
+        //        f1IdDepartemen = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
+        //        f1BagianTV.setText("");
+        //        f1IdBagian = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
+        //        f1JabatanTV.setText("");
+        //        f1IdJabatan = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI, "");
+        //        f1KomponenGajiPilihTV.setText("");
+        //        f1DeskripsiJabatanTV.setText("");
+        //        f1SyaratTV.setText("");
+        //        f1TglDibutuhkan = "";
+        //        f1TglDibutuhkanTV.setText("");
+        //        f1TglPemenuhan = "";
+        //        f1TglPemenuhanTV.setText("");
+        //        f1CatatanTV.setText("");
+        //
+        //        //Form 2 3 4
+        //        f2NamaKaryawanTV.setText("");
+        //        f2NamaKaryawanDisableModeTV.setText("");
+        //        f2NikBaru = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+        //        f2DepartemenBaru = "";
+        //        f2DepartemenTV.setText("");
+        //        f2BagianBaru = "";
+        //        f2BagianTV.setText("");
+        //        f2JabatanBaru = "";
+        //        f2JabatanTV.setText("");
+        //        f2KomponenGajiTV.setText("");
+        //        f2KomponenGajiDisableModeTV.setText("");
+        //        f2UnitBisnisTV.setText("");
+        //        f2IdUnitBisnis = "";
+        //        f2UnitBisnisDisableModeTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+        //        f2NamaKaryawanLamaTV.setText("");
+        //        f2NikLama = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+        //        f2DepartemenLama = "";
+        //        f2DepartemenLamaTV.setText("");
+        //        f2BagianLama = "";
+        //        f2BagianLamaTV.setText("");
+        //        f2JabatanLama = "";
+        //        f2JabatanLamaTV.setText("");
+        //        f2KomponenGajiLamaTV.setText("");
+        //        f2KomponenGajiDisableModeLamaTV.setText("");
+        //        f2UnitBisnisLamaTV.setText("");
+        //        f2IdUnitBisnisLama = "";
+        //        f2UnitBisnisDisableModeLamaTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+        //        f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
+        //        f2LabelPoint.setVisibility(View.VISIBLE);
+        //        f2CatatanTV.setText("");
+        //        f2StartDatePilih.setText("");
+        //        f2EndDatePilih.setText("");
+        //        f2DateChoiceMulai = "";
+        //        f2DateChoiceAkhir = "";
+        //
+        //        //Form 5 6
+        //        f3NamaKaryawanTV.setText("");
+        //        f2NamaKaryawanDisableModeTV.setText("");
+        //        f3NikBaru = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+        //        f3DepartemenBaru = "";
+        //        f3DepartemenTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
+        //        f3BagianBaru = "";
+        //        f3BagianTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
+        //        f3JabatanBaru = "";
+        //        f3JabatanTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
+        //        f3KomponenGajiTV.setText("");
+        //        f3UnitBisnisTV.setText("");
+        //        f3IdUnitBisnis = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+        //        f3NamaKaryawanLamaTV.setText("");
+        //        f3NikLama = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+        //        f3DepartemenLama = "";
+        //        f3DepartemenLamaTV.setText("");
+        //        f3DepartemenDisableModeLamaTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
+        //        f3BagianLama = "";
+        //        f3BagianLamaTV.setText("");
+        //        f3BagianDisableModeLamaTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
+        //        f3JabatanLama = "";
+        //        f3JabatanLamaTV.setText("");
+        //        f3JabatanDisableModeLamaTV.setText("");
+        //        f3JabatanLamaDetailDisableModeTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
+        //        f3KomponenGajiLamaTV.setText("");
+        //        f3KomponenGajiDisableModeLamaTV.setText("");
+        //        f3UnitBisnisLamaTV.setText("");
+        //        f3IdUnitBisnisLama = "";
+        //        f3UnitBisnisDisableModeLamaTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+        //        f3JabatanLamaDetail = "";
+        //        f3JabatanLamaDetailTV.setText("");
+        //        f3JabatanLamaDetailDisableModeTV.setText("");
+        //        f3JabatanBaruDetailDisableModeTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
+        //        f3TglPengangkatanJabatanLama = "";
+        //        f3TglPengangkatanJabatanLamaTV.setText("");
+        //        f3JabatanBaruDetail = "";
+        //        f3JabatanBaruDetailTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_BARU_DETAIL, "");
+        //        f3TglPengangkatanJabatanBaru = "";
+        //        f3TglPengangkatanJabatanBaruTV.setText("");
+        //        f3AlasanPengangkatanTV.setText("");
+        //        f3TglDibutuhkan = "";
+        //        f3TglDibutuhkanTV.setText("");
+        //        f3TglPemenuhan = "";
+        //        f3TglPemenuhanTV.setText("");
+        //        f3CatatanTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
+        //        f3KomponenGajiPilihTV.setText("");
+        //        f3LabelPoint.setText("Untuk Penyesuaian Gaji");
+        //
+        //        //Form 7
+        //        f4NamaKaryawanTV.setText("");
+        //        f4NikBaru = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+        //        f4DepartemenBaru = "";
+        //        f4DepartemenTV.setText("");
+        //        f4BagianBaru = "";
+        //        f4BagianTV.setText("");
+        //        f4JabatanBaru = "";
+        //        f4JabatanTV.setText("");
+        //        f4KomponenGajiTV.setText("");
+        //        f4UnitBisnisTV.setText("");
+        //        f4IdUnitBisnis = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+        //        f4NamaKaryawanLamaTV.setText("");
+        //        f4NikLama = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+        //        f4DepartemenLama = "";
+        //        f4DepartemenLamaTV.setText("");
+        //        f4BagianLama = "";
+        //        f4BagianLamaTV.setText("");
+        //        f4JabatanLama = "";
+        //        f4JabatanLamaTV.setText("");
+        //        f4KomponenGajiLamaTV.setText("");
+        //        f4UnitBisnisLamaTV.setText("");
+        //        f4IdUnitBisnisLama = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+        //        f4LainlainTV.setText("");
+        //        f4Persetujuan = "";
+        //        f4VerifPersetujuanGroup.clearCheck();
+        //        f4CatatanTV.setText("");
+        //        f4UnitBisnisDisableModeLamaTV.setText("");
+        //        f4KomponenGajiDisableModeLamaTV.setText("");
+        //        f4UnitBisnisDisableModeTV.setText("");
+        //        f4KomponenGajiDisableModeTV.setText("");
+        //
+        //        f3UnitBisnisLamaPart.setVisibility(View.GONE);
+        //        f3UnitBisnisDisableModeLama.setVisibility(View.VISIBLE);
+        //        f3DepartemenLamaPart.setVisibility(View.GONE);
+        //        f3DepartemenDisableModeLama.setVisibility(View.VISIBLE);
+        //        f3BagianLamaPart.setVisibility(View.GONE);
+        //        f3BagianDisableModeLama.setVisibility(View.VISIBLE);
+        //        f3JabatanLamaPart.setVisibility(View.GONE);
+        //        f3JabatanDisableModeLama.setVisibility(View.VISIBLE);
+        //        f3KomponenGajiLamaTV.setVisibility(View.GONE);
+        //        f3KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
+        //        f3NamaKaryawanPart.setVisibility(View.GONE);
+        //        f3NamaKaryawanDisableMode.setVisibility(View.VISIBLE);
+        //        f3KomponenGajiTV.setVisibility(View.GONE);
+        //        f3KomponenGajiPart.setVisibility(View.VISIBLE);
+        //        f3JabatanLamaDetailPart.setVisibility(View.GONE);
+        //        f3JabatanLamaDetailDisableMode.setVisibility(View.VISIBLE);
+        //        f3JabatanBaruDetailPart.setVisibility(View.GONE);
+        //        f3JabatanBaruDetailDisableMode.setVisibility(View.VISIBLE);
+        //
+        //        new Handler().postDelayed(new Runnable() {
+        //            @Override
+        //            public void run() {
+        //                bottomSheet.dismissSheet();
+        //
+        //                loadingFormPart.setVisibility(View.VISIBLE);
+        //                attantionNoForm.setVisibility(View.GONE);
+        //                new Handler().postDelayed(new Runnable() {
+        //                    @Override
+        //                    public void run() {
+        //                        warningNoForm.setVisibility(View.GONE);
+        //
+        //                        loadingFormPart.setVisibility(View.GONE);
+        //                        attantionNoForm.setVisibility(View.GONE);
+        //
+        //                        submitBTN.setVisibility(View.VISIBLE);
+        //                        f1Part.setVisibility(View.GONE);
+        //                        f2Part.setVisibility(View.GONE);
+        //                        f3Part.setVisibility(View.VISIBLE);
+        //                        f4Part.setVisibility(View.GONE);
+        //                    }
+        //                }, 1500);
+        //            }
+        //        }, 300);
+        //    }
+        //});
+        //
+        //ket7BTN.setOnClickListener(new View.OnClickListener() {
+        //    @SuppressLint("SetTextI18n")
+        //    @Override
+        //    public void onClick(View v) {
+        //        markKet1.setVisibility(View.GONE);
+        //        markKet2.setVisibility(View.GONE);
+        //        markKet3.setVisibility(View.GONE);
+        //        markKet4.setVisibility(View.GONE);
+        //        markKet5.setVisibility(View.GONE);
+        //        markKet6.setVisibility(View.GONE);
+        //        markKet7.setVisibility(View.VISIBLE);
+        //        ket1BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
+        //        ket2BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
+        //        ket3BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
+        //        ket4BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
+        //        ket5BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
+        //        ket6BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option));
+        //        ket7BTN.setBackground(ContextCompat.getDrawable(FormSdmActivity.this, R.drawable.shape_option_choice));
+        //        kodeKeterangan = "7";
+        //        keteranganTV.setText("Lain-lain");
+        //
+        //        warningNoForm.setVisibility(View.GONE);
+        //        loadingFormPart.setVisibility(View.VISIBLE);
+        //        attantionNoForm.setVisibility(View.GONE);
+        //        submitBTN.setVisibility(View.GONE);
+        //        f1Part.setVisibility(View.GONE);
+        //        f2Part.setVisibility(View.GONE);
+        //        f3Part.setVisibility(View.GONE);
+        //        f4Part.setVisibility(View.GONE);
+        //
+        //        //Form 1
+        //        f1UnitBisnisTV.setText("");
+        //        f1IdUnitBisnis = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+        //        f1DepartemenTV.setText("");
+        //        f1IdDepartemen = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
+        //        f1BagianTV.setText("");
+        //        f1IdBagian = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
+        //        f1JabatanTV.setText("");
+        //        f1IdJabatan = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI, "");
+        //        f1KomponenGajiPilihTV.setText("");
+        //        f1DeskripsiJabatanTV.setText("");
+        //        f1SyaratTV.setText("");
+        //        f1TglDibutuhkan = "";
+        //        f1TglDibutuhkanTV.setText("");
+        //        f1TglPemenuhan = "";
+        //        f1TglPemenuhanTV.setText("");
+        //        f1CatatanTV.setText("");
+        //
+        //        //Form 2 3 4
+        //        f2NamaKaryawanTV.setText("");
+        //        f2NamaKaryawanDisableModeTV.setText("");
+        //        f2NikBaru = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+        //        f2DepartemenBaru = "";
+        //        f2DepartemenTV.setText("");
+        //        f2BagianBaru = "";
+        //        f2BagianTV.setText("");
+        //        f2JabatanBaru = "";
+        //        f2JabatanTV.setText("");
+        //        f2KomponenGajiTV.setText("");
+        //        f2KomponenGajiDisableModeTV.setText("");
+        //        f2UnitBisnisTV.setText("");
+        //        f2IdUnitBisnis = "";
+        //        f2UnitBisnisDisableModeTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+        //        f2NamaKaryawanLamaTV.setText("");
+        //        f2NikLama = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+        //        f2DepartemenLama = "";
+        //        f2DepartemenLamaTV.setText("");
+        //        f2BagianLama = "";
+        //        f2BagianLamaTV.setText("");
+        //        f2JabatanLama = "";
+        //        f2JabatanLamaTV.setText("");
+        //        f2KomponenGajiLamaTV.setText("");
+        //        f2KomponenGajiDisableModeLamaTV.setText("");
+        //        f2UnitBisnisLamaTV.setText("");
+        //        f2IdUnitBisnisLama = "";
+        //        f2UnitBisnisDisableModeLamaTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+        //        f2LabelPoint.setText("Pengunduran Diri, Penugasan Kembali, Pensiun, PHK");
+        //        f2LabelPoint.setVisibility(View.VISIBLE);
+        //        f2CatatanTV.setText("");
+        //        f2StartDatePilih.setText("");
+        //        f2EndDatePilih.setText("");
+        //        f2DateChoiceMulai = "";
+        //        f2DateChoiceAkhir = "";
+        //
+        //        //Form 5 6
+        //        f3NamaKaryawanTV.setText("");
+        //        f2NamaKaryawanDisableModeTV.setText("");
+        //        f3NikBaru = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+        //        f3DepartemenBaru = "";
+        //        f3DepartemenTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN, "");
+        //        f3BagianBaru = "";
+        //        f3BagianTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN, "");
+        //        f3JabatanBaru = "";
+        //        f3JabatanTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN, "");
+        //        f3KomponenGajiTV.setText("");
+        //        f3UnitBisnisTV.setText("");
+        //        f3IdUnitBisnis = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+        //        f3NamaKaryawanLamaTV.setText("");
+        //        f3NikLama = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+        //        f3DepartemenLama = "";
+        //        f3DepartemenLamaTV.setText("");
+        //        f3DepartemenDisableModeLamaTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_DEPARTEMEN_LAMA, "");
+        //        f3BagianLama = "";
+        //        f3BagianLamaTV.setText("");
+        //        f3BagianDisableModeLamaTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BAGIAN_LAMA, "");
+        //        f3JabatanLama = "";
+        //        f3JabatanLamaTV.setText("");
+        //        f3JabatanDisableModeLamaTV.setText("");
+        //        f3JabatanLamaDetailDisableModeTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA, "");
+        //        f3KomponenGajiLamaTV.setText("");
+        //        f3KomponenGajiDisableModeLamaTV.setText("");
+        //        f3UnitBisnisLamaTV.setText("");
+        //        f3IdUnitBisnisLama = "";
+        //        f3UnitBisnisDisableModeLamaTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+        //        f3JabatanLamaDetail = "";
+        //        f3JabatanLamaDetailTV.setText("");
+        //        f3JabatanLamaDetailDisableModeTV.setText("");
+        //        f3JabatanBaruDetailDisableModeTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_LAMA_DETAIL, "");
+        //        f3TglPengangkatanJabatanLama = "";
+        //        f3TglPengangkatanJabatanLamaTV.setText("");
+        //        f3JabatanBaruDetail = "";
+        //        f3JabatanBaruDetailTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_JABATAN_BARU_DETAIL, "");
+        //        f3TglPengangkatanJabatanBaru = "";
+        //        f3TglPengangkatanJabatanBaruTV.setText("");
+        //        f3AlasanPengangkatanTV.setText("");
+        //        f3TglDibutuhkan = "";
+        //        f3TglDibutuhkanTV.setText("");
+        //        f3TglPemenuhan = "";
+        //        f3TglPemenuhanTV.setText("");
+        //        f3CatatanTV.setText("");
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KOMPONEN_GAJI_3, "");
+        //        f3KomponenGajiPilihTV.setText("");
+        //        f3LabelPoint.setText("Untuk Promosi/Mutasi/Penyesuaian Gaji");
+        //
+        //        //Form 7
+        //        f4NamaKaryawanTV.setText("");
+        //        f4NikBaru = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_BARU, "");
+        //        f4DepartemenBaru = "";
+        //        f4DepartemenTV.setText("");
+        //        f4BagianBaru = "";
+        //        f4BagianTV.setText("");
+        //        f4JabatanBaru = "";
+        //        f4JabatanTV.setText("");
+        //        f4KomponenGajiTV.setText("");
+        //        f4UnitBisnisTV.setText("");
+        //        f4IdUnitBisnis = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS, "");
+        //        f4NamaKaryawanLamaTV.setText("");
+        //        f4NikLama = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_SDM_LAMA, "");
+        //        f4DepartemenLama = "";
+        //        f4DepartemenLamaTV.setText("");
+        //        f4BagianLama = "";
+        //        f4BagianLamaTV.setText("");
+        //        f4JabatanLama = "";
+        //        f4JabatanLamaTV.setText("");
+        //        f4KomponenGajiLamaTV.setText("");
+        //        f4UnitBisnisLamaTV.setText("");
+        //        f4IdUnitBisnisLama = "";
+        //        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_UNIT_BISNIS_LAMA, "");
+        //        f4LainlainTV.setText("");
+        //        f4Persetujuan = "";
+        //        f4VerifPersetujuanGroup.clearCheck();
+        //        f4CatatanTV.setText("");
+        //        f4UnitBisnisDisableModeLamaTV.setText("");
+        //        f4KomponenGajiDisableModeLamaTV.setText("");
+        //        f4UnitBisnisDisableModeTV.setText("");
+        //        f4KomponenGajiDisableModeTV.setText("");
+        //
+        //        f4UnitBisnisLamaPart.setVisibility(View.GONE);
+        //        f4UnitBisnisDisableModeLama.setVisibility(View.VISIBLE);
+        //        f4KomponenGajiLamaTV.setVisibility(View.GONE);
+        //        f4KomponenGajiDisableModeLama.setVisibility(View.VISIBLE);
+        //        f4UnitBisnisPart.setVisibility(View.GONE);
+        //        f4UnitBisnisDisableMode.setVisibility(View.VISIBLE);
+        //        f4KomponenGajiTV.setVisibility(View.GONE);
+        //        f4KomponenGajiDisableMode.setVisibility(View.VISIBLE);
+        //
+        //        new Handler().postDelayed(new Runnable() {
+        //            @Override
+        //            public void run() {
+        //                bottomSheet.dismissSheet();
+        //
+        //                loadingFormPart.setVisibility(View.VISIBLE);
+        //                attantionNoForm.setVisibility(View.GONE);
+        //                new Handler().postDelayed(new Runnable() {
+        //                    @Override
+        //                    public void run() {
+        //                        warningNoForm.setVisibility(View.GONE);
+        //
+        //                        loadingFormPart.setVisibility(View.GONE);
+        //                        attantionNoForm.setVisibility(View.GONE);
+        //
+        //                        submitBTN.setVisibility(View.VISIBLE);
+        //                        f1Part.setVisibility(View.GONE);
+        //                        f2Part.setVisibility(View.GONE);
+        //                        f3Part.setVisibility(View.GONE);
+        //                        f4Part.setVisibility(View.VISIBLE);
+        //                    }
+        //                }, 1500);
+        //            }
+        //        }, 300);
+        //    }
+        //});
 
     }
 
@@ -9709,127 +9684,58 @@ public class FormSdmActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void countDuration(){
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            // Define two date strings
-            String startDateString = f2DateChoiceMulai;
-            String endDateString = f2DateChoiceAkhir;
+        String startDateString = f2DateChoiceMulai;
+        String endDateString = f2DateChoiceAkhir;
 
-            // Parse the date strings to Calendar objects
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-            try {
-                Date startDate = sdf.parse(startDateString);
-                Date endDate = sdf.parse(endDateString);
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = null;
+        Date date2 = null;
+        try {
+            date1 = format.parse(endDateString);
+            date2 = format.parse(startDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long waktu1 = date1.getTime();
+        long waktu2 = date2.getTime();
+        long selisih_waktu = waktu1 - waktu2;
 
-                Calendar startCalendar = Calendar.getInstance();
-                startCalendar.setTime(startDate);
+        long diffDays = (selisih_waktu / (24 * 60 * 60 * 1000)) + 1;
 
-                Calendar endCalendar = Calendar.getInstance();
-                endCalendar.setTime(endDate);
+        long years = (diffDays / 365);
+        long months = (diffDays - (years * 365)) / 30;
+        long days = (diffDays - ((years * 365) + (months * 30)));
 
-                // Calculate the duration between two dates
-                int years = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
-                int months = endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
-                int days = endCalendar.get(Calendar.DAY_OF_MONTH) - startCalendar.get(Calendar.DAY_OF_MONTH);
-
-                // Adjust for negative values
-                if (days < 0) {
-                    months--;
-                    days += startCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-                }
-                if (months < 0) {
-                    years--;
-                    months += 12;
-                }
-
-                // Print the resulting duration
-                if (years == 0){
-                    if(months == 0){
-                        if(days == 0){
-                            f2DurasiKontrak.setText("-");
-                        } else {
-                            f2DurasiKontrak.setText(days +" Hari");
-                        }
-                    } else {
-                        if(days == 0){
-                            f2DurasiKontrak.setText(months + " Bulan");
-                        } else {
-                            f2DurasiKontrak.setText(months + " Bulan " + days + " Hari");
-                        }
-                    }
+        // Print the resulting duration
+        if (years == 0){
+            if(months == 0){
+                if(days == 0){
+                    f2DurasiKontrak.setText("-");
                 } else {
-                    if(months == 0){
-                        if(days == 0){
-                            f2DurasiKontrak.setText(years + " Tahun");
-                        } else {
-                            f2DurasiKontrak.setText(years + " Tahun " + days + " Hari");
-                        }
-                    } else {
-                        if(days == 0){
-                            f2DurasiKontrak.setText(years + " Tahun " + months + " Bulan");
-                        } else {
-                            f2DurasiKontrak.setText(years + " Tahun " + months + " Bulan " + days + " Hari");
-                        }
-                    }
-                }
-
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        } else {
-            String startDateString = f2DateChoiceMulai;
-            String endDateString = f2DateChoiceAkhir;
-
-            @SuppressLint("SimpleDateFormat")
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date date1 = null;
-            Date date2 = null;
-            try {
-                date1 = format.parse(endDateString);
-                date2 = format.parse(startDateString);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            long waktu1 = date1.getTime();
-            long waktu2 = date2.getTime();
-            long selisih_waktu = waktu1 - waktu2;
-
-            long diffDays = selisih_waktu / (24 * 60 * 60 * 1000);
-
-            long years = (diffDays / 365);
-            long months = (diffDays - (years * 365)) / 30;
-            long days = (diffDays - ((years * 365) + (months * 30)));
-
-            // Print the resulting duration
-            if (years == 0){
-                if(months == 0){
-                    if(days == 0){
-                        f2DurasiKontrak.setText("-");
-                    } else {
-                        f2DurasiKontrak.setText(days +" Hari");
-                    }
-                } else {
-                    if(days == 0){
-                        f2DurasiKontrak.setText(months + " Bulan");
-                    } else {
-                        f2DurasiKontrak.setText(months + " Bulan " + days + " Hari");
-                    }
+                    f2DurasiKontrak.setText(days +" Hari");
                 }
             } else {
-                if(months == 0){
-                    if(days == 0){
-                        f2DurasiKontrak.setText(years + " Tahun");
-                    } else {
-                        f2DurasiKontrak.setText(years + " Tahun " + days + " Hari");
-                    }
+                if(days == 0){
+                    f2DurasiKontrak.setText(months + " Bulan");
                 } else {
-                    if(days == 0){
-                        f2DurasiKontrak.setText(years + " Tahun " + months + " Bulan");
-                    } else {
-                        f2DurasiKontrak.setText(years + " Tahun " + months + " Bulan " + days + " Hari");
-                    }
+                    f2DurasiKontrak.setText(months + " Bulan " + days + " Hari");
                 }
             }
-
+        } else {
+            if(months == 0){
+                if(days == 0){
+                    f2DurasiKontrak.setText(years + " Tahun");
+                } else {
+                    f2DurasiKontrak.setText(years + " Tahun " + days + " Hari");
+                }
+            } else {
+                if(days == 0){
+                    f2DurasiKontrak.setText(years + " Tahun " + months + " Bulan");
+                } else {
+                    f2DurasiKontrak.setText(years + " Tahun " + months + " Bulan " + days + " Hari");
+                }
+            }
         }
 
     }

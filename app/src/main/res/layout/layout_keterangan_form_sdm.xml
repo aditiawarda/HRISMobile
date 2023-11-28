@@ -30,7 +30,7 @@
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/roboto"
-            android:text="Pilih keterangan"
+            android:text="Pilih Keterangan"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16dp"
             android:textStyle="bold"
@@ -323,7 +323,7 @@
                         android:paddingTop="17dp"
                         android:paddingBottom="17dp"
                         android:text="Penyesuaian Gaji"
-                        android:textColor="#C16D02"
+                        android:textColor="#959595"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -373,7 +373,7 @@
                         android:paddingTop="17dp"
                         android:paddingBottom="17dp"
                         android:text="Lain-lain"
-                        android:textColor="#C16D02"
+                        android:textColor="#959595"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
