@@ -606,6 +606,8 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 } else if(status_approve_direktur.equals("2")){
                                                     accMark.setVisibility(View.GONE);
                                                     rejMark.setVisibility(View.VISIBLE);
+                                                } else {
+                                                    cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record);
                                                 }
                                             } else if(keterangan.equals("3")||keterangan.equals("4")){
                                                 if(status_approve_hrd.equals("1")){
