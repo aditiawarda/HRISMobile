@@ -283,7 +283,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                                     loadingDataPartCuti.setVisibility(View.GONE);
                                     dataHistoryCutiRV.setVisibility(View.VISIBLE);
 
-                                    GsonBuilder builder =new GsonBuilder();
+                                    GsonBuilder builder = new GsonBuilder();
                                     Gson gson = builder.create();
 
                                     dataHistoryCutis = gson.fromJson(history_cuti_data, DataHistoryCuti[].class);
@@ -302,7 +302,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                                     loadingDataPartIzin.setVisibility(View.GONE);
                                     dataHistoryIzinRV.setVisibility(View.VISIBLE);
 
-                                    GsonBuilder builder =new GsonBuilder();
+                                    GsonBuilder builder = new GsonBuilder();
                                     Gson gson = builder.create();
 
                                     dataHistoryIzins = gson.fromJson(history_izin_data, DataHistoryIzin[].class);
@@ -321,7 +321,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                                     loadingDataPartCutiBersama.setVisibility(View.GONE);
                                     dataHistoryCutiBersamaRV.setVisibility(View.VISIBLE);
 
-                                    GsonBuilder builder =new GsonBuilder();
+                                    GsonBuilder builder = new GsonBuilder();
                                     Gson gson = builder.create();
 
                                     dataHistoryCutiBersamas = gson.fromJson(history_cuti_bersama_data, DataHistoryCutiBersama[].class);
@@ -340,7 +340,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                                     loadingDataPartPenambahanCuti.setVisibility(View.GONE);
                                     dataHistoryPenambahanCutiRV.setVisibility(View.VISIBLE);
 
-                                    GsonBuilder builder =new GsonBuilder();
+                                    GsonBuilder builder = new GsonBuilder();
                                     Gson gson = builder.create();
 
                                     dataHistoryPenambahanCutis = gson.fromJson(history_cuti_penambahan_cuti, DataHistoryPenambahanCuti[].class);
