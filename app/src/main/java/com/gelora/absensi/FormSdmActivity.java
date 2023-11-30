@@ -6839,6 +6839,12 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 if(kodeKeterangan.equals("3")){
                     params.put("catatan", "Durasi Kontrak : "+f2DurasiKontrak.getText().toString()+" ("+f2StartDatePilih.getText().toString()+" s.d. "+f2EndDatePilih.getText().toString()+") "+f2CatatanTV.getText().toString());
+                } else if(kodeKeterangan.equals("4")){
+                    if(f2SubKet.equals("1")){
+                        params.put("catatan", "PENSIUN"+" - "+f2CatatanTV.getText().toString());
+                    } else if(f2SubKet.equals("2")){
+                        params.put("catatan", "PEMUTUSAN HUBUNGAN KERJA (PHK)"+" - "+f2CatatanTV.getText().toString());
+                    }
                 } else {
                     params.put("catatan", f2CatatanTV.getText().toString());
                 }
@@ -8212,7 +8218,15 @@ public class FormSdmActivity extends AppCompatActivity {
                 params.put("tgl_dibutuhkan", f3TglDibutuhkan);
                 params.put("tgl_pemenuhan", f3TglPemenuhan);
 
-                params.put("catatan", f3CatatanTV.getText().toString());
+                if(kodeKeterangan.equals("5")){
+                    if(f3SubKet.equals("1")){
+                        params.put("catatan", "PROMOSI"+" - "+f3CatatanTV.getText().toString());
+                    } else if(f3SubKet.equals("2")){
+                        params.put("catatan", "MUTASI"+" - "+f3CatatanTV.getText().toString());
+                    }
+                } else {
+                    params.put("catatan", f3CatatanTV.getText().toString());
+                }
 
                 return params;
             }
