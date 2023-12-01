@@ -607,7 +607,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                     accMark.setVisibility(View.GONE);
                                                     rejMark.setVisibility(View.VISIBLE);
                                                 } else {
-                                                    cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record);
+                                                    cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
                                             } else if(keterangan.equals("3")||keterangan.equals("4")){
                                                 if(status_approve_hrd.equals("1")){
@@ -622,7 +622,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                     rejMark.setVisibility(View.VISIBLE);
                                                 } else {
                                                     if(keterangan.equals("3")){
-                                                        cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record);
+                                                        cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                     }
                                                 }
                                             }
@@ -646,7 +646,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 lihatPenilaianBTN.setVisibility(View.GONE);
                                                 warningPenilaian.setVisibility(View.GONE);
                                                 if(sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
-                                                    cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record);
+                                                    cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
                                             } else {
                                                 lihatPenilaianPart.setVisibility(View.VISIBLE);
@@ -677,7 +677,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(status_approve_kabag.equals("0")){
                                         if(keterangan.equals("2")||keterangan.equals("3")||keterangan.equals("4")){
                                             if(sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
-                                                cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record);
+                                                cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                             } else {
                                                 accMark.setVisibility(View.GONE);
                                                 rejMark.setVisibility(View.GONE);
@@ -786,7 +786,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                                 lihatPenilaianBTN.setVisibility(View.GONE);
                                                 warningPenilaian.setVisibility(View.GONE);
                                                 if(sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
-                                                    cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record);
+                                                    cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                                 }
                                             } else {
                                                 lihatPenilaianPart.setVisibility(View.VISIBLE);
@@ -817,7 +817,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                     } else if(status_approve_kabag.equals("0")){
                                         if(keterangan.equals("5")||keterangan.equals("6")){
                                             if(sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
-                                                cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record);
+                                                cekPenilaianKaryawan(nik, nama, id_bagian, id_departemen, id_record, status_approve_kabag);
                                             } else {
                                                 accMark.setVisibility(View.GONE);
                                                 rejMark.setVisibility(View.GONE);
@@ -972,7 +972,7 @@ public class DetailFormSdmActivity extends AppCompatActivity {
 
     }
 
-    private void cekPenilaianKaryawan(String nik, String nama, String id_bagian, String id_departemen, String id_form){
+    private void cekPenilaianKaryawan(String nik, String nama, String id_bagian, String id_departemen, String id_form, String status_approve_kabag){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/cek_data_penilaian_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -1002,7 +1002,11 @@ public class DetailFormSdmActivity extends AppCompatActivity {
                                 accMark.setVisibility(View.GONE);
                                 rejMark.setVisibility(View.GONE);
                                 if(sharedPrefManager.getSpIdDept().equals(id_bagian) && (sharedPrefManager.getSpIdJabatan().equals("11") || sharedPrefManager.getSpIdJabatan().equals("25"))){
-                                    actionPart.setVisibility(View.VISIBLE);
+                                    if(status_approve_kabag.equals("1")||status_approve_kabag.equals("2")){
+                                        actionPart.setVisibility(View.GONE);
+                                    } else {
+                                        actionPart.setVisibility(View.VISIBLE);
+                                    }
                                     warningPenilaian.setVisibility(View.GONE);
                                 } else {
                                     actionPart.setVisibility(View.GONE);
