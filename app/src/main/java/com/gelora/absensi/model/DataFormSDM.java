@@ -5,6 +5,7 @@ public class DataFormSDM {
 
     private String id;
     private String keterangan;
+    private String sub_keterangan;
     private String nama;
     private String penerimaan_jabatan;
     private String status_approve_kabag;
@@ -92,6 +93,14 @@ public class DataFormSDM {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public String getSub_keterangan() {
+        return sub_keterangan;
+    }
+
+    public void setSub_keterangan(String sub_keterangan) {
+        this.sub_keterangan = sub_keterangan;
     }
 
 }

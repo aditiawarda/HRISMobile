@@ -59,12 +59,24 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#9570f0"));
             myViewHolder.point3.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("4")){
-            myViewHolder.keteranganTV.setText("PENSIUN/PHK");
+            if(dataFormSDM.getSub_keterangan().equals("1")){
+                myViewHolder.keteranganTV.setText("PENSIUN");
+            } else if(dataFormSDM.getSub_keterangan().equals("2")){
+                myViewHolder.keteranganTV.setText("PHK");
+            } else {
+                myViewHolder.keteranganTV.setText("PENSIUN/PHK");
+            }
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#e85588"));
             myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#e85588"));
             myViewHolder.point4.setVisibility(View.VISIBLE);
         } else if(dataFormSDM.getKeterangan().equals("5")){
-            myViewHolder.keteranganTV.setText("PROMOSI/MUTASI");
+            if(dataFormSDM.getSub_keterangan().equals("1")){
+                myViewHolder.keteranganTV.setText("PROMOSI");
+            } else if(dataFormSDM.getSub_keterangan().equals("2")){
+                myViewHolder.keteranganTV.setText("MUTASI");
+            } else {
+                myViewHolder.keteranganTV.setText("PROMOSI/MUTASI");
+            }
             myViewHolder.keteranganTV.setTextColor(Color.parseColor("#db7a33"));
             myViewHolder.atasNamaTV.setTextColor(Color.parseColor("#db7a33"));
             myViewHolder.point5.setVisibility(View.VISIBLE);
