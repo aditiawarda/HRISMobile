@@ -8263,7 +8263,7 @@ public class FormSdmActivity extends AppCompatActivity {
                 params.put("keterangan", kodeKeterangan);
 
                 if(kodeKeterangan.equals("5")){
-                    params.put("sub_keterangan", f2SubKet);
+                    params.put("sub_keterangan", f3SubKet);
                 }
 
                 //BARU
@@ -8293,7 +8293,7 @@ public class FormSdmActivity extends AppCompatActivity {
 
                 if(kodeKeterangan.equals("5")){
                     if(f3SubKet.equals("1")){
-                        params.put("catatan", "PROMOSI"+" - "+f3CatatanTV.getText().toString());
+                        params.put("catatan", "PROMOSI"+" - "+"Kenaikan golongan dari "+f3GolonganDisableModeLamaTV.getText().toString()+" menjadi "+f3GolonganDisableModeTV.getText().toString()+" - "+f3CatatanTV.getText().toString());
                     } else if(f3SubKet.equals("2")){
                         params.put("catatan", "MUTASI"+" - "+f3CatatanTV.getText().toString());
                     }
