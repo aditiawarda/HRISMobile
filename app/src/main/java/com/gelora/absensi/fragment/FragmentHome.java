@@ -690,12 +690,6 @@ public class FragmentHome extends Fragment {
                                             shortName = shortNameArray[0];
                                         }
 
-                                        // String shortName = sharedPrefManager.getSpNama()+" ";
-                                        // if(shortName.contains(" ")){
-                                        //    shortName = shortName.substring(0, shortName.indexOf(" "));
-                                        //    System.out.println(shortName);
-                                        // }
-
                                         int usia = Integer.parseInt(getDateY()) - Integer.parseInt(tahunLahir);
                                         ulangTahunTo.setText("Happy Birthday " + shortName + ",");
                                         ulangTahunCelebrate.setText("Selamat Merayakan Ulang Tahun ke " + String.valueOf(usia) + " Tahun.");
