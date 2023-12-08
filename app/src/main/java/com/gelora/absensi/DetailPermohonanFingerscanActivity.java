@@ -543,12 +543,6 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     pemohonTV.setText("( "+short_name[0].toUpperCase()+" )");
                                 }
 
-                                // String shortName = nama_karyawan+" ";
-                                // if(shortName.contains(" ")){
-                                //    shortName = shortName.substring(0, shortName.indexOf(" "));
-                                //    pemohonTV.setText("( "+shortName.toUpperCase()+" )");
-                                // }
-
                                 String status_approve = detail.getString("status_approve");
 
                                 if(status_approve.equals("1")){
