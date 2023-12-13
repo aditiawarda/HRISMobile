@@ -759,7 +759,6 @@ public class FragmentInfo extends Fragment {
             ecBTN.setVisibility(View.GONE);
         }
 
-        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/personalization";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
