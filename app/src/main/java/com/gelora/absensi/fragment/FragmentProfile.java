@@ -370,12 +370,6 @@ public class FragmentProfile extends Fragment {
                                         shortName = shortNameArray[0];
                                     }
 
-                                    // String shortName = sharedPrefManager.getSpNama()+" ";
-                                    // if(shortName.contains(" ")){
-                                    //     shortName = shortName.substring(0, shortName.indexOf(" "));
-                                    //     System.out.println(shortName);
-                                    // }
-
                                     descAvailable.setText("Halo "+shortName+", anda bisa atur foto profil sesuai keinginan anda.");
                                     emptyAvatarPart.setVisibility(View.GONE);
                                     availableAvatarPart.setVisibility(View.VISIBLE);
@@ -465,12 +459,6 @@ public class FragmentProfile extends Fragment {
                                         } else {
                                             shortName = shortNameArray[0];
                                         }
-
-                                        // String shortName = sharedPrefManager.getSpNama()+" ";
-                                        // if(shortName.contains(" ")){
-                                        //    shortName = shortName.substring(0, shortName.indexOf(" "));
-                                        //    System.out.println(shortName);
-                                        // }
 
                                         descEmpty.setText("Halo "+shortName+", anda bisa tambahkan foto profil sesuai keinginan anda.");
                                         emptyAvatarPart.setVisibility(View.VISIBLE);
