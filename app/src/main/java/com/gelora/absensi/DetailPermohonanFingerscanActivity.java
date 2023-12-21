@@ -612,12 +612,6 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                             approverHRDTV.setText("( "+short_name_3[0].toUpperCase()+" )");
                                         }
 
-                                        // String shortName3 = nama_approver_hrd+" ";
-                                        // if(shortName3.contains(" ")){
-                                        //    shortName3 = shortName3.substring(0, shortName3.indexOf(" "));
-                                        //    approverHRDTV.setText("( "+shortName3.toUpperCase()+" )");
-                                        // }
-
                                     } else if (status_approve_hrd.equals("2")){
                                         cancelPermohonanBTN.setVisibility(View.GONE);
                                         editPermohonanBTN.setVisibility(View.GONE);
@@ -650,11 +644,6 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                             approverHRDTV.setText("( "+short_name_3[0].toUpperCase()+" )");
                                         }
 
-                                        // String namaPendek = nama_approver_hrd;
-                                        // if(namaPendek.contains(" ")){
-                                        //    namaPendek = namaPendek.substring(0, namaPendek.indexOf(" "));
-                                        //    approverHRDTV.setText("( "+namaPendek.toUpperCase()+" )");
-                                        // }
                                     } else {
                                         acceptedMark.setVisibility(View.GONE);
                                         rejectedMark.setVisibility(View.GONE);
@@ -685,12 +674,6 @@ public class DetailPermohonanFingerscanActivity extends AppCompatActivity {
                                     } else {
                                         approverTV.setText("( "+short_name_2[0].toUpperCase()+" )");
                                     }
-
-                                    // String shortName2 = nama_approver+" ";
-                                    // if(shortName2.contains(" ")){
-                                    //    shortName2 = shortName2.substring(0, shortName2.indexOf(" "));
-                                    //    approverTV.setText("( "+shortName2.toUpperCase()+" )");
-                                    // }
 
                                     jabatanApproverTV.setText(jabatan_approver);
 
