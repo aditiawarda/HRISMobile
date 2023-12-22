@@ -285,7 +285,6 @@ public class FragmentProfile extends Fragment {
             nonGapSgnBTN.setVisibility(View.GONE);
         }
 
-        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/data_karyawan";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -496,12 +495,6 @@ public class FragmentProfile extends Fragment {
                                             shortName = shortNameArray[0];
                                         }
 
-                                        // String shortName = sharedPrefManager.getSpNama()+" ";
-                                        // if(shortName.contains(" ")){
-                                        //    shortName = shortName.substring(0, shortName.indexOf(" "));
-                                        //    System.out.println(shortName);
-                                        // }
-
                                         descEmpty.setText("Halo "+shortName+", anda bisa tambahkan foto profil sesuai keinginan anda.");
                                         emptyAvatarPart.setVisibility(View.VISIBLE);
                                         availableAvatarPart.setVisibility(View.GONE);
@@ -568,7 +561,6 @@ public class FragmentProfile extends Fragment {
     }
 
     private void checkVersion() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/version_app";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -849,7 +841,6 @@ public class FragmentProfile extends Fragment {
     }
 
     private void removePic() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         final String url = "https://geloraaksara.co.id/absen-online/api/remove_pic";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

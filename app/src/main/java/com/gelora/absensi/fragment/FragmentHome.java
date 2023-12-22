@@ -1410,12 +1410,6 @@ public class FragmentHome extends Fragment {
                                             shortName = shortNameArray[0];
                                         }
 
-                                        // String shortName = sharedPrefManager.getSpNama()+" ";
-                                        // if(shortName.contains(" ")){
-                                        //    shortName = shortName.substring(0, shortName.indexOf(" "));
-                                        //    System.out.println(shortName);
-                                        // }
-
                                         try {
                                             Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
                                             Notify.build(mContext)
@@ -1455,12 +1449,6 @@ public class FragmentHome extends Fragment {
                                             } else {
                                                 shortName = shortNameArray[0];
                                             }
-
-                                            // String shortName = sharedPrefManager.getSpNama()+" ";
-                                            // if(shortName.contains(" ")){
-                                            //    shortName = shortName.substring(0, shortName.indexOf(" "));
-                                            //    System.out.println(shortName);
-                                            // }
 
                                             try {
                                                 Intent intent = new Intent(mContext, ChatSplashScreenActivity.class);
