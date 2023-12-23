@@ -1189,6 +1189,84 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@drawable/shape_visi_misi_home"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                tools:ignore="UselessParent">
+
+                                <LinearLayout
+                                    android:layout_width="95dp"
+                                    android:layout_height="93dp"
+                                    android:layout_marginTop="-16dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginBottom="-60dp"
+                                    android:background="@drawable/shape_ornament_news_1"
+                                    android:text=""
+                                    android:textStyle="bold"
+                                    tools:ignore="RtlHardcoded" />
+
+                                <LinearLayout
+                                    android:layout_width="70dp"
+                                    android:layout_height="75dp"
+                                    android:layout_marginTop="-5dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginBottom="-60dp"
+                                    android:background="@drawable/shape_ornament_news_2"
+                                    android:text=""
+                                    android:textStyle="bold"
+                                    tools:ignore="RtlHardcoded" />
+
+                                <LinearLayout
+                                    android:layout_width="153dp"
+                                    android:layout_height="63dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="25dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="-20dp"
+                                    android:background="@drawable/visi_misi_ic"
+                                    android:text=""
+                                    android:textStyle="bold"
+                                    tools:ignore="RtlHardcoded" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="19.5dp"
+                                        android:layout_marginTop="15dp"
+                                        android:layout_marginRight="110dp"
+                                        android:letterSpacing="0.05"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:text="VISI &amp; MISI PERUSAHAAN"
+                                        android:textColor="#FFF3F1"
+                                        android:textSize="13dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:id="@+id/news_part"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
