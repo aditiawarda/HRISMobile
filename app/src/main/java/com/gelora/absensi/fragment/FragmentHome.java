@@ -462,13 +462,18 @@ public class FragmentHome extends Fragment {
             }
         });
 
-        visiMisiBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, VisiMisiActivity.class);
-                startActivity(intent);
-            }
-        });
+        if(sharedPrefManager.getSpIdCor().equals("1")) {
+            visiMisiBTN.setVisibility(View.VISIBLE);
+            visiMisiBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, VisiMisiActivity.class);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            visiMisiBTN.setVisibility(View.GONE);
+        }
 
         getDataKaryawan();
         getCurrentDay();
