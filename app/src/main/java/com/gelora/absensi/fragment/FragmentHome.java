@@ -74,6 +74,7 @@ import com.gelora.absensi.PersonalNotificationActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
+import com.gelora.absensi.VisiMisiActivity;
 import com.gelora.absensi.adapter.AdapterListPengumumanNew;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.DataPengumuman;
@@ -115,7 +116,7 @@ import java.util.Map;
 
 public class FragmentHome extends Fragment {
 
-    LinearLayout countNotificationClearancePart, clearancePart, calendarPart, weatherBTN, newsPart, countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLainnyaBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN, menuClearanceBTN;
+    LinearLayout visiMisiBTN, countNotificationClearancePart, clearancePart, calendarPart, weatherBTN, newsPart, countNotificationPersonalPart, personalNotifBTN, countNotificationPenilaian, menuSdmBTN, sdmPart, cardPart, pausePart, playPart, bannerPengumumanPart, congratTahunanPart, ulangTahunPart, cutiPart, pengaduanPart, countNotificationMessage, chatBTN, noDataPart, loadingDataPart, detailUserBTN, homePart, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuLainnyaBTN, menuSignatureBTN, menuCardBTN, menuCalendarBTN, menuClearanceBTN;
     TextView countNotifClearanceTV, countNotificationPersonalTV, countNotifPenilaianTV, nikTV, ulangTahunTo, highlightPengumuman, judulPengumuman, congratCelebrate, ulangTahunCelebrate, countMessage, pengumumanSelengkapnyaBTN, currentDate, hTime, mTime, sTime, nameOfUser, positionOfUser ,mainWeather, weatherTemp, feelsLikeTemp, currentAddress;
     ProgressBar loadingProgressBarCuaca;
     ImageView avatarUser, weatherIcon, loadingData;
@@ -185,6 +186,7 @@ public class FragmentHome extends Fragment {
         menuClearanceBTN = view.findViewById(R.id.menu_clearance_btn);
         dataCuaca = view.findViewById(R.id.data_cuaca);
         dataCuacaEmpty = view.findViewById(R.id.data_cuaca_empty);
+        visiMisiBTN = view.findViewById(R.id.visi_misi_part);
         hTime = view.findViewById(R.id.h_time);
         mTime = view.findViewById(R.id.m_time);
         sTime = view.findViewById(R.id.s_time);
@@ -456,6 +458,14 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, ListAllPengumumanActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        visiMisiBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, VisiMisiActivity.class);
                 startActivity(intent);
             }
         });
