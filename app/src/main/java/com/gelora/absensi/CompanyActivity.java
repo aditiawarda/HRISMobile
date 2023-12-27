@@ -2,25 +2,45 @@ package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.gelora.absensi.kalert.KAlertDialog;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class CompanyActivity extends AppCompatActivity {
 
-    LinearLayout backBTN, actionBar;
+    LinearLayout backBTN, actionBar, visiMisiPart;
     TextView p1;
+    TextView visiTV, misiTV;
     SharedPrefManager sharedPrefManager;
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company);
 
+        requestQueue = Volley.newRequestQueue(this);
         sharedPrefManager = new SharedPrefManager(this);
         backBTN = findViewById(R.id.back_btn);
         actionBar = findViewById(R.id.action_bar);
+        visiMisiPart = findViewById(R.id.visi_misi_part);
+        visiTV = findViewById(R.id.visi_tv);
+        misiTV = findViewById(R.id.misi_tv);
 
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,5 +55,44 @@ public class CompanyActivity extends AppCompatActivity {
             }
         });
 
+        getVisiMisi();
+
     }
+
+    private void getVisiMisi() {
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_visi_misi";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            if(status.equals("Success")){
+                                visiMisiPart.setVisibility(View.VISIBLE);
+                                String visi = response.getString("visi");
+                                String misi = response.getString("misi");
+                                visiTV.setText(visi);
+                                misiTV.setText(misi);
+                            } else {
+                                visiMisiPart.setVisibility(View.GONE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            visiMisiPart.setVisibility(View.GONE);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                visiMisiPart.setVisibility(View.GONE);
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
 }

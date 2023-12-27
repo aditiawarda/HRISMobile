@@ -358,47 +358,58 @@
                                 android:textSize="14dp"
                                 tools:ignore="HardcodedText,SpUsage,VisualLintLongText" />
 
-                            <TextView
+                            <LinearLayout
+                                android:id="@+id/visi_misi_part"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:textColor="@color/text_color"
-                                android:text="Visi"
-                                android:lineSpacingExtra="2dp"
-                                android:textSize="16dp"
-                                android:textStyle="bold"
-                                tools:ignore="HardcodedText,SpUsage" />
+                                android:visibility="gone"
+                                android:orientation="vertical">
 
-                            <com.codesgood.views.JustifiedTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="15dp"
-                                android:textColor="@color/text_color"
-                                android:lineSpacingExtra="2dp"
-                                android:text="Menjadi perusahaan percetakan yang unggul dalam penggunaan teknologi dan pelayanan kepada pelanggan."
-                                android:textSize="14dp"
-                                tools:ignore="HardcodedText,SpUsage" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:textColor="@color/text_color"
+                                    android:text="Visi"
+                                    android:lineSpacingExtra="2dp"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/text_color"
-                                android:layout_marginBottom="10dp"
-                                android:text="Misi"
-                                android:lineSpacingExtra="2dp"
-                                android:textSize="16dp"
-                                android:textStyle="bold"
-                                tools:ignore="HardcodedText,SpUsage" />
+                                <com.codesgood.views.JustifiedTextView
+                                    android:id="@+id/visi_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:textColor="@color/text_color"
+                                    android:lineSpacingExtra="2dp"
+                                    android:text=""
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage" />
 
-                            <com.codesgood.views.JustifiedTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="15dp"
-                                android:textColor="@color/text_color"
-                                android:lineSpacingExtra="2dp"
-                                android:text="Menjadi perusahaan percetakan yang produktif dan efisien serta memberikan manfaat maksimum kepada pemilik sumber daya antara lain pelanggan, vendor, pemegang saham, dan karyawan serta mendukung pendidikan dengan memberikan produk berkualitas tinggi dan aktual."
-                                android:textSize="14dp"
-                                tools:ignore="HardcodedText,SpUsage,VisualLintLongText" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/text_color"
+                                    android:layout_marginBottom="10dp"
+                                    android:text="Misi"
+                                    android:lineSpacingExtra="2dp"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <com.codesgood.views.JustifiedTextView
+                                    android:id="@+id/misi_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:textColor="@color/text_color"
+                                    android:lineSpacingExtra="2dp"
+                                    android:text=""
+                                    android:textSize="14dp"
+                                    tools:ignore="HardcodedText,SpUsage,VisualLintLongText" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
