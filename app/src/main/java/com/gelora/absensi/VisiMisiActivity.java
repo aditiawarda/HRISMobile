@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -85,8 +87,13 @@ public class VisiMisiActivity extends AppCompatActivity {
                                     public void run() {
                                         mainContent.setVisibility(View.VISIBLE);
                                         loadingContent.setVisibility(View.GONE);
-                                        visiTV.setText(visi);
-                                        misiTV.setText(misi);
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                            visiTV.setText(Html.fromHtml(visi, Html.FROM_HTML_MODE_COMPACT));
+                                            misiTV.setText(Html.fromHtml(misi, Html.FROM_HTML_MODE_COMPACT));
+                                        } else {
+                                            visiTV.setText(Html.fromHtml(visi));
+                                            misiTV.setText(Html.fromHtml(misi));
+                                        }
                                     }
                                 }, 1000);
                             } else {
