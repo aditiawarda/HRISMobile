@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".VisiMisiActivity">
 
     <RelativeLayout
@@ -34,60 +35,131 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:layout_marginTop="25dp"
                         tools:ignore="UselessParent">
 
                         <LinearLayout
+                            android:id="@+id/main_content"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginRight="25dp"
-                            android:layout_marginTop="25dp"
                             android:orientation="vertical"
+                            android:visibility="gone"
                             android:paddingBottom="30dp">
 
-                            <TextView
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingLeft="25dp"
+                                android:paddingRight="25dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
                                 android:layout_marginBottom="10dp"
-                                android:lineSpacingExtra="2dp"
-                                android:text="Visi"
-                                android:textColor="@color/text_color"
-                                android:textSize="16dp"
-                                android:textStyle="bold"
-                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                android:background="@drawable/shape_visi_misi">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:lineSpacingExtra="2dp"
+                                    android:text="Visi"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                            </LinearLayout>
 
                             <TextView
+                                android:id="@+id/visi_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="15dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginRight="25dp"
                                 android:lineSpacingExtra="2dp"
                                 android:justificationMode="inter_word"
-                                android:text="Menjadi perusahaan percetakan yang unggul dalam penggunaan teknologi dan pelayanan kepada pelanggan."
+                                android:text=""
                                 android:textColor="@color/text_color"
-                                android:textSize="14dp"
+                                android:textSize="15dp"
                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck,UnusedAttribute" />
 
-                            <TextView
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingLeft="25dp"
+                                android:paddingRight="25dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
                                 android:layout_marginBottom="10dp"
-                                android:lineSpacingExtra="2dp"
-                                android:text="Misi"
-                                android:textColor="@color/text_color"
-                                android:textSize="16dp"
-                                android:textStyle="bold"
-                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/shape_visi_misi">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:lineSpacingExtra="2dp"
+                                    android:text="Misi"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                            </LinearLayout>
 
                             <TextView
+                                android:id="@+id/misi_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="15dp"
                                 android:lineSpacingExtra="2dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginRight="25dp"
                                 android:justificationMode="inter_word"
-                                android:text="Menjadi perusahaan percetakan yang produktif dan efisien serta memberikan manfaat maksimum kepada pemilik sumber daya antara lain pelanggan, vendor, pemegang saham, dan karyawan serta mendukung pendidikan dengan memberikan produk berkualitas tinggi dan aktual."
+                                android:text=""
                                 android:textColor="@color/text_color"
-                                android:textSize="14dp"
+                                android:textSize="15dp"
                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck,UnusedAttribute,VisualLintLongText" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/loading_part"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="60dp"
+                            android:paddingRight="20dp"
+                            android:layout_marginTop="20dp"
+                            android:paddingBottom="35dp">
+
+                            <ImageView
+                                android:id="@+id/loading_img"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_marginBottom="5dp"
+                                app:srcCompat="@drawable/loading_sgn_digital"
+                                tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="-8dp"
+                                android:text="Memuat data"
+                                android:textAlignment="center"
+                                android:textColor="#E1BB8A"
+                                android:textSize="12dp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Tunggu beberapa saat"
+                                android:textAlignment="center"
+                                android:textColor="#ECC28D"
+                                android:textSize="10dp"
+                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                         </LinearLayout>
 
@@ -148,7 +220,7 @@
                         android:gravity="right"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="VISI DAN MISI"
+                        android:text="VISI DAN MISI PERUSAHAAN"
                         android:textColor="@color/white"
                         android:textSize="15dp"
                         android:textStyle="bold"

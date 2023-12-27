@@ -724,7 +724,6 @@ public class AllMenuActivity extends AppCompatActivity {
     }
 
     private void getContact() {
-        //RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         if(sharedPrefManager.getSpIdCor().equals("1")){
             final String url = "https://geloraaksara.co.id/absen-online/api/get_contact";
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
