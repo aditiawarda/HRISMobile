@@ -1469,7 +1469,7 @@ public class FormExitClearanceActivity extends AppCompatActivity {
                                 String url = "https://geloraaksara.co.id/absen-online/upload/digital_signature/"+signature;
                                 submitRecord();
                             } else {
-                                if(sharedPrefManager.getSpIdJabatan().equals("1")){
+                                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")){
                                     if (sharedPrefManager.getSpNik().equals(nikKaryawan)){
                                         pDialog.setTitleText("Perhatian")
                                                 .setContentText("Anda belum mengisi tanda tangan digital. Harap isi terlebih dahulu")

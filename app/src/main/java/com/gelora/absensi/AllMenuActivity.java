@@ -394,7 +394,7 @@ public class AllMenuActivity extends AppCompatActivity {
                 idCardPartSub.setVisibility(View.VISIBLE);
                 pengaduanPartSub.setVisibility(View.VISIBLE);
             } else {
-                if(sharedPrefManager.getSpIdJabatan().equals("1")){
+                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")){
                     cardPart.setVisibility(View.GONE);
                     sdmPart.setVisibility(View.VISIBLE);
 
