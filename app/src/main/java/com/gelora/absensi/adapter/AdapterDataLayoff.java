@@ -143,5 +143,4 @@ public class AdapterDataLayoff extends RecyclerView.Adapter<AdapterDataLayoff.My
         }
     }
 
-
 }
