@@ -93,4 +93,5 @@ public class AdapterListSDMSearch extends RecyclerView.Adapter<AdapterListSDMSea
             profileImage = itemView.findViewById(R.id.profile_image);
         }
     }
+
 }

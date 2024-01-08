@@ -95,4 +95,5 @@ public class AdapterKomponenGaji3 extends RecyclerView.Adapter<AdapterKomponenGa
             komponenGajiName = itemView.findViewById(R.id.nama_komponen_gaji);
         }
     }
+
 }

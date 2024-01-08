@@ -63,5 +63,4 @@ public class AdapterKetidakhadiranBagianSearch extends RecyclerView.Adapter<Adap
         }
     }
 
-
 }

@@ -100,4 +100,5 @@ public class AdapterShiftAbsen extends RecyclerView.Adapter<AdapterShiftAbsen.My
             statusDesc = itemView.findViewById(R.id.desc_status);
         }
     }
+
 }

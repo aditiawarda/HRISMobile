@@ -213,5 +213,4 @@ public class AdapterDataNoCheckout extends RecyclerView.Adapter<AdapterDataNoChe
         }
     }
 
-
 }

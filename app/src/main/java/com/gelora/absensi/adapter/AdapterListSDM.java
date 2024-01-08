@@ -89,4 +89,5 @@ public class AdapterListSDM extends RecyclerView.Adapter<AdapterListSDM.MyViewHo
             profileImage = itemView.findViewById(R.id.profile_image);
         }
     }
+
 }

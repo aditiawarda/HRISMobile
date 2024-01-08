@@ -324,5 +324,4 @@ public class AdapterPermohonanIzin extends RecyclerView.Adapter<AdapterPermohona
         }
     }
 
-
 }

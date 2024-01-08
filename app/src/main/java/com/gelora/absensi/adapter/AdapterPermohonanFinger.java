@@ -267,5 +267,4 @@ public class AdapterPermohonanFinger extends RecyclerView.Adapter<AdapterPermoho
         }
     }
 
-
 }

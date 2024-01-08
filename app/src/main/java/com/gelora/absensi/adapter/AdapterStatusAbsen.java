@@ -99,4 +99,5 @@ public class AdapterStatusAbsen extends RecyclerView.Adapter<AdapterStatusAbsen.
             statusDesc = itemView.findViewById(R.id.desc_status);
         }
     }
+
 }

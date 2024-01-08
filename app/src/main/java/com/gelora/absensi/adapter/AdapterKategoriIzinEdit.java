@@ -97,4 +97,5 @@ public class AdapterKategoriIzinEdit extends RecyclerView.Adapter<AdapterKategor
             cituDesc = itemView.findViewById(R.id.desc_kategori_cuti);
         }
     }
+
 }

@@ -274,4 +274,5 @@ public class AdapterListDataFormSDM extends RecyclerView.Adapter<AdapterListData
             atasNamaTV = itemView.findViewById(R.id.atas_nama_tv);
         }
     }
+
 }

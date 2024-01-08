@@ -322,5 +322,4 @@ public class AdapterKelebihanJam extends RecyclerView.Adapter<AdapterKelebihanJa
         }
     }
 
-
 }

@@ -63,5 +63,4 @@ public class AdapterKetidakhadiranBagian extends RecyclerView.Adapter<AdapterKet
         }
     }
 
-
 }

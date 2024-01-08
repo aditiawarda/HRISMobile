@@ -92,4 +92,5 @@ public class AdapterKaryawanPenggantiEdit extends RecyclerView.Adapter<AdapterKa
             karyawanDesc = itemView.findViewById(R.id.detail_karyawan);
         }
     }
+
 }

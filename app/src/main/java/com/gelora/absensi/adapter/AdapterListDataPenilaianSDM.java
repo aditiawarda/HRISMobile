@@ -163,4 +163,5 @@ public class AdapterListDataPenilaianSDM extends RecyclerView.Adapter<AdapterLis
             rejMark = itemView.findViewById(R.id.rej_mark);
         }
     }
+
 }

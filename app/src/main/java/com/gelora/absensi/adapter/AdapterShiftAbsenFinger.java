@@ -100,4 +100,5 @@ public class AdapterShiftAbsenFinger extends RecyclerView.Adapter<AdapterShiftAb
             statusDesc = itemView.findViewById(R.id.desc_status);
         }
     }
+
 }

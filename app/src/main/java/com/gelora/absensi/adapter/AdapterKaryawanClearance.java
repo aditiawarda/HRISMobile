@@ -94,4 +94,5 @@ public class AdapterKaryawanClearance extends RecyclerView.Adapter<AdapterKaryaw
             karyawanDesc = itemView.findViewById(R.id.detail_karyawan);
         }
     }
+
 }

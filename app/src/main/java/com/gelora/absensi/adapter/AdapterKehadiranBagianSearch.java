@@ -357,5 +357,4 @@ public class AdapterKehadiranBagianSearch extends RecyclerView.Adapter<AdapterKe
         }
     }
 
-
 }

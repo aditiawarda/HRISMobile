@@ -99,4 +99,5 @@ public class AdapterKaryawanLamaSDM3 extends RecyclerView.Adapter<AdapterKaryawa
             karyawanDesc = itemView.findViewById(R.id.detail_karyawan);
         }
     }
+
 }
