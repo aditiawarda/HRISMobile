@@ -918,6 +918,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/project_part_main"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -938,44 +939,36 @@
                                         tools:ignore="RtlHardcoded">
 
                                         <LinearLayout
-                                            android:id="@+id/project_part"
+                                            android:id="@+id/menu_project_btn"
                                             android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="vertical">
+                                            android:layout_height="65dp"
+                                            android:background="@drawable/shape_menu_3"
+                                            android:orientation="vertical"
+                                            android:padding="10dp"
+                                            tools:ignore="TooManyViews">
 
-                                            <LinearLayout
-                                                android:id="@+id/menu_project_btn"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="65dp"
-                                                android:background="@drawable/shape_menu_3"
-                                                android:orientation="vertical"
-                                                android:padding="10dp"
-                                                tools:ignore="TooManyViews">
-
-                                                <ImageView
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:scaleType="fitCenter"
-                                                    android:src="@drawable/icon_project"
-                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
-
-                                            </LinearLayout>
-
-                                            <TextView
+                                            <ImageView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
-                                                android:layout_marginTop="3dp"
-                                                android:ellipsize="end"
-                                                android:gravity="center"
-                                                android:maxLines="1"
-                                                android:singleLine="true"
-                                                android:text="Progress"
-                                                android:textColor="#515151"
-                                                android:textSize="12dp"
-                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+                                                android:scaleType="fitCenter"
+                                                android:src="@drawable/icon_project"
+                                                tools:ignore="ContentDescription,ImageContrastCheck" />
 
                                         </LinearLayout>
 
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:ellipsize="end"
+                                            android:gravity="center"
+                                            android:maxLines="1"
+                                            android:singleLine="true"
+                                            android:text="Progress"
+                                            android:textColor="#515151"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -988,7 +981,6 @@
                                         tools:ignore="UselessLeaf">
 
 
-
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -999,7 +991,6 @@
                                         android:layout_weight=".25"
                                         android:orientation="vertical"
                                         tools:ignore="UselessLeaf">
-
 
 
                                     </LinearLayout>
@@ -1011,7 +1002,6 @@
                                         android:layout_weight=".25"
                                         android:orientation="vertical"
                                         tools:ignore="RtlHardcoded,UselessLeaf">
-
 
 
                                     </LinearLayout>

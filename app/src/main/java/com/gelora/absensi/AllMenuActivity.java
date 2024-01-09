@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class AllMenuActivity extends AppCompatActivity {
 
-    LinearLayout countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
+    LinearLayout menuProjectBTN, projectMainPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
     LinearLayout actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
     TextView countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
     SharedPrefManager sharedPrefManager;
@@ -83,6 +83,8 @@ public class AllMenuActivity extends AppCompatActivity {
         menuNewsBTNSub = findViewById(R.id.menu_news_btn_sub);
         menuCalendarBTNSub = findViewById(R.id.menu_calendar_btn_sub);
         menuPengaduanBTNSub = findViewById(R.id.menu_pengaduan_btn_sub);
+        projectMainPart = findViewById(R.id.project_part_main);
+        menuProjectBTN = findViewById(R.id.menu_project_btn);
         countNotificationPenilaian = findViewById(R.id.count_notification_penilaian);
         countNotifPenilaianTV = findViewById(R.id.count_notif_penilaian_tv);
         countNotificationClearancePart = findViewById(R.id.count_notification_clearance);
@@ -333,6 +335,14 @@ public class AllMenuActivity extends AppCompatActivity {
             }
         });
 
+        menuProjectBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMenuActivity.this, PMToolActivity.class);
+                startActivity(intent);
+            }
+        });
+
         roleMenu();
 
     }
@@ -393,6 +403,8 @@ public class AllMenuActivity extends AppCompatActivity {
                 calendarPartSub.setVisibility(View.VISIBLE);
                 idCardPartSub.setVisibility(View.VISIBLE);
                 pengaduanPartSub.setVisibility(View.VISIBLE);
+
+                projectMainPart.setVisibility(View.VISIBLE);
             } else {
                 if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")){
                     cardPart.setVisibility(View.GONE);
@@ -418,6 +430,8 @@ public class AllMenuActivity extends AppCompatActivity {
                     idCardPartSub.setVisibility(View.GONE);
                     pengaduanPartSub.setVisibility(View.VISIBLE);
                 }
+
+                projectMainPart.setVisibility(View.GONE);
             }
 
         } else {
