@@ -230,7 +230,7 @@ public class HistoryCutiIzinActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        JSONObject data = null;
+                        JSONObject data;
                         try {
                             Log.d("Success.Response", response.toString());
                             data = new JSONObject(response);
