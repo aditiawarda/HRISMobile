@@ -419,8 +419,6 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
     }
 
     private void connectionFailed(){
-        // Banner.make(rootview, DetailTidakHadirActivity.this, Banner.WARNING, "Koneksi anda terputus!", Banner.BOTTOM, 3000).show();
-
         CookieBar.build(DetailTidakHadirActivity.this)
                 .setTitle("Perhatian")
                 .setMessage("Koneksi anda terputus!")
@@ -430,7 +428,6 @@ public class DetailTidakHadirActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
-
     }
 
     private String getBulanTahun() {

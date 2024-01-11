@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/parent_part"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/shape_notifikasi"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginBottom="-20dp"
+                android:layout_marginTop="-25dp"
+                android:layout_width="match_parent"
+                android:gravity="right"
+                android:layout_height="wrap_content"
+                tools:ignore="RtlHardcoded,VisualLintBounds">
+
+                <LinearLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/shape_ornament_2"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".75"
+                    android:layout_height="90dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Kategori Project"
+                        android:textColor="#38A7AC"
+                        android:textSize="11dp"
+                        android:ellipsize="end"
+                        android:lineSpacingExtra="3dp"
+                        android:maxLines="3"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+
+                    <TextView
+                        android:id="@+id/status_permohonan_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Nama Data Project Dibuat Two Line Maximum"
+                        android:textColor="#C16D02"
+                        android:textSize="13dp"
+                        android:ellipsize="end"
+                        android:lineSpacingExtra="3dp"
+                        android:maxLines="2"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".25"
+                    android:layout_height="90dp"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:background="@drawable/shape_progress_50_75"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:orientation="horizontal"
+                        tools:ignore="UselessParent">
+
+                        <LinearLayout
+                            android:id="@+id/sisa_cuti_data"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/sisa_cuti_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:text="75"
+                                android:textColor="@color/white"
+                                android:textSize="25dp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="%"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/sisa_cuti_loading"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/loading_dots"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="-20dp"
+                android:layout_marginTop="-20dp"
+                android:background="@drawable/shape_ornament_1"
+                tools:ignore="VisualLintBounds" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
