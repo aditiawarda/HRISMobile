@@ -29,6 +29,7 @@ public class SharedPrefAbsen {
     public static final String SP_ID_UNIT_JABATAN_BARU_DETAIL = "spIdUnitJabatanBaruDetail";
     public static final String SP_ID_KOMPONEN_GAJI = "spIdKomponenGaji";
     public static final String SP_ID_KOMPONEN_GAJI_3 = "spIdKomponenGaji3";
+    public static final String SP_KATEGORI_PROJECT = "spKategoriProject";
     public static final String SP_STATUS_ABSEN = "spStatusAbsen";
     public static final String SP_SHIFT_ABSEN = "spShiftAbsen";
     public static final String SP_BAGIAN = "spBagian";
@@ -168,6 +169,10 @@ public class SharedPrefAbsen {
 
     public String getSpStatusAbsen(){
         return sp.getString(SP_STATUS_ABSEN, "");
+    }
+
+    public String getSpKategoriProject(){
+        return sp.getString(SP_KATEGORI_PROJECT, "");
     }
 
     public String getSpShiftAbsen(){
