@@ -11,136 +11,149 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@id/scrollView"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_to_refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="MissingConstraints">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="-2dp"
-                android:orientation="vertical"
-                android:paddingTop="65dp"
-                android:paddingBottom="3dp">
+                android:layout_height="match_parent">
 
-                <LinearLayout
+                <androidx.core.widget.NestedScrollView
+                    android:id="@id/scrollView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingTop="20dp"
-                    android:orientation="vertical"
-                    tools:ignore="UselessParent">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:text="Deskripsi Project"
-                        android:textColor="#C16D02"
-                        android:textSize="17dp"
-                        android:layout_marginBottom="15dp"
-                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+                    tools:ignore="MissingConstraints">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="10dp"
-                        android:layout_marginTop="10dp"
-                        android:background="#3CCFCFCF" />
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="-2dp"
+                        android:orientation="vertical"
+                        android:paddingTop="65dp"
+                        android:paddingBottom="3dp">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:text="Task List"
-                        android:textColor="#7E7870"
-                        android:textSize="15dp"
-                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="20dp"
+                            android:orientation="vertical"
+                            tools:ignore="UselessParent">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:text="Deskripsi Project"
+                                android:textColor="#C16D02"
+                                android:textSize="17dp"
+                                android:layout_marginBottom="15dp"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="10dp"
+                                android:background="#3CCFCFCF" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:text="Task List"
+                                android:textColor="#7E7870"
+                                android:textSize="15dp"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:paddingRight="20dp"
+                                android:paddingLeft="20dp"
+                                android:orientation="vertical">
+
+                                <include layout="@layout/item_task"/>
+                                <include layout="@layout/item_task"/>
+                                <include layout="@layout/item_task"/>
+                                <include layout="@layout/item_task"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+                <LinearLayout
+                    android:id="@+id/action_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <LinearLayout
+                        android:layout_marginTop="-2dp"
+                        android:layout_marginRight="-2dp"
+                        android:layout_marginLeft="-2dp"
+                        android:background="@drawable/shape_bar_profile_notify"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:paddingRight="20dp"
-                        android:paddingLeft="20dp"
-                        android:orientation="vertical">
+                        android:layout_height="70dp"
+                        tools:ignore="UselessParent,VisualLintBounds">
 
-                        <include layout="@layout/item_task"/>
-                        <include layout="@layout/item_task"/>
-                        <include layout="@layout/item_task"/>
-                        <include layout="@layout/item_task"/>
+                        <LinearLayout
+                            android:id="@+id/back_btn"
+                            android:layout_marginTop="17dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="33dp"
+                            android:layout_height="33dp"
+                            android:gravity="center"
+                            android:background="@drawable/shape_back_2"
+                            tools:ignore="RtlHardcoded">
+
+                            <TextView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_marginRight="1.5dp"
+                                android:background="@drawable/ic_baseline_chevron_back"
+                                tools:ignore="RtlHardcoded" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="right|center"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            tools:ignore="RtlHardcoded">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:gravity="right"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="DETAIL PROJECT"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </RelativeLayout>
 
-        </androidx.core.widget.NestedScrollView>
-
-        <LinearLayout
-            android:id="@+id/action_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_marginTop="-2dp"
-                android:layout_marginRight="-2dp"
-                android:layout_marginLeft="-2dp"
-                android:background="@drawable/shape_bar_profile_notify"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                tools:ignore="UselessParent,VisualLintBounds">
-
-                <LinearLayout
-                    android:id="@+id/back_btn"
-                    android:layout_marginTop="17dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="33dp"
-                    android:layout_height="33dp"
-                    android:gravity="center"
-                    android:background="@drawable/shape_back_2"
-                    tools:ignore="RtlHardcoded">
-
-                    <TextView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_marginRight="1.5dp"
-                        android:background="@drawable/ic_baseline_chevron_back"
-                        tools:ignore="RtlHardcoded" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:gravity="right|center"
-                    android:paddingLeft="30dp"
-                    android:paddingRight="30dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:ignore="RtlHardcoded">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:text="DETAIL PROJECT"
-                        android:textColor="@color/white"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </RelativeLayout>
 

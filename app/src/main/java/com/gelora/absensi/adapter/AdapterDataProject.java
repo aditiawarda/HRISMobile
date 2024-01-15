@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gelora.absensi.DetailPermohonanIzinActivity;
+import com.gelora.absensi.DetailProjectActivity;
 import com.gelora.absensi.NewsActivity;
 import com.gelora.absensi.ProjectViewActivity;
 import com.gelora.absensi.R;
@@ -80,7 +82,9 @@ public class AdapterDataProject extends RecyclerView.Adapter<AdapterDataProject.
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Tes", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, projectData.getProjectId(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, DetailProjectActivity.class);
+                mContext.startActivity(intent);
             }
         });
 
