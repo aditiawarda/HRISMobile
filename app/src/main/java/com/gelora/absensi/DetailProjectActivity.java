@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -39,6 +40,7 @@ import java.util.Map;
 public class DetailProjectActivity extends AppCompatActivity {
 
     LinearLayout actionBar, backBTN, loadingDataPart, noDataPart;
+    TextView projectNameTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -64,6 +66,7 @@ public class DetailProjectActivity extends AppCompatActivity {
         loadingDataPart = findViewById(R.id.loading_data_part_task);
         noDataPart = findViewById(R.id.no_data_part_task);
         taskRV = findViewById(R.id.data_task_rv);
+        projectNameTV = findViewById(R.id.project_name_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -124,6 +127,11 @@ public class DetailProjectActivity extends AppCompatActivity {
                             JSONObject data = new JSONObject(response);
                             String status = data.getString("status");
                             if(status.equals("Success")){
+                                taskRV.setVisibility(View.VISIBLE);
+                                loadingDataPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.GONE);
+                                String projectName = data.getString("projectName");
+                                projectNameTV.setText(projectName);
                                 String task_list = data.getString("task_list");
                                 GsonBuilder builder = new GsonBuilder();
                                 Gson gson = builder.create();

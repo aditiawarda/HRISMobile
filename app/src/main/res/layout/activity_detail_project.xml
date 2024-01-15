@@ -42,6 +42,7 @@
                             tools:ignore="UselessParent">
 
                             <TextView
+                                android:id="@+id/project_name_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="20dp"
