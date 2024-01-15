@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -19,6 +20,7 @@ public class DetailProjectActivity extends AppCompatActivity {
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
+    String projectId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,9 @@ public class DetailProjectActivity extends AppCompatActivity {
         backBTN = findViewById(R.id.back_btn);
         actionBar = findViewById(R.id.action_bar);
 
+        projectId = getIntent().getExtras().getString("id_project");
+        Toast.makeText(this, projectId, Toast.LENGTH_SHORT).show();
+
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,19 +48,12 @@ public class DetailProjectActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onRefresh() {
-//                projectRV.setVisibility(View.GONE);
-//                loadingPart.setVisibility(View.VISIBLE);
-//                noDataPart.setVisibility(View.GONE);
-//
-//                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_KATEGORI_PROJECT, "1");
-//                categoryNow = "1";
-//                categoryChoiceTV.setText("Semua");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-//                        getProject(categoryNow);
+
                     }
                 }, 500);
             }

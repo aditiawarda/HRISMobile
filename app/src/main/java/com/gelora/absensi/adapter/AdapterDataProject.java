@@ -82,8 +82,8 @@ public class AdapterDataProject extends RecyclerView.Adapter<AdapterDataProject.
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, projectData.getProjectId(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, DetailProjectActivity.class);
+                intent.putExtra("id_project",projectData.getProjectId());
                 mContext.startActivity(intent);
             }
         });
