@@ -63,18 +63,18 @@ public class AdapterProjectCategory extends RecyclerView.Adapter<AdapterProjectC
         }
 
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
 
-//                notifyDataSetChanged();
-//
-//                Intent intent = new Intent("status_absen_broad");
-//                intent.putExtra("id_status_absen",statusAbsen.getId_status());
-//                intent.putExtra("nama_status_absen",statusAbsen.getNama_status());
-//                intent.putExtra("desc_status_absen",statusAbsen.getDeskripsi_status());
-//                LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
-//
-//                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, statusAbsen.getId_status());
+                notifyDataSetChanged();
+
+                Intent intent = new Intent("category_broad");
+                intent.putExtra("id_kategori",projectCategory.getId());
+                intent.putExtra("nama_kategori",projectCategory.getCategoryName());
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_KATEGORI_PROJECT, projectCategory.getId());
 
             }
 
