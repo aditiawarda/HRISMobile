@@ -12,13 +12,17 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,22 +30,25 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.flipboard.bottomsheet.BottomSheetLayout;
-import com.gelora.absensi.adapter.AdapterProjectCategory;
 import com.gelora.absensi.adapter.AdapterProjectCategoryForm;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.ProjectCategory;
+import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.aviran.cookiebar2.CookieBar;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,8 +56,9 @@ import java.util.Map;
 public class FormInputProjectActivity extends AppCompatActivity {
 
     LinearLayout actionBar, backBTN, choiceCategoryBTN, submitBTN;
-    TextView projectNameTV, tglBuatProject, categoryChoiceTV;
+    TextView projectNameTV, categoryChoiceTV;
     EditText projectNameED;
+    MultiAutoCompleteTextView picMultyTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -60,6 +68,9 @@ public class FormInputProjectActivity extends AppCompatActivity {
     private AdapterProjectCategoryForm adapterProjectCategory;
     RequestQueue requestQueue;
     String categoryChoice = "", projectDisimpan = "0";
+
+    String[] androidVersionNames = {"Aestro", "Blender", "CupCake", "Donut", "Eclair", "Froyo", "Gingerbread", "HoneyComb", "IceCream Sandwich", "Jellibean", "Kitkat", "Lollipop", "MarshMallow"};
+    ArrayList<String> allUser = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +82,6 @@ public class FormInputProjectActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         backBTN = findViewById(R.id.back_btn);
-        tglBuatProject = findViewById(R.id.tgl_buat_project);
         actionBar = findViewById(R.id.action_bar);
         choiceCategoryBTN = findViewById(R.id.choice_category_btn);
         categoryChoiceTV = findViewById(R.id.category_choice_tv);
@@ -79,7 +89,11 @@ public class FormInputProjectActivity extends AppCompatActivity {
         projectNameED = findViewById(R.id.project_name_ed);
         submitBTN = findViewById(R.id.submit_btn);
 
-        tglBuatProject.setText(getDateView());
+        picMultyTV = findViewById(R.id.multiply_pic);
+        ArrayAdapter<String> versionNames = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allUser);
+        picMultyTV.setAdapter(versionNames);
+        picMultyTV.setThreshold(1);
+        picMultyTV.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 
         LocalBroadcastManager.getInstance(this).registerReceiver(categoryProjectBroad, new IntentFilter("category_broad"));
 
@@ -127,10 +141,11 @@ public class FormInputProjectActivity extends AppCompatActivity {
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(FormInputProjectActivity.this, projectNameED.getText().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(FormInputProjectActivity.this, String.valueOf(allUser), Toast.LENGTH_SHORT).show();
             }
         });
 
+        getAllUser();
 
     }
 
@@ -215,6 +230,41 @@ public class FormInputProjectActivity extends AppCompatActivity {
         };
 
         requestQueue.add(postRequest);
+
+    }
+
+    private void getAllUser() {
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_all_data_user";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+                            if(status.equals("Success")){
+                                JSONArray data = response.getJSONArray("data");
+                                for (int i = 0; i < data.length(); i++) {
+                                    JSONObject event = data.getJSONObject(i);
+                                    String nama_karyawan = event.getString("NmKaryawan");
+                                    String bagian = event.getString("NmDept");
+                                    allUser.add(nama_karyawan+" - "+bagian);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                connectionFailed();
+            }
+        });
+
+        requestQueue.add(request);
 
     }
 

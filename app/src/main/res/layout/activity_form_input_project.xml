@@ -116,33 +116,309 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
+                                        android:layout_marginTop="3dp"
                                         android:layout_marginBottom="5dp"
-                                        android:text="Tanggal Buat :"
+                                        android:text="Nama Project :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+                                        android:id="@+id/project_name_ed"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint=""
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:minHeight="38dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="11dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="11dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,HardcodedText,LabelFor,SpUsage,SpeakableTextPresentCheck,TextSizeCheck,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Deskripsi Project :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+                                        android:id="@+id/project_desc_ed"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint=""
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:minHeight="80dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="PIC :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <MultiAutoCompleteTextView
+                                        android:id="@+id/multiply_pic"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:completionThreshold="1"
+                                        android:hint="PIC yang terlibat..."
+                                        android:inputType="textMultiLine"
+                                        android:lineSpacingExtra="3dp"
+                                        android:paddingLeft="18dp"
+                                        android:paddingTop="11dp"
+                                        android:paddingRight="18dp"
+                                        android:paddingBottom="11dp"
+                                        android:textSize="13dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Target :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:paddingStart="20dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left"
+                                                tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                <TextView
+
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""
+                                                    tools:ignore="SpUsage" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_date"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Timeline :"
                                         android:textColor="#696969"
                                         android:textSize="12dp"
                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:layout_marginBottom="10dp"
-                                        android:background="@drawable/shape_feel_disable"
-                                        android:gravity="center|left"
-                                        android:orientation="horizontal"
-                                        android:paddingStart="20dp"
-                                        android:paddingEnd="20dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shape_input_form"
+                                        android:paddingLeft="15dp"
+                                        android:paddingTop="8dp"
+                                        android:paddingRight="15dp"
+                                        android:paddingBottom="10dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:orientation="vertical"
                                         tools:ignore="RtlHardcoded">
 
                                         <TextView
-                                            android:id="@+id/tgl_buat_project"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="00/00/0000"
-                                            android:textColor="#B15735"
-                                            android:textSize="13dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="Tanggal Mulai :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
+
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:paddingStart="20dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                <LinearLayout
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginBottom="10dp"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="40dp"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                    <TextView
+
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
+                                                        android:textStyle="bold"
+                                                        android:text=""
+                                                        tools:ignore="SpUsage" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_alignParentRight="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_date_mulai"/>
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="Tanggal Akhir :"
+                                            android:textColor="#696969"
+                                            android:textSize="12dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        <LinearLayout
+
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:paddingStart="20dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:background="@drawable/shape_feel"
+                                            android:orientation="horizontal"
+                                            tools:ignore="RtlSymmetry">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                <LinearLayout
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginBottom="10dp"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="40dp"
+                                                    android:orientation="vertical"
+                                                    android:gravity="center|left"
+                                                    tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                    <TextView
+
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#B15735"
+                                                        android:textSize="13dp"
+                                                        android:textStyle="bold"
+                                                        android:text=""
+                                                        tools:ignore="SpUsage" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_alignParentRight="true"
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="match_parent"
+                                                    android:background="@drawable/shape_btn"
+                                                    android:gravity="center"
+                                                    tools:ignore="RtlHardcoded">
+
+                                                    <TextView
+                                                        android:layout_width="25dp"
+                                                        android:layout_height="25dp"
+                                                        android:background="@drawable/ic_baseline_date_akhir"/>
+
+                                                </LinearLayout>
+
+                                            </RelativeLayout>
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
@@ -161,7 +437,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="40dp"
                                         android:paddingStart="20dp"
-                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginBottom="15dp"
                                         android:background="@drawable/shape_feel"
                                         android:orientation="horizontal"
                                         tools:ignore="RtlSymmetry">
@@ -211,39 +487,6 @@
                                     </LinearLayout>
 
                                 </LinearLayout>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="3dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:text="Nama Project :"
-                                    android:textColor="#696969"
-                                    android:textSize="12dp"
-                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                <EditText
-                                    android:id="@+id/project_name_ed"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="10dp"
-                                    android:background="@drawable/shape_input_form"
-                                    android:drawablePadding="10dp"
-                                    android:gravity="top"
-                                    android:hint=""
-                                    android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
-                                    android:lineSpacingExtra="3dp"
-                                    android:maxLength="255"
-                                    android:minHeight="80dp"
-                                    android:paddingLeft="20dp"
-                                    android:paddingTop="13dp"
-                                    android:paddingRight="20dp"
-                                    android:paddingBottom="13dp"
-                                    android:textColor="#595959"
-                                    android:textColorHighlight="#FFE1BC"
-                                    android:textColorHint="#595959"
-                                    android:textSize="14dp"
-                                    tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
                                 <LinearLayout
                                     android:id="@+id/submit_btn"
