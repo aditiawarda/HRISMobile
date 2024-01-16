@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -39,7 +40,7 @@ import java.util.Map;
 
 public class DetailProjectActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backBTN, loadingDataPart, noDataPart;
+    LinearLayout actionBar, backBTN, loadingDataPart, noDataPart, addBTN;
     TextView projectNameTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -67,6 +68,7 @@ public class DetailProjectActivity extends AppCompatActivity {
         noDataPart = findViewById(R.id.no_data_part_task);
         taskRV = findViewById(R.id.data_task_rv);
         projectNameTV = findViewById(R.id.project_name_tv);
+        addBTN = findViewById(R.id.add_btn);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -107,6 +109,14 @@ public class DetailProjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        addBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailProjectActivity.this, FormInputTaskActivity.class);
+                startActivity(intent);
             }
         });
 

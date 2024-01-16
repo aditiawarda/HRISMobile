@@ -1,7 +1,6 @@
 package com.gelora.absensi;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,7 +12,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -22,7 +20,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,10 +31,8 @@ import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterDataProject;
 import com.gelora.absensi.adapter.AdapterProjectCategory;
-import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.model.ProjectCategory;
 import com.gelora.absensi.model.ProjectData;
-import com.gelora.absensi.model.StatusAbsen;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -50,7 +45,7 @@ import java.util.Map;
 
 public class ProjectViewActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backBTN, choiceCategoryBTN, noDataPart, loadingPart;
+    LinearLayout actionBar, backBTN, choiceCategoryBTN, noDataPart, loadingPart, addBTN;
     TextView categoryChoiceTV;
     ImageView loadingDataProject;
     SharedPrefManager sharedPrefManager;
@@ -88,6 +83,7 @@ public class ProjectViewActivity extends AppCompatActivity {
 
         loadingPart = findViewById(R.id.loading_data_part_project);
         noDataPart = findViewById(R.id.no_data_part_project);
+        addBTN = findViewById(R.id.add_btn);
         projectRV = findViewById(R.id.data_project_rv);
 
         projectRV.setLayoutManager(new LinearLayoutManager(this));
@@ -104,6 +100,14 @@ public class ProjectViewActivity extends AppCompatActivity {
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            }
+        });
+
+        addBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProjectViewActivity.this, FormInputProjectActivity.class);
+                startActivity(intent);
             }
         });
 

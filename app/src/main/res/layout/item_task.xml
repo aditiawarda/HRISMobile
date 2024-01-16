@@ -41,7 +41,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
-                        android:text="PIC"
+                        android:text="Nama PIC"
                         android:textColor="#38A7AC"
                         android:textSize="11dp"
                         android:ellipsize="end"
@@ -55,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="15dp"
-                        android:text="Nama Data Taks Nama Data Taks Nama Data TaksNama Data Taks Nama Data Taks Nama Data Taks"
+                        android:text="Nama Data Taks Nama Data Taks Nama Data Taks Nama Data Taks Nama Data Taks Nama Data Taks"
                         android:textColor="#C16D02"
                         android:textSize="13dp"
                         android:ellipsize="end"
@@ -82,7 +82,7 @@
                             android:id="@+id/target"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="20/05/2024"
+                            android:text="00/00/0000 (Priority)"
                             android:textColor="#EE3838"
                             android:textSize="11dp"
                             android:ellipsize="end"
@@ -115,7 +115,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:padding="3dp"
-                            android:text="Proses"
+                            android:text="Status"
                             android:textColor="@color/white"
                             android:textSize="12dp"
                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
@@ -135,6 +135,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
+                            android:padding="5dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -142,8 +143,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="5dp"
-                                android:text="10"
-                                android:padding="5dp"
+                                android:text="00"
                                 android:textColor="@color/white"
                                 android:textSize="19dp"
                                 android:textStyle="bold"
@@ -161,6 +161,7 @@
                         </LinearLayout>
 
                     </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -208,7 +209,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="17dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -218,7 +218,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="20/05/2024"
+                        android:text="00/00/0000"
                         android:textColor="#38A7AC"
                         android:textSize="11dp"
                         android:ellipsize="end"
@@ -230,7 +230,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="20/05/2024"
+                        android:text="00/00/0000"
                         android:textColor="#38A7AC"
                         android:textSize="11dp"
                         android:ellipsize="end"
@@ -243,10 +243,32 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="17dp"
+                android:gravity="right"
+                tools:ignore="RtlHardcoded">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last Update : 00/00/0000"
+                    android:textColor="#9E9E9E"
+                    android:textSize="9dp"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="3dp"
+                    android:maxLines="3"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="-20dp"
-                android:layout_marginTop="-20dp"
+                android:layout_height="70dp"
+                android:layout_marginBottom="-60dp"
+                android:layout_marginTop="-27dp"
                 android:background="@drawable/shape_ornament_1"
                 tools:ignore="VisualLintBounds" />
 
