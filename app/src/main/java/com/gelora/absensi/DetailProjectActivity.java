@@ -73,7 +73,6 @@ public class DetailProjectActivity extends AppCompatActivity {
                 .into(loadingDataTask);
 
         projectId = getIntent().getExtras().getString("id_project");
-        Toast.makeText(this, projectId, Toast.LENGTH_SHORT).show();
 
         taskRV.setLayoutManager(new LinearLayoutManager(this));
         taskRV.setHasFixedSize(true);
