@@ -184,27 +184,64 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="3dp"
                                         android:layout_marginBottom="5dp"
-                                        android:text="PIC :"
+                                        android:text="Project Leader :"
                                         android:textColor="#696969"
                                         android:textSize="12dp"
                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                                    <MultiAutoCompleteTextView
-                                        android:id="@+id/multiply_pic"
+                                    <LinearLayout
+                                        android:id="@+id/project_leader_btn"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="40dp"
+                                        android:paddingStart="20dp"
                                         android:layout_marginBottom="10dp"
                                         android:background="@drawable/shape_feel"
-                                        android:completionThreshold="1"
-                                        android:hint="PIC yang terlibat..."
-                                        android:inputType="textMultiLine"
-                                        android:lineSpacingExtra="3dp"
-                                        android:paddingLeft="18dp"
-                                        android:paddingTop="11dp"
-                                        android:paddingRight="18dp"
-                                        android:paddingBottom="11dp"
-                                        android:textSize="13dp"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left"
+                                                tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                <TextView
+                                                    android:id="@+id/project_leader_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""
+                                                    tools:ignore="SpUsage" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_person"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
 
                                     <TextView
                                         android:layout_width="wrap_content"

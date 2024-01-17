@@ -49,7 +49,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="Fitur akan segera hadir"
+            android:text="Fitur akan segera tersedia"
             android:textAlignment="center"
             android:textColor="#C66F00"
             android:textSize="14dp"

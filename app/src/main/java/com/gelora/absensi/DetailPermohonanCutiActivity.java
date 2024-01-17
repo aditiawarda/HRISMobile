@@ -1431,7 +1431,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                 params.put("timestamp_approve", getTimeStamp());
                 params.put("updated_at", getTimeStamp());
 
-                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpIdJabatan().equals("4") && sharedPrefManager.getSpNik().equals("1309131210")) || sharedPrefManager.getSpIdJabatan().equals("35")){
+                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpIdJabatan().equals("4")&&(sharedPrefManager.getSpNik().equals("1309131210")||sharedPrefManager.getSpNik().equals("0172110302"))) || sharedPrefManager.getSpIdJabatan().equals("35")){
                     if(!nikApprover.equals("null") && nikApprover.equals(sharedPrefManager.getSpNik())){
                         params.put("action", "kadep");
                     } else {
@@ -1506,7 +1506,7 @@ public class DetailPermohonanCutiActivity extends AppCompatActivity {
                 params.put("timestamp_approve", getTimeStamp());
                 params.put("updated_at", getTimeStamp());
 
-                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpIdJabatan().equals("4") && sharedPrefManager.getSpNik().equals("1309131210")) || sharedPrefManager.getSpIdJabatan().equals("35")){
+                if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25") || (sharedPrefManager.getSpIdJabatan().equals("4")&&(sharedPrefManager.getSpNik().equals("1309131210")||sharedPrefManager.getSpNik().equals("0172110302"))) || sharedPrefManager.getSpIdJabatan().equals("35")){
                     if(!nikApprover.equals("null") && nikApprover.equals(sharedPrefManager.getSpNik())){
                         params.put("action", "kadep");
                     } else {

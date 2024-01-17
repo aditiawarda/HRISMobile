@@ -130,7 +130,7 @@ public class AdapterListDataPenilaianSDM extends RecyclerView.Adapter<AdapterLis
             myViewHolder.waitingMark.setVisibility(View.VISIBLE);
             myViewHolder.accMark.setVisibility(View.GONE);
             myViewHolder.rejMark.setVisibility(View.GONE);
-            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||(sharedPrefManager.getSpIdJabatan().equals("4")&&sharedPrefManager.getSpNik().equals("1309131210"))){
+            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||(sharedPrefManager.getSpIdJabatan().equals("4")&&(sharedPrefManager.getSpNik().equals("1309131210")||sharedPrefManager.getSpNik().equals("0172110302")))){
                 myViewHolder.waitingMarkTV.setText("Menunggu Konfirmasi Atasan");
             } else {
                 myViewHolder.waitingMarkTV.setText("Menunggu Konfirmasi");

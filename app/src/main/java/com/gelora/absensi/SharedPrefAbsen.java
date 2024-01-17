@@ -12,6 +12,7 @@ public class SharedPrefAbsen {
     public static final String SP_ID_BAGIAN = "spIdBagian";
     public static final String SP_ID_CUTI = "spIdCuti";
     public static final String SP_ID_KARYAWAN_PENGGANTI = "spIdKaryawanPengganti";
+    public static final String SP_ID_KARYAWAN_PROJECT = "spIdKaryawanProject";
     public static final String SP_ID_KARYAWAN_SDM_BARU = "spIdKaryawanSdmBaru";
     public static final String SP_ID_KARYAWAN_SDM_LAMA = "spIdKaryawanSdmLama";
     public static final String SP_ID_KARYAWAN_PENILAIAN = "spIdKaryawanPenilaian";
@@ -97,6 +98,10 @@ public class SharedPrefAbsen {
 
     public String getSpIdKaryawanPengganti(){
         return sp.getString(SP_ID_KARYAWAN_PENGGANTI, "");
+    }
+
+    public String getSpIdKaryawanProject(){
+        return sp.getString(SP_ID_KARYAWAN_PROJECT, "");
     }
 
     public String getSpIdKaryawanSdmBaru(){
