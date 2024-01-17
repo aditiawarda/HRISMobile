@@ -59,16 +59,45 @@
                                 android:layout_marginTop="10dp"
                                 android:background="#3CCFCFCF" />
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_marginTop="20dp"
+                                android:layout_marginBottom="10dp"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
-                                android:text="Task List"
-                                android:textColor="#7E7870"
-                                android:textSize="15dp"
-                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+                                android:orientation="horizontal">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Task List"
+                                        android:textColor="#38A7AC"
+                                        android:textSize="13dp"
+                                        android:ellipsize="end"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLines="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                    <TextView
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Foto Dokumentasi"
+                                        android:textColor="#38A7AC"
+                                        android:textSize="13dp"
+                                        android:ellipsize="end"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLines="3"
+                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
