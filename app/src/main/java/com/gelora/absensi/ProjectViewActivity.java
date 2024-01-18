@@ -36,7 +36,6 @@ import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterDataProject;
 import com.gelora.absensi.adapter.AdapterProjectCategory;
-import com.gelora.absensi.support.VolleyUtils;
 import com.gelora.absensi.model.ProjectCategory;
 import com.gelora.absensi.model.ProjectData;
 import com.google.gson.Gson;
@@ -292,7 +291,6 @@ public class ProjectViewActivity extends AppCompatActivity {
                             String data_project = data.getString("response");
                             JSONArray jsonArray = new JSONArray(data_project);
                             int arrayLength = jsonArray.length();
-                            Toast.makeText(ProjectViewActivity.this, String.valueOf(arrayLength), Toast.LENGTH_SHORT).show();
                             if(arrayLength != 0) {
                                 projectRV.setVisibility(View.VISIBLE);
                                 loadingPart.setVisibility(View.GONE);

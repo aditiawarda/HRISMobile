@@ -65,7 +65,7 @@ public class AdapterDataProject extends RecyclerView.Adapter<AdapterDataProject.
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final ProjectData projectData = data[i];
 
-        myViewHolder.categoryName.setText(projectData.getCategoryId());
+        myViewHolder.categoryName.setText(projectData.getCategoryName());
         myViewHolder.projectName.setText(projectData.getProjectName());
         //myViewHolder.progressPercent.setText(projectData.getProgressPercent());
 
