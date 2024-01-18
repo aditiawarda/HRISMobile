@@ -887,8 +887,8 @@ public class AllMenuActivity extends AppCompatActivity {
                             if(status.equals("Success")){
                                 String token = data.getString("token");
                                 Intent intent = new Intent(AllMenuActivity.this, ProjectViewActivity.class);
-                                intent.putExtra("token_access", token);
                                 startActivity(intent);
+                                sharedPrefManager.saveSPString(SharedPrefManager.SP_TOKEN_TIMELINE, token);
                             } else {
                                 new KAlertDialog(AllMenuActivity.this, KAlertDialog.ERROR_TYPE)
                                         .setTitleText("Perhatian")

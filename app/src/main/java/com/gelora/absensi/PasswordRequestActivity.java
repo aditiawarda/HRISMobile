@@ -150,8 +150,8 @@ public class PasswordRequestActivity extends AppCompatActivity {
                             if(status.equals("Success")){
                                 String token = data.getString("token");
                                 Intent intent = new Intent(PasswordRequestActivity.this, ProjectViewActivity.class);
-                                intent.putExtra("token_access", token);
                                 startActivity(intent);
+                                sharedPrefManager.saveSPString(SharedPrefManager.SP_TOKEN_TIMELINE, token);
                                 sharedPrefManager.saveSPString(SharedPrefManager.SP_PASSWORD, passwordED.getText().toString());
                                 finish();
                                 new Handler().postDelayed(new Runnable() {

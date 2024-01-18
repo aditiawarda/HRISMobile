@@ -23,6 +23,7 @@ public class SharedPrefManager {
     public static final String SP_REMINDER = "spReminder";
     public static final String SP_TGL_BERGABUNG = "spTglBergabung";
     public static final String SP_STATUS_KARYAWAN = "spStatusKaryawan";
+    public static final String SP_TOKEN_TIMELINE = "spTokenTimeline";
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
 
@@ -94,6 +95,9 @@ public class SharedPrefManager {
     }
     public String getSpStatusKaryawan(){
         return sp.getString(SP_STATUS_KARYAWAN, "");
+    }
+    public String getSpTokenTimeline(){
+        return sp.getString(SP_TOKEN_TIMELINE, "");
     }
 
 }

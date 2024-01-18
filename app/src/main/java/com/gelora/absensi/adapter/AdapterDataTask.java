@@ -48,19 +48,19 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final TaskData taskData = data[i];
 
-        myViewHolder.picTV.setText(taskData.getPic());
+//        myViewHolder.picTV.setText(taskData.getPic());
         myViewHolder.taskTV.setText(taskData.getTaskName());
-        myViewHolder.progressPercent.setText(taskData.getProgressPercent());
-
-        if (Integer.parseInt(taskData.getProgressPercent()) >= 0 && Integer.parseInt(taskData.getProgressPercent()) < 25) {
-            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0_25));
-        } else if (Integer.parseInt(taskData.getProgressPercent()) >= 25 && Integer.parseInt(taskData.getProgressPercent()) < 50) {
-            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
-        } else if (Integer.parseInt(taskData.getProgressPercent()) >= 50 && Integer.parseInt(taskData.getProgressPercent()) < 75) {
-            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_50_75));
-        } else if (Integer.parseInt(taskData.getProgressPercent()) >= 75 && Integer.parseInt(taskData.getProgressPercent()) <= 100) {
-            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_75_100));
-        }
+//        myViewHolder.progressPercent.setText(taskData.getProgressPercent());
+//
+//        if (Integer.parseInt(taskData.getProgressPercent()) >= 0 && Integer.parseInt(taskData.getProgressPercent()) < 25) {
+//            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0_25));
+//        } else if (Integer.parseInt(taskData.getProgressPercent()) >= 25 && Integer.parseInt(taskData.getProgressPercent()) < 50) {
+//            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
+//        } else if (Integer.parseInt(taskData.getProgressPercent()) >= 50 && Integer.parseInt(taskData.getProgressPercent()) < 75) {
+//            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_50_75));
+//        } else if (Integer.parseInt(taskData.getProgressPercent()) >= 75 && Integer.parseInt(taskData.getProgressPercent()) <= 100) {
+//            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_75_100));
+//        }
 
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override

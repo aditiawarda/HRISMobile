@@ -116,7 +116,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
         startDateTV = findViewById(R.id.start_date_tv);
         endDateTV = findViewById(R.id.end_date_tv);
 
-        AUTH_TOKEN = getIntent().getExtras().getString("token_access");
+        AUTH_TOKEN = sharedPrefManager.getSpTokenTimeline();
 
         LocalBroadcastManager.getInstance(this).registerReceiver(projectLeaderBroad, new IntentFilter("project_leader"));
         LocalBroadcastManager.getInstance(this).registerReceiver(categoryProjectBroad, new IntentFilter("category_broad"));

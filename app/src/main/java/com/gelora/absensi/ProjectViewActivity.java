@@ -99,7 +99,7 @@ public class ProjectViewActivity extends AppCompatActivity {
                 .load(R.drawable.loading_sgn_digital)
                 .into(loadingDataProject);
 
-        AUTH_TOKEN = getIntent().getExtras().getString("token_access");
+        AUTH_TOKEN = sharedPrefManager.getSpTokenTimeline();
 
         LocalBroadcastManager.getInstance(this).registerReceiver(categoryProjectBroad, new IntentFilter("category_broad"));
 
@@ -113,7 +113,6 @@ public class ProjectViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProjectViewActivity.this, FormInputProjectActivity.class);
-                intent.putExtra("token_access", AUTH_TOKEN);
                 startActivity(intent);
             }
         });
@@ -126,10 +125,6 @@ public class ProjectViewActivity extends AppCompatActivity {
                 projectRV.setVisibility(View.GONE);
                 loadingPart.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
-
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_KATEGORI_PROJECT, "1");
-                categoryNow = "";
-                categoryChoiceTV.setText("Semua");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -203,7 +198,7 @@ public class ProjectViewActivity extends AppCompatActivity {
                     public void run() {
                         bottomSheet.dismissSheet();
                     }
-                }, 300);
+                }, 500);
 
             }
         });
@@ -321,6 +316,9 @@ public class ProjectViewActivity extends AppCompatActivity {
                         Log.e(TAG, "Volley error: " + error.getMessage());
                         bottomSheet.dismissSheet();
                         connectionFailed();
+                        projectRV.setVisibility(View.GONE);
+                        loadingPart.setVisibility(View.GONE);
+                        noDataPart.setVisibility(View.VISIBLE);
                     }
                 }) {
             @Override
@@ -385,6 +383,9 @@ public class ProjectViewActivity extends AppCompatActivity {
                         Log.e(TAG, "Volley error: " + error.getMessage());
                         bottomSheet.dismissSheet();
                         connectionFailed();
+                        projectRV.setVisibility(View.GONE);
+                        loadingPart.setVisibility(View.GONE);
+                        noDataPart.setVisibility(View.VISIBLE);
                     }
                 }) {
             @Override
@@ -396,67 +397,6 @@ public class ProjectViewActivity extends AppCompatActivity {
         };
 
         requestQueue.add(jsonObjectRequest);
-
-    }
-
-    private void getProjectr(String category_id) {
-        final String url = "https://geloraaksara.co.id/absen-online/api/project_list";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        try {
-                            Log.d("Success.Response", response.toString());
-                            JSONObject data = new JSONObject(response);
-                            String status = data.getString("status");
-                            if(status.equals("Success")){
-                                projectRV.setVisibility(View.VISIBLE);
-                                loadingPart.setVisibility(View.GONE);
-                                noDataPart.setVisibility(View.GONE);
-
-                                String data_project = data.getString("data");
-                                GsonBuilder builder = new GsonBuilder();
-                                Gson gson = builder.create();
-                                projectData = gson.fromJson(data_project, ProjectData[].class);
-                                adapterDataProject = new AdapterDataProject(projectData,ProjectViewActivity.this);
-                                try {
-                                    projectRV.setAdapter(adapterDataProject);
-                                } catch (NullPointerException e) {
-                                    e.printStackTrace();
-                                }
-                            } else {
-                                projectRV.setVisibility(View.GONE);
-                                loadingPart.setVisibility(View.GONE);
-                                noDataPart.setVisibility(View.VISIBLE);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", error.toString());
-                        bottomSheet.dismissSheet();
-                        connectionFailed();
-                    }
-                }
-        )
-        {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("categoryId", category_id);
-                return params;
-            }
-        };
-
-        requestQueue.add(postRequest);
 
     }
 
