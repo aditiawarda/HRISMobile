@@ -1,5 +1,7 @@
 package com.gelora.absensi;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -10,8 +12,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -338,8 +342,12 @@ public class AllMenuActivity extends AppCompatActivity {
         menuProjectBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ProjectViewActivity.class);
-                startActivity(intent);
+                if(sharedPrefManager.getSpPassword().equals("")){
+                    Intent intent = new Intent(AllMenuActivity.this, PasswordRequestActivity.class);
+                    startActivity(intent);
+                } else {
+                    getTokenAccess();
+                }
             }
         });
 
@@ -847,6 +855,61 @@ public class AllMenuActivity extends AppCompatActivity {
             requestQueue.add(request);
 
         }
+
+    }
+
+    private void getTokenAccess() {
+        String URL = "https://timeline.geloraaksara.co.id/auth/login";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JSONObject jsonBody = new JSONObject();
+
+        try {
+            // jsonBody.put("nik", sharedPrefManager.getSpNik());
+            jsonBody.put("nik", "3186150321");
+            jsonBody.put("password", sharedPrefManager.getSpPassword());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                jsonBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(TAG, "Response: " + response.toString());
+                        JSONObject data = null;
+                        try {
+                            data = response.getJSONObject("data");
+                            String status = data.getString("status");
+                            if(status.equals("Success")){
+                                String token = data.getString("token");
+                                Intent intent = new Intent(AllMenuActivity.this, ProjectViewActivity.class);
+                                intent.putExtra("token_access", token);
+                                startActivity(intent);
+                            } else {
+                                new KAlertDialog(AllMenuActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Tidak dapat mengakses menu, harap hubungi IT untuk kendala ini")
+                                        .setConfirmText("    OK    ")
+                                        .show();
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "Volley error: " + error.getMessage());
+                        connectionFailed();
+                    }
+                });
+
+        requestQueue.add(jsonObjectRequest);
 
     }
 

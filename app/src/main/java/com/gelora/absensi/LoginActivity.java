@@ -378,6 +378,7 @@ public class LoginActivity extends AppCompatActivity {
                         String statusKaryawan = jsonArray.getString("status_karyawan");
 
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK, nikUser);
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_PASSWORD, passwordED.getText().toString());
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, namaUser);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_COR, idCor);
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_CAB, idCab);

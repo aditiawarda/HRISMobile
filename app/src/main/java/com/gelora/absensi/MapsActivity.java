@@ -970,6 +970,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Preferences.setLoggedInStatus(MapsActivity.this,false);
         sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
         sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_PASSWORD, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_CAB, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_ID_HEAD_DEPT, "");

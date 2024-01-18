@@ -1,6 +1,9 @@
 package com.gelora.absensi;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,23 +23,27 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterDataProject;
 import com.gelora.absensi.adapter.AdapterProjectCategory;
+import com.gelora.absensi.support.VolleyUtils;
 import com.gelora.absensi.model.ProjectCategory;
 import com.gelora.absensi.model.ProjectData;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.aviran.cookiebar2.CookieBar;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -45,7 +52,7 @@ import java.util.Map;
 
 public class ProjectViewActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backBTN, choiceCategoryBTN, noDataPart, loadingPart, addBTN;
+    LinearLayout actionBar, backBTN, choiceCategoryBTN, noDataPart, loadingPart, addBTN, allBTN, markAll;
     TextView categoryChoiceTV;
     ImageView loadingDataProject;
     SharedPrefManager sharedPrefManager;
@@ -53,16 +60,14 @@ public class ProjectViewActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheet;
     RequestQueue requestQueue;
-
-    String categoryNow = "1";
-
+    String categoryNow = "";
     private RecyclerView categoryProjectRV;
     private ProjectCategory[] projectCategories;
     private AdapterProjectCategory adapterProjectCategory;
-
     private RecyclerView projectRV;
     private ProjectData[] projectData;
     private AdapterDataProject adapterDataProject;
+    String AUTH_TOKEN = "";
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -95,6 +100,8 @@ public class ProjectViewActivity extends AppCompatActivity {
                 .load(R.drawable.loading_sgn_digital)
                 .into(loadingDataProject);
 
+        AUTH_TOKEN = getIntent().getExtras().getString("token_access");
+
         LocalBroadcastManager.getInstance(this).registerReceiver(categoryProjectBroad, new IntentFilter("category_broad"));
 
         actionBar.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +114,7 @@ public class ProjectViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProjectViewActivity.this, FormInputProjectActivity.class);
+                intent.putExtra("token_access", AUTH_TOKEN);
                 startActivity(intent);
             }
         });
@@ -121,7 +129,7 @@ public class ProjectViewActivity extends AppCompatActivity {
                 noDataPart.setVisibility(View.GONE);
 
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_KATEGORI_PROJECT, "1");
-                categoryNow = "1";
+                categoryNow = "";
                 categoryChoiceTV.setText("Semua");
 
                 new Handler().postDelayed(new Runnable() {
@@ -148,8 +156,8 @@ public class ProjectViewActivity extends AppCompatActivity {
             }
         });
 
-        getProject(categoryNow);
-        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_KATEGORI_PROJECT, "1");
+        getProjectAll();
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_KATEGORI_PROJECT, "");
         categoryChoiceTV.setText("Semua");
 
     }
@@ -157,6 +165,51 @@ public class ProjectViewActivity extends AppCompatActivity {
     private void categoryChoice(){
         bottomSheet.showWithSheetView(LayoutInflater.from(ProjectViewActivity.this).inflate(R.layout.layout_kategori_project, bottomSheet, false));
         categoryProjectRV = findViewById(R.id.kategori_project_rv);
+        allBTN = findViewById(R.id.all_btn);
+        markAll = findViewById(R.id.mark_all);
+
+        if (sharedPrefAbsen.getSpKategoriProject().equals("")) {
+            markAll.setVisibility(View.VISIBLE);
+            allBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option_choice));
+        } else {
+            markAll.setVisibility(View.GONE);
+            allBTN.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_option));
+        }
+
+        allBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                markAll.setVisibility(View.VISIBLE);
+                allBTN.setBackground(ContextCompat.getDrawable(ProjectViewActivity.this, R.drawable.shape_option_choice));
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_KATEGORI_PROJECT, "");
+
+                categoryNow = "";
+                categoryChoiceTV.setText("Semua");
+
+                getProjectCategory();
+
+                projectRV.setVisibility(View.GONE);
+                loadingPart.setVisibility(View.VISIBLE);
+                noDataPart.setVisibility(View.GONE);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getProjectAll();
+                    }
+                }, 1300);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+
+            }
+        });
+
+
         if(categoryProjectRV != null){
             categoryProjectRV.setLayoutManager(new LinearLayoutManager(this));
             categoryProjectRV.setHasFixedSize(true);
@@ -169,16 +222,23 @@ public class ProjectViewActivity extends AppCompatActivity {
     }
 
     private void getProjectCategory() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/project_category";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
+        final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/category/list";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                API_ENDPOINT_CATEGORY,
+                null,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
-                        // response
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(TAG, "Response: " + response.toString());
+                        JSONObject data = null;
                         try {
                             Log.d("Success.Response", response.toString());
-                            JSONObject data = new JSONObject(response);
-                            String data_category = data.getString("data");
+                            data = response.getJSONObject("data");
+                            String data_category = data.getString("response");
                             GsonBuilder builder = new GsonBuilder();
                             Gson gson = builder.create();
                             projectCategories = gson.fromJson(data_category, ProjectCategory[].class);
@@ -193,32 +253,155 @@ public class ProjectViewActivity extends AppCompatActivity {
                         }
                     }
                 },
-                new Response.ErrorListener()
-                {
+                new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", error.toString());
-                        bottomSheet.dismissSheet();
-                        connectionFailed();
+                        // Handle the error
+                        Log.e(TAG, "Volley error: " + error.getMessage());
                     }
-                }
-        )
-        {
+                }) {
             @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("NIK", sharedPrefManager.getSpNik());
-                return params;
+            public java.util.Map<String, String> getHeaders() {
+                java.util.Map<String, String> headers = new java.util.HashMap<>();
+                headers.put("Authorization", "Bearer " + AUTH_TOKEN);
+                return headers;
             }
         };
 
-        requestQueue.add(postRequest);
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private void getProjectAll() {
+        final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/project/list";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                API_ENDPOINT_CATEGORY,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(TAG, "Response: " + response.toString());
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = response.getJSONObject("data");
+                            String data_project = data.getString("response");
+                            JSONArray jsonArray = new JSONArray(data_project);
+                            int arrayLength = jsonArray.length();
+                            Toast.makeText(ProjectViewActivity.this, String.valueOf(arrayLength), Toast.LENGTH_SHORT).show();
+                            if(arrayLength != 0) {
+                                projectRV.setVisibility(View.VISIBLE);
+                                loadingPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.GONE);
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                projectData = gson.fromJson(data_project, ProjectData[].class);
+                                adapterDataProject = new AdapterDataProject(projectData,ProjectViewActivity.this);
+                                try {
+                                    projectRV.setAdapter(adapterDataProject);
+                                } catch (NullPointerException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                projectRV.setVisibility(View.GONE);
+                                loadingPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle the error
+                        Log.e(TAG, "Volley error: " + error.getMessage());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }) {
+            @Override
+            public java.util.Map<String, String> getHeaders() {
+                java.util.Map<String, String> headers = new java.util.HashMap<>();
+                headers.put("Authorization", "Bearer " + AUTH_TOKEN);
+                return headers;
+            }
+        };
+
+        requestQueue.add(jsonObjectRequest);
 
     }
 
     private void getProject(String category_id) {
+        final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/category/detail?id="+category_id;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                API_ENDPOINT_CATEGORY,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(TAG, "Response: " + response.toString());
+                        JSONObject data = null;
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = response.getJSONObject("data");
+                            String data_project = data.getString("dataProject");
+                            JSONArray jsonArray = new JSONArray(data_project);
+                            int arrayLength = jsonArray.length();
+                            if(arrayLength != 0) {
+                                projectRV.setVisibility(View.VISIBLE);
+                                loadingPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.GONE);
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                projectData = gson.fromJson(data_project, ProjectData[].class);
+                                adapterDataProject = new AdapterDataProject(projectData,ProjectViewActivity.this);
+                                try {
+                                    projectRV.setAdapter(adapterDataProject);
+                                } catch (NullPointerException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                projectRV.setVisibility(View.GONE);
+                                loadingPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle the error
+                        Log.e(TAG, "Volley error: " + error.getMessage());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }) {
+            @Override
+            public java.util.Map<String, String> getHeaders() {
+                java.util.Map<String, String> headers = new java.util.HashMap<>();
+                headers.put("Authorization", "Bearer " + AUTH_TOKEN);
+                return headers;
+            }
+        };
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private void getProjectr(String category_id) {
         final String url = "https://geloraaksara.co.id/absen-online/api/project_list";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -285,6 +468,9 @@ public class ProjectViewActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String categoryId = intent.getStringExtra("id_kategori");
             String categoryName = intent.getStringExtra("nama_kategori");
+
+            markAll.setVisibility(View.GONE);
+            allBTN.setBackground(ContextCompat.getDrawable(ProjectViewActivity.this, R.drawable.shape_option));
 
             categoryNow = categoryId;
             categoryChoiceTV.setText(categoryName);

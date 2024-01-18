@@ -60,6 +60,56 @@
                     android:paddingTop="15dp"
                     android:orientation="vertical">
 
+                    <LinearLayout
+                        android:id="@+id/all_btn"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:background="@drawable/shape_option"
+                        android:orientation="horizontal"
+                        tools:ignore="DisableBaselineAlignment">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight=".80"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="17dp"
+                                android:paddingBottom="17dp"
+                                android:text="Semua"
+                                android:textColor="#C16D02"
+                                android:textSize="15dp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/mark_all"
+                            android:gravity="right|center"
+                            android:layout_width="0dp"
+                            android:layout_weight=".20"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            tools:ignore="RtlHardcoded">
+
+                            <TextView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/success"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/kategori_project_rv"
                         android:layout_width="match_parent"

@@ -54,6 +54,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".PasswordRequestActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".FormInputTaskActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

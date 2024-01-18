@@ -1,5 +1,7 @@
 package com.gelora.absensi;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -42,6 +44,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterAllKaryawan;
+import com.gelora.absensi.adapter.AdapterProjectCategory;
 import com.gelora.absensi.adapter.AdapterProjectCategoryForm;
 import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.KaryawanAll;
@@ -85,7 +88,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
     private KaryawanAll[] karyawanAlls;
     private AdapterAllKaryawan adapterAllKaryawan;
     String dueDateChoice = "", starDateChoice = "", endDateChoice = "", nikProjectLeader = "", namaProjectLeader = "", idBagianProjectLeader = "", idDepartemenProjectLeader = "", idJabatanProjectLeader = "";
-
+    String AUTH_TOKEN = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +115,8 @@ public class FormInputProjectActivity extends AppCompatActivity {
         endDateBTN = findViewById(R.id.end_date_btn);
         startDateTV = findViewById(R.id.start_date_tv);
         endDateTV = findViewById(R.id.end_date_tv);
+
+        AUTH_TOKEN = getIntent().getExtras().getString("token_access");
 
         LocalBroadcastManager.getInstance(this).registerReceiver(projectLeaderBroad, new IntentFilter("project_leader"));
         LocalBroadcastManager.getInstance(this).registerReceiver(categoryProjectBroad, new IntentFilter("category_broad"));
@@ -296,6 +301,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
         });
 
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PROJECT, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_KATEGORI_PROJECT, "");
 
     }
 
@@ -1487,16 +1493,23 @@ public class FormInputProjectActivity extends AppCompatActivity {
     }
 
     private void getProjectCategory() {
-        final String url = "https://geloraaksara.co.id/absen-online/api/project_category_form";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
+        final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/category/list";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                API_ENDPOINT_CATEGORY,
+                null,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
-                        // response
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(TAG, "Response: " + response.toString());
+                        JSONObject data = null;
                         try {
                             Log.d("Success.Response", response.toString());
-                            JSONObject data = new JSONObject(response);
-                            String data_category = data.getString("data");
+                            data = response.getJSONObject("data");
+                            String data_category = data.getString("response");
                             GsonBuilder builder = new GsonBuilder();
                             Gson gson = builder.create();
                             projectCategories = gson.fromJson(data_category, ProjectCategory[].class);
@@ -1511,28 +1524,22 @@ public class FormInputProjectActivity extends AppCompatActivity {
                         }
                     }
                 },
-                new Response.ErrorListener()
-                {
+                new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", error.toString());
-                        bottomSheet.dismissSheet();
-                        connectionFailed();
+                        // Handle the error
+                        Log.e(TAG, "Volley error: " + error.getMessage());
                     }
-                }
-        )
-        {
+                }) {
             @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("NIK", sharedPrefManager.getSpNik());
-                return params;
+            public java.util.Map<String, String> getHeaders() {
+                java.util.Map<String, String> headers = new java.util.HashMap<>();
+                headers.put("Authorization", "Bearer " + AUTH_TOKEN);
+                return headers;
             }
         };
 
-        requestQueue.add(postRequest);
+        requestQueue.add(jsonObjectRequest);
 
     }
 

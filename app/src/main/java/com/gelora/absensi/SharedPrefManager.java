@@ -11,6 +11,7 @@ public class SharedPrefManager {
     public static final String SP_SUDAH_LOGIN = "spSudahLogin";
     public static final String SP_ID = "spID";
     public static final String SP_NIK = "spNIK";
+    public static final String SP_PASSWORD = "spPassword";
     public static final String SP_NAMA = "spNama";
     public static final String SP_ID_COR = "spIdCor";
     public static final String SP_ID_CAB = "spIdCab";
@@ -57,6 +58,9 @@ public class SharedPrefManager {
     }
     public String getSpNik(){
         return sp.getString(SP_NIK, "");
+    }
+    public String getSpPassword(){
+        return sp.getString(SP_PASSWORD, "");
     }
     public String getSpNama(){
         return sp.getString(SP_NAMA, "");
