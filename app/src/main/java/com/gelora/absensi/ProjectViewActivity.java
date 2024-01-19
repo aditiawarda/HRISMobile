@@ -130,7 +130,11 @@ public class ProjectViewActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         refreshLayout.setRefreshing(false);
-                        getProject(categoryNow);
+                        if(categoryNow.equals("")){
+                            getProjectAll();
+                        } else {
+                            getProject(categoryNow);
+                        }
                     }
                 }, 500);
             }
@@ -171,6 +175,7 @@ public class ProjectViewActivity extends AppCompatActivity {
         }
 
         allBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 markAll.setVisibility(View.VISIBLE);
