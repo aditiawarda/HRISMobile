@@ -58,6 +58,42 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginRight="20dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginTop="10dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pimpinan Project"
+                                    android:textColor="#A5A5A5"
+                                    android:textSize="11dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                <TextView
+                                    android:id="@+id/project_leader_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nama Pimpro"
+                                    android:textColor="#38A7AC"
+                                    android:textSize="15dp"
+                                    android:ellipsize="end"
+                                    android:lineSpacingExtra="3dp"
+                                    android:maxLines="3"
+                                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
                                 android:layout_marginBottom="15dp"
                                 android:orientation="vertical">
 

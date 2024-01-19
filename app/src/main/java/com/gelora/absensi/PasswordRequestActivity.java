@@ -127,8 +127,7 @@ public class PasswordRequestActivity extends AppCompatActivity {
         JSONObject jsonBody = new JSONObject();
 
         try {
-            // jsonBody.put("nik", sharedPrefManager.getSpNik());
-            jsonBody.put("nik", "3186150321");
+            jsonBody.put("nik", sharedPrefManager.getSpNik());
             jsonBody.put("password", passwordED.getText());
         } catch (JSONException e) {
             e.printStackTrace();

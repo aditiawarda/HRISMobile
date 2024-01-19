@@ -119,8 +119,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
         AUTH_TOKEN = sharedPrefManager.getSpTokenTimeline();
 
         LocalBroadcastManager.getInstance(this).registerReceiver(projectLeaderBroad, new IntentFilter("project_leader"));
-        LocalBroadcastManager.getInstance(this).registerReceiver(categoryProjectBroad, new IntentFilter("category_broad"));
-
+        LocalBroadcastManager.getInstance(this).registerReceiver(categoryProjectFormBroad, new IntentFilter("category_project_form_broad"));
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -457,7 +456,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
         }
     };
 
-    public BroadcastReceiver categoryProjectBroad = new BroadcastReceiver() {
+    public BroadcastReceiver categoryProjectFormBroad = new BroadcastReceiver() {
         @SuppressLint("SetTextI18n")
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -1479,7 +1478,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
     }
 
     private void categoryChoice(){
-        bottomSheet.showWithSheetView(LayoutInflater.from(FormInputProjectActivity.this).inflate(R.layout.layout_kategori_project, bottomSheet, false));
+        bottomSheet.showWithSheetView(LayoutInflater.from(FormInputProjectActivity.this).inflate(R.layout.layout_kategori_project_form, bottomSheet, false));
         categoryProjectRV = findViewById(R.id.kategori_project_rv);
         if(categoryProjectRV != null){
             categoryProjectRV.setLayoutManager(new LinearLayoutManager(this));

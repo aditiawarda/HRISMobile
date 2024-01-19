@@ -67,7 +67,7 @@ public class AdapterProjectCategoryForm extends RecyclerView.Adapter<AdapterProj
 
                 notifyDataSetChanged();
 
-                Intent intent = new Intent("category_broad");
+                Intent intent = new Intent("category_project_form_broad");
                 intent.putExtra("id_kategori",projectCategory.getId());
                 intent.putExtra("nama_kategori",projectCategory.getCategoryName());
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);

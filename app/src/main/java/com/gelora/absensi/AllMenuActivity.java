@@ -864,8 +864,7 @@ public class AllMenuActivity extends AppCompatActivity {
         JSONObject jsonBody = new JSONObject();
 
         try {
-            // jsonBody.put("nik", sharedPrefManager.getSpNik());
-            jsonBody.put("nik", "3186150321");
+            jsonBody.put("nik", sharedPrefManager.getSpNik());
             jsonBody.put("password", sharedPrefManager.getSpPassword());
         } catch (JSONException e) {
             e.printStackTrace();

@@ -50,7 +50,7 @@ import java.util.Map;
 public class DetailProjectActivity extends AppCompatActivity {
 
     LinearLayout actionBar, backBTN, loadingDataPart, noDataPart, addBTN, ganttChartBTN;
-    TextView projectNameTV, startDateTV, endDateTV;
+    TextView projectNameTV, startDateTV, endDateTV, projectLeaderTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -81,6 +81,7 @@ public class DetailProjectActivity extends AppCompatActivity {
         ganttChartBTN = findViewById(R.id.gantt_chart_btn);
         startDateTV = findViewById(R.id.start_date_tv);
         endDateTV = findViewById(R.id.end_date_tv);
+        projectLeaderTV = findViewById(R.id.project_leader_tv);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -163,10 +164,12 @@ public class DetailProjectActivity extends AppCompatActivity {
                             Log.d("Success.Response", response.toString());
                             data = response.getJSONObject("data");
                             String projectName = data.getString("projectName");
+                            String createdBy = data.getString("createdBy");
                             String dateStart = data.getString("dateStart");
                             String dateEnd = data.getString("dateEnd");
                             String taskList = data.getString("taskList");
                             projectNameTV.setText(projectName);
+                            projectLeaderTV.setText(createdBy);
                             startDateTV.setText(dateStart.substring(8,10)+"/"+dateStart.substring(5,7)+"/"+dateStart.substring(0,4));
                             endDateTV.setText(dateEnd.substring(8,10)+"/"+dateEnd.substring(5,7)+"/"+dateEnd.substring(0,4));
                             countDuration(dateStart.substring(0,10), dateEnd.substring(0,10));
@@ -257,7 +260,26 @@ public class DetailProjectActivity extends AppCompatActivity {
 
         long progressDay = (selisih_waktu_2 / (24 * 60 * 60 * 1000)) + 1;
 
-        if(progressDay <= 0){
+        String startDateString3 = endDate;
+        String endDateString3 = getDate();
+
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format3 = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1_3 = null;
+        Date date2_3 = null;
+        try {
+            date1_3 = format.parse(endDateString3);
+            date2_3 = format.parse(startDateString3);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long waktu1_3 = date1_3.getTime();
+        long waktu2_3 = date2_3.getTime();
+        long selisih_waktu_3 = waktu1_3 - waktu2_3;
+
+        long overDay = (selisih_waktu_3 / (24 * 60 * 60 * 1000)) + 1;
+
+        if(overDay >= 1){
             progressDay = totalDay;
         }
 
