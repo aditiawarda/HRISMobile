@@ -23,14 +23,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
@@ -45,9 +43,6 @@ import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class ProjectViewActivity extends AppCompatActivity {
 
@@ -272,7 +267,7 @@ public class ProjectViewActivity extends AppCompatActivity {
     }
 
     private void getProjectAll() {
-        final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/project/list";
+        final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/project/list?limit=30";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
@@ -449,6 +444,24 @@ public class ProjectViewActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_KATEGORI_PROJECT, "");
+        categoryNow = "";
+        categoryChoiceTV.setText("Semua");
+        projectRV.setVisibility(View.GONE);
+        loadingPart.setVisibility(View.VISIBLE);
+        noDataPart.setVisibility(View.GONE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getProjectAll();
+            }
+        }, 1300);
     }
 
 }

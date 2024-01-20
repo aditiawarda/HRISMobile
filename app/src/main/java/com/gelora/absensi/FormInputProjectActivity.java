@@ -67,19 +67,19 @@ import java.util.Map;
 
 public class FormInputProjectActivity extends AppCompatActivity {
 
-    LinearLayout startDateBTN, endDateBTN, dueDateBTN, actionBar, backBTN, choiceCategoryBTN, submitBTN, projectLeaderBTN, startAttantionPart, noDataPart, loadingDataPart;
+    LinearLayout viewDetailBTN, formPart, successPart, startDateBTN, endDateBTN, dueDateBTN, actionBar, backBTN, choiceCategoryBTN, submitBTN, projectLeaderBTN, startAttantionPart, noDataPart, loadingDataPart;
     TextView projectNameTV, categoryChoiceTV, projectLeaderTV, dueDateTV, startDateTV, endDateTV;
     EditText projectNameED, projectDescED;
-    ImageView loadingGif;
+    ImageView loadingGif, successGif;
     MultiAutoCompleteTextView picMultyTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
+    RequestQueue requestQueue;
     SwipeRefreshLayout refreshLayout;
     BottomSheetLayout bottomSheet;
     private RecyclerView categoryProjectRV;
     private ProjectCategory[] projectCategories;
     private AdapterProjectCategoryForm adapterProjectCategory;
-    RequestQueue requestQueue;
     String categoryChoice = "", projectDisimpan = "0";
     KAlertDialog pDialog;
     private int i = -1;
@@ -115,8 +115,16 @@ public class FormInputProjectActivity extends AppCompatActivity {
         endDateBTN = findViewById(R.id.end_date_btn);
         startDateTV = findViewById(R.id.start_date_tv);
         endDateTV = findViewById(R.id.end_date_tv);
+        formPart = findViewById(R.id.form_part);
+        successPart = findViewById(R.id.success_part);
+        successGif = findViewById(R.id.success_gif);
+        viewDetailBTN = findViewById(R.id.view_detail_btn);
 
         AUTH_TOKEN = sharedPrefManager.getSpTokenTimeline();
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.success_ic)
+                .into(successGif);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(projectLeaderBroad, new IntentFilter("project_leader"));
         LocalBroadcastManager.getInstance(this).registerReceiver(categoryProjectFormBroad, new IntentFilter("category_project_form_broad"));
@@ -287,8 +295,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
                                         }
                                         public void onFinish() {
                                             i = -1;
-                                            //checkSignature();
-                                            Toast.makeText(FormInputProjectActivity.this, "Jusss", Toast.LENGTH_SHORT).show();
+                                            submitData();
                                         }
                                     }.start();
 
@@ -1530,6 +1537,110 @@ public class FormInputProjectActivity extends AppCompatActivity {
                         Log.e(TAG, "Volley error: " + error.getMessage());
                     }
                 }) {
+            @Override
+            public java.util.Map<String, String> getHeaders() {
+                java.util.Map<String, String> headers = new java.util.HashMap<>();
+                headers.put("Authorization", "Bearer " + AUTH_TOKEN);
+                return headers;
+            }
+        };
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private void submitData() {
+        String URL = "https://timeline.geloraaksara.co.id/project/insert";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JSONObject requestBody = new JSONObject();
+
+        try {
+            requestBody.put("projectName", projectNameED.getText().toString());
+            requestBody.put("descriptionProject", projectDescED.getText().toString());
+            requestBody.put("projectNo", "-");
+
+            JSONArray picArray = new JSONArray();
+            JSONObject picObject1 = new JSONObject();
+            picObject1.put("picNIK", nikProjectLeader);
+            picObject1.put("picName", namaProjectLeader);
+            picObject1.put("picBagian", idBagianProjectLeader);
+            picObject1.put("picDept", idDepartemenProjectLeader);
+            picArray.put(picObject1);
+
+//            JSONObject picObject2 = new JSONObject();
+//            picObject2.put("picNIK", "3157181219");
+//            picObject2.put("picName", "Irfan");
+//            picObject2.put("picBagian", "Rnd");
+//            picObject2.put("picDept", "DEV");
+//            picArray.put(picObject2);
+
+//            JSONObject picObject3 = new JSONObject();
+//            picObject3.put("picNIK", "3157181219");
+//            picObject3.put("picName", "adit");
+//            picObject3.put("picBagian", "Rnd");
+//            picObject3.put("picDept", "DEV");
+//            picArray.put(picObject3);
+
+            requestBody.put("pic", picArray);
+
+            JSONArray taskListArray = new JSONArray();
+            requestBody.put("taskList", taskListArray);
+
+            requestBody.put("targetDate", dueDateChoice);
+            requestBody.put("dateStart", starDateChoice);
+            requestBody.put("dateEnd", endDateChoice);
+            requestBody.put("categoryId", categoryChoice);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                requestBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(TAG, "Response: " + response.toString());
+                        try {
+                            JSONObject data = new JSONObject(response.toString());
+                            String status = data.getString("success");
+                            if(status.equals("true")){
+                                JSONObject main = response.getJSONObject("data");
+                                String id = main.getString("id");
+                                viewDetailBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(FormInputProjectActivity.this, DetailProjectActivity.class);
+                                        intent.putExtra("id_project",id);
+                                        startActivity(intent);
+                                    }
+                                });
+                                projectDisimpan = "1";
+                                successPart.setVisibility(View.VISIBLE);
+                                formPart.setVisibility(View.GONE);
+                                pDialog.dismiss();
+                            } else {
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Tersimpan")
+                                        .setContentText("Terjadi kesalahan")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "Volley error: " + error.getMessage());
+                        connectionFailed();
+                    }
+                }){
             @Override
             public java.util.Map<String, String> getHeaders() {
                 java.util.Map<String, String> headers = new java.util.HashMap<>();

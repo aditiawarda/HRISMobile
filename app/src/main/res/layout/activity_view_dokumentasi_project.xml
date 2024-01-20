@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black_de"
+    tools:context=".ViewDokumentasiProjectActivity">
+
+    <LinearLayout
+        android:id="@+id/loading_part"
+        android:gravity="center"
+        android:layout_marginTop="68dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/loadingProgressBar"
+            android:indeterminateTint="#FFBB65"
+            android:layout_width="45dp"
+            android:layout_height="45dp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginTop="68dp"
+        android:id="@+id/main_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/imageSlider"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="45dp"
+            app:sliderAnimationDuration="600"
+            app:sliderIndicatorAnimationDuration="600"
+            app:sliderIndicatorEnabled="true"
+            app:sliderIndicatorGravity="center_horizontal|bottom"
+            app:sliderIndicatorMarginBottom="50dp"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="3dp"
+            app:sliderIndicatorRadius="2.5dp"
+            app:sliderIndicatorSelectedColor="@color/colorAccent2"
+            app:sliderIndicatorUnselectedColor="#FFF"
+            app:sliderScrollTimeInSec="2"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginRight="-3dp"
+        android:layout_marginLeft="-3dp"
+        android:layout_marginBottom="-3dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="VisualLintBounds">
+
+        <LinearLayout
+            android:id="@+id/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent,VisualLintBounds">
+
+            <LinearLayout
+                android:layout_marginTop="-2dp"
+                android:layout_marginRight="-2dp"
+                android:layout_marginLeft="-2dp"
+                android:background="@drawable/shape_bar_profile_notify"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                tools:ignore="UselessParent,VisualLintBounds">
+
+                <LinearLayout
+                    android:id="@+id/back_btn"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:gravity="center"
+                    android:background="@drawable/shape_back_2"
+                    tools:ignore="RtlHardcoded">
+
+                    <TextView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginRight="1.5dp"
+                        android:background="@drawable/ic_baseline_chevron_back"
+                        tools:ignore="RtlHardcoded" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="right|center"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:ignore="RtlHardcoded">
+
+                    <TextView
+                        android:id="@+id/title_page"
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textStyle="bold"
+                        android:text="DOKUMENTASI PROJECT"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        tools:ignore="HardcodedText,SpUsage" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

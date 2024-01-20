@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,9 +27,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.gelora.absensi.adapter.AdapterDataProject;
 import com.gelora.absensi.adapter.AdapterDataTask;
-import com.gelora.absensi.model.ProjectData;
 import com.gelora.absensi.model.TaskData;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,7 +47,7 @@ import java.util.Map;
 public class DetailProjectActivity extends AppCompatActivity {
 
     LinearLayout actionBar, backBTN, loadingDataPart, noDataPart, addBTN, ganttChartBTN;
-    TextView projectNameTV, startDateTV, endDateTV, projectLeaderTV;
+    TextView projectNameTV, startDateTV, endDateTV, projectLeaderTV, dokumentasiProjectBTN;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -82,6 +79,7 @@ public class DetailProjectActivity extends AppCompatActivity {
         startDateTV = findViewById(R.id.start_date_tv);
         endDateTV = findViewById(R.id.end_date_tv);
         projectLeaderTV = findViewById(R.id.project_leader_tv);
+        dokumentasiProjectBTN = findViewById(R.id.dokumentasi_project_btn);
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -116,6 +114,14 @@ public class DetailProjectActivity extends AppCompatActivity {
                         getDetailProject(projectId);
                     }
                 }, 500);
+            }
+        });
+
+        dokumentasiProjectBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailProjectActivity.this, ViewDokumentasiProjectActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -124,7 +124,7 @@
                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                     <EditText
-                                        android:id="@+id/project_name_ed"
+                                        android:id="@+id/task_name_ed"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="10dp"

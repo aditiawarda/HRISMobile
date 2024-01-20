@@ -981,6 +981,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         sharedPrefManager.saveSPString(SharedPrefManager.SP_HALAMAN, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_TGL_BERGABUNG, "");
         sharedPrefManager.saveSPString(SharedPrefManager.SP_STATUS_KARYAWAN, "");
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_TOKEN_TIMELINE, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_STATUS, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_ULTAH, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_PENGUMUMAN, "");

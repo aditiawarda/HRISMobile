@@ -553,7 +553,7 @@
 
                             <LinearLayout
                                 android:visibility="gone"
-                                android:id="@+id/success_submit"
+                                android:id="@+id/success_part"
                                 android:orientation="vertical"
                                 android:gravity="center"
                                 android:layout_width="match_parent"
@@ -577,7 +577,7 @@
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:text="Permohonan Terkirim"
+                                            android:text="Project Disimpan"
                                             android:textAlignment="center"
                                             android:textColor="@color/white"
                                             android:textSize="15dp"
@@ -589,7 +589,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="15dp"
-                                            android:text="Permohonan anda telah terkirim dan disampaikan kepada Kepala Bagian / Supervisor untuk persetujuan."
+                                            android:text="Project berhasil disimpan, masuk ke detail project untuk menambahkan task project."
                                             android:textAlignment="center"
                                             android:textColor="@color/white"
                                             android:textSize="13dp"
@@ -615,7 +615,7 @@
                                 </RelativeLayout>
 
                                 <LinearLayout
-                                    android:id="@+id/view_permohonan_btn"
+                                    android:id="@+id/view_detail_btn"
                                     android:layout_width="match_parent"
                                     android:layout_marginTop="10dp"
                                     android:layout_height="40dp"
@@ -628,7 +628,7 @@
                                         android:textStyle="bold"
                                         android:textSize="13dp"
                                         android:textColor="@color/white"
-                                        android:text="LIHAT PERMOHONAN"
+                                        android:text="DETAIL PROJECT"
                                         tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
