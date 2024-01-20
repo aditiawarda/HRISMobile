@@ -135,7 +135,7 @@ public class DetailProjectActivity extends AppCompatActivity {
         ganttChartBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DetailProjectActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(DetailProjectActivity.this, PMToolActivity.class);
                 startActivity(intent);
             }
         });

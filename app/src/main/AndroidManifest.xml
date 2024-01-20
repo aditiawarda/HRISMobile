@@ -79,7 +79,7 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".PMToolActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".VisiMisiActivity"

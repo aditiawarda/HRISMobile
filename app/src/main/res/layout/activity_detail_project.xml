@@ -288,7 +288,7 @@
                                 android:paddingTop="10dp"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
-                                android:paddingBottom="100dp"
+                                android:paddingBottom="110dp"
                                 android:orientation="vertical">
 
                                 <androidx.recyclerview.widget.RecyclerView
