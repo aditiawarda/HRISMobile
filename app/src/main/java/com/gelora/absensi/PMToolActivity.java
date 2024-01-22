@@ -18,11 +18,13 @@ public class PMToolActivity extends AppCompatActivity {
         WebView webView = findViewById(R.id.webView);
         WebSettings webSettings = webView.getSettings();
 
+        String id_project = getIntent().getExtras().getString("id_project");
+
         // Enable JavaScript (optional)
         webSettings.setJavaScriptEnabled(true);
 
         // Load a web page
-        webView.loadUrl("https://github.com/aditiawarda");
+        webView.loadUrl("https://appointment.geloraaksara.co.id/dashboard/detail_task?id="+id_project);
 
     }
 }

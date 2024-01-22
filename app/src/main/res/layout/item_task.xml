@@ -82,7 +82,7 @@
                             android:id="@+id/target"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="00/00/0000 (Priority)"
+                            android:text="00/00/0000"
                             android:textColor="#EE3838"
                             android:textSize="11dp"
                             android:ellipsize="end"
@@ -209,6 +209,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="18dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -218,12 +219,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="00/00/0000"
-                        android:textColor="#38A7AC"
-                        android:textSize="11dp"
                         android:ellipsize="end"
                         android:lineSpacingExtra="3dp"
                         android:maxLines="3"
+                        android:text="00/00/0000"
+                        android:textColor="#38A7AC"
+                        android:textSize="11dp"
                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                     <TextView
@@ -243,32 +244,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="17dp"
-                android:gravity="right"
-                tools:ignore="RtlHardcoded">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Last Update : 00/00/0000"
-                    android:textColor="#9E9E9E"
-                    android:textSize="9dp"
-                    android:ellipsize="end"
-                    android:lineSpacingExtra="3dp"
-                    android:maxLines="3"
-                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-            </LinearLayout>
-
-            <LinearLayout
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginBottom="-60dp"
-                android:layout_marginTop="-27dp"
+                android:layout_marginTop="-15dp"
                 android:background="@drawable/shape_ornament_1"
                 tools:ignore="VisualLintBounds" />
 

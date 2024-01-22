@@ -118,7 +118,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="3dp"
                                         android:layout_marginBottom="5dp"
-                                        android:text="Deskrisi Task :"
+                                        android:text="Nama Task :"
                                         android:textColor="#696969"
                                         android:textSize="12dp"
                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -331,70 +331,6 @@
                                                     android:layout_width="25dp"
                                                     android:layout_height="25dp"
                                                     android:background="@drawable/ic_baseline_date"/>
-
-                                            </LinearLayout>
-
-                                        </RelativeLayout>
-
-                                    </LinearLayout>
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="3dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:text="Priority :"
-                                        android:textColor="#696969"
-                                        android:textSize="12dp"
-                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                    <LinearLayout
-
-                                        android:layout_width="match_parent"
-                                        android:layout_height="40dp"
-                                        android:paddingStart="20dp"
-                                        android:layout_marginBottom="10dp"
-                                        android:background="@drawable/shape_feel"
-                                        android:orientation="horizontal"
-                                        tools:ignore="RtlSymmetry">
-
-                                        <RelativeLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent">
-
-                                            <LinearLayout
-                                                android:layout_marginTop="10dp"
-                                                android:layout_marginBottom="10dp"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="40dp"
-                                                android:orientation="vertical"
-                                                android:gravity="center|left"
-                                                tools:ignore="RelativeOverlap,RtlHardcoded">
-
-                                                <TextView
-
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:textColor="#B15735"
-                                                    android:textSize="13dp"
-                                                    android:textStyle="bold"
-                                                    android:text=""
-                                                    tools:ignore="SpUsage" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:layout_alignParentRight="true"
-                                                android:layout_width="40dp"
-                                                android:layout_height="match_parent"
-                                                android:background="@drawable/shape_btn"
-                                                android:gravity="center"
-                                                tools:ignore="RtlHardcoded">
-
-                                                <TextView
-                                                    android:layout_width="25dp"
-                                                    android:layout_height="25dp"
-                                                    android:background="@drawable/ic_baseline_down"/>
 
                                             </LinearLayout>
 
