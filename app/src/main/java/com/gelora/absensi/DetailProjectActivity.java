@@ -47,7 +47,7 @@ import java.util.Map;
 
 public class DetailProjectActivity extends AppCompatActivity {
 
-    LinearLayout actionBar, backBTN, loadingDataPart, noDataPart, addBTN, ganttChartBTN;
+    LinearLayout tabelBTN, actionBar, backBTN, loadingDataPart, noDataPart, addBTN, ganttChartBTN;
     TextView projectNameTV, startDateTV, endDateTV, projectLeaderTV, dokumentasiProjectBTN;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -77,6 +77,7 @@ public class DetailProjectActivity extends AppCompatActivity {
         projectNameTV = findViewById(R.id.project_name_tv);
         addBTN = findViewById(R.id.add_btn);
         ganttChartBTN = findViewById(R.id.gantt_chart_btn);
+        tabelBTN = findViewById(R.id.table_btn);
         startDateTV = findViewById(R.id.start_date_tv);
         endDateTV = findViewById(R.id.end_date_tv);
         projectLeaderTV = findViewById(R.id.project_leader_tv);
@@ -139,10 +140,15 @@ public class DetailProjectActivity extends AppCompatActivity {
                 Intent intent = new Intent(DetailProjectActivity.this, ProjectGanttChartViewActivity.class);
                 intent.putExtra("id_project",projectId);
                 startActivity(intent);
+            }
+        });
 
-//                Intent intent = new Intent(DetailProjectActivity.this, PMToolActivity.class);
-//                intent.putExtra("id_project",projectId);
-//                startActivity(intent);
+        tabelBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailProjectActivity.this, TabelProjectViewActivity.class);
+                intent.putExtra("id_project",projectId);
+                startActivity(intent);
             }
         });
 
