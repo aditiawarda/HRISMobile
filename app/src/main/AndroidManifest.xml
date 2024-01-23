@@ -55,7 +55,6 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ProjectGanttChartViewActivity"
-            android:screenOrientation="landscape"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ViewDokumentasiProjectActivity"
