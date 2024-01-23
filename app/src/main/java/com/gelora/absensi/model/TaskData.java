@@ -2,22 +2,12 @@ package com.gelora.absensi.model;
 
 public class TaskData {
 
-//    private String taksId;
     private String taskname;
-//    private String projectId;
-//    private String pic;
-//    private String progressPercent;
-
-
-
-
-//    public String getTaksId() {
-//        return taksId;
-//    }
-//
-//    public void setTaksId(String taksId) {
-//        this.taksId = taksId;
-//    }
+    private String pic;
+    private String status;
+    private String date;
+    private String progressDate;
+    private String timeline;
 
     public String getTaskName() {
         return taskname;
@@ -27,28 +17,44 @@ public class TaskData {
         this.taskname = taskname;
     }
 
-//    public String getProjectId() {
-//        return projectId;
-//    }
-//
-//    public void setProjectId(String projectId) {
-//        this.projectId = projectId;
-//    }
-//
-//    public String getPic() {
-//        return pic;
-//    }
-//
-//    public void setPic(String pic) {
-//        this.pic = pic;
-//    }
-//
-//    public String getProgressPercent() {
-//        return progressPercent;
-//    }
-//
-//    public void setProgressPercent(String progressPercent) {
-//        this.progressPercent = progressPercent;
-//    }
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getProgressDate() {
+        return progressDate;
+    }
+
+    public void setProgressDate(String progressDate) {
+        this.progressDate = progressDate;
+    }
+
+    public String getTimeline() {
+        return timeline;
+    }
+
+    public void setTimeline(String timeline) {
+        this.timeline = timeline;
+    }
 
 }

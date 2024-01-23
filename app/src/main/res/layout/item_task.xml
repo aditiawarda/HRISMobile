@@ -79,7 +79,7 @@
                             android:background="@drawable/ic_baseline_crisis_alert"/>
 
                         <TextView
-                            android:id="@+id/target"
+                            android:id="@+id/target_date_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="00/00/0000"
@@ -111,13 +111,15 @@
                         tools:ignore="UselessParent">
 
                         <TextView
+                            android:id="@+id/status_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:padding="3dp"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp"
                             android:text="Status"
                             android:textColor="@color/white"
-                            android:textSize="12dp"
+                            android:textSize="11dp"
                             tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                     </LinearLayout>
@@ -135,7 +137,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:padding="5dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -143,9 +146,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="5dp"
-                                android:text="00"
+                                android:text="0"
                                 android:textColor="@color/white"
-                                android:textSize="19dp"
+                                android:textSize="16dp"
                                 android:textStyle="bold"
                                 tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 
@@ -161,7 +164,6 @@
                         </LinearLayout>
 
                     </LinearLayout>
-
 
                 </LinearLayout>
 
@@ -185,18 +187,22 @@
                         tools:ignore="DisableBaselineAlignment">
 
                         <LinearLayout
+                            android:id="@+id/progress_bar"
                             android:background="@drawable/shape_taks_progress"
                             android:layout_width="0dp"
                             android:layout_weight=".50"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
 
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/left_bar"
                             android:layout_width="0dp"
                             android:layout_weight=".50"
                             android:layout_height="match_parent"
-                            tools:ignore="UselessLeaf">
+                            tools:ignore="UselessLeaf"
+                            android:orientation="horizontal">
 
                         </LinearLayout>
 
@@ -217,6 +223,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/start_date_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
@@ -228,6 +235,7 @@
                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                     <TextView
+                        android:id="@+id/end_date_tv"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

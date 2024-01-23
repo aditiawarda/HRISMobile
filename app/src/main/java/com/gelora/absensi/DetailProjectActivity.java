@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -135,12 +136,13 @@ public class DetailProjectActivity extends AppCompatActivity {
         ganttChartBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(DetailProjectActivity.this, ProjectGanttChartViewActivity.class);
-//                startActivity(intent);
-
-                Intent intent = new Intent(DetailProjectActivity.this, PMToolActivity.class);
+                Intent intent = new Intent(DetailProjectActivity.this, ProjectGanttChartViewActivity.class);
                 intent.putExtra("id_project",projectId);
                 startActivity(intent);
+
+//                Intent intent = new Intent(DetailProjectActivity.this, PMToolActivity.class);
+//                intent.putExtra("id_project",projectId);
+//                startActivity(intent);
             }
         });
 
@@ -175,14 +177,17 @@ public class DetailProjectActivity extends AppCompatActivity {
                             data = response.getJSONObject("data");
                             String projectName = data.getString("projectName");
                             String createdBy = data.getString("createdBy");
+                            String pic = data.getString("pic");
                             String dateStart = data.getString("dateStart");
                             String dateEnd = data.getString("dateEnd");
                             String taskList = data.getString("taskList");
                             projectNameTV.setText(projectName);
-                            projectLeaderTV.setText(createdBy);
                             startDateTV.setText(dateStart.substring(8,10)+"/"+dateStart.substring(5,7)+"/"+dateStart.substring(0,4));
                             endDateTV.setText(dateEnd.substring(8,10)+"/"+dateEnd.substring(5,7)+"/"+dateEnd.substring(0,4));
                             countDuration(dateStart.substring(0,10), dateEnd.substring(0,10));
+
+                            String[] namaPIC = pic.split("-");
+                            projectLeaderTV.setText(namaPIC[1]);
 
                             JSONArray jsonArray = new JSONArray(taskList);
                             int arrayLength = jsonArray.length();

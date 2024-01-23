@@ -22,6 +22,11 @@ import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.model.ProjectData;
 import com.gelora.absensi.model.TaskData;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyViewHolder> {
 
     private TaskData[] data;
@@ -48,24 +53,133 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final TaskData taskData = data[i];
 
-//        myViewHolder.picTV.setText(taskData.getPic());
+        if(taskData.getPic().equals("") || taskData.getPic().equals(" ") || taskData.getPic().equals("null")){
+            myViewHolder.picTV.setText("Tidak Diketahui");
+        } else {
+            myViewHolder.picTV.setText(taskData.getPic().substring(11, taskData.getPic().length()));
+        }
+
         myViewHolder.taskTV.setText(taskData.getTaskName());
-//        myViewHolder.progressPercent.setText(taskData.getProgressPercent());
-//
-//        if (Integer.parseInt(taskData.getProgressPercent()) >= 0 && Integer.parseInt(taskData.getProgressPercent()) < 25) {
-//            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0_25));
-//        } else if (Integer.parseInt(taskData.getProgressPercent()) >= 25 && Integer.parseInt(taskData.getProgressPercent()) < 50) {
-//            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
-//        } else if (Integer.parseInt(taskData.getProgressPercent()) >= 50 && Integer.parseInt(taskData.getProgressPercent()) < 75) {
-//            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_50_75));
-//        } else if (Integer.parseInt(taskData.getProgressPercent()) >= 75 && Integer.parseInt(taskData.getProgressPercent()) <= 100) {
-//            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_75_100));
-//        }
+
+        if(taskData.getDate().equals("")){
+            myViewHolder.targetDateTV.setText("00/00/0000");
+        } else {
+            String targetDate = taskData.getDate().substring(3,5)+"/"+taskData.getDate().substring(0,2)+"/"+taskData.getDate().substring(6,10);
+            myViewHolder.targetDateTV.setText(targetDate);
+        }
+
+        if(taskData.getStatus().equals("5")){
+            myViewHolder.statusTV.setText("Done");
+        } else if(taskData.getStatus().equals("4")){
+            myViewHolder.statusTV.setText("On Hold");
+        } else if(taskData.getStatus().equals("3")){
+            myViewHolder.statusTV.setText("Waiting Acc");
+        } else if(taskData.getStatus().equals("2")){
+            myViewHolder.statusTV.setText("On Progress");
+        } else if(taskData.getStatus().equals("1")){
+            myViewHolder.statusTV.setText("Waiting");
+        } else {
+            myViewHolder.statusTV.setText("Undefined");
+        }
+
+        myViewHolder.progressPercent.setText(taskData.getProgressDate());
+
+        if (Integer.parseInt(taskData.getProgressDate()) >= 0 && Integer.parseInt(taskData.getProgressDate()) < 25) {
+            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0_25));
+        } else if (Integer.parseInt(taskData.getProgressDate()) >= 25 && Integer.parseInt(taskData.getProgressDate()) < 50) {
+            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
+        } else if (Integer.parseInt(taskData.getProgressDate()) >= 50 && Integer.parseInt(taskData.getProgressDate()) < 75) {
+            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_50_75));
+        } else if (Integer.parseInt(taskData.getProgressDate()) >= 75 && Integer.parseInt(taskData.getProgressDate()) <= 100) {
+            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_75_100));
+        }
+
+        // ProgressBar Part
+
+        myViewHolder.startDateTV.setText(taskData.getTimeline().substring(3,5)+"/"+taskData.getTimeline().substring(0,2)+"/"+taskData.getTimeline().substring(6,10));
+        myViewHolder.endDateTV.setText(taskData.getTimeline().substring(16,18)+"/"+taskData.getTimeline().substring(13,15)+"/"+taskData.getTimeline().substring(19,23));
+
+        String startDateString = taskData.getTimeline().substring(6,10)+"-"+taskData.getTimeline().substring(0,2)+"-"+taskData.getTimeline().substring(3,5);
+        String endDateString = taskData.getTimeline().substring(19,23)+"-"+taskData.getTimeline().substring(13,15)+"-"+taskData.getTimeline().substring(16,18);
+
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = null;
+        Date date2 = null;
+        try {
+            date1 = format.parse(endDateString);
+            date2 = format.parse(startDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long waktu1 = date1.getTime();
+        long waktu2 = date2.getTime();
+        long selisih_waktu = waktu1 - waktu2;
+
+        long totalDay = (selisih_waktu / (24 * 60 * 60 * 1000)) + 1;
+
+        String startDateString2 = startDateString;
+        String endDateString2 = getDate();
+
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1_2 = null;
+        Date date2_2 = null;
+        try {
+            date1_2 = format.parse(endDateString2);
+            date2_2 = format.parse(startDateString2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long waktu1_2 = date1_2.getTime();
+        long waktu2_2 = date2_2.getTime();
+        long selisih_waktu_2 = waktu1_2 - waktu2_2;
+
+        long progressDay = (selisih_waktu_2 / (24 * 60 * 60 * 1000)) + 1;
+
+        String startDateString3 = endDateString;
+        String endDateString3 = getDate();
+
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format3 = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1_3 = null;
+        Date date2_3 = null;
+        try {
+            date1_3 = format.parse(endDateString3);
+            date2_3 = format.parse(startDateString3);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long waktu1_3 = date1_3.getTime();
+        long waktu2_3 = date2_3.getTime();
+        long selisih_waktu_3 = waktu1_3 - waktu2_3;
+
+        long overDay = (selisih_waktu_3 / (24 * 60 * 60 * 1000)) + 1;
+
+        if(overDay >= 1){
+            progressDay = totalDay;
+        }
+
+        float persentase = ((float) progressDay / (float) totalDay) * 100;
+
+        LinearLayout.LayoutParams layoutParamsProgress = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,0.0f);
+        LinearLayout.LayoutParams layoutParamsLeft = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,0.10f);
+
+        float weightProgress = (float) Math.round(persentase) / 100.0f;
+        float weightLeft = (float) (100 - Math.round(persentase)) / 100.0f;
+
+        layoutParamsProgress.weight = weightProgress;
+        layoutParamsLeft.weight = weightLeft;
+
+        myViewHolder.progressBar.setLayoutParams(layoutParamsProgress);
+        myViewHolder.leftBar.setLayoutParams(layoutParamsLeft);
+
+        // End ProgressBar Part
 
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Test", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -77,8 +191,8 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout parentPart, progressPart;
-        TextView picTV, taskTV, progressPercent;
+        LinearLayout parentPart, progressPart, progressBar, leftBar;
+        TextView picTV, taskTV, progressPercent, statusTV, targetDateTV, startDateTV, endDateTV;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parentPart = itemView.findViewById(R.id.parent_part);
@@ -86,8 +200,20 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
             taskTV = itemView.findViewById(R.id.task_tv);
             progressPercent = itemView.findViewById(R.id.progress_percent);
             progressPart = itemView.findViewById(R.id.progress_part);
+            statusTV = itemView.findViewById(R.id.status_tv);
+            targetDateTV = itemView.findViewById(R.id.target_date_tv);
+            progressBar = itemView.findViewById(R.id.progress_bar);
+            leftBar = itemView.findViewById(R.id.left_bar);
+            startDateTV = itemView.findViewById(R.id.start_date_tv);
+            endDateTV = itemView.findViewById(R.id.end_date_tv);
         }
     }
 
+    private String getDate() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 
 }
