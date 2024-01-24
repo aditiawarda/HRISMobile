@@ -34,6 +34,7 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -1351,7 +1352,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
 
     }
 
-    private void submitData() {
+    private void submitData2() {
         String URL = "https://timeline.geloraaksara.co.id/project/insert";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JSONObject requestBody = new JSONObject();
@@ -1450,6 +1451,91 @@ public class FormInputProjectActivity extends AppCompatActivity {
                 return headers;
             }
         };
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private void submitData() {
+        String URL = "https://geloraaksara.co.id/absen-online/api/create_project_timeline";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JSONObject requestBody = new JSONObject();
+
+        try {
+            requestBody.put("project_name", projectNameED.getText().toString());
+            requestBody.put("project_desc", projectDescED.getText().toString());
+            requestBody.put("project_no", "-");
+
+            JSONArray picArray = new JSONArray();
+            JSONObject picObject1 = new JSONObject();
+            picObject1.put("picNIK", nikProjectLeader);
+            picObject1.put("picName", namaProjectLeader);
+            picObject1.put("picBagian", idBagianProjectLeader);
+            picObject1.put("picDept", idDepartemenProjectLeader);
+            picArray.put(picObject1);
+
+            requestBody.put("project_pic", String.valueOf(picArray));
+
+            JSONArray taskListArray = new JSONArray();
+            requestBody.put("project_task", String.valueOf(taskListArray));
+
+            requestBody.put("target_date", dueDateChoice);
+            requestBody.put("start_date", starDateChoice);
+            requestBody.put("end_date", endDateChoice);
+            requestBody.put("category_id", categoryChoice);
+            requestBody.put("created_by", sharedPrefManager.getSpNama());
+            requestBody.put("updated_by", sharedPrefManager.getSpNama());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                requestBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(TAG, "Response: " + response.toString());
+                        try {
+                            JSONObject data = new JSONObject(response.toString());
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                String id_project = data.getString("id_project");
+                                viewDetailBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(FormInputProjectActivity.this, DetailProjectActivity.class);
+                                        intent.putExtra("id_project",id_project);
+                                        startActivity(intent);
+                                    }
+                                });
+                                projectDisimpan = "1";
+                                successPart.setVisibility(View.VISIBLE);
+                                formPart.setVisibility(View.GONE);
+                                pDialog.dismiss();
+                            } else {
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Tersimpan")
+                                        .setContentText("Terjadi kesalahan")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "Volley error: " + error.getMessage());
+                        connectionFailed();
+                    }
+                });
 
         requestQueue.add(jsonObjectRequest);
 

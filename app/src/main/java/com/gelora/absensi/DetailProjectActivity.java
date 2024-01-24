@@ -28,7 +28,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.gelora.absensi.adapter.AdapterDataProject;
 import com.gelora.absensi.adapter.AdapterDataTask;
+import com.gelora.absensi.model.ProjectData;
 import com.gelora.absensi.model.TaskData;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -164,7 +166,7 @@ public class DetailProjectActivity extends AppCompatActivity {
 
     }
 
-    private void getDetailProject(String project_id) {
+    private void getDetailProject2(String project_id) {
         final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/project/detail?id="+project_id;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
@@ -238,6 +240,79 @@ public class DetailProjectActivity extends AppCompatActivity {
         };
 
         requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private void getDetailProject(String project_id) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_project_detail";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data =  new JSONObject(response);
+                            String projectName = data.getString("projectName");
+                            String pic = data.getString("pic");
+                            String dateStart = data.getString("dateStart");
+                            String dateEnd = data.getString("dateEnd");
+                            String taskList = data.getString("taskList");
+                            projectNameTV.setText(projectName);
+                            startDateTV.setText(dateStart.substring(8,10)+"/"+dateStart.substring(5,7)+"/"+dateStart.substring(0,4));
+                            endDateTV.setText(dateEnd.substring(8,10)+"/"+dateEnd.substring(5,7)+"/"+dateEnd.substring(0,4));
+                            countDuration(dateStart.substring(0,10), dateEnd.substring(0,10));
+
+                            String[] namaPIC = pic.split("-");
+                            projectLeaderTV.setText(namaPIC[1]);
+
+                            JSONArray jsonArray = new JSONArray(taskList);
+                            int arrayLength = jsonArray.length();
+                            if(arrayLength != 0) {
+                                taskRV.setVisibility(View.VISIBLE);
+                                loadingDataPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.GONE);
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                taskData = gson.fromJson(taskList, TaskData[].class);
+                                adapterDataTask = new AdapterDataTask(taskData,DetailProjectActivity.this);
+                                try {
+                                    taskRV.setAdapter(adapterDataTask);
+                                } catch (NullPointerException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                taskRV.setVisibility(View.GONE);
+                                loadingDataPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("project_id", project_id);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
 
     }
 

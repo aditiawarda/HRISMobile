@@ -342,12 +342,15 @@ public class AllMenuActivity extends AppCompatActivity {
         menuProjectBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(sharedPrefManager.getSpPassword().equals("")){
-                    Intent intent = new Intent(AllMenuActivity.this, PasswordRequestActivity.class);
-                    startActivity(intent);
-                } else {
-                    getTokenAccess();
-                }
+                Intent intent = new Intent(AllMenuActivity.this, ProjectViewActivity.class);
+                startActivity(intent);
+
+                // if(sharedPrefManager.getSpPassword().equals("")){
+                //     Intent intent = new Intent(AllMenuActivity.this, PasswordRequestActivity.class);
+                //     startActivity(intent);
+                // } else {
+                //    getTokenAccess();
+                // }
             }
         });
 

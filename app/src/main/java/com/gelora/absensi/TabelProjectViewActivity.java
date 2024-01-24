@@ -12,6 +12,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -33,6 +34,7 @@ import org.json.JSONObject;
 public class TabelProjectViewActivity extends AppCompatActivity {
 
     TextView projectNameTV, startDateTV, endDateTV, projectLeaderTV, dokumentasiProjectBTN;
+    LinearLayout noDataPartTask;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -57,6 +59,7 @@ public class TabelProjectViewActivity extends AppCompatActivity {
         AUTH_TOKEN = sharedPrefManager.getSpTokenTimeline();
         projectId = getIntent().getExtras().getString("id_project");
 
+        noDataPartTask = findViewById(R.id.no_data_part_task);
         taskRV = findViewById(R.id.data_task_rv);
         taskRV.setLayoutManager(new LinearLayoutManager(this));
         taskRV.setHasFixedSize(true);
@@ -101,9 +104,8 @@ public class TabelProjectViewActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(taskList);
                             int arrayLength = jsonArray.length();
                             if(arrayLength != 0) {
-//                                taskRV.setVisibility(View.VISIBLE);
-//                                loadingDataPart.setVisibility(View.GONE);
-//                                noDataPart.setVisibility(View.GONE);
+                                taskRV.setVisibility(View.VISIBLE);
+                                noDataPartTask.setVisibility(View.GONE);
                                 GsonBuilder builder = new GsonBuilder();
                                 Gson gson = builder.create();
                                 taskData = gson.fromJson(taskList, TaskData[].class);
@@ -114,9 +116,8 @@ public class TabelProjectViewActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                             } else {
-//                                taskRV.setVisibility(View.GONE);
-//                                loadingDataPart.setVisibility(View.GONE);
-//                                noDataPart.setVisibility(View.VISIBLE);
+                                taskRV.setVisibility(View.GONE);
+                                noDataPartTask.setVisibility(View.VISIBLE);
                             }
 
                         } catch (JSONException e) {

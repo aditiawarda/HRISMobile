@@ -23,17 +23,21 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterDataProject;
 import com.gelora.absensi.adapter.AdapterProjectCategory;
+import com.gelora.absensi.adapter.AdapterPulangCepat;
+import com.gelora.absensi.model.DataPulangCepat;
 import com.gelora.absensi.model.ProjectCategory;
 import com.gelora.absensi.model.ProjectData;
 import com.google.gson.Gson;
@@ -43,6 +47,9 @@ import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProjectViewActivity extends AppCompatActivity {
 
@@ -215,7 +222,7 @@ public class ProjectViewActivity extends AppCompatActivity {
 
     }
 
-    private void getProjectCategory() {
+    private void getProjectCategory2() {
         final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/category/list";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -266,7 +273,51 @@ public class ProjectViewActivity extends AppCompatActivity {
 
     }
 
-    private void getProjectAll() {
+    private void getProjectCategory() {
+        final String API_ENDPOINT_CATEGORY = "https://geloraaksara.co.id/absen-online/api/get_project_category";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                API_ENDPOINT_CATEGORY,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(TAG, "Response: " + response.toString());
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            String status = response.getString("status");
+                            if(status.equals("Success")) {
+                                String data_category = response.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                projectCategories = gson.fromJson(data_category, ProjectCategory[].class);
+                                adapterProjectCategory = new AdapterProjectCategory(projectCategories, ProjectViewActivity.this);
+                                try {
+                                    categoryProjectRV.setAdapter(adapterProjectCategory);
+                                } catch (NullPointerException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle the error
+                        Log.e(TAG, "Volley error: " + error.getMessage());
+                    }
+                });
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private void getProjectAll2() {
         final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/project/list?limit=30";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -333,7 +384,78 @@ public class ProjectViewActivity extends AppCompatActivity {
 
     }
 
-    private void getProject(String category_id) {
+    private void getProjectAll() {
+        final String API_ENDPOINT_CATEGORY = "https://geloraaksara.co.id/absen-online/api/get_project_all";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                API_ENDPOINT_CATEGORY,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(TAG, "Response: " + response.toString());
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            String status = response.getString("status");
+                            if(status.equals("Success")){
+                                String data_project = response.getString("data");
+                                JSONArray jsonArray = new JSONArray(data_project);
+                                int arrayLength = jsonArray.length();
+                                if(arrayLength != 0) {
+                                    projectRV.setVisibility(View.VISIBLE);
+                                    loadingPart.setVisibility(View.GONE);
+                                    noDataPart.setVisibility(View.GONE);
+                                    GsonBuilder builder = new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    projectData = gson.fromJson(data_project, ProjectData[].class);
+                                    adapterDataProject = new AdapterDataProject(projectData,ProjectViewActivity.this);
+                                    try {
+                                        projectRV.setAdapter(adapterDataProject);
+                                    } catch (NullPointerException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
+                                    projectRV.setVisibility(View.GONE);
+                                    loadingPart.setVisibility(View.GONE);
+                                    noDataPart.setVisibility(View.VISIBLE);
+                                }
+                            } else {
+                                projectRV.setVisibility(View.GONE);
+                                loadingPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle the error
+                        Log.e(TAG, "Volley error: " + error.getMessage());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                        projectRV.setVisibility(View.GONE);
+                        loadingPart.setVisibility(View.GONE);
+                        noDataPart.setVisibility(View.VISIBLE);
+                    }
+                }) {
+            @Override
+            public java.util.Map<String, String> getHeaders() {
+                java.util.Map<String, String> headers = new java.util.HashMap<>();
+                headers.put("Authorization", "Bearer " + AUTH_TOKEN);
+                return headers;
+            }
+        };
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private void getProject2(String category_id) {
         final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/category/detail?id="+category_id;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -397,6 +519,73 @@ public class ProjectViewActivity extends AppCompatActivity {
         };
 
         requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private void getProject(String category_id) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_project_by_category";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
+                            if(status.equals("Success")){
+                                String data_project = data.getString("data");
+                                JSONArray jsonArray = new JSONArray(data_project);
+                                int arrayLength = jsonArray.length();
+                                if(arrayLength != 0) {
+                                    projectRV.setVisibility(View.VISIBLE);
+                                    loadingPart.setVisibility(View.GONE);
+                                    noDataPart.setVisibility(View.GONE);
+                                    GsonBuilder builder = new GsonBuilder();
+                                    Gson gson = builder.create();
+                                    projectData = gson.fromJson(data_project, ProjectData[].class);
+                                    adapterDataProject = new AdapterDataProject(projectData,ProjectViewActivity.this);
+                                    try {
+                                        projectRV.setAdapter(adapterDataProject);
+                                    } catch (NullPointerException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
+                                    projectRV.setVisibility(View.GONE);
+                                    loadingPart.setVisibility(View.GONE);
+                                    noDataPart.setVisibility(View.VISIBLE);
+                                }
+                            } else {
+                                projectRV.setVisibility(View.GONE);
+                                loadingPart.setVisibility(View.GONE);
+                                noDataPart.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_category", category_id);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
 
     }
 

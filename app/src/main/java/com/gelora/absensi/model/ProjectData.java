@@ -11,7 +11,6 @@ public class ProjectData {
     private String dateEnd;
     private String categoryId;
     private String categoryName;
-    //private String progressPercent;
 
     public String getId() {
         return id;
@@ -84,4 +83,5 @@ public class ProjectData {
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
+
 }
