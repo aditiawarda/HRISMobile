@@ -20,6 +20,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.gelora.absensi.adapter.AdapterDataTask;
 import com.gelora.absensi.adapter.AdapterDataTaskTabel;
@@ -27,9 +28,13 @@ import com.gelora.absensi.model.TaskData;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class TabelProjectViewActivity extends AppCompatActivity {
 
@@ -70,7 +75,7 @@ public class TabelProjectViewActivity extends AppCompatActivity {
 
     }
 
-    private void getDetailProject(String project_id) {
+    private void getDetailProject2(String project_id) {
         final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/project/detail?id="+project_id;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
@@ -94,9 +99,6 @@ public class TabelProjectViewActivity extends AppCompatActivity {
                             String dateEnd = data.getString("dateEnd");
                             String taskList = data.getString("taskList");
                             projectNameTV.setText(projectName);
-//                            startDateTV.setText(dateStart.substring(8,10)+"/"+dateStart.substring(5,7)+"/"+dateStart.substring(0,4));
-//                            endDateTV.setText(dateEnd.substring(8,10)+"/"+dateEnd.substring(5,7)+"/"+dateEnd.substring(0,4));
-//                            countDuration(dateStart.substring(0,10), dateEnd.substring(0,10));
 
                             String[] namaPIC = pic.split("-");
                             projectLeaderTV.setText(namaPIC[1]);
@@ -130,7 +132,7 @@ public class TabelProjectViewActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // Handle the error
                         Log.e(TAG, "Volley error: " + error.getMessage());
-//                        connectionFailed();
+                         connectionFailed();
                     }
                 }) {
             @Override
@@ -143,6 +145,91 @@ public class TabelProjectViewActivity extends AppCompatActivity {
 
         requestQueue.add(jsonObjectRequest);
 
+    }
+
+    private void getDetailProject(String project_id) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_project_detail";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data =  new JSONObject(response);
+                            String projectName = data.getString("projectName");
+                            String createdBy = data.getString("createdBy");
+                            String pic = data.getString("pic");
+                            String dateStart = data.getString("dateStart");
+                            String dateEnd = data.getString("dateEnd");
+                            String taskList = data.getString("taskList");
+                            projectNameTV.setText(projectName);
+                            // startDateTV.setText(dateStart.substring(8,10)+"/"+dateStart.substring(5,7)+"/"+dateStart.substring(0,4));
+                            // endDateTV.setText(dateEnd.substring(8,10)+"/"+dateEnd.substring(5,7)+"/"+dateEnd.substring(0,4));
+                            // countDuration(dateStart.substring(0,10), dateEnd.substring(0,10));
+
+                            String[] namaPIC = pic.split("-");
+                            projectLeaderTV.setText(namaPIC[1]);
+
+                            JSONArray jsonArray = new JSONArray(taskList);
+                            int arrayLength = jsonArray.length();
+                            if(arrayLength != 0) {
+                                taskRV.setVisibility(View.VISIBLE);
+                                noDataPartTask.setVisibility(View.GONE);
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                taskData = gson.fromJson(taskList, TaskData[].class);
+                                adapterDataTask = new AdapterDataTaskTabel(taskData,TabelProjectViewActivity.this);
+                                try {
+                                    taskRV.setAdapter(adapterDataTask);
+                                } catch (NullPointerException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                taskRV.setVisibility(View.GONE);
+                                noDataPartTask.setVisibility(View.VISIBLE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("project_id", project_id);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void connectionFailed(){
+        CookieBar.build(TabelProjectViewActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
     }
 
 }
