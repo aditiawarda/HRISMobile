@@ -56,16 +56,22 @@ public class AdapterDataTaskTabel extends RecyclerView.Adapter<AdapterDataTaskTa
 
         if(taskData.getStatus().equals("5")){
             myViewHolder.statusTV.setText("Done");
+            myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_75_100));
         } else if(taskData.getStatus().equals("4")){
             myViewHolder.statusTV.setText("On Hold");
+            myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0_25));
         } else if(taskData.getStatus().equals("3")){
             myViewHolder.statusTV.setText("Waiting Acc");
+            myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
         } else if(taskData.getStatus().equals("2")){
             myViewHolder.statusTV.setText("On Progress");
+            myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_50_75));
         } else if(taskData.getStatus().equals("1")){
             myViewHolder.statusTV.setText("Waiting");
+            myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
         } else {
             myViewHolder.statusTV.setText("Undefined");
+            myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0));
         }
 
         myViewHolder.progressTV.setText(taskData.getProgressDate()+"%");
@@ -79,6 +85,7 @@ public class AdapterDataTaskTabel extends RecyclerView.Adapter<AdapterDataTaskTa
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView taskTV, statusTV, progressTV, startDateTV, endDateTV;
+        LinearLayout statusPart;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             taskTV = itemView.findViewById(R.id.task_tv);
@@ -86,6 +93,7 @@ public class AdapterDataTaskTabel extends RecyclerView.Adapter<AdapterDataTaskTa
             progressTV = itemView.findViewById(R.id.progress_tv);
             startDateTV = itemView.findViewById(R.id.start_date_tv);
             endDateTV = itemView.findViewById(R.id.end_date_tv);
+            statusPart = itemView.findViewById(R.id.status_part);
         }
     }
 

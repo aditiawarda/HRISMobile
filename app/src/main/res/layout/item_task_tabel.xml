@@ -121,6 +121,7 @@
                 android:gravity="center">
 
                 <LinearLayout
+                    android:id="@+id/status_part"
                     android:background="@drawable/shape_progress_0_25"
                     android:gravity="center"
                     android:layout_width="match_parent"
@@ -172,6 +173,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="100%"
+                        android:textStyle="bold"
                         android:textColor="@color/color1"
                         android:textSize="13dp"
                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
