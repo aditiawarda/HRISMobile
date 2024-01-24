@@ -88,7 +88,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
     private RecyclerView karyawanRV;
     private KaryawanAll[] karyawanAlls;
     private AdapterAllKaryawan adapterAllKaryawan;
-    String dueDateChoice = "", starDateChoice = "", endDateChoice = "", nikProjectLeader = "", namaProjectLeader = "", idBagianProjectLeader = "", idDepartemenProjectLeader = "", idJabatanProjectLeader = "";
+    String dueDateChoice = "", starDateChoice = "", endDateChoice = "", nikProjectLeader = "", namaProjectLeader = "", idBagianProjectLeader = "", idDepartemenProjectLeader = "", idJabatanProjectLeader = "", namaBagianProjectLeader = "", namaDepartemenProjectLeader = "";
     String AUTH_TOKEN = "";
 
     @Override
@@ -426,7 +426,9 @@ public class FormInputProjectActivity extends AppCompatActivity {
             nikProjectLeader = intent.getStringExtra("nik_project_leader");
             namaProjectLeader = intent.getStringExtra("nama_project_leader");
             idBagianProjectLeader = intent.getStringExtra("id_bagian_project_leader");
+            namaBagianProjectLeader = intent.getStringExtra("nama_bagian_project_leader");
             idDepartemenProjectLeader = intent.getStringExtra("id_departemen_project_leader");
+            namaDepartemenProjectLeader = intent.getStringExtra("nama_departemen_project_leader");
             idJabatanProjectLeader = intent.getStringExtra("id_jabatan_project_leader");
 
             projectLeaderTV.setText(namaProjectLeader);
@@ -1301,7 +1303,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
 
     }
 
-    private void getProjectCategory() {
+    private void getProjectCategory2() {
         final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/category/list";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -1352,6 +1354,50 @@ public class FormInputProjectActivity extends AppCompatActivity {
 
     }
 
+    private void getProjectCategory() {
+        final String API_ENDPOINT_CATEGORY = "https://geloraaksara.co.id/absen-online/api/get_project_category";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                API_ENDPOINT_CATEGORY,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(TAG, "Response: " + response.toString());
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            String status = response.getString("status");
+                            if(status.equals("Success")) {
+                                String data_category = response.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                projectCategories = gson.fromJson(data_category, ProjectCategory[].class);
+                                adapterProjectCategory = new AdapterProjectCategoryForm(projectCategories, FormInputProjectActivity.this);
+                                try {
+                                    categoryProjectRV.setAdapter(adapterProjectCategory);
+                                } catch (NullPointerException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle the error
+                        Log.e(TAG, "Volley error: " + error.getMessage());
+                    }
+                });
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
     private void submitData2() {
         String URL = "https://timeline.geloraaksara.co.id/project/insert";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -1369,20 +1415,6 @@ public class FormInputProjectActivity extends AppCompatActivity {
             picObject1.put("picBagian", idBagianProjectLeader);
             picObject1.put("picDept", idDepartemenProjectLeader);
             picArray.put(picObject1);
-
-//            JSONObject picObject2 = new JSONObject();
-//            picObject2.put("picNIK", "3157181219");
-//            picObject2.put("picName", "Irfan");
-//            picObject2.put("picBagian", "Rnd");
-//            picObject2.put("picDept", "DEV");
-//            picArray.put(picObject2);
-
-//            JSONObject picObject3 = new JSONObject();
-//            picObject3.put("picNIK", "3157181219");
-//            picObject3.put("picName", "adit");
-//            picObject3.put("picBagian", "Rnd");
-//            picObject3.put("picDept", "DEV");
-//            picArray.put(picObject3);
 
             requestBody.put("pic", picArray);
 
@@ -1474,7 +1506,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
             picObject1.put("picDept", idDepartemenProjectLeader);
             picArray.put(picObject1);
 
-            requestBody.put("project_pic", String.valueOf(picArray));
+            requestBody.put("project_pic", nikProjectLeader+"-"+namaProjectLeader+"-"+namaDepartemenProjectLeader+"-"+namaBagianProjectLeader);
 
             JSONArray taskListArray = new JSONArray();
             requestBody.put("project_task", String.valueOf(taskListArray));

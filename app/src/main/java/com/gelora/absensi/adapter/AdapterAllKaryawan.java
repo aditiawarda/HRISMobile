@@ -68,7 +68,9 @@ public class AdapterAllKaryawan extends RecyclerView.Adapter<AdapterAllKaryawan.
                 intent.putExtra("nik_project_leader",karyawanAll.getNIK());
                 intent.putExtra("nama_project_leader",karyawanAll.getNama());
                 intent.putExtra("id_bagian_project_leader",karyawanAll.getId_bagian());
+                intent.putExtra("nama_bagian_project_leader",karyawanAll.getBagian());
                 intent.putExtra("id_departemen_project_leader",karyawanAll.getId_departemen());
+                intent.putExtra("nama_departemen_project_leader",karyawanAll.getDepartemen());
                 intent.putExtra("id_jabatan_project_leader",karyawanAll.getId_jabatan());
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 

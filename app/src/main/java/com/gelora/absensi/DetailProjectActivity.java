@@ -257,39 +257,64 @@ public class DetailProjectActivity extends AppCompatActivity {
                         try {
                             Log.d("Success.Response", response.toString());
                             data =  new JSONObject(response);
-                            String projectName = data.getString("projectName");
-                            String pic = data.getString("pic");
-                            String dateStart = data.getString("dateStart");
-                            String dateEnd = data.getString("dateEnd");
-                            String taskList = data.getString("taskList");
-                            projectNameTV.setText(projectName);
-                            startDateTV.setText(dateStart.substring(8,10)+"/"+dateStart.substring(5,7)+"/"+dateStart.substring(0,4));
-                            endDateTV.setText(dateEnd.substring(8,10)+"/"+dateEnd.substring(5,7)+"/"+dateEnd.substring(0,4));
-                            countDuration(dateStart.substring(0,10), dateEnd.substring(0,10));
+                            String status = data.getString("status");
+                            if(status.equals("Success")){
+                                String main_data = data.getString("data");
+                                JSONObject main =  new JSONObject(main_data);
+                                String projectName = main.getString("projectName");
+                                String pic = main.getString("pic");
+                                String dateStart = main.getString("dateStart");
+                                String dateEnd = main.getString("dateEnd");
+                                String taskList = main.getString("taskList");
+                                projectNameTV.setText(projectName);
+                                startDateTV.setText(dateStart.substring(8,10)+"/"+dateStart.substring(5,7)+"/"+dateStart.substring(0,4));
+                                endDateTV.setText(dateEnd.substring(8,10)+"/"+dateEnd.substring(5,7)+"/"+dateEnd.substring(0,4));
+                                countDuration(dateStart.substring(0,10), dateEnd.substring(0,10));
 
-                            String[] namaPIC = pic.split("-");
-                            projectLeaderTV.setText(namaPIC[1]);
+                                // JSONArray jsonArrayPIC = new JSONArray(pic);
+                                // JSONObject data_pic =  new JSONObject(jsonArrayPIC.getString(0));
+                                // String projectLeader = data_pic.getString("picName");
+                                // projectLeaderTV.setText(projectLeader);
 
-                            JSONArray jsonArray = new JSONArray(taskList);
-                            int arrayLength = jsonArray.length();
-                            if(arrayLength != 0) {
-                                taskRV.setVisibility(View.VISIBLE);
-                                loadingDataPart.setVisibility(View.GONE);
-                                noDataPart.setVisibility(View.GONE);
-                                GsonBuilder builder = new GsonBuilder();
-                                Gson gson = builder.create();
-                                taskData = gson.fromJson(taskList, TaskData[].class);
-                                adapterDataTask = new AdapterDataTask(taskData,DetailProjectActivity.this);
-                                try {
-                                    taskRV.setAdapter(adapterDataTask);
-                                } catch (NullPointerException e) {
-                                    e.printStackTrace();
+                                if(pic.contains("-")){
+                                    String[] namaPIC = pic.split("-");
+                                    projectLeaderTV.setText(namaPIC[1]);
+                                } else {
+                                    projectLeaderTV.setText(pic);
+                                }
+
+                                if(taskList.equals("null")||taskList.equals("")||taskList.equals("[]")){
+                                    taskRV.setVisibility(View.GONE);
+                                    loadingDataPart.setVisibility(View.GONE);
+                                    noDataPart.setVisibility(View.VISIBLE);
+                                } else {
+                                    JSONArray jsonArray = new JSONArray(taskList);
+                                    int arrayLength = jsonArray.length();
+                                    if(arrayLength != 0) {
+                                        taskRV.setVisibility(View.VISIBLE);
+                                        loadingDataPart.setVisibility(View.GONE);
+                                        noDataPart.setVisibility(View.GONE);
+                                        GsonBuilder builder = new GsonBuilder();
+                                        Gson gson = builder.create();
+                                        taskData = gson.fromJson(taskList, TaskData[].class);
+                                        adapterDataTask = new AdapterDataTask(taskData,DetailProjectActivity.this);
+                                        try {
+                                            taskRV.setAdapter(adapterDataTask);
+                                        } catch (NullPointerException e) {
+                                            e.printStackTrace();
+                                        }
+                                    } else {
+                                        taskRV.setVisibility(View.GONE);
+                                        loadingDataPart.setVisibility(View.GONE);
+                                        noDataPart.setVisibility(View.VISIBLE);
+                                    }
                                 }
                             } else {
                                 taskRV.setVisibility(View.GONE);
                                 loadingDataPart.setVisibility(View.GONE);
                                 noDataPart.setVisibility(View.VISIBLE);
                             }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -395,68 +420,6 @@ public class DetailProjectActivity extends AppCompatActivity {
 
         progress.setLayoutParams(layoutParamsProgress);
         left.setLayoutParams(layoutParamsLeft);
-
-    }
-
-
-    private void getDetailProjectt(String category_id) {
-        final String url = "https://geloraaksara.co.id/absen-online/api/project_detail";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        try {
-                            Log.d("Success.Response", response.toString());
-                            JSONObject data = new JSONObject(response);
-                            String status = data.getString("status");
-                            if(status.equals("Success")){
-                                taskRV.setVisibility(View.VISIBLE);
-                                loadingDataPart.setVisibility(View.GONE);
-                                noDataPart.setVisibility(View.GONE);
-                                String projectName = data.getString("projectName");
-                                projectNameTV.setText(projectName);
-                                String task_list = data.getString("task_list");
-                                GsonBuilder builder = new GsonBuilder();
-                                Gson gson = builder.create();
-                                taskData = gson.fromJson(task_list, TaskData[].class);
-                                adapterDataTask = new AdapterDataTask(taskData,DetailProjectActivity.this);
-                                try {
-                                    taskRV.setAdapter(adapterDataTask);
-                                } catch (NullPointerException e) {
-                                    e.printStackTrace();
-                                }
-                            } else {
-                                taskRV.setVisibility(View.GONE);
-                                loadingDataPart.setVisibility(View.GONE);
-                                noDataPart.setVisibility(View.VISIBLE);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
-                        Log.d("Error.Response", error.toString());
-                        connectionFailed();
-                    }
-                }
-        )
-        {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("id_project", projectId);
-                return params;
-            }
-        };
-
-        requestQueue.add(postRequest);
 
     }
 
