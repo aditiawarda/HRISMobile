@@ -282,12 +282,25 @@ public class DetailProjectActivity extends AppCompatActivity {
                                     JSONArray jsonArray = new JSONArray(taskList);
                                     int arrayLength = jsonArray.length();
                                     if(arrayLength != 0) {
+
+                                        // Iterate through the JSONArray in reverse order
+                                        JSONArray sortedJsonArray = new JSONArray();
+                                        for (int i = jsonArray.length() - 1; i >= 0; i--) {
+                                            try {
+                                                sortedJsonArray.put(jsonArray.getJSONObject(i));
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+
+                                        String descData = sortedJsonArray.toString();
+
                                         taskRV.setVisibility(View.VISIBLE);
                                         loadingDataPart.setVisibility(View.GONE);
                                         noDataPart.setVisibility(View.GONE);
                                         GsonBuilder builder = new GsonBuilder();
                                         Gson gson = builder.create();
-                                        taskData = gson.fromJson(taskList, TaskData[].class);
+                                        taskData = gson.fromJson(descData, TaskData[].class);
                                         adapterDataTask = new AdapterDataTask(taskData,DetailProjectActivity.this);
                                         try {
                                             taskRV.setAdapter(adapterDataTask);

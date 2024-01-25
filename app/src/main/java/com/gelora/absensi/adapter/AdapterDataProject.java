@@ -67,17 +67,19 @@ public class AdapterDataProject extends RecyclerView.Adapter<AdapterDataProject.
 
         myViewHolder.categoryName.setText(projectData.getCategoryName());
         myViewHolder.projectName.setText(projectData.getProjectName());
-        //myViewHolder.progressPercent.setText(projectData.getProgressPercent());
+        myViewHolder.progressPercent.setText(projectData.getPersentaseProgress());
 
-//        if (Integer.parseInt(projectData.getProgressPercent()) >= 0 && Integer.parseInt(projectData.getProgressPercent()) < 25) {
-//            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0_25));
-//        } else if (Integer.parseInt(projectData.getProgressPercent()) >= 25 && Integer.parseInt(projectData.getProgressPercent()) < 50) {
-//            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
-//        } else if (Integer.parseInt(projectData.getProgressPercent()) >= 50 && Integer.parseInt(projectData.getProgressPercent()) < 75) {
-//            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_50_75));
-//        } else if (Integer.parseInt(projectData.getProgressPercent()) >= 75 && Integer.parseInt(projectData.getProgressPercent()) <= 100) {
-//            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_75_100));
-//        }
+        float floatValue = Float.parseFloat(projectData.getPersentaseProgress());
+
+        if (floatValue >= 0 && floatValue < 25) {
+            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0_25));
+        } else if (floatValue >= 25 && floatValue < 50) {
+            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
+        } else if (floatValue >= 50 && floatValue < 75) {
+            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_50_75));
+        } else if (floatValue >= 75 && floatValue <= 100) {
+            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_75_100));
+        }
 
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -109,7 +109,7 @@
                                 android:layout_marginRight="4dp"
                                 android:text="0"
                                 android:textColor="@color/white"
-                                android:textSize="25dp"
+                                android:textSize="21dp"
                                 android:textStyle="bold"
                                 tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
 

@@ -33,7 +33,7 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight=".75"
+                    android:layout_weight=".65"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
@@ -42,7 +42,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
-                        android:text="Nama PIC"
+                        android:text="Memuat data..."
                         android:textColor="#38A7AC"
                         android:textSize="11dp"
                         android:ellipsize="end"
@@ -56,12 +56,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="15dp"
-                        android:text="Nama Data Taks Nama Data Taks Nama Data Taks Nama Data Taks Nama Data Taks Nama Data Taks"
+                        android:text="Memuat data..."
                         android:textColor="#C16D02"
                         android:textSize="13dp"
-                        android:ellipsize="end"
                         android:lineSpacingExtra="3dp"
-                        android:maxLines="2"
                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
 
                     <LinearLayout
@@ -97,10 +95,10 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight=".25"
+                    android:layout_weight=".35"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:gravity="center">
+                    android:gravity="top|center">
 
                     <LinearLayout
                         android:background="@drawable/shape_progress_0_25"

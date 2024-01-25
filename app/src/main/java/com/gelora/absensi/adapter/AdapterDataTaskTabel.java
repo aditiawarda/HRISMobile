@@ -61,7 +61,7 @@ public class AdapterDataTaskTabel extends RecyclerView.Adapter<AdapterDataTaskTa
             myViewHolder.statusTV.setText("On Hold");
             myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0_25));
         } else if(taskData.getStatus().equals("3")){
-            myViewHolder.statusTV.setText("Waiting Acc");
+            myViewHolder.statusTV.setText("Waiting Approval");
             myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
         } else if(taskData.getStatus().equals("2")){
             myViewHolder.statusTV.setText("On Progress");

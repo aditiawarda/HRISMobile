@@ -73,7 +73,7 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
         } else if(taskData.getStatus().equals("4")){
             myViewHolder.statusTV.setText("On Hold");
         } else if(taskData.getStatus().equals("3")){
-            myViewHolder.statusTV.setText("Waiting Acc");
+            myViewHolder.statusTV.setText("Waiting Approval");
         } else if(taskData.getStatus().equals("2")){
             myViewHolder.statusTV.setText("On Progress");
         } else if(taskData.getStatus().equals("1")){
