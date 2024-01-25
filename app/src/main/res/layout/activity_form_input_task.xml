@@ -495,7 +495,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="2dp"
                                         android:layout_marginBottom="5dp"
-                                        android:text="Progress :"
+                                        android:text="Progress (%) :"
                                         android:textColor="#696969"
                                         android:textSize="12dp"
                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -505,7 +505,8 @@
                                         android:layout_height="wrap_content"
                                         android:background="@drawable/shape_input_form"
                                         android:paddingLeft="15dp"
-                                        android:paddingTop="8dp"
+                                        android:paddingTop="10dp"
+                                        android:paddingBottom="10dp"
                                         android:paddingRight="15dp"
                                         android:layout_marginBottom="15dp"
                                         android:orientation="vertical"
@@ -514,7 +515,7 @@
                                         <com.warkiz.widget.IndicatorSeekBar
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginBottom="20dp"
+                                            android:layout_marginBottom="10dp"
                                             android:layout_marginTop="10dp"
                                             app:isb_max="100"
                                             app:isb_min="0"
