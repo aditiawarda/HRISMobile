@@ -78,6 +78,8 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
             myViewHolder.statusTV.setText("On Progress");
         } else if(taskData.getStatus().equals("1")){
             myViewHolder.statusTV.setText("Waiting");
+        } else if(taskData.getStatus().equals("0")){
+            myViewHolder.statusTV.setText("To Do");
         } else {
             myViewHolder.statusTV.setText("Undefined");
         }

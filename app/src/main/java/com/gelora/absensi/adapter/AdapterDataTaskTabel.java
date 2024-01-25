@@ -69,6 +69,9 @@ public class AdapterDataTaskTabel extends RecyclerView.Adapter<AdapterDataTaskTa
         } else if(taskData.getStatus().equals("1")){
             myViewHolder.statusTV.setText("Waiting");
             myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
+        } else if(taskData.getStatus().equals("0")){
+            myViewHolder.statusTV.setText("To Do");
+            myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
         } else {
             myViewHolder.statusTV.setText("Undefined");
             myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0));

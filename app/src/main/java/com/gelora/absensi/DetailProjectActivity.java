@@ -49,7 +49,7 @@ import java.util.Map;
 
 public class DetailProjectActivity extends AppCompatActivity {
 
-    LinearLayout tabelBTN, actionBar, backBTN, loadingDataPart, noDataPart, addBTN, ganttChartBTN;
+    LinearLayout tabelBTN, actionBar, backBTN, loadingDataPart, noDataPart, addBTN;
     TextView projectNameTV, startDateTV, endDateTV, projectLeaderTV, dokumentasiProjectBTN;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
@@ -78,7 +78,6 @@ public class DetailProjectActivity extends AppCompatActivity {
         taskRV = findViewById(R.id.data_task_rv);
         projectNameTV = findViewById(R.id.project_name_tv);
         addBTN = findViewById(R.id.add_btn);
-        ganttChartBTN = findViewById(R.id.gantt_chart_btn);
         tabelBTN = findViewById(R.id.table_btn);
         startDateTV = findViewById(R.id.start_date_tv);
         endDateTV = findViewById(R.id.end_date_tv);
@@ -136,15 +135,6 @@ public class DetailProjectActivity extends AppCompatActivity {
             }
         });
 
-        ganttChartBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailProjectActivity.this, ProjectGanttChartViewActivity.class);
-                intent.putExtra("id_project",projectId);
-                startActivity(intent);
-            }
-        });
-
         tabelBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,6 +148,7 @@ public class DetailProjectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailProjectActivity.this, FormInputTaskActivity.class);
+                intent.putExtra("id_project",projectId);
                 startActivity(intent);
             }
         });
@@ -440,6 +431,13 @@ public class DetailProjectActivity extends AppCompatActivity {
                 .setIcon(R.drawable.warning_connection_mini)
                 .setCookiePosition(CookieBar.BOTTOM)
                 .show();
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getDetailProject(projectId);
     }
 
 }
