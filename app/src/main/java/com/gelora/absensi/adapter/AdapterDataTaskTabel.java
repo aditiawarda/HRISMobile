@@ -50,7 +50,7 @@ public class AdapterDataTaskTabel extends RecyclerView.Adapter<AdapterDataTaskTa
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final TaskData taskData = data[i];
 
-        myViewHolder.taskTV.setText(taskData.getTaskName());
+        myViewHolder.taskTV.setText(taskData.getTaskname());
         myViewHolder.startDateTV.setText(taskData.getTimeline().substring(3,5)+"/"+taskData.getTimeline().substring(0,2)+"/"+taskData.getTimeline().substring(6,10));
         myViewHolder.endDateTV.setText(taskData.getTimeline().substring(16,18)+"/"+taskData.getTimeline().substring(13,15)+"/"+taskData.getTimeline().substring(19,23));
 
@@ -74,7 +74,11 @@ public class AdapterDataTaskTabel extends RecyclerView.Adapter<AdapterDataTaskTa
             myViewHolder.statusPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0));
         }
 
-        myViewHolder.progressTV.setText(taskData.getProgressDate()+"%");
+        if(taskData.getProgress().equals("")||taskData.getProgress().equals(" ")||taskData.getProgress().equals("null")||taskData.getProgress()==null){
+            myViewHolder.progressTV.setText("0%");
+        } else {
+            myViewHolder.progressTV.setText(taskData.getProgress()+"%");
+        }
 
     }
 

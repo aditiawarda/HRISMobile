@@ -4,16 +4,16 @@ public class TaskData {
 
     private String taskname;
     private String pic;
-    private String status;
     private String date;
-    private String progressDate;
+    private String status;
     private String timeline;
+    private String progress;
 
-    public String getTaskName() {
+    public String getTaskname() {
         return taskname;
     }
 
-    public void setTaskName(String taskname) {
+    public void setTaskname(String taskname) {
         this.taskname = taskname;
     }
 
@@ -41,20 +41,20 @@ public class TaskData {
         this.status = status;
     }
 
-    public String getProgressDate() {
-        return progressDate;
-    }
-
-    public void setProgressDate(String progressDate) {
-        this.progressDate = progressDate;
-    }
-
     public String getTimeline() {
         return timeline;
     }
 
     public void setTimeline(String timeline) {
         this.timeline = timeline;
+    }
+
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
     }
 
 }

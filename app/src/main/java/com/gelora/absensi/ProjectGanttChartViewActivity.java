@@ -107,93 +107,100 @@ public class ProjectGanttChartViewActivity extends AppCompatActivity {
                         try {
                             Log.d("Success.Response", response.toString());
                             data =  new JSONObject(response);
-                            String projectName = data.getString("projectName");
-                            String createdBy = data.getString("createdBy");
-                            String dateStart = data.getString("dateStart");
-                            String dateEnd = data.getString("dateEnd");
-                            String taskList = data.getString("taskList");
+                            String status = data.getString("status");
+                            if(status.equals("Success")) {
+                                String main_data = data.getString("data");
+                                JSONObject main = new JSONObject(main_data);
+                                String projectName = main.getString("projectName");
+                                String pic = main.getString("pic");
+                                String dateStart = main.getString("dateStart");
+                                String dateEnd = main.getString("dateEnd");
+                                String taskList = main.getString("taskList");
+                                projectNameTV.setText(projectName);
 
-                            projectNameTV.setText(projectName);
+                                JSONArray jsonArrayTaskList = new JSONArray(taskList);
+                                Activity ganttActivity = null;
 
-                            JSONArray jsonArrayTaskList = new JSONArray(taskList);
-                            Activity ganttActivity = null;
+                                if (jsonArrayTaskList.length() > 0) {
+                                    for (int i = 0; i < jsonArrayTaskList.length(); i++) {
+                                        JSONObject task = jsonArrayTaskList.getJSONObject(i);
+                                        String pic_task = task.getString("pic");
+                                        String taskname = task.getString("taskname");
+                                        String timeline = task.getString("timeline");
+                                        String status_task = task.getString("status");
 
-                            if(jsonArrayTaskList.length()>0){
-                                for (int i = 0; i < jsonArrayTaskList.length(); i++) {
-                                    JSONObject task = jsonArrayTaskList.getJSONObject(i);
-                                    String pic = task.getString("pic");
-                                    String taskname = task.getString("taskname");
-                                    String timeline = task.getString("timeline");
-                                    String status = task.getString("status");
+                                        String tanggalMulai = timeline.substring(6, 10) + "-" + timeline.substring(0, 2) + "-" + timeline.substring(3, 5);
+                                        String tanggalSelesai = timeline.substring(19, 23) + "-" + timeline.substring(13, 15) + "-" + timeline.substring(16, 18);
 
-                                    String tanggalMulai = timeline.substring(6,10)+"-"+timeline.substring(0,2)+"-"+timeline.substring(3,5);
-                                    String tanggalSelesai = timeline.substring(19,23)+"-"+timeline.substring(13,15)+"-"+timeline.substring(16,18);
+                                        String colorFill;
+                                        if (status.equals("5")) {
+                                            colorFill = "#5abf64"; // Done
+                                        } else if (status.equals("4")) {
+                                            colorFill = "#c66f6d"; // On Hold
+                                        } else if (status.equals("3")) {
+                                            colorFill = "#bf9a5a"; // Waiting Approval
+                                        } else if (status.equals("2")) {
+                                            colorFill = "#d4c962"; // On Progress
+                                        } else if (status.equals("1")) {
+                                            colorFill = "#d79ce5"; // Waiting
+                                        } else {
+                                            colorFill = "#9c9c9c";
+                                        }
 
-                                    String colorFill;
-                                    if(status.equals("5")){
-                                        colorFill = "#5abf64"; // Done
-                                    } else if(status.equals("4")){
-                                        colorFill = "#c66f6d"; // On Hold
-                                    } else if(status.equals("3")){
-                                        colorFill = "#bf9a5a"; // Waiting Approval
-                                    } else if(status.equals("2")){
-                                        colorFill = "#d4c962"; // On Progress
-                                    } else if(status.equals("1")){
-                                        colorFill = "#d79ce5"; // Waiting
-                                    } else {
-                                        colorFill = "#9c9c9c";
-                                    }
+                                        ganttActivity = new Activity(
+                                                taskname,
+                                                new Interval[]{new Interval(tanggalMulai, tanggalSelesai)},
+                                                colorFill);
 
-                                    ganttActivity = new Activity(
-                                            taskname,
-                                            new Interval[]{new Interval(tanggalMulai, tanggalSelesai)},
-                                            colorFill);
+                                        if (pic_task.equals("") || pic_task.equals(" ") || pic_task.equals("null")) {
+                                            timelineTask.add(new ResourceDataEntry(
+                                                    pic_task,
+                                                    pic_task,
+                                                    new Activity[]{
+                                                            ganttActivity
+                                                    })
+                                            );
+                                            resource.data(timelineTask);
+                                            resource.height();
 
-                                    if(pic.equals("")||pic.equals(" ")||pic.equals("null")){
-                                        timelineTask.add(new ResourceDataEntry(
-                                                pic,
-                                                pic,
-                                                new Activity[]{
-                                                        ganttActivity
-                                                })
-                                        );
-                                        resource.data(timelineTask);
-                                        resource.height();
+                                        } else {
+                                            String shortName;
+                                            String[] shortNameArray = pic.substring(11, pic.length()).split(" ");
 
-                                    } else {
-                                        String shortName;
-                                        String[] shortNameArray = pic.substring(11, pic.length()).split(" ");
-
-                                        if(shortNameArray.length>1){
-                                            if(shortNameArray[0].length()<3){
-                                                shortName = shortNameArray[1];
-                                                System.out.println(shortName);
+                                            if (shortNameArray.length > 1) {
+                                                if (shortNameArray[0].length() < 3) {
+                                                    shortName = shortNameArray[1];
+                                                    System.out.println(shortName);
+                                                } else {
+                                                    shortName = shortNameArray[0];
+                                                    System.out.println(shortName);
+                                                }
                                             } else {
                                                 shortName = shortNameArray[0];
                                                 System.out.println(shortName);
                                             }
-                                        } else {
-                                            shortName = shortNameArray[0];
-                                            System.out.println(shortName);
+
+                                            timelineTask.add(new ResourceDataEntry(
+                                                    shortName,
+                                                    pic_task.substring(0, 10),
+                                                    new Activity[]{
+                                                            ganttActivity
+                                                    })
+                                            );
+
+                                            resource.data(timelineTask);
+                                            resource.height();
+
                                         }
-
-                                        timelineTask.add(new ResourceDataEntry(
-                                                shortName,
-                                                pic.substring(0,10),
-                                                new Activity[]{
-                                                        ganttActivity
-                                                })
-                                        );
-
-                                        resource.data(timelineTask);
-                                        resource.height();
 
                                     }
 
+                                    anyChartView.setChart(resource);
+                                    noDataPart.setVisibility(View.GONE);
+                                } else {
+                                    progressBar.setVisibility(View.GONE);
+                                    noDataPart.setVisibility(View.VISIBLE);
                                 }
-
-                                anyChartView.setChart(resource);
-                                noDataPart.setVisibility(View.GONE);
                             } else {
                                 progressBar.setVisibility(View.GONE);
                                 noDataPart.setVisibility(View.VISIBLE);

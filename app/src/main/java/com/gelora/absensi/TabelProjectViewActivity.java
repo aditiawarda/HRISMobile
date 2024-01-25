@@ -147,7 +147,7 @@ public class TabelProjectViewActivity extends AppCompatActivity {
 
     }
 
-    private void getDetailProject(String project_id) {
+    private void getDetailProject22(String project_id) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_project_detail";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -188,6 +188,95 @@ public class TabelProjectViewActivity extends AppCompatActivity {
                                     taskRV.setAdapter(adapterDataTask);
                                 } catch (NullPointerException e) {
                                     e.printStackTrace();
+                                }
+                            } else {
+                                taskRV.setVisibility(View.GONE);
+                                noDataPartTask.setVisibility(View.VISIBLE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("project_id", project_id);
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+    }
+
+    private void getDetailProject(String project_id) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_project_detail";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            data =  new JSONObject(response);
+                            String status = data.getString("status");
+                            if(status.equals("Success")){
+                                String main_data = data.getString("data");
+                                JSONObject main =  new JSONObject(main_data);
+                                String projectName = main.getString("projectName");
+                                String pic = main.getString("pic");
+                                String dateStart = main.getString("dateStart");
+                                String dateEnd = main.getString("dateEnd");
+                                String taskList = main.getString("taskList");
+                                projectNameTV.setText(projectName);
+                                // startDateTV.setText(dateStart.substring(8,10)+"/"+dateStart.substring(5,7)+"/"+dateStart.substring(0,4));
+                                // endDateTV.setText(dateEnd.substring(8,10)+"/"+dateEnd.substring(5,7)+"/"+dateEnd.substring(0,4));
+                                // countDuration(dateStart.substring(0,10), dateEnd.substring(0,10));
+
+                                if(pic.contains("-")){
+                                    String[] namaPIC = pic.split("-");
+                                    projectLeaderTV.setText(namaPIC[1]);
+                                } else {
+                                    projectLeaderTV.setText(pic);
+                                }
+
+                                if(taskList.equals("null")||taskList.equals("")||taskList.equals("[]")){
+                                    taskRV.setVisibility(View.GONE);
+                                    noDataPartTask.setVisibility(View.VISIBLE);
+                                } else {
+                                    JSONArray jsonArray = new JSONArray(taskList);
+                                    int arrayLength = jsonArray.length();
+                                    if(arrayLength != 0) {
+                                        taskRV.setVisibility(View.VISIBLE);
+                                        noDataPartTask.setVisibility(View.GONE);
+                                        GsonBuilder builder = new GsonBuilder();
+                                        Gson gson = builder.create();
+                                        taskData = gson.fromJson(taskList, TaskData[].class);
+                                        adapterDataTask = new AdapterDataTaskTabel(taskData,TabelProjectViewActivity.this);
+                                        try {
+                                            taskRV.setAdapter(adapterDataTask);
+                                        } catch (NullPointerException e) {
+                                            e.printStackTrace();
+                                        }
+                                    } else {
+                                        taskRV.setVisibility(View.GONE);
+                                        noDataPartTask.setVisibility(View.VISIBLE);
+                                    }
                                 }
                             } else {
                                 taskRV.setVisibility(View.GONE);

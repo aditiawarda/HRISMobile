@@ -59,12 +59,12 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
             myViewHolder.picTV.setText(taskData.getPic().substring(11, taskData.getPic().length()));
         }
 
-        myViewHolder.taskTV.setText(taskData.getTaskName());
+        myViewHolder.taskTV.setText(taskData.getTaskname());
 
         if(taskData.getDate().equals("")){
             myViewHolder.targetDateTV.setText("00/00/0000");
         } else {
-            String targetDate = taskData.getDate().substring(3,5)+"/"+taskData.getDate().substring(0,2)+"/"+taskData.getDate().substring(6,10);
+            String targetDate = taskData.getDate().substring(8,10)+"/"+taskData.getDate().substring(5,7)+"/"+taskData.getDate().substring(0,4);
             myViewHolder.targetDateTV.setText(targetDate);
         }
 
@@ -82,16 +82,20 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
             myViewHolder.statusTV.setText("Undefined");
         }
 
-        myViewHolder.progressPercent.setText(taskData.getProgressDate());
-
-        if (Integer.parseInt(taskData.getProgressDate()) >= 0 && Integer.parseInt(taskData.getProgressDate()) < 25) {
+        if(taskData.getProgress().equals("")||taskData.getProgress().equals(" ")||taskData.getProgress().equals("null")||taskData.getProgress() == null){
+            myViewHolder.progressPercent.setText("0");
             myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0_25));
-        } else if (Integer.parseInt(taskData.getProgressDate()) >= 25 && Integer.parseInt(taskData.getProgressDate()) < 50) {
-            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
-        } else if (Integer.parseInt(taskData.getProgressDate()) >= 50 && Integer.parseInt(taskData.getProgressDate()) < 75) {
-            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_50_75));
-        } else if (Integer.parseInt(taskData.getProgressDate()) >= 75 && Integer.parseInt(taskData.getProgressDate()) <= 100) {
-            myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_75_100));
+        } else {
+            myViewHolder.progressPercent.setText(taskData.getProgress());
+            if (Integer.parseInt(taskData.getProgress()) >= 0 && Integer.parseInt(taskData.getProgress()) < 25) {
+                myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0_25));
+            } else if (Integer.parseInt(taskData.getProgress()) >= 25 && Integer.parseInt(taskData.getProgress()) < 50) {
+                myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_25_50));
+            } else if (Integer.parseInt(taskData.getProgress()) >= 50 && Integer.parseInt(taskData.getProgress()) < 75) {
+                myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_50_75));
+            } else if (Integer.parseInt(taskData.getProgress()) >= 75 && Integer.parseInt(taskData.getProgress()) <= 100) {
+                myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_75_100));
+            }
         }
 
         // ProgressBar Part
