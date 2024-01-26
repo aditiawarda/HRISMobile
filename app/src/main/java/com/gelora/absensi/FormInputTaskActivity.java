@@ -54,6 +54,9 @@ import com.gelora.absensi.model.StatusTask;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.takisoft.datetimepicker.DatePickerDialog;
+import com.warkiz.widget.IndicatorSeekBar;
+import com.warkiz.widget.OnSeekChangeListener;
+import com.warkiz.widget.SeekParams;
 
 import org.aviran.cookiebar2.CookieBar;
 import org.json.JSONArray;
@@ -80,13 +83,15 @@ public class FormInputTaskActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     KAlertDialog pDialog;
     private int i = -1;
-    String statusIdTask = "", projectId = "", picNik = "", picName = "", targetDate = "", startDate = "", startDatePar = "", endDate = "", endDatePar = "";
+    int persentasePregressNumber = 0, persentasePregressNumberBefore = 0;
+    String statusIdTaskBefore = "", statusIdTask = "", projectId = "", picNik = "", picName = "", targetDate = "", startDate = "", startDatePar = "", endDate = "", endDatePar = "";
     EditText keywordKaryawan;
     private RecyclerView karyawanRV, statusTaskRV;
     private KaryawanAll[] karyawanAlls;
     private StatusTask[] statusTasks;
     private AdapterAllKaryawanPIC adapterAllKaryawan;
     private AdapterStatusTask adapterStatusTask;
+    IndicatorSeekBar persentaseProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +117,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
         endDateTV = findViewById(R.id.end_date_tv);
         statusBTN = findViewById(R.id.status_btn);
         statusTV = findViewById(R.id.status_tv);
+        persentaseProgress = findViewById(R.id.persentase_progress);
 
         projectId = getIntent().getExtras().getString("id_project");
 
@@ -144,7 +150,11 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 endDateTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, "");
                 statusIdTask = "";
+                statusIdTaskBefore = "";
                 statusTV.setText("");
+                persentasePregressNumber = 0;
+                persentasePregressNumberBefore = 0;
+                persentaseProgress.setProgress(0);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -217,10 +227,39 @@ public class FormInputTaskActivity extends AppCompatActivity {
             }
         });
 
+        persentaseProgress.setOnSeekChangeListener(new OnSeekChangeListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onSeeking(SeekParams seekParams) {
+                persentasePregressNumber = Math.round(seekParams.progressFloat);
+                if(Math.round(seekParams.progressFloat) == 100){
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, "5");
+                    statusIdTask = "5";
+                    statusIdTaskBefore = statusIdTask;
+                    statusTV.setText("Done");
+                } else {
+                    if(statusIdTaskBefore.equals("5")){
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, "");
+                        statusIdTaskBefore = "";
+                        statusIdTask = "";
+                        statusTV.setText("Pilih kembali !");
+                    }
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(IndicatorSeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
+            }
+        });
+
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(taskNameED.getText().toString().equals("")||picName.equals("")||picNik.equals("")||targetDate.equals("")||startDate.equals("")||endDate.equals("")){
+                if(taskNameED.getText().toString().equals("")||picName.equals("")||picNik.equals("")||statusIdTask.equals("")||targetDate.equals("")||startDate.equals("")||endDate.equals("")){
                     new KAlertDialog(FormInputTaskActivity.this, KAlertDialog.ERROR_TYPE)
                             .setTitleText("Perhatian")
                             .setContentText("Pastikan semua data telah terisi!")
@@ -367,6 +406,19 @@ public class FormInputTaskActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             statusIdTask = intent.getStringExtra("id_status");
             String namaStatus = intent.getStringExtra("nama_status");
+            statusIdTaskBefore = statusIdTask;
+
+            if(statusIdTask.equals("5")){
+                persentasePregressNumber = 100;
+                persentasePregressNumberBefore = persentasePregressNumber;
+                persentaseProgress.setProgress(100);
+            } else {
+                if(persentasePregressNumberBefore == 100){
+                    persentasePregressNumberBefore = 0;
+                    persentasePregressNumber = 0;
+                    persentaseProgress.setProgress(0);
+                }
+            }
 
             statusTV.setText(namaStatus);
 
@@ -1549,6 +1601,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
             requestBody.put("date", targetDate);
             requestBody.put("status", statusIdTask);
             requestBody.put("timeline", startDatePar+" - "+endDatePar);
+            requestBody.put("progress", persentasePregressNumber);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1582,7 +1635,11 @@ public class FormInputTaskActivity extends AppCompatActivity {
                                 endDateTV.setText("");
                                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, "");
                                 statusIdTask = "";
+                                statusIdTaskBefore = "";
                                 statusTV.setText("");
+                                persentasePregressNumber = 0;
+                                persentasePregressNumberBefore = 0;
+                                persentaseProgress.setProgress(0);
 
                                 pDialog.setTitleText("Berhasil")
                                         .setContentText("Task berhasil ditambahkan")

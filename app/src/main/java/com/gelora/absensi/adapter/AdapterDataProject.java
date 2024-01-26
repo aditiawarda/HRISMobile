@@ -67,9 +67,9 @@ public class AdapterDataProject extends RecyclerView.Adapter<AdapterDataProject.
 
         myViewHolder.categoryName.setText(projectData.getCategoryName());
         myViewHolder.projectName.setText(projectData.getProjectName());
-        myViewHolder.progressPercent.setText(projectData.getPersentaseProgress());
+        myViewHolder.progressPercent.setText(String.valueOf(Math.round(Float.parseFloat(projectData.getPersentaseProgress()))));
 
-        float floatValue = Float.parseFloat(projectData.getPersentaseProgress());
+        int floatValue = Math.round(Float.parseFloat(projectData.getPersentaseProgress()));
 
         if (floatValue >= 0 && floatValue < 25) {
             myViewHolder.progressPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_progress_0_25));
