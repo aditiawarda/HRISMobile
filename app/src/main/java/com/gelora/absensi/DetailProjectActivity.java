@@ -3,13 +3,18 @@ package com.gelora.absensi;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -30,6 +35,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.gelora.absensi.adapter.AdapterDataProject;
 import com.gelora.absensi.adapter.AdapterDataTask;
+import com.gelora.absensi.kalert.KAlertDialog;
 import com.gelora.absensi.model.ProjectData;
 import com.gelora.absensi.model.TaskData;
 import com.google.gson.Gson;
@@ -96,6 +102,8 @@ public class DetailProjectActivity extends AppCompatActivity {
         taskRV.setNestedScrollingEnabled(false);
         taskRV.setItemAnimator(new DefaultItemAnimator());
 
+        LocalBroadcastManager.getInstance(this).registerReceiver(updateTaskBroad, new IntentFilter("update_task_broad"));
+
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,6 +162,68 @@ public class DetailProjectActivity extends AppCompatActivity {
         });
 
         getDetailProject(projectId);
+
+    }
+
+    public BroadcastReceiver updateTaskBroad = new BroadcastReceiver() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String taskname = intent.getStringExtra("taskname");
+            deleteTask(taskname);
+        }
+    };
+
+    private void deleteTask(String task_name) {
+        String URL = "https://geloraaksara.co.id/absen-online/api/delete_task_timeline";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JSONObject requestBody = new JSONObject();
+
+        try {
+            requestBody.put("id_project", projectId);
+            requestBody.put("taskname", task_name);
+//            requestBody.put("pic", picNik+"-"+picName);
+//            requestBody.put("date", targetDate);
+//            requestBody.put("status", statusIdTask);
+//            requestBody.put("timeline", startDatePar+" - "+endDatePar);
+//            requestBody.put("progress", persentasePregressNumber);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                requestBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(TAG, "Response: " + response.toString());
+                        try {
+                            JSONObject data = new JSONObject(response.toString());
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                Toast.makeText(DetailProjectActivity.this, "Berhasil dihapus", Toast.LENGTH_SHORT).show();
+                                getDetailProject(projectId);
+                            } else {
+                                Toast.makeText(DetailProjectActivity.this, "Gagal dihapus", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "Volley error: " + error.getMessage());
+                        connectionFailed();
+                    }
+                });
+
+        requestQueue.add(jsonObjectRequest);
 
     }
 
@@ -293,6 +363,7 @@ public class DetailProjectActivity extends AppCompatActivity {
                                             }
                                         }
 
+                                        String ascData = taskList;
                                         String descData = sortedJsonArray.toString();
 
                                         taskRV.setVisibility(View.VISIBLE);

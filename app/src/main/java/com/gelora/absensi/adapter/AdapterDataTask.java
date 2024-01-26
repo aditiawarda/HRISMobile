@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gelora.absensi.DetailProjectActivity;
@@ -183,9 +184,13 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
         // End ProgressBar Part
 
         myViewHolder.parentPart.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
-
+                notifyDataSetChanged();
+                Intent intent = new Intent("update_task_broad");
+                intent.putExtra("taskname",taskData.getTaskname());
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
             }
         });
 

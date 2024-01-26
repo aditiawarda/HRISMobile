@@ -110,5 +110,4 @@ public class AdapterDataProject extends RecyclerView.Adapter<AdapterDataProject.
         }
     }
 
-
 }
