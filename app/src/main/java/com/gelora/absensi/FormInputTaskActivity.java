@@ -1712,7 +1712,48 @@ public class FormInputTaskActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+    }
 
+    @Override
+    public void onBackPressed() {
+        if (!taskNameED.getText().toString().equals("")||!picName.equals("")||!targetDate.equals("")||!startDate.equals("")||!endDate.equals("")||!statusIdTask.equals("")){
+            if(bottomSheet.isSheetShowing()){
+                bottomSheet.dismissSheet();
+            } else {
+                new KAlertDialog(FormInputTaskActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                taskNameED.setText("");
+                                picName = "";
+                                targetDate = "";
+                                startDate = "";
+                                endDate = "";
+                                statusIdTask = "";
+                                onBackPressed();
+                            }
+                        })
+                        .show();
+            }
+        } else {
+            if(bottomSheet.isSheetShowing()){
+                bottomSheet.dismissSheet();
+            } else {
+                super.onBackPressed();
+            }
+        }
     }
 
 }

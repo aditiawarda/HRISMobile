@@ -190,6 +190,11 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
                 notifyDataSetChanged();
                 Intent intent = new Intent("update_task_broad");
                 intent.putExtra("taskname",taskData.getTaskname());
+                intent.putExtra("pic",taskData.getPic());
+                intent.putExtra("date",taskData.getDate());
+                intent.putExtra("status",taskData.getStatus());
+                intent.putExtra("timeline",taskData.getTimeline());
+                intent.putExtra("progress",taskData.getProgress());
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
             }
         });

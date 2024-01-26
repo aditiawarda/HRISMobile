@@ -166,66 +166,27 @@ public class DetailProjectActivity extends AppCompatActivity {
     }
 
     public BroadcastReceiver updateTaskBroad = new BroadcastReceiver() {
-        @SuppressLint("SetTextI18n")
+        @SuppressLint({"SetTextI18n", "UnsafeIntentLaunch"})
         @Override
         public void onReceive(Context context, Intent intent) {
             String taskname = intent.getStringExtra("taskname");
-            deleteTask(taskname);
+            String pic = intent.getStringExtra("pic");
+            String date = intent.getStringExtra("date");
+            String status = intent.getStringExtra("status");
+            String timeline = intent.getStringExtra("timeline");
+            String progress = intent.getStringExtra("progress");
+
+            Intent intent2 = new Intent(context, UpdateTaskActivity.class);
+            intent2.putExtra("id_project",projectId);
+            intent2.putExtra("taskname",taskname);
+            intent2.putExtra("pic",pic);
+            intent2.putExtra("date",date);
+            intent2.putExtra("status",status);
+            intent2.putExtra("timeline",timeline);
+            intent2.putExtra("progress",progress);
+            startActivity(intent2);
         }
     };
-
-    private void deleteTask(String task_name) {
-        String URL = "https://geloraaksara.co.id/absen-online/api/delete_task_timeline";
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JSONObject requestBody = new JSONObject();
-
-        try {
-            requestBody.put("id_project", projectId);
-            requestBody.put("taskname", task_name);
-//            requestBody.put("pic", picNik+"-"+picName);
-//            requestBody.put("date", targetDate);
-//            requestBody.put("status", statusIdTask);
-//            requestBody.put("timeline", startDatePar+" - "+endDatePar);
-//            requestBody.put("progress", persentasePregressNumber);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.POST,
-                URL,
-                requestBody,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // Handle the response
-                        Log.d(TAG, "Response: " + response.toString());
-                        try {
-                            JSONObject data = new JSONObject(response.toString());
-                            String status = data.getString("status");
-
-                            if(status.equals("Success")){
-                                Toast.makeText(DetailProjectActivity.this, "Berhasil dihapus", Toast.LENGTH_SHORT).show();
-                                getDetailProject(projectId);
-                            } else {
-                                Toast.makeText(DetailProjectActivity.this, "Gagal dihapus", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e(TAG, "Volley error: " + error.getMessage());
-                        connectionFailed();
-                    }
-                });
-
-        requestQueue.add(jsonObjectRequest);
-
-    }
 
     private void getDetailProject2(String project_id) {
         final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/project/detail?id="+project_id;
@@ -522,6 +483,8 @@ public class DetailProjectActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getDetailProject(projectId);
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PROJECT, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, "");
     }
 
 }

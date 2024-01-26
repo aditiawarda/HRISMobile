@@ -1622,7 +1622,7 @@ public class FormInputProjectActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (!categoryChoice.equals("")||!nikProjectLeader.equals("")){
+        if (!projectNameED.getText().toString().equals("")||!projectDescED.getText().toString().equals("")||!nikProjectLeader.equals("")||!starDateChoice.equals("")||!endDateChoice.equals("")||!categoryChoice.equals("")){
             if(bottomSheet.isSheetShowing()){
                 bottomSheet.dismissSheet();
             } else {

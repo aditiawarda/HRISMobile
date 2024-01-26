@@ -54,11 +54,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".TabelProjectViewActivity"
-            android:screenOrientation="landscape"
+            android:name=".UpdateTaskActivity"
+            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".ProjectGanttChartViewActivity"
+            android:name=".TabelProjectViewActivity"
             android:screenOrientation="landscape"
             tools:ignore="LockedOrientationActivity" />
         <activity
