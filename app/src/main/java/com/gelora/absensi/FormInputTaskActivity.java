@@ -621,7 +621,6 @@ public class FormInputTaskActivity extends AppCompatActivity {
             dpd.show();
         }
 
-
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -1737,11 +1736,25 @@ public class FormInputTaskActivity extends AppCompatActivity {
                             public void onClick(KAlertDialog sDialog) {
                                 sDialog.dismiss();
                                 taskNameED.setText("");
+                                picTV.setText("");
                                 picName = "";
+                                picNik = "";
+                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PROJECT, "");
                                 targetDate = "";
+                                targetDateTV.setText("");
                                 startDate = "";
+                                startDatePar = "";
+                                startDateTV.setText("");
                                 endDate = "";
+                                endDatePar = "";
+                                endDateTV.setText("");
+                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, "");
                                 statusIdTask = "";
+                                statusIdTaskBefore = "";
+                                statusTV.setText("");
+                                persentasePregressNumber = 0;
+                                persentasePregressNumberBefore = 0;
+                                persentaseProgress.setProgress(0);
                                 onBackPressed();
                             }
                         })
