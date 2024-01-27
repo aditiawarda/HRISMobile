@@ -176,15 +176,18 @@ public class DetailProjectActivity extends AppCompatActivity {
             String timeline = intent.getStringExtra("timeline");
             String progress = intent.getStringExtra("progress");
 
-            Intent intent2 = new Intent(context, UpdateTaskActivity.class);
-            intent2.putExtra("id_project",projectId);
-            intent2.putExtra("taskname",taskname);
-            intent2.putExtra("pic",pic);
-            intent2.putExtra("date",date);
-            intent2.putExtra("status",status);
-            intent2.putExtra("timeline",timeline);
-            intent2.putExtra("progress",progress);
-            startActivity(intent2);
+            if(!taskname.equals(null)||!pic.equals(null)||!date.equals(null)||!status.equals(null)||!timeline.equals(null)||!progress.equals(null)){
+                Intent intent2 = new Intent(context, UpdateTaskActivity.class);
+                intent2.putExtra("id_project",projectId);
+                intent2.putExtra("taskname",taskname);
+                intent2.putExtra("pic",pic);
+                intent2.putExtra("date",date);
+                intent2.putExtra("status",status);
+                intent2.putExtra("timeline",timeline);
+                intent2.putExtra("progress",progress);
+                startActivity(intent2);
+            }
+
         }
     };
 
