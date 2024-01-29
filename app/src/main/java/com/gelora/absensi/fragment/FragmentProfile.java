@@ -963,6 +963,7 @@ public class FragmentProfile extends Fragment {
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_JOIN_REMAINDER, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_MESSENGER, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_YET_BEFORE_MESSENGER, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_KATEGORI_PROJECT, "");
         Preferences.clearLoggedInUser(mContext);
         Intent intent = new Intent(mContext, LoginActivity.class);
         startActivity(intent);

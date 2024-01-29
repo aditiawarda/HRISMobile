@@ -988,6 +988,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_JOIN_REMAINDER, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_NOTIF_MESSENGER, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_YET_BEFORE_MESSENGER, "");
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_KATEGORI_PROJECT, "");
         Preferences.clearLoggedInUser(MapsActivity.this);
         Intent intent = new Intent(MapsActivity.this, LoginActivity.class);
         startActivity(intent);

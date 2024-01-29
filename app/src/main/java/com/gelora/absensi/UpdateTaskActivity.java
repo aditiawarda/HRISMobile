@@ -69,7 +69,7 @@ import java.util.Map;
 
 public class UpdateTaskActivity extends AppCompatActivity {
 
-    LinearLayout submitBTN, endDateBTN, startDateBTN, loadingDataPart, noDataPart, startAttantionPart, actionBar, backBTN, picBTN, targetDateBTN, statusBTN;
+    LinearLayout deleteBTN, submitBTN, endDateBTN, startDateBTN, loadingDataPart, noDataPart, startAttantionPart, actionBar, backBTN, picBTN, targetDateBTN, statusBTN;
     EditText taskNameED, keywordKaryawan;
     TextView picTV, targetTV, statusTV, startDateTV, endDateTV;
     SharedPrefManager sharedPrefManager;
@@ -119,6 +119,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
         startDateBTN = findViewById(R.id.start_date_btn);
         endDateBTN = findViewById(R.id.end_date_btn);
         submitBTN = findViewById(R.id.submit_btn);
+        deleteBTN = findViewById(R.id.delete_btn);
 
         // Data Source (Before)
         projectId    = getIntent().getExtras().getString("id_project");
@@ -320,6 +321,70 @@ public class UpdateTaskActivity extends AppCompatActivity {
             }
         });
 
+        deleteBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new KAlertDialog(UpdateTaskActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Apakah anda yakin untuk menghapus task ini sekarang?")
+                        .setCancelText("TIDAK")
+                        .setConfirmText("   YA   ")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                                pDialog = new KAlertDialog(UpdateTaskActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                pDialog.show();
+                                pDialog.setCancelable(false);
+                                new CountDownTimer(1300, 800) {
+                                    public void onTick(long millisUntilFinished) {
+                                        i++;
+                                        switch (i) {
+                                            case 0:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (UpdateTaskActivity.this, R.color.colorGradien));
+                                                break;
+                                            case 1:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (UpdateTaskActivity.this, R.color.colorGradien2));
+                                                break;
+                                            case 2:
+                                            case 6:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (UpdateTaskActivity.this, R.color.colorGradien3));
+                                                break;
+                                            case 3:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (UpdateTaskActivity.this, R.color.colorGradien4));
+                                                break;
+                                            case 4:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (UpdateTaskActivity.this, R.color.colorGradien5));
+                                                break;
+                                            case 5:
+                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                        (UpdateTaskActivity.this, R.color.colorGradien6));
+                                                break;
+                                        }
+                                    }
+                                    public void onFinish() {
+                                        i = -1;
+                                        deleteData();
+                                    }
+                                }.start();
+                            }
+                        })
+                        .show();
+            }
+        });
+
         applyData();
 
     }
@@ -419,6 +484,86 @@ public class UpdateTaskActivity extends AppCompatActivity {
 
                                 pDialog.setTitleText("Berhasil")
                                         .setContentText("Task berhasil diupdate")
+                                        .setConfirmText("    OK    ")
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                onBackPressed();
+                                            }
+                                        })
+                                        .changeAlertType(KAlertDialog.SUCCESS_TYPE);
+                            } else {
+                                pDialog.setTitleText("Gagal Tersimpan")
+                                        .setContentText("Terjadi kesalahan")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "Volley error: " + error.getMessage());
+                        connectionFailed();
+                    }
+                });
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private void deleteData() {
+        String URL = "https://geloraaksara.co.id/absen-online/api/delete_task_timeline";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JSONObject requestBody = new JSONObject();
+
+        try {
+            requestBody.put("id_project", projectId);
+            requestBody.put("taskname", taskName);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                requestBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        Log.d(TAG, "Response: " + response.toString());
+                        try {
+                            JSONObject data = new JSONObject(response.toString());
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                taskNameED.setText("");
+                                picTV.setText("");
+                                picNameBARU = "";
+                                picNikBARU = "";
+                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_ID_KARYAWAN_PROJECT, "");
+                                targetDateBARU = "";
+                                targetTV.setText("");
+                                startDateBARU = "";
+                                startDateTV.setText("");
+                                endDateBARU = "";
+                                endDateParBARU = "";
+                                endDateTV.setText("");
+                                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, "");
+                                statusIdTaskBARU = "";
+                                statusIdTaskBeforeBARU = "";
+                                statusTV.setText("");
+                                persentasePregressNumber = 0;
+                                persentasePregressNumberBefore = 0;
+                                persentaseProgress.setProgress(0);
+
+                                pDialog.setTitleText("Dihapus")
+                                        .setContentText("Task berhasil dihapus")
                                         .setConfirmText("    OK    ")
                                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                                             @Override

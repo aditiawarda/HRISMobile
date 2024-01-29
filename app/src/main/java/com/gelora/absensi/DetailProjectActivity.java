@@ -102,8 +102,6 @@ public class DetailProjectActivity extends AppCompatActivity {
         taskRV.setNestedScrollingEnabled(false);
         taskRV.setItemAnimator(new DefaultItemAnimator());
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(updateTaskBroad, new IntentFilter("update_task_broad"));
-
         actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,32 +162,6 @@ public class DetailProjectActivity extends AppCompatActivity {
         getDetailProject(projectId);
 
     }
-
-    public BroadcastReceiver updateTaskBroad = new BroadcastReceiver() {
-        @SuppressLint({"SetTextI18n", "UnsafeIntentLaunch"})
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String taskname = intent.getStringExtra("taskname");
-            String pic = intent.getStringExtra("pic");
-            String date = intent.getStringExtra("date");
-            String status = intent.getStringExtra("status");
-            String timeline = intent.getStringExtra("timeline");
-            String progress = intent.getStringExtra("progress");
-
-            if(!taskname.equals(null)||!pic.equals(null)||!date.equals(null)||!status.equals(null)||!timeline.equals(null)||!progress.equals(null)){
-                Intent intent2 = new Intent(context, UpdateTaskActivity.class);
-                intent2.putExtra("id_project",projectId);
-                intent2.putExtra("taskname",taskname);
-                intent2.putExtra("pic",pic);
-                intent2.putExtra("date",date);
-                intent2.putExtra("status",status);
-                intent2.putExtra("timeline",timeline);
-                intent2.putExtra("progress",progress);
-                startActivity(intent2);
-            }
-
-        }
-    };
 
     private void getDetailProject2(String project_id) {
         final String API_ENDPOINT_CATEGORY = "https://timeline.geloraaksara.co.id/project/detail?id="+project_id;
@@ -269,6 +241,7 @@ public class DetailProjectActivity extends AppCompatActivity {
     }
 
     private void getDetailProject(String project_id) {
+        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PROJECT_OPEN, project_id);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://geloraaksara.co.id/absen-online/api/get_project_detail";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -291,6 +264,7 @@ public class DetailProjectActivity extends AppCompatActivity {
                                 String dateStart = main.getString("dateStart");
                                 String dateEnd = main.getString("dateEnd");
                                 String taskList = main.getString("taskList");
+
                                 projectNameTV.setText(projectName);
                                 startDateTV.setText(dateStart.substring(8,10)+"/"+dateStart.substring(5,7)+"/"+dateStart.substring(0,4));
                                 endDateTV.setText(dateEnd.substring(8,10)+"/"+dateEnd.substring(5,7)+"/"+dateEnd.substring(0,4));

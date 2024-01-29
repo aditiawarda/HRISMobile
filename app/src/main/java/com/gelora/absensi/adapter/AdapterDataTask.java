@@ -20,6 +20,7 @@ import com.gelora.absensi.ProjectViewActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.SharedPrefManager;
+import com.gelora.absensi.UpdateTaskActivity;
 import com.gelora.absensi.model.ProjectData;
 import com.gelora.absensi.model.TaskData;
 
@@ -188,14 +189,15 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
             @Override
             public void onClick(View v) {
                 notifyDataSetChanged();
-                Intent intent = new Intent("update_task_broad");
+                Intent intent = new Intent(mContext, UpdateTaskActivity.class);
+                intent.putExtra("id_project",sharedPrefAbsen.getSpProjectOpen());
                 intent.putExtra("taskname",taskData.getTaskname());
                 intent.putExtra("pic",taskData.getPic());
                 intent.putExtra("date",taskData.getDate());
                 intent.putExtra("status",taskData.getStatus());
                 intent.putExtra("timeline",taskData.getTimeline());
                 intent.putExtra("progress",taskData.getProgress());
-                LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+                mContext.startActivity(intent);
             }
         });
 

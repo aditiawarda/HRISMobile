@@ -56,6 +56,7 @@ public class SharedPrefAbsen {
     public static final String SP_NOTIF_MESSENGER = "spNotifMessenger";
     public static final String SP_YET_BEFORE_MESSENGER = "spYetBeforeMessenger";
     public static final String SP_STATUS_TASK = "spStatusTask";
+    public static final String SP_PROJECT_OPEN = "spProjectOpen";
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -276,5 +277,10 @@ public class SharedPrefAbsen {
     public String getSpNotifMessenger(){
         return sp.getString(SP_NOTIF_MESSENGER, "");
     }
+
+    public String getSpProjectOpen(){
+        return sp.getString(SP_PROJECT_OPEN, "");
+    }
+
 
 }

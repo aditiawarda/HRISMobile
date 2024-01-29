@@ -49,61 +49,97 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="10dp"
-                                    android:orientation="horizontal"
-                                    android:background="@drawable/shape_task_form">
+                                    android:orientation="horizontal">
 
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        tools:ignore="TooDeepLayout">
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_weight=".90"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginRight="15dp"
+                                        android:orientation="horizontal"
+                                        android:background="@drawable/shape_task_form">
 
-                                        <LinearLayout
+                                        <RelativeLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
-                                            android:gravity="bottom|right"
-                                            tools:ignore="RtlHardcoded">
+                                            tools:ignore="TooDeepLayout">
 
                                             <LinearLayout
-                                                android:layout_width="105dp"
-                                                android:layout_height="90dp"
-                                                android:layout_marginTop="10dp"
-                                                android:layout_marginRight="8dp"
-                                                android:layout_marginBottom="-10dp"
-                                                android:background="@drawable/ic_task" />
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:gravity="bottom|right"
+                                                tools:ignore="RtlHardcoded">
 
-                                        </LinearLayout>
+                                                <LinearLayout
+                                                    android:layout_width="105dp"
+                                                    android:layout_height="90dp"
+                                                    android:layout_marginTop="10dp"
+                                                    android:layout_marginRight="8dp"
+                                                    android:layout_marginBottom="-10dp"
+                                                    android:background="@drawable/ic_task" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_marginTop="25dp"
+                                                android:layout_marginBottom="15dp"
+                                                android:layout_marginLeft="20dp"
+                                                android:layout_marginRight="20dp"
+                                                android:orientation="vertical"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:drawablePadding="5dp"
+                                                    android:text="UPDATE"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="13dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+
+                                                <TextView
+                                                    android:id="@+id/nik_karyawan_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="TASK"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="19dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/delete_btn"
+                                        android:layout_width="70dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_btn_delete"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:paddingTop="10dp"
+                                        android:layout_height="match_parent">
 
                                         <LinearLayout
-                                            android:layout_marginTop="25dp"
-                                            android:layout_marginBottom="15dp"
-                                            android:layout_marginLeft="20dp"
-                                            android:layout_marginRight="20dp"
-                                            android:orientation="vertical"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content">
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"
+                                            android:background="@drawable/ic_baseline_delete_dark"/>
 
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:drawablePadding="5dp"
-                                                android:text="UPDATE"
-                                                android:textColor="@color/white"
-                                                android:textSize="13dp"
-                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TextContrastCheck" />
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="3dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:text="HAPUS"
+                                            android:textColor="@color/colorPrimary"
+                                            android:textSize="11dp"
+                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                                            <TextView
-                                                android:id="@+id/nik_karyawan_tv"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:text="TASK"
-                                                android:textColor="@color/white"
-                                                android:textSize="19dp"
-                                                tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                                        </LinearLayout>
-
-                                    </RelativeLayout>
+                                    </LinearLayout>
 
                                 </LinearLayout>
 
