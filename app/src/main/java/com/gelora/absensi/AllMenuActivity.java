@@ -405,6 +405,7 @@ public class AllMenuActivity extends AppCompatActivity {
             calendarPart.setVisibility(View.GONE);
             messengerPart.setVisibility(View.VISIBLE);
             newsPart.setVisibility(View.GONE);
+            projectMainPart.setVisibility(View.VISIBLE);
 
             if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpNik().equals("1309131210")||sharedPrefManager.getSpNik().equals("0172110302")||sharedPrefManager.getSpNik().equals("3186150321")){
                 cardPart.setVisibility(View.GONE);
@@ -415,7 +416,6 @@ public class AllMenuActivity extends AppCompatActivity {
                 idCardPartSub.setVisibility(View.VISIBLE);
                 pengaduanPartSub.setVisibility(View.VISIBLE);
 
-                projectMainPart.setVisibility(View.VISIBLE);
             } else {
                 if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")){
                     cardPart.setVisibility(View.GONE);
@@ -442,7 +442,6 @@ public class AllMenuActivity extends AppCompatActivity {
                     pengaduanPartSub.setVisibility(View.VISIBLE);
                 }
 
-                projectMainPart.setVisibility(View.GONE);
             }
 
         } else {
