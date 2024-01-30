@@ -26,6 +26,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.gelora.absensi.AllMenuActivity;
 import com.gelora.absensi.CompanyActivity;
 import com.gelora.absensi.DetailHadirActivity;
 import com.gelora.absensi.DetailKelebihanJamActivity;
@@ -43,6 +44,7 @@ import com.gelora.absensi.ListNotifikasiActivity;
 import com.gelora.absensi.ListNotifikasiFingerscanActivity;
 import com.gelora.absensi.MonitoringAbsensiBagianActivity;
 import com.gelora.absensi.NewsActivity;
+import com.gelora.absensi.ProjectViewActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.SharedPrefManager;
 import com.gelora.absensi.kalert.KAlertDialog;
@@ -70,7 +72,7 @@ public class FragmentInfo extends Fragment {
 
     TextView bagianNameTvEc, descContactHRDTV, titlePage, dateNowTV, countNotifFingerTV, countNotifIzinTV;
     ExpandableLayout aboutAppField, privacyPolicyField, contactServiceField;
-    LinearLayout ecBTN, menuPermohonanPart, headerPart, helpDeskIT, helpDeskHRD, newsPart, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
+    LinearLayout projectPart, ecBTN, menuPermohonanPart, headerPart, helpDeskIT, helpDeskHRD, newsPart, sdmBTN, dasboardStatistikAbsen, countNotificationIzin, countNotificationFinger, sisaCutiData, sisaCutiBTN, monitoringStaffBTN, faqBTN, connectBTN, contactServiceBTN, privacyPolicyBTN, aboutAppBTN, aboutCompanyBTN, permohonanCutiBTN, permohonanFingerBTN, selectMonthBTN, markerWarningAlpha, markerWarningLate, markerWarningNoCheckout, kelebihanJamBTN, pulangCepatBTN, layoffBTN, tidakCheckoutBTN, terlambatBTN, hadirBTN, tidakHadirBTN;
     TextView labelNotificationIzin, bagianNameTVSDM, historyBTN, tglBergabungMainTV, yearCR, sisaCutiTV, periodeUpdateSisaCutiTV, dateUpdateSisaCutiTV, countMessage, countNotifTV, notePantau, titlePantau, bagianNameTV, hTime, mTime, sTime, kelebihanJamData, pulangCepatData, layoffData, noCheckoutData, terlambatData, currentDate, mainWeather, feelsLikeTemp, weatherTemp, currentAddress, batasBagDept, bulanData, tahunData, hadirData, tidakHadirData, statusIndicator, descAvailable, descEmtpy, statusUserTV, eventCalender, yearTV, monthTV, nameUserTV, nikTV, departemenTV, bagianTV, jabatanTV;
     ImageView hrisLogo, notifFiturLoading, sisaCutiLoading, positionLoadingImg, notificationWarningAlpha, notificationWarningNocheckout, notificationWarningLate, kelebihanJamLoading, pulangCepatLoading, layoffLoading, noCheckoutLoading, terlambatLoading, weatherIcon, bulanLoading, hadirLoading, tidakHadirLoading, avatarUser, imageUserBS;
     SwipeRefreshLayout refreshLayout;
@@ -163,6 +165,7 @@ public class FragmentInfo extends Fragment {
         headerPart = view.findViewById(R.id.header_part);
         menuPermohonanPart = view.findViewById(R.id.menu_permohonan_part);
         bagianNameTvEc = view.findViewById(R.id.bagian_name_tv_ec);
+        projectPart = view.findViewById(R.id.project_part);
 
         selectMonth = getBulanTahun();
         dateNowTV.setText(getDate().substring(8,10)+"/"+getDate().substring(5,7)+"/"+getDate().substring(0,4));
@@ -795,6 +798,14 @@ public class FragmentInfo extends Fragment {
                                 statusFiturFinger = fitur_finger;
 
                                 if(sharedPrefManager.getSpIdJabatan().equals("8")||sharedPrefManager.getSpNik().equals("000112092023")){
+                                    projectPart.setVisibility(View.VISIBLE);
+                                    projectPart.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(mContext, ProjectViewActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
                                     if(news_part.equals("1")){
                                         newsPart.setVisibility(View.VISIBLE);
                                         newsPart.setOnClickListener(new View.OnClickListener() {
@@ -810,6 +821,7 @@ public class FragmentInfo extends Fragment {
                                         newsPart.setVisibility(View.GONE);
                                     }
                                 } else {
+                                    projectPart.setVisibility(View.GONE);
                                     newsPart.setVisibility(View.GONE);
                                 }
 

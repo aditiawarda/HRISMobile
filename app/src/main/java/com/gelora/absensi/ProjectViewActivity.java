@@ -385,22 +385,21 @@ public class ProjectViewActivity extends AppCompatActivity {
     }
 
     private void getProjectAll() {
-        final String API_ENDPOINT_CATEGORY = "https://geloraaksara.co.id/absen-online/api/get_project_all";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                API_ENDPOINT_CATEGORY,
-                null,
-                new Response.Listener<JSONObject>() {
+        final String url = "https://geloraaksara.co.id/absen-online/api/get_project_all";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        // Handle the response
-                        Log.d(TAG, "Response: " + response.toString());
+                    public void onResponse(String response) {
+                        // response
+                        JSONObject data = null;
+                        // response
                         try {
                             Log.d("Success.Response", response.toString());
-                            String status = response.getString("status");
+                            data = new JSONObject(response);
+                            String status = data.getString("status");
                             if(status.equals("Success")){
-                                String data_project = response.getString("data");
+                                String data_project = data.getString("data");
                                 JSONArray jsonArray = new JSONArray(data_project);
                                 int arrayLength = jsonArray.length();
                                 if(arrayLength != 0) {
@@ -434,24 +433,21 @@ public class ProjectViewActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // Handle the error
-                        Log.e(TAG, "Volley error: " + error.getMessage());
-                        bottomSheet.dismissSheet();
+                        // error
+                        Log.d("Error.Response", error.toString());
                         connectionFailed();
-                        projectRV.setVisibility(View.GONE);
-                        loadingPart.setVisibility(View.GONE);
-                        noDataPart.setVisibility(View.VISIBLE);
                     }
-                }) {
+                }
+        ) {
             @Override
-            public java.util.Map<String, String> getHeaders() {
-                java.util.Map<String, String> headers = new java.util.HashMap<>();
-                headers.put("Authorization", "Bearer " + AUTH_TOKEN);
-                return headers;
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("key", sharedPrefManager.getSpNik()+"-"+sharedPrefManager.getSpNama());
+                return params;
             }
         };
 
-        requestQueue.add(jsonObjectRequest);
+        requestQueue.add(postRequest);
 
     }
 
@@ -581,6 +577,7 @@ public class ProjectViewActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("id_category", category_id);
+                params.put("key", sharedPrefManager.getSpNik()+"-"+sharedPrefManager.getSpNama());
                 return params;
             }
         };

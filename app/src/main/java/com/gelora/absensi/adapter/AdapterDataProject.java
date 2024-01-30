@@ -67,6 +67,14 @@ public class AdapterDataProject extends RecyclerView.Adapter<AdapterDataProject.
 
         myViewHolder.categoryName.setText(projectData.getCategoryName());
         myViewHolder.projectName.setText(projectData.getProjectName());
+
+        if(projectData.getPic().contains("-")){
+            String[] namaPIC = projectData.getPic().split("-");
+            myViewHolder.pimproTV.setText(namaPIC[1]);
+        } else {
+            myViewHolder.pimproTV.setText(projectData.getPic());
+        }
+
         myViewHolder.progressPercent.setText(String.valueOf(Math.round(Float.parseFloat(projectData.getPersentaseProgress()))));
 
         int floatValue = Math.round(Float.parseFloat(projectData.getPersentaseProgress()));
@@ -99,7 +107,7 @@ public class AdapterDataProject extends RecyclerView.Adapter<AdapterDataProject.
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         LinearLayout parentPart, progressPart;
-        TextView categoryName, projectName, progressPercent;
+        TextView categoryName, projectName, progressPercent, pimproTV;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parentPart = itemView.findViewById(R.id.parent_part);
@@ -107,6 +115,7 @@ public class AdapterDataProject extends RecyclerView.Adapter<AdapterDataProject.
             projectName = itemView.findViewById(R.id.nama_project);
             progressPercent = itemView.findViewById(R.id.progress_tv);
             progressPart = itemView.findViewById(R.id.progress_part);
+            pimproTV = itemView.findViewById(R.id.pimpro_tv);
         }
     }
 

@@ -4,6 +4,7 @@ public class ProjectData {
 
     private String id;
     private String projectName;
+    private String pic;
     private String descriptionProject;
     private String projectNo;
     private String targetDate;
@@ -27,6 +28,14 @@ public class ProjectData {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
     public String getDescriptionProject() {

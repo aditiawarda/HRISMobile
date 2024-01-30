@@ -196,7 +196,11 @@ public class AdapterDataTask extends RecyclerView.Adapter<AdapterDataTask.MyView
                 intent.putExtra("date",taskData.getDate());
                 intent.putExtra("status",taskData.getStatus());
                 intent.putExtra("timeline",taskData.getTimeline());
-                intent.putExtra("progress",taskData.getProgress());
+                if(taskData.getProgress().equals("")||taskData.getProgress().equals(" ")||taskData.getProgress().equals("null")||taskData.getProgress() == null){
+                    intent.putExtra("progress","0");
+                } else {
+                    intent.putExtra("progress",taskData.getProgress());
+                }
                 mContext.startActivity(intent);
             }
         });

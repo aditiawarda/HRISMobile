@@ -71,7 +71,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
 
     LinearLayout deleteBTN, submitBTN, endDateBTN, startDateBTN, loadingDataPart, noDataPart, startAttantionPart, actionBar, backBTN, picBTN, targetDateBTN, statusBTN;
     EditText taskNameED, keywordKaryawan;
-    TextView picTV, targetTV, statusTV, startDateTV, endDateTV;
+    TextView picTV, targetTV, statusTV, startDateTV, endDateTV, persentaseProgressTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
@@ -113,6 +113,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
         startDateTV = findViewById(R.id.start_date_tv);
         endDateTV = findViewById(R.id.end_date_tv);
         persentaseProgress = findViewById(R.id.persentase_progress);
+        persentaseProgressTV = findViewById(R.id.persentase_progress_tv);
         picBTN = findViewById(R.id.pic_btn);
         targetDateBTN = findViewById(R.id.target_date_btn);
         statusBTN = findViewById(R.id.status_btn);
@@ -233,6 +234,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
             @Override
             public void onSeeking(SeekParams seekParams) {
                 persentasePregressNumber = Math.round(seekParams.progressFloat);
+                persentaseProgressTV.setText(String.valueOf(persentasePregressNumber)+"%");
                 if(Math.round(seekParams.progressFloat) == 100){
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, "5");
                     statusIdTaskBARU = "5";
@@ -481,6 +483,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
                                 persentasePregressNumber = 0;
                                 persentasePregressNumberBefore = 0;
                                 persentaseProgress.setProgress(0);
+                                persentaseProgressTV.setText("0%");
 
                                 pDialog.setTitleText("Berhasil")
                                         .setContentText("Task berhasil diupdate")
@@ -561,6 +564,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
                                 persentasePregressNumber = 0;
                                 persentasePregressNumberBefore = 0;
                                 persentaseProgress.setProgress(0);
+                                persentaseProgressTV.setText("0%");
 
                                 pDialog.setTitleText("Dihapus")
                                         .setContentText("Task berhasil dihapus")
@@ -685,20 +689,26 @@ public class UpdateTaskActivity extends AppCompatActivity {
 
         if(statusTask.equals("5")){
             statusTV.setText("Done");
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, statusTask);
         } else if(statusTask.equals("4")){
             statusTV.setText("On Hold");
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, statusTask);
         } else if(statusTask.equals("3")){
             statusTV.setText("Waiting Approval");
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, statusTask);
         } else if(statusTask.equals("2")){
             statusTV.setText("On Progress");
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, statusTask);
         } else if(statusTask.equals("1")){
             statusTV.setText("Waiting");
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, statusTask);
         } else if(statusTask.equals("0")){
             statusTV.setText("To Do");
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, statusTask);
         } else {
-            statusTV.setText("Undefined");
+            statusTV.setText("Pilih status task !");
+            sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, "");
         }
-        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, statusTask);
 
         String input_date2 = startDate;
         @SuppressLint("SimpleDateFormat") SimpleDateFormat format12 = new SimpleDateFormat("yyyy-MM-dd");
@@ -858,7 +868,8 @@ public class UpdateTaskActivity extends AppCompatActivity {
 
         endDateTV.setText(hariName3+", "+String.valueOf(Integer.parseInt(dayDate3))+" "+bulanName3+" "+yearDate3);
 
-        persentaseProgress.setProgress(Float.parseFloat(progressTask));
+        persentaseProgress.setProgress(Math.round(Float.parseFloat(progressTask)));
+        persentaseProgressTV.setText(String.valueOf(Math.round(Float.parseFloat(progressTask)))+"%");
 
     }
 
@@ -1263,11 +1274,13 @@ public class UpdateTaskActivity extends AppCompatActivity {
                 persentasePregressNumber = 100;
                 persentasePregressNumberBefore = persentasePregressNumber;
                 persentaseProgress.setProgress(100);
+                persentaseProgressTV.setText(String.valueOf(persentasePregressNumber)+"%");
             } else {
                 if(persentasePregressNumberBefore == 100){
                     persentasePregressNumberBefore = 0;
                     persentasePregressNumber = 0;
                     persentaseProgress.setProgress(0);
+                    persentaseProgressTV.setText(String.valueOf(persentasePregressNumber)+"%");
                 }
             }
 

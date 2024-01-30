@@ -73,7 +73,7 @@ import java.util.Map;
 public class FormInputTaskActivity extends AppCompatActivity {
 
     LinearLayout statusBTN, startDateBTN, endDateBTN, actionBar, backBTN, submitBTN, picBTN, startAttantionPart, noDataPart, loadingDataPart, targetDateBTN;
-    TextView picTV, targetDateTV, startDateTV, endDateTV, statusTV;
+    TextView picTV, targetDateTV, startDateTV, endDateTV, statusTV, persentaseProgressTV;
     ImageView loadingGif;
     EditText taskNameED;
     SharedPrefManager sharedPrefManager;
@@ -118,6 +118,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
         statusBTN = findViewById(R.id.status_btn);
         statusTV = findViewById(R.id.status_tv);
         persentaseProgress = findViewById(R.id.persentase_progress);
+        persentaseProgressTV = findViewById(R.id.persentase_progress_tv);
 
         projectId = getIntent().getExtras().getString("id_project");
 
@@ -155,6 +156,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 persentasePregressNumber = 0;
                 persentasePregressNumberBefore = 0;
                 persentaseProgress.setProgress(0);
+                persentaseProgressTV.setText("0%");
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -232,6 +234,7 @@ public class FormInputTaskActivity extends AppCompatActivity {
             @Override
             public void onSeeking(SeekParams seekParams) {
                 persentasePregressNumber = Math.round(seekParams.progressFloat);
+                persentaseProgressTV.setText(String.valueOf(persentasePregressNumber)+"%");
                 if(Math.round(seekParams.progressFloat) == 100){
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_STATUS_TASK, "5");
                     statusIdTask = "5";
@@ -412,11 +415,13 @@ public class FormInputTaskActivity extends AppCompatActivity {
                 persentasePregressNumber = 100;
                 persentasePregressNumberBefore = persentasePregressNumber;
                 persentaseProgress.setProgress(100);
+                persentaseProgressTV.setText(String.valueOf(persentasePregressNumber)+"%");
             } else {
                 if(persentasePregressNumberBefore == 100){
                     persentasePregressNumberBefore = 0;
                     persentasePregressNumber = 0;
                     persentaseProgress.setProgress(0);
+                    persentaseProgressTV.setText(String.valueOf(persentasePregressNumber)+"%");
                 }
             }
 
