@@ -197,7 +197,7 @@
                                     android:layout_marginTop="5dp"
                                     android:textColor="#DF967E"
                                     android:fontFamily="@font/roboto"
-                                    android:text="Tentukan keterangan formulir diatas"
+                                    android:text="Tentukan keterangan formulir di atas"
                                     android:textAlignment="center"
                                     android:textSize="11dp"
                                     tools:ignore="HardcodedText,SpUsage" />

@@ -739,7 +739,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:lineSpacingExtra="2.5dp"
-                                            android:text="Pastikan penanda posisi (warna biru) pada maps diatas berada dalam jangkauan area check point Absensi Online."
+                                            android:text="Pastikan penanda posisi (warna biru) pada maps di atas berada dalam jangkauan area check point Absensi Online."
                                             android:textColor="#C68D46"
                                             android:ellipsize="end"
                                             android:maxLines="3"
@@ -1120,7 +1120,7 @@
                                                 android:layout_marginLeft="10dp"
                                                 android:layout_marginTop="7dp"
                                                 android:lineSpacingExtra="2.5dp"
-                                                android:text="Yang tertera diatas merupakan status abensi anda hari ini. Jika terjadi kesalahan atau kekeliruan data harap hubungi bagian HRD."
+                                                android:text="Yang tertera di atas merupakan status abensi anda hari ini. Jika terjadi kesalahan atau kekeliruan data harap hubungi bagian HRD."
                                                 android:textColor="#C68D46"
                                                 android:textSize="12dp"
                                                 tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />

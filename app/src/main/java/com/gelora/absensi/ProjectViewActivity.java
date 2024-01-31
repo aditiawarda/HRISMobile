@@ -37,9 +37,11 @@ import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.gelora.absensi.adapter.AdapterDataProject;
 import com.gelora.absensi.adapter.AdapterProjectCategory;
 import com.gelora.absensi.adapter.AdapterPulangCepat;
+import com.gelora.absensi.adapter.AdapterStatusAbsen;
 import com.gelora.absensi.model.DataPulangCepat;
 import com.gelora.absensi.model.ProjectCategory;
 import com.gelora.absensi.model.ProjectData;
+import com.gelora.absensi.model.StatusAbsen;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -111,14 +113,6 @@ public class ProjectViewActivity extends AppCompatActivity {
             }
         });
 
-        addBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProjectViewActivity.this, FormInputProjectActivity.class);
-                startActivity(intent);
-            }
-        });
-
         refreshLayout.setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @SuppressLint("SetTextI18n")
@@ -127,7 +121,7 @@ public class ProjectViewActivity extends AppCompatActivity {
                 projectRV.setVisibility(View.GONE);
                 loadingPart.setVisibility(View.VISIBLE);
                 noDataPart.setVisibility(View.GONE);
-
+                getAccess();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -156,9 +150,66 @@ public class ProjectViewActivity extends AppCompatActivity {
             }
         });
 
+        getAccess();
         getProjectAll();
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_KATEGORI_PROJECT, "");
         categoryChoiceTV.setText("Semua");
+
+    }
+
+    private void getAccess(){
+        final String url = "https://geloraaksara.co.id/absen-online/api/project_additional_access";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")){
+                                addBTN.setVisibility(View.VISIBLE);
+                                addBTN.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(ProjectViewActivity.this, FormInputProjectActivity.class);
+                                        startActivity(intent);
+                                    }
+                                });
+                            } else {
+                                addBTN.setVisibility(View.GONE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        bottomSheet.dismissSheet();
+                        connectionFailed();
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("nik", sharedPrefManager.getSpNik());
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
 
     }
 

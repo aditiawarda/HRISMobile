@@ -2365,7 +2365,7 @@
                                                             android:gravity="center"
                                                             android:paddingLeft="3dp"
                                                             android:paddingRight="3dp"
-                                                            android:text="Dibawah rata-rata"
+                                                            android:text="Di bawah rata-rata"
                                                             android:textAppearance="?android:attr/textAppearanceLarge"
                                                             android:textSize="7dp"
                                                             tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck" />
