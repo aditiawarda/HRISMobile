@@ -86,7 +86,6 @@
                                     android:maxLines="3"
                                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
-
                             </LinearLayout>
 
                             <LinearLayout
