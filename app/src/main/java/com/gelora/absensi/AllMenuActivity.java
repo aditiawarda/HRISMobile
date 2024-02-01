@@ -12,10 +12,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,14 +37,14 @@ import java.util.Map;
 
 public class AllMenuActivity extends AppCompatActivity {
 
-    LinearLayout menuProjectBTN, projectMainPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
+    LinearLayout menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
     LinearLayout actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
     TextView countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
     SharedPrefManager sharedPrefManager;
     SharedPrefAbsen sharedPrefAbsen;
     SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
-    String otoritorEC = "";
+    String otoritorEC = "", listSDM = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +68,7 @@ public class AllMenuActivity extends AppCompatActivity {
         newsPartSub = findViewById(R.id.news_part_sub);
         calendarPartSub = findViewById(R.id.calendar_part_sub);
         idCardPartSub = findViewById(R.id.id_card_part_sub);
+        projectPartSub = findViewById(R.id.project_part_sub);
         pengaduanPartSub = findViewById(R.id.pengaduan_part_sub);
         menuAbsensiBTN = findViewById(R.id.menu_absensi_btn);
         menuIzinBTN = findViewById(R.id.menu_izin_btn);
@@ -84,10 +83,11 @@ public class AllMenuActivity extends AppCompatActivity {
         menuMessengerBTN = findViewById(R.id.menu_messenger_btn);
         menuNewsBTN = findViewById(R.id.menu_news_btn);
         menuIdCardBTNSub = findViewById(R.id.menu_id_card_btn_sub);
+        menuProjectBTNSub = findViewById(R.id.menu_project_btn_sub);
         menuNewsBTNSub = findViewById(R.id.menu_news_btn_sub);
         menuCalendarBTNSub = findViewById(R.id.menu_calendar_btn_sub);
         menuPengaduanBTNSub = findViewById(R.id.menu_pengaduan_btn_sub);
-        projectMainPart = findViewById(R.id.project_part_main);
+        projectPart = findViewById(R.id.project_part);
         menuProjectBTN = findViewById(R.id.menu_project_btn);
         countNotificationPenilaian = findViewById(R.id.count_notification_penilaian);
         countNotifPenilaianTV = findViewById(R.id.count_notif_penilaian_tv);
@@ -299,6 +299,7 @@ public class AllMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AllMenuActivity.this, HumanResourceActivity.class);
+                intent.putExtra("list_sdm_visibity", listSDM);
                 startActivity(intent);
             }
         });
@@ -336,6 +337,21 @@ public class AllMenuActivity extends AppCompatActivity {
                     intent.putExtra("otoritor", otoritorEC);
                     startActivity(intent);
                 }
+            }
+        });
+
+        menuProjectBTNSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMenuActivity.this, ProjectViewActivity.class);
+                startActivity(intent);
+
+                // if(sharedPrefManager.getSpPassword().equals("")){
+                //     Intent intent = new Intent(AllMenuActivity.this, PasswordRequestActivity.class);
+                //     startActivity(intent);
+                // } else {
+                //    getTokenAccess();
+                // }
             }
         });
 
@@ -405,25 +421,28 @@ public class AllMenuActivity extends AppCompatActivity {
             calendarPart.setVisibility(View.GONE);
             messengerPart.setVisibility(View.VISIBLE);
             newsPart.setVisibility(View.GONE);
-            projectMainPart.setVisibility(View.VISIBLE);
 
-            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpNik().equals("1309131210")||sharedPrefManager.getSpNik().equals("0172110302")||sharedPrefManager.getSpNik().equals("3186150321")){
+            if(sharedPrefManager.getSpIdJabatan().equals("11")||sharedPrefManager.getSpIdJabatan().equals("25")||sharedPrefManager.getSpIdJabatan().equals("3")||sharedPrefManager.getSpIdJabatan().equals("10")||sharedPrefManager.getSpNik().equals("1309131210")||sharedPrefManager.getSpNik().equals("0172110302")){ //Kabag Kadep
                 cardPart.setVisibility(View.GONE);
                 sdmPart.setVisibility(View.VISIBLE);
+                projectPart.setVisibility(View.VISIBLE);
 
                 newsPartSub.setVisibility(View.VISIBLE);
                 calendarPartSub.setVisibility(View.VISIBLE);
                 idCardPartSub.setVisibility(View.VISIBLE);
+                projectPartSub.setVisibility(View.GONE);
                 pengaduanPartSub.setVisibility(View.VISIBLE);
 
             } else {
-                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")){
+                if(sharedPrefManager.getSpIdJabatan().equals("1")||sharedPrefManager.getSpNik().equals("3313210223")){ //Admin
                     cardPart.setVisibility(View.GONE);
                     sdmPart.setVisibility(View.VISIBLE);
+                    projectPart.setVisibility(View.VISIBLE);
 
                     newsPartSub.setVisibility(View.VISIBLE);
                     calendarPartSub.setVisibility(View.VISIBLE);
                     idCardPartSub.setVisibility(View.VISIBLE);
+                    projectPartSub.setVisibility(View.GONE);
                     pengaduanPartSub.setVisibility(View.VISIBLE);
                     menuSdmBTN.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -432,13 +451,15 @@ public class AllMenuActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                     });
-                } else {
+                } else { //Other
                     cardPart.setVisibility(View.VISIBLE);
                     sdmPart.setVisibility(View.GONE);
+                    projectPart.setVisibility(View.GONE);
 
                     newsPartSub.setVisibility(View.VISIBLE);
                     calendarPartSub.setVisibility(View.VISIBLE);
                     idCardPartSub.setVisibility(View.GONE);
+                    projectPartSub.setVisibility(View.VISIBLE);
                     pengaduanPartSub.setVisibility(View.VISIBLE);
                 }
 
@@ -447,6 +468,7 @@ public class AllMenuActivity extends AppCompatActivity {
         } else {
             cardPart.setVisibility(View.VISIBLE);
             sdmPart.setVisibility(View.GONE);
+            projectPart.setVisibility(View.GONE);
 
             cutiPart.setVisibility(View.GONE);
             pengaduanPart.setVisibility(View.VISIBLE);
@@ -458,6 +480,7 @@ public class AllMenuActivity extends AppCompatActivity {
                     newsPartSub.setVisibility(View.VISIBLE);
                     calendarPartSub.setVisibility(View.GONE);
                     idCardPartSub.setVisibility(View.GONE);
+                    projectPartSub.setVisibility(View.GONE);
                     pengaduanPartSub.setVisibility(View.GONE);
                 } else {
                     clearancePart.setVisibility(View.VISIBLE);
@@ -466,6 +489,7 @@ public class AllMenuActivity extends AppCompatActivity {
                     newsPartSub.setVisibility(View.VISIBLE);
                     calendarPartSub.setVisibility(View.VISIBLE);
                     idCardPartSub.setVisibility(View.GONE);
+                    projectPartSub.setVisibility(View.GONE);
                     pengaduanPartSub.setVisibility(View.GONE);
                 }
                 messengerPart.setVisibility(View.VISIBLE);
@@ -480,6 +504,7 @@ public class AllMenuActivity extends AppCompatActivity {
                 newsPartSub.setVisibility(View.GONE);
                 calendarPartSub.setVisibility(View.GONE);
                 idCardPartSub.setVisibility(View.GONE);
+                projectPartSub.setVisibility(View.GONE);
                 pengaduanPartSub.setVisibility(View.GONE);
             }
         }
@@ -507,6 +532,7 @@ public class AllMenuActivity extends AppCompatActivity {
                                 String weather_key = data.getString("weather_key");
                                 String chat_room = data.getString("chat_room");
                                 String news_part = data.getString("news_part");
+                                String list_sdm = data.getString("list_sdm");
                                 String base_news_api = data.getString("base_news_api");
                                 String defaut_news_category = data.getString("defaut_news_category");
                                 String fitur_pengumuman = data.getString("fitur_pengumuman");
@@ -526,6 +552,7 @@ public class AllMenuActivity extends AppCompatActivity {
                                 String id_jabatan = data.getString("id_jabatan");
 
                                 otoritorEC = ototitor_ec;
+                                listSDM = list_sdm;
 
                                 menuNewsBTN.setOnClickListener(new View.OnClickListener() {
                                     @Override
