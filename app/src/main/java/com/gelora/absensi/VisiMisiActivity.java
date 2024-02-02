@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -108,17 +109,21 @@ public class VisiMisiActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                new KAlertDialog(VisiMisiActivity.this, KAlertDialog.ERROR_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Gagal terhubung, harap periksa jaringan anda")
-                        .setConfirmText("    OK    ")
-                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismiss();
-                            }
-                        })
-                        .show();
+                try {
+                    new KAlertDialog(VisiMisiActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Gagal terhubung, harap periksa jaringan anda")
+                            .setConfirmText("    OK    ")
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
+                } catch (WindowManager.BadTokenException e){
+                    e.printStackTrace();
+                }
             }
         });
 
