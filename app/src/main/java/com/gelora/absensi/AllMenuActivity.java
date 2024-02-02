@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class AllMenuActivity extends AppCompatActivity {
 
-    LinearLayout menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
+    LinearLayout menuReportSumaBTN, menuReport2SumaBTN, reportSumaPart2, reportSumaPart, menuProjectBTNSub, projectPartSub, menuProjectBTN, projectPart, countNotificationGMPart, countNotificationClearancePart, countNotificationPenilaian, cutiPart, pengaduanPart, cardPart, sdmPart, calendarPart, clearancePart, messengerPart, newsPart, newsPartSub, calendarPartSub, idCardPartSub, pengaduanPartSub;
     LinearLayout actionBar, backBTN, menuAbsensiBTN, menuIzinBTN, menuCutiBTN, menuPengaduanBTN, menuFingerBTN, menuSdmBTN, menuCardBTN, menuSignatureBTN, menuClearanceBTN, menuCalendarBTN, menuMessengerBTN, menuNewsBTN, menuIdCardBTNSub, menuNewsBTNSub, menuCalendarBTNSub, menuPengaduanBTNSub;
     TextView countNotifGMTV, countNotifClearanceTV, countNotifPenilaianTV;
     SharedPrefManager sharedPrefManager;
@@ -88,6 +88,10 @@ public class AllMenuActivity extends AppCompatActivity {
         menuCalendarBTNSub = findViewById(R.id.menu_calendar_btn_sub);
         menuPengaduanBTNSub = findViewById(R.id.menu_pengaduan_btn_sub);
         projectPart = findViewById(R.id.project_part);
+        reportSumaPart = findViewById(R.id.report_suma_part);
+        reportSumaPart2 = findViewById(R.id.report_suma_part_2);
+        menuReportSumaBTN = findViewById(R.id.menu_report_suma_btn);
+        menuReport2SumaBTN = findViewById(R.id.menu_report_2_suma_btn);
         menuProjectBTN = findViewById(R.id.menu_project_btn);
         countNotificationPenilaian = findViewById(R.id.count_notification_penilaian);
         countNotifPenilaianTV = findViewById(R.id.count_notif_penilaian_tv);
@@ -345,7 +349,6 @@ public class AllMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllMenuActivity.this, ProjectViewActivity.class);
                 startActivity(intent);
-
                 // if(sharedPrefManager.getSpPassword().equals("")){
                 //     Intent intent = new Intent(AllMenuActivity.this, PasswordRequestActivity.class);
                 //     startActivity(intent);
@@ -360,13 +363,28 @@ public class AllMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllMenuActivity.this, ProjectViewActivity.class);
                 startActivity(intent);
-
                 // if(sharedPrefManager.getSpPassword().equals("")){
                 //     Intent intent = new Intent(AllMenuActivity.this, PasswordRequestActivity.class);
                 //     startActivity(intent);
                 // } else {
                 //    getTokenAccess();
                 // }
+            }
+        });
+
+        menuReportSumaBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        menuReport2SumaBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -426,6 +444,8 @@ public class AllMenuActivity extends AppCompatActivity {
                 cardPart.setVisibility(View.GONE);
                 sdmPart.setVisibility(View.VISIBLE);
                 projectPart.setVisibility(View.VISIBLE);
+                reportSumaPart.setVisibility(View.GONE);
+                reportSumaPart2.setVisibility(View.VISIBLE);
 
                 newsPartSub.setVisibility(View.VISIBLE);
                 calendarPartSub.setVisibility(View.VISIBLE);
@@ -438,6 +458,8 @@ public class AllMenuActivity extends AppCompatActivity {
                     cardPart.setVisibility(View.GONE);
                     sdmPart.setVisibility(View.VISIBLE);
                     projectPart.setVisibility(View.VISIBLE);
+                    reportSumaPart.setVisibility(View.GONE);
+                    reportSumaPart2.setVisibility(View.VISIBLE);
 
                     newsPartSub.setVisibility(View.VISIBLE);
                     calendarPartSub.setVisibility(View.VISIBLE);
@@ -455,6 +477,8 @@ public class AllMenuActivity extends AppCompatActivity {
                     cardPart.setVisibility(View.VISIBLE);
                     sdmPart.setVisibility(View.GONE);
                     projectPart.setVisibility(View.GONE);
+                    reportSumaPart.setVisibility(View.VISIBLE);
+                    reportSumaPart2.setVisibility(View.GONE);
 
                     newsPartSub.setVisibility(View.VISIBLE);
                     calendarPartSub.setVisibility(View.VISIBLE);
@@ -469,6 +493,8 @@ public class AllMenuActivity extends AppCompatActivity {
             cardPart.setVisibility(View.VISIBLE);
             sdmPart.setVisibility(View.GONE);
             projectPart.setVisibility(View.GONE);
+            reportSumaPart.setVisibility(View.GONE);
+            reportSumaPart2.setVisibility(View.GONE);
 
             cutiPart.setVisibility(View.GONE);
             pengaduanPart.setVisibility(View.VISIBLE);

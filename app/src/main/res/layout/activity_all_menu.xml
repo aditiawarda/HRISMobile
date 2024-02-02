@@ -1016,6 +1016,46 @@
 
                                         </LinearLayout>
 
+                                        <LinearLayout
+                                            android:id="@+id/report_suma_part"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_report_suma_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_3"
+                                                android:orientation="vertical"
+                                                android:padding="10dp"
+                                                tools:ignore="TooManyViews">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_report_suma"
+                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Suma"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
+
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -1027,6 +1067,44 @@
                                         android:orientation="vertical"
                                         tools:ignore="UselessLeaf">
 
+                                        <LinearLayout
+                                            android:id="@+id/report_suma_part_2"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:id="@+id/menu_report_2_suma_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="65dp"
+                                                android:background="@drawable/shape_menu_4"
+                                                android:orientation="vertical"
+                                                android:padding="10dp"
+                                                tools:ignore="TooManyViews">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:scaleType="fitCenter"
+                                                    android:src="@drawable/icon_report_suma"
+                                                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="3dp"
+                                                android:ellipsize="end"
+                                                android:gravity="center"
+                                                android:maxLines="1"
+                                                android:singleLine="true"
+                                                android:text="Suma"
+                                                android:textColor="#515151"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
