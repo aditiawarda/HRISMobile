@@ -375,7 +375,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuReportSumaBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ReportSumaActivity.class);
                 startActivity(intent);
             }
         });
@@ -383,7 +383,7 @@ public class AllMenuActivity extends AppCompatActivity {
         menuReport2SumaBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllMenuActivity.this, ComingSoonActivity.class);
+                Intent intent = new Intent(AllMenuActivity.this, ReportSumaActivity.class);
                 startActivity(intent);
             }
         });
