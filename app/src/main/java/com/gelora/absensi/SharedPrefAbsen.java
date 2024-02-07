@@ -58,6 +58,7 @@ public class SharedPrefAbsen {
     public static final String SP_STATUS_TASK = "spStatusTask";
     public static final String SP_PROJECT_OPEN = "spProjectOpen";
     public static final String SP_PELANGGAN_LAMA = "spPelangganLama";
+    public static final String SP_PRODUCT_ACTIVE= "spProductActive";
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -285,6 +286,10 @@ public class SharedPrefAbsen {
 
     public String getSpPelangganLama(){
         return sp.getString(SP_PELANGGAN_LAMA, "");
+    }
+
+    public String getSpProductActive(){
+        return sp.getString(SP_PRODUCT_ACTIVE, "");
     }
 
 }

@@ -8,27 +8,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gelora.absensi.FormInputProjectActivity;
 import com.gelora.absensi.R;
 import com.gelora.absensi.ReportSumaActivity;
 import com.gelora.absensi.SharedPrefAbsen;
-import com.gelora.absensi.model.KaryawanAll;
 import com.gelora.absensi.model.PelangganLama;
+import com.gelora.absensi.model.ProductSuma;
 
-public class AdapterPelangganLama extends RecyclerView.Adapter<AdapterPelangganLama.MyViewHolder> {
+public class AdapterProductSuma extends RecyclerView.Adapter<AdapterProductSuma.MyViewHolder> {
 
-    private PelangganLama[] data;
+    private ProductSuma[] data;
     private Context mContext;
     SharedPrefAbsen sharedPrefAbsen;
 
-    public AdapterPelangganLama(PelangganLama[] data, ReportSumaActivity context) {
+    public AdapterProductSuma(ProductSuma[] data, ReportSumaActivity context) {
         this.data = data;
         this.mContext = context;
     }
@@ -37,19 +35,19 @@ public class AdapterPelangganLama extends RecyclerView.Adapter<AdapterPelangganL
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         sharedPrefAbsen = new SharedPrefAbsen(mContext);
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_pelanggan_lama,viewGroup,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_product_suma,viewGroup,false);
         return new MyViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
-        final PelangganLama pelangganLama = data[i];
+        final ProductSuma productSuma = data[i];
 
-        myViewHolder.namaPelanggan.setText(pelangganLama.getNama_customer());
-        myViewHolder.alamatPelanggan.setText(pelangganLama.getAlamat_customer());
+        myViewHolder.namaProduct.setText(productSuma.getJudul());
+        myViewHolder.hargaProduct.setText(productSuma.getPrice());
 
-        if (sharedPrefAbsen.getSpPelangganLama().equals(pelangganLama.getId_customer())) {
+        if (sharedPrefAbsen.getSpProductActive().equals(productSuma.getId_produk())) {
             myViewHolder.markStatus.setVisibility(View.VISIBLE);
             myViewHolder.parentPart.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_option_choice));
         } else {
@@ -64,15 +62,13 @@ public class AdapterPelangganLama extends RecyclerView.Adapter<AdapterPelangganL
 
                 notifyDataSetChanged();
 
-                Intent intent = new Intent("pelanggan_lama_broad");
-                intent.putExtra("nama_pelanggan_lama",pelangganLama.getNama_customer());
-                intent.putExtra("id_pelanggan_lama",pelangganLama.getId_customer());
-                intent.putExtra("alamat_pelanggan_lama",pelangganLama.getAlamat_customer());
-                intent.putExtra("pic_pelanggan_lama",pelangganLama.getPic());
-                intent.putExtra("telepon_pelanggan_lama",pelangganLama.getNo_telp());
+                Intent intent = new Intent("product_suma_broad");
+                intent.putExtra("id_product",productSuma.getId_produk());
+                intent.putExtra("nama_product",productSuma.getJudul());
+                intent.putExtra("harga_satuan",productSuma.getPrice());
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, pelangganLama.getId_customer());
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PRODUCT_ACTIVE, productSuma.getId_produk());
 
             }
 
@@ -86,14 +82,14 @@ public class AdapterPelangganLama extends RecyclerView.Adapter<AdapterPelangganL
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView namaPelanggan, alamatPelanggan;
+        TextView namaProduct, hargaProduct;
         LinearLayout parentPart, markStatus;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parentPart = itemView.findViewById(R.id.parent_part);
             markStatus = itemView.findViewById(R.id.mark_status);
-            namaPelanggan = itemView.findViewById(R.id.nama_pelanggan);
-            alamatPelanggan = itemView.findViewById(R.id.alamat_pelanggan);
+            namaProduct = itemView.findViewById(R.id.nama_product);
+            hargaProduct = itemView.findViewById(R.id.harga_product);
         }
     }
 
