@@ -15,10 +15,10 @@ import java.util.List;
 
 public class AdapterProductInputSuma extends RecyclerView.Adapter<AdapterProductInputSuma.ViewHolder> {
 
-    private List<String> names;
+    private List<String> dataProduct;
 
-    public AdapterProductInputSuma(List<String> names) {
-        this.names = names;
+    public AdapterProductInputSuma(List<String> dataProduct) {
+        this.dataProduct = dataProduct;
     }
 
     @NonNull
@@ -30,20 +30,28 @@ public class AdapterProductInputSuma extends RecyclerView.Adapter<AdapterProduct
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String qty = names.get(position);
-        holder.qtyPicker.setValue(Integer.parseInt(qty));
+        String data = dataProduct.get(position);
+
+        String[] arrayData = data.split("/");
+        holder.productNameTV.setText(String.valueOf(arrayData[1]));
+        holder.productPriceTV.setText(String.valueOf(arrayData[2]));
+        holder.qtyTV.setText(String.valueOf(Integer.parseInt(arrayData[3])));
+        holder.subTotalTV.setText(String.valueOf(Integer.parseInt(arrayData[4])));
     }
 
     @Override
     public int getItemCount() {
-        return names.size();
+        return dataProduct.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        NumberPicker qtyPicker;
+        TextView qtyTV, productNameTV, productPriceTV, subTotalTV;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            qtyPicker = itemView.findViewById(R.id.qty_picker);
+            productNameTV = itemView.findViewById(R.id.product_name_tv);
+            productPriceTV = itemView.findViewById(R.id.product_price_tv);
+            qtyTV = itemView.findViewById(R.id.qty_tv);
+            subTotalTV = itemView.findViewById(R.id.subtotal_tv);
         }
     }
 }

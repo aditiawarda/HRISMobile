@@ -148,7 +148,8 @@
                                             <LinearLayout
                                                 android:layout_marginTop="10dp"
                                                 android:layout_marginBottom="10dp"
-                                                android:layout_width="wrap_content"
+                                                android:layout_marginRight="48dp"
+                                                android:layout_width="match_parent"
                                                 android:layout_height="40dp"
                                                 android:orientation="vertical"
                                                 android:gravity="center|left"
@@ -156,11 +157,14 @@
 
                                                 <TextView
                                                     android:id="@+id/report_kategori_choice_tv"
-                                                    android:layout_width="wrap_content"
+                                                    android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:textColor="#B15735"
                                                     android:textSize="13dp"
                                                     android:textStyle="bold"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
                                                     android:text=""
                                                     tools:ignore="SpUsage" />
 
@@ -361,7 +365,8 @@
                                                     <LinearLayout
                                                         android:layout_marginTop="10dp"
                                                         android:layout_marginBottom="10dp"
-                                                        android:layout_width="wrap_content"
+                                                        android:layout_marginRight="48dp"
+                                                        android:layout_width="match_parent"
                                                         android:layout_height="40dp"
                                                         android:orientation="vertical"
                                                         android:gravity="center|left"
@@ -369,11 +374,14 @@
 
                                                         <TextView
                                                             android:id="@+id/f1_nama_pelanggan_lama_choice_tv"
-                                                            android:layout_width="wrap_content"
+                                                            android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:textColor="#B15735"
                                                             android:textSize="13dp"
                                                             android:textStyle="bold"
+                                                            android:ellipsize="end"
+                                                            android:maxLines="1"
+                                                            android:singleLine="true"
                                                             android:text=""
                                                             tools:ignore="SpUsage" />
 
@@ -428,7 +436,7 @@
                                                         android:textColor="#555555"
                                                         android:textSize="13dp"
                                                         android:lineSpacingExtra="2dp"
-                                                        android:text="Jl. Oto Iskandardinata, No. 17, Kel. Mangun, Kec. Bogor Selatan, Kota Bogor, Jawa Barat"
+                                                        android:text="Memuat data..."
                                                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                                     <LinearLayout
@@ -462,7 +470,7 @@
                                                         android:textColor="#555555"
                                                         android:textSize="13dp"
                                                         android:lineSpacingExtra="2dp"
-                                                        android:text="Irfan Budi Utomo"
+                                                        android:text="Memuat data..."
                                                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                                     <LinearLayout
@@ -496,7 +504,7 @@
                                                         android:textColor="#555555"
                                                         android:textSize="13dp"
                                                         android:lineSpacingExtra="2dp"
-                                                        android:text="085721603080"
+                                                        android:text="Memuat data..."
                                                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                                                 </LinearLayout>
@@ -581,7 +589,8 @@
                                                             <LinearLayout
                                                                 android:layout_marginTop="10dp"
                                                                 android:layout_marginBottom="10dp"
-                                                                android:layout_width="wrap_content"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_marginRight="48dp"
                                                                 android:layout_height="40dp"
                                                                 android:orientation="vertical"
                                                                 android:gravity="center|left"
@@ -589,12 +598,15 @@
 
                                                                 <TextView
                                                                     android:id="@+id/f1_product_choice_tv"
-                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_width="match_parent"
                                                                     android:layout_height="wrap_content"
                                                                     android:textColor="#B15735"
                                                                     android:textSize="13dp"
                                                                     android:textStyle="bold"
-                                                                    android:text=""
+                                                                    android:ellipsize="end"
+                                                                    android:maxLines="1"
+                                                                    android:singleLine="true"
+                                                                    android:text="Pilih produk untuk menambahkan..."
                                                                     tools:ignore="SpUsage" />
 
                                                             </LinearLayout>
@@ -678,7 +690,7 @@
                                                                 android:layout_width="wrap_content"
                                                                 android:layout_height="wrap_content"
                                                                 app:min="0"
-                                                                app:value="0"/>
+                                                                app:value="1"/>
 
                                                         </LinearLayout>
 

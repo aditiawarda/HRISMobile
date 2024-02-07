@@ -35,56 +35,28 @@
                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
             <LinearLayout
-                android:id="@+id/report_kategori_btn"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/shape_feel"
+                android:background="@drawable/shape_feel_disable"
                 android:orientation="horizontal"
+                android:gravity="center|left"
                 tools:ignore="RtlSymmetry">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:orientation="vertical"
-                        android:gravity="center|left"
-                        tools:ignore="RelativeOverlap,RtlHardcoded">
-
-                        <TextView
-                            android:id="@+id/report_kategori_choice_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#B15735"
-                            android:textSize="13dp"
-                            android:textStyle="bold"
-                            android:text=""
-                            tools:ignore="SpUsage" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_alignParentRight="true"
-                        android:layout_width="40dp"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/shape_btn"
-                        android:gravity="center"
-                        tools:ignore="RtlHardcoded">
-
-                        <TextView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/ic_baseline_down"/>
-
-                    </LinearLayout>
-
-                </RelativeLayout>
+                <TextView
+                    android:id="@+id/product_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#B15735"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:text="Memuat data..."
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    tools:ignore="HardcodedText,SpUsage" />
 
             </LinearLayout>
 
@@ -97,7 +69,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
-                    android:layout_weight=".50"
+                    android:layout_weight=".60"
                     android:orientation="vertical"
                     tools:ignore="RtlHardcoded">
 
@@ -112,6 +84,7 @@
                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                     <TextView
+                        android:id="@+id/product_price_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
@@ -125,14 +98,15 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight=".40"
                     android:orientation="vertical"
                     tools:ignore="RtlHardcoded">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -141,12 +115,17 @@
                         android:textSize="12dp"
                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
-                    <com.travijuu.numberpicker.library.NumberPicker
-                        android:id="@+id/qty_picker"
+                    <TextView
+                        android:id="@+id/qty_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:min="0"
-                        app:value="0"/>
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        android:text="0"
+                        android:textColor="#B15735"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                 </LinearLayout>
 
@@ -192,6 +171,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/subtotal_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp 0"

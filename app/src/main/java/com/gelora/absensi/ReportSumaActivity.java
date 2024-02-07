@@ -81,7 +81,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     private ProductSuma[] productSumas;
     private AdapterPelangganLama adapterPelangganLama;
     private AdapterProductSuma adapterProductSuma;
-    String f1FullDataProduct = "", f1ProductHargaSatuan = "";
+    String f1FullDataProduct = "", f1QtyProduct = "", f1IdProduct = "", f1ProductName = "", f1ProductHargaSatuan = "", f1SubTotal = "";
 
     TextView reportKategoriChoiceTV, namaKaryawanTV, nikKaryawanTV;
     SharedPrefManager sharedPrefManager;
@@ -177,6 +177,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1PelangganAttantionPart.setVisibility(View.VISIBLE);
                 f1PelangganBaruPart.setVisibility(View.GONE);
                 f1PelangganLamaPart.setVisibility(View.GONE);
+                f1NamaPelangganLamaChoiceTV.setText("");
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
                 f1DetailPelanggan.setVisibility(View.GONE);
                 f1AlamatPelangganLamaTV.setText("");
@@ -184,11 +185,14 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1TeleponPelangganLamaTV.setText("");
                 f1DetailPesananPart.setVisibility(View.GONE);
                 sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PRODUCT_ACTIVE, "");
-                f1ProductChoiceTV.setText("");
+                f1ProductChoiceTV.setText("Pilih produk untuk menambahkan...");
                 f1ProductHargaSatuanTV.setText("Rp 0");
                 f1SubTotalTV.setText("Rp 0");
                 f1QtyProductPicker.setValue(0);
+                f1IdProduct = "";
+                f1ProductName = "";
                 f1ProductHargaSatuan = "";
+                f1SubTotal = "";
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -260,10 +264,11 @@ public class ReportSumaActivity extends AppCompatActivity {
             @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
             @Override
             public void onClick(View v) {
+                f1FullDataProduct = f1IdProduct+"/"+f1ProductName+"/"+f1ProductHargaSatuan+"/"+f1QtyProduct+"/"+f1SubTotal;
                 if (!f1FullDataProduct.isEmpty() || f1FullDataProduct.equals("")) {
                     dataProduct.add(f1FullDataProduct);
                     adapterProductInputSuma.notifyDataSetChanged();
-                    f1ProductChoiceTV.setText("");
+                    f1ProductChoiceTV.setText("Pilih produk untuk menambahkan...");
                     f1ProductHargaSatuanTV.setText("Rp 0");
                     f1SubTotalTV.setText("Rp 0");
                     f1QtyProductPicker.setValue(0);
@@ -276,6 +281,8 @@ public class ReportSumaActivity extends AppCompatActivity {
         f1QtyProductPicker.setValueChangedListener(new ValueChangedListener() {
             @Override
             public void valueChanged(int value, ActionEnum action) {
+                f1QtyProduct = String.valueOf(value);
+                f1SubTotal = String.valueOf(Integer.parseInt(f1ProductHargaSatuan)*value);
                 f1SubTotalTV.setText(String.valueOf(Integer.parseInt(f1ProductHargaSatuan)*value));
             }
         });
@@ -715,11 +722,15 @@ public class ReportSumaActivity extends AppCompatActivity {
             String nama_product = intent.getStringExtra("nama_product");
             String harga_satuan = intent.getStringExtra("harga_satuan");
 
+            f1IdProduct = id_product;
+            f1ProductName = nama_product;
             f1ProductHargaSatuan = harga_satuan;
+            f1QtyProduct = String.valueOf(f1QtyProductPicker.getValue());
+            f1SubTotal = String.valueOf(f1QtyProductPicker.getValue()*Integer.parseInt(harga_satuan));
 
             f1ProductChoiceTV.setText(nama_product);
             f1ProductHargaSatuanTV.setText(harga_satuan);
-            f1SubTotalTV.setText(harga_satuan);
+            f1SubTotalTV.setText(String.valueOf(f1QtyProductPicker.getValue()*Integer.parseInt(harga_satuan)));
 
             InputMethodManager imm = (InputMethodManager) ReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
             View view = ReportSumaActivity.this.getCurrentFocus();
