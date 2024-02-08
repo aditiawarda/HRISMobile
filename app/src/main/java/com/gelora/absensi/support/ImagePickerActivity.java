@@ -97,6 +97,8 @@ public class ImagePickerActivity extends AppCompatActivity {
             builder.setTitle(context.getString(R.string.lbl_set_surat_sakit));
         } else if (code.equals("lampiran")){
             builder.setTitle(context.getString(R.string.lbl_set_lampiran));
+        } else if (code.equals("suma_report")){
+            builder.setTitle(context.getString(R.string.lbl_set_lampiran_suma));
         }
 
         // add a list

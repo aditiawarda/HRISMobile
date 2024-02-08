@@ -48,6 +48,11 @@ public class ViewImageActivity extends AppCompatActivity {
                 Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                         .into(photoView);
+            } else if(jenis_form.equals("suma")){
+                titlePageTV.setText("LAMPIRAN");
+                Picasso.get().load(url).networkPolicy(NetworkPolicy.NO_CACHE)
+                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        .into(photoView);
             }
         } else if (kode.equals("profile")){
             titlePageTV.setText("FOTO PROFIL");

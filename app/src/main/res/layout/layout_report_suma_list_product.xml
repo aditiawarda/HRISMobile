@@ -199,7 +199,7 @@
                             android:layout_width="180dp"
                             android:layout_height="180dp"
                             android:layout_marginBottom="10dp"
-                            android:background="@drawable/employe_search" />
+                            android:background="@drawable/product_search" />
 
                         <TextView
                             android:layout_width="match_parent"
