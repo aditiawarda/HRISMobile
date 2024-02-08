@@ -111,7 +111,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     LinearLayout loadingDataPart, loadingDataPartProduk, noDataPart, noDataPartProduk, startAttantionPart, startAttantionPartProduk, penawaranBTN, pesananBTN, penagihanBTN, rencanaKunjunaganBTN, markPesanan, markPenawaran, markPenagihan, markRencanaKunjungan;
 
     EditText f1KeteranganKunjunganED, keywordED, keywordEDProduk;
-    LinearLayout f1GPSLocationBTN, f1ViewLampiranBTN, f1LampiranFotoBTN, f1ProductInputDetailPart, f1AddProductBTN, f1ProductChoiceBTN, f1DetailPesananPart, f1DetailPelanggan, f1NamaPelangganLamaBTN, f1PelangganAttantionPart, f1PelangganBaruPart, f1PelangganLamaPart;
+    LinearLayout f1SubmitPesananBTN, f1GPSLocationBTN, f1ViewLampiranBTN, f1LampiranFotoBTN, f1ProductInputDetailPart, f1AddProductBTN, f1ProductChoiceBTN, f1DetailPesananPart, f1DetailPelanggan, f1NamaPelangganLamaBTN, f1PelangganAttantionPart, f1PelangganBaruPart, f1PelangganLamaPart;
     RadioGroup f1PelangganOption;
     RadioButton f1PelangganOptionBaru, f1PelangganOptionLama;
     TextView f1LabelLampiranTV, f1TotalPesananTV, f1SubTotalTV, f1ProductHargaSatuanTV, f1ProductChoiceTV, f1TeleponPelangganLamaTV, f1NamaPelangganLamaChoiceTV, f1AlamatPelangganLamaTV, f1PicPelangganLamaTV;
@@ -121,7 +121,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     private ProductSuma[] productSumas;
     private AdapterPelangganLama adapterPelangganLama;
     private AdapterProductSuma adapterProductSuma;
-    String f1TotalPesanan = "", f1FullDataProduct = "", f1QtyProduct = "", f1IdProduct = "", f1ProductName = "", f1ProductHargaSatuan = "", f1SubTotal = "";
+    String f1IdPelangganLama = "", f1JenisPelanggan = "", f1TotalPesanan = "", f1FullDataProduct = "", f1QtyProduct = "", f1IdProduct = "", f1ProductName = "", f1ProductHargaSatuan = "", f1SubTotal = "";
 
     TextView reportKategoriChoiceTV, namaKaryawanTV, nikKaryawanTV;
     SharedPrefManager sharedPrefManager;
@@ -130,7 +130,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     BottomSheetLayout bottomSheet;
     ImageView loadingForm, loadingGif, loadingGifProduk;
-    String salesLat = "", salesLong = "", categoryReport = "", idPelangganLama = "", laporanTerkirim = "";
+    String salesLat = "", salesLong = "", categoryReport = "", laporanTerkirim = "";
 
     private List<String> dataProduct = new ArrayList<>();
     private AdapterProductInputSuma adapterProductInputSuma;
@@ -138,6 +138,8 @@ public class ReportSumaActivity extends AppCompatActivity {
     private static final int LOCATION_REQUEST = INITIAL_REQUEST + 3;
     int REQUEST_IMAGE = 100;
     private Uri uri;
+    KAlertDialog pDialog;
+    private int i = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -190,6 +192,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f1ListProductInputRV = findViewById(R.id.item_produk_input_rv);
         f1LabelLampiranTV = findViewById(R.id.f1_label_lampiran_tv);
         f1GPSLocationBTN = findViewById(R.id.f1_gps_btn);
+        f1SubmitPesananBTN = findViewById(R.id.f1_submit_pesanan_btn);
 
         adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
         f1ListProductInputRV.setLayoutManager(new LinearLayoutManager(this));
@@ -266,6 +269,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1TotalPesanan = "";
                 f1LabelLampiranTV.setText("+ Lampiran Foto");
                 f1ViewLampiranBTN.setVisibility(View.GONE);
+                f1JenisPelanggan = "";
+                f1IdPelangganLama = "";
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -305,12 +310,13 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1KeteranganKunjunganED.clearFocus();
                 f1PelangganAttantionPart.setVisibility(View.GONE);
                 if (f1PelangganOptionBaru.isChecked()) {
+                    f1JenisPelanggan = "1";
                     f1PelangganBaruPart.setVisibility(View.VISIBLE);
                     f1PelangganLamaPart.setVisibility(View.GONE);
 
                     f1NamaPelangganLamaChoiceTV.setText("");
                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
-                    idPelangganLama = "";
+                    f1IdPelangganLama = "";
                     f1DetailPelanggan.setVisibility(View.GONE);
                     f1AlamatPelangganLamaTV.setText("");
                     f1PicPelangganLamaTV.setText("");
@@ -329,6 +335,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1ListProductInputRV.setNestedScrollingEnabled(false);
                     f1ListProductInputRV.setItemAnimator(new DefaultItemAnimator());
                 } else if (f1PelangganOptionLama.isChecked()) {
+                    f1JenisPelanggan = "2";
                     f1PelangganBaruPart.setVisibility(View.GONE);
                     f1PelangganLamaPart.setVisibility(View.VISIBLE);
                     f1TotalPesananTV.setText("Rp 0");
@@ -446,6 +453,107 @@ public class ReportSumaActivity extends AppCompatActivity {
             }
         });
 
+        f1SubmitPesananBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!categoryReport.equals("")||!f1KeteranganKunjunganED.getText().toString().equals("")||!f1JenisPelanggan.equals("")){
+                    if(f1JenisPelanggan.equals("1")){
+
+                    } else if(f1JenisPelanggan.equals("2")){
+                        if(f1IdPelangganLama.equals("")){
+                            new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Perhatian")
+                                    .setContentText("Harap isi semua data!")
+                                    .setConfirmText("   OK   ")
+                                    .showCancelButton(true)
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismiss();
+                                        }
+                                    })
+                                    .show();
+                        } else {
+                            if(dataProduct.isEmpty()||salesLat.equals("")||salesLong.equals("")||String.valueOf(uri).equals("null")){
+                                new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Harap isi semua data!")
+                                        .setConfirmText("   OK   ")
+                                        .showCancelButton(true)
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            } else {
+                                new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Perhatian")
+                                        .setContentText("Kirim permohonan sekarang?")
+                                        .setCancelText("TIDAK")
+                                        .setConfirmText("   YA   ")
+                                        .showCancelButton(true)
+                                        .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                            @Override
+                                            public void onClick(KAlertDialog sDialog) {
+                                                sDialog.dismiss();
+                                                pDialog = new KAlertDialog(ReportSumaActivity.this, KAlertDialog.PROGRESS_TYPE).setTitleText("Loading");
+                                                pDialog.show();
+                                                pDialog.setCancelable(false);
+                                                new CountDownTimer(1300, 800) {
+                                                    public void onTick(long millisUntilFinished) {
+                                                        i++;
+                                                        switch (i) {
+                                                            case 0:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (ReportSumaActivity.this, R.color.colorGradien));
+                                                                break;
+                                                            case 1:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (ReportSumaActivity.this, R.color.colorGradien2));
+                                                                break;
+                                                            case 2:
+                                                            case 6:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (ReportSumaActivity.this, R.color.colorGradien3));
+                                                                break;
+                                                            case 3:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (ReportSumaActivity.this, R.color.colorGradien4));
+                                                                break;
+                                                            case 4:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (ReportSumaActivity.this, R.color.colorGradien5));
+                                                                break;
+                                                            case 5:
+                                                                pDialog.getProgressHelper().setBarColor(ContextCompat.getColor
+                                                                        (ReportSumaActivity.this, R.color.colorGradien6));
+                                                                break;
+                                                        }
+                                                    }
+                                                    public void onFinish() {
+                                                        i = -1;
+                                                        submitLaporan();
+                                                    }
+                                                }.start();
+
+                                            }
+                                        })
+                                        .show();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
         sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PRODUCT_ACTIVE, "");
         loadingFormPart.setVisibility(View.VISIBLE);
@@ -557,6 +665,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1TeleponPelangganLamaTV.setText("");
                         f1DetailPesananPart.setVisibility(View.GONE);
                         dataProduct.clear();
+                        f1JenisPelanggan = "";
+                        f1IdPelangganLama = "";
 
                         adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
                         f1ListProductInputRV.setLayoutManager(new LinearLayoutManager(ReportSumaActivity.this));
@@ -638,6 +748,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1TeleponPelangganLamaTV.setText("");
                         f1DetailPesananPart.setVisibility(View.GONE);
                         dataProduct.clear();
+                        f1JenisPelanggan = "";
+                        f1IdPelangganLama = "";
 
                         adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
                         f1ListProductInputRV.setLayoutManager(new LinearLayoutManager(ReportSumaActivity.this));
@@ -719,6 +831,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1TeleponPelangganLamaTV.setText("");
                         f1DetailPesananPart.setVisibility(View.GONE);
                         dataProduct.clear();
+                        f1JenisPelanggan = "";
+                        f1IdPelangganLama = "";
 
                         adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
                         f1ListProductInputRV.setLayoutManager(new LinearLayoutManager(ReportSumaActivity.this));
@@ -800,6 +914,8 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1TeleponPelangganLamaTV.setText("");
                         f1DetailPesananPart.setVisibility(View.GONE);
                         dataProduct.clear();
+                        f1JenisPelanggan = "";
+                        f1IdPelangganLama = "";
 
                         adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
                         f1ListProductInputRV.setLayoutManager(new LinearLayoutManager(ReportSumaActivity.this));
@@ -1076,7 +1192,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             f1PicPelangganLamaTV.setText(picPelanggan);
             f1TeleponPelangganLamaTV.setText(teleponPelanggan);
 
-            idPelangganLama = idPelanggan;
+            f1IdPelangganLama = idPelanggan;
             f1DetailPelanggan.setVisibility(View.VISIBLE);
             f1DetailPesananPart.setVisibility(View.VISIBLE);
 
@@ -1211,7 +1327,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        if (!categoryReport.equals("") || !idPelangganLama.equals("") || f1PelangganOption.isActivated()) {
+        if (!categoryReport.equals("") || !f1IdPelangganLama.equals("") || f1PelangganOption.isActivated()) {
             if (bottomSheet.isSheetShowing()) {
                 bottomSheet.dismissSheet();
             } else {
@@ -1235,7 +1351,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                                 public void onClick(KAlertDialog sDialog) {
                                     sDialog.dismiss();
                                     categoryReport = "";
-                                    idPelangganLama = "";
+                                    f1IdPelangganLama = "";
                                     reportKategoriChoiceTV.setText("");
                                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
                                     f1AlamatPelangganLamaTV.setText("");
@@ -1480,6 +1596,10 @@ public class ReportSumaActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    private void submitLaporan(){
+        pDialog.dismiss();
     }
 
 }

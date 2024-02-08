@@ -981,7 +981,7 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/submit_pesanan_btn"
+                                            android:id="@+id/f1_submit_pesanan_btn"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="25dp"
