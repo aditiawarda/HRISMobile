@@ -9,18 +9,40 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.gelora.absensi.adapter.AdapterDataHadir;
+import com.gelora.absensi.adapter.AdapterPelangganLama;
+import com.gelora.absensi.adapter.AdapterSumaReport;
+import com.gelora.absensi.kalert.KAlertDialog;
+import com.gelora.absensi.model.DataHadir;
+import com.gelora.absensi.model.DataReportSuma;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.aviran.cookiebar2.CookieBar;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ListDataReportSumaActivity extends AppCompatActivity {
 
@@ -33,7 +55,10 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     BottomSheetLayout bottomSheet;
     String categoryCode = "0";
-    RecyclerView reportRV;
+    private RecyclerView reportRV;
+    private DataReportSuma[] dataReportSumas;
+    private AdapterSumaReport adapterSumaReport;
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -57,6 +82,11 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         reportRV = findViewById(R.id.data_report_rv);
 
         categoryChoiceTV.setText("Semua");
+
+        reportRV.setLayoutManager(new LinearLayoutManager(this));
+        reportRV.setHasFixedSize(true);
+        reportRV.setNestedScrollingEnabled(false);
+        reportRV.setItemAnimator(new DefaultItemAnimator());
 
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
@@ -123,9 +153,72 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     }
 
     private void getData(String category_code){
-        reportRV.setVisibility(View.GONE);
-        loadingDataPartReport.setVisibility(View.GONE);
-        noDataPartReport.setVisibility(View.VISIBLE);
+        final String url = "https://reporting.sumasistem.co.id/api/suma_report?nik="+sharedPrefManager.getSpNik()+"&"+"tipe_laporan="+category_code;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("PaRSE JSON", response + "");
+                        try {
+                            String status = response.getString("status");
+
+                            if(status.equals("Success")){
+                                reportRV.setVisibility(View.VISIBLE);
+                                loadingDataPartReport.setVisibility(View.GONE);
+                                noDataPartReport.setVisibility(View.GONE);
+
+                                String data_report = response.getString("data");
+                                GsonBuilder builder = new GsonBuilder();
+                                Gson gson = builder.create();
+                                dataReportSumas = gson.fromJson(data_report, DataReportSuma[].class);
+                                adapterSumaReport = new AdapterSumaReport(dataReportSumas, ListDataReportSumaActivity.this);
+                                reportRV.setAdapter(adapterSumaReport);
+                            } else {
+                                reportRV.setVisibility(View.GONE);
+                                loadingDataPartReport.setVisibility(View.GONE);
+                                noDataPartReport.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                reportRV.setVisibility(View.GONE);
+                loadingDataPartReport.setVisibility(View.GONE);
+                noDataPartReport.setVisibility(View.VISIBLE);
+
+                new KAlertDialog(ListDataReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Gagal terhubung, harap periksa jaringan anda")
+                        .setConfirmText("    OK    ")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        requestQueue.add(request);
+
+    }
+
+    private void connectionFailed(){
+        CookieBar.build(ListDataReportSumaActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
     }
 
     private void categoryChoice(){
