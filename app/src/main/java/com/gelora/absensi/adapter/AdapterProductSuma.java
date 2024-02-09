@@ -20,6 +20,10 @@ import com.gelora.absensi.SharedPrefAbsen;
 import com.gelora.absensi.model.PelangganLama;
 import com.gelora.absensi.model.ProductSuma;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class AdapterProductSuma extends RecyclerView.Adapter<AdapterProductSuma.MyViewHolder> {
 
     private ProductSuma[] data;
@@ -44,8 +48,13 @@ public class AdapterProductSuma extends RecyclerView.Adapter<AdapterProductSuma.
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final ProductSuma productSuma = data[i];
 
+        Locale localeID = new Locale("id", "ID");
+        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(localeID);
+        decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
+        decimalFormat.setMaximumFractionDigits(0);
+
         myViewHolder.namaProduct.setText(productSuma.getJudul());
-        myViewHolder.hargaProduct.setText(productSuma.getPrice());
+        myViewHolder.hargaProduct.setText(decimalFormat.format(Integer.parseInt(productSuma.getPrice())));
 
         if (sharedPrefAbsen.getSpProductActive().equals(productSuma.getId_produk())) {
             myViewHolder.markStatus.setVisibility(View.VISIBLE);

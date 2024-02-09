@@ -48,11 +48,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
@@ -102,13 +104,15 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class ReportSumaActivity extends AppCompatActivity {
 
     LinearLayout loadingFormPart, attantionNoForm, rencanaKunjunganFormPart, penagihanFormPart, penawaranFormPart, pesananFormPart, actionBar, backBTN, reportCategoryBTN;
-    LinearLayout loadingDataPart, loadingDataPartProduk, noDataPart, noDataPartProduk, startAttantionPart, startAttantionPartProduk, penawaranBTN, pesananBTN, penagihanBTN, rencanaKunjunaganBTN, markPesanan, markPenawaran, markPenagihan, markRencanaKunjungan;
+    LinearLayout formPart, successPart, loadingDataPart, loadingDataPartProduk, noDataPart, noDataPartProduk, startAttantionPart, startAttantionPartProduk, penawaranBTN, pesananBTN, penagihanBTN, rencanaKunjunaganBTN, markPesanan, markPenawaran, markPenagihan, markRencanaKunjungan;
 
     EditText f1KeteranganKunjunganED, keywordED, keywordEDProduk;
     LinearLayout f1SubmitPesananBTN, f1GPSLocationBTN, f1ViewLampiranBTN, f1LampiranFotoBTN, f1ProductInputDetailPart, f1AddProductBTN, f1ProductChoiceBTN, f1DetailPesananPart, f1DetailPelanggan, f1NamaPelangganLamaBTN, f1PelangganAttantionPart, f1PelangganBaruPart, f1PelangganLamaPart;
@@ -129,7 +133,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     BottomSheetLayout bottomSheet;
-    ImageView loadingForm, loadingGif, loadingGifProduk;
+    ImageView loadingForm, loadingGif, loadingGifProduk, successGif;
     String salesLat = "", salesLong = "", categoryReport = "", laporanTerkirim = "";
 
     private List<String> dataProduct = new ArrayList<>();
@@ -164,6 +168,9 @@ public class ReportSumaActivity extends AppCompatActivity {
         loadingForm = findViewById(R.id.loading_form);
         namaKaryawanTV = findViewById(R.id.nama_karyawan_tv);
         nikKaryawanTV = findViewById(R.id.nik_karyawan_tv);
+        formPart = findViewById(R.id.form_part);
+        successPart = findViewById(R.id.success_submit);
+        successGif = findViewById(R.id.success_gif);
 
         f1KeteranganKunjunganED = findViewById(R.id.f1_keterangan_kunjungan_ed);
         f1PelangganAttantionPart = findViewById(R.id.f1_pelanggan_attantion);
@@ -206,6 +213,10 @@ public class ReportSumaActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(R.drawable.loading_sgn_digital)
                 .into(loadingForm);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.success_ic)
+                .into(successGif);
 
         namaKaryawanTV.setText(sharedPrefManager.getSpNama());
         nikKaryawanTV.setText(sharedPrefManager.getSpNik());
@@ -1124,7 +1135,7 @@ public class ReportSumaActivity extends AppCompatActivity {
     }
 
     private void getProduct(String keyword) {
-        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/list_produk/" + keyword;
+        final String API_ENDPOINT_CUSTOMER = "https://reporting.sumasistem.co.id/api/list_produk/"+keyword;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -1314,64 +1325,6 @@ public class ReportSumaActivity extends AppCompatActivity {
         f1TotalPesananTV.setText(decimalFormat.format(jumlah));
     }
 
-    private void connectionFailed() {
-        CookieBar.build(ReportSumaActivity.this)
-                .setTitle("Perhatian")
-                .setMessage("Koneksi anda terputus!")
-                .setTitleColor(R.color.colorPrimaryDark)
-                .setMessageColor(R.color.colorPrimaryDark)
-                .setBackgroundColor(R.color.warningBottom)
-                .setIcon(R.drawable.warning_connection_mini)
-                .setCookiePosition(CookieBar.BOTTOM)
-                .show();
-    }
-
-    public void onBackPressed() {
-        if (!categoryReport.equals("") || !f1IdPelangganLama.equals("") || f1PelangganOption.isActivated()) {
-            if (bottomSheet.isSheetShowing()) {
-                bottomSheet.dismissSheet();
-            } else {
-                if (laporanTerkirim.equals("1")) {
-                    super.onBackPressed();
-                } else {
-                    new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
-                            .setTitleText("Perhatian")
-                            .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
-                            .setCancelText("TIDAK")
-                            .setConfirmText("   YA   ")
-                            .showCancelButton(true)
-                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                }
-                            })
-                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                @Override
-                                public void onClick(KAlertDialog sDialog) {
-                                    sDialog.dismiss();
-                                    categoryReport = "";
-                                    f1IdPelangganLama = "";
-                                    reportKategoriChoiceTV.setText("");
-                                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
-                                    f1AlamatPelangganLamaTV.setText("");
-                                    f1PicPelangganLamaTV.setText("");
-                                    f1TeleponPelangganLamaTV.setText("");
-                                    onBackPressed();
-                                }
-                            })
-                            .show();
-                }
-            }
-        } else {
-            if (bottomSheet.isSheetShowing()) {
-                bottomSheet.dismissSheet();
-            } else {
-                super.onBackPressed();
-            }
-        }
-    }
-
     @SuppressLint("MissingPermission")
     private void salesPosition() {
         // Get last known recent location using new Google Play Services SDK (v11+)
@@ -1559,7 +1512,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1ViewLampiranBTN.setVisibility(View.VISIBLE);
                         f1LabelLampiranTV.setText("Ubah Lampiran");
 
-//                        uploadStatus = "1";
+                        // uploadStatus = "1";
 
                         f1ViewLampiranBTN.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -1598,8 +1551,155 @@ public class ReportSumaActivity extends AppCompatActivity {
         }
     }
 
+    private String listToString(List<String> list) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String item : list) {
+            stringBuilder.append(item).append(", ");
+        }
+        // Remove the trailing comma and space
+        if (stringBuilder.length() > 0) {
+            stringBuilder.setLength(stringBuilder.length() - 2);
+        }
+        return stringBuilder.toString();
+    }
+
     private void submitLaporan(){
-        pDialog.dismiss();
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://reporting.sumasistem.co.id/api/create_suma_report";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        try {
+                            Log.d("Success.Response", response.toString());
+                            JSONObject data = new JSONObject(response);
+                            String status = data.getString("status");
+
+                            if(status.equals("Success")) {
+                                String idLaporan = data.getString("idLaporan");
+                                laporanTerkirim = "1";
+                                successPart.setVisibility(View.VISIBLE);
+                                formPart.setVisibility(View.GONE);
+                                pDialog.dismiss();
+                            } else {
+                                successPart.setVisibility(View.GONE);
+                                formPart.setVisibility(View.VISIBLE);
+                                pDialog.setTitleText("Gagal Terkirim")
+                                        .setConfirmText("    OK    ")
+                                        .changeAlertType(KAlertDialog.ERROR_TYPE);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error.Response", error.toString());
+                        connectionFailed();
+                        successPart.setVisibility(View.GONE);
+                        formPart.setVisibility(View.VISIBLE);
+                        pDialog.setTitleText("Gagal Terkirim")
+                                .setConfirmText("    OK    ")
+                                .changeAlertType(KAlertDialog.ERROR_TYPE);
+                    }
+                }
+        )
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("kategori_laporan", categoryReport);
+                params.put("keterangan_kunjungan", f1KeteranganKunjunganED.getText().toString());
+                params.put("tipe_pelanggan", f1JenisPelanggan);
+
+                if(f1JenisPelanggan.equals("1")){
+
+                } else if(f1JenisPelanggan.equals("2")){
+                    params.put("id_pelanggan", f1IdPelangganLama);
+                }
+
+                params.put("nik_sales", sharedPrefManager.getSpNik());
+                params.put("file_lampiran", "belum ada");
+                params.put("latitude", salesLat);
+                params.put("logitude", salesLong);
+
+                params.put("data_produk", listToString(dataProduct));
+
+                return params;
+            }
+        };
+
+        requestQueue.add(postRequest);
+
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        postRequest.setRetryPolicy(retryPolicy);
+
+    }
+
+    private void connectionFailed() {
+        CookieBar.build(ReportSumaActivity.this)
+                .setTitle("Perhatian")
+                .setMessage("Koneksi anda terputus!")
+                .setTitleColor(R.color.colorPrimaryDark)
+                .setMessageColor(R.color.colorPrimaryDark)
+                .setBackgroundColor(R.color.warningBottom)
+                .setIcon(R.drawable.warning_connection_mini)
+                .setCookiePosition(CookieBar.BOTTOM)
+                .show();
+    }
+
+    public void onBackPressed() {
+        if (!categoryReport.equals("") || !f1IdPelangganLama.equals("") || f1PelangganOption.isActivated()) {
+            if (bottomSheet.isSheetShowing()) {
+                bottomSheet.dismissSheet();
+            } else {
+                if (laporanTerkirim.equals("1")) {
+                    super.onBackPressed();
+                } else {
+                    new KAlertDialog(ReportSumaActivity.this, KAlertDialog.WARNING_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Apakah anda yakin untuk meninggalkan halaman ini?")
+                            .setCancelText("TIDAK")
+                            .setConfirmText("   YA   ")
+                            .showCancelButton(true)
+                            .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                    categoryReport = "";
+                                    f1IdPelangganLama = "";
+                                    reportKategoriChoiceTV.setText("");
+                                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                                    f1AlamatPelangganLamaTV.setText("");
+                                    f1PicPelangganLamaTV.setText("");
+                                    f1TeleponPelangganLamaTV.setText("");
+                                    onBackPressed();
+                                }
+                            })
+                            .show();
+                }
+            }
+        } else {
+            if (bottomSheet.isSheetShowing()) {
+                bottomSheet.dismissSheet();
+            } else {
+                super.onBackPressed();
+            }
+        }
     }
 
 }

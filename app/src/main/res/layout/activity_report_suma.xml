@@ -1284,7 +1284,7 @@
                                         <TextView
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:text="Permohonan Terkirim"
+                                            android:text="Laporan Terkirim"
                                             android:textAlignment="center"
                                             android:textColor="@color/white"
                                             android:textSize="15dp"
@@ -1296,7 +1296,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="15dp"
-                                            android:text="Permohonan anda telah terkirim dan disampaikan kepada Kepala Bagian / Supervisor untuk persetujuan."
+                                            android:text="Terima kasih, laporan anda telah terkirim dan disimpan."
                                             android:textAlignment="center"
                                             android:textColor="@color/white"
                                             android:textSize="13dp"
@@ -1335,7 +1335,7 @@
                                         android:textStyle="bold"
                                         android:textSize="13dp"
                                         android:textColor="@color/white"
-                                        android:text="LIHAT PERMOHONAN"
+                                        android:text="LIHAT DETAIL LAPORAN"
                                         tools:ignore="HardcodedText,SpUsage" />
 
                                 </LinearLayout>
@@ -1397,7 +1397,7 @@
                                 android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="FORM LAPORAN HARIAN SUMA"
+                                android:text="FORM LAPORAN HARIAN SUMA "
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
