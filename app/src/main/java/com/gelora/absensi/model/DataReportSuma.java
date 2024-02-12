@@ -7,6 +7,7 @@ public class DataReportSuma {
     private String keterangan;
     private String tipePelanggan;
     private String idPelanggan;
+    private String namaPelanggan;
     private String idSales;
     private String createdAt;
     private String totalPesanan;
@@ -49,6 +50,14 @@ public class DataReportSuma {
 
     public void setIdPelanggan(String idPelanggan) {
         this.idPelanggan = idPelanggan;
+    }
+
+    public String getNamaPelanggan() {
+        return namaPelanggan;
+    }
+
+    public void setNamaPelanggan(String namaPelanggan) {
+        this.namaPelanggan = namaPelanggan;
     }
 
     public String getIdSales() {

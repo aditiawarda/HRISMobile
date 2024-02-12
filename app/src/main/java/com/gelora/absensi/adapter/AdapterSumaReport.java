@@ -65,6 +65,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         }
 
         myViewHolder.keteranganTV.setText(dataReportSuma.getKeterangan());
+        myViewHolder.namaPelangganTV.setText(dataReportSuma.getNamaPelanggan());
         myViewHolder.totalPesananTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalPesanan())));
         myViewHolder.tanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
 
@@ -84,7 +85,7 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
             parentPart = itemView.findViewById(R.id.parent_part);
             reportCategoryTV = itemView.findViewById(R.id.report_kategori_tv);
             keteranganTV = itemView.findViewById(R.id.keterangan_report_tv);
-            // namaPelangganTV = itemView.findViewById(R.id.nama_pelanggan_tv);
+            namaPelangganTV = itemView.findViewById(R.id.nama_pelanggan_tv);
             totalPesananTV = itemView.findViewById(R.id.total_pesanan_tv);
             tanggalLaporanTV = itemView.findViewById(R.id.tanggal_laporan_tv);
         }
