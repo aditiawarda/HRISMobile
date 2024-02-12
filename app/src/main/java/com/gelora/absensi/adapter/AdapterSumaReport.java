@@ -55,18 +55,18 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         decimalFormat.setMaximumFractionDigits(0);
 
         if(dataReportSuma.getTipeLaporan().equals("1")){
-            myViewHolder.reportCategoryTV.setText("Pesanan");
-        } else if(dataReportSuma.getTipeLaporan().equals("2")){
-            myViewHolder.reportCategoryTV.setText("Penawaran");
-        } else if(dataReportSuma.getTipeLaporan().equals("3")){
-            myViewHolder.reportCategoryTV.setText("Penagihan");
-        } else if(dataReportSuma.getTipeLaporan().equals("4")){
             myViewHolder.reportCategoryTV.setText("Rencana Kunjungan");
+        } else if(dataReportSuma.getTipeLaporan().equals("2")){
+            myViewHolder.reportCategoryTV.setText("Kunjungan");
+        } else if(dataReportSuma.getTipeLaporan().equals("3")){
+            myViewHolder.reportCategoryTV.setText("Penawaran");
+        } else if(dataReportSuma.getTipeLaporan().equals("4")){
+            myViewHolder.reportCategoryTV.setText("Penagihan");
         }
 
         myViewHolder.keteranganTV.setText(dataReportSuma.getKeterangan());
         myViewHolder.totalPesananTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalPesanan())));
-        myViewHolder.tanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,dataReportSuma.getCreatedAt().length()));
+        myViewHolder.tanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
 
     }
 

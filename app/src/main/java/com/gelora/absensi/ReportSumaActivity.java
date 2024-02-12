@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -22,7 +21,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.location.Location;
@@ -46,7 +44,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -58,16 +55,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.flipboard.bottomsheet.BottomSheetLayout;
-import com.gelora.absensi.adapter.AdapterAllKaryawan;
-import com.gelora.absensi.adapter.AdapterDataTask;
 import com.gelora.absensi.adapter.AdapterPelangganLama;
 import com.gelora.absensi.adapter.AdapterProductInputSuma;
 import com.gelora.absensi.adapter.AdapterProductSuma;
 import com.gelora.absensi.kalert.KAlertDialog;
-import com.gelora.absensi.model.KaryawanAll;
 import com.gelora.absensi.model.PelangganLama;
 import com.gelora.absensi.model.ProductSuma;
-import com.gelora.absensi.model.TaskData;
 import com.gelora.absensi.support.ImagePickerActivity;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -77,9 +70,6 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -96,7 +86,6 @@ import com.travijuu.numberpicker.library.Interface.ValueChangedListener;
 import com.travijuu.numberpicker.library.NumberPicker;
 
 import org.aviran.cookiebar2.CookieBar;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -112,7 +101,7 @@ import java.util.Map;
 public class ReportSumaActivity extends AppCompatActivity {
 
     LinearLayout loadingFormPart, attantionNoForm, rencanaKunjunganFormPart, penagihanFormPart, penawaranFormPart, pesananFormPart, actionBar, backBTN, reportCategoryBTN;
-    LinearLayout formPart, successPart, loadingDataPart, loadingDataPartProduk, noDataPart, noDataPartProduk, startAttantionPart, startAttantionPartProduk, penawaranBTN, pesananBTN, penagihanBTN, rencanaKunjunaganBTN, markPesanan, markPenawaran, markPenagihan, markRencanaKunjungan;
+    LinearLayout formPart, successPart, loadingDataPart, loadingDataPartProduk, noDataPart, noDataPartProduk, startAttantionPart, startAttantionPartProduk, penawaranBTN, kunjunganBTN, penagihanBTN, rencanaKunjunaganBTN, markKunjungan, markPenawaran, markPenagihan, markRencanaKunjungan;
 
     EditText f1KeteranganKunjunganED, keywordED, keywordEDProduk;
     LinearLayout f1SubmitPesananBTN, f1GPSLocationBTN, f1ViewLampiranBTN, f1LampiranFotoBTN, f1ProductInputDetailPart, f1AddProductBTN, f1ProductChoiceBTN, f1DetailPesananPart, f1DetailPelanggan, f1NamaPelangganLamaBTN, f1PelangganAttantionPart, f1PelangganBaruPart, f1PelangganLamaPart;
@@ -278,7 +267,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                 f1ProductInputDetailPart.setVisibility(View.GONE);
                 f1TotalPesananTV.setText("Rp 0");
                 f1TotalPesanan = "";
-                f1LabelLampiranTV.setText("+ Lampiran Foto");
+                f1LabelLampiranTV.setText("+ Lampiran Foto/SP");
                 f1ViewLampiranBTN.setVisibility(View.GONE);
                 f1JenisPelanggan = "";
                 f1IdPelangganLama = "";
@@ -336,7 +325,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1TotalPesanan = "";
                     f1DetailPesananPart.setVisibility(View.GONE);
                     dataProduct.clear();
-                    f1LabelLampiranTV.setText("+ Lampiran Foto");
+                    f1LabelLampiranTV.setText("+ Lampiran Foto/SP");
                     f1ViewLampiranBTN.setVisibility(View.GONE);
 
                     adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
@@ -353,7 +342,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1TotalPesanan = "";
                     f1DetailPesananPart.setVisibility(View.GONE);
                     dataProduct.clear();
-                    f1LabelLampiranTV.setText("+ Lampiran Foto");
+                    f1LabelLampiranTV.setText("+ Lampiran Foto/SP");
                     f1ViewLampiranBTN.setVisibility(View.GONE);
 
                     adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
@@ -452,7 +441,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f1GPSLocationBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ReportSumaActivity.this, FullMapsActivity.class);
+                Intent intent = new Intent(ReportSumaActivity.this, LocationPickerActivity.class);
                 startActivity(intent);
             }
         });
@@ -581,76 +570,77 @@ public class ReportSumaActivity extends AppCompatActivity {
 
     private void reportCategory() {
         bottomSheet.showWithSheetView(LayoutInflater.from(getBaseContext()).inflate(R.layout.layout_kategori_report_suma, bottomSheet, false));
-        pesananBTN = findViewById(R.id.pesanan_btn);
+        rencanaKunjunaganBTN = findViewById(R.id.rencana_kunjunagan_btn);
+        kunjunganBTN = findViewById(R.id.kunjungan_btn);
         penawaranBTN = findViewById(R.id.penawaran_btn);
         penagihanBTN = findViewById(R.id.penagihan_btn);
-        rencanaKunjunaganBTN = findViewById(R.id.rencana_kunjunagan_btn);
-        markPesanan = findViewById(R.id.mark_pesanan);
+        markRencanaKunjungan = findViewById(R.id.mark_rencana_kunjungan);
+        markKunjungan = findViewById(R.id.mark_kunjungan);
         markPenawaran = findViewById(R.id.mark_penawaran);
         markPenagihan = findViewById(R.id.mark_penagihan);
-        markRencanaKunjungan = findViewById(R.id.mark_rencana_kunjungan);
+
 
         if (categoryReport.equals("1")) {
-            markPesanan.setVisibility(View.VISIBLE);
+            markRencanaKunjungan.setVisibility(View.VISIBLE);
+            markKunjungan.setVisibility(View.GONE);
             markPenawaran.setVisibility(View.GONE);
             markPenagihan.setVisibility(View.GONE);
-            markRencanaKunjungan.setVisibility(View.GONE);
-            pesananBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
+            rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
+            kunjunganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
             penawaranBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
             penagihanBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
-            rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
         } else if (categoryReport.equals("2")) {
-            markPesanan.setVisibility(View.GONE);
+            markRencanaKunjungan.setVisibility(View.GONE);
+            markKunjungan.setVisibility(View.VISIBLE);
+            markPenawaran.setVisibility(View.GONE);
+            markPenagihan.setVisibility(View.GONE);
+            rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+            kunjunganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
+            penawaranBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+            penagihanBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+        } else if (categoryReport.equals("3")) {
+            markRencanaKunjungan.setVisibility(View.GONE);
+            markKunjungan.setVisibility(View.GONE);
             markPenawaran.setVisibility(View.VISIBLE);
             markPenagihan.setVisibility(View.GONE);
-            markRencanaKunjungan.setVisibility(View.GONE);
-            pesananBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+            rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+            kunjunganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
             penawaranBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
             penagihanBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
-            rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
-        } else if (categoryReport.equals("3")) {
-            markPesanan.setVisibility(View.GONE);
+        } else if (categoryReport.equals("4")) {
+            markRencanaKunjungan.setVisibility(View.GONE);
+            markKunjungan.setVisibility(View.GONE);
             markPenawaran.setVisibility(View.GONE);
             markPenagihan.setVisibility(View.VISIBLE);
-            markRencanaKunjungan.setVisibility(View.GONE);
-            pesananBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+            rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+            kunjunganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
             penawaranBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
             penagihanBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
-            rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
-        } else if (categoryReport.equals("4")) {
-            markPesanan.setVisibility(View.GONE);
-            markPenawaran.setVisibility(View.GONE);
-            markPenagihan.setVisibility(View.GONE);
-            markRencanaKunjungan.setVisibility(View.VISIBLE);
-            pesananBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
-            penawaranBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
-            penagihanBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
-            rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
         } else {
-            markPesanan.setVisibility(View.GONE);
+            markRencanaKunjungan.setVisibility(View.GONE);
+            markKunjungan.setVisibility(View.GONE);
             markPenawaran.setVisibility(View.GONE);
             markPenagihan.setVisibility(View.GONE);
-            markRencanaKunjungan.setVisibility(View.GONE);
-            pesananBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+            rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+            kunjunganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
             penawaranBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
             penagihanBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
-            rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
         }
 
-        pesananBTN.setOnClickListener(new View.OnClickListener() {
+        rencanaKunjunaganBTN.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 categoryReport = "1";
-                reportKategoriChoiceTV.setText("Pesanan");
-                markPesanan.setVisibility(View.VISIBLE);
+                reportKategoriChoiceTV.setText("Rencana Kunjungan");
+                markRencanaKunjungan.setVisibility(View.VISIBLE);
+                markKunjungan.setVisibility(View.GONE);
                 markPenawaran.setVisibility(View.GONE);
                 markPenagihan.setVisibility(View.GONE);
-                markRencanaKunjungan.setVisibility(View.GONE);
-                pesananBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
+                rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
+                kunjunganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
                 penawaranBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
-                rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -700,7 +690,90 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1ProductInputDetailPart.setVisibility(View.GONE);
                         f1TotalPesananTV.setText("Rp 0");
                         f1TotalPesanan = "";
-                        f1LabelLampiranTV.setText("+ Lampiran Foto");
+                        f1LabelLampiranTV.setText("+ Lampiran Foto/SP");
+                        f1ViewLampiranBTN.setVisibility(View.GONE);
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                pesananFormPart.setVisibility(View.GONE);
+                                penawaranFormPart.setVisibility(View.GONE);
+                                penagihanFormPart.setVisibility(View.GONE);
+                                rencanaKunjunganFormPart.setVisibility(View.VISIBLE);
+                                attantionNoForm.setVisibility(View.GONE);
+                                loadingFormPart.setVisibility(View.GONE);
+                            }
+                        }, 1300);
+
+                    }
+                }, 300);
+            }
+        });
+
+        kunjunganBTN.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                categoryReport = "2";
+                reportKategoriChoiceTV.setText("Kunjungan");
+                markRencanaKunjungan.setVisibility(View.GONE);
+                markKunjungan.setVisibility(View.VISIBLE);
+                markPenawaran.setVisibility(View.GONE);
+                markPenagihan.setVisibility(View.GONE);
+                rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+                kunjunganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
+                penawaranBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+                penagihanBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+
+                        pesananFormPart.setVisibility(View.GONE);
+                        penawaranFormPart.setVisibility(View.GONE);
+                        penagihanFormPart.setVisibility(View.GONE);
+                        rencanaKunjunganFormPart.setVisibility(View.GONE);
+                        attantionNoForm.setVisibility(View.GONE);
+                        loadingFormPart.setVisibility(View.VISIBLE);
+
+                        f1PelangganOption.clearCheck();
+                        f1PelangganAttantionPart.setVisibility(View.VISIBLE);
+                        f1PelangganBaruPart.setVisibility(View.GONE);
+                        f1PelangganLamaPart.setVisibility(View.GONE);
+                        f1NamaPelangganLamaChoiceTV.setText("");
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                        f1DetailPelanggan.setVisibility(View.GONE);
+                        f1AlamatPelangganLamaTV.setText("");
+                        f1PicPelangganLamaTV.setText("");
+                        f1TeleponPelangganLamaTV.setText("");
+                        f1DetailPesananPart.setVisibility(View.GONE);
+                        dataProduct.clear();
+                        f1JenisPelanggan = "";
+                        f1IdPelangganLama = "";
+
+                        adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
+                        f1ListProductInputRV.setLayoutManager(new LinearLayoutManager(ReportSumaActivity.this));
+                        f1ListProductInputRV.setAdapter(adapterProductInputSuma);
+                        f1ListProductInputRV.setHasFixedSize(true);
+                        f1ListProductInputRV.setNestedScrollingEnabled(false);
+                        f1ListProductInputRV.setItemAnimator(new DefaultItemAnimator());
+
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PRODUCT_ACTIVE, "");
+                        f1ProductChoiceTV.setText("Pilih produk untuk menambahkan...");
+                        f1ProductHargaSatuanTV.setText("Rp 0");
+                        f1SubTotalTV.setText("Rp 0");
+                        f1QtyProductPicker.setMin(0);
+                        f1QtyProductPicker.setValue(0);
+                        f1IdProduct = "";
+                        f1ProductName = "";
+                        f1ProductHargaSatuan = "";
+                        f1QtyProduct = "";
+                        f1SubTotal = "";
+                        f1ProductInputDetailPart.setVisibility(View.GONE);
+                        f1TotalPesananTV.setText("Rp 0");
+                        f1TotalPesanan = "";
+                        f1LabelLampiranTV.setText("+ Lampiran Foto/SP");
                         f1ViewLampiranBTN.setVisibility(View.GONE);
 
                         new Handler().postDelayed(new Runnable() {
@@ -724,13 +797,13 @@ public class ReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                categoryReport = "2";
+                categoryReport = "3";
                 reportKategoriChoiceTV.setText("Penawaran");
-                markPesanan.setVisibility(View.GONE);
+                markKunjungan.setVisibility(View.GONE);
                 markPenawaran.setVisibility(View.VISIBLE);
                 markPenagihan.setVisibility(View.GONE);
                 markRencanaKunjungan.setVisibility(View.GONE);
-                pesananBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+                kunjunganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
                 penawaranBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
                 rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
@@ -783,7 +856,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1ProductInputDetailPart.setVisibility(View.GONE);
                         f1TotalPesananTV.setText("Rp 0");
                         f1TotalPesanan = "";
-                        f1LabelLampiranTV.setText("+ Lampiran Foto");
+                        f1LabelLampiranTV.setText("+ Lampiran Foto/SP");
                         f1ViewLampiranBTN.setVisibility(View.GONE);
 
                         new Handler().postDelayed(new Runnable() {
@@ -807,13 +880,13 @@ public class ReportSumaActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                categoryReport = "3";
+                categoryReport = "4";
                 reportKategoriChoiceTV.setText("Penagihan");
-                markPesanan.setVisibility(View.GONE);
+                markKunjungan.setVisibility(View.GONE);
                 markPenawaran.setVisibility(View.GONE);
                 markPenagihan.setVisibility(View.VISIBLE);
                 markRencanaKunjungan.setVisibility(View.GONE);
-                pesananBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
+                kunjunganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
                 penawaranBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
                 rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
@@ -866,7 +939,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                         f1ProductInputDetailPart.setVisibility(View.GONE);
                         f1TotalPesananTV.setText("Rp 0");
                         f1TotalPesanan = "";
-                        f1LabelLampiranTV.setText("+ Lampiran Foto");
+                        f1LabelLampiranTV.setText("+ Lampiran Foto/SP");
                         f1ViewLampiranBTN.setVisibility(View.GONE);
 
                         new Handler().postDelayed(new Runnable() {
@@ -876,89 +949,6 @@ public class ReportSumaActivity extends AppCompatActivity {
                                 penawaranFormPart.setVisibility(View.GONE);
                                 penagihanFormPart.setVisibility(View.VISIBLE);
                                 rencanaKunjunganFormPart.setVisibility(View.GONE);
-                                attantionNoForm.setVisibility(View.GONE);
-                                loadingFormPart.setVisibility(View.GONE);
-                            }
-                        }, 1300);
-
-                    }
-                }, 300);
-            }
-        });
-
-        rencanaKunjunaganBTN.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                categoryReport = "4";
-                reportKategoriChoiceTV.setText("Rencana Kunjungan");
-                markPesanan.setVisibility(View.GONE);
-                markPenawaran.setVisibility(View.GONE);
-                markPenagihan.setVisibility(View.GONE);
-                markRencanaKunjungan.setVisibility(View.VISIBLE);
-                pesananBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
-                penawaranBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
-                penagihanBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option));
-                rencanaKunjunaganBTN.setBackground(ContextCompat.getDrawable(ReportSumaActivity.this, R.drawable.shape_option_choice));
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        bottomSheet.dismissSheet();
-
-                        pesananFormPart.setVisibility(View.GONE);
-                        penawaranFormPart.setVisibility(View.GONE);
-                        penagihanFormPart.setVisibility(View.GONE);
-                        rencanaKunjunganFormPart.setVisibility(View.GONE);
-                        attantionNoForm.setVisibility(View.GONE);
-                        loadingFormPart.setVisibility(View.VISIBLE);
-
-                        f1PelangganOption.clearCheck();
-                        f1PelangganAttantionPart.setVisibility(View.VISIBLE);
-                        f1PelangganBaruPart.setVisibility(View.GONE);
-                        f1PelangganLamaPart.setVisibility(View.GONE);
-                        f1NamaPelangganLamaChoiceTV.setText("");
-                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
-                        f1DetailPelanggan.setVisibility(View.GONE);
-                        f1AlamatPelangganLamaTV.setText("");
-                        f1PicPelangganLamaTV.setText("");
-                        f1TeleponPelangganLamaTV.setText("");
-                        f1DetailPesananPart.setVisibility(View.GONE);
-                        dataProduct.clear();
-                        f1JenisPelanggan = "";
-                        f1IdPelangganLama = "";
-
-                        adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
-                        f1ListProductInputRV.setLayoutManager(new LinearLayoutManager(ReportSumaActivity.this));
-                        f1ListProductInputRV.setAdapter(adapterProductInputSuma);
-                        f1ListProductInputRV.setHasFixedSize(true);
-                        f1ListProductInputRV.setNestedScrollingEnabled(false);
-                        f1ListProductInputRV.setItemAnimator(new DefaultItemAnimator());
-
-                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PRODUCT_ACTIVE, "");
-                        f1ProductChoiceTV.setText("Pilih produk untuk menambahkan...");
-                        f1ProductHargaSatuanTV.setText("Rp 0");
-                        f1SubTotalTV.setText("Rp 0");
-                        f1QtyProductPicker.setMin(0);
-                        f1QtyProductPicker.setValue(0);
-                        f1IdProduct = "";
-                        f1ProductName = "";
-                        f1ProductHargaSatuan = "";
-                        f1QtyProduct = "";
-                        f1SubTotal = "";
-                        f1ProductInputDetailPart.setVisibility(View.GONE);
-                        f1TotalPesananTV.setText("Rp 0");
-                        f1TotalPesanan = "";
-                        f1LabelLampiranTV.setText("+ Lampiran Foto");
-                        f1ViewLampiranBTN.setVisibility(View.GONE);
-
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                pesananFormPart.setVisibility(View.GONE);
-                                penawaranFormPart.setVisibility(View.GONE);
-                                penagihanFormPart.setVisibility(View.GONE);
-                                rencanaKunjunganFormPart.setVisibility(View.VISIBLE);
                                 attantionNoForm.setVisibility(View.GONE);
                                 loadingFormPart.setVisibility(View.GONE);
                             }

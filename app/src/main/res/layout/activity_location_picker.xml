@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LocationPickerActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="FragmentTagUsage" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="52dp"
+                android:background="@drawable/location_picker_ic"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginBottom="-2dp"
+                android:layout_marginRight="-2dp"
+                android:layout_marginLeft="-2dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:background="@drawable/shape_bar_chat"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                tools:ignore="UselessParent,VisualLintBounds">
+
+                <LinearLayout
+                    android:gravity="left|center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
+
+                    <LinearLayout
+                        android:id="@+id/back_btn"
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:gravity="center"
+                        android:background="@drawable/shape_back_2"
+                        tools:ignore="UselessParent">
+
+                        <TextView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_marginRight="1.5dp"
+                            android:background="@drawable/ic_baseline_chevron_back"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="right|center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
+
+                    <LinearLayout
+                        android:id="@+id/pusatkan_btn"
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:gravity="center"
+                        android:background="@drawable/shape_back_2">
+
+                        <LinearLayout
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/ic_baseline_my_location"/>
+
+                    </LinearLayout>
+
+                    <com.mahfa.dnswitch.DayNightSwitch
+                        android:id="@+id/day_night_switch"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
