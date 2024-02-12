@@ -192,11 +192,75 @@
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:id="@+id/pesanan_form_part"
+                                    android:id="@+id/rencana_kunjungan_form_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:visibility="gone">
+                                    android:visibility="gone"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Tanggal :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:id="@+id/f1_choice_date_btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:paddingStart="20dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_feel"
+                                        android:orientation="horizontal"
+                                        tools:ignore="RtlSymmetry">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="40dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center|left"
+                                                tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                <TextView
+                                                    android:id="@+id/f1_choice_date_tv"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:textColor="#B15735"
+                                                    android:textSize="13dp"
+                                                    android:textStyle="bold"
+                                                    android:text=""
+                                                    tools:ignore="SpUsage" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_alignParentRight="true"
+                                                android:layout_width="40dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/shape_btn"
+                                                android:gravity="center"
+                                                tools:ignore="RtlHardcoded">
+
+                                                <TextView
+                                                    android:layout_width="25dp"
+                                                    android:layout_height="25dp"
+                                                    android:background="@drawable/ic_baseline_date"/>
+
+                                            </LinearLayout>
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -360,7 +424,6 @@
                                                     tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                                             </LinearLayout>
-
 
                                         </LinearLayout>
 
@@ -552,7 +615,396 @@
                                     </LinearLayout>
 
                                     <LinearLayout
-                                        android:id="@+id/f1_detail_pesanan_part"
+                                        android:id="@+id/f1_submit_pesanan_btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="25dp"
+                                        android:layout_marginTop="15dp"
+                                        android:paddingTop="12dp"
+                                        android:paddingBottom="12dp"
+                                        android:background="@drawable/shape_btn"
+                                        android:visibility="gone"
+                                        android:gravity="center">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:drawableLeft="@drawable/ic_baseline_send_form"
+                                            android:drawablePadding="7dp"
+                                            android:drawableTint="@color/white"
+                                            android:text="SUBMIT"
+                                            android:textColor="@color/white"
+                                            android:textSize="13dp"
+                                            android:textStyle="bold"
+                                            tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextSizeCheck,UnusedAttribute,UseCompatTextViewDrawableXml" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/kunjungan_form_part"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Keterangan Kunjungan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <EditText
+                                        android:id="@+id/f2_keterangan_kunjungan_ed"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:background="@drawable/shape_input_form"
+                                        android:drawablePadding="10dp"
+                                        android:gravity="top"
+                                        android:hint=""
+                                        android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                        android:lineSpacingExtra="3dp"
+                                        android:maxLength="255"
+                                        android:minHeight="80dp"
+                                        android:paddingLeft="20dp"
+                                        android:paddingTop="13dp"
+                                        android:paddingRight="20dp"
+                                        android:paddingBottom="13dp"
+                                        android:textColor="#595959"
+                                        android:textColorHighlight="#FFE1BC"
+                                        android:textColorHint="#595959"
+                                        android:textSize="14dp"
+                                        tools:ignore="Autofill,LabelFor,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        android:text="Pelanggan :"
+                                        android:textColor="#696969"
+                                        android:textSize="12dp"
+                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/shape_pengumuman"
+                                        android:layout_marginBottom="15dp"
+                                        android:paddingTop="21dp"
+                                        android:paddingBottom="23dp"
+                                        android:orientation="vertical">
+
+                                        <RadioGroup
+                                            android:id="@+id/f2_pelanggan_option"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:orientation="horizontal">
+
+                                            <RadioButton
+                                                android:id="@+id/f2_pelanggan_option_baru"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:paddingHorizontal="3dp"
+                                                android:layout_marginRight="40dp"
+                                                android:textSize="13dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#4A4A4A"
+                                                android:text="BARU"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                                            <RadioButton
+                                                android:id="@+id/f2_pelanggan_option_lama"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:paddingHorizontal="3dp"
+                                                android:layout_marginLeft="40dp"
+                                                android:textSize="13dp"
+                                                android:textStyle="bold"
+                                                android:textColor="#4A4A4A"
+                                                android:text="LAMA"
+                                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                                        </RadioGroup>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_marginTop="20dp"
+                                            android:layout_height="1dp"
+                                            android:background="#41838383"/>
+
+                                        <LinearLayout
+                                            android:id="@+id/f2_pelanggan_attantion"
+                                            android:layout_marginTop="23dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="#B15735"
+                                                android:textSize="13dp"
+                                                android:textStyle="italic"
+                                                android:layout_gravity="center"
+                                                android:text="Harap pilih jenis pelanggan"
+                                                tools:ignore="HardcodedText,SpUsage" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/f2_pelanggan_baru"
+                                            android:layout_marginTop="23dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginBottom="20dp"
+                                                android:orientation="vertical"
+                                                android:gravity="center"
+                                                tools:ignore="TooManyViews">
+
+                                                <ImageView
+                                                    android:src="@drawable/apologize_img"
+                                                    android:scaleType="fitCenter"
+                                                    android:layout_width="120dp"
+                                                    android:layout_height="120dp"
+                                                    tools:ignore="ContentDescription" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginRight="20dp"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
+                                                    android:text="Coming Soon"
+                                                    android:textAlignment="center"
+                                                    android:textColor="@color/colorPrimaryDark"
+                                                    android:textSize="15dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="20dp"
+                                                    android:layout_marginRight="20dp"
+                                                    android:ellipsize="end"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
+                                                    android:text="Fitur akan segera tersedia"
+                                                    android:textAlignment="center"
+                                                    android:textColor="#C66F00"
+                                                    android:textSize="13dp"
+                                                    tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                                            </LinearLayout>
+
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/f2_pelanggan_lama"
+                                            android:layout_marginTop="18dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:paddingRight="22dp"
+                                            android:paddingLeft="22dp"
+                                            android:visibility="gone"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="Nama :"
+                                                android:textColor="#696969"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <LinearLayout
+                                                android:id="@+id/f2_nama_pelanggan_lama_btn"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="40dp"
+                                                android:paddingStart="20dp"
+                                                android:layout_marginBottom="10dp"
+                                                android:background="@drawable/shape_feel"
+                                                android:orientation="horizontal"
+                                                tools:ignore="RtlSymmetry">
+
+                                                <RelativeLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent">
+
+                                                    <LinearLayout
+                                                        android:layout_marginTop="10dp"
+                                                        android:layout_marginBottom="10dp"
+                                                        android:layout_marginRight="48dp"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="40dp"
+                                                        android:orientation="vertical"
+                                                        android:gravity="center|left"
+                                                        tools:ignore="RelativeOverlap,RtlHardcoded">
+
+                                                        <TextView
+                                                            android:id="@+id/f2_nama_pelanggan_lama_choice_tv"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:textColor="#B15735"
+                                                            android:textSize="13dp"
+                                                            android:textStyle="bold"
+                                                            android:ellipsize="end"
+                                                            android:maxLines="1"
+                                                            android:singleLine="true"
+                                                            android:text=""
+                                                            tools:ignore="SpUsage" />
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_alignParentRight="true"
+                                                        android:layout_width="40dp"
+                                                        android:layout_height="match_parent"
+                                                        android:background="@drawable/shape_btn"
+                                                        android:gravity="center"
+                                                        tools:ignore="RtlHardcoded">
+
+                                                        <TextView
+                                                            android:layout_width="25dp"
+                                                            android:layout_height="25dp"
+                                                            android:background="@drawable/ic_baseline_down"/>
+
+                                                    </LinearLayout>
+
+                                                </RelativeLayout>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/f2_detail_pelanggan"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:visibility="gone"
+                                                android:orientation="vertical">
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="3dp"
+                                                    android:orientation="vertical"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:text="Alamat :"
+                                                        android:textColor="#696969"
+                                                        android:textSize="12dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                    <TextView
+                                                        android:id="@+id/f2_alamat_pelanggan_lama_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#555555"
+                                                        android:textSize="13dp"
+                                                        android:lineSpacingExtra="2dp"
+                                                        android:text="Memuat data..."
+                                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="1.5dp"
+                                                        android:layout_marginTop="12dp"
+                                                        android:background="#3CCFCFCF" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="10dp"
+                                                    android:orientation="vertical"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:text="PIC :"
+                                                        android:textColor="#696969"
+                                                        android:textSize="12dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                    <TextView
+                                                        android:id="@+id/f2_pic_pelanggan_lama_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#555555"
+                                                        android:textSize="13dp"
+                                                        android:lineSpacingExtra="2dp"
+                                                        android:text="Memuat data..."
+                                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="1.5dp"
+                                                        android:layout_marginTop="12dp"
+                                                        android:background="#3CCFCFCF" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="10dp"
+                                                    android:orientation="vertical"
+                                                    tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:text="Telepon :"
+                                                        android:textColor="#696969"
+                                                        android:textSize="12dp"
+                                                        tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                                    <TextView
+                                                        android:id="@+id/f2_telepon_pelanggan_lama_tv"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:textColor="#555555"
+                                                        android:textSize="13dp"
+                                                        android:lineSpacingExtra="2dp"
+                                                        android:text="Memuat data..."
+                                                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/f2_detail_pesanan_part"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:visibility="gone"
@@ -575,7 +1027,7 @@
                                             android:layout_height="wrap_content" />
 
                                         <LinearLayout
-                                            android:id="@+id/f1_input_product"
+                                            android:id="@+id/f2_input_product"
                                             android:orientation="vertical"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content">
@@ -609,14 +1061,14 @@
                                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                     <LinearLayout
-                                                        android:id="@+id/f1_product_choice_btn"
+                                                        android:id="@+id/f2_product_choice_btn"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="40dp"
                                                         android:paddingStart="20dp"
                                                         android:layout_marginBottom="10dp"
                                                         android:background="@drawable/shape_feel"
                                                         android:orientation="horizontal"
-                                                        tools:ignore="RtlSymmetry">
+                                                        tools:ignore="RtlSymmetry,TooManyViews">
 
                                                         <RelativeLayout
                                                             android:layout_width="match_parent"
@@ -633,7 +1085,7 @@
                                                                 tools:ignore="RelativeOverlap,RtlHardcoded">
 
                                                                 <TextView
-                                                                    android:id="@+id/f1_product_choice_tv"
+                                                                    android:id="@+id/f2_product_choice_tv"
                                                                     android:layout_width="match_parent"
                                                                     android:layout_height="wrap_content"
                                                                     android:textColor="#B15735"
@@ -667,7 +1119,7 @@
                                                     </LinearLayout>
 
                                                     <LinearLayout
-                                                        android:id="@+id/f1_product_input_detail_part"
+                                                        android:id="@+id/f2_product_input_detail_part"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
                                                         android:visibility="gone"
@@ -698,7 +1150,7 @@
                                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
 
                                                                 <TextView
-                                                                    android:id="@+id/f1_product_harga_satuan_tv"
+                                                                    android:id="@+id/f2_product_harga_satuan_tv"
                                                                     android:layout_width="wrap_content"
                                                                     android:layout_height="wrap_content"
                                                                     android:layout_marginLeft="5dp"
@@ -729,7 +1181,7 @@
                                                                     tools:ignore="HardcodedText,SpUsage,TextSizeCheck,TooManyViews" />
 
                                                                 <com.travijuu.numberpicker.library.NumberPicker
-                                                                    android:id="@+id/f1_qty_product_picker"
+                                                                    android:id="@+id/f2_qty_product_picker"
                                                                     android:layout_width="wrap_content"
                                                                     android:layout_height="wrap_content"
                                                                     app:min="0"
@@ -781,7 +1233,7 @@
                                                                 tools:ignore="RtlHardcoded">
 
                                                                 <TextView
-                                                                    android:id="@+id/f1_sub_total_tv"
+                                                                    android:id="@+id/f2_sub_total_tv"
                                                                     android:layout_width="wrap_content"
                                                                     android:layout_height="wrap_content"
                                                                     android:text="Rp 0"
@@ -802,7 +1254,7 @@
                                                             android:background="#3CCFCFCF" />
 
                                                         <LinearLayout
-                                                            android:id="@+id/f1_add_product_btn"
+                                                            android:id="@+id/f2_add_product_btn"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="wrap_content"
                                                             android:layout_marginBottom="7dp"
@@ -883,7 +1335,7 @@
                                                     tools:ignore="RtlHardcoded">
 
                                                     <TextView
-                                                        android:id="@+id/f1_total_pesanan_tv"
+                                                        android:id="@+id/f2_total_pesanan_tv"
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"
                                                         android:text="Rp 0"
@@ -913,7 +1365,7 @@
                                                 tools:ignore="DisableBaselineAlignment">
 
                                                 <LinearLayout
-                                                    android:id="@+id/f1_gps_btn"
+                                                    android:id="@+id/f2_gps_btn"
                                                     android:layout_width="0dp"
                                                     android:layout_weight=".50"
                                                     android:layout_marginRight="5dp"
@@ -933,7 +1385,7 @@
                                                 </LinearLayout>
 
                                                 <LinearLayout
-                                                    android:id="@+id/f1_foto_lampiran_btn"
+                                                    android:id="@+id/f2_foto_lampiran_btn"
                                                     android:layout_width="0dp"
                                                     android:layout_weight=".50"
                                                     android:layout_marginLeft="5dp"
@@ -943,7 +1395,7 @@
                                                     tools:ignore="RtlHardcoded">
 
                                                     <TextView
-                                                        android:id="@+id/f1_label_lampiran_tv"
+                                                        android:id="@+id/f2_label_lampiran_tv"
                                                         android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"
                                                         android:textSize="12dp"
@@ -955,7 +1407,7 @@
 
                                                 <LinearLayout
                                                     android:visibility="gone"
-                                                    android:id="@+id/f1_view_lampiran_btn"
+                                                    android:id="@+id/f2_view_lampiran_btn"
                                                     android:layout_width="35dp"
                                                     android:paddingTop="5dp"
                                                     android:paddingBottom="5dp"
@@ -980,7 +1432,7 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/f1_submit_pesanan_btn"
+                                            android:id="@+id/f2_submit_pesanan_btn"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="25dp"
@@ -1064,60 +1516,6 @@
 
                                 <LinearLayout
                                     android:id="@+id/penagihan_form_part"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="gone"
-                                    android:orientation="vertical">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:orientation="vertical"
-                                        android:gravity="center">
-
-                                        <ImageView
-                                            android:src="@drawable/apologize_img"
-                                            android:scaleType="fitCenter"
-                                            android:layout_width="150dp"
-                                            android:layout_height="150dp"
-                                            tools:ignore="ContentDescription" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="20dp"
-                                            android:layout_marginRight="20dp"
-                                            android:ellipsize="end"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="Coming Soon"
-                                            android:textAlignment="center"
-                                            android:textColor="@color/colorPrimaryDark"
-                                            android:textSize="17dp"
-                                            tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="20dp"
-                                            android:layout_marginRight="20dp"
-                                            android:ellipsize="end"
-                                            android:maxLines="1"
-                                            android:singleLine="true"
-                                            android:text="Fitur akan segera tersedia"
-                                            android:textAlignment="center"
-                                            android:textColor="#C66F00"
-                                            android:textSize="13dp"
-                                            tools:ignore="HardcodedText,SpUsage,TextContrastCheck,TextSizeCheck" />
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/rencana_kunjungan_form_part"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:visibility="gone"
@@ -1396,7 +1794,7 @@
                                 android:gravity="right"
                                 android:maxLines="1"
                                 android:singleLine="true"
-                                android:text="FORM LAPORAN HARIAN SALES"
+                                android:text="FORM LAPORAN HARIAN SALES "
                                 android:textColor="@color/white"
                                 android:textSize="15dp"
                                 android:textStyle="bold"
