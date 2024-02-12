@@ -76,14 +76,15 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView namaPelangganTV, reportCategoryTV, keteranganTV, totalPesananTV, tanggalLaporanTV;
+        TextView namaPelangganTV;
+        TextView reportCategoryTV, keteranganTV, totalPesananTV, tanggalLaporanTV;
         LinearLayout parentPart;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parentPart = itemView.findViewById(R.id.parent_part);
             reportCategoryTV = itemView.findViewById(R.id.report_kategori_tv);
             keteranganTV = itemView.findViewById(R.id.keterangan_report_tv);
-            namaPelangganTV = itemView.findViewById(R.id.nama_pelanggan_tv);
+            // namaPelangganTV = itemView.findViewById(R.id.nama_pelanggan_tv);
             totalPesananTV = itemView.findViewById(R.id.total_pesanan_tv);
             tanggalLaporanTV = itemView.findViewById(R.id.tanggal_laporan_tv);
         }

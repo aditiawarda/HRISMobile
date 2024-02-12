@@ -76,18 +76,18 @@
                         android:maxLines="2"
                         tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
 
-                    <TextView
-                        android:id="@+id/nama_pelanggan_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Memuat data..."
-                        android:textColor="#0288D1"
-                        android:textSize="13dp"
-                        android:ellipsize="end"
-                        android:lineSpacingExtra="3dp"
-                        android:maxLines="2"
-                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/nama_pelanggan_tv"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:text="Memuat data..."-->
+<!--                        android:textColor="#0288D1"-->
+<!--                        android:textSize="13dp"-->
+<!--                        android:ellipsize="end"-->
+<!--                        android:lineSpacingExtra="3dp"-->
+<!--                        android:maxLines="2"-->
+<!--                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck,VisualLintLongText" />-->
 
                     <LinearLayout
                         android:layout_width="match_parent"

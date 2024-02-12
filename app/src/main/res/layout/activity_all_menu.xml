@@ -1049,7 +1049,7 @@
                                                 android:gravity="center"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:text="Suma"
+                                                android:text="Daily Report"
                                                 android:textColor="#515151"
                                                 android:textSize="12dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -1099,7 +1099,7 @@
                                                 android:gravity="center"
                                                 android:maxLines="1"
                                                 android:singleLine="true"
-                                                android:text="Suma"
+                                                android:text="Daily Report"
                                                 android:textColor="#515151"
                                                 android:textSize="12dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
