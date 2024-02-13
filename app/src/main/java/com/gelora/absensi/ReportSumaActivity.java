@@ -23,6 +23,7 @@ import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.icu.util.Calendar;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
@@ -44,6 +45,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -81,6 +83,7 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.takisoft.datetimepicker.DatePickerDialog;
 import com.travijuu.numberpicker.library.Enums.ActionEnum;
 import com.travijuu.numberpicker.library.Interface.ValueChangedListener;
 import com.travijuu.numberpicker.library.NumberPicker;
@@ -90,9 +93,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -104,10 +111,11 @@ public class ReportSumaActivity extends AppCompatActivity {
     LinearLayout formPart, successPart, loadingDataPart, loadingDataPartProduk, noDataPart, noDataPartProduk, startAttantionPart, startAttantionPartProduk, penawaranBTN, kunjunganBTN, penagihanBTN, rencanaKunjunaganBTN, markKunjungan, markPenawaran, markPenagihan, markRencanaKunjungan;
 
     EditText f1KeteranganKunjunganED;
-    LinearLayout f1SubmitPesananBTN, f1PelangganAttantionPart, f1PelangganBaruPart, f1PelangganLamaPart;
+    LinearLayout f1ChoiceDateBTN, f1DetailPelanggan, f1NamaPelangganLamaBTN, f1SubmitPesananBTN, f1PelangganAttantionPart, f1PelangganBaruPart, f1PelangganLamaPart;
     RadioGroup f1PelangganOption;
     RadioButton f1PelangganOptionBaru, f1PelangganOptionLama;
-    String f1JenisPelanggan = "", f1IdPelangganLama = "";
+    String f1DateChoice = "", f1JenisPelanggan = "", f1IdPelangganLama = "";
+    TextView f1ChoiceDateTV, f1NamaPelangganLamaChoiceTV, f1LabelLampiranTV, f1TotalPesananTV, f1SubTotalTV, f1AlamatPelangganLamaTV, f1PicPelangganLamaTV, f1TeleponPelangganLamaTV;
 
     EditText f2KeteranganKunjunganED, keywordED, keywordEDProduk;
     LinearLayout f2SubmitPesananBTN, f2GPSLocationBTN, f2ViewLampiranBTN, f2LampiranFotoBTN, f2ProductInputDetailPart, f2AddProductBTN, f2ProductChoiceBTN, f2DetailPesananPart, f2DetailPelanggan, f2NamaPelangganLamaBTN, f2PelangganAttantionPart, f2PelangganBaruPart, f2PelangganLamaPart;
@@ -168,13 +176,21 @@ public class ReportSumaActivity extends AppCompatActivity {
         successGif = findViewById(R.id.success_gif);
 
         f1KeteranganKunjunganED = findViewById(R.id.f1_keterangan_kunjungan_ed);
+        f1ChoiceDateBTN = findViewById(R.id.f1_choice_date_btn);
+        f1ChoiceDateTV = findViewById(R.id.f1_choice_date_tv);
         f1PelangganOption = findViewById(R.id.f1_pelanggan_option);
         f1PelangganOptionBaru = findViewById(R.id.f1_pelanggan_option_baru);
         f1PelangganOptionLama = findViewById(R.id.f1_pelanggan_option_lama);
         f1PelangganAttantionPart = findViewById(R.id.f1_pelanggan_attantion);
         f1PelangganBaruPart = findViewById(R.id.f1_pelanggan_baru);
         f1PelangganLamaPart = findViewById(R.id.f1_pelanggan_lama);
-        f1SubmitPesananBTN = findViewById(R.id.f1_submit_pesanan_btn);
+        f1NamaPelangganLamaBTN = findViewById(R.id.f1_nama_pelanggan_lama_btn);
+        f1NamaPelangganLamaChoiceTV = findViewById(R.id.f1_nama_pelanggan_lama_choice_tv);
+        f1DetailPelanggan = findViewById(R.id.f1_detail_pelanggan);
+        f1AlamatPelangganLamaTV = findViewById(R.id.f1_alamat_pelanggan_lama_tv);
+        f1PicPelangganLamaTV = findViewById(R.id.f1_pic_pelanggan_lama_tv);
+        f1TeleponPelangganLamaTV = findViewById(R.id.f1_telepon_pelanggan_lama_tv);
+        f1SubmitPesananBTN = findViewById(R.id.f1_submit_data_btn);
 
         f2KeteranganKunjunganED = findViewById(R.id.f2_keterangan_kunjungan_ed);
         f2PelangganAttantionPart = findViewById(R.id.f2_pelanggan_attantion);
@@ -203,7 +219,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2ListProductInputRV = findViewById(R.id.item_produk_input_rv);
         f2LabelLampiranTV = findViewById(R.id.f2_label_lampiran_tv);
         f2GPSLocationBTN = findViewById(R.id.f2_gps_btn);
-        f2SubmitPesananBTN = findViewById(R.id.f2_submit_pesanan_btn);
+        f2SubmitPesananBTN = findViewById(R.id.f2_submit_data_btn);
 
         adapterProductInputSuma = new AdapterProductInputSuma(dataProduct);
         f2ListProductInputRV.setLayoutManager(new LinearLayoutManager(this));
@@ -249,12 +265,23 @@ public class ReportSumaActivity extends AppCompatActivity {
                 attantionNoForm.setVisibility(View.GONE);
                 loadingFormPart.setVisibility(View.VISIBLE);
 
+                f1KeteranganKunjunganED.setText("");
                 f1PelangganOption.clearCheck();
                 f1PelangganAttantionPart.setVisibility(View.VISIBLE);
                 f1SubmitPesananBTN.setVisibility(View.GONE);
                 f1PelangganBaruPart.setVisibility(View.GONE);
                 f1PelangganLamaPart.setVisibility(View.GONE);
+                f1DateChoice = "";
+                f1ChoiceDateTV.setText("");
+                f1JenisPelanggan = "";
+                f1NamaPelangganLamaChoiceTV.setText("");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                f1DetailPelanggan.setVisibility(View.GONE);
+                f1AlamatPelangganLamaTV.setText("");
+                f1PicPelangganLamaTV.setText("");
+                f1TeleponPelangganLamaTV.setText("");
 
+                f2KeteranganKunjunganED.setText("");
                 f2PelangganOption.clearCheck();
                 f2PelangganAttantionPart.setVisibility(View.VISIBLE);
                 f2PelangganBaruPart.setVisibility(View.GONE);
@@ -323,6 +350,17 @@ public class ReportSumaActivity extends AppCompatActivity {
             }
         });
 
+        f1ChoiceDateBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getDecorView().getRootView().getWindowToken(), 0);
+                f1KeteranganKunjunganED.clearFocus();
+
+                f1DateVisit();
+            }
+        });
+
         f1PelangganOption.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -336,11 +374,25 @@ public class ReportSumaActivity extends AppCompatActivity {
                     f1JenisPelanggan = "1";
                     f1PelangganBaruPart.setVisibility(View.VISIBLE);
                     f1PelangganLamaPart.setVisibility(View.GONE);
+
+                    f1NamaPelangganLamaChoiceTV.setText("");
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                    f1DetailPelanggan.setVisibility(View.GONE);
+                    f1AlamatPelangganLamaTV.setText("");
+                    f1PicPelangganLamaTV.setText("");
+                    f1TeleponPelangganLamaTV.setText("");
                 } else if (f1PelangganOptionLama.isChecked()) {
                     f1JenisPelanggan = "2";
                     f1PelangganBaruPart.setVisibility(View.GONE);
                     f1PelangganLamaPart.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+
+        f1NamaPelangganLamaBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f1PelangganLamaBottomSheet();
             }
         });
 
@@ -499,7 +551,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f1SubmitPesananBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!categoryReport.equals("")||!f1KeteranganKunjunganED.getText().toString().equals("")||!f1JenisPelanggan.equals("")){
+                if(!categoryReport.equals("") && !f1DateChoice.equals("") && !f1KeteranganKunjunganED.getText().toString().equals("") && !f1JenisPelanggan.equals("")){
                     if(f1JenisPelanggan.equals("1")){
 
                     } else if(f1JenisPelanggan.equals("2")){
@@ -578,6 +630,19 @@ public class ReportSumaActivity extends AppCompatActivity {
                                     .show();
                         }
                     }
+                } else {
+                    new KAlertDialog(ReportSumaActivity.this, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Perhatian")
+                            .setContentText("Harap isi semua data!")
+                            .setConfirmText("   OK   ")
+                            .showCancelButton(true)
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismiss();
+                                }
+                            })
+                            .show();
                 }
             }
         });
@@ -585,7 +650,7 @@ public class ReportSumaActivity extends AppCompatActivity {
         f2SubmitPesananBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!categoryReport.equals("")||!f2KeteranganKunjunganED.getText().toString().equals("")||!f2JenisPelanggan.equals("")){
+                if(!categoryReport.equals("") && !f2KeteranganKunjunganED.getText().toString().equals("") && !f2JenisPelanggan.equals("")){
                     if(f2JenisPelanggan.equals("1")){
 
                     } else if(f2JenisPelanggan.equals("2")){
@@ -783,6 +848,23 @@ public class ReportSumaActivity extends AppCompatActivity {
                         attantionNoForm.setVisibility(View.GONE);
                         loadingFormPart.setVisibility(View.VISIBLE);
 
+                        f1KeteranganKunjunganED.setText("");
+                        f1PelangganOption.clearCheck();
+                        f1PelangganAttantionPart.setVisibility(View.VISIBLE);
+                        f1SubmitPesananBTN.setVisibility(View.GONE);
+                        f1PelangganBaruPart.setVisibility(View.GONE);
+                        f1PelangganLamaPart.setVisibility(View.GONE);
+                        f1DateChoice = "";
+                        f1ChoiceDateTV.setText("");
+                        f1JenisPelanggan = "";
+                        f1NamaPelangganLamaChoiceTV.setText("");
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                        f1DetailPelanggan.setVisibility(View.GONE);
+                        f1AlamatPelangganLamaTV.setText("");
+                        f1PicPelangganLamaTV.setText("");
+                        f1TeleponPelangganLamaTV.setText("");
+
+                        f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
                         f2PelangganBaruPart.setVisibility(View.GONE);
@@ -866,6 +948,23 @@ public class ReportSumaActivity extends AppCompatActivity {
                         attantionNoForm.setVisibility(View.GONE);
                         loadingFormPart.setVisibility(View.VISIBLE);
 
+                        f1KeteranganKunjunganED.setText("");
+                        f1PelangganOption.clearCheck();
+                        f1PelangganAttantionPart.setVisibility(View.VISIBLE);
+                        f1SubmitPesananBTN.setVisibility(View.GONE);
+                        f1PelangganBaruPart.setVisibility(View.GONE);
+                        f1PelangganLamaPart.setVisibility(View.GONE);
+                        f1DateChoice = "";
+                        f1ChoiceDateTV.setText("");
+                        f1JenisPelanggan = "";
+                        f1NamaPelangganLamaChoiceTV.setText("");
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                        f1DetailPelanggan.setVisibility(View.GONE);
+                        f1AlamatPelangganLamaTV.setText("");
+                        f1PicPelangganLamaTV.setText("");
+                        f1TeleponPelangganLamaTV.setText("");
+
+                        f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
                         f2PelangganBaruPart.setVisibility(View.GONE);
@@ -949,6 +1048,23 @@ public class ReportSumaActivity extends AppCompatActivity {
                         attantionNoForm.setVisibility(View.GONE);
                         loadingFormPart.setVisibility(View.VISIBLE);
 
+                        f2KeteranganKunjunganED.setText("");
+                        f1PelangganOption.clearCheck();
+                        f1PelangganAttantionPart.setVisibility(View.VISIBLE);
+                        f1SubmitPesananBTN.setVisibility(View.GONE);
+                        f1PelangganBaruPart.setVisibility(View.GONE);
+                        f1PelangganLamaPart.setVisibility(View.GONE);
+                        f1DateChoice = "";
+                        f1ChoiceDateTV.setText("");
+                        f1JenisPelanggan = "";
+                        f1NamaPelangganLamaChoiceTV.setText("");
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                        f1DetailPelanggan.setVisibility(View.GONE);
+                        f1AlamatPelangganLamaTV.setText("");
+                        f1PicPelangganLamaTV.setText("");
+                        f1TeleponPelangganLamaTV.setText("");
+
+                        f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
                         f2PelangganBaruPart.setVisibility(View.GONE);
@@ -1032,6 +1148,23 @@ public class ReportSumaActivity extends AppCompatActivity {
                         attantionNoForm.setVisibility(View.GONE);
                         loadingFormPart.setVisibility(View.VISIBLE);
 
+                        f2KeteranganKunjunganED.setText("");
+                        f1PelangganOption.clearCheck();
+                        f1PelangganAttantionPart.setVisibility(View.VISIBLE);
+                        f1SubmitPesananBTN.setVisibility(View.GONE);
+                        f1PelangganBaruPart.setVisibility(View.GONE);
+                        f1PelangganLamaPart.setVisibility(View.GONE);
+                        f1DateChoice = "";
+                        f1ChoiceDateTV.setText("");
+                        f1JenisPelanggan = "";
+                        f1NamaPelangganLamaChoiceTV.setText("");
+                        sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                        f1DetailPelanggan.setVisibility(View.GONE);
+                        f1AlamatPelangganLamaTV.setText("");
+                        f1PicPelangganLamaTV.setText("");
+                        f1TeleponPelangganLamaTV.setText("");
+
+                        f2KeteranganKunjunganED.setText("");
                         f2PelangganOption.clearCheck();
                         f2PelangganAttantionPart.setVisibility(View.VISIBLE);
                         f2PelangganBaruPart.setVisibility(View.GONE);
@@ -1090,6 +1223,244 @@ public class ReportSumaActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SimpleDateFormat")
+    private void f1DateVisit(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            Calendar cal = Calendar.getInstance();
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(ReportSumaActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                f1DateChoice = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                String input_date = f1DateChoice;
+                SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                Date dt1= null;
+                try {
+                    dt1 = format1.parse(input_date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                DateFormat format2 = new SimpleDateFormat("EEE");
+                DateFormat getweek = new SimpleDateFormat("W");
+                String finalDay = format2.format(dt1);
+                String week = getweek.format(dt1);
+                String hariName = "";
+
+                if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                    hariName = "Senin";
+                } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                    hariName = "Selasa";
+                } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                    hariName = "Rabu";
+                } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                    hariName = "Kamis";
+                } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                    hariName = "Jumat";
+                } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                    hariName = "Sabtu";
+                } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                    hariName = "Minggu";
+                }
+
+                String dayDate = input_date.substring(8,10);
+                String yearDate = input_date.substring(0,4);
+                String bulanValue = input_date.substring(5,7);
+                String bulanName;
+
+                switch (bulanValue) {
+                    case "01":
+                        bulanName = "Januari";
+                        break;
+                    case "02":
+                        bulanName = "Februari";
+                        break;
+                    case "03":
+                        bulanName = "Maret";
+                        break;
+                    case "04":
+                        bulanName = "April";
+                        break;
+                    case "05":
+                        bulanName = "Mei";
+                        break;
+                    case "06":
+                        bulanName = "Juni";
+                        break;
+                    case "07":
+                        bulanName = "Juli";
+                        break;
+                    case "08":
+                        bulanName = "Agustus";
+                        break;
+                    case "09":
+                        bulanName = "September";
+                        break;
+                    case "10":
+                        bulanName = "Oktober";
+                        break;
+                    case "11":
+                        bulanName = "November";
+                        break;
+                    case "12":
+                        bulanName = "Desember";
+                        break;
+                    default:
+                        bulanName = "Not found!";
+                        break;
+                }
+
+                f1ChoiceDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+            }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+            dpd.show();
+        } else {
+            int y = Integer.parseInt(getDateY());
+            int m = Integer.parseInt(getDateM());
+            int d = Integer.parseInt(getDateD());
+            @SuppressLint({"DefaultLocale", "SetTextI18n"})
+            DatePickerDialog dpd = new DatePickerDialog(ReportSumaActivity.this, R.style.datePickerStyle, (view1, year, month, dayOfMonth) -> {
+
+                f1DateChoice = String.format("%d", year)+"-"+String.format("%02d", month + 1)+"-"+String.format("%02d", dayOfMonth);
+
+                String input_date = f1DateChoice;
+                SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+                Date dt1= null;
+                try {
+                    dt1 = format1.parse(input_date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                DateFormat format2 = new SimpleDateFormat("EEE");
+                DateFormat getweek = new SimpleDateFormat("W");
+                String finalDay = format2.format(dt1);
+                String week = getweek.format(dt1);
+                String hariName = "";
+
+                if (finalDay.equals("Mon") || finalDay.equals("Sen")) {
+                    hariName = "Senin";
+                } else if (finalDay.equals("Tue") || finalDay.equals("Sel")) {
+                    hariName = "Selasa";
+                } else if (finalDay.equals("Wed") || finalDay.equals("Rab")) {
+                    hariName = "Rabu";
+                } else if (finalDay.equals("Thu") || finalDay.equals("Kam")) {
+                    hariName = "Kamis";
+                } else if (finalDay.equals("Fri") || finalDay.equals("Jum")) {
+                    hariName = "Jumat";
+                } else if (finalDay.equals("Sat") || finalDay.equals("Sab")) {
+                    hariName = "Sabtu";
+                } else if (finalDay.equals("Sun") || finalDay.equals("Min")) {
+                    hariName = "Minggu";
+                }
+
+                String dayDate = input_date.substring(8,10);
+                String yearDate = input_date.substring(0,4);
+                String bulanValue = input_date.substring(5,7);
+                String bulanName;
+
+                switch (bulanValue) {
+                    case "01":
+                        bulanName = "Januari";
+                        break;
+                    case "02":
+                        bulanName = "Februari";
+                        break;
+                    case "03":
+                        bulanName = "Maret";
+                        break;
+                    case "04":
+                        bulanName = "April";
+                        break;
+                    case "05":
+                        bulanName = "Mei";
+                        break;
+                    case "06":
+                        bulanName = "Juni";
+                        break;
+                    case "07":
+                        bulanName = "Juli";
+                        break;
+                    case "08":
+                        bulanName = "Agustus";
+                        break;
+                    case "09":
+                        bulanName = "September";
+                        break;
+                    case "10":
+                        bulanName = "Oktober";
+                        break;
+                    case "11":
+                        bulanName = "November";
+                        break;
+                    case "12":
+                        bulanName = "Desember";
+                        break;
+                    default:
+                        bulanName = "Not found!";
+                        break;
+                }
+
+                f1ChoiceDateTV.setText(hariName+", "+String.valueOf(Integer.parseInt(dayDate))+" "+bulanName+" "+yearDate);
+
+            }, y,m-1,d);
+            dpd.show();
+        }
+
+    }
+
+    private void f1PelangganLamaBottomSheet() {
+        bottomSheet.showWithSheetView(LayoutInflater.from(ReportSumaActivity.this).inflate(R.layout.layout_report_suma_list_nama_pelanggan_lama, bottomSheet, false));
+        keywordED = findViewById(R.id.keyword_ed);
+        keywordED.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+        pelangganRV = findViewById(R.id.pelanggan_rv);
+        startAttantionPart = findViewById(R.id.attantion_data_part);
+        noDataPart = findViewById(R.id.no_data_part);
+        loadingDataPart = findViewById(R.id.loading_data_part);
+        loadingGif = findViewById(R.id.loading_data);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(loadingGif);
+
+        pelangganRV.setLayoutManager(new LinearLayoutManager(this));
+        pelangganRV.setHasFixedSize(true);
+        pelangganRV.setNestedScrollingEnabled(false);
+        pelangganRV.setItemAnimator(new DefaultItemAnimator());
+
+        keywordED.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                f1KeteranganKunjunganED.clearFocus();
+
+                String keyWordSearch = keywordED.getText().toString();
+
+                startAttantionPart.setVisibility(View.GONE);
+                loadingDataPart.setVisibility(View.VISIBLE);
+                noDataPart.setVisibility(View.GONE);
+                pelangganRV.setVisibility(View.GONE);
+
+                if (!keyWordSearch.equals("")) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getPelangganLama(keyWordSearch);
+                        }
+                    }, 500);
+                }
+            }
+
+        });
+
+    }
+
     private void f2PelangganLamaBottomSheet() {
         bottomSheet.showWithSheetView(LayoutInflater.from(ReportSumaActivity.this).inflate(R.layout.layout_report_suma_list_nama_pelanggan_lama, bottomSheet, false));
         keywordED = findViewById(R.id.keyword_ed);
@@ -1135,6 +1506,60 @@ public class ReportSumaActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             getPelangganLama(keyWordSearch);
+                        }
+                    }, 500);
+                }
+            }
+
+        });
+
+    }
+
+    private void f2ProductListBottomSheet() {
+        bottomSheet.showWithSheetView(LayoutInflater.from(ReportSumaActivity.this).inflate(R.layout.layout_report_suma_list_product, bottomSheet, false));
+        keywordEDProduk = findViewById(R.id.keyword_ed_produk);
+        keywordEDProduk.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+        produkRV = findViewById(R.id.produk_rv);
+        startAttantionPartProduk = findViewById(R.id.attantion_data_part_produk);
+        noDataPartProduk = findViewById(R.id.no_data_part_produk);
+        loadingDataPartProduk = findViewById(R.id.loading_data_part_produk);
+        loadingGifProduk = findViewById(R.id.loading_data_produk);
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.loading_sgn_digital)
+                .into(loadingGifProduk);
+
+        produkRV.setLayoutManager(new LinearLayoutManager(this));
+        produkRV.setHasFixedSize(true);
+        produkRV.setNestedScrollingEnabled(false);
+        produkRV.setItemAnimator(new DefaultItemAnimator());
+
+        keywordEDProduk.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                f2KeteranganKunjunganED.clearFocus();
+
+                String keyWordSearch = keywordEDProduk.getText().toString();
+
+                startAttantionPartProduk.setVisibility(View.GONE);
+                loadingDataPartProduk.setVisibility(View.VISIBLE);
+                noDataPartProduk.setVisibility(View.GONE);
+                produkRV.setVisibility(View.GONE);
+
+                if (!keyWordSearch.equals("")) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getProduct(keyWordSearch);
                         }
                     }, 500);
                 }
@@ -1196,60 +1621,6 @@ public class ReportSumaActivity extends AppCompatActivity {
         };
 
         requestQueue.add(jsonObjectRequest);
-
-    }
-
-    private void f2ProductListBottomSheet() {
-        bottomSheet.showWithSheetView(LayoutInflater.from(ReportSumaActivity.this).inflate(R.layout.layout_report_suma_list_product, bottomSheet, false));
-        keywordEDProduk = findViewById(R.id.keyword_ed_produk);
-        keywordEDProduk.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-
-        produkRV = findViewById(R.id.produk_rv);
-        startAttantionPartProduk = findViewById(R.id.attantion_data_part_produk);
-        noDataPartProduk = findViewById(R.id.no_data_part_produk);
-        loadingDataPartProduk = findViewById(R.id.loading_data_part_produk);
-        loadingGifProduk = findViewById(R.id.loading_data_produk);
-
-        Glide.with(getApplicationContext())
-                .load(R.drawable.loading_sgn_digital)
-                .into(loadingGifProduk);
-
-        produkRV.setLayoutManager(new LinearLayoutManager(this));
-        produkRV.setHasFixedSize(true);
-        produkRV.setNestedScrollingEnabled(false);
-        produkRV.setItemAnimator(new DefaultItemAnimator());
-
-        keywordEDProduk.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                f2KeteranganKunjunganED.clearFocus();
-
-                String keyWordSearch = keywordEDProduk.getText().toString();
-
-                startAttantionPartProduk.setVisibility(View.GONE);
-                loadingDataPartProduk.setVisibility(View.VISIBLE);
-                noDataPartProduk.setVisibility(View.GONE);
-                produkRV.setVisibility(View.GONE);
-
-                if (!keyWordSearch.equals("")) {
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            getProduct(keyWordSearch);
-                        }
-                    }, 500);
-                }
-            }
-
-        });
 
     }
 
@@ -1318,30 +1689,57 @@ public class ReportSumaActivity extends AppCompatActivity {
             String picPelanggan = intent.getStringExtra("pic_pelanggan_lama");
             String teleponPelanggan = intent.getStringExtra("telepon_pelanggan_lama");
 
-            f2AlamatPelangganLamaTV.setText(alamatPelanggan);
-            f2PicPelangganLamaTV.setText(picPelanggan);
-            f2TeleponPelangganLamaTV.setText(teleponPelanggan);
+            if(categoryReport.equals("1")){
+                f1AlamatPelangganLamaTV.setText(alamatPelanggan);
+                f1PicPelangganLamaTV.setText(picPelanggan);
+                f1TeleponPelangganLamaTV.setText(teleponPelanggan);
 
-            f2IdPelangganLama = idPelanggan;
-            f2DetailPelanggan.setVisibility(View.VISIBLE);
-            f2DetailPesananPart.setVisibility(View.VISIBLE);
+                f1IdPelangganLama = idPelanggan;
+                f1DetailPelanggan.setVisibility(View.VISIBLE);
 
-            f2NamaPelangganLamaChoiceTV.setText(namaPelangganLama);
+                f1NamaPelangganLamaChoiceTV.setText(namaPelangganLama);
 
-            InputMethodManager imm = (InputMethodManager) ReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
-            View view = ReportSumaActivity.this.getCurrentFocus();
-            if (view == null) {
-                view = new View(ReportSumaActivity.this);
-            }
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            f2KeteranganKunjunganED.clearFocus();
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    bottomSheet.dismissSheet();
+                InputMethodManager imm = (InputMethodManager) ReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                View view = ReportSumaActivity.this.getCurrentFocus();
+                if (view == null) {
+                    view = new View(ReportSumaActivity.this);
                 }
-            }, 300);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                f1KeteranganKunjunganED.clearFocus();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            } else if(categoryReport.equals("2")){
+                f2AlamatPelangganLamaTV.setText(alamatPelanggan);
+                f2PicPelangganLamaTV.setText(picPelanggan);
+                f2TeleponPelangganLamaTV.setText(teleponPelanggan);
+
+                f2IdPelangganLama = idPelanggan;
+                f2DetailPelanggan.setVisibility(View.VISIBLE);
+                f2DetailPesananPart.setVisibility(View.VISIBLE);
+
+                f2NamaPelangganLamaChoiceTV.setText(namaPelangganLama);
+
+                InputMethodManager imm = (InputMethodManager) ReportSumaActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                View view = ReportSumaActivity.this.getCurrentFocus();
+                if (view == null) {
+                    view = new View(ReportSumaActivity.this);
+                }
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                f2KeteranganKunjunganED.clearFocus();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottomSheet.dismissSheet();
+                    }
+                }, 300);
+            }
+
         }
     };
 
@@ -1736,7 +2134,18 @@ public class ReportSumaActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
 
                 if(categoryReport.equals("1")){
+                    params.put("kategori_laporan", categoryReport);
+                    params.put("tanggal_rencana", f1DateChoice);
+                    params.put("keterangan_kunjungan", f1KeteranganKunjunganED.getText().toString());
+                    params.put("tipe_pelanggan", f1JenisPelanggan);
 
+                    if(f1JenisPelanggan.equals("1")){
+
+                    } else if(f1JenisPelanggan.equals("2")){
+                        params.put("id_pelanggan", f1IdPelangganLama);
+                    }
+
+                    params.put("nik_sales", sharedPrefManager.getSpNik());
                 } else if(categoryReport.equals("2")){
                     params.put("kategori_laporan", categoryReport);
                     params.put("keterangan_kunjungan", f2KeteranganKunjunganED.getText().toString());
@@ -1766,6 +2175,27 @@ public class ReportSumaActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         postRequest.setRetryPolicy(retryPolicy);
 
+    }
+
+    private String getDateD() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateM() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("MM");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    private String getDateY() {
+        @SuppressLint("SimpleDateFormat")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     private void connectionFailed() {

@@ -54,20 +54,34 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
         decimalFormat.applyPattern("¤ #,##0;-¤ #,##0");
         decimalFormat.setMaximumFractionDigits(0);
 
-        if(dataReportSuma.getTipeLaporan().equals("1")){
+        if (dataReportSuma.getTipeLaporan().equals("1")) {
             myViewHolder.reportCategoryTV.setText("Rencana Kunjungan");
-        } else if(dataReportSuma.getTipeLaporan().equals("2")){
+        } else if (dataReportSuma.getTipeLaporan().equals("2")) {
             myViewHolder.reportCategoryTV.setText("Kunjungan");
-        } else if(dataReportSuma.getTipeLaporan().equals("3")){
+        } else if (dataReportSuma.getTipeLaporan().equals("3")) {
             myViewHolder.reportCategoryTV.setText("Penawaran");
-        } else if(dataReportSuma.getTipeLaporan().equals("4")){
+        } else if (dataReportSuma.getTipeLaporan().equals("4")) {
             myViewHolder.reportCategoryTV.setText("Penagihan");
         }
 
         myViewHolder.keteranganTV.setText(dataReportSuma.getKeterangan());
         myViewHolder.namaPelangganTV.setText(dataReportSuma.getNamaPelanggan());
-        myViewHolder.totalPesananTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalPesanan())));
-        myViewHolder.tanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
+
+        if(dataReportSuma.getTipeLaporan().equals("1")){
+            myViewHolder.rencanaKunjunganPart.setVisibility(View.VISIBLE);
+            myViewHolder.kunjunganPart.setVisibility(View.GONE);
+            if(String.valueOf(dataReportSuma.getTgl_rencana()).equals("")||String.valueOf(dataReportSuma.getTgl_rencana()).equals("null")){
+                myViewHolder.f1TanggalRencanaTV.setText("Tidak tersedia");
+            } else {
+                myViewHolder.f1TanggalRencanaTV.setText(dataReportSuma.getTgl_rencana().substring(8,10)+"/"+dataReportSuma.getTgl_rencana().substring(5,7)+"/"+dataReportSuma.getTgl_rencana().substring(0,4));
+            }
+            myViewHolder.f1TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
+        } else if(dataReportSuma.getTipeLaporan().equals("2")){
+            myViewHolder.rencanaKunjunganPart.setVisibility(View.GONE);
+            myViewHolder.kunjunganPart.setVisibility(View.VISIBLE);
+            myViewHolder.f2TotalPesananTV.setText(decimalFormat.format(Integer.parseInt(dataReportSuma.getTotalPesanan())));
+            myViewHolder.f2TanggalLaporanTV.setText(dataReportSuma.getCreatedAt().substring(8,10)+"/"+dataReportSuma.getCreatedAt().substring(5,7)+"/"+dataReportSuma.getCreatedAt().substring(0,4)+" "+dataReportSuma.getCreatedAt().substring(10,16));
+        }
 
     }
 
@@ -78,16 +92,22 @@ public class AdapterSumaReport extends RecyclerView.Adapter<AdapterSumaReport.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView namaPelangganTV;
-        TextView reportCategoryTV, keteranganTV, totalPesananTV, tanggalLaporanTV;
-        LinearLayout parentPart;
+        TextView reportCategoryTV, keteranganTV, f1TanggalRencanaTV, f1TanggalLaporanTV, f2TotalPesananTV, f2TanggalLaporanTV;
+        LinearLayout parentPart, kunjunganPart, rencanaKunjunganPart;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             parentPart = itemView.findViewById(R.id.parent_part);
             reportCategoryTV = itemView.findViewById(R.id.report_kategori_tv);
             keteranganTV = itemView.findViewById(R.id.keterangan_report_tv);
             namaPelangganTV = itemView.findViewById(R.id.nama_pelanggan_tv);
-            totalPesananTV = itemView.findViewById(R.id.total_pesanan_tv);
-            tanggalLaporanTV = itemView.findViewById(R.id.tanggal_laporan_tv);
+
+            f1TanggalRencanaTV = itemView.findViewById(R.id.f1_tgl_kunjungan_tv);
+            f1TanggalLaporanTV = itemView.findViewById(R.id.f1_tanggal_laporan_tv);
+            f2TotalPesananTV = itemView.findViewById(R.id.f2_total_pesanan_tv);
+            f2TanggalLaporanTV = itemView.findViewById(R.id.f2_tanggal_laporan_tv);
+
+            kunjunganPart = itemView.findViewById(R.id.kunjungan_part);
+            rencanaKunjunganPart = itemView.findViewById(R.id.rencana_kunjungan_part);
         }
     }
 

@@ -99,6 +99,7 @@
                     <!-- Pesanan -->
 
                     <LinearLayout
+                        android:id="@+id/rencana_kunjungan_part"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -113,7 +114,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="7dp"
-                                android:text="Total Pesanan"
+                                android:text="Tanggal Rencana Kunjungan"
                                 android:textColor="#A1A1A1"
                                 android:textSize="10dp"
                                 android:ellipsize="end"
@@ -122,12 +123,12 @@
                                 tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                             <TextView
-                                android:id="@+id/total_pesanan_tv"
+                                android:id="@+id/f1_tgl_kunjungan_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="1dp"
                                 android:layout_marginBottom="20dp"
-                                android:text="Rp. 100.000"
+                                android:text="00/00/0000"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="12dp"
                                 android:ellipsize="end"
@@ -158,13 +159,94 @@
                                 tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
 
                             <TextView
-                                android:id="@+id/tanggal_laporan_tv"
+                                android:id="@+id/f1_tanggal_laporan_tv"
                                 android:gravity="right"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="1dp"
                                 android:layout_marginBottom="20dp"
-                                android:text="22/02/2024"
+                                android:text="00/00/0000 00:00:00"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="12dp"
+                                android:ellipsize="end"
+                                android:lineSpacingExtra="3dp"
+                                android:maxLines="3"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Pesanan -->
+
+                    <LinearLayout
+                        android:id="@+id/kunjungan_part"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight=".50"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:text="Total Pesanan"
+                                android:textColor="#A1A1A1"
+                                android:textSize="10dp"
+                                android:ellipsize="end"
+                                android:lineSpacingExtra="3dp"
+                                android:maxLines="3"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                            <TextView
+                                android:id="@+id/f2_total_pesanan_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:layout_marginBottom="20dp"
+                                android:text="Rp. 0"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="12dp"
+                                android:ellipsize="end"
+                                android:lineSpacingExtra="3dp"
+                                android:maxLines="3"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight=".50"
+                            android:gravity="right"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:gravity="right"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:text="Waktu Laporan"
+                                android:textColor="#A1A1A1"
+                                android:textSize="10dp"
+                                android:ellipsize="end"
+                                android:lineSpacingExtra="3dp"
+                                android:maxLines="3"
+                                tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextContrastCheck,TextSizeCheck" />
+
+                            <TextView
+                                android:id="@+id/f2_tanggal_laporan_tv"
+                                android:gravity="right"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:layout_marginBottom="20dp"
+                                android:text="00/00/0000 00:00:00"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="12dp"
                                 android:ellipsize="end"

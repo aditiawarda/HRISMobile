@@ -203,7 +203,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="5dp"
                                         android:layout_marginBottom="5dp"
-                                        android:text="Tanggal :"
+                                        android:text="Tanggal Rencana Kunjungan :"
                                         android:textColor="#696969"
                                         android:textSize="12dp"
                                         tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -615,7 +615,7 @@
                                     </LinearLayout>
 
                                     <LinearLayout
-                                        android:id="@+id/f1_submit_pesanan_btn"
+                                        android:id="@+id/f1_submit_data_btn"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="25dp"
@@ -1432,7 +1432,7 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/f2_submit_pesanan_btn"
+                                            android:id="@+id/f2_submit_data_btn"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginBottom="25dp"

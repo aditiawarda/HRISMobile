@@ -370,8 +370,8 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 markPenawaran.setVisibility(View.GONE);
                 markPenagihan.setVisibility(View.GONE);
                 semuaBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
-                rencanaKunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
-                kunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                rencanaKunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
+                kunjunganBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option_choice));
                 penawaranBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 penagihanBTN.setBackground(ContextCompat.getDrawable(ListDataReportSumaActivity.this, R.drawable.shape_option));
                 new Handler().postDelayed(new Runnable() {
@@ -469,7 +469,25 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    @SuppressLint("SetTextI18n")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        categoryCode = "0";
+        categoryChoiceTV.setText("Semua");
+
+        reportRV.setVisibility(View.GONE);
+        loadingDataPartReport.setVisibility(View.VISIBLE);
+        noDataPartReport.setVisibility(View.GONE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.setRefreshing(false);
+                getData(categoryCode);
+            }
+        }, 1000);
     }
 
 }
