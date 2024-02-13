@@ -374,11 +374,141 @@
 
                                         <LinearLayout
                                             android:id="@+id/f1_pelanggan_baru"
-                                            android:layout_marginTop="23dp"
+                                            android:layout_marginTop="20dp"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:visibility="gone"
+                                            android:paddingRight="25dp"
+                                            android:paddingLeft="25dp"
                                             android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="Nama Pelanggan :"
+                                                android:textColor="#696969"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <EditText
+                                                android:id="@+id/f1_nama_pelanggan_baru_ed"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="10dp"
+                                                android:background="@drawable/shape_input_form"
+                                                android:drawablePadding="10dp"
+                                                android:hint=""
+                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:maxLength="255"
+                                                android:minHeight="40dp"
+                                                android:paddingLeft="20dp"
+                                                android:paddingRight="20dp"
+                                                android:paddingTop="10dp"
+                                                android:paddingBottom="12dp"
+                                                android:gravity="center|left"
+                                                android:textColor="#595959"
+                                                android:textColorHighlight="#FFE1BC"
+                                                android:textColorHint="#595959"
+                                                android:textSize="14dp"
+                                                android:maxLines="3"
+                                                tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="Alamat :"
+                                                android:textColor="#696969"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <EditText
+                                                android:id="@+id/f1_alamat_pelanggan_baru_ed"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="10dp"
+                                                android:background="@drawable/shape_input_form"
+                                                android:drawablePadding="10dp"
+                                                android:hint=""
+                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:maxLength="255"
+                                                android:minHeight="40dp"
+                                                android:paddingLeft="20dp"
+                                                android:paddingRight="20dp"
+                                                android:paddingTop="10dp"
+                                                android:paddingBottom="12dp"
+                                                android:gravity="center|left"
+                                                android:textColor="#595959"
+                                                android:textColorHighlight="#FFE1BC"
+                                                android:textColorHint="#595959"
+                                                android:textSize="14dp"
+                                                android:maxLines="3"
+                                                tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="PIC :"
+                                                android:textColor="#696969"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <EditText
+                                                android:id="@+id/f1_pic_pelanggan_baru_ed"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="10dp"
+                                                android:background="@drawable/shape_input_form"
+                                                android:drawablePadding="10dp"
+                                                android:hint=""
+                                                android:inputType="textCapSentences|textMultiLine|textNoSuggestions"
+                                                android:maxLength="255"
+                                                android:minHeight="40dp"
+                                                android:paddingLeft="20dp"
+                                                android:paddingRight="20dp"
+                                                android:paddingTop="10dp"
+                                                android:paddingBottom="12dp"
+                                                android:gravity="center|left"
+                                                android:textColor="#595959"
+                                                android:textColorHighlight="#FFE1BC"
+                                                android:textColorHint="#595959"
+                                                android:textSize="14dp"
+                                                android:maxLines="3"
+                                                tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="5dp"
+                                                android:text="Telepon :"
+                                                android:textColor="#696969"
+                                                android:textSize="12dp"
+                                                tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
+
+                                            <EditText
+                                                android:id="@+id/f1_telepon_pelanggan_baru_ed"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="10dp"
+                                                android:background="@drawable/shape_input_form"
+                                                android:drawablePadding="10dp"
+                                                android:hint=""
+                                                android:inputType="number"
+                                                android:maxLength="255"
+                                                android:minHeight="40dp"
+                                                android:paddingLeft="20dp"
+                                                android:paddingRight="20dp"
+                                                android:paddingTop="10dp"
+                                                android:paddingBottom="12dp"
+                                                android:gravity="center|left"
+                                                android:textColor="#595959"
+                                                android:textColorHighlight="#FFE1BC"
+                                                android:textColorHint="#595959"
+                                                android:textSize="14dp"
+                                                android:maxLines="3"
+                                                tools:ignore="Autofill,LabelFor,RtlHardcoded,SpUsage,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
                                             <LinearLayout
                                                 android:layout_width="match_parent"
@@ -442,7 +572,7 @@
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
                                                 android:layout_marginBottom="5dp"
-                                                android:text="Nama :"
+                                                android:text="Nama Pelanggan :"
                                                 android:textColor="#696969"
                                                 android:textSize="12dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
@@ -831,7 +961,7 @@
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
                                                 android:layout_marginBottom="5dp"
-                                                android:text="Nama :"
+                                                android:text="Nama Pelanggan :"
                                                 android:textColor="#696969"
                                                 android:textSize="12dp"
                                                 tools:ignore="HardcodedText,SpUsage,TextSizeCheck" />
