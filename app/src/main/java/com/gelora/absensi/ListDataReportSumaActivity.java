@@ -46,7 +46,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     RequestQueue requestQueue;
     BottomSheetLayout bottomSheet;
-    String categoryCode = "0";
+    String categoryCode = "1";
     private RecyclerView reportRV;
     private DataReportSuma[] dataReportSumas;
     private AdapterSumaReport adapterSumaReport;
@@ -73,7 +73,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         noDataPartReport = findViewById(R.id.no_data_part_report);
         reportRV = findViewById(R.id.data_report_rv);
 
-        categoryChoiceTV.setText("Semua");
+        categoryChoiceTV.setText("Rencana Kunjungan");
 
         reportRV.setLayoutManager(new LinearLayoutManager(this));
         reportRV.setHasFixedSize(true);
@@ -94,9 +94,6 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                categoryCode = "0";
-                categoryChoiceTV.setText("Semua");
-
                 reportRV.setVisibility(View.GONE);
                 loadingDataPartReport.setVisibility(View.VISIBLE);
                 noDataPartReport.setVisibility(View.GONE);
@@ -475,19 +472,45 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        categoryCode = "0";
-        categoryChoiceTV.setText("Semua");
-
-        reportRV.setVisibility(View.GONE);
-        loadingDataPartReport.setVisibility(View.VISIBLE);
-        noDataPartReport.setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                refreshLayout.setRefreshing(false);
-                getData(categoryCode);
+        if(sharedPrefAbsen.getSpReportCategoryActive().equals("")){
+            reportRV.setVisibility(View.GONE);
+            loadingDataPartReport.setVisibility(View.VISIBLE);
+            noDataPartReport.setVisibility(View.GONE);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    refreshLayout.setRefreshing(false);
+                    getData(categoryCode);
+                }
+            }, 1000);
+        } else {
+            categoryCode = sharedPrefAbsen.getSpReportCategoryActive();
+            if (categoryCode.equals("0")) {
+                categoryChoiceTV.setText("Semua");
+            } else if(categoryCode.equals("1")) {
+                categoryChoiceTV.setText("Rencana Kunjungan");
+            } else if(categoryCode.equals("2")) {
+                categoryChoiceTV.setText("Kunjungan");
+            } else if(categoryCode.equals("3")) {
+                categoryChoiceTV.setText("Penawaran");
+            } else if(categoryCode.equals("4")) {
+                categoryChoiceTV.setText("Penagihan");
             }
-        }, 1000);
+
+            reportRV.setVisibility(View.GONE);
+            loadingDataPartReport.setVisibility(View.VISIBLE);
+            noDataPartReport.setVisibility(View.GONE);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    refreshLayout.setRefreshing(false);
+                    getData(categoryCode);
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                }
+            }, 1000);
+        }
+
+
     }
 
 }

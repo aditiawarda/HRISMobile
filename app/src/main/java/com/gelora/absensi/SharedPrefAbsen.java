@@ -58,7 +58,8 @@ public class SharedPrefAbsen {
     public static final String SP_STATUS_TASK = "spStatusTask";
     public static final String SP_PROJECT_OPEN = "spProjectOpen";
     public static final String SP_PELANGGAN_LAMA = "spPelangganLama";
-    public static final String SP_PRODUCT_ACTIVE= "spProductActive";
+    public static final String SP_PRODUCT_ACTIVE = "spProductActive";
+    public static final String SP_REPORT_CATEGORY_ACTIVE = "spReportCategoryActive";
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -290,6 +291,10 @@ public class SharedPrefAbsen {
 
     public String getSpProductActive(){
         return sp.getString(SP_PRODUCT_ACTIVE, "");
+    }
+
+    public String getSpReportCategoryActive(){
+        return sp.getString(SP_REPORT_CATEGORY_ACTIVE, "");
     }
 
 }
