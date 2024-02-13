@@ -261,8 +261,7 @@
                 android:paddingRight="20dp"
                 android:background="@drawable/shape_option"
                 android:orientation="horizontal"
-                tools:ignore="DisableBaselineAlignment"
-                android:visibility="gone">
+                tools:ignore="DisableBaselineAlignment">
 
                 <LinearLayout
                     android:layout_width="0dp"

@@ -257,7 +257,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 categoryReport = "";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "");
                 reportKategoriChoiceTV.setText("");
                 kunjunganFormPart.setVisibility(View.GONE);
                 penawaranFormPart.setVisibility(View.GONE);
@@ -827,7 +827,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 categoryReport = "1";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, categoryReport);
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
                 reportKategoriChoiceTV.setText("Rencana Kunjungan");
                 markRencanaKunjungan.setVisibility(View.VISIBLE);
                 markKunjungan.setVisibility(View.GONE);
@@ -928,7 +928,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 categoryReport = "2";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, categoryReport);
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
                 reportKategoriChoiceTV.setText("Kunjungan");
                 markRencanaKunjungan.setVisibility(View.GONE);
                 markKunjungan.setVisibility(View.VISIBLE);
@@ -1029,7 +1029,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 categoryReport = "3";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, categoryReport);
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
                 reportKategoriChoiceTV.setText("Penawaran");
                 markKunjungan.setVisibility(View.GONE);
                 markPenawaran.setVisibility(View.VISIBLE);
@@ -1130,7 +1130,7 @@ public class ReportSumaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 categoryReport = "4";
-                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, categoryReport);
+                sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, categoryReport);
                 reportKategoriChoiceTV.setText("Penagihan");
                 markKunjungan.setVisibility(View.GONE);
                 markPenawaran.setVisibility(View.GONE);
@@ -2240,7 +2240,7 @@ public class ReportSumaActivity extends AppCompatActivity {
                                 public void onClick(KAlertDialog sDialog) {
                                     sDialog.dismiss();
                                     categoryReport = "";
-                                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "");
                                     f2IdPelangganLama = "";
                                     reportKategoriChoiceTV.setText("");
                                     sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");

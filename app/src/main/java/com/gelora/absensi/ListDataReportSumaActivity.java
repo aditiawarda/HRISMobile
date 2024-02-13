@@ -505,7 +505,7 @@ public class ListDataReportSumaActivity extends AppCompatActivity {
                 public void run() {
                     refreshLayout.setRefreshing(false);
                     getData(categoryCode);
-                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_PELANGGAN_LAMA, "");
+                    sharedPrefAbsen.saveSPString(SharedPrefAbsen.SP_REPORT_CATEGORY_ACTIVE, "");
                 }
             }, 1000);
         }
